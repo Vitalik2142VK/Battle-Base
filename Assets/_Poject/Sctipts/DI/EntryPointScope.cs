@@ -1,3 +1,6 @@
 using VContainer.Unity;
 
-public class EntryPointScope : LifetimeScope { }
+namespace BattleBase.DI
+{
+    public class EntryPointScope : LifetimeScope { }
+}
