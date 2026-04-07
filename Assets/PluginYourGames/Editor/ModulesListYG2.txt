@@ -1,6 +1,6 @@
-Authorization v1.022
+Authorization v1.023
 BannerAdv v1.0
-InterstitialAdv v1.01
+InterstitialAdv v1.02
 Leaderboards v1.01
 Localization v1.02
 RewardedAdv v1.011
