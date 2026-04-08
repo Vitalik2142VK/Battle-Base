@@ -4,17 +4,18 @@ using UnityEngine;
 
 namespace BattleBase.UI.PopUp
 {
-    public class PopUpScaleAnimator : MonoBehaviour
+
+    public class PopUpScaleAnimator : PopUpAnimatorBase
     {
         [SerializeField] private ScaleAnimationConfig _showConfig;
         [SerializeField] private ScaleAnimationConfig _hideConfig;
 
         private Transform _transform;
 
-        public void Init() =>
+        public override void Init() =>
             _transform = transform;
 
-        public bool TryPlayShow(out Tweener tweener)
+        public override bool TryPlayShow(out Tweener tweener)
         {
             bool isSuccess = _showConfig != null;
             _transform.localScale = isSuccess ? _showConfig.StartScale : Vector3.zero;
@@ -23,7 +24,7 @@ namespace BattleBase.UI.PopUp
             return isSuccess;
         }
 
-        public bool TryPlayHide(out Tweener tweener)
+        public override bool TryPlayHide(out Tweener tweener)
         {
             bool isSuccess = _hideConfig != null;
             tweener = isSuccess ? _transform.PlayScale(_hideConfig) : null;

@@ -32,3 +32,9 @@ MonoBehaviour:
   - _icon: {fileID: 2800000, guid: 6d894256ae59440478a3531633c33a9c, type: 3}
     _typeName: UnityEngine.Canvas, UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  - _icon: {fileID: 2800000, guid: e3f537f9f61b36545ae5d9329f2d6e37, type: 3}
+    _typeName: BattleBase.UI.PopUps.PopUp, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  - _icon: {fileID: 2800000, guid: e9927a4a2516ce9419a19a1f86eb2f86, type: 3}
+    _typeName: UnityEngine.UI.Button, UnityEngine.UI, Version=1.0.0.0, Culture=neutral,
+      PublicKeyToken=null
