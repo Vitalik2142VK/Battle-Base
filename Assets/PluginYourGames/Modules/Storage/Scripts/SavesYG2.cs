@@ -1,9 +1,10 @@
-﻿
+using System;
+
 namespace YG
 {
-    [System.Serializable]
+    [Serializable]
     public partial class SavesYG
     {
-        public int idSave;
+        public SavesData SavesData = new();
     }
 }

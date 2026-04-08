@@ -6,7 +6,6 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
-
 namespace FiXiK.SceneBrowserWindow.Editor
 {
     public class SceneBrowserWindow : EditorWindow
@@ -28,10 +27,17 @@ namespace FiXiK.SceneBrowserWindow.Editor
         private void OnEnable()
         {
             EditorApplication.projectChanged += RefreshSceneList;
-
             LoadIcons();
-            LoadHiddenScenes();
-            RefreshSceneList();
+
+            EditorApplication.delayCall += () =>
+            {
+                if (this == null) 
+                    return;
+
+                LoadHiddenScenes();
+                RefreshSceneList();
+                Repaint();
+            };
         }
 
         private void OnDisable()
@@ -132,15 +138,12 @@ namespace FiXiK.SceneBrowserWindow.Editor
             _hiddenScenes.Clear();
             string hiddenScenesData = EditorPrefs.GetString(SceneBrowserConstants.HiddenScenesKey, "");
 
-            if (string.IsNullOrEmpty(hiddenScenesData) == false)
-            {
-                _hiddenScenes = hiddenScenesData.Split(';')
-                    .Where(s => string.IsNullOrEmpty(s) == false)
-                    .Where(SceneExists)
-                    .ToList();
+            if (string.IsNullOrEmpty(hiddenScenesData)) 
+                return;
 
-                SaveHiddenScenes();
-            }
+            _hiddenScenes = hiddenScenesData.Split(';')
+                .Where(s => !string.IsNullOrEmpty(s))
+                .ToList();
         }
 
         private bool SceneExists(string scenePath) =>
@@ -151,6 +154,9 @@ namespace FiXiK.SceneBrowserWindow.Editor
 
         private void RefreshSceneList()
         {
+            if (EditorApplication.isPlaying && !AssetDatabase.IsValidFolder("Assets") == false)
+                return;
+
             string[] searchFolders = new[] { SceneBrowserConstants.FolderName };
 
             _scenePaths = AssetDatabase.FindAssets(SceneBrowserConstants.SceneType, searchFolders)
