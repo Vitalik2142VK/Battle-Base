@@ -31,7 +31,7 @@ namespace FiXiK.SceneBrowserWindow.Editor
 
             EditorApplication.delayCall += () =>
             {
-                if (this == null) 
+                if (this == null)
                     return;
 
                 LoadHiddenScenes();
@@ -48,38 +48,64 @@ namespace FiXiK.SceneBrowserWindow.Editor
 
         private void OnGUI()
         {
-            GUILayout.Label(SceneBrowserConstants.Tittle, EditorStyles.boldLabel);
+            try
+            {
+                GUILayout.Label(SceneBrowserConstants.Tittle, EditorStyles.boldLabel);
+                _scrollPosition = GUILayout.BeginScrollView(_scrollPosition);
 
-            _scrollPosition = GUILayout.BeginScrollView(_scrollPosition);
+                try
+                {
+                    DrawVisibleScenes();
 
-            DrawVisibleScenes();
+                    _isShowHiddenScenes = EditorGUILayout.Foldout(_isShowHiddenScenes, SceneBrowserConstants.HiddenSceneBlockName, true);
 
-            _isShowHiddenScenes = EditorGUILayout.Foldout(_isShowHiddenScenes, SceneBrowserConstants.HiddenSceneBlockName, true);
+                    if (_isShowHiddenScenes && _hiddenScenes.Count > 0)
+                        DrawHiddenScenes();
+                }
+                finally
+                {
+                    GUILayout.EndScrollView();
+                }
 
-            if (_isShowHiddenScenes && _hiddenScenes.Count > 0)
-                DrawHiddenScenes();
-
-            GUILayout.EndScrollView();
-
-            DrawVersionLabel();
+                DrawVersionLabel();
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogError($"SceneBrowserWindow OnGUI error: {ex.Message}\n{ex.StackTrace}");
+            }
         }
 
         private void DrawVersionLabel()
         {
             GUILayout.BeginArea(new Rect(position.width - 80, 0, 80, 10));
-            GUILayout.Label($"Версия: {SceneBrowserConstants.Version}", EditorStyles.miniLabel);
-            GUILayout.EndArea();
+
+            try
+            {
+                GUILayout.Label($"Версия: {SceneBrowserConstants.Version}", EditorStyles.miniLabel);
+            }
+            finally
+            {
+                GUILayout.EndArea();
+            }
         }
 
         private void DrawVisibleScenes()
         {
+            if (_scenePaths == null)
+                return;
+
             foreach (string scenePath in _scenePaths)
+            {
                 if (_hiddenScenes.Contains(scenePath) == false)
                     DrawSceneLine(scenePath, _openEyeTexture, SceneBrowserConstants.OpenEyeTextureTooltip, true);
+            }
         }
 
         private void DrawHiddenScenes()
         {
+            if (_hiddenScenes == null)
+                return;
+
             foreach (string scenePath in _hiddenScenes.Where(SceneExists).ToList())
                 DrawSceneLine(scenePath, _closedEyeTexture, SceneBrowserConstants.ClosedEyeTextureTooltip, false);
         }
@@ -90,6 +116,27 @@ namespace FiXiK.SceneBrowserWindow.Editor
             _folderTexture = EditorGUIUtility.IconContent(SceneBrowserConstants.FolderIconName).image as Texture2D;
             _openEyeTexture = EditorGUIUtility.IconContent(SceneBrowserConstants.OpenEyeIconName).image as Texture2D;
             _closedEyeTexture = EditorGUIUtility.IconContent(SceneBrowserConstants.ClosedEyeIconName).image as Texture2D;
+
+            if (_sceneTexture == null) 
+                _sceneTexture = CreateDummyTexture();
+
+            if (_folderTexture == null) 
+                _folderTexture = CreateDummyTexture();
+
+            if (_openEyeTexture == null) 
+                _openEyeTexture = CreateDummyTexture();
+
+            if (_closedEyeTexture == null) 
+                _closedEyeTexture = CreateDummyTexture();
+        }
+
+        private Texture2D CreateDummyTexture()
+        {
+            Texture2D tex = new(1, 1);
+            tex.SetPixel(0, 0, Color.gray);
+            tex.Apply();
+
+            return tex;
         }
 
         private void DrawSceneLine(string scenePath, Texture2D actionIcon, string tooltip, bool isVisible = true)
@@ -102,19 +149,30 @@ namespace FiXiK.SceneBrowserWindow.Editor
 
             GUILayout.BeginHorizontal();
 
-            GUILayout.Label(new GUIContent(_sceneTexture), GUILayout.Width(SceneBrowserConstants.LabelHeight), GUILayout.Height(SceneBrowserConstants.LabelHeight));
+            try
+            {
+                Texture2D sceneTex = _sceneTexture != null ? _sceneTexture : CreateDummyTexture();
+                Texture2D folderTex = _folderTexture != null ? _folderTexture : CreateDummyTexture();
+                Texture2D actionTex = actionIcon != null ? actionIcon : CreateDummyTexture();
 
-            if (GUILayout.Button(new GUIContent("", _folderTexture, folderTooltipWithPath), GUILayout.Width(SceneBrowserConstants.LabelHeight), GUILayout.Height(SceneBrowserConstants.LabelHeight)))
-                ShowSceneInProject(scenePath);
+                GUILayout.Label(new GUIContent(sceneTex), GUILayout.Width(SceneBrowserConstants.LabelHeight), GUILayout.Height(SceneBrowserConstants.LabelHeight));
 
-            if (GUILayout.Button(sceneName, GUILayout.Height(SceneBrowserConstants.LabelHeight)))
-                if (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
-                    EditorSceneManager.OpenScene(scenePath);
+                if (GUILayout.Button(new GUIContent("", folderTex, folderTooltipWithPath), GUILayout.Width(SceneBrowserConstants.LabelHeight), GUILayout.Height(SceneBrowserConstants.LabelHeight)))
+                    ShowSceneInProject(scenePath);
 
-            if (GUILayout.Button(new GUIContent("", actionIcon, tooltip), GUILayout.Width(SceneBrowserConstants.LabelHeight), GUILayout.Height(SceneBrowserConstants.LabelHeight)))
-                ToggleSceneVisibility(scenePath, isVisible);
+                if (GUILayout.Button(sceneName, GUILayout.Height(SceneBrowserConstants.LabelHeight)))
+                {
+                    if (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
+                        EditorSceneManager.OpenScene(scenePath);
+                }
 
-            GUILayout.EndHorizontal();
+                if (GUILayout.Button(new GUIContent("", actionTex, tooltip), GUILayout.Width(SceneBrowserConstants.LabelHeight), GUILayout.Height(SceneBrowserConstants.LabelHeight)))
+                    ToggleSceneVisibility(scenePath, isVisible);
+            }
+            finally
+            {
+                GUILayout.EndHorizontal();
+            }
         }
 
         private void ToggleSceneVisibility(string scenePath, bool isVisible)
@@ -138,7 +196,7 @@ namespace FiXiK.SceneBrowserWindow.Editor
             _hiddenScenes.Clear();
             string hiddenScenesData = EditorPrefs.GetString(SceneBrowserConstants.HiddenScenesKey, "");
 
-            if (string.IsNullOrEmpty(hiddenScenesData)) 
+            if (string.IsNullOrEmpty(hiddenScenesData))
                 return;
 
             _hiddenScenes = hiddenScenesData.Split(';')
@@ -154,14 +212,14 @@ namespace FiXiK.SceneBrowserWindow.Editor
 
         private void RefreshSceneList()
         {
-            if (EditorApplication.isPlaying && !AssetDatabase.IsValidFolder("Assets") == false)
+            if (EditorApplication.isPlaying || AssetDatabase.IsValidFolder(SceneBrowserConstants.FolderName) == false)
                 return;
 
             string[] searchFolders = new[] { SceneBrowserConstants.FolderName };
 
             _scenePaths = AssetDatabase.FindAssets(SceneBrowserConstants.SceneType, searchFolders)
                                       .Select(AssetDatabase.GUIDToAssetPath)
-                                      .Where(path => path.EndsWith(".unity") && _hiddenScenes.Contains(path) == false)
+                                      .Where(path => path.EndsWith(".unity"))
                                       .OrderBy(path => Path.GetFileNameWithoutExtension(path))
                                       .ToArray();
         }

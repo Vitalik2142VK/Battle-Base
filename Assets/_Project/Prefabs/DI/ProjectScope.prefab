@@ -191,8 +191,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: {fileID: 9097463439721658305}
-  _menuClip: {fileID: 8300000, guid: 163cf13e7a073f142a91fd0696f8baf7, type: 3}
-  _gameClip: {fileID: 8300000, guid: c0dde8fe9dca9ab4e974ea98860aa8b1, type: 3}
 --- !u!1 &3045152671476217450
 GameObject:
   m_ObjectHideFlags: 0

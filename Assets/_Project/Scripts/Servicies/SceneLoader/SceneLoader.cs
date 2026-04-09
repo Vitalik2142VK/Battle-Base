@@ -15,7 +15,7 @@ namespace BattleBase.Services.SceneLoadingService
         private void Awake()
         {
             _fader.Init();
-            _fader.FastHide();
+            _fader.HideFast();
         }
 
         public void Load(string name)

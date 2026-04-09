@@ -62,7 +62,7 @@ namespace BattleBase.UI.PopUps
             });
         }
 
-        public void FastHide()
+        public void HideFast()
         {
             gameObject.SetActive(false);
             IsActive = false;
