@@ -1,35 +1,35 @@
 using System.Collections.Generic;
+using BattleBase.Abstract;
 using BattleBase.Services.Audio;
-using BattleBase.Services.SaveService;
 using BattleBase.UI.PopUps;
 using UnityEngine;
 using VContainer;
 
 namespace BattleBase.Bootstraps
 {
-    public class MenuBootstrap : MonoBehaviour 
+    public class MenuBootstrap : BootstrapBase
     {
         [SerializeField] private List<PopUp> _popUps;
-        [SerializeField] private VolumeMediator _volumeMediator;
-        [SerializeField] private SavingMediator _savingMediator;
+        [SerializeField] private List<MediatorBase> _mediators;
 
         private IAudioService _audioService;
 
         [Inject]
-        public void Construct(IAudioService audioService)
-        {
+        public void Construct(IAudioService audioService) =>
             _audioService = audioService;
-        }
 
         private void Start()
         {
             _audioService.Music.PlayMenu();
 
             foreach (PopUp popUp in _popUps)
+            {
                 popUp.Init();
+                popUp.FastHide();
+            }
 
-            _volumeMediator.Init();
-            _savingMediator.Init();
+            foreach (MediatorBase mediator in _mediators) 
+                mediator.Init();
         }
     }
 }

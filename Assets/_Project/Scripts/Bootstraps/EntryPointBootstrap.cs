@@ -1,3 +1,4 @@
+using BattleBase.Abstract;
 using BattleBase.Services.SceneLoadingService;
 using BattleBase.Static;
 using UnityEngine;
@@ -5,12 +6,12 @@ using VContainer;
 
 namespace BattleBase.Bootstraps
 {
-    public class EntryPointBootstrap : MonoBehaviour
+    public class EntryPointBootstrap : BootstrapBase
     {
-        private SceneLoader _sceneLoader;
+        private ISceneLoader _sceneLoader;
 
         [Inject]
-        public void Construct(SceneLoader sceneLoader) =>
+        public void Construct(ISceneLoader sceneLoader) =>
             _sceneLoader = sceneLoader;
 
         private void Start() =>

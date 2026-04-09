@@ -9,7 +9,7 @@ namespace FiXiK.HierarchyComponentIconAssigner
     public static class HierarchyIconDrawer
     {
         private static Dictionary<Type, Texture2D> s_Cache;
-        private static HashSet<Type> s_EnabledTypes;
+        private static List<Type> s_IconTypes;
         private static Config s_CurrentSettings;
         private static bool s_IsSubscribed;
 
@@ -73,7 +73,7 @@ namespace FiXiK.HierarchyComponentIconAssigner
                 s_CurrentSettings.Changed += OnSettingsChanged;
             }
 
-            s_EnabledTypes = new();
+            s_IconTypes = new();
             s_Cache = new();
             HashSet<Type> seen = new();
 
@@ -99,7 +99,7 @@ namespace FiXiK.HierarchyComponentIconAssigner
 
                 if (seen.Add(componentType))
                 {
-                    s_EnabledTypes.Add(componentType);
+                    s_IconTypes.Add(componentType);
                     if (texture != null)
                         s_Cache[componentType] = texture;
                 }
@@ -131,26 +131,42 @@ namespace FiXiK.HierarchyComponentIconAssigner
             if (gameObject == null)
                 return;
 
-            Vector2 iconSize = Constants.HierarchyIcon.IconSize;
-
-            foreach (Type enabledType in s_EnabledTypes)
+            foreach (Type iconType in s_IconTypes)
             {
-                if (gameObject.GetComponent(enabledType) != null)
+                if (HasComponentDerivedFrom(gameObject, iconType))
                 {
-                    if (s_Cache.TryGetValue(enabledType, out Texture2D texture) == false || texture == null)
-                        continue;
+                    if (s_Cache.TryGetValue(iconType, out Texture2D texture) && texture != null)
+                    {
+                        Vector2 iconSize = Constants.HierarchyIcon.IconSize;
+                        Rect iconRect = new(
+                            selectionRect.x,
+                            selectionRect.y + selectionRect.height - iconSize.y,
+                            iconSize.x,
+                            iconSize.y);
+                        GUI.DrawTexture(iconRect, texture);
 
-                    Rect iconRect = new(
-                        selectionRect.x,
-                        selectionRect.y + selectionRect.height - iconSize.y,
-                        iconSize.x,
-                        iconSize.y);
-
-                    GUI.DrawTexture(iconRect, texture);
-
-                    break;
+                        break;
+                    }
                 }
             }
+        }
+
+        private static bool HasComponentDerivedFrom(GameObject go, Type baseType)
+        {
+            Component[] components = go.GetComponents<Component>();
+
+            foreach (Component component in components)
+            {
+                if (component == null) 
+                    continue;
+
+                Type compType = component.GetType();
+
+                if (baseType.IsAssignableFrom(compType))
+                    return true;
+            }
+
+            return false;
         }
 
         private static void OnSettingsChanged()

@@ -1,10 +1,11 @@
+using BattleBase.Abstract;
 using UnityEngine;
 using UnityEngine.UI;
 using VContainer;
 
 namespace BattleBase.Services.SaveService
 {
-    public class SavingMediator : MonoBehaviour
+    public class SavingMediator : MediatorBase
     {
         [SerializeField] private Slider _generalSlider;
         [SerializeField] private Slider _musicSlider;
@@ -13,12 +14,10 @@ namespace BattleBase.Services.SaveService
         private ISaver _saver;
 
         [Inject]
-        public void Construct(ISaver saver)
-        {
+        public void Construct(ISaver saver) =>
             _saver = saver;
-        }
 
-        public void Init()
+        public override void Init()
         {
             _generalSlider.value = _saver.GeneralVolume;
             _musicSlider.value = _saver.MusicVolume;

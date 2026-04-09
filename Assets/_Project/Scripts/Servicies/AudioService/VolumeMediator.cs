@@ -1,3 +1,4 @@
+using BattleBase.Abstract;
 using BattleBase.Static;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -5,7 +6,7 @@ using UnityEngine.UI;
 
 namespace BattleBase.Services.Audio
 {
-    public class VolumeMediator : MonoBehaviour
+    public class VolumeMediator : MediatorBase
     {
         [SerializeField] private AudioMixer _mixer;
 
@@ -17,7 +18,7 @@ namespace BattleBase.Services.Audio
         private VolumeModifier _musicModifier;
         private VolumeModifier _sfxModifier;
 
-        public void Init()
+        public override void Init()
         {
             _generalModifier = new(_mixer, _generalSlaider, Constants.GeneralVolumeGroup);
             _musicModifier = new(_mixer, _musicSlider, Constants.MusicVolumeGroup);

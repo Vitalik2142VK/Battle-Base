@@ -87,7 +87,7 @@ namespace FiXiK.HierarchyComponentIconAssigner
                         try { return assembly.GetTypes(); }
                         catch { return Type.EmptyTypes; }
                     })
-                    .Where(type => type.IsSubclassOf(typeof(Component)) && type.IsAbstract == false)
+                    .Where(type => type.IsSubclassOf(typeof(Component)))
                     .ToList();
 
                 return _cachedComponentTypes;

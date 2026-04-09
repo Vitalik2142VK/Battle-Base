@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 namespace BattleBase.Services.SceneLoadingService
 {
-    public class SceneLoader : MonoBehaviour
+    public class SceneLoader : MonoBehaviour, ISceneLoader
     {
         [SerializeField] private Fader _fader;
         private bool _isLoading;

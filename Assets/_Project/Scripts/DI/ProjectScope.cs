@@ -23,7 +23,7 @@ namespace BattleBase.DI
             builder.Register<ISaver, Saver>(Lifetime.Singleton);
 
             builder.RegisterComponent<IAudioService>(_audioService);
-            builder.RegisterComponent(_sceneLoader);
+            builder.RegisterComponent<ISceneLoader>(_sceneLoader);
             builder.RegisterComponent<IUpdater>(_updater);
         }
     }
