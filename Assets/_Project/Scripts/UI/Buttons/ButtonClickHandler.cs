@@ -1,11 +1,15 @@
+using System.Collections.Generic;
+using BattleBase.Commands;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace BattleBase.UI.Buttons
 {
     [RequireComponent(typeof(Button))]
-    public abstract class ButtonClickHandler : MonoBehaviour
+    public class ButtonClickHandler : MonoBehaviour
     {
+        [SerializeField] private List<CommandBase> _commands;
+
         private Button _button;
 
         private void Awake() =>
@@ -23,6 +27,10 @@ namespace BattleBase.UI.Buttons
                 _button.onClick.RemoveListener(OnClick);
         }
 
-        protected abstract void OnClick();
+        protected virtual void OnClick()
+        {
+            foreach(CommandBase command in _commands)
+                command.Execute();
+        }
     }
 }

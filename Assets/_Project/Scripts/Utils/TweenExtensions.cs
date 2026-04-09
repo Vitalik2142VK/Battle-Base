@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using BattleBase.UI.PopUp;
 using DG.Tweening;
 using TMPro;
@@ -140,6 +143,28 @@ namespace BattleBase.Static
                 .SetUpdate(true);
 
             return tweener;
+        }
+
+        public static void PlaySequence(IEnumerable<Tweener> tweeners, Action onComplete = null)
+        {
+            if (tweeners == null)
+                return;
+
+            List<Tweener> tweenerList = tweeners as List<Tweener> ?? tweeners.ToList();
+
+            if (tweenerList.Count == 0)
+            {
+                onComplete?.Invoke();
+
+                return;
+            }
+
+            Sequence sequence = DOTween.Sequence().SetUpdate(true);
+
+            foreach (Tweener tweener in tweenerList)
+                sequence.Join(tweener);
+
+            sequence.OnComplete(() => onComplete?.Invoke());
         }
     }
 }

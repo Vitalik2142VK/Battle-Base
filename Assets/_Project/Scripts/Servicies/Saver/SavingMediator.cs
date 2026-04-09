@@ -5,7 +5,7 @@ using VContainer;
 
 namespace BattleBase.Services.SaveService
 {
-    public class SavingMediator : MediatorBase
+    public class SavingMediator : MediatorBase, IInjectable
     {
         [SerializeField] private Slider _generalSlider;
         [SerializeField] private Slider _musicSlider;

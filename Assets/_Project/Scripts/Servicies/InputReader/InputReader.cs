@@ -1,7 +1,4 @@
 namespace BattleBase.Services.InputReader
 {
-    public class InputReader : IInputReader
-    {
-
-    }
+    public class InputReader : IInputReader { }
 }

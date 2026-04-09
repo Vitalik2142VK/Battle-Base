@@ -87,7 +87,7 @@ namespace FiXiK.HierarchyComponentIconAssigner
                         try { return assembly.GetTypes(); }
                         catch { return Type.EmptyTypes; }
                     })
-                    .Where(type => type.IsSubclassOf(typeof(Component)))
+                    .Where(type => typeof(Component).IsAssignableFrom(type) || type.IsInterface)
                     .ToList();
 
                 return _cachedComponentTypes;

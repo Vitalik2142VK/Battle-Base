@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using BattleBase.Abstract;
+using BattleBase.Commands;
 using BattleBase.Services.Audio;
 using BattleBase.UI.PopUps;
 using UnityEngine;
@@ -7,10 +8,11 @@ using VContainer;
 
 namespace BattleBase.Bootstraps
 {
-    public class GameBootstrap : BootstrapBase 
+    public class GameBootstrap : BootstrapBase, IInjectable
     {
         [SerializeField] private List<PopUp> _popUps;
         [SerializeField] private List<MediatorBase> _mediators;
+        [SerializeField] private List<CommandBase> _commandsToStart;
 
         private IAudioService _audioService;
 
@@ -30,6 +32,9 @@ namespace BattleBase.Bootstraps
 
             foreach (MediatorBase mediator in _mediators)
                 mediator.Init();
+
+            foreach (CommandBase command in _commandsToStart)
+                command.Execute();
         }
     }
 }

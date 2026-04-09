@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startAlpha: 0
   _targetAlpha: 1
-  _duration: 0.4
+  _duration: 0.5
   _delay: 0
   _ease: 27

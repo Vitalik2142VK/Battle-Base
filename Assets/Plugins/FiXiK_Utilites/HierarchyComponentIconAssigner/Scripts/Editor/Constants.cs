@@ -18,7 +18,7 @@ public static class Constants
     public static class Settings
     {
         public const string TooltipIconRenderingSwitch = "Включить/выключить отрисовку иконок";
-        public const string TooltipChoosingIconAndComponent = "Выбери иконку, компонент и радуйся =)";
+        public const string TooltipChoosingIconAndComponent = "Выбери иконку, компонент (или интерфейс) и радуйся =)";
     }
 
     public static class ContextMenu

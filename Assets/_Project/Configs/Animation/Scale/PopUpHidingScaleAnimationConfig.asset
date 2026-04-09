@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PopUpHidingScaleAnimationConfig
   m_EditorClassIdentifier: 
   _startScale: {x: 1, y: 1, z: 1}
-  _targetScale: {x: 0.35, y: 0.35, z: 1}
-  _duration: 0.4
+  _targetScale: {x: 0.5, y: 0.5, z: 1}
+  _duration: 0.3
   _delay: 0
-  _ease: 26
+  _ease: 27

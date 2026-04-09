@@ -7,10 +7,11 @@ using VContainer;
 
 namespace BattleBase.Bootstraps
 {
-    public class MenuBootstrap : BootstrapBase
+    public class MenuBootstrap : BootstrapBase, IInjectable
     {
         [SerializeField] private List<PopUp> _popUps;
         [SerializeField] private List<MediatorBase> _mediators;
+        [SerializeField] private PopUp _menuButtonsPopUp;
 
         private IAudioService _audioService;
 
@@ -30,6 +31,8 @@ namespace BattleBase.Bootstraps
 
             foreach (MediatorBase mediator in _mediators) 
                 mediator.Init();
+
+            _menuButtonsPopUp.Show();
         }
     }
 }

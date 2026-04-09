@@ -1,4 +1,5 @@
 using System.Collections;
+using BattleBase.UI.PopUps;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,13 +7,16 @@ namespace BattleBase.Services.SceneLoadingService
 {
     public class SceneLoader : MonoBehaviour, ISceneLoader
     {
-        [SerializeField] private Fader _fader;
+        [SerializeField] private PopUp _fader;
         private bool _isLoading;
 
         public string CurrentSceneName => SceneManager.GetActiveScene().name;
 
-        private void Awake() =>
+        private void Awake()
+        {
             _fader.Init();
+            _fader.FastHide();
+        }
 
         public void Load(string name)
         {

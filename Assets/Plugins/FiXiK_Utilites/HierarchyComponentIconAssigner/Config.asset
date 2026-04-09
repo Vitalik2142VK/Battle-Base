@@ -20,6 +20,9 @@ MonoBehaviour:
   - _icon: {fileID: 2800000, guid: 33d0a77939d26c24fbfcaa477770f98f, type: 3}
     _typeName: BattleBase.Abstract.BootstrapBase, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  - _icon: {fileID: 2800000, guid: 6edd3a10d3b76374ab50472d561ee43a, type: 3}
+    _typeName: BattleBase.Abstract.IInjectable, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   - _icon: {fileID: 2800000, guid: 0cdd6ca023ed1dd49818d5f3a57f7f09, type: 3}
     _typeName: UnityEngine.Camera, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
@@ -35,3 +38,12 @@ MonoBehaviour:
   - _icon: {fileID: 2800000, guid: 1aa339e5cafc40e4ebfad715591db4ac, type: 3}
     _typeName: BattleBase.Abstract.MediatorBase, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  - _icon: {fileID: 2800000, guid: fae44f81cde713443a86d169a47f1f8d, type: 3}
+    _typeName: TMPro.TMP_Text, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  - _icon: {fileID: 2800000, guid: fae44f81cde713443a86d169a47f1f8d, type: 3}
+    _typeName: UnityEngine.UI.Text, UnityEngine.UI, Version=1.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  - _icon: {fileID: 2800000, guid: 77734e1f7d32007469f85c85e8bc5464, type: 3}
+    _typeName: UnityEngine.UI.Image, UnityEngine.UI, Version=1.0.0.0, Culture=neutral,
+      PublicKeyToken=null

@@ -1,12 +1,11 @@
 using BattleBase.Abstract;
 using BattleBase.Services.SceneLoadingService;
 using BattleBase.Static;
-using UnityEngine;
 using VContainer;
 
 namespace BattleBase.Bootstraps
 {
-    public class EntryPointBootstrap : BootstrapBase
+    public class EntryPointBootstrap : BootstrapBase, IInjectable
     {
         private ISceneLoader _sceneLoader;
 

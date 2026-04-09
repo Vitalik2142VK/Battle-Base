@@ -133,7 +133,7 @@ namespace FiXiK.HierarchyComponentIconAssigner
 
             foreach (Type iconType in s_IconTypes)
             {
-                if (HasComponentDerivedFrom(gameObject, iconType))
+                if (HasComponentOfType(gameObject, iconType))
                 {
                     if (s_Cache.TryGetValue(iconType, out Texture2D texture) && texture != null)
                     {
@@ -151,7 +151,7 @@ namespace FiXiK.HierarchyComponentIconAssigner
             }
         }
 
-        private static bool HasComponentDerivedFrom(GameObject go, Type baseType)
+        private static bool HasComponentOfType(GameObject go, Type targetType)
         {
             Component[] components = go.GetComponents<Component>();
 
@@ -160,9 +160,9 @@ namespace FiXiK.HierarchyComponentIconAssigner
                 if (component == null) 
                     continue;
 
-                Type compType = component.GetType();
+                Type componentType = component.GetType();
 
-                if (baseType.IsAssignableFrom(compType))
+                if (targetType.IsAssignableFrom(componentType))
                     return true;
             }
 
