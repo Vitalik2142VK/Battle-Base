@@ -9,6 +9,8 @@ namespace BattleBase.Services.UpdateService
 #if UNITY_EDITOR
         [Header("Debug")]
         [SerializeField] private bool _logSubscribers;
+#else
+        private bool _logSubscribers = false;
 #endif
 
         private UpdateHandlerCollection _handlerCollection;

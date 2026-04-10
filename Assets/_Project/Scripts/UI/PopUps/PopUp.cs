@@ -11,6 +11,7 @@ namespace BattleBase.UI.PopUps
         private readonly List<Tweener> _currentTweens = new();
 
         private List<PopUpAnimatorBase> _popUpAnimators;
+        private Sequence _currentSequence;
 
         public bool IsActive { get; private set; }
 
@@ -34,12 +35,7 @@ namespace BattleBase.UI.PopUps
             gameObject.SetActive(true);
 
             foreach (PopUpAnimatorBase animator in _popUpAnimators)
-            {
-                animator.TryPlayShow(out Tweener tweener);
-
-                if (tweener != null)
-                    _currentTweens.Add(tweener);
-            }
+                _currentTweens.Add(animator.PlayShow());
 
             PlaySequence(_currentTweens, () =>
             {
@@ -57,12 +53,7 @@ namespace BattleBase.UI.PopUps
             IsActive = false;
 
             foreach (PopUpAnimatorBase animator in _popUpAnimators)
-            {
-                animator.TryPlayHide(out Tweener tweener);
-
-                if (tweener != null)
-                    _currentTweens.Add(tweener);
-            }
+                _currentTweens.Add(animator.PlayHide());
 
             PlaySequence(_currentTweens, () =>
             {
@@ -75,12 +66,21 @@ namespace BattleBase.UI.PopUps
         public void HideInstantly()
         {
             KillCurrentTweens();
+
+            foreach (PopUpAnimatorBase animator in _popUpAnimators)
+                animator.SetHideState();
+
             gameObject.SetActive(false);
             IsActive = false;
         }
 
         private void KillCurrentTweens()
         {
+            if (_currentSequence != null && _currentSequence.IsActive())
+                _currentSequence.Kill();
+
+            _currentSequence = null;
+
             foreach (Tweener tweener in _currentTweens)
             {
                 if (tweener != null && tweener.IsActive())
@@ -90,7 +90,27 @@ namespace BattleBase.UI.PopUps
             _currentTweens.Clear();
         }
 
-        private void PlaySequence(IEnumerable<Tweener> tweeners, Action onComplete) =>
-            Static.TweenExtensions.PlaySequence(tweeners, onComplete);
+        private void PlaySequence(IEnumerable<Tweener> tweeners, Action onComplete)
+        {
+            List<Tweener> list = tweeners.ToList();
+
+            if (list.Count == 0)
+            {
+                onComplete?.Invoke();
+
+                return;
+            }
+
+            _currentSequence = DOTween.Sequence().SetUpdate(true);
+
+            foreach (Tweener tweener in list)
+                _currentSequence.Join(tweener);
+
+            _currentSequence.OnComplete(() =>
+            {
+                _currentSequence = null;
+                onComplete?.Invoke();
+            });
+        }
     }
 }

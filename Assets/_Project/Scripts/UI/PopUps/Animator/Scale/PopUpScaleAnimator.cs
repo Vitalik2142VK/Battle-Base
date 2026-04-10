@@ -1,3 +1,4 @@
+using System;
 using BattleBase.Static;
 using DG.Tweening;
 using UnityEngine;
@@ -11,24 +12,24 @@ namespace BattleBase.UI.PopUps
 
         private Transform _transform;
 
-        public override void Init() =>
+        public override void Init()
+        {
+            if (_showConfig == null)
+                throw new NullReferenceException(nameof(_showConfig));
+
+            if (_hideConfig == null)
+                throw new NullReferenceException(nameof(_showConfig));
+
             _transform = transform;
-
-        public override bool TryPlayShow(out Tweener tweener)
-        {
-            bool isSuccess = _showConfig != null;
-            _transform.localScale = isSuccess ? _showConfig.StartScale : Vector3.zero;
-            tweener = isSuccess ? _transform.PlayScale(_showConfig) : null;
-
-            return isSuccess;
         }
 
-        public override bool TryPlayHide(out Tweener tweener)
-        {
-            bool isSuccess = _hideConfig != null;
-            tweener = isSuccess ? _transform.PlayScale(_hideConfig) : null;
+        public override void SetHideState() =>
+            _transform.localScale = _showConfig.StartScale;
 
-            return isSuccess;
-        }
+        public override Tweener PlayShow() =>
+            _transform.PlayScale(_showConfig);
+
+        public override Tweener PlayHide() =>
+            _transform.PlayScale(_hideConfig);
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using BattleBase.Static;
 using DG.Tweening;
 using UnityEngine;
@@ -12,24 +13,24 @@ namespace BattleBase.UI.PopUps
 
         private CanvasGroup _canvasGroup;
 
-        public override void Init() =>
+        public override void Init()
+        {
+            if (_showConfig == null)
+                throw new NullReferenceException(nameof(_showConfig));
+
+            if (_hideConfig == null)
+                throw new NullReferenceException(nameof(_showConfig));
+
             _canvasGroup = GetComponent<CanvasGroup>();
-
-        public override bool TryPlayShow(out Tweener tweener)
-        {
-            bool isSuccess = _showConfig != null;
-            _canvasGroup.alpha = isSuccess ? _showConfig.StartAlpha : 0f;
-            tweener = isSuccess ? _canvasGroup.PlayAlpha(_showConfig) : null;
-
-            return isSuccess;
         }
 
-        public override bool TryPlayHide(out Tweener tweener)
-        {
-            bool isSuccess = _hideConfig != null;
-            tweener = isSuccess ? _canvasGroup.PlayAlpha(_hideConfig) : null;
+        public override void SetHideState() =>
+            _canvasGroup.alpha = _hideConfig.StartAlpha;
 
-            return isSuccess;
-        }
+        public override Tweener PlayShow() =>
+            _canvasGroup.PlayAlpha(_showConfig);
+
+        public override Tweener PlayHide() =>
+            _canvasGroup.PlayAlpha(_hideConfig);
     }
 }

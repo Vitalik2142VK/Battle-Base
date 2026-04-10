@@ -7,8 +7,10 @@ namespace BattleBase.UI.PopUps
     {
         public abstract void Init();
 
-        public abstract bool TryPlayShow(out Tweener tweener);
+        public abstract void SetHideState();
 
-        public abstract bool TryPlayHide(out Tweener tweener);
+        public abstract Tweener PlayShow();
+
+        public abstract Tweener PlayHide();
     }
 }
