@@ -1,4 +1,5 @@
 using System;
+using BattleBase.Saves;
 
 namespace YG
 {

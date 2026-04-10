@@ -38,6 +38,9 @@ MonoBehaviour:
   - _icon: {fileID: 2800000, guid: 1aa339e5cafc40e4ebfad715591db4ac, type: 3}
     _typeName: BattleBase.Abstract.MediatorBase, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  - _icon: {fileID: 2800000, guid: b825c1e7864441446aaaabba03a7d50f, type: 3}
+    _typeName: BattleBase.Services.Localization.LocalizedText, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   - _icon: {fileID: 2800000, guid: fae44f81cde713443a86d169a47f1f8d, type: 3}
     _typeName: TMPro.TMP_Text, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null

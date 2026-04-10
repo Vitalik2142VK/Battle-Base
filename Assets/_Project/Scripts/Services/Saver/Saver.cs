@@ -1,20 +1,28 @@
+using System;
+using BattleBase.Saves;
 using UnityEngine;
-using YG;
 
 namespace BattleBase.Services.SaveService
 {
     public class Saver : ISaver
     {
+        private readonly ISaveSystem _saveSystem;
+
+        public Saver(ISaveSystem saveSystem)
+        {
+            _saveSystem = saveSystem ?? throw new ArgumentNullException(nameof(saveSystem));
+        }
+
         public float GeneralVolume => Data.GeneralVolume;
 
         public float MusicVolume => Data.MusicVolume;
 
         public float SfxVolume => Data.SfxVolume;
 
-        private SavesData Data => YG2.saves.SavesData;
+        private SavesData Data => _saveSystem.Data;
 
         public void Save() =>
-            YG2.SaveProgress();
+            _saveSystem.SaveProgress();
 
         public void SetGeneralVolume(float volume) =>
             Data.GeneralVolume = Mathf.Clamp01(volume);

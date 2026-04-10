@@ -1,5 +1,6 @@
 using BattleBase.Services.Audio;
 using BattleBase.Services.InputReader;
+using BattleBase.Services.Localization;
 using BattleBase.Services.PauseService;
 using BattleBase.Services.SaveService;
 using BattleBase.Services.SceneLoadingService;
@@ -20,8 +21,8 @@ namespace BattleBase.DI
         {
             builder.Register<IInputReader, InputReader>(Lifetime.Singleton);
             builder.Register<IPauseSwitcher, PauseSwitcher>(Lifetime.Singleton);
+            builder.Register<ISaveSystem, YandexGameSaveSystemAdapter>(Lifetime.Singleton);
             builder.Register<ISaver, Saver>(Lifetime.Singleton);
-
             builder.RegisterComponent<IAudioService>(_audioService);
             builder.RegisterComponent<ISceneLoader>(_sceneLoader);
             builder.RegisterComponent<IUpdater>(_updater);
