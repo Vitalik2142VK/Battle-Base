@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace BattleBase.Services.UpdateService
 {
-
     public class ActionWrapperRegistry
     {
         private readonly UpdateHandlerCollection _handlerCollection;

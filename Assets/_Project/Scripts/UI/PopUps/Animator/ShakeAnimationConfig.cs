@@ -2,9 +2,11 @@ using BattleBase.Static;
 using DG.Tweening;
 using UnityEngine;
 
-namespace BattleBase.UI.PopUp
+namespace BattleBase.UI.PopUps
 {
-    [CreateAssetMenu(fileName = "ShakeAnimationConfig", menuName = Constants.ConfigsAssetMenuName + "/ShakeAnimation")]
+    [CreateAssetMenu(
+        fileName = nameof(ShakeAnimationConfig),
+        menuName = Constants.ConfigsAssetMenuName + "/" + nameof(ShakeAnimationConfig))]
     public class ShakeAnimationConfig : ScriptableObject
     {
         [SerializeField] private float _duration = 0.2f;

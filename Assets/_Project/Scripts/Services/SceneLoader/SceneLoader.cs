@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using BattleBase.UI.PopUps;
 using UnityEngine;
@@ -15,11 +16,14 @@ namespace BattleBase.Services.SceneLoadingService
         private void Awake()
         {
             _fader.Init();
-            _fader.HideFast();
+            _fader.HideInstantly();
         }
 
         public void Load(string name)
         {
+            if (string.IsNullOrEmpty(name))
+                throw new ArgumentNullException(nameof(name));
+
             if (_isLoading)
                 return;
 
@@ -39,7 +43,7 @@ namespace BattleBase.Services.SceneLoadingService
         private string GetSceneNameByIndex(int buildIndex)
         {
             if (buildIndex < 0 || buildIndex >= SceneManager.sceneCountInBuildSettings)
-                throw new System.ArgumentOutOfRangeException(nameof(buildIndex));
+                throw new ArgumentOutOfRangeException(nameof(buildIndex));
 
             string scenePath = SceneUtility.GetScenePathByBuildIndex(buildIndex);
 

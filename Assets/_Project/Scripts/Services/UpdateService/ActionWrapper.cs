@@ -27,7 +27,7 @@ namespace BattleBase.Services.UpdateService
             _handler();
         }
 
-        public Action<float> GetDelegate() => 
+        public Action<float> GetDelegate() =>
             Invoke;
     }
 }

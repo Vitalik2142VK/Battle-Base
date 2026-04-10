@@ -2,9 +2,11 @@ using BattleBase.Static;
 using DG.Tweening;
 using UnityEngine;
 
-namespace BattleBase.UI.PopUp
+namespace BattleBase.UI.PopUps
 {
-    [CreateAssetMenu(fileName = "AlphaAnimationConfig", menuName = Constants.ConfigsAssetMenuName + "/AlphaAnimation")]
+    [CreateAssetMenu(
+        fileName = nameof(AlphaAnimationConfig),
+        menuName = Constants.ConfigsAssetMenuName + "/" + nameof(AlphaAnimationConfig))]
     public class AlphaAnimationConfig : ScriptableObject
     {
         [SerializeField][Range(0f, 1f)] private float _startAlpha = 0f;

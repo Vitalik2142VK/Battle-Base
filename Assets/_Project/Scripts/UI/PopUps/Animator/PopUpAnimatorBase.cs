@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace BattleBase.UI.PopUp
+namespace BattleBase.UI.PopUps
 {
     public abstract class PopUpAnimatorBase : MonoBehaviour
     {

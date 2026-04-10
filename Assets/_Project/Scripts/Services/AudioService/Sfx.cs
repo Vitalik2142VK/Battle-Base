@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace BattleBase.Services.Audio
@@ -6,7 +7,12 @@ namespace BattleBase.Services.Audio
     {
         [SerializeField] private AudioSource _source;
 
-        public void PlayOneShot(AudioClip clip) =>
+        public void PlayOneShot(AudioClip clip)
+        {
+            if (clip == null)
+                throw new ArgumentNullException(nameof(clip));
+
             _source.PlayOneShot(clip);
+        }
     }
 }

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using BattleBase.UI.PopUp;
 using DG.Tweening;
 using UnityEngine;
 
@@ -9,6 +8,8 @@ namespace BattleBase.UI.PopUps
 {
     public class PopUp : MonoBehaviour
     {
+        private readonly List<Tweener> _currentTweens = new();
+
         private List<PopUpAnimatorBase> _popUpAnimators;
 
         public bool IsActive { get; private set; }
@@ -23,49 +24,70 @@ namespace BattleBase.UI.PopUps
             IsActive = gameObject.activeSelf;
         }
 
-        public void Show(Action showedCallBack = null)
+        public void Show(Action shownCallback = null)
         {
             if (IsActive)
                 return;
 
+            KillCurrentTweens();
             IsActive = true;
             gameObject.SetActive(true);
-            List<Tweener> tweeners = new();
 
             foreach (PopUpAnimatorBase animator in _popUpAnimators)
             {
                 animator.TryPlayShow(out Tweener tweener);
-                tweeners.Add(tweener);
+
+                if (tweener != null)
+                    _currentTweens.Add(tweener);
             }
 
-            PlaySequence(tweeners, showedCallBack);
+            PlaySequence(_currentTweens, () =>
+            {
+                _currentTweens.Clear();
+                shownCallback?.Invoke();
+            });
         }
 
-        public void Hide(Action hidedCallBack = null)
+        public void Hide(Action hiddenCallBack = null)
         {
             if (IsActive == false)
                 return;
 
+            KillCurrentTweens();
             IsActive = false;
-            List<Tweener> tweeners = new();
 
             foreach (PopUpAnimatorBase animator in _popUpAnimators)
             {
                 animator.TryPlayHide(out Tweener tweener);
-                tweeners.Add(tweener);
+
+                if (tweener != null)
+                    _currentTweens.Add(tweener);
             }
 
-            PlaySequence(tweeners, () =>
+            PlaySequence(_currentTweens, () =>
             {
+                _currentTweens.Clear();
                 gameObject.SetActive(false);
-                hidedCallBack?.Invoke();
+                hiddenCallBack?.Invoke();
             });
         }
 
-        public void HideFast()
+        public void HideInstantly()
         {
+            KillCurrentTweens();
             gameObject.SetActive(false);
             IsActive = false;
+        }
+
+        private void KillCurrentTweens()
+        {
+            foreach (Tweener tweener in _currentTweens)
+            {
+                if (tweener != null && tweener.IsActive())
+                    tweener.Kill(false);
+            }
+
+            _currentTweens.Clear();
         }
 
         private void PlaySequence(IEnumerable<Tweener> tweeners, Action onComplete) =>

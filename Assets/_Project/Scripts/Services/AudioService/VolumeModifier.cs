@@ -21,6 +21,10 @@ namespace BattleBase.Services.Audio
         {
             _mixer = mixer != null ? mixer : throw new ArgumentNullException(nameof(mixer));
             _slider = slider != null ? slider : throw new ArgumentNullException(nameof(slider));
+
+            if (string.IsNullOrEmpty(group))
+                throw new ArgumentNullException($"{nameof(group)} is null or empty");
+
             _group = group;
 
             Init();
@@ -36,9 +40,7 @@ namespace BattleBase.Services.Audio
         {
             _minimumValueSlider = _slider.minValue;
             _maximumValueSlider = _slider.maxValue;
-
             SetLevel(_slider.value);
-
             _slider.onValueChanged.AddListener(OnChanged);
         }
 

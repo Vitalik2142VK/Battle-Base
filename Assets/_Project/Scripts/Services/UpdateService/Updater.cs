@@ -21,13 +21,13 @@ namespace BattleBase.Services.UpdateService
         }
 
         private void Update() =>
-            _handlerCollection.Invoke(UpdateType.Update, Time.deltaTime);
+            _handlerCollection.InvokeAndCleanup(UpdateType.Update, Time.deltaTime);
 
         private void FixedUpdate() =>
-            _handlerCollection.Invoke(UpdateType.FixedUpdate, Time.fixedDeltaTime);
+            _handlerCollection.InvokeAndCleanup(UpdateType.FixedUpdate, Time.fixedDeltaTime);
 
         private void LateUpdate() =>
-            _handlerCollection.Invoke(UpdateType.LateUpdate, Time.deltaTime);
+            _handlerCollection.InvokeAndCleanup(UpdateType.LateUpdate, Time.deltaTime);
 
         public IUpdater Subscribe(Action<float> handler, UpdateType updateType)
         {

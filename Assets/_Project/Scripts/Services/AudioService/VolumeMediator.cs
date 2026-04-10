@@ -10,7 +10,7 @@ namespace BattleBase.Services.Audio
     {
         [SerializeField] private AudioMixer _mixer;
 
-        [SerializeField] private Slider _generalSlaider;
+        [SerializeField] private Slider _generalSlider;
         [SerializeField] private Slider _musicSlider;
         [SerializeField] private Slider _sfxSlider;
 
@@ -20,7 +20,7 @@ namespace BattleBase.Services.Audio
 
         public override void Init()
         {
-            _generalModifier = new(_mixer, _generalSlaider, Constants.GeneralVolumeGroup);
+            _generalModifier = new(_mixer, _generalSlider, Constants.GeneralVolumeGroup);
             _musicModifier = new(_mixer, _musicSlider, Constants.MusicVolumeGroup);
             _sfxModifier = new(_mixer, _sfxSlider, Constants.SfxVolumeGroup);
         }

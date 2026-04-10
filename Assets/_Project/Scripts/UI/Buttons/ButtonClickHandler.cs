@@ -29,7 +29,7 @@ namespace BattleBase.UI.Buttons
 
         protected virtual void OnClick()
         {
-            foreach(CommandBase command in _commands)
+            foreach (CommandBase command in _commands)
                 command.Execute();
         }
     }

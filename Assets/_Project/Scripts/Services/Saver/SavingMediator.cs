@@ -1,3 +1,4 @@
+using System;
 using BattleBase.Abstract;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +16,7 @@ namespace BattleBase.Services.SaveService
 
         [Inject]
         public void Construct(ISaver saver) =>
-            _saver = saver;
+            _saver = saver ?? throw new ArgumentNullException(nameof(saver));
 
         public override void Init()
         {

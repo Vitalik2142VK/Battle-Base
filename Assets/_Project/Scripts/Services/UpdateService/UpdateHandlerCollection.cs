@@ -65,7 +65,7 @@ namespace BattleBase.Services.UpdateService
             }
         }
 
-        public void Invoke(UpdateType type, float delta)
+        public void InvokeAndCleanup(UpdateType type, float delta)
         {
             List<Action<float>> list = _handlers[type];
 

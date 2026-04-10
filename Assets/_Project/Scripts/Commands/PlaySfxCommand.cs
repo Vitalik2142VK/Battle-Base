@@ -6,7 +6,7 @@ using VContainer;
 
 namespace BattleBase.Commands
 {
-    public class PlayAudioSfxCommand : CommandBase, IInjectable
+    public class PlaySfxCommand : CommandBase, IInjectable
     {
         [SerializeField] private AudioClip _audioClip;
 

@@ -2,9 +2,8 @@ using BattleBase.Static;
 using DG.Tweening;
 using UnityEngine;
 
-namespace BattleBase.UI.PopUp
+namespace BattleBase.UI.PopUps
 {
-
     public class PopUpScaleAnimator : PopUpAnimatorBase
     {
         [SerializeField] private ScaleAnimationConfig _showConfig;

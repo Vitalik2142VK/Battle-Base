@@ -2,7 +2,7 @@ using BattleBase.Static;
 using DG.Tweening;
 using UnityEngine;
 
-namespace BattleBase.UI.PopUp
+namespace BattleBase.UI.PopUps
 {
     [RequireComponent(typeof(CanvasGroup))]
     public class PopUpAlphaAnimator : PopUpAnimatorBase
