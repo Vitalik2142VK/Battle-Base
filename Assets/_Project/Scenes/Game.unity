@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mixer: {fileID: 24100000, guid: 6425667c4d7ab5d4ba51ad913fa93ae7, type: 2}
-  _generalSlaider: {fileID: 45865455}
+  _generalSlider: {fileID: 45865455}
   _musicSlider: {fileID: 879747378}
   _sfxSlider: {fileID: 1087440215}
 --- !u!1 &201770116

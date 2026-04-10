@@ -2009,7 +2009,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mixer: {fileID: 24100000, guid: 6425667c4d7ab5d4ba51ad913fa93ae7, type: 2}
-  _generalSlaider: {fileID: 1672251252}
+  _generalSlider: {fileID: 1672251252}
   _musicSlider: {fileID: 697637081}
   _sfxSlider: {fileID: 2014123961}
 --- !u!1 &1735762123
