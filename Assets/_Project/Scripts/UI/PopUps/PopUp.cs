@@ -8,12 +8,11 @@ namespace BattleBase.UI.PopUps
 {
     public class PopUp : MonoBehaviour
     {
-        private readonly List<Tweener> _currentTweens = new();
+        private readonly List<Tweener> _currentTweens = new(); //todo может обойтись одим _currentSequence
 
         private List<PopUpAnimatorBase> _popUpAnimators;
         private Sequence _currentSequence;
-
-        public bool IsActive { get; private set; }
+        private bool _isActive;
 
         public void Init()
         {
@@ -22,16 +21,16 @@ namespace BattleBase.UI.PopUps
             foreach (PopUpAnimatorBase animator in _popUpAnimators)
                 animator.Init();
 
-            IsActive = gameObject.activeSelf;
+            _isActive = gameObject.activeSelf;
         }
 
         public void Show(Action shownCallback = null)
         {
-            if (IsActive)
+            if (_isActive)
                 return;
 
             KillCurrentTweens();
-            IsActive = true;
+            _isActive = true;
             gameObject.SetActive(true);
 
             foreach (PopUpAnimatorBase animator in _popUpAnimators)
@@ -46,11 +45,11 @@ namespace BattleBase.UI.PopUps
 
         public void Hide(Action hiddenCallBack = null)
         {
-            if (IsActive == false)
+            if (_isActive == false)
                 return;
 
             KillCurrentTweens();
-            IsActive = false;
+            _isActive = false;
 
             foreach (PopUpAnimatorBase animator in _popUpAnimators)
                 _currentTweens.Add(animator.PlayHide());
@@ -71,7 +70,7 @@ namespace BattleBase.UI.PopUps
                 animator.SetHideState();
 
             gameObject.SetActive(false);
-            IsActive = false;
+            _isActive = false;
         }
 
         private void KillCurrentTweens()

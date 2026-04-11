@@ -30,19 +30,19 @@ namespace BattleBase.Localization
 
         public static ILanguage CurrentLanguage { get; private set; }
 
-        public static void SwitchLanguage(ILanguage language)
+        public static void Previous() =>
+            SwitchRelative(-1);
+
+        public static void Next() =>
+            SwitchRelative(1);
+
+        private static void SwitchLanguage(ILanguage language)
         {
             if (_languageToCode.TryGetValue(language, out var langCode) == false)
                 throw new Exception($"{nameof(language)} {language} - unregistered type");
 
             YG2.SwitchLanguage(langCode);
         }
-
-        public static void Previous() =>
-            SwitchRelative(-1);
-
-        public static void Next() =>
-            SwitchRelative(1);
 
         private static void Register(ILanguage language, string code)
         {
