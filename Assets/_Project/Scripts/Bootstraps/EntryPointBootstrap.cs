@@ -1,6 +1,6 @@
 using BattleBase.Abstract;
-using BattleBase.Services.SceneLoadingService;
-using BattleBase.Static;
+using BattleBase.SceneLoadingService;
+using BattleBase.Utils;
 using VContainer;
 
 namespace BattleBase.Bootstraps

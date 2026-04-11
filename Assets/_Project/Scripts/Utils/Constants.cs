@@ -1,6 +1,4 @@
-using BattleBase.Services.Localization;
-
-namespace BattleBase.Static
+namespace BattleBase.Utils
 {
     public static class Constants
     {
@@ -13,9 +11,5 @@ namespace BattleBase.Static
         public const string SfxVolumeGroup = "Sfx";
 
         public const string ConfigsAssetMenuName = "ScriptableObjects";
-
-        public const string LangRu = "ru";
-        public const string LangEn = "en";
-        public const string LangTr = "tr";
     }
 }

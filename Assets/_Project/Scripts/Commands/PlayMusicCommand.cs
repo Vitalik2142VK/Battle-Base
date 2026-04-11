@@ -1,6 +1,6 @@
 using System;
 using BattleBase.Abstract;
-using BattleBase.Services.Audio;
+using BattleBase.AudioService;
 using UnityEngine;
 using VContainer;
 

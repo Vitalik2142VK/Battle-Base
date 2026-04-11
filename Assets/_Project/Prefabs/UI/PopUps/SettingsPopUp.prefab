@@ -652,16 +652,10 @@ MonoBehaviour:
   _texts:
     _ru:
       _text: "\u042F\u0437\u044B\u043A:"
-      _font: {fileID: 0}
-      _preset: {fileID: 0}
     _en:
       _text: 'Language:'
-      _font: {fileID: 0}
-      _preset: {fileID: 0}
     _tr:
       _text: 'Dil:'
-      _font: {fileID: 0}
-      _preset: {fileID: 0}
 --- !u!1 &8754674908074734875
 GameObject:
   m_ObjectHideFlags: 0
@@ -1180,16 +1174,10 @@ MonoBehaviour:
   _texts:
     _ru:
       _text: "\u0413\u0440\u043E\u043C\u043A\u043E\u0441\u0442\u044C \u043C\u0443\u0437\u044B\u043A\u0438:"
-      _font: {fileID: 0}
-      _preset: {fileID: 0}
     _en:
       _text: 'Music volume:'
-      _font: {fileID: 0}
-      _preset: {fileID: 0}
     _tr:
       _text: "M\xFCzi\u011Fin sesi:"
-      _font: {fileID: 0}
-      _preset: {fileID: 0}
 --- !u!224 &7509380549429974685 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5111401348317174079, guid: c70c0f44a784a6e448301418fd2b78d0,
@@ -1781,16 +1769,10 @@ MonoBehaviour:
   _texts:
     _ru:
       _text: "\u0413\u0440\u043E\u043C\u043A\u043E\u0441\u0442\u044C \u044D\u0444\u0444\u0435\u043A\u0442\u043E\u0432:"
-      _font: {fileID: 0}
-      _preset: {fileID: 0}
     _en:
       _text: 'Loudness of effects:'
-      _font: {fileID: 0}
-      _preset: {fileID: 0}
     _tr:
       _text: 'Efektlerin hacmi:'
-      _font: {fileID: 0}
-      _preset: {fileID: 0}
 --- !u!224 &4516989019756870783 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5111401348317174079, guid: c70c0f44a784a6e448301418fd2b78d0,

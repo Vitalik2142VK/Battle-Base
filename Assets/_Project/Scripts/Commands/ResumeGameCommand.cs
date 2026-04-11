@@ -1,6 +1,6 @@
 using System;
 using BattleBase.Abstract;
-using BattleBase.Services.PauseService;
+using BattleBase.PauseService;
 using VContainer;
 
 namespace BattleBase.Commands

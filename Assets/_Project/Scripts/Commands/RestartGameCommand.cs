@@ -1,6 +1,6 @@
 using System;
 using BattleBase.Abstract;
-using BattleBase.Services.SceneLoadingService;
+using BattleBase.SceneLoadingService;
 using VContainer;
 
 namespace BattleBase.Commands

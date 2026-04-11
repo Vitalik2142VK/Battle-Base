@@ -7,7 +7,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace BattleBase.Static
+namespace BattleBase.Utils
 {
     public static class TweenExtensions
     {

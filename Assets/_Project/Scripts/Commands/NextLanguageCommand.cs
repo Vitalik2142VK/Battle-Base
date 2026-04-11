@@ -1,4 +1,4 @@
-using BattleBase.Services.Localization;
+using BattleBase.Localization;
 
 namespace BattleBase.Commands
 {

@@ -189,6 +189,14 @@ MonoBehaviour:
   RewardedAdv:
     skipInterAdvAfterReward: 0
     labelAdvSimLabel: 0
+  ServerTime:
+    manualDateSetup: 0
+    year: 2025
+    month: 6
+    day: 15
+    hour: 12
+    minute: 30
+    second: 30
   Storage:
     saveLocal: 0
     saveCloud: 1
@@ -213,7 +221,7 @@ MonoBehaviour:
     language: ru
     enableInterAdv: 1
     advIntervalSimulation: 60
-    durationAdv: 0.5
+    durationAdv: 1.5
     loadAdv: 0
     testFailAds: 0
     pauseOnFocusGame: 0

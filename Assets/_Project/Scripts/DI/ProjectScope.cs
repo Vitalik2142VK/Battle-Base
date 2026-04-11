@@ -1,10 +1,10 @@
-using BattleBase.Services.Audio;
-using BattleBase.Services.InputReader;
-using BattleBase.Services.Localization;
-using BattleBase.Services.PauseService;
-using BattleBase.Services.SaveService;
-using BattleBase.Services.SceneLoadingService;
-using BattleBase.Services.UpdateService;
+using BattleBase.AdvService;
+using BattleBase.AudioService;
+using BattleBase.InputSystem;
+using BattleBase.PauseService;
+using BattleBase.SaveService;
+using BattleBase.SceneLoadingService;
+using BattleBase.UpdateService;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -13,7 +13,7 @@ namespace BattleBase.DI
 {
     public class ProjectScope : LifetimeScope
     {
-        [SerializeField] private AudioService _audioService;
+        [SerializeField] private Audio _audioService;
         [SerializeField] private Updater _updater;
         [SerializeField] private SceneLoader _sceneLoader;
 
@@ -23,6 +23,7 @@ namespace BattleBase.DI
             builder.Register<IPauseSwitcher, PauseSwitcher>(Lifetime.Singleton);
             builder.Register<ISaveSystem, YandexGameSaveSystemAdapter>(Lifetime.Singleton);
             builder.Register<ISaver, Saver>(Lifetime.Singleton);
+            builder.Register<IAdvService, YandexGameAdvAdapter>(Lifetime.Singleton);
             builder.RegisterComponent<IAudioService>(_audioService);
             builder.RegisterComponent<ISceneLoader>(_sceneLoader);
             builder.RegisterComponent<IUpdater>(_updater);

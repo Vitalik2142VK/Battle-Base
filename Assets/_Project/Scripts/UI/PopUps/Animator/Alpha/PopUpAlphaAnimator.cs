@@ -1,5 +1,5 @@
 using System;
-using BattleBase.Static;
+using BattleBase.Utils;
 using DG.Tweening;
 using UnityEngine;
 

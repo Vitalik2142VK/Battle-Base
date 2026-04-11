@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using BattleBase.Abstract;
 using BattleBase.Commands;
+using BattleBase.Mediators;
 using UnityEngine;
 
 namespace BattleBase.Bootstraps
