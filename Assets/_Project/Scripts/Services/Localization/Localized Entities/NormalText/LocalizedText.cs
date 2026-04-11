@@ -33,8 +33,6 @@ namespace BattleBase.Services.Localization
                 ?? throw new ArgumentNullException($"{nameof(LocalizedText)} on {name} has no params for current language");
 
             _text.text = langParams.Text;
-            //_text.font = langParams.Font;
-            //_text.fontMaterial = langParams.Preset;
         }
     }
 }
