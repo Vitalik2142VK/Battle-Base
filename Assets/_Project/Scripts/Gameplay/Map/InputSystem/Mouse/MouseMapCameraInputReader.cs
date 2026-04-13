@@ -2,12 +2,13 @@ using System;
 using BattleBase.UpdateService;
 using UnityEngine;
 
-namespace BattleBase.InputSystem
+namespace BattleBase.Gameplay.Map.InputSystem
 {
     public class MouseMapCameraInputReader : IMapCameraInputReader, IDisposable
     {
         private const string MouseX = "Mouse X";
         private const string MouseY = "Mouse Y";
+        private const string MouseScrollWheel = "Mouse ScrollWheel";
         private const int DragMouseButton = 0;
 
         private const string KeyboardAxisX = "Horizontal";
@@ -26,27 +27,38 @@ namespace BattleBase.InputSystem
 
         public Vector2? DragDelta { get; private set; }
 
+        public float? ZoomDelta { get; private set; }
+
         public void Dispose() =>
             _updater?.Unsubscribe(OnUpdate, UpdateType.FixedUpdate);
 
-        private void OnUpdate() =>
-            ReadInput();
+        private void OnUpdate()
+        {
+            ReadDrag();
+            ReadZoom();
+        }
 
-        private void ReadInput()
+        private void ReadDrag()
         {
             if (Input.GetMouseButton(DragMouseButton))
             {
                 DragDelta = ReadMouseDragDelta();
-
-                return;
             }
-
-            Vector2 keyboardDelta = ReadKeyboardDelta();
-
-            if (keyboardDelta != Vector2.zero)
-                DragDelta = keyboardDelta;
             else
-                DragDelta = null;
+            {
+                Vector2 keyboardDelta = ReadKeyboardDelta();
+                DragDelta = keyboardDelta != Vector2.zero ? keyboardDelta : null;
+            }
+        }
+
+        private void ReadZoom()
+        {
+            float scroll = Input.GetAxis(MouseScrollWheel);
+
+            if (Mathf.Abs(scroll) > 0.001f)
+                ZoomDelta = scroll * _config.ZoomSensitivity;
+            else
+                ZoomDelta = null;
         }
 
         private Vector2 ReadMouseDragDelta()

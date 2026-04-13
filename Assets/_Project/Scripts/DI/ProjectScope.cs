@@ -1,5 +1,4 @@
 using BattleBase.AudioService;
-using BattleBase.InputSystem;
 using BattleBase.PauseService;
 using BattleBase.SaveService;
 using BattleBase.SceneLoadingService;
@@ -18,7 +17,6 @@ namespace BattleBase.DI
 
         protected override void Configure(IContainerBuilder builder)
         {
-            builder.Register<IInputReader, InputReader>(Lifetime.Singleton);
             builder.Register<IPauseSwitcher, PauseSwitcher>(Lifetime.Singleton);
             builder.Register<ISaveSystem, YandexGameSaveSystemAdapter>(Lifetime.Singleton);
             builder.Register<ISaver, Saver>(Lifetime.Singleton);
