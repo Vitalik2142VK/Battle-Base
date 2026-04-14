@@ -4,7 +4,7 @@ namespace BattleBase.Gameplay.Map.InputSystem
 {
     public interface IMapCameraInputReader
     {
-        public Vector2? DragDelta { get; }
+        Vector3? WorldDragDelta { get; }
 
         public float? ZoomDelta { get; }
     }

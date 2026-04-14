@@ -8,13 +8,10 @@ namespace BattleBase.Gameplay.Map.InputSystem
         menuName = Constants.ConfigsAssetMenuName + "/" + nameof(MouseMapCameraInputReaderConfig))]
     public class MouseMapCameraInputReaderConfig : ScriptableObject, IMouseMapCameraInputReaderConfig
     {
-        [SerializeField][Min(0.1f)] private float _mouseSensitivity = 1;
-        [SerializeField][Min(0.1f)] private float _keyboardSensitivity = 1;
+        [SerializeField][Min(0.1f)] private float _keyboardSpeed = 1;
         [SerializeField][Min(0.1f)] private float _zoomSensitivity = 1f;
 
-        public float MouseSensitivity => _mouseSensitivity;
-
-        public float KeyboardSensitivity => _keyboardSensitivity;
+        public float KeyboardSpeed => _keyboardSpeed;
 
         public float ZoomSensitivity => _zoomSensitivity;
     }

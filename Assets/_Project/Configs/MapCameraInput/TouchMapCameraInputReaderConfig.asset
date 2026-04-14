@@ -12,7 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85cfa880e1aeae74880b7a70077a8a2b, type: 3}
   m_Name: TouchMapCameraInputReaderConfig
   m_EditorClassIdentifier: 
-  _dragSensitivity: 0.1
-  _zoomSensitivity: 0.01
-  _deadZone: 5
+  _zoomSensitivity: 0.001
   _minPinchDistance: 10

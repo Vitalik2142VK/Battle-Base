@@ -16,12 +16,12 @@ namespace BattleBase.DI
             if (YG2.envir.isDesktop)
             {
                 builder.RegisterComponent<IMouseMapCameraInputReaderConfig>(_mouseMapCameraConfig);
-                builder.Register<IMapCameraInputReader, MouseMapCameraInputReader>(Lifetime.Scoped);
+                builder.Register<IMapCameraInputReader, MouseMapCameraInputReader>(Lifetime.Singleton);
             }
             else
             {
                 builder.RegisterComponent<ITouchMapCameraInputReaderConfig>(_touchMapCameraConfig);
-                builder.Register<IMapCameraInputReader, TouchMapCameraInputReader>(Lifetime.Scoped);
+                builder.Register<IMapCameraInputReader, TouchMapCameraInputReader>(Lifetime.Singleton);
             }
         }
     }

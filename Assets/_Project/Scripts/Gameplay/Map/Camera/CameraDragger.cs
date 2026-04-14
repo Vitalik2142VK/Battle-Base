@@ -6,25 +6,21 @@ namespace BattleBase.Gameplay.Map
     public class CameraDragger
     {
         private readonly Transform _cameraTransform;
+        private readonly Camera _camera;
         private readonly CameraFrustumProjector _projector;
-        private readonly float _dragSpeed;
 
         private readonly CameraBoundsLimiter _boundsLimiter;
         private readonly CameraSnapBack _snapBack;
 
         public CameraDragger(
-            Transform cameraTransform,
+            Camera camera,
             CameraFrustumProjector projector,
-            float dragSpeed,
             float restoreSpeed)
         {
-            _cameraTransform = cameraTransform != null ? cameraTransform : throw new ArgumentNullException(nameof(cameraTransform));
+            _camera = camera != null ? camera : throw new ArgumentNullException(nameof(camera));
+
+            _cameraTransform = _camera.transform;
             _projector = projector != null ? projector : throw new ArgumentNullException(nameof(projector));
-
-            if (dragSpeed <= 0)
-                throw new ArgumentOutOfRangeException(nameof(dragSpeed), dragSpeed, "Value must be positive");
-
-            _dragSpeed = dragSpeed;
 
             if (restoreSpeed <= 0)
                 throw new ArgumentOutOfRangeException(nameof(restoreSpeed), restoreSpeed, "Value must be positive");
@@ -33,41 +29,38 @@ namespace BattleBase.Gameplay.Map
             _snapBack = new CameraSnapBack(projector, restoreSpeed);
         }
 
-        public void Update(float deltaTime, Vector2? dragDelta)
+        public void Update(float deltaTime, Vector3? worldDragDelta)
         {
             if (deltaTime < 0)
                 throw new ArgumentOutOfRangeException(nameof(deltaTime), deltaTime, "Value must be positive");
 
-            if (dragDelta.HasValue)
-                ProcessDrag(dragDelta.Value, deltaTime);
+            if (worldDragDelta.HasValue)
+                ApplyMovement(worldDragDelta.Value);
             else
                 _snapBack.Restore(_cameraTransform, deltaTime);
         }
 
-        private void ProcessDrag(Vector2 delta, float deltaTime)
+        private void ApplyMovement(Vector3 worldDelta)
         {
-            Vector3 move = _dragSpeed * deltaTime * new Vector3(delta.x, 0, delta.y);
-            Vector3 newPos = _cameraTransform.position - move;
-
+            Vector3 newPos = _cameraTransform.position - worldDelta;
             float overshootX = _boundsLimiter.GetOvershootX(newPos);
             float overshootZ = _boundsLimiter.GetOvershootZ(newPos);
-
             float maxOvershoot = _projector.Area.Overshoot;
             float resistance = _projector.Area.Resistance;
 
             if (overshootX > 0f)
             {
                 float factor = 1f - Mathf.Clamp01(overshootX / maxOvershoot) * resistance;
-                move.x *= factor;
+                worldDelta.x *= factor;
             }
 
             if (overshootZ > 0f)
             {
                 float factor = 1f - Mathf.Clamp01(overshootZ / maxOvershoot) * resistance;
-                move.z *= factor;
+                worldDelta.z *= factor;
             }
 
-            newPos = _cameraTransform.position - move;
+            newPos = _cameraTransform.position - worldDelta;
             Vector3 finalPos = _cameraTransform.position;
 
             if (_boundsLimiter.IsValidPositionX(newPos))

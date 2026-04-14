@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 923ae3b1262a8e0498ec0d23eb9b4dcf, type: 3}
   m_Name: MouseMapCameraInputReaderConfig
   m_EditorClassIdentifier: 
-  _mouseSensitivity: 1
-  _keyboardSensitivity: 1
+  _keyboardSpeed: 1.4
+  _zoomSensitivity: 1

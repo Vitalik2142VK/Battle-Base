@@ -15,7 +15,7 @@ namespace FiXiK.SceneBrowserWindow.Editor
         private Texture2D _openEyeTexture;
         private Texture2D _closedEyeTexture;
 
-        private List<string> _hiddenScenes = new();
+        private SceneBrowserConfig _config;
         private Vector2 _scrollPosition;
         private string[] _scenePaths;
         private bool _isShowHiddenScenes = false;
@@ -34,7 +34,7 @@ namespace FiXiK.SceneBrowserWindow.Editor
                 if (this == null)
                     return;
 
-                LoadHiddenScenes();
+                _config = SceneBrowserConfig.LoadOrCreate();
                 RefreshSceneList();
                 Repaint();
             };
@@ -43,7 +43,9 @@ namespace FiXiK.SceneBrowserWindow.Editor
         private void OnDisable()
         {
             EditorApplication.projectChanged -= RefreshSceneList;
-            SaveHiddenScenes();
+
+            if (_config != null)
+                _config.Save();
         }
 
         private void OnGUI()
@@ -59,7 +61,7 @@ namespace FiXiK.SceneBrowserWindow.Editor
 
                     _isShowHiddenScenes = EditorGUILayout.Foldout(_isShowHiddenScenes, SceneBrowserConstants.HiddenSceneBlockName, true);
 
-                    if (_isShowHiddenScenes && _hiddenScenes.Count > 0)
+                    if (_isShowHiddenScenes && _config != null && _config.HiddenScenes.Count > 0)
                         DrawHiddenScenes();
                 }
                 finally
@@ -91,22 +93,22 @@ namespace FiXiK.SceneBrowserWindow.Editor
 
         private void DrawVisibleScenes()
         {
-            if (_scenePaths == null)
+            if (_scenePaths == null || _config == null)
                 return;
 
             foreach (string scenePath in _scenePaths)
             {
-                if (_hiddenScenes.Contains(scenePath) == false)
+                if (_config.HiddenScenes.Contains(scenePath) == false)
                     DrawSceneLine(scenePath, _openEyeTexture, SceneBrowserConstants.OpenEyeTextureTooltip, true);
             }
         }
 
         private void DrawHiddenScenes()
         {
-            if (_hiddenScenes == null)
+            if (_config == null || _config.HiddenScenes == null)
                 return;
 
-            foreach (string scenePath in _hiddenScenes.Where(SceneExists).ToList())
+            foreach (string scenePath in _config.HiddenScenes.Where(SceneExists).ToList())
                 DrawSceneLine(scenePath, _closedEyeTexture, SceneBrowserConstants.ClosedEyeTextureTooltip, false);
         }
 
@@ -117,16 +119,16 @@ namespace FiXiK.SceneBrowserWindow.Editor
             _openEyeTexture = EditorGUIUtility.IconContent(SceneBrowserConstants.OpenEyeIconName).image as Texture2D;
             _closedEyeTexture = EditorGUIUtility.IconContent(SceneBrowserConstants.ClosedEyeIconName).image as Texture2D;
 
-            if (_sceneTexture == null) 
+            if (_sceneTexture == null)
                 _sceneTexture = CreateDummyTexture();
 
-            if (_folderTexture == null) 
+            if (_folderTexture == null)
                 _folderTexture = CreateDummyTexture();
 
-            if (_openEyeTexture == null) 
+            if (_openEyeTexture == null)
                 _openEyeTexture = CreateDummyTexture();
 
-            if (_closedEyeTexture == null) 
+            if (_closedEyeTexture == null)
                 _closedEyeTexture = CreateDummyTexture();
         }
 
@@ -191,24 +193,8 @@ namespace FiXiK.SceneBrowserWindow.Editor
                 EditorGUIUtility.PingObject(sceneAsset);
         }
 
-        private void LoadHiddenScenes()
-        {
-            _hiddenScenes.Clear();
-            string hiddenScenesData = EditorPrefs.GetString(SceneBrowserConstants.HiddenScenesKey, "");
-
-            if (string.IsNullOrEmpty(hiddenScenesData))
-                return;
-
-            _hiddenScenes = hiddenScenesData.Split(';')
-                .Where(s => !string.IsNullOrEmpty(s))
-                .ToList();
-        }
-
         private bool SceneExists(string scenePath) =>
             File.Exists(scenePath) && AssetDatabase.LoadAssetAtPath<SceneAsset>(scenePath) != null;
-
-        private void SaveHiddenScenes() =>
-            EditorPrefs.SetString(SceneBrowserConstants.HiddenScenesKey, string.Join(";", _hiddenScenes));
 
         private void RefreshSceneList()
         {
@@ -226,21 +212,27 @@ namespace FiXiK.SceneBrowserWindow.Editor
 
         private void HideScene(string scenePath)
         {
-            if (_hiddenScenes.Contains(scenePath) == false)
+            if (_config == null)
+                return;
+
+            if (_config.HiddenScenes.Contains(scenePath) == false)
             {
-                _hiddenScenes.Add(scenePath);
-                _hiddenScenes = _hiddenScenes.OrderBy(path => Path.GetFileNameWithoutExtension(path)).ToList();
-                SaveHiddenScenes();
+                _config.HiddenScenes.Add(scenePath);
+                _config.HiddenScenes = _config.HiddenScenes.OrderBy(path => Path.GetFileNameWithoutExtension(path)).ToList();
+                _config.Save();
                 RefreshSceneList();
             }
         }
 
         private void UnhideScene(string scenePath)
         {
-            if (_hiddenScenes.Contains(scenePath))
+            if (_config == null)
+                return;
+
+            if (_config.HiddenScenes.Contains(scenePath))
             {
-                _hiddenScenes.Remove(scenePath);
-                SaveHiddenScenes();
+                _config.HiddenScenes.Remove(scenePath);
+                _config.Save();
                 RefreshSceneList();
             }
         }

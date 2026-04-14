@@ -1,40 +1,42 @@
 #if UNITY_EDITOR
-using FiXiK.SceneBrowserWindow.Editor;
 using UnityEditor;
 
-public class PackageImporter
+namespace FiXiK.SceneBrowserWindow.Editor
 {
-    private const string EditorPrefsKey = "FiXiK.SceneBrowserWindow";
-
-    [InitializeOnLoadMethod]
-    private static void InitializeOnLoad()
+    public partial class PackageImporter
     {
-        bool hasBeenImported = EditorPrefs.GetBool(EditorPrefsKey, false);
+        private const string EditorPrefsKey = "FiXiK.SceneBrowserWindow";
 
-        if (hasBeenImported == false)
+        [InitializeOnLoadMethod]
+        private static void InitializeOnLoad()
         {
-            EditorApplication.delayCall += () =>
+            bool hasBeenImported = EditorPrefs.GetBool(EditorPrefsKey, false);
+
+            if (hasBeenImported == false)
             {
-                ShowWelcomeWindow();
-                EditorPrefs.SetBool(EditorPrefsKey, true);
-            };
+                EditorApplication.delayCall += () =>
+                {
+                    ShowWelcomeWindow();
+                    EditorPrefs.SetBool(EditorPrefsKey, true);
+                };
+            }
         }
-    }
 
-    private static void ShowWelcomeWindow()
-    {
-        SceneBrowserWindow.ShowWindow();
+        private static void ShowWelcomeWindow()
+        {
+            SceneBrowserWindow.ShowWindow();
 
-        string tittle = "Scene Browser Window";
-        string message = "Пакет успешно установлен!\n\n" +
-            "Окно работы со сценами открыто автоматически.\n" +
-            $"Вы всегда можете открыть его через меню: \n" + 
-            $"\"{SceneBrowserConstants.MenuPath} -> {SceneBrowserConstants.MenuName}\"";
+            string tittle = "Scene Browser Window";
+            string message = "Пакет успешно установлен!\n\n" +
+                "Окно работы со сценами открыто автоматически.\n" +
+                $"Вы всегда можете открыть его через меню: \n" +
+                $"\"{SceneBrowserConstants.MenuPath} -> {SceneBrowserConstants.MenuName}\"";
 
-        string author = "С уважением, ваш FiXiK";
-        string buttonCancel = "От души, бро!";
+            string author = "С уважением, ваш FiXiK";
+            string buttonCancel = "От души, бро!";
 
-        EditorUtility.DisplayDialog(tittle, message + "\n\n" + author, buttonCancel);
+            EditorUtility.DisplayDialog(tittle, message + "\n\n" + author, buttonCancel);
+        }
     }
 }
 #endif
