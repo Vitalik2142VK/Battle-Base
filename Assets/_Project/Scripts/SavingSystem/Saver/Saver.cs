@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BattleBase.SaveService
 {
-    public class Saver : IAudioVolumeSaver, IColorSaver, ITerritorySaver
+    public class Saver : ISaver, IAudioVolumeSaver, IColorSaver, ITerritorySaver
     {
         private readonly ISaveSystem _saveSystem;
 
@@ -47,5 +47,11 @@ namespace BattleBase.SaveService
 
         public void SetConqueredTerritories(IReadOnlyList<int> territories) =>
             Data.ConqueredTerritories = new(territories);
+
+        public void ResetProgress()
+        {
+            Debug.Log("ResetProgress dsdfsfssfdfs");
+            _saveSystem.ResetProgress();
+        }
     }
 }

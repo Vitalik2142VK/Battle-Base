@@ -11,20 +11,28 @@ namespace BattleBase.Mediators
     {
         [SerializeField] private List<MonoBehaviour> _saveables;
 
+        private bool _isSaving = true;
+
         private ISaver _saver;
 
         [Inject]
         public void Construct(ISaver saver) =>
             _saver = saver ?? throw new ArgumentNullException(nameof(saver));            
 
-        public override void Init() =>
-            ProcessSaveables(saveable => saveable.Load(), ignoreNull: false);
-
         private void OnDisable()
         {
+            if (_isSaving == false)
+                return;
+
             ProcessSaveables(saveable => saveable.Save(), ignoreNull: true);
             _saver.Save();
         }
+
+        public override void Init() =>
+            ProcessSaveables(saveable => saveable.Load(), ignoreNull: false);
+
+        public void DisableSaving() =>
+            _isSaving = false;
 
         private void ProcessSaveables(Action<ISaveable> action, bool ignoreNull)
         {

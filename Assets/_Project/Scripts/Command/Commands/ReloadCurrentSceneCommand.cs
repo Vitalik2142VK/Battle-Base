@@ -5,7 +5,7 @@ using VContainer;
 
 namespace BattleBase.Commands
 {
-    public class RestartGameCommand : CommandBase, IInjectable
+    public class ReloadCurrentSceneCommand : CommandBase, IInjectable
     {
         private ISceneLoader _sceneLoader;
 
