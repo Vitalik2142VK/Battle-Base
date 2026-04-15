@@ -8,7 +8,7 @@ namespace BattleBase.UI.PopUps
 {
     public class PopUp : MonoBehaviour
     {
-        private readonly List<Tweener> _currentTweens = new(); //todo может обойтись одим _currentSequence
+        private readonly List<Tweener> _currentTweens = new(); //todo РјРѕР¶РµС‚ РѕР±РѕР№С‚РёСЃСЊ РѕРґРёРј _currentSequence
 
         private List<PopUpAnimatorBase> _popUpAnimators;
         private Sequence _currentSequence;

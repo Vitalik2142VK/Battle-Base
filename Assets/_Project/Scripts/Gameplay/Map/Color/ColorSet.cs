@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,22 +12,62 @@ namespace BattleBase.Gameplay.Map
 
         private readonly List<ColorBox> _boxes = new();
 
-        private void Awake()
+        public Color CurrentColor { get; private set; }
+
+        public event Action<int> Clicked;
+
+        private void OnEnable()
         {
+            foreach (ColorBox box in _boxes)
+                box.Clicked += OnColorBoxClick;
+        }
+
+        private void OnDisable()
+        {
+            foreach (ColorBox box in _boxes)
+                box.Clicked -= OnColorBoxClick;
+        }
+
+        public void Init(int indexColor)
+        {
+            CurrentColor = _config.Colors[indexColor];
             ClearContext();
 
             foreach (Color color in _config.Colors)
             {
                 ColorBox box = Instantiate(_prefab, _context);
-                box.SetColor(color);
+                box.Init(color);
+                box.Deselect();
                 _boxes.Add(box);
             }
+
+            _boxes[indexColor].Select();
         }
+
+        public void EnableInteractableAll()
+        {
+            foreach (ColorBox box in _boxes)
+                box.EnableInteractable();
+        }
+
+        public void DisableInteractable(int index) =>
+            _boxes[index].DisableInteractable();
 
         private void ClearContext()
         {
             foreach(Transform child in _context)
                 Destroy(child.gameObject);
+        }
+
+        private void OnColorBoxClick(ColorBox colorBox)
+        {
+            foreach (ColorBox box in _boxes)
+                box.Deselect();
+
+            colorBox.Select();
+            CurrentColor = colorBox.Color;
+
+            Clicked?.Invoke(_boxes.IndexOf(colorBox));
         }
     }
 }

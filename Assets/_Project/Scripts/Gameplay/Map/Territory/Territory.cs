@@ -17,9 +17,8 @@ namespace BattleBase.Gameplay.Map
 
         public IReadOnlyList<Territory> Adjacents => _adjacents;
 
-        public void Init(Color color, TerritoryOwnerType owner)
+        public void Init(TerritoryOwnerType owner)
         {
-            SetColor(color);
             SetOwner(owner);
         }
 

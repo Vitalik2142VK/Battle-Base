@@ -225,7 +225,7 @@ MonoBehaviour:
   _popUps:
   - {fileID: 17686703}
   - {fileID: 2144673242}
-  - {fileID: 1291722027}
+  - {fileID: 1291722025}
 --- !u!4 &109847525 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7750326261397464490, guid: b321777ccb3739d4f8cca326392730f0,
@@ -1079,6 +1079,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 511941069}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &511941071 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8665154167580811593, guid: bd5edebdeae922641b5eddbecac8ab26,
+    type: 3}
+  m_PrefabInstance: {fileID: 511941069}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6477015665aed784d8a347a3a7e5b71c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &552616021
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1342,7 +1354,8 @@ PrefabInstance:
       propertyPath: _texts._tr._text
       value: "Renk ayarlar\u0131"
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1361012161832496559, guid: d6fe62ef7d8719145872baa49daccbf3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7017771577958243040, guid: d6fe62ef7d8719145872baa49daccbf3,
@@ -1357,8 +1370,18 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 511941070}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2339752566140350512, guid: d6fe62ef7d8719145872baa49daccbf3,
+        type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 1291722025}
   m_SourcePrefab: {fileID: 100100000, guid: d6fe62ef7d8719145872baa49daccbf3, type: 3}
+--- !u!1 &598456353 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2339752566140350512, guid: d6fe62ef7d8719145872baa49daccbf3,
+    type: 3}
+  m_PrefabInstance: {fileID: 598456352}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &598632015 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7750326261397464490, guid: b321777ccb3739d4f8cca326392730f0,
@@ -1591,7 +1614,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _popUpsToHide: []
   _popUpsToShow:
-  - {fileID: 1291722027}
+  - {fileID: 1291722025}
 --- !u!1001 &915058965
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1689,8 +1712,7 @@ MonoBehaviour:
   - {fileID: 61858978}
   - {fileID: 1060910274}
   - {fileID: 1485491388}
-  _playerColor: {r: 0.41165346, g: 0.87169814, b: 0.36677107, a: 1}
-  _enemyColor: {r: 0.93962264, g: 0.47335705, b: 0.47335705, a: 1}
+  _colorSettingsPopUp: {fileID: 1291722025}
   _lightenFactor: 0.3
   _territories:
   - {fileID: 8836870205725800459}
@@ -1715,6 +1737,7 @@ MonoBehaviour:
   - {fileID: 8722669370678962921}
   _playerStart: {fileID: 8836870205725800459}
   _config: {fileID: 0}
+  _colorMediator: {fileID: 1319283445}
 --- !u!23 &954324421
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1763,6 +1786,38 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 228359273}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1004226143
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1004226144}
+  m_Layer: 0
+  m_Name: Mediators
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &1004226144
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004226143}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1319283444}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1013599944 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7750326261397464490, guid: b321777ccb3739d4f8cca326392730f0,
@@ -1933,7 +1988,7 @@ MonoBehaviour:
   _popUpsToHide:
   - {fileID: 17686703}
   - {fileID: 2144673242}
-  - {fileID: 1291722027}
+  - {fileID: 1291722025}
   _popUpsToShow: []
 --- !u!1001 &1084739633
 PrefabInstance:
@@ -2081,18 +2136,87 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 598456352}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1291722027 stripped
+--- !u!114 &1291722025
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1361012161832496559, guid: d6fe62ef7d8719145872baa49daccbf3,
-    type: 3}
-  m_PrefabInstance: {fileID: 598456352}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 598456353}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b32b583c3548504b9e470cc494dbca4, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e2de55cdff85814e81e5f3b8c8356b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerColorSet: {fileID: 1486118199077288608}
+  _enemyColorSet: {fileID: 511941071}
+--- !u!1 &1319283443
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1319283444}
+  - component: {fileID: 1319283445}
+  m_Layer: 0
+  m_Name: ColorMediator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1319283444
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319283443}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1004226144}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1319283445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319283443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 223e76f135ecdf649a3da94a82ae9c13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _colorSettingsPopUp: {fileID: 1291722025}
+  _territories:
+  - {fileID: 8836870205725800459}
+  - {fileID: 8183152715822204457}
+  - {fileID: 8448174350192314860}
+  - {fileID: 7501587900878248624}
+  - {fileID: 8937173280563778681}
+  - {fileID: 8515035515878147170}
+  - {fileID: 4686328497256882713}
+  - {fileID: 8666679383309495445}
+  - {fileID: 8815334339082162290}
+  - {fileID: 5950540027239563185}
+  - {fileID: 9057290118459459716}
+  - {fileID: 6267276654783951522}
+  - {fileID: 7096362037458597534}
+  - {fileID: 7033040725105805289}
+  - {fileID: 9220962084124541280}
+  - {fileID: 6374668542840404945}
+  - {fileID: 7332430285003731081}
+  - {fileID: 8410574038446012618}
+  - {fileID: 7160778268539489262}
+  - {fileID: 8722669370678962921}
+  _lightenFactor: 0.3
 --- !u!1 &1323731855
 GameObject:
   m_ObjectHideFlags: 0
@@ -4172,6 +4296,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd5edebdeae922641b5eddbecac8ab26, type: 3}
+--- !u!114 &1486118199077288608 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8665154167580811593, guid: bd5edebdeae922641b5eddbecac8ab26,
+    type: 3}
+  m_PrefabInstance: {fileID: 1486118199077288607}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6477015665aed784d8a347a3a7e5b71c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!23 &1592830150293331458
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6642,6 +6778,7 @@ SceneRoots:
   - {fileID: 406961967}
   - {fileID: 954324418}
   - {fileID: 1833496090}
+  - {fileID: 1004226144}
   - {fileID: 41168467}
   - {fileID: 1666586600}
   - {fileID: 117679390}
