@@ -17,11 +17,6 @@ namespace BattleBase.Gameplay.Map
 
         public IReadOnlyList<Territory> Adjacents => _adjacents;
 
-        public void Init()
-        {
-            // todo : либо инитить, либо, убрать метод
-        }
-
         public void SetColor(Color color)
         {
             Color = color;

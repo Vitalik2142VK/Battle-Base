@@ -25,27 +25,31 @@ namespace BattleBase.Mediators
 
         public override void Init()
         {
-            foreach (Territory territory in _territories)
-                territory.Init();
+            if (_territories == null)
+                throw new NullReferenceException(nameof(_territories));
         }
 
         public void Load()
         {
-            IReadOnlyList<int> conqueredTerritories = _saver.ConqueredTerritories;
+            HashSet<int> conqueredSet = new(_saver.ConqueredTerritories);
 
             for (int i = 0; i < _territories.Count; i++)
             {
-                if (conqueredTerritories.Contains(i))
-                    _territories[i].SetOwner(TerritoryOwnerType.Player);
-                else
-                    _territories[i].SetOwner(TerritoryOwnerType.Enemy);
+                TerritoryOwnerType owner = conqueredSet.Contains(i)
+                    ? TerritoryOwnerType.Player
+                    : TerritoryOwnerType.Enemy;
+
+                _territories[i].SetOwner(owner);
             }
 
             foreach (Territory territory in _territories)
             {
-                if (territory.Owner == TerritoryOwnerType.Player)
+                if (territory.Owner != TerritoryOwnerType.Player)
+                    continue;
+
+                foreach (Territory adjacent in territory.Adjacents)
                 {
-                    foreach (Territory adjacent in territory.Adjacents)
+                    if (adjacent != null && adjacent.Owner != TerritoryOwnerType.Player)
                         adjacent.SetOwner(TerritoryOwnerType.Adjacent);
                 }
             }
@@ -55,7 +59,15 @@ namespace BattleBase.Mediators
 
         public void Save()
         {
+            List<int> conqueredTerritories = new();
 
+            for (int i = 0; i < _territories.Count; i++)
+            {
+                if (_territories[i].Owner == TerritoryOwnerType.Player)
+                    conqueredTerritories.Add(i);
+            }
+
+            _saver.SetConqueredTerritories(conqueredTerritories);
         }
     }
 }
