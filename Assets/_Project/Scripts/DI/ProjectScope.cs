@@ -21,7 +21,7 @@ namespace BattleBase.DI
             builder.Register<IPauseSwitcher, PauseSwitcher>(Lifetime.Singleton);
             builder.Register<ISaveSystem, YandexGameSaveSystemAdapter>(Lifetime.Singleton);
             builder.Register<IAdvService, YandexGameAdvAdapter>(Lifetime.Singleton);
-            builder.Register<ISaver, Saver>(Lifetime.Singleton);
+            builder.Register<Saver>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.RegisterComponent<IAudioService>(_audioService);
             builder.RegisterComponent<ISceneLoader>(_sceneLoader);
             builder.RegisterComponent<IUpdater>(_updater);

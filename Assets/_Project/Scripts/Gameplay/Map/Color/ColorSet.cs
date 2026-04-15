@@ -12,9 +12,11 @@ namespace BattleBase.Gameplay.Map
 
         private readonly List<ColorBox> _boxes = new();
 
+        public event Action<int> Clicked;
+
         public Color CurrentColor { get; private set; }
 
-        public event Action<int> Clicked;
+        public int CurrentColorIndex { get; private set; }
 
         private void OnEnable()
         {
@@ -31,6 +33,7 @@ namespace BattleBase.Gameplay.Map
         public void Init(int indexColor)
         {
             CurrentColor = _config.Colors[indexColor];
+            CurrentColorIndex = indexColor;
             ClearContext();
 
             foreach (Color color in _config.Colors)
@@ -66,6 +69,7 @@ namespace BattleBase.Gameplay.Map
 
             colorBox.Select();
             CurrentColor = colorBox.Color;
+            CurrentColorIndex = _boxes.IndexOf(colorBox);
 
             Clicked?.Invoke(_boxes.IndexOf(colorBox));
         }

@@ -15,6 +15,10 @@ namespace BattleBase.UI.PopUps
 
         public Color EnemyColor => _enemyColorSet.CurrentColor;
 
+        public int PlayerColorIndex => _playerColorSet.CurrentColorIndex;
+
+        public int EnemyColorIndex => _enemyColorSet.CurrentColorIndex;
+
         private void OnEnable()
         {
             _playerColorSet.Clicked += OnClickPlayerColor;
