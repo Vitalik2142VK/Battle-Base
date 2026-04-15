@@ -149,9 +149,9 @@ namespace BattleBase.Gameplay.Map.Editor
         private static void SetColor(MeshRenderer renderer, Color color)
         {
             MaterialPropertyBlock mpb = new();
-            renderer.GetPropertyBlock(mpb);
+            renderer.GetPropertyBlock(mpb, MaterialIndex);
             mpb.SetColor(ColorProperty, color);
-            renderer.SetPropertyBlock(mpb);
+            renderer.SetPropertyBlock(mpb, MaterialIndex);
             _affectedRenderers.Add(renderer);
         }
 
@@ -160,7 +160,7 @@ namespace BattleBase.Gameplay.Map.Editor
             foreach (MeshRenderer renderer in _affectedRenderers)
             {
                 if (renderer != null)
-                    renderer.SetPropertyBlock(null);
+                    renderer.SetPropertyBlock(null, MaterialIndex);
             }
 
             _affectedRenderers.Clear();

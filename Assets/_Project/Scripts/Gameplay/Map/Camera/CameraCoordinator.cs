@@ -1,5 +1,5 @@
 using System;
-using BattleBase.Abstract;
+using BattleBase.DI;
 using BattleBase.Gameplay.Map.InputSystem;
 using UnityEngine;
 using VContainer;

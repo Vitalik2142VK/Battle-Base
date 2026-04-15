@@ -11,5 +11,7 @@ namespace BattleBase.Gameplay.Map
         [SerializeField] private TerritoryOwnerType _owner = TerritoryOwnerType.Enemy;
 
         public TerritoryOwnerType Owner => _owner;
+
+        // todo понадобится для передачи инфы о противнике. Owner здесь не нужен, просто валяется
     }
 }
