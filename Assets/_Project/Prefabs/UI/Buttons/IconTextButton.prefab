@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 688892338893407770}
   - component: {fileID: 4705914058807011283}
   - component: {fileID: 2201251306628948714}
-  - component: {fileID: 119048500859851442}
   - component: {fileID: 8056862393224024223}
   - component: {fileID: 5189062033313971414}
+  - component: {fileID: 119048500859851442}
   m_Layer: 5
   m_Name: IconTextButton
   m_TagString: Untagged
@@ -125,19 +125,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &119048500859851442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3195684028665814024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5403373ca360f2542bd21b3ae4c3f448, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _commands: []
 --- !u!114 &8056862393224024223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,6 +165,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 1
   m_VerticalFit: 1
+--- !u!114 &119048500859851442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3195684028665814024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5403373ca360f2542bd21b3ae4c3f448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _commands: []
 --- !u!1 &5552217262429051265
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,16 +344,10 @@ MonoBehaviour:
   _texts:
     _ru:
       _text: "\u0422\u0435\u043A\u0441\u0442 \u043A\u043D\u043E\u043F\u043A\u0438"
-      _font: {fileID: 0}
-      _preset: {fileID: 0}
     _en:
       _text: Button text
-      _font: {fileID: 0}
-      _preset: {fileID: 0}
     _tr:
       _text: "D\xFC\u011Fme metni"
-      _font: {fileID: 0}
-      _preset: {fileID: 0}
 --- !u!1 &5751727869436165814
 GameObject:
   m_ObjectHideFlags: 0
