@@ -10,7 +10,7 @@ namespace BattleBase.Bootstraps
         [SerializeField] private List<MediatorBase> _mediators;
         [SerializeField] private List<CommandBase> _commandsToStart;
 
-        private void Start()
+        protected virtual void Start()
         {
             foreach (MediatorBase mediator in _mediators)
                 mediator.Init();

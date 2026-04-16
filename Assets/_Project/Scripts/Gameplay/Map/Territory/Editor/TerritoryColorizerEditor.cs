@@ -11,11 +11,15 @@ namespace BattleBase.Gameplay.Map.Editor
     {
         private const string ColorProperty = "_BaseColor";
         private const string AdjacentsField = "_adjacents";
+        private const string UndoMessage = "Toggle Adjacent Territory";
+
         private const int MaterialIndex = 1;
         private const bool IsTwoWayDependency = true;
 
-        private static Color SelectedColor = Color.green;
-        private static Color AdjacentColor = Color.yellow;
+        private static readonly int ColorPropertyID = Shader.PropertyToID(ColorProperty);
+
+        private static readonly Color SelectedColor = Color.green;
+        private static readonly Color AdjacentColor = Color.yellow;
 
         private readonly static HashSet<MeshRenderer> _affectedRenderers = new();
         private readonly static FieldInfo s_adjacentsField;
@@ -36,7 +40,6 @@ namespace BattleBase.Gameplay.Map.Editor
             if (Application.isPlaying) return;
 
             ResetColors();
-
             GameObject selected = Selection.activeGameObject;
 
             if (selected != null && selected.TryGetComponent(out Territory territory))
@@ -95,10 +98,10 @@ namespace BattleBase.Gameplay.Map.Editor
                     return;
             }
 
-            Undo.RecordObject(owner, "Toggle Adjacent Territory");
+            Undo.RecordObject(owner, UndoMessage);
 
             if (IsTwoWayDependency)
-                Undo.RecordObject(clicked, "Toggle Adjacent Territory");
+                Undo.RecordObject(clicked, UndoMessage);
 
             bool alreadyConnected = ownerAdjacents.Contains(clicked);
 
@@ -150,7 +153,7 @@ namespace BattleBase.Gameplay.Map.Editor
         {
             MaterialPropertyBlock mpb = new();
             renderer.GetPropertyBlock(mpb, MaterialIndex);
-            mpb.SetColor(ColorProperty, color);
+            mpb.SetColor(ColorPropertyID, color);
             renderer.SetPropertyBlock(mpb, MaterialIndex);
             _affectedRenderers.Add(renderer);
         }

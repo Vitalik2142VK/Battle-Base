@@ -7,7 +7,7 @@ namespace BattleBase.Utils
     {
         private const float OrthographicSizeMultiplier = 2f;
 
-        public static Vector3 PixelDeltaToWorldDelta(Camera camera, Vector2 pixelDelta)
+        public static Vector3 ConvertPixelDeltaToWorldDelta(Camera camera, Vector2 pixelDelta)
         {
             if (camera == null)
                 throw new ArgumentNullException(nameof(camera));

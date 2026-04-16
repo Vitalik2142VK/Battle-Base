@@ -6,7 +6,8 @@ namespace BattleBase.Gameplay.Map
     [RequireComponent(typeof(Territory))]
     public class TerritoryColorIndicator : MonoBehaviour
     {
-        private static readonly int ColorPropertyID = Shader.PropertyToID("_BaseColor");
+        private const string ColorProperty = "_BaseColor";
+        private static readonly int ColorPropertyID = Shader.PropertyToID(ColorProperty);
 
         [SerializeField] private int _materialIndex = 1;
 
@@ -23,14 +24,14 @@ namespace BattleBase.Gameplay.Map
 
         private void OnEnable()
         {
-            _territory.ColorChanged += OnTerrritoryChanged;
-            OnTerrritoryChanged();
+            _territory.ColorChanged += OnTerritoryChanged;
+            OnTerritoryChanged();
         }
 
         private void OnDisable() =>
-            _territory.ColorChanged -= OnTerrritoryChanged;
+            _territory.ColorChanged -= OnTerritoryChanged;
 
-        private void OnTerrritoryChanged()
+        private void OnTerritoryChanged()
         {
             ApplyColor(_territory.Color);
         }

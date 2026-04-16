@@ -7,22 +7,15 @@ namespace BattleBase.Gameplay.Map.InputSystem
     public class TouchDragHandler
     {
         private readonly Camera _camera;
-        private readonly float _pixelDeltaThreshold;
+        private readonly float _dragDeltaThreshold;
 
         private Vector2 _lastDragPosition;
         private bool _isDragging;
 
-        public TouchDragHandler(Camera camera, float pixelDeltaThreshold)
+        public TouchDragHandler(Camera camera, ITouchCameraInputReaderConfig config)
         {
             _camera = camera != null ? camera : throw new ArgumentNullException(nameof(camera));
-
-            if (pixelDeltaThreshold <= 0)
-                throw new ArgumentOutOfRangeException(
-                    nameof(pixelDeltaThreshold),
-                    pixelDeltaThreshold,
-                    "Value mast be positive");
-
-            _pixelDeltaThreshold = pixelDeltaThreshold;
+            _dragDeltaThreshold = config.DragDeltaThreshold;
         }
 
         public Vector3? Update(Touch touch)
@@ -42,9 +35,9 @@ namespace BattleBase.Gameplay.Map.InputSystem
                 Vector2 pixelDelta = touch.position - _lastDragPosition;
                 _lastDragPosition = touch.position;
 
-                if (pixelDelta.magnitude > _pixelDeltaThreshold)
+                if (pixelDelta.magnitude > _dragDeltaThreshold)
                 {
-                    Vector3 worldDelta = CameraDragHelper.PixelDeltaToWorldDelta(_camera, pixelDelta);
+                    Vector3 worldDelta = CameraDragHelper.ConvertPixelDeltaToWorldDelta(_camera, pixelDelta);
 
                     return worldDelta;
                 }
@@ -63,7 +56,10 @@ namespace BattleBase.Gameplay.Map.InputSystem
             return null;
         }
 
-        public void Reset() =>
+        public void Reset()
+        {
             _isDragging = false;
+            _lastDragPosition = Vector2.zero;
+        }
     }
 }

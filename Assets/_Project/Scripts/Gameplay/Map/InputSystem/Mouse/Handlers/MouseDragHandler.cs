@@ -6,27 +6,20 @@ namespace BattleBase.Gameplay.Map.InputSystem
 {
     public class MouseDragHandler
     {
-        private readonly float _pixelDeltaThreshold;
+        private readonly Camera _camera;
+        private readonly float _dragDeltaThreshold;
 
-        private Camera _camera;
         private Vector2 _lastMousePosition;
         private bool _isDragging;
 
-        public MouseDragHandler(Camera camera, float pixelDeltaThreshold)
+        public MouseDragHandler(Camera camera, IDragConfig config)
         {
             _camera = camera != null ? camera : throw new ArgumentNullException(nameof(camera));
-
-            if (pixelDeltaThreshold <= 0)
-                throw new ArgumentOutOfRangeException(nameof(pixelDeltaThreshold), pixelDeltaThreshold, "Value must be positive");
-
-            _pixelDeltaThreshold = pixelDeltaThreshold;
+            _dragDeltaThreshold = config.DragDeltaThreshold;
         }
 
         public Vector3? Update(Vector2 currentMousePos, bool buttonDown, bool buttonUp, bool buttonPressed)
         {
-            if (_camera == null)
-                _camera = Camera.main;
-
             if (buttonDown)
             {
                 _isDragging = true;
@@ -43,8 +36,8 @@ namespace BattleBase.Gameplay.Map.InputSystem
                 Vector2 pixelDelta = currentMousePos - _lastMousePosition;
                 _lastMousePosition = currentMousePos;
 
-                if (pixelDelta.magnitude > _pixelDeltaThreshold)
-                    return CameraDragHelper.PixelDeltaToWorldDelta(_camera, pixelDelta);
+                if (pixelDelta.magnitude > _dragDeltaThreshold)
+                    return CameraDragHelper.ConvertPixelDeltaToWorldDelta(_camera, pixelDelta);
                 else
                     return Vector3.zero;
             }
@@ -58,7 +51,10 @@ namespace BattleBase.Gameplay.Map.InputSystem
             return null;
         }
 
-        public void Reset() =>
+        public void Reset()
+        {
             _isDragging = false;
+            _lastMousePosition = Vector2.zero;
+        }
     }
 }

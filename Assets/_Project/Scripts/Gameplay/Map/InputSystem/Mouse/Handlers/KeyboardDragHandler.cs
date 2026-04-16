@@ -1,32 +1,23 @@
-using System;
+using BattleBase.Utils;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Map.InputSystem
 {
     public class KeyboardDragHandler
     {
-        private const string KeyboardAxisX = "Horizontal";
-        private const string KeyboardAxisY = "Vertical";
-
         private readonly float _keyboardSpeed;
         private readonly float _axisThreshold;
 
-        public KeyboardDragHandler(float keyboardSpeed, float axisThreshold)
+        public KeyboardDragHandler(IDragConfig config)
         {
-            if (keyboardSpeed <= 0)
-                throw new ArgumentOutOfRangeException(nameof(keyboardSpeed), keyboardSpeed, "Value must be positive");
-
-            if (axisThreshold <= 0)
-                throw new ArgumentOutOfRangeException(nameof(axisThreshold), axisThreshold, "Value must be positive");
-
-            _keyboardSpeed = keyboardSpeed;
-            _axisThreshold = axisThreshold;
+            _keyboardSpeed = config.KeyboardSpeed;
+            _axisThreshold = config.KeyboardAxisThreshold;
         }
 
         public Vector3? Update(float deltaTime)
         {
-            float x = Input.GetAxisRaw(KeyboardAxisX);
-            float z = Input.GetAxisRaw(KeyboardAxisY);
+            float x = Input.GetAxisRaw(InputConstants.KeyboardAxisX);
+            float z = Input.GetAxisRaw(InputConstants.KeyboardAxisY);
 
             if (Mathf.Abs(x) > _axisThreshold || Mathf.Abs(z) > _axisThreshold)
             {

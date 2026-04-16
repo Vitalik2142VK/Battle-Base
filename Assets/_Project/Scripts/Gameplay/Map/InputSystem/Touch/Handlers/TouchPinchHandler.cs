@@ -1,21 +1,19 @@
-using System;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Map.InputSystem
 {
     public class TouchPinchHandler
     {
-        private readonly ITouchMapCameraInputReaderConfig _config;
         private readonly float _minPinchDistance;
+        private readonly float _zoomSensitivity;
 
         private bool _isPinching;
         private float _previousPinchDistance;
 
-        public TouchPinchHandler(ITouchMapCameraInputReaderConfig config)
+        public TouchPinchHandler(ITouchCameraInputReaderConfig config)
         {
-            _config = config ?? throw new ArgumentNullException(nameof(config));
-
             _minPinchDistance = config.MinPinchDistance;
+            _zoomSensitivity = config.ZoomSensitivity;
         }
 
         public float? Update(Touch touch0, Touch touch1)
@@ -38,7 +36,7 @@ namespace BattleBase.Gameplay.Map.InputSystem
                 float delta = currentDistance - _previousPinchDistance;
                 _previousPinchDistance = currentDistance;
 
-                return delta * _config.ZoomSensitivity;
+                return delta * _zoomSensitivity;
             }
             else if (
                 touch0.phase == TouchPhase.Ended

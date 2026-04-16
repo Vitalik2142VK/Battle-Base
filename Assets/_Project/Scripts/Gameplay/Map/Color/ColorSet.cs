@@ -32,6 +32,18 @@ namespace BattleBase.Gameplay.Map
 
         public void Init(int indexColor)
         {
+            if (_config == null)
+                throw new ArgumentNullException(nameof(_config), $"{nameof(ColorSet)}: {nameof(_config)} is not assigned in the inspector.");
+
+            if (_prefab == null)
+                throw new ArgumentNullException(nameof(_prefab), $"{nameof(ColorSet)}: {nameof(_prefab)} is not assigned.");
+
+            if (_context == null)
+                throw new ArgumentNullException(nameof(_context), $"{nameof(ColorSet)}: {nameof(_context)} is not assigned.");
+
+            if (indexColor < 0 || indexColor >= _config.Colors.Count)
+                throw new ArgumentOutOfRangeException(nameof(indexColor), $"Index {indexColor} is out of range for colors list (size {_config.Colors.Count})");
+
             CurrentColor = _config.Colors[indexColor];
             CurrentColorIndex = indexColor;
             ClearContext();
@@ -58,7 +70,7 @@ namespace BattleBase.Gameplay.Map
 
         private void ClearContext()
         {
-            foreach(Transform child in _context)
+            foreach (Transform child in _context)
                 Destroy(child.gameObject);
         }
 
