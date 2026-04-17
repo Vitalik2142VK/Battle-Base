@@ -1,5 +1,5 @@
+using System;
 using System.Collections.Generic;
-using BattleBase.Utils;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Map
@@ -11,17 +11,19 @@ namespace BattleBase.Gameplay.Map
         private const float NearClipOffset = 0.01f;
         private const int CornerCount = 4;
 
+        [SerializeField] private Camera _camera;
         [SerializeField] private CameraArea _area;
         [SerializeField] private Color _gizmoColor = Color.yellow;
-
-        private Camera _camera;
 
         public ICameraArea Area => _area;
 
         private void OnDrawGizmos()
         {
-            if (_camera == null || _area == null)
-                FindComponents();
+            if (_camera == null)
+                _camera = GetComponent<Camera>();
+
+            if (_area == null)
+                _area = FindObjectOfType<CameraArea>();
 
             Gizmos.color = _gizmoColor;
             List<Vector3> corners = ProjectCornersOntoPlaneFromPosition(_camera.transform.position);
@@ -36,59 +38,52 @@ namespace BattleBase.Gameplay.Map
             }
         }
 
-        private void Awake() =>
-            FindComponents();
-
         public List<Vector3> ProjectCornersOntoPlaneFromPosition(Vector3 cameraPosition)
         {
-            List<Vector3> corners = new();
-            Plane plane = new(Vector3.up, new Vector3(0, _area.PlaneY, 0));
+            if (_camera == null)
+                throw new NullReferenceException(nameof(_camera));
 
-            _camera.transform.GetPositionAndRotation(out Vector3 originalPos, out Quaternion originalRot);
+            if (_area == null)
+                throw new NullReferenceException(nameof(_area));
+
+            _camera.transform.GetPositionAndRotation(out Vector3 originalPosition, out Quaternion originalRotation);
             _camera.transform.position = cameraPosition;
 
+            List<Vector3> corners = new();
+            Plane plane = new(Vector3.up, new Vector3(0, _area.PlaneY, 0));
             float nearClipPlane = _camera.nearClipPlane + NearClipOffset;
-
-            Vector3[] viewportCorners = new Vector3[]
-            {
-                new (0, 0, nearClipPlane),
-                new (1, 0, nearClipPlane),
-                new (1, 1, nearClipPlane),
-                new (0, 1, nearClipPlane),
-            };
+            Vector3[] viewportCorners = GetViewportCorners(nearClipPlane);
 
             foreach (Vector3 viewportCorner in viewportCorners)
             {
                 Vector3 worldCorner = _camera.ViewportToWorldPoint(viewportCorner);
-                Ray ray = new(worldCorner, _camera.transform.forward);
-
-                if (plane.Raycast(ray, out float distance))
-                {
-                    Vector3 point = ray.GetPoint(distance);
-                    corners.Add(VectorValidation.IsValid(point) ? point : worldCorner);
-                }
-                else
-                {
-                    corners.Add(worldCorner);
-                }
+                Vector3 projectedPoint = ProjectPointOntoPlane(worldCorner, plane);
+                corners.Add(projectedPoint);
             }
 
-            _camera.transform.SetPositionAndRotation(originalPos, originalRot);
+            _camera.transform.SetPositionAndRotation(originalPosition, originalRotation);
 
             return corners;
         }
 
-        private void FindComponents()
+        private Vector3[] GetViewportCorners(float nearClipPlane)
         {
-            if (_area == null)
+            return new Vector3[]
             {
-                _area = FindObjectOfType<CameraArea>();
+                new(0, 0, nearClipPlane),
+                new(1, 0, nearClipPlane),
+                new(1, 1, nearClipPlane),
+                new(0, 1, nearClipPlane),
+            };
+        }
 
-                if (_area == null)
-                    Debug.LogWarning($"{nameof(CameraFrustumProjector)} on {gameObject.name}: No {nameof(CameraArea)} found in scene. Please assign it manually in the inspector.", this);
-            }
+        private Vector3 ProjectPointOntoPlane(Vector3 point, Plane plane)
+        {
+            Ray ray = new(point, _camera.transform.forward);
 
-            _camera = GetComponent<Camera>();
+            return plane.Raycast(ray, out float distance)
+                ? ray.GetPoint(distance)
+                : point;
         }
     }
 }

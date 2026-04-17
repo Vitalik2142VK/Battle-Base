@@ -18,6 +18,29 @@ namespace BattleBase.Gameplay.Map
             _maxZoom = config.MaximumZoom;
         }
 
+        public float Value01
+        {
+            get
+            {
+                float range = _maxZoom - _minZoom;
+
+                if (range <= 0f) 
+                    return 0.5f;
+
+                float normalized = (_camera.orthographicSize - _minZoom) / range;
+
+                return 1f - normalized;
+            }
+        }
+
+        public void SetValue01(float value)
+        {
+            float clampedValue = Mathf.Clamp01(value);
+            float range = _maxZoom - _minZoom;
+            float targetSize = _maxZoom - clampedValue * range;
+            _camera.orthographicSize = targetSize;
+        }
+
         public void Update(float? zoomDelta)
         {
             if (zoomDelta.HasValue == false)

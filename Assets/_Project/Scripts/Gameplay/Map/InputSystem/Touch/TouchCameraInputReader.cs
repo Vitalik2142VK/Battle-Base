@@ -13,6 +13,7 @@ namespace BattleBase.Gameplay.Map.InputSystem
 
         private bool _dragBlockedByUI;
         private bool _pinchBlockedByUI;
+        private bool _disposed;
 
         public TouchCameraInputReader(
             IUpdater updater,
@@ -32,8 +33,14 @@ namespace BattleBase.Gameplay.Map.InputSystem
 
         public float? ZoomDelta { get; private set; }
 
-        public void Dispose() =>
+        public void Dispose()
+        {
+            if (_disposed)
+                return;
+
+            _disposed = true;
             _updater?.Unsubscribe(OnUpdate, UpdateType.Update);
+        }
 
         private void OnUpdate() =>
             ReadInput();

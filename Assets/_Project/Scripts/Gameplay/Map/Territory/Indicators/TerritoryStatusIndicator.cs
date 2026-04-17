@@ -40,7 +40,7 @@ namespace BattleBase.Gameplay.Map
             if (_base == null || _battle == null)
             {
                 Debug.LogError($"{nameof(TerritoryStatusIndicator)}: {nameof(_base)} or {nameof(_battle)} sprite is not assigned.", this);
-                
+
                 return;
             }
 
@@ -59,18 +59,19 @@ namespace BattleBase.Gameplay.Map
 
         private void OnColorChanged()
         {
-            if (_territory.Color.HasValue)
+            if (_territory.Color.HasValue == false)
+                return;
+
+            _renderer.color = _territory.Owner switch
             {
-                if (_renderer.sprite == _battle)
-                {
-                    _renderer.color = Color.white;
-                }
-                else
-                {
-                    Color adjacentColor = Color.Lerp(_territory.Color.Value, Color.black, _ownerColorBlackoutFactor);
-                    _renderer.color = adjacentColor;
-                }
-            }
+                TerritoryOwnerType.Enemy => ModifyColor(_territory.Color.Value),
+                TerritoryOwnerType.Player => ModifyColor(_territory.Color.Value),
+                TerritoryOwnerType.Adjacent => Color.white,
+                _ => throw new ArgumentOutOfRangeException(nameof(_territory.Owner), _territory.Owner, $"Type is not registered"),
+            };
         }
+
+        private Color ModifyColor(Color color) =>
+            Color.Lerp(color, Color.black, _ownerColorBlackoutFactor);
     }
 }

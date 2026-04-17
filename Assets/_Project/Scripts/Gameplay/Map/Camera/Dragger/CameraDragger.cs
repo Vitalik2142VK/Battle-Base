@@ -1,4 +1,5 @@
 using System;
+using BattleBase.Utils;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Map
@@ -30,45 +31,64 @@ namespace BattleBase.Gameplay.Map
                 throw new ArgumentOutOfRangeException(nameof(deltaTime), deltaTime, "Value must be positive");
 
             if (worldDragDelta.HasValue)
-                ApplyMovement(worldDragDelta.Value);
+            {
+                Vector3 delta = worldDragDelta.Value;
+
+                if (VectorValidation.IsValid(delta) == false)
+                    return;
+
+                ApplyMovement(delta);
+            }
             else
+            {
                 _snapBack.Restore(_cameraTransform, deltaTime);
+            }
         }
 
         private void ApplyMovement(Vector3 worldDelta)
         {
-            Vector3 newPos = _cameraTransform.position - worldDelta;
-            float overshootX = _boundsLimiter.GetOvershootX(newPos);
-            float overshootZ = _boundsLimiter.GetOvershootZ(newPos);
+            Vector3 desiredPosition = _cameraTransform.position - worldDelta;
+            Vector3 correctedDelta = ApplyResistance(worldDelta, desiredPosition);
+            Vector3 finalDesiredPosition = _cameraTransform.position - correctedDelta;
+            Vector3 restrictedPosition = RestrictToBounds(finalDesiredPosition);
+            _cameraTransform.position = restrictedPosition;
+        }
+
+        private Vector3 ApplyResistance(Vector3 delta, Vector3 desiredPosition)
+        {
+            float overshootX = _boundsLimiter.GetOvershootX(desiredPosition);
+            float overshootZ = _boundsLimiter.GetOvershootZ(desiredPosition);
             float maxOvershoot = _projector.Area.Overshoot;
             float resistance = _projector.Area.Resistance;
+
+            Vector3 result = delta;
 
             if (overshootX > 0f)
             {
                 float factor = 1f - Mathf.Clamp01(overshootX / maxOvershoot) * resistance;
-                worldDelta.x *= factor;
+                result.x *= factor;
             }
 
             if (overshootZ > 0f)
             {
                 float factor = 1f - Mathf.Clamp01(overshootZ / maxOvershoot) * resistance;
-                worldDelta.z *= factor;
+                result.z *= factor;
             }
 
-            newPos = _cameraTransform.position - worldDelta;
-            Vector3 finalPos = _cameraTransform.position;
+            return result;
+        }
 
-            if (_boundsLimiter.IsValidPositionX(newPos))
-                finalPos.x = newPos.x;
-            else
-                finalPos.x = _cameraTransform.position.x;
+        private Vector3 RestrictToBounds(Vector3 desiredPosition)
+        {
+            Vector3 result = _cameraTransform.position;
 
-            if (_boundsLimiter.IsValidPositionZ(newPos))
-                finalPos.z = newPos.z;
-            else
-                finalPos.z = _cameraTransform.position.z;
+            if (_boundsLimiter.IsValidPositionX(desiredPosition))
+                result.x = desiredPosition.x;
 
-            _cameraTransform.position = finalPos;
+            if (_boundsLimiter.IsValidPositionZ(desiredPosition))
+                result.z = desiredPosition.z;
+
+            return result;
         }
     }
 }

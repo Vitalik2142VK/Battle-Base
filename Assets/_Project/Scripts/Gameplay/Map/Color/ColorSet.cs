@@ -48,10 +48,12 @@ namespace BattleBase.Gameplay.Map
             CurrentColorIndex = indexColor;
             ClearContext();
 
-            foreach (Color color in _config.Colors)
+            List<Color> colors = new(_config.Colors);
+
+            for (int i = 0; i < colors.Count; i++)
             {
                 ColorBox box = Instantiate(_prefab, _context);
-                box.Init(color);
+                box.Init(colors[i], i);
                 box.Deselect();
                 _boxes.Add(box);
             }
@@ -72,6 +74,8 @@ namespace BattleBase.Gameplay.Map
         {
             foreach (Transform child in _context)
                 Destroy(child.gameObject);
+
+            _boxes.Clear();
         }
 
         private void OnColorBoxClick(ColorBox colorBox)
@@ -81,9 +85,9 @@ namespace BattleBase.Gameplay.Map
 
             colorBox.Select();
             CurrentColor = colorBox.Color;
-            CurrentColorIndex = _boxes.IndexOf(colorBox);
+            CurrentColorIndex = colorBox.Index;
 
-            Clicked?.Invoke(_boxes.IndexOf(colorBox));
+            Clicked?.Invoke(CurrentColorIndex);
         }
     }
 }

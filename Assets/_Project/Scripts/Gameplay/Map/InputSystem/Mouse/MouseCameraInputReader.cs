@@ -14,6 +14,7 @@ namespace BattleBase.Gameplay.Map.InputSystem
         private readonly MouseZoomHandler _mouseZoomHandler;
 
         private bool _dragBlockedByUI;
+        private bool _disposed;
 
         public MouseCameraInputReader(
             IUpdater updater,
@@ -35,8 +36,14 @@ namespace BattleBase.Gameplay.Map.InputSystem
 
         public float? ZoomDelta { get; private set; }
 
-        public void Dispose() =>
+        public void Dispose()
+        {
+            if (_disposed)
+                return;
+
+            _disposed = true;
             _updater?.Unsubscribe(OnUpdate, UpdateType.Update);
+        }
 
         private void OnUpdate()
         {

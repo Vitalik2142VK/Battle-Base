@@ -14,7 +14,7 @@ namespace BattleBase.Gameplay.Map.Editor
         private const string UndoMessage = "Toggle Adjacent Territory";
 
         private const int MaterialIndex = 1;
-        private const bool IsTwoWayDependency = true;
+        private const bool TwoWayDependency = true;
 
         private static readonly int ColorPropertyID = Shader.PropertyToID(ColorProperty);
 
@@ -90,7 +90,7 @@ namespace BattleBase.Gameplay.Map.Editor
 
             List<Territory> clickedAdjacents;
 
-            if (IsTwoWayDependency)
+            if (TwoWayDependency)
             {
                 if (s_adjacentsField?.GetValue(clicked) is List<Territory> list)
                     clickedAdjacents = list;
@@ -100,7 +100,7 @@ namespace BattleBase.Gameplay.Map.Editor
 
             Undo.RecordObject(owner, UndoMessage);
 
-            if (IsTwoWayDependency)
+            if (TwoWayDependency)
                 Undo.RecordObject(clicked, UndoMessage);
 
             bool alreadyConnected = ownerAdjacents.Contains(clicked);
@@ -109,25 +109,25 @@ namespace BattleBase.Gameplay.Map.Editor
             {
                 ownerAdjacents.Remove(clicked);
 
-                if (IsTwoWayDependency && clickedAdjacents != null)
+                if (TwoWayDependency && clickedAdjacents != null)
                     clickedAdjacents.Remove(owner);
             }
             else
             {
                 ownerAdjacents.Add(clicked);
 
-                if (IsTwoWayDependency && clickedAdjacents != null)
+                if (TwoWayDependency && clickedAdjacents != null)
                     clickedAdjacents.Add(owner);
             }
 
             s_adjacentsField.SetValue(owner, ownerAdjacents);
 
-            if (IsTwoWayDependency && clickedAdjacents != null)
+            if (TwoWayDependency && clickedAdjacents != null)
                 s_adjacentsField.SetValue(clicked, clickedAdjacents);
 
             EditorUtility.SetDirty(owner);
 
-            if (IsTwoWayDependency)
+            if (TwoWayDependency)
                 EditorUtility.SetDirty(clicked);
         }
 

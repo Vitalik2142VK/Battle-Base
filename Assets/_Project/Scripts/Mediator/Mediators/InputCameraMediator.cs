@@ -1,20 +1,25 @@
 using System;
+using System.Collections.Generic;
 using BattleBase.DI;
 using BattleBase.Gameplay.Map;
 using BattleBase.Gameplay.Map.InputSystem;
 using UnityEngine;
+using UnityEngine.UI;
 using VContainer;
 
 namespace BattleBase.Mediators
 {
     public class InputCameraMediator : MediatorBase, IInjectable
     {
+        [SerializeField] private List<Canvas> _canvasList;
+        [SerializeField] private Slider _slider;
         [SerializeField] private bool _isDynamicAngle;
 
         private ICameraInputReader _inputReader;
         private ICameraDragger _dragger;
         private ICameraZoom _zoom;
         private ICameraAngleCompensator _angleCompensator;
+        private IUIPointerChecker _pointerChecker;
         private float _dragVerticalFactor;
 
         [Inject]
@@ -22,16 +27,30 @@ namespace BattleBase.Mediators
             ICameraInputReader inputReader,
             ICameraDragger dragger,
             ICameraAngleCompensator angleCompensator,
-            ICameraZoom zoom)
+            ICameraZoom zoom,
+            IUIPointerChecker pointerChecker)
         {
             _inputReader = inputReader ?? throw new ArgumentNullException(nameof(inputReader));
             _dragger = dragger ?? throw new ArgumentNullException(nameof(dragger));
             _angleCompensator = angleCompensator ?? throw new ArgumentNullException(nameof(angleCompensator));
             _zoom = zoom ?? throw new ArgumentNullException(nameof(zoom));
+            _pointerChecker = pointerChecker ?? throw new ArgumentNullException(nameof(pointerChecker));
         }
 
-        public override void Init() =>
+        private void OnEnable() =>
+            _slider.onValueChanged.AddListener(OnSliderChanged);
+
+        private void OnDisable() =>
+            _slider.onValueChanged.AddListener(OnSliderChanged);
+
+        public override void Init()
+        {
+            foreach (Canvas canvas in _canvasList)
+                _pointerChecker.AddCanvas(canvas);
+
             UpdateCompensation();
+            _slider.value = _zoom.Value01;
+        }
 
         private void LateUpdate()
         {
@@ -50,10 +69,23 @@ namespace BattleBase.Mediators
             }
 
             _dragger.Update(deltaTime, dragDelta);
-            _zoom.Update(_inputReader?.ZoomDelta);
+
+            float? zoomDelta = _inputReader?.ZoomDelta;
+
+            if (zoomDelta.HasValue)
+            {
+                _zoom.Update(_inputReader?.ZoomDelta);
+                _slider.value = _zoom.Value01;
+            }
         }
 
         private void UpdateCompensation() =>
             _dragVerticalFactor = _angleCompensator.CalculateVerticalFactor();
+
+        private void OnSliderChanged(float value)
+        {
+            if (_inputReader?.ZoomDelta.HasValue == false)
+                _zoom.SetValue01(value);
+        }
     }
 }
