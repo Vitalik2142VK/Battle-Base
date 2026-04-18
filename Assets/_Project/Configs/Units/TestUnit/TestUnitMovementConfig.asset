@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37a24a7ae21bc0f4a95771ee0324fa23, type: 3}
-  m_Name: UnitMovementConfig
+  m_Name: TestUnitMovementConfig
   m_EditorClassIdentifier: 
-  _speed: 3.5
+  _speed: 10
   _angularSpeed: 120
   _acceleration: 10
   _stoppingDistance: 3
