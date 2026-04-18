@@ -28,5 +28,34 @@ namespace BattleBase.Gameplay.Map
             Owner = owner;
             OwnerChanged?.Invoke();
         }
+
+#if UNITY_EDITOR
+        public void AddAdjacent(Territory territory)
+        {
+            if (territory == null || territory == this) 
+                return;
+
+            if (_adjacents.Contains(territory) == false)
+            {
+                _adjacents.Add(territory);
+                territory.AddAdjacentInternal(this);
+            }
+        }
+
+        public void RemoveAdjacent(Territory territory)
+        {
+            if (_adjacents.Remove(territory))
+                territory.RemoveAdjacentInternal(this);
+        }
+
+        private void AddAdjacentInternal(Territory territory)
+        {
+            if (_adjacents.Contains(territory) == false)
+                _adjacents.Add(territory);
+        }
+
+        private void RemoveAdjacentInternal(Territory territory) =>
+            _adjacents.Remove(territory);
+#endif
     }
 }

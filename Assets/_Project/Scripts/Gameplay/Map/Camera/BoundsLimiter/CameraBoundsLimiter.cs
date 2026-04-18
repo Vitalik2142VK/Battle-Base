@@ -7,17 +7,17 @@ namespace BattleBase.Gameplay.Map
 {
     public class CameraBoundsLimiter : ICameraBoundsLimiter
     {
-        private readonly ICameraFrustumProjector _projector;
+        private readonly ICameraFrustumProjector _frustumProjector;
 
-        public CameraBoundsLimiter(ICameraFrustumProjector projector)
+        public CameraBoundsLimiter(ICameraFrustumProjector frustumProjector)
         {
-            _projector = projector ?? throw new ArgumentNullException(nameof(projector));
+            _frustumProjector = frustumProjector ?? throw new ArgumentNullException(nameof(frustumProjector));
         }
 
-        public bool IsValidPositionX(Vector3 position) =>
+        public bool IsWithinBoundsX(Vector3 position) =>
             IsValidPositionAlongAxis(position, c => c.x, bounds => bounds.min.x, bounds => bounds.max.x);
 
-        public bool IsValidPositionZ(Vector3 position) =>
+        public bool IsWithinBoundsZ(Vector3 position) =>
             IsValidPositionAlongAxis(position, c => c.z, bounds => bounds.min.z, bounds => bounds.max.z);
 
         public float GetOvershootX(Vector3 position) =>
@@ -26,29 +26,50 @@ namespace BattleBase.Gameplay.Map
         public float GetOvershootZ(Vector3 position) =>
             GetOvershootAlongAxis(position, c => c.z, b => b.min.z, b => b.max.z);
 
+        private CornerBounds GetCornerBounds(Vector3 position)
+        {
+            if (VectorValidation.IsValid(position) == false)
+                throw new ArgumentException($"Position is invalid (NaN or Infinity): {position}", nameof(position));
+
+            List<Vector3> corners = new();
+            _frustumProjector.ProjectCornersOntoPlaneFromPosition(position, corners);
+
+            float minX = float.MaxValue, maxX = float.MinValue;
+            float minZ = float.MaxValue, maxZ = float.MinValue;
+
+            foreach (Vector3 corner in corners)
+            {
+                if (corner.x < minX)
+                    minX = corner.x;
+
+                if (corner.x > maxX)
+                    maxX = corner.x;
+
+                if (corner.z < minZ)
+                    minZ = corner.z;
+
+                if (corner.z > maxZ)
+                    maxZ = corner.z;
+            }
+
+            return new CornerBounds(minX, maxX, minZ, maxZ);
+        }
+
         private bool IsValidPositionAlongAxis(
             Vector3 position,
             Func<Vector3, float> getCornerCoord,
             Func<Bounds, float> getMinBound,
             Func<Bounds, float> getMaxBound)
         {
-            if (VectorValidation.IsValid(position) == false)
-                return false;
+            CornerBounds bounds = GetCornerBounds(position);
+            Bounds areaBounds = _frustumProjector.Area.OvershootBounds;
+            float minBound = getMinBound(areaBounds);
+            float maxBound = getMaxBound(areaBounds);
 
-            List<Vector3> corners = _projector.ProjectCornersOntoPlaneFromPosition(position);
-            Bounds bounds = _projector.Area.OvershootBounds;
-            float minBound = getMinBound(bounds);
-            float maxBound = getMaxBound(bounds);
-
-            foreach (Vector3 corner in corners)
-            {
-                float coord = getCornerCoord(corner);
-
-                if (coord < minBound || coord > maxBound)
-                    return false;
-            }
-
-            return true;
+            if (getCornerCoord(new Vector3(bounds.MinX, 0, 0)) == bounds.MinX)
+                return bounds.MinX >= minBound && bounds.MaxX <= maxBound;
+            else
+                return bounds.MinZ >= minBound && bounds.MaxZ <= maxBound;
         }
 
         private float GetOvershootAlongAxis(
@@ -57,32 +78,17 @@ namespace BattleBase.Gameplay.Map
             Func<Bounds, float> getMin,
             Func<Bounds, float> getMax)
         {
-            if (VectorValidation.IsValid(position) == false)
-                return 0f;
+            CornerBounds bounds = GetCornerBounds(position);
+            Bounds areaBounds = _frustumProjector.Area.ColliderBounds;
+            float boundMin = getMin(areaBounds);
+            float boundMax = getMax(areaBounds);
+            float min = getCoord(new Vector3(bounds.MinX, 0, bounds.MinZ));
+            float max = getCoord(new Vector3(bounds.MaxX, 0, bounds.MaxZ));
 
-            List<Vector3> corners = _projector.ProjectCornersOntoPlaneFromPosition(position);
-            Bounds bounds = _projector.Area.ColliderBounds;
-            float min = float.MaxValue;
-            float max = float.MinValue;
-
-            foreach (Vector3 corner in corners)
-            {
-                float val = getCoord(corner);
-
-                if (val < min)
-                    min = val;
-
-                if (val > max)
-                    max = val;
-            }
-
-            float boundMin = getMin(bounds);
-            float boundMax = getMax(bounds);
             float overshoot = 0f;
 
             if (min < boundMin)
                 overshoot = boundMin - min;
-
             if (max > boundMax)
                 overshoot = Mathf.Max(overshoot, max - boundMax);
 

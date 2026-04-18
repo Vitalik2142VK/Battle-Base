@@ -1,5 +1,6 @@
 #if UNITY_EDITOR
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
@@ -21,10 +22,10 @@ namespace BattleBase.Gameplay.Map.Editor
         private static readonly Color SelectedColor = Color.green;
         private static readonly Color AdjacentColor = Color.yellow;
 
-        private readonly static HashSet<MeshRenderer> _affectedRenderers = new();
+        private readonly static HashSet<MeshRenderer> s_affectedRenderers = new();
         private readonly static FieldInfo s_adjacentsField;
 
-        private static Territory _currentSelectedTerritory;
+        private static Territory s_currentSelectedTerritory;
 
         static TerritoryColorizerEditor()
         {
@@ -44,12 +45,12 @@ namespace BattleBase.Gameplay.Map.Editor
 
             if (selected != null && selected.TryGetComponent(out Territory territory))
             {
-                _currentSelectedTerritory = territory;
+                s_currentSelectedTerritory = territory;
                 ApplyColors(territory);
             }
             else
             {
-                _currentSelectedTerritory = null;
+                s_currentSelectedTerritory = null;
             }
         }
 
@@ -58,7 +59,7 @@ namespace BattleBase.Gameplay.Map.Editor
             if (Application.isPlaying)
                 return;
 
-            if (_currentSelectedTerritory == null)
+            if (s_currentSelectedTerritory == null)
                 return;
 
             Event e = Event.current;
@@ -69,15 +70,15 @@ namespace BattleBase.Gameplay.Map.Editor
 
                 if (clickedObject != null && clickedObject.TryGetComponent(out Territory clickedTerritory))
                 {
-                    if (clickedTerritory == _currentSelectedTerritory)
+                    if (clickedTerritory == s_currentSelectedTerritory)
                         return;
 
-                    ProcessAdjacent(_currentSelectedTerritory, clickedTerritory);
+                    ProcessAdjacent(s_currentSelectedTerritory, clickedTerritory);
 
                     ResetColors();
-                    ApplyColors(_currentSelectedTerritory);
+                    ApplyColors(s_currentSelectedTerritory);
 
-                    EditorUtility.SetDirty(_currentSelectedTerritory);
+                    EditorUtility.SetDirty(s_currentSelectedTerritory);
                     e.Use();
                 }
             }
@@ -85,45 +86,17 @@ namespace BattleBase.Gameplay.Map.Editor
 
         private static void ProcessAdjacent(Territory owner, Territory clicked)
         {
-            if (s_adjacentsField?.GetValue(owner) is not List<Territory> ownerAdjacents)
-                return;
-
-            List<Territory> clickedAdjacents;
-
-            if (TwoWayDependency)
-            {
-                if (s_adjacentsField?.GetValue(clicked) is List<Territory> list)
-                    clickedAdjacents = list;
-                else
-                    return;
-            }
-
             Undo.RecordObject(owner, UndoMessage);
 
             if (TwoWayDependency)
                 Undo.RecordObject(clicked, UndoMessage);
 
-            bool alreadyConnected = ownerAdjacents.Contains(clicked);
+            bool alreadyConnected = owner.Adjacents.Contains(clicked);
 
             if (alreadyConnected)
-            {
-                ownerAdjacents.Remove(clicked);
-
-                if (TwoWayDependency && clickedAdjacents != null)
-                    clickedAdjacents.Remove(owner);
-            }
+                owner.RemoveAdjacent(clicked);
             else
-            {
-                ownerAdjacents.Add(clicked);
-
-                if (TwoWayDependency && clickedAdjacents != null)
-                    clickedAdjacents.Add(owner);
-            }
-
-            s_adjacentsField.SetValue(owner, ownerAdjacents);
-
-            if (TwoWayDependency && clickedAdjacents != null)
-                s_adjacentsField.SetValue(clicked, clickedAdjacents);
+                owner.AddAdjacent(clicked);
 
             EditorUtility.SetDirty(owner);
 
@@ -151,22 +124,22 @@ namespace BattleBase.Gameplay.Map.Editor
 
         private static void SetColor(MeshRenderer renderer, Color color)
         {
-            MaterialPropertyBlock mpb = new();
-            renderer.GetPropertyBlock(mpb, MaterialIndex);
-            mpb.SetColor(ColorPropertyID, color);
-            renderer.SetPropertyBlock(mpb, MaterialIndex);
-            _affectedRenderers.Add(renderer);
+            MaterialPropertyBlock materialPropertyBlock = new();
+            renderer.GetPropertyBlock(materialPropertyBlock, MaterialIndex);
+            materialPropertyBlock.SetColor(ColorPropertyID, color);
+            renderer.SetPropertyBlock(materialPropertyBlock, MaterialIndex);
+            s_affectedRenderers.Add(renderer);
         }
 
         private static void ResetColors()
         {
-            foreach (MeshRenderer renderer in _affectedRenderers)
+            foreach (MeshRenderer renderer in s_affectedRenderers)
             {
                 if (renderer != null)
                     renderer.SetPropertyBlock(null, MaterialIndex);
             }
 
-            _affectedRenderers.Clear();
+            s_affectedRenderers.Clear();
         }
     }
 }

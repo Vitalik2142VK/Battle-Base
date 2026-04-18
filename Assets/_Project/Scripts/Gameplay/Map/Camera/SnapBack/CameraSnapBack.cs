@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace BattleBase.Gameplay.Map
 {
@@ -8,12 +9,12 @@ namespace BattleBase.Gameplay.Map
     {
         private const float Half = 0.5f;
 
-        private readonly ICameraFrustumProjector _projector;
+        private readonly ICameraFrustumProjector _frustumProjector;
         private readonly float _restoreSpeed;
 
-        public CameraSnapBack(ICameraFrustumProjector projector, ICameraConfig config)
+        public CameraSnapBack(ICameraFrustumProjector frustumProjector, ICameraConfig config)
         {
-            _projector = projector ?? throw new ArgumentNullException(nameof(projector));
+            _frustumProjector = frustumProjector ?? throw new ArgumentNullException(nameof(frustumProjector));
 
             if (config == null)
                 throw new ArgumentNullException(nameof(config));
@@ -29,8 +30,10 @@ namespace BattleBase.Gameplay.Map
             if (deltaTime < 0)
                 throw new ArgumentOutOfRangeException(nameof(deltaTime), deltaTime, "Value must be positive");
 
-            List<Vector3> corners = _projector.ProjectCornersOntoPlaneFromPosition(cameraTransform.position);
-            Bounds bounds = _projector.Area.ColliderBounds;
+            List<Vector3> corners = new();
+            _frustumProjector.ProjectCornersOntoPlaneFromPosition(cameraTransform.position, corners);
+
+            Bounds bounds = _frustumProjector.Area.ColliderBounds;
             Vector2 minMaxX = GetMinMax(corners, true);
             Vector2 minMaxZ = GetMinMax(corners, false);
             Vector3 correction = Vector3.zero;

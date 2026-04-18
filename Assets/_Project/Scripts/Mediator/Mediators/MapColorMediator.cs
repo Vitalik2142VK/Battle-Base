@@ -62,7 +62,7 @@ namespace BattleBase.Mediators
             {
                 TerritoryOwnerType.Enemy => _colorSettingsPopUp.EnemyColor,
                 TerritoryOwnerType.Player => _colorSettingsPopUp.PlayerColor,
-                TerritoryOwnerType.Adjacent => Color.Lerp(_colorSettingsPopUp.EnemyColor, Color.white, _lightenFactor),
+                TerritoryOwnerType.Contested => Color.Lerp(_colorSettingsPopUp.EnemyColor, Color.white, _lightenFactor),
                 _ => throw new ArgumentOutOfRangeException(nameof(owner), owner, "Type is not registered"),
             };
         }

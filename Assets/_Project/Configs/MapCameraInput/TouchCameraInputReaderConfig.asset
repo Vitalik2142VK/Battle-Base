@@ -15,3 +15,4 @@ MonoBehaviour:
   _zoomSensitivity: 0.002
   _minPinchDistance: 10
   _dragDeltaThreshold: 0.01
+  _clickDragThreshold: 20

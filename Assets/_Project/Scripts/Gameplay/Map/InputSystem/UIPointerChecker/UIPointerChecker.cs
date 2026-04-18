@@ -7,34 +7,51 @@ namespace BattleBase.Gameplay.Map.InputSystem
 {
     public class UIPointerChecker : IUIPointerChecker
     {
-        private readonly List<Canvas> _uiCanvases = new();
+        private readonly List<GraphicRaycaster> _raycasters = new();
         private readonly List<RaycastResult> _raycastResults = new();
+
+        private int _lastFrame = -1;
+        private Vector2 _lastPosition;
+        private bool _lastResult;
+
+        private PointerEventData _cachedEventData;
 
         public void AddCanvas(Canvas canvas)
         {
-            if (canvas != null)
-                _uiCanvases.Add(canvas);
+            if (canvas == null)
+                return;
+
+            if (canvas.TryGetComponent(out GraphicRaycaster raycaster))
+            {
+                if (_raycasters.Contains(raycaster) == false)
+                    _raycasters.Add(raycaster);
+            }
         }
 
         public bool IsPointerOverUI(Vector2 screenPosition)
         {
-            if (EventSystem.current == null)
-                return false;
+            int currentFrame = Time.frameCount;
 
-            foreach (Canvas canvas in _uiCanvases)
+            if (currentFrame == _lastFrame && screenPosition == _lastPosition)
+                return _lastResult;
+
+            _lastFrame = currentFrame;
+            _lastPosition = screenPosition;
+            _lastResult = RaycastUI(screenPosition);
+
+            return _lastResult;
+        }
+
+        private bool RaycastUI(Vector2 screenPosition)
+        {
+            if (EventSystem.current == null) return false;
+
+            PointerEventData eventData = new(EventSystem.current) { position = screenPosition };
+
+            foreach (GraphicRaycaster raycaster in _raycasters)
             {
-                if (canvas == null || canvas.enabled == false || canvas.gameObject.activeInHierarchy == false)
+                if (raycaster == null || !raycaster.enabled || !raycaster.gameObject.activeInHierarchy)
                     continue;
-
-                GraphicRaycaster raycaster = canvas.GetComponent<GraphicRaycaster>();
-
-                if (raycaster == null)
-                    continue;
-
-                PointerEventData eventData = new(EventSystem.current)
-                {
-                    position = screenPosition
-                };
 
                 _raycastResults.Clear();
                 raycaster.Raycast(eventData, _raycastResults);

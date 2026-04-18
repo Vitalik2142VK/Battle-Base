@@ -11,8 +11,8 @@ namespace BattleBase.DI
     {
         [SerializeField] private Camera _camera;
         [SerializeField] private CameraFrustumProjector _cameraFrustumProjector;
-        [SerializeField] private MouseCameraInputReaderConfig _mouseMapCameraConfig;
-        [SerializeField] private TouchCameraInputReaderConfig _touchMapCameraConfig;
+        [SerializeField] private MouseInputConfig _mouseMapCameraConfig;
+        [SerializeField] private TouchInputConfig _touchMapCameraConfig;
         [SerializeField] private CameraConfig _cameraConfig;
 
         protected override void Configure(IContainerBuilder builder)
@@ -23,24 +23,27 @@ namespace BattleBase.DI
             builder.Register<IUIPointerChecker, UIPointerChecker>(Lifetime.Scoped);
             builder.Register<ICameraSnapBack, CameraSnapBack>(Lifetime.Scoped);
             builder.Register<ICameraBoundsLimiter, CameraBoundsLimiter>(Lifetime.Scoped);
-            builder.Register<ICameraAngleCompensator, CameraAngleCompensator>(Lifetime.Scoped);
+            builder.Register<IVerticalFactorCalculator, VerticalFactorCalculator>(Lifetime.Scoped);
             builder.Register<ICameraZoom, CameraZoom>(Lifetime.Scoped);
             builder.Register<ICameraDragger, CameraDragger>(Lifetime.Scoped);
+            builder.Register<ICameraInputReader, CameraInputReader>(Lifetime.Scoped);
 
             if (YG2.envir.isDesktop)
             {
                 builder.RegisterComponent(_mouseMapCameraConfig).AsImplementedInterfaces();
-                builder.Register<MouseDragHandler>(Lifetime.Scoped);
-                builder.Register<KeyboardDragHandler>(Lifetime.Scoped);
-                builder.Register<MouseZoomHandler>(Lifetime.Scoped);
-                builder.Register<ICameraInputReader, MouseCameraInputReader>(Lifetime.Scoped);
+                builder.Register<IClickDetector, MouseClickDetector>(Lifetime.Scoped);
+                builder.Register<IMouseDragHandler, MouseDragHandler>(Lifetime.Scoped);
+                builder.Register<IKeyboardDragHandler, KeyboardDragHandler>(Lifetime.Scoped);
+                builder.Register<IDragHandler, CompositeMouseDragHandler>(Lifetime.Scoped);
+                builder.Register<IKeyboardDragHandler, KeyboardDragHandler>(Lifetime.Scoped);
+                builder.Register<IZoomHandler, MouseZoomHandler>(Lifetime.Scoped);
             }
             else
             {
                 builder.RegisterComponent(_touchMapCameraConfig).AsImplementedInterfaces();
-                builder.Register<TouchDragHandler>(Lifetime.Scoped);
-                builder.Register<TouchPinchHandler>(Lifetime.Scoped);
-                builder.Register<ICameraInputReader, TouchCameraInputReader>(Lifetime.Scoped);
+                builder.Register<IClickDetector, TouchClickDetector>(Lifetime.Scoped);
+                builder.Register<IDragHandler, TouchDragHandler>(Lifetime.Scoped);
+                builder.Register<IZoomHandler, TouchPinchHandler>(Lifetime.Scoped);
             }
         }
     }

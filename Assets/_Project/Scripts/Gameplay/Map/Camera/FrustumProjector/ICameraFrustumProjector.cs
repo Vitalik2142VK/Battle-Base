@@ -7,6 +7,6 @@ namespace BattleBase.Gameplay.Map
     {
         public ICameraArea Area { get; }
 
-        public List<Vector3> ProjectCornersOntoPlaneFromPosition(Vector3 cameraPosition);
+        public void ProjectCornersOntoPlaneFromPosition(Vector3 cameraPosition, List<Vector3> outCorners);
     }
 }

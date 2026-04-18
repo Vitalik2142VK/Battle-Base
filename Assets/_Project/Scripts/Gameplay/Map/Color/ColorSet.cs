@@ -24,11 +24,8 @@ namespace BattleBase.Gameplay.Map
                 box.Clicked += OnColorBoxClick;
         }
 
-        private void OnDisable()
-        {
-            foreach (ColorBox box in _boxes)
-                box.Clicked -= OnColorBoxClick;
-        }
+        private void OnDisable() =>
+            Unsubscribe();
 
         public void Init(int indexColor)
         {
@@ -40,6 +37,9 @@ namespace BattleBase.Gameplay.Map
 
             if (_context == null)
                 throw new ArgumentNullException(nameof(_context), $"{nameof(ColorSet)}: {nameof(_context)} is not assigned.");
+
+            if (_config.Colors.Count == 0)
+                throw new InvalidOperationException("Config is empty");
 
             if (indexColor < 0 || indexColor >= _config.Colors.Count)
                 throw new ArgumentOutOfRangeException(nameof(indexColor), $"Index {indexColor} is out of range for colors list (size {_config.Colors.Count})");
@@ -70,8 +70,19 @@ namespace BattleBase.Gameplay.Map
         public void DisableInteractable(int index) =>
             _boxes[index].DisableInteractable();
 
+        private void Unsubscribe()
+        {
+            foreach (ColorBox box in _boxes)
+            {
+                if (box != null)
+                    box.Clicked -= OnColorBoxClick;
+            }
+        }
+
         private void ClearContext()
         {
+            Unsubscribe();
+
             foreach (Transform child in _context)
                 Destroy(child.gameObject);
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BattleBase.Gameplay.Map;
 using BattleBase.UI.PopUps;
 using DG.Tweening;
 using TMPro;
@@ -165,6 +166,42 @@ namespace BattleBase.Utils
                 sequence.Join(tweener);
 
             sequence.OnComplete(() => onComplete?.Invoke());
+        }
+
+        public static Tweener PlayLocalMove(this Transform target, Vector3 targetLocalPosition, TerritoryPositionAnimationConfig config)
+        {
+            if (target == null || config == null)
+                return null;
+
+            string id = $"LocalMove_{target.gameObject.GetInstanceID()}";
+            DOTween.Kill(id);
+
+            Tweener tweener = target.DOLocalMove(targetLocalPosition, config.Duration)
+                .SetDelay(config.Delay, true)
+                .SetEase(config.Ease)
+                .SetId(id)
+                .SetLink(target.gameObject)
+                .SetUpdate(true);
+
+            return tweener;
+        }
+
+        public static Tweener PlayScale(this Transform target, Vector3 targetScale, TerritoryScaleAnimationConfig config)
+        {
+            if (target == null || config == null)
+                return null;
+
+            string id = $"Scale_{target.gameObject.GetInstanceID()}";
+            DOTween.Kill(id);
+
+            Tweener tweener = target.DOScale(targetScale, config.Duration)
+                .SetDelay(config.Delay, true)
+                .SetEase(config.Ease)
+                .SetId(id)
+                .SetLink(target.gameObject)
+                .SetUpdate(true);
+
+            return tweener;
         }
     }
 }

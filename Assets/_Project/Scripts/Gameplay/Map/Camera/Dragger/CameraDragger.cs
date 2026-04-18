@@ -9,20 +9,24 @@ namespace BattleBase.Gameplay.Map
         private readonly Camera _camera;
         private readonly ICameraBoundsLimiter _boundsLimiter;
         private readonly ICameraSnapBack _snapBack;
-        private readonly ICameraFrustumProjector _projector;
         private readonly Transform _cameraTransform;
+
+        private readonly ResistanceCalculator _resistanceCalculator;
+        private readonly PositionRestrictor _positionRestrictor;
 
         public CameraDragger(
             Camera camera,
-            ICameraFrustumProjector projector,
+            ICameraFrustumProjector frustumProjector,
             ICameraSnapBack snapBack,
             ICameraBoundsLimiter boundsLimiter)
         {
             _camera = camera != null ? camera : throw new ArgumentNullException(nameof(camera));
-            _projector = projector ?? throw new ArgumentNullException(nameof(projector));
             _boundsLimiter = boundsLimiter ?? throw new ArgumentNullException(nameof(boundsLimiter));
             _snapBack = snapBack ?? throw new ArgumentNullException(nameof(snapBack));
             _cameraTransform = _camera.transform;
+
+            _resistanceCalculator = new ResistanceCalculator(boundsLimiter, frustumProjector.Area);
+            _positionRestrictor = new PositionRestrictor(boundsLimiter);
         }
 
         public void Update(float deltaTime, Vector3? worldDragDelta)
@@ -48,47 +52,10 @@ namespace BattleBase.Gameplay.Map
         private void ApplyMovement(Vector3 worldDelta)
         {
             Vector3 desiredPosition = _cameraTransform.position - worldDelta;
-            Vector3 correctedDelta = ApplyResistance(worldDelta, desiredPosition);
+            Vector3 correctedDelta = _resistanceCalculator.Calculate(worldDelta, desiredPosition);
             Vector3 finalDesiredPosition = _cameraTransform.position - correctedDelta;
-            Vector3 restrictedPosition = RestrictToBounds(finalDesiredPosition);
+            Vector3 restrictedPosition = _positionRestrictor.Restrict(finalDesiredPosition, _cameraTransform.position);
             _cameraTransform.position = restrictedPosition;
-        }
-
-        private Vector3 ApplyResistance(Vector3 delta, Vector3 desiredPosition)
-        {
-            float overshootX = _boundsLimiter.GetOvershootX(desiredPosition);
-            float overshootZ = _boundsLimiter.GetOvershootZ(desiredPosition);
-            float maxOvershoot = _projector.Area.Overshoot;
-            float resistance = _projector.Area.Resistance;
-
-            Vector3 result = delta;
-
-            if (overshootX > 0f)
-            {
-                float factor = 1f - Mathf.Clamp01(overshootX / maxOvershoot) * resistance;
-                result.x *= factor;
-            }
-
-            if (overshootZ > 0f)
-            {
-                float factor = 1f - Mathf.Clamp01(overshootZ / maxOvershoot) * resistance;
-                result.z *= factor;
-            }
-
-            return result;
-        }
-
-        private Vector3 RestrictToBounds(Vector3 desiredPosition)
-        {
-            Vector3 result = _cameraTransform.position;
-
-            if (_boundsLimiter.IsValidPositionX(desiredPosition))
-                result.x = desiredPosition.x;
-
-            if (_boundsLimiter.IsValidPositionZ(desiredPosition))
-                result.z = desiredPosition.z;
-
-            return result;
         }
     }
 }

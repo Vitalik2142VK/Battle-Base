@@ -4,6 +4,6 @@ namespace BattleBase.Gameplay.Map
     {
         Player = 0,
         Enemy = 1,
-        Adjacent = 2,
+        Contested = 2,
     }
 }

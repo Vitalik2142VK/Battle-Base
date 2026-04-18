@@ -4,9 +4,9 @@ namespace BattleBase.Gameplay.Map
 {
     public interface ICameraBoundsLimiter
     {
-        public bool IsValidPositionX(Vector3 position);
+        public bool IsWithinBoundsX(Vector3 position);
 
-        public bool IsValidPositionZ(Vector3 position);
+        public bool IsWithinBoundsZ(Vector3 position);
 
         public float GetOvershootX(Vector3 position);
 

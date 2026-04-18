@@ -13,13 +13,14 @@ namespace BattleBase.Gameplay.Map
 
         private MeshRenderer _meshRenderer;
         private Territory _territory;
-        private MaterialPropertyBlock _propertyBlock;
+        private MaterialPropertyBlock _materialPropertyBlock;
 
         private void Awake()
         {
             _meshRenderer = GetComponent<MeshRenderer>();
             _territory = GetComponent<Territory>();
-            _propertyBlock = new();
+
+            _materialPropertyBlock = new();
         }
 
         private void OnEnable()
@@ -41,9 +42,9 @@ namespace BattleBase.Gameplay.Map
             if (color.HasValue == false)
                 return;
 
-            _meshRenderer.GetPropertyBlock(_propertyBlock, _materialIndex);
-            _propertyBlock.SetColor(ColorPropertyID, color.Value);
-            _meshRenderer.SetPropertyBlock(_propertyBlock, _materialIndex);
+            _meshRenderer.GetPropertyBlock(_materialPropertyBlock, _materialIndex);
+            _materialPropertyBlock.SetColor(ColorPropertyID, color.Value);
+            _meshRenderer.SetPropertyBlock(_materialPropertyBlock, _materialIndex);
         }
     }
 }

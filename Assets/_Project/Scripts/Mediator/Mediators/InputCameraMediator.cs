@@ -18,7 +18,7 @@ namespace BattleBase.Mediators
         private ICameraInputReader _inputReader;
         private ICameraDragger _dragger;
         private ICameraZoom _zoom;
-        private ICameraAngleCompensator _angleCompensator;
+        private IVerticalFactorCalculator _angleCompensator;
         private IUIPointerChecker _pointerChecker;
         private float _dragVerticalFactor;
 
@@ -26,7 +26,7 @@ namespace BattleBase.Mediators
         public void Construct(
             ICameraInputReader inputReader,
             ICameraDragger dragger,
-            ICameraAngleCompensator angleCompensator,
+            IVerticalFactorCalculator angleCompensator,
             ICameraZoom zoom,
             IUIPointerChecker pointerChecker)
         {

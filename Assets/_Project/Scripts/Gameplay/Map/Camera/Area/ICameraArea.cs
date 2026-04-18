@@ -6,9 +6,9 @@ namespace BattleBase.Gameplay.Map
     {
         public float Resistance { get; }
 
-        public float Overshoot { get; }
+        public float ResistanceFadeDistance { get; }
 
-        public float PlaneY { get; }
+        public float GroundPlaneY { get; }
 
         public Bounds ColliderBounds { get; }
 

@@ -17,3 +17,4 @@ MonoBehaviour:
   _dragDeltaThreshold: 0.01
   _keyboardAxisThreshold: 0.01
   _scrollThreshold: 0.001
+  _clickDragThreshold: 20

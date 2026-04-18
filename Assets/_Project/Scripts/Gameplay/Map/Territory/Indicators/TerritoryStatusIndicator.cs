@@ -17,7 +17,7 @@ namespace BattleBase.Gameplay.Map
             _territory = GetComponentInParent<Territory>();
 
             if (_territory == null)
-                Debug.LogError($"{nameof(TerritoryStatusIndicator)} on {gameObject.name} requires a {nameof(Territory)} component in parent.", this);
+                throw new NullReferenceException($"{nameof(_territory)} on {gameObject.name} requires a {nameof(Territory)} component in parent.");
         }
 
         private void OnEnable()
@@ -48,7 +48,7 @@ namespace BattleBase.Gameplay.Map
             {
                 TerritoryOwnerType.Enemy => _base,
                 TerritoryOwnerType.Player => _base,
-                TerritoryOwnerType.Adjacent => _battle,
+                TerritoryOwnerType.Contested => _battle,
                 _ => throw new ArgumentOutOfRangeException(nameof(_territory.Owner), _territory.Owner, $"Type is not registered"),
             };
 
@@ -66,7 +66,7 @@ namespace BattleBase.Gameplay.Map
             {
                 TerritoryOwnerType.Enemy => ModifyColor(_territory.Color.Value),
                 TerritoryOwnerType.Player => ModifyColor(_territory.Color.Value),
-                TerritoryOwnerType.Adjacent => Color.white,
+                TerritoryOwnerType.Contested => Color.white,
                 _ => throw new ArgumentOutOfRangeException(nameof(_territory.Owner), _territory.Owner, $"Type is not registered"),
             };
         }
