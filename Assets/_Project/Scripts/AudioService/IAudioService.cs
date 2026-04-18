@@ -2,8 +2,8 @@ namespace BattleBase.AudioService
 {
     public interface IAudioService
     {
-        IMusic Music { get; }
+        Music Music { get; }
 
-        ISfx Sfx { get; }
+        Sfx Sfx { get; }
     }
 }

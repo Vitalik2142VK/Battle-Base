@@ -17,6 +17,11 @@ namespace BattleBase.Gameplay.Map
 
         public IReadOnlyList<Territory> Adjacents => _adjacents;
 
+        public void Init()
+        {
+            
+        }
+
         public void SetColor(Color color)
         {
             Color = color;

@@ -7,8 +7,8 @@ namespace BattleBase.AudioService
         [SerializeField] private Music _music;
         [SerializeField] private Sfx _sfx;
 
-        public IMusic Music => _music;
+        public Music Music => _music;
 
-        public ISfx Sfx => _sfx;
+        public Sfx Sfx => _sfx;
     }
 }

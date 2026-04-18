@@ -17,11 +17,11 @@ MonoBehaviour:
   - _icon: {fileID: 2800000, guid: 104abdce05b0d5f4784f7cdffce90bb1, type: 3}
     _typeName: VContainer.Unity.LifetimeScope, VContainer, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
-  - _icon: {fileID: 2800000, guid: 6edd3a10d3b76374ab50472d561ee43a, type: 3}
-    _typeName: BattleBase.DI.IInjectable, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
   - _icon: {fileID: 2800000, guid: 33d0a77939d26c24fbfcaa477770f98f, type: 3}
     _typeName: BattleBase.Bootstraps.BootstrapBase, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - _icon: {fileID: 2800000, guid: 6edd3a10d3b76374ab50472d561ee43a, type: 3}
+    _typeName: BattleBase.Abstract.IInjectable, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   - _icon: {fileID: 2800000, guid: 0cdd6ca023ed1dd49818d5f3a57f7f09, type: 3}
     _typeName: UnityEngine.Camera, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
@@ -39,7 +39,7 @@ MonoBehaviour:
     _typeName: BattleBase.Mediators.MediatorBase, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   - _icon: {fileID: 2800000, guid: b825c1e7864441446aaaabba03a7d50f, type: 3}
-    _typeName: BattleBase.Localization.LocalizedText, Assembly-CSharp, Version=0.0.0.0,
+    _typeName: BattleBase.Services.Localization.LocalizedText, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   - _icon: {fileID: 2800000, guid: fae44f81cde713443a86d169a47f1f8d, type: 3}
     _typeName: TMPro.TMP_Text, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,

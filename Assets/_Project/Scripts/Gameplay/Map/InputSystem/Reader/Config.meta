@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/_Project/Scripts/Gameplay/Map/InputSystem/Reader/Config.meta
 guid: 4bf837edd99652d4fbd4a19a024e77b1
+=======
+guid: 47eee84da9f52dd4e980d05ce82c1a86
+>>>>>>> 254fefc1707fdf056ae43f021bd40b057aec9a96:Assets/_Project/Scripts/Gameplay/Map/InputSystem/Touch/Config.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

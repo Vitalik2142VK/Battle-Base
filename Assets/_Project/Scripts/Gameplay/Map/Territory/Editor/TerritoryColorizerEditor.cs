@@ -12,15 +12,11 @@ namespace BattleBase.Gameplay.Map.Editor
     {
         private const string ColorProperty = "_BaseColor";
         private const string AdjacentsField = "_adjacents";
-        private const string UndoMessage = "Toggle Adjacent Territory";
-
         private const int MaterialIndex = 1;
-        private const bool TwoWayDependency = true;
+        private const bool IsTwoWayDependency = true;
 
-        private static readonly int ColorPropertyID = Shader.PropertyToID(ColorProperty);
-
-        private static readonly Color SelectedColor = Color.green;
-        private static readonly Color AdjacentColor = Color.yellow;
+        private static Color SelectedColor = Color.green;
+        private static Color AdjacentColor = Color.yellow;
 
         private readonly static HashSet<MeshRenderer> s_affectedRenderers = new();
         private readonly static FieldInfo s_adjacentsField;
@@ -41,6 +37,7 @@ namespace BattleBase.Gameplay.Map.Editor
             if (Application.isPlaying) return;
 
             ResetColors();
+
             GameObject selected = Selection.activeGameObject;
 
             if (selected != null && selected.TryGetComponent(out Territory territory))
@@ -86,21 +83,59 @@ namespace BattleBase.Gameplay.Map.Editor
 
         private static void ProcessAdjacent(Territory owner, Territory clicked)
         {
+<<<<<<< HEAD
             Undo.RecordObject(owner, UndoMessage);
+=======
+            if (s_adjacentsField?.GetValue(owner) is not List<Territory> ownerAdjacents)
+                return;
 
-            if (TwoWayDependency)
-                Undo.RecordObject(clicked, UndoMessage);
+            List<Territory> clickedAdjacents;
+
+            if (IsTwoWayDependency)
+            {
+                if (s_adjacentsField?.GetValue(clicked) is List<Territory> list)
+                    clickedAdjacents = list;
+                else
+                    return;
+            }
+
+            Undo.RecordObject(owner, "Toggle Adjacent Territory");
+>>>>>>> 254fefc1707fdf056ae43f021bd40b057aec9a96
+
+            if (IsTwoWayDependency)
+                Undo.RecordObject(clicked, "Toggle Adjacent Territory");
 
             bool alreadyConnected = owner.Adjacents.Contains(clicked);
 
             if (alreadyConnected)
+<<<<<<< HEAD
                 owner.RemoveAdjacent(clicked);
             else
                 owner.AddAdjacent(clicked);
+=======
+            {
+                ownerAdjacents.Remove(clicked);
+
+                if (IsTwoWayDependency && clickedAdjacents != null)
+                    clickedAdjacents.Remove(owner);
+            }
+            else
+            {
+                ownerAdjacents.Add(clicked);
+
+                if (IsTwoWayDependency && clickedAdjacents != null)
+                    clickedAdjacents.Add(owner);
+            }
+
+            s_adjacentsField.SetValue(owner, ownerAdjacents);
+
+            if (IsTwoWayDependency && clickedAdjacents != null)
+                s_adjacentsField.SetValue(clicked, clickedAdjacents);
+>>>>>>> 254fefc1707fdf056ae43f021bd40b057aec9a96
 
             EditorUtility.SetDirty(owner);
 
-            if (TwoWayDependency)
+            if (IsTwoWayDependency)
                 EditorUtility.SetDirty(clicked);
         }
 
@@ -124,11 +159,19 @@ namespace BattleBase.Gameplay.Map.Editor
 
         private static void SetColor(MeshRenderer renderer, Color color)
         {
+<<<<<<< HEAD
             MaterialPropertyBlock materialPropertyBlock = new();
             renderer.GetPropertyBlock(materialPropertyBlock, MaterialIndex);
             materialPropertyBlock.SetColor(ColorPropertyID, color);
             renderer.SetPropertyBlock(materialPropertyBlock, MaterialIndex);
             s_affectedRenderers.Add(renderer);
+=======
+            MaterialPropertyBlock mpb = new();
+            renderer.GetPropertyBlock(mpb);
+            mpb.SetColor(ColorProperty, color);
+            renderer.SetPropertyBlock(mpb);
+            _affectedRenderers.Add(renderer);
+>>>>>>> 254fefc1707fdf056ae43f021bd40b057aec9a96
         }
 
         private static void ResetColors()
@@ -136,7 +179,7 @@ namespace BattleBase.Gameplay.Map.Editor
             foreach (MeshRenderer renderer in s_affectedRenderers)
             {
                 if (renderer != null)
-                    renderer.SetPropertyBlock(null, MaterialIndex);
+                    renderer.SetPropertyBlock(null);
             }
 
             s_affectedRenderers.Clear();

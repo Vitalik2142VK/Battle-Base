@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/_Project/Scripts/Gameplay/Map/InputSystem/Zoom/Config.meta
 guid: 38029d8a7d97f744095098b462093c7f
+=======
+guid: cc888df99bfcd7c4f9db3113c47793ab
+>>>>>>> 254fefc1707fdf056ae43f021bd40b057aec9a96:Assets/_Project/Scripts/Gameplay/Map/InputSystem/Mouse/Config.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

@@ -8,11 +8,5 @@ namespace BattleBase.SaveService
 
         public void SaveProgress() =>
             YG2.SaveProgress();
-
-        public void ResetProgress()
-        {
-            YG2.SetDefaultSaves();
-            SaveProgress();
-        }
     }
 }

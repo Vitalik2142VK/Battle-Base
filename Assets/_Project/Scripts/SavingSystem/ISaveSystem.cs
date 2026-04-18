@@ -5,7 +5,5 @@ namespace BattleBase.SaveService
         public SavesData Data {  get; }
 
         public void SaveProgress();
-
-        public void ResetProgress();
     }
 }

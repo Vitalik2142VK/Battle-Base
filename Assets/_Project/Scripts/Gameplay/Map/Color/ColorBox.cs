@@ -14,18 +14,15 @@ namespace BattleBase.Gameplay.Map
 
         public Color Color {  get; private set; }
 
-        public int Index { get; private set; } = -1;
-
         private void OnEnable() =>
             _button.onClick.AddListener(OnClick);
 
         private void OnDisable() =>
             _button.onClick.RemoveListener(OnClick);
 
-        public void Init(Color color, int index)
+        public void Init(Color color)
         {
             Color = color;
-            Index = index;
             _image.color = color;
         }
 

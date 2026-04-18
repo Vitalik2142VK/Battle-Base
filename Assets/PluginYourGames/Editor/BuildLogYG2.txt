@@ -1,3 +1,8 @@
+<<<<<<< HEAD
 ﻿Build path: C:/Users/660/Desktop/TLDBuilds/BattleBase
 Build number: 15
+=======
+﻿Build path: C:/Users/660/Desktop/BattleBase
+Build number: 8
+>>>>>>> 254fefc1707fdf056ae43f021bd40b057aec9a96
 PluginYG version: 2.009

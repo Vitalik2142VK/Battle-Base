@@ -18,11 +18,5 @@ namespace BattleBase.Gameplay.Units
         public ILanguageVisitor Name => _name;
 
         public ILanguageVisitor Description => _description;
-
-        private void OnValidate()
-        {
-            if (_icon == null)
-                throw new System.NullReferenceException(nameof(_icon));
-        }
     }
 }

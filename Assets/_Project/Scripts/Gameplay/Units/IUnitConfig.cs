@@ -1,4 +1,6 @@
-﻿using BattleBase.Gameplay.Movement;
+﻿using BattleBase.Gameplay.HealthSystem;
+using BattleBase.Gameplay.Movement;
+using BattleBase.Gameplay.Weapons;
 
 namespace BattleBase.Gameplay.Units
 {
@@ -10,7 +12,7 @@ namespace BattleBase.Gameplay.Units
 
         public IHealthConfig HealthConfig { get; }
 
-        public IDamageConfig DamageConfig { get; }
+        public IWeaponConfig WeaponConfig { get; }
 
         public IMovementConfig MovementConfig { get; }
     }
