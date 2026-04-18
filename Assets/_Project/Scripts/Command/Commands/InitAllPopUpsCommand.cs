@@ -13,7 +13,7 @@ namespace BattleBase.Commands
             foreach (PopUp popUp in _popUps)
             {
                 popUp.Init();
-                popUp.HideInstantly();
+                popUp.HideInstantly(); 
             }
         }
     }

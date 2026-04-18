@@ -44,7 +44,7 @@ namespace BattleBase.Mediators
 
         public void Load()
         {
-            HashSet<int> conqueredSet = new(_saver.ConqueredTerritories);
+            HashSet<int> conqueredSet = new(_saver.ConqueredTerritories); 
 
             for (int i = 0; i < _territories.Count; i++)
             {

@@ -14,7 +14,7 @@ namespace BattleBase.DI
     {
         [SerializeField] private Audio _audioService;
         [SerializeField] private Updater _updater;
-        [SerializeField] private SceneLoader _sceneLoader;
+        [SerializeField] private SceneLoader _sceneLoader; 
 
         protected override void Configure(IContainerBuilder builder)
         {

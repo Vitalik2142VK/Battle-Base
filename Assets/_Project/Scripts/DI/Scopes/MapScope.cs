@@ -7,7 +7,7 @@ using YG;
 
 namespace BattleBase.DI
 {
-    public class MapScope : LifetimeScope
+    public class MapScope : LifetimeScope 
     {
         [SerializeField] private Camera _camera;
         [SerializeField] private CameraFrustumProjector _cameraFrustumProjector;
@@ -33,7 +33,6 @@ namespace BattleBase.DI
                 builder.RegisterComponent(_mouseMapCameraConfig).AsImplementedInterfaces();
                 builder.Register<IClickDetector, MouseClickDetector>(Lifetime.Scoped);
                 builder.Register<IMouseDragHandler, MouseDragHandler>(Lifetime.Scoped);
-                builder.Register<IKeyboardDragHandler, KeyboardDragHandler>(Lifetime.Scoped);
                 builder.Register<IDragHandler, CompositeMouseDragHandler>(Lifetime.Scoped);
                 builder.Register<IKeyboardDragHandler, KeyboardDragHandler>(Lifetime.Scoped);
                 builder.Register<IZoomHandler, MouseZoomHandler>(Lifetime.Scoped);

@@ -8,7 +8,7 @@ namespace BattleBase.UI.Buttons
     [RequireComponent(typeof(Button))]
     public class ButtonClickHandler : MonoBehaviour
     {
-        [SerializeField] private List<CommandBase> _commands;
+        [SerializeField] private List<CommandBase> _commands;  
 
         private Button _button;
 

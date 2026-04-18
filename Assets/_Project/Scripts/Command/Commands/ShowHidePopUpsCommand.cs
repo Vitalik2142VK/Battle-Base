@@ -14,7 +14,7 @@ namespace BattleBase.Commands
             foreach (PopUp popUp in _popUpsToHide)
                 popUp.Hide();
 
-            foreach (PopUp popUp in _popUpsToShow)
+            foreach (PopUp popUp in _popUpsToShow) 
                 popUp.Show();
         }
     }

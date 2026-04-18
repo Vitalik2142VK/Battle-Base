@@ -9,7 +9,7 @@ namespace BattleBase.Mediators
 {
     public class SavingMediator : MediatorBase, IInjectable
     {
-        [SerializeField] private List<MonoBehaviour> _saveables;
+        [SerializeField] private List<MonoBehaviour> _saveables;  
 
         private bool _isSaving = true;
 
