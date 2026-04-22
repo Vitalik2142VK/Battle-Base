@@ -1,7 +1,9 @@
+using BattleBase.Localization;
+
 namespace BattleBase.Gameplay.Map
 {
     public interface ITerritoryInfo
     {
-        public TerritoryOwnerType Owner { get; }
+        public LanguageTextsSet TerritoryName { get; }
     }
 }

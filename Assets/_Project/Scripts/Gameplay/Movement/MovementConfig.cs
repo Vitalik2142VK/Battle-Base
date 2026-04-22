@@ -6,7 +6,7 @@ namespace BattleBase.Gameplay.Movement
 {
     [CreateAssetMenu(
         fileName = nameof(MovementConfig),
-        menuName = Constants.ConfigsAssetMenuName + "/" + nameof(UnitConfig) + "/" + nameof(MovementConfig))]
+        menuName = Constants.ConfigsAssetMenuPath + nameof(UnitConfig) + "/" + nameof(MovementConfig))]
     public class MovementConfig : ScriptableObject, IMovementConfig
     {
         [SerializeField][Min(0.5f)] private float _speed = 3.5f;

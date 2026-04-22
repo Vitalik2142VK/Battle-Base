@@ -1,4 +1,4 @@
-﻿using BattleBase.Gameplay.Movement;
+using BattleBase.Gameplay.Movement;
 using BattleBase.Utils;
 using UnityEngine;
 
@@ -6,7 +6,7 @@ namespace BattleBase.Gameplay.Units
 {
     [CreateAssetMenu(
         fileName = nameof(UnitConfig),
-        menuName = Constants.ConfigsAssetMenuName + "/" + nameof(UnitConfig) + "/" + nameof(UnitConfig))]
+        menuName = Constants.ConfigsAssetMenuPath + nameof(UnitConfig) + "/" + nameof(UnitConfig))]
     public class UnitConfig : ScriptableObject, IUnitConfig
     {
         [SerializeField] private UnitView _prefab;

@@ -1,6 +1,7 @@
 using System;
 using BattleBase.Commands;
 using BattleBase.Core;
+using BattleBase.Localization;
 using BattleBase.UI.Buttons;
 using BattleBase.UI.PopUps;
 using UnityEngine;
@@ -11,7 +12,13 @@ namespace BattleBase.Gameplay.Map
     public class TerritorySelectPopUp : MonoBehaviour, IPoolable<TerritorySelectPopUp>
     {
         [SerializeField] private PopUp _popUp;
-        [SerializeField] private ButtonClickHandler _battleButton;        
+        [SerializeField] private ButtonClickHandler _battleButton;
+        [SerializeField] private LocalizedText _territoryName;
+        [SerializeField] private LocalizedText _ownershipDescriptionText;
+
+        [SerializeField] private LanguageTextsSet _playerOwnership;
+        [SerializeField] private LanguageTextsSet _enemyOwnership;
+        [SerializeField] private LanguageTextsSet _contestedOwnership;
 
         private Transform _target;
 
@@ -20,7 +27,7 @@ namespace BattleBase.Gameplay.Map
         [Inject]
         public void Construct(LoadGameSceneCommand loadGameSceneCommand)
         {
-            if(loadGameSceneCommand == null)
+            if (loadGameSceneCommand == null)
                 throw new ArgumentNullException(nameof(loadGameSceneCommand));
 
             _battleButton.AddCommand(loadGameSceneCommand);
@@ -35,12 +42,33 @@ namespace BattleBase.Gameplay.Map
         public void Init()
         {
             _popUp.Init();
-            _popUp.HideInstantly();           
+            _popUp.HideInstantly();
             Update();
         }
 
         public void SetTarget(Transform target) =>
             _target = target != null ? target : throw new ArgumentNullException(nameof(target));
+
+        public void SetInfo(ITerritoryInfo info) =>
+            _territoryName.SetTexts(info.TerritoryName);
+
+        public void SetOwner(TerritoryOwnerType owner)
+        {
+            LanguageTextsSet texts = owner switch
+            {
+                TerritoryOwnerType.Player => _playerOwnership,
+                TerritoryOwnerType.Enemy => _enemyOwnership,
+                TerritoryOwnerType.Contested => _contestedOwnership,
+                _ => throw new ArgumentOutOfRangeException(nameof(owner)),
+            };
+
+            _ownershipDescriptionText.SetTexts(texts);
+
+            if (owner == TerritoryOwnerType.Enemy)
+                HideBattleButton();
+            else
+                ShowBattleButton();
+        }
 
         public void Show()
         {
@@ -51,14 +79,13 @@ namespace BattleBase.Gameplay.Map
         public void Hide() =>
             _popUp.Hide(Deactivate);
 
+        public void ShowBattleButton() =>
+            _battleButton.Show();
+
         public void HideBattleButton() =>
             _battleButton.Hide();
 
-        public void Deactivate()
-        {
-            _battleButton.Show();
-
+        public void Deactivate() =>
             Deactivated?.Invoke(this);
-        }
     }
 }

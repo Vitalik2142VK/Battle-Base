@@ -6,7 +6,7 @@ namespace BattleBase.UI.PopUps
 {
     [CreateAssetMenu(
         fileName = nameof(ColorAnimationConfig),
-        menuName = Constants.ConfigsAssetMenuName + "/" + nameof(ColorAnimationConfig))]
+        menuName = Constants.ConfigsAssetMenuPath + nameof(ColorAnimationConfig))]
     public class ColorAnimationConfig : ScriptableObject
     {
         [SerializeField] private Color _targetColor;

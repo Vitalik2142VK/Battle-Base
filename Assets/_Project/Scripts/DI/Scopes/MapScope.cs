@@ -33,7 +33,7 @@ namespace BattleBase.DI
             builder.Register<ITerritorySelector, TerritorySelector>(Lifetime.Scoped);
             builder.RegisterComponent(_territoryPositionAnimationConfig);
             builder.Register<ITerritoryElevator, TerritoryElevator>(Lifetime.Scoped);
-            builder.Register<ITerritorySelectPopUpShower, TerritorySelectPopUpShower>(Lifetime.Scoped);
+            builder.Register<ITerritoryPopUpShower, TerritoryPopUpShower>(Lifetime.Scoped);
 
             builder.Register<IUIPointerChecker, UIPointerChecker>(Lifetime.Scoped);
             builder.Register<ICameraSnapBack, CameraSnapBack>(Lifetime.Scoped);
@@ -63,7 +63,7 @@ namespace BattleBase.DI
             builder.RegisterBuildCallback(container =>
             {
                 container.Resolve<ITerritoryElevator>();
-                container.Resolve<ITerritorySelectPopUpShower>();
+                container.Resolve<ITerritoryPopUpShower>();
             });
         }
     }

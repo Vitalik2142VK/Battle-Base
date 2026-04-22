@@ -11,7 +11,7 @@ namespace BattleBase.Utils
         public const string MusicVolumeGroup = "Music";
         public const string SfxVolumeGroup = "Sfx";
 
-        public const string ConfigsAssetMenuName = "ScriptableObjects";
+        public const string ConfigsAssetMenuPath = "ScriptableObjects/";
         internal const int PoolMaximumSize = 100;
     }
 }

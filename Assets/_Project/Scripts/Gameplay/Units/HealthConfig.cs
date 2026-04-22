@@ -1,11 +1,11 @@
-﻿using BattleBase.Utils;
+using BattleBase.Utils;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Units
 {
     [CreateAssetMenu(
         fileName = nameof(HealthConfig),
-        menuName = Constants.ConfigsAssetMenuName + "/" + nameof(UnitConfig) + "/" + nameof(HealthConfig))]
+        menuName = Constants.ConfigsAssetMenuPath + nameof(UnitConfig) + "/" + nameof(HealthConfig))]
     public class HealthConfig : ScriptableObject, IHealthConfig
     {
         [SerializeField][Min(10f)] private float _maxHealth = 100f;

@@ -1,4 +1,4 @@
-﻿using BattleBase.Localization;
+using BattleBase.Localization;
 using BattleBase.Utils;
 using UnityEngine;
 
@@ -6,7 +6,7 @@ namespace BattleBase.Gameplay.Units
 {
     [CreateAssetMenu(
     fileName = nameof(UnitData),
-    menuName = Constants.ConfigsAssetMenuName + "/" + nameof(UnitConfig) + "/" + nameof(UnitData))]
+    menuName = Constants.ConfigsAssetMenuPath + nameof(UnitConfig) + "/" + nameof(UnitData))]
     public class UnitData : ScriptableObject, IUnitData
     {
         [SerializeField] private Sprite _icon;

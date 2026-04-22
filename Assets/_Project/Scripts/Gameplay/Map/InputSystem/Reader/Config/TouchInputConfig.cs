@@ -5,7 +5,7 @@ namespace BattleBase.Gameplay.Map.InputSystem
 {
     [CreateAssetMenu(
         fileName = nameof(TouchInputConfig),
-        menuName = Constants.ConfigsAssetMenuName + "/" + nameof(TouchInputConfig))]
+        menuName = Constants.ConfigsAssetMenuPath + nameof(TouchInputConfig))]
     public class TouchInputConfig : ScriptableObject, ITouchConfig, IClickConfig
     {
         [SerializeField][Min(0.0001f)] private float _zoomSensitivity = 0.002f;

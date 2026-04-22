@@ -3,14 +3,14 @@ using BattleBase.Core;
 
 namespace BattleBase.Gameplay.Map
 {
-    public class TerritorySelectPopUpShower : ITerritorySelectPopUpShower, IDisposable
+    public class TerritoryPopUpShower : ITerritoryPopUpShower, IDisposable
     {
         private readonly ITerritorySelector _selector;
         private readonly IPool<TerritorySelectPopUp> _pool;
 
         private TerritorySelectPopUp _currentPopUp;
 
-        public TerritorySelectPopUpShower(ITerritorySelector selector, IPool<TerritorySelectPopUp> pool)
+        public TerritoryPopUpShower(ITerritorySelector selector, IPool<TerritorySelectPopUp> pool)
         {
             _selector = selector ?? throw new ArgumentNullException(nameof(selector));
             _pool = pool ?? throw new ArgumentNullException(nameof(pool));
@@ -29,12 +29,13 @@ namespace BattleBase.Gameplay.Map
         {
             if (_pool.TryGive(out TerritorySelectPopUp popUp))
             {
+                TerritoryOwnerType owner = territory.Owner;
+
                 _currentPopUp = popUp;
                 _currentPopUp.SetTarget(territory.Target);
+                _currentPopUp.SetInfo(territory.Info);
+                _currentPopUp.SetOwner(owner);
                 _currentPopUp.Show();
-
-                if (territory.Owner == TerritoryOwnerType.Enemy)
-                    _currentPopUp.HideBattleButton();
             }
         }
 

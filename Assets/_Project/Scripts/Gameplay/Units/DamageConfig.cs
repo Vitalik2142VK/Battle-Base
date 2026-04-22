@@ -1,11 +1,11 @@
-﻿using BattleBase.Utils;
+using BattleBase.Utils;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Units
 {
     [CreateAssetMenu(
     fileName = nameof(DamageConfig),
-    menuName = Constants.ConfigsAssetMenuName + "/" + nameof(UnitConfig) + "/" + nameof(DamageConfig))]
+    menuName = Constants.ConfigsAssetMenuPath + nameof(UnitConfig) + "/" + nameof(DamageConfig))]
     public class DamageConfig : ScriptableObject, IDamageConfig
     {
         [SerializeField][Min(10f)] private float _damage = 20f;

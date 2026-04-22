@@ -19,14 +19,20 @@ namespace BattleBase.Localization
 
         private void OnEnable()
         {
-            YandexGameLanguageSystemAdapter.Changed += OnSwitchLanguage;
-            OnSwitchLanguage();
+            YandexGameLanguageSystemAdapter.Changed += UpdateInfo;
+            UpdateInfo();
         }
 
         private void OnDisable() =>
-            YandexGameLanguageSystemAdapter.Changed -= OnSwitchLanguage;
+            YandexGameLanguageSystemAdapter.Changed -= UpdateInfo;
 
-        private void OnSwitchLanguage()
+        public void SetTexts(LanguageTextsSet texts)
+        {
+            _texts = texts ?? throw new ArgumentNullException(nameof(texts));
+            UpdateInfo();
+        }
+
+        private void UpdateInfo()
         {
             TextLangParams langParams =
                 _texts.GetByLanguage(YandexGameLanguageSystemAdapter.CurrentLanguage)

@@ -1,3 +1,4 @@
+using BattleBase.Localization;
 using BattleBase.Utils;
 using UnityEngine;
 
@@ -5,13 +6,11 @@ namespace BattleBase.Gameplay.Map
 {
     [CreateAssetMenu(
         fileName = nameof(TerritoryConfig), 
-        menuName = Constants.ConfigsAssetMenuName + "/" + nameof(TerritoryConfig))]
+        menuName = Constants.ConfigsAssetMenuPath + nameof(TerritoryConfig))]
     public class TerritoryConfig : ScriptableObject, ITerritoryInfo
     {
-        [SerializeField] private TerritoryOwnerType _owner = TerritoryOwnerType.Enemy;
+        [SerializeField] private LanguageTextsSet _territoryName;
 
-        public TerritoryOwnerType Owner => _owner;
-
-        // todo понадобится для передачи инфы о противнике. Owner здесь не нужен, просто валяется
+        public LanguageTextsSet TerritoryName => _territoryName;
     }
 }

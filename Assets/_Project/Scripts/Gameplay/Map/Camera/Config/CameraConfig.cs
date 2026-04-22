@@ -5,7 +5,7 @@ namespace BattleBase.Gameplay.Map
 {
     [CreateAssetMenu(
         fileName = nameof(CameraConfig),
-        menuName = Constants.ConfigsAssetMenuName + "/" + nameof(CameraConfig))]
+        menuName = Constants.ConfigsAssetMenuPath + nameof(CameraConfig))]
     public class CameraConfig : ScriptableObject, ICameraConfig
     {
         [SerializeField][Min(0f)] private float _restoreSpeed = 3;

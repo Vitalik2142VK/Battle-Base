@@ -6,7 +6,7 @@ namespace BattleBase.Gameplay.Map
 {
     [CreateAssetMenu(
         fileName = nameof(TerritoryPositionAnimationConfig), 
-        menuName = Constants.ConfigsAssetMenuName + "/" + nameof(TerritoryPositionAnimationConfig))]
+        menuName = Constants.ConfigsAssetMenuPath + nameof(TerritoryPositionAnimationConfig))]
     public class TerritoryPositionAnimationConfig : ScriptableObject
     {
         [SerializeField] private float _duration = 0.3f;

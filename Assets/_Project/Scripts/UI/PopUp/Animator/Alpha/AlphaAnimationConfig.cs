@@ -6,7 +6,7 @@ namespace BattleBase.UI.PopUps
 {
     [CreateAssetMenu(
         fileName = nameof(AlphaAnimationConfig),
-        menuName = Constants.ConfigsAssetMenuName + "/" + nameof(AlphaAnimationConfig))] 
+        menuName = Constants.ConfigsAssetMenuPath + nameof(AlphaAnimationConfig))] 
     public class AlphaAnimationConfig : ScriptableObject
     {
         [SerializeField][Range(0f, 1f)] private float _startAlpha = 0f;

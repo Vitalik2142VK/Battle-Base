@@ -6,7 +6,7 @@ namespace BattleBase.UI.PopUps
 {
     [CreateAssetMenu(
         fileName = nameof(ShakeAnimationConfig),
-        menuName = Constants.ConfigsAssetMenuName + "/" + nameof(ShakeAnimationConfig))]
+        menuName = Constants.ConfigsAssetMenuPath + nameof(ShakeAnimationConfig))]
     public class ShakeAnimationConfig : ScriptableObject
     {
         [SerializeField] private float _duration = 0.2f;

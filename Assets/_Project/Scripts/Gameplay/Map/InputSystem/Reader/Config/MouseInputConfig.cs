@@ -5,7 +5,7 @@ namespace BattleBase.Gameplay.Map.InputSystem
 {
     [CreateAssetMenu(
         fileName = nameof(MouseInputConfig),
-        menuName = Constants.ConfigsAssetMenuName + "/" + nameof(MouseInputConfig))]
+        menuName = Constants.ConfigsAssetMenuPath + nameof(MouseInputConfig))]
     public class MouseInputConfig : ScriptableObject, IZoomConfig, IDragConfig, IClickConfig
     {
         [SerializeField][Min(0.001f)] private float _keyboardSpeed = 1.4f;

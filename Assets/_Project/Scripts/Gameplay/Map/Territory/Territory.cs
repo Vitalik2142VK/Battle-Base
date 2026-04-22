@@ -8,6 +8,7 @@ namespace BattleBase.Gameplay.Map
     {
         [SerializeField] private List<Territory> _adjacents;
         [SerializeField] private TerritoryTarget _target;
+        [SerializeField] private TerritoryConfig _config;
 
         public event Action ColorChanged;
         public event Action OwnerChanged;
@@ -19,6 +20,8 @@ namespace BattleBase.Gameplay.Map
         public IReadOnlyList<Territory> Adjacents => _adjacents;
 
         public Transform Target => _target.transform;
+
+        public ITerritoryInfo Info => _config;
 
         public void SetColor(Color color)
         {
