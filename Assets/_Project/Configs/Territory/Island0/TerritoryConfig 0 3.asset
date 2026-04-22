@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c49f31152e66054f99da1622b0cebef, type: 3}
-  m_Name: TerritoryConfig 19
+  m_Name: TerritoryConfig 0 3
   m_EditorClassIdentifier: 
   _territoryName:
     _ru:
-      _text: "\u041F\u0435\u043F\u0435\u043B\u044C\u043D\u044B\u0439 \u043B\u0435\u0441"
+      _text: "\u0411\u043E\u043B\u043E\u0442\u0438\u0441\u0442\u044B\u0435 \u043B\u0443\u0433\u0430"
     _en:
-      _text: Ashen Forest
+      _text: Swampy meadows
     _tr:
-      _text: "K\xFCl Orman\u0131"
+      _text: "Batakl\u0131k \xE7ay\u0131rlar"

@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c49f31152e66054f99da1622b0cebef, type: 3}
-  m_Name: TerritoryConfig 4
+  m_Name: TerritoryConfig 0 15
   m_EditorClassIdentifier: 
   _territoryName:
     _ru:
-      _text: "\u0411\u043E\u043B\u043E\u0442\u0438\u0441\u0442\u044B\u0435 \u043B\u0443\u0433\u0430"
+      _text: "\u0421\u043D\u0435\u0436\u043D\u044B\u0439 \u0445\u0440\u0435\u0431\u0435\u0442"
     _en:
-      _text: Swampy meadows
+      _text: Snowy Ridge
     _tr:
-      _text: "Batakl\u0131k \xE7ay\u0131rlar"
+      _text: "Karl\u0131 s\u0131rt"

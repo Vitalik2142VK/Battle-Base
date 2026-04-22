@@ -72,11 +72,10 @@ namespace BattleBase.Mediators
 
             float? zoomDelta = _inputReader?.ZoomDelta;
 
+            _zoom.Update(_inputReader?.ZoomDelta);
+
             if (zoomDelta.HasValue)
-            {
-                _zoom.Update(_inputReader?.ZoomDelta);
                 _slider.value = _zoom.Value01;
-            }
         }
 
         private void UpdateCompensation() =>

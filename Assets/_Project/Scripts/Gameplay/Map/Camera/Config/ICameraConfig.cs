@@ -6,8 +6,8 @@ namespace BattleBase.Gameplay.Map
 
         public float ZoomSpeed { get; }
 
-        public float MinimumZoom { get; }
+        public float MinimumOrtoSize { get; }
 
-        public float MaximumZoom { get; }
+        public float MaximumOrtoSize { get; }
     }
 }

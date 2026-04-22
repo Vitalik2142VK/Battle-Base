@@ -39,6 +39,7 @@ namespace BattleBase.DI
             builder.Register<ICameraSnapBack, CameraSnapBack>(Lifetime.Scoped);
             builder.Register<ICameraBoundsLimiter, CameraBoundsLimiter>(Lifetime.Scoped);
             builder.Register<IVerticalFactorCalculator, VerticalFactorCalculator>(Lifetime.Scoped);
+            builder.Register<ICameraOrientationAdapter, CameraOrientationAdapter>(Lifetime.Scoped);
             builder.Register<ICameraZoom, CameraZoom>(Lifetime.Scoped);
             builder.Register<ICameraDragger, CameraDragger>(Lifetime.Scoped);
             builder.Register<ICameraInputReader, CameraInputReader>(Lifetime.Scoped);

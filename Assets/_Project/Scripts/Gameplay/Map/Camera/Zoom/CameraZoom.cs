@@ -6,39 +6,51 @@ namespace BattleBase.Gameplay.Map
     public class CameraZoom : ICameraZoom
     {
         private readonly Camera _camera;
+        private readonly ICameraOrientationAdapter _orientationAdapter;
         private readonly float _zoomSpeed;
-        private readonly float _minZoom;
-        private readonly float _maxZoom;
 
-        public CameraZoom(Camera camera, ICameraConfig config)
+        public CameraZoom(Camera camera, ICameraOrientationAdapter orientationAdapter, ICameraConfig config)
         {
             _camera = camera != null ? camera : throw new ArgumentNullException(nameof(camera));
+            _orientationAdapter = orientationAdapter ?? throw new ArgumentNullException(nameof(orientationAdapter));
+
+            if (config == null)
+                throw new ArgumentNullException(nameof(config));
+
             _zoomSpeed = config.ZoomSpeed;
-            _minZoom = config.MinimumZoom;
-            _maxZoom = config.MaximumZoom;
+
+            if (_zoomSpeed <= 0)
+                throw new ArgumentOutOfRangeException(nameof(_zoomSpeed), _zoomSpeed, "Value must be positive");
         }
 
         public float Value01
         {
             get
             {
-                float range = _maxZoom - _minZoom;
+                float range = MaximumZoom - MinimumZoom;
 
-                if (range <= 0f) 
-                    return 0.5f;
+                if (range <= 0f)
+                    throw new ArgumentOutOfRangeException(nameof(range), range, "Value must be positive");
 
-                float normalized = (_camera.orthographicSize - _minZoom) / range;
+                float normalized = (_camera.orthographicSize - MinimumZoom) / range;
 
                 return 1f - normalized;
             }
         }
 
+        private float MinimumZoom => _orientationAdapter.MinimumOrtoSize;
+
+        private float MaximumZoom => _orientationAdapter.MaximumOrtoSize;
+
         public void SetValue01(float value)
         {
+            float maximumZoom = MaximumZoom;
+            float minimumZoom = MinimumZoom;
+
             float clampedValue = Mathf.Clamp01(value);
-            float range = _maxZoom - _minZoom;
-            float targetSize = _maxZoom - clampedValue * range;
-            _camera.orthographicSize = targetSize;
+            float range = maximumZoom - minimumZoom;
+            float targetSize = maximumZoom - clampedValue * range;
+            SetCameraSize(targetSize);
         }
 
         public void Update(float? zoomDelta)
@@ -47,7 +59,10 @@ namespace BattleBase.Gameplay.Map
                 return;
 
             float newSize = _camera.orthographicSize - zoomDelta.Value * _zoomSpeed;
-            _camera.orthographicSize = Mathf.Clamp(newSize, _minZoom, _maxZoom);
+            SetCameraSize(newSize);
         }
+
+        private void SetCameraSize(float size) =>
+            _camera.orthographicSize = Mathf.Clamp(size, MinimumZoom, MaximumZoom);
     }
 }

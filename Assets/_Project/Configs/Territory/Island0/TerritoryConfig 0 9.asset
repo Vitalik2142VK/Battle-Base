@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c49f31152e66054f99da1622b0cebef, type: 3}
-  m_Name: TerritoryConfig 18
+  m_Name: TerritoryConfig 0 9
   m_EditorClassIdentifier: 
   _territoryName:
     _ru:
-      _text: "\u041A\u043E\u0441\u0442\u044F\u043D\u043E\u0439 \u043F\u0435\u0440\u0435\u0432\u0430\u043B"
+      _text: "\u0412\u044B\u0436\u0436\u0435\u043D\u043D\u0430\u044F \u0441\u0442\u0435\u043F\u044C"
     _en:
-      _text: Bone Pass
+      _text: The Scorched Steppe
     _tr:
-      _text: "Kemik Ge\xE7idi"
+      _text: "Kavrulmu\u015F bozk\u0131r"

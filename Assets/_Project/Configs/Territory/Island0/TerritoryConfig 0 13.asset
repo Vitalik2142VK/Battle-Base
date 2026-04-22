@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c49f31152e66054f99da1622b0cebef, type: 3}
-  m_Name: TerritoryConfig 2
+  m_Name: TerritoryConfig 0 13
   m_EditorClassIdentifier: 
   _territoryName:
     _ru:
-      _text: "\u041F\u0440\u0438\u0431\u0440\u0435\u0436\u043D\u044B\u0435 \u0437\u0435\u043C\u043B\u0438"
+      _text: "\u041A\u0430\u043D\u044C\u043E\u043D \"\u042D\u0445\u043E \u0431\u043E\u044F\""
     _en:
-      _text: Coastal lands
+      _text: Echo of Battle Canyon
     _tr:
-      _text: "K\u0131y\u0131 topraklar\u0131"
+      _text: "\"Sava\u015F\u0131n Yank\u0131s\u0131\" Kanyonu"

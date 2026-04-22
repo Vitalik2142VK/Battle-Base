@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c49f31152e66054f99da1622b0cebef, type: 3}
-  m_Name: TerritoryConfig 11
+  m_Name: TerritoryConfig 0 14
   m_EditorClassIdentifier: 
   _territoryName:
     _ru:
-      _text: "\u0421\u043F\u044F\u0449\u0438\u0439 \u0432\u0443\u043B\u043A\u0430\u043D"
+      _text: "\u0411\u0430\u0448\u043D\u0438 \u0438\u0437\u0433\u043D\u0430\u043D\u043D\u0438\u043A\u043E\u0432"
     _en:
-      _text: The Dormant Volcano
+      _text: Towers of the Exiles
     _tr:
-      _text: "Uyuyan yanarda\u011F"
+      _text: "S\xFCrg\xFCn Kuleleri"
