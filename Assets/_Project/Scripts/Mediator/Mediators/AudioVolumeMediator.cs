@@ -42,16 +42,16 @@ namespace BattleBase.Mediators
 
         public void Load()
         {
-            _generalSlider.value = _saver.GeneralVolume;
-            _musicSlider.value = _saver.MusicVolume;
-            _sfxSlider.value = _saver.SfxVolume;
+            IVolumeData data = _saver.VolumeData;
+            _generalSlider.value = data.GeneralVolume;
+            _musicSlider.value = data.MusicVolume;
+            _sfxSlider.value = data.SfxVolume;
         }
 
         public void Save()
         {
-            _saver.SetGeneralVolume(_generalSlider.value);
-            _saver.SetMusicVolume(_musicSlider.value);
-            _saver.SetSfxVolume(_sfxSlider.value);
+            VolumeData data = new(_generalSlider.value, _musicSlider.value, _sfxSlider.value);
+            _saver.SetVolumeData(data);
         }
     }
 }

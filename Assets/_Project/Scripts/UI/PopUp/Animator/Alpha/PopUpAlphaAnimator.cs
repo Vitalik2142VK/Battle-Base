@@ -25,7 +25,7 @@ namespace BattleBase.UI.PopUps
         }
 
         public override void HideInstantly() =>
-            _canvasGroup.alpha = _hideConfig.StartAlpha;
+            _canvasGroup.alpha = _showConfig.StartAlpha;
 
         public override Tweener PlayShow() =>
             _canvasGroup.PlayAlpha(_showConfig);

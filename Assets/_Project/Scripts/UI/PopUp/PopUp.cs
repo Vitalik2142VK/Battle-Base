@@ -36,7 +36,7 @@ namespace BattleBase.UI.PopUps
             foreach (PopUpAnimatorBase animator in _popUpAnimators)
                 _currentTweens.Add(animator.PlayShow());
 
-            PlaySequence(_currentTweens, () =>
+            WaitForAllTweens(_currentTweens, () =>
             {
                 _currentTweens.Clear();
                 shownCallback?.Invoke();
@@ -54,7 +54,7 @@ namespace BattleBase.UI.PopUps
             foreach (PopUpAnimatorBase animator in _popUpAnimators)
                 _currentTweens.Add(animator.PlayHide());
 
-            PlaySequence(_currentTweens, () =>
+            WaitForAllTweens(_currentTweens, () =>
             {
                 _currentTweens.Clear();
                 gameObject.SetActive(false);
@@ -110,6 +110,40 @@ namespace BattleBase.UI.PopUps
                 _currentSequence = null;
                 onComplete?.Invoke();
             });
+        }
+
+        private void WaitForAllTweens(IEnumerable<Tweener> tweeners, Action completed)
+        {
+            List<Tweener> list = tweeners.ToList();
+
+            if (list.Count == 0)
+            {
+                completed?.Invoke();
+
+                return;
+            }
+
+            int remaining = list.Count;
+
+            foreach (Tweener tweener in list)
+            {
+                if (tweener == null || !tweener.IsActive() || tweener.IsComplete())
+                {
+                    remaining--;
+
+                    continue;
+                }
+
+                tweener.OnComplete(() =>
+                {
+                    remaining--;
+                    if (remaining == 0)
+                        completed?.Invoke();
+                });
+            }
+
+            if (remaining == 0)
+                completed?.Invoke();
         }
     }
 }

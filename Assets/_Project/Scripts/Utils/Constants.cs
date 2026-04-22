@@ -12,5 +12,6 @@ namespace BattleBase.Utils
         public const string SfxVolumeGroup = "Sfx";
 
         public const string ConfigsAssetMenuName = "ScriptableObjects";
+        internal const int PoolMaximumSize = 100;
     }
 }

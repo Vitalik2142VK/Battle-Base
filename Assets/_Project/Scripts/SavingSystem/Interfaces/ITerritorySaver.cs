@@ -1,11 +1,9 @@
-using System.Collections.Generic;
-
 namespace BattleBase.SaveService
 {
-    public interface ITerritorySaver : ISaver
+    public interface ITerritorySaver
     {
-        public IReadOnlyList<int> ConqueredTerritories { get; }
+        public ITerritoryData TerritoryData { get; }
 
-        public void SetConqueredTerritories(IReadOnlyList<int> territories);
+        public void SetTerritoryData(ITerritoryData data);
     }
 }

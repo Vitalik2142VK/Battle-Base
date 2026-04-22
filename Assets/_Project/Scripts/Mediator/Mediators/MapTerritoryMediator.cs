@@ -11,11 +11,11 @@ namespace BattleBase.Mediators
 {
     public class MapTerritoryMediator : MediatorBase, ISaveable, IInjectable
     {
-        [SerializeField] private TerritorySelector _territorySelector;
         [SerializeField] private List<Territory> _territories;
 
         private ITerritorySaver _saver;
         private IClickDetector _clickDetector;
+        private ITerritorySelector _territorySelector;
 
         public event Action Changed;
 
@@ -24,10 +24,12 @@ namespace BattleBase.Mediators
         [Inject]
         public void Construct(
             ITerritorySaver saver,
-            IClickDetector clickDetector)
+            IClickDetector clickDetector,
+            ITerritorySelector territorySelector)
         {
             _saver = saver ?? throw new ArgumentNullException(nameof(saver));
             _clickDetector = clickDetector ?? throw new ArgumentNullException(nameof(clickDetector));
+            _territorySelector = territorySelector ?? throw new ArgumentNullException(nameof(territorySelector));
         }
 
         private void OnEnable() =>
@@ -44,7 +46,7 @@ namespace BattleBase.Mediators
 
         public void Load()
         {
-            HashSet<int> conqueredSet = new(_saver.ConqueredTerritories); 
+            HashSet<int> conqueredSet = new(_saver.TerritoryData.ConqueredTerritories);
 
             for (int i = 0; i < _territories.Count; i++)
             {
@@ -80,7 +82,7 @@ namespace BattleBase.Mediators
                     conqueredTerritories.Add(i);
             }
 
-            _saver.SetConqueredTerritories(conqueredTerritories);
+            _saver.SetTerritoryData(new TerritoryData(conqueredTerritories));
         }
 
         private void OnClick(Collider collider)

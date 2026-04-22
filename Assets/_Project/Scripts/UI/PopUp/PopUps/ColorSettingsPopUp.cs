@@ -1,5 +1,6 @@
 using System;
 using BattleBase.Gameplay.Map;
+using BattleBase.SaveService;
 using UnityEngine;
 
 namespace BattleBase.UI.PopUps
@@ -31,8 +32,11 @@ namespace BattleBase.UI.PopUps
             _enemyColorSet.Clicked -= OnClickEnemyColor;
         }
 
-        public void InitColors(int playerColorIndex, int enemyColorIndex)
+        public void InitColors(IColorData colorData)
         {
+            int enemyColorIndex = colorData.EnemyColorIndex;
+            int playerColorIndex = colorData.PlayerColorIndex;
+
             _enemyColorSet.Init(enemyColorIndex);
             _playerColorSet.Init(playerColorIndex);
 

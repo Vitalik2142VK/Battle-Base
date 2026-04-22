@@ -1,13 +1,9 @@
 namespace BattleBase.SaveService
 {
-    public interface IColorSaver : ISaver
+    public interface IColorSaver
     {
-        public int PlayerColorIndex { get; }
+        public IColorData ColorData { get; }
 
-        public int EnemyColorIndex { get; }
-
-        public void SetPlayerColorIndex(int index);
-
-        public void SetEnemyColorIndex(int index);
+        public void SetColorData(IColorData data);
     }
 }

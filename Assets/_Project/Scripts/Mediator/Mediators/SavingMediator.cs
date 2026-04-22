@@ -25,7 +25,7 @@ namespace BattleBase.Mediators
                 return;
 
             ProcessSaveables(saveable => saveable.Save(), ignoreNull: true);
-            _saver.Save();
+            _saver.SaveProgress();
         }
 
         public override void Init() =>

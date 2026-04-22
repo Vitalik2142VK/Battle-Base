@@ -36,12 +36,12 @@ namespace BattleBase.Mediators
             OnColorChanged();
 
         public void Load() =>
-            _colorSettingsPopUp.InitColors(_saver.PlayerColorIndex, _saver.EnemyColorIndex);
+            _colorSettingsPopUp.InitColors(_saver.ColorData);
 
         public void Save()
         {
-            _saver.SetPlayerColorIndex(_colorSettingsPopUp.PlayerColorIndex);
-            _saver.SetEnemyColorIndex(_colorSettingsPopUp.EnemyColorIndex);
+            ColorData data = new(_colorSettingsPopUp.PlayerColorIndex, _colorSettingsPopUp.EnemyColorIndex);
+            _saver.SetColorData(data);
         }
 
         private void OnColorChanged() =>

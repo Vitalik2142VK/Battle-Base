@@ -1,16 +1,29 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace BattleBase.SaveService
 {
     [Serializable]
-    public class SavesData
+    public class SavesData : ISavesData
     {
-        public float GeneralVolume = 1f;
-        public float MusicVolume = 0.6f;
-        public float SfxVolume = 0.8f;
-        public int PlayerColorIndex = 0;
-        public int EnemyColorIndex = 5;
-        public List<int> ConqueredTerritories = new() { 0, };
+        [SerializeField] private VolumeData _volumeData;
+        [SerializeField] private ColorData _colorData;
+        [SerializeField] private TerritoryData _territoryData;
+
+        public IVolumeData VolumeData => _volumeData;
+
+        public IColorData ColorData => _colorData;
+
+        public ITerritoryData TerritoryData => _territoryData;
+
+        public void SetVolumeData(IVolumeData data) =>
+            _volumeData.SetData(data);
+
+        public void SetColorData(IColorData data) =>
+            _colorData.SetData(data);
+
+        public void SetTerritoryData(ITerritoryData data) =>
+            _territoryData.SetData(data);
     }
 }

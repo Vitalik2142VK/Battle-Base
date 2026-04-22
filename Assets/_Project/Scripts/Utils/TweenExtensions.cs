@@ -185,23 +185,5 @@ namespace BattleBase.Utils
 
             return tweener;
         }
-
-        public static Tweener PlayScale(this Transform target, Vector3 targetScale, TerritoryScaleAnimationConfig config)
-        {
-            if (target == null || config == null)
-                return null;
-
-            string id = $"Scale_{target.gameObject.GetInstanceID()}";
-            DOTween.Kill(id);
-
-            Tweener tweener = target.DOScale(targetScale, config.Duration)
-                .SetDelay(config.Delay, true)
-                .SetEase(config.Ease)
-                .SetId(id)
-                .SetLink(target.gameObject)
-                .SetUpdate(true);
-
-            return tweener;
-        }
     }
 }

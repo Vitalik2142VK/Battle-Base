@@ -27,6 +27,15 @@ namespace BattleBase.UI.Buttons
                 _button.onClick.RemoveListener(OnClick);
         }
 
+        public void Show() =>
+            gameObject.SetActive(true);
+
+        public void AddCommand(CommandBase command) =>
+            _commands.Add(command);
+
+        public void Hide() =>
+            gameObject.SetActive(false);
+
         protected virtual void OnClick()
         {
             foreach (CommandBase command in _commands)

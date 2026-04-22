@@ -12,16 +12,15 @@ namespace BattleBase.DI
 {
     public class ProjectScope : LifetimeScope
     {
-        [SerializeField] private Audio _audioService;
+        [SerializeField] private AudioService.AudioService _audioService;
         [SerializeField] private Updater _updater;
         [SerializeField] private SceneLoader _sceneLoader; 
 
         protected override void Configure(IContainerBuilder builder)
         {
             builder.Register<IPauseSwitcher, PauseSwitcher>(Lifetime.Singleton);
-            builder.Register<ISaveSystem, YandexGameSaveSystemAdapter>(Lifetime.Singleton);
+            builder.Register<YandexGameSaveSystemAdapter>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<IAdvService, YandexGameAdvAdapter>(Lifetime.Singleton);
-            builder.Register<Saver>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.RegisterComponent<IAudioService>(_audioService);
             builder.RegisterComponent<ISceneLoader>(_sceneLoader);
             builder.RegisterComponent<IUpdater>(_updater);

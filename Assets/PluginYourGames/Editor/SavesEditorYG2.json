@@ -1,13 +1,19 @@
 {
-    "idSave": 427,
+    "idSave": 517,
     "SavesData": {
-        "GeneralVolume": 1.0,
-        "MusicVolume": 1.0,
-        "SfxVolume": 1.0,
-        "PlayerColorIndex": 0,
-        "EnemyColorIndex": 5,
-        "ConqueredTerritories": [
-            0
-        ]
+        "_volumeData": {
+            "_generalVolume": 0.19251106679439546,
+            "_musicVolume": 0.23769555985927583,
+            "_sfxVolume": 0.5761275291442871
+        },
+        "_colorData": {
+            "_playerColorIndex": 0,
+            "_enemyColorIndex": 6
+        },
+        "_territoryData": {
+            "_conqueredTerritories": [
+                0
+            ]
+        }
     }
 }
