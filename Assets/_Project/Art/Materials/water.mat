@@ -25,7 +25,6 @@ Material:
   m_Parent: {fileID: 2100000, guid: 0f38faf01f6664142bde2709f40b93e8, type: 2}
   m_ModifiedSerializedProperties: 24
   m_ValidKeywords:
-  - _RECEIVE_SHADOWS_OFF
   - _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -59,12 +58,12 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _Metallic: 0
-    - _ReceiveShadows: 0
+    - _ReceiveShadows: 1
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.3601637, g: 0.5060367, b: 0.5698112, a: 1}
-    - _Color: {r: 0.36016366, g: 0.50603664, b: 0.5698112, a: 1}
+    - _BaseColor: {r: 0.18993945, g: 0.22968741, b: 0.3886792, a: 1}
+    - _Color: {r: 0.18993941, g: 0.22968736, b: 0.38867918, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

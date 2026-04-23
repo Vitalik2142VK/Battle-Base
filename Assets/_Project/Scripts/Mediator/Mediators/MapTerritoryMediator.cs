@@ -12,6 +12,8 @@ namespace BattleBase.Mediators
     public class MapTerritoryMediator : MediatorBase, ISaveable, IInjectable
     {
         [SerializeField] private List<Territory> _territories;
+        [SerializeField] private List<TerritoryConfig> _territoryConfigs;
+        [SerializeField] private TerritoryStatusIndicator _territoryStatusIndicatorPrefab;
 
         private ITerritorySaver _saver;
         private IClickDetector _clickDetector;
@@ -42,6 +44,20 @@ namespace BattleBase.Mediators
         {
             if (_territories == null)
                 throw new NullReferenceException(nameof(_territories));
+           
+            if (_territoryConfigs == null)
+                throw new NullReferenceException(nameof(_territoryConfigs));
+
+            if (_territories.Count != _territoryConfigs.Count)
+                throw new InvalidOperationException("Discrepancy between the number of territories and the number of configs was found");
+
+            for (int i = 0; i < _territories.Count; i++)
+            {
+                Territory territory = _territories[i];
+                territory.SetConfig(_territoryConfigs[i]);
+                TerritoryStatusIndicator indicator = Instantiate(_territoryStatusIndicatorPrefab);
+                indicator.SetTerritory(territory);
+            }
         }
 
         public void Load()

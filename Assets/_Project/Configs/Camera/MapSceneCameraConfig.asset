@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9a1580139508a1468122a054bd64185, type: 3}
   m_Name: MapSceneCameraConfig
   m_EditorClassIdentifier: 
-  _restoreSpeed: 3
+  _restoreSpeed: 5
   _zoomSpeed: 1
   _minimumOrtoSize: 0.55
-  _maximumOrtoSize: 2.9
-  _verticalOrientationMultiplier: 2
+  _maximumOrtoSize: 4

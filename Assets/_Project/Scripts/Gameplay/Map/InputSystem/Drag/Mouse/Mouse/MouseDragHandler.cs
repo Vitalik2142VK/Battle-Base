@@ -76,13 +76,6 @@ namespace BattleBase.Gameplay.Map.InputSystem
 
         private Vector3? OnDrag(Vector2 mousePosition)
         {
-            if (_uiPointerChecker.IsPointerOverUI(mousePosition))
-            {
-                ResetDrag();
-
-                return null;
-            }
-
             Vector2 pixelDelta = mousePosition - _lastMousePosition;
             _lastMousePosition = mousePosition;
 

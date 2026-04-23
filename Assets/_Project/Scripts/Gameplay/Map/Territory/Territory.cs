@@ -7,8 +7,8 @@ namespace BattleBase.Gameplay.Map
     public class Territory : MonoBehaviour
     {
         [SerializeField] private List<Territory> _adjacents;
-        [SerializeField] private TerritoryTarget _target;
-        [SerializeField] private TerritoryConfig _config;
+        
+        private TerritoryConfig _config;
 
         public event Action ColorChanged;
         public event Action OwnerChanged;
@@ -19,9 +19,12 @@ namespace BattleBase.Gameplay.Map
 
         public IReadOnlyList<Territory> Adjacents => _adjacents;
 
-        public Transform Target => _target.transform;
+        public Transform Target => transform;
 
         public ITerritoryInfo Info => _config;
+
+        public void SetConfig(TerritoryConfig config) =>
+            _config = config != null ? config : throw new ArgumentNullException(nameof(config));
 
         public void SetColor(Color color)
         {

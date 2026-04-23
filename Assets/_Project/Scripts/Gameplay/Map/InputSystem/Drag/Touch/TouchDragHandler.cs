@@ -73,13 +73,6 @@ namespace BattleBase.Gameplay.Map.InputSystem
 
         private Vector3? OnDrag(Vector2 position, TouchPhase phase)
         {
-            if (_uiPointerChecker.IsPointerOverUI(position))
-            {
-                ResetDrag();
-
-                return null;
-            }
-
             if (phase == TouchPhase.Moved || phase == TouchPhase.Stationary)
             {
                 Vector2 pixelDelta = position - _lastDragPosition;

@@ -12,11 +12,26 @@ namespace BattleBase.Gameplay.Map.Editor
         private static readonly Color s_colliderBoundsColor = Color.blue;
         private static readonly Color s_overshootColor = Color.red;
 
+        public override void OnInspectorGUI()
+        {
+            DrawDefaultInspector();
+
+            CameraArea cameraArea = (CameraArea)target;
+
+            if (GUI.changed)
+            {
+                cameraArea.Refresh();
+                SceneView.RepaintAll();
+            }
+        }
+
         [DrawGizmo(GizmoType.Selected | GizmoType.NonSelected)]
         private static void DrawCameraAreaGizmos(CameraArea area, GizmoType gizmoType)
         {
             if (area == null) 
                 return;
+
+            area.Refresh();
 
             Bounds bounds = area.ColliderBounds;
             Bounds overshootBounds = area.OvershootBounds;

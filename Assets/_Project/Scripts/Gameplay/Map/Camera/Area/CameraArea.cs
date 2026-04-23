@@ -61,13 +61,7 @@ namespace BattleBase.Gameplay.Map
         private void Start() =>
             Refresh();
 
-        private void EnsureComponents()
-        {
-            if (_collider == null)
-                FindComponents();
-        }
-
-        private void Refresh()
+        public void Refresh()
         {
             if (_collider == null)
                 return;
@@ -76,6 +70,12 @@ namespace BattleBase.Gameplay.Map
             Vector3 overshootSize = _cachedColliderBounds.size + new Vector3(_resistanceFadeDistance * OvershootScaleFactor, 0f, _resistanceFadeDistance * OvershootScaleFactor);
             _cachedOvershootBounds = new Bounds(_cachedColliderBounds.center, overshootSize);
             _isCacheValid = true;
+        }
+
+        private void EnsureComponents()
+        {
+            if (_collider == null)
+                FindComponents();
         }
 
         private void FindComponents()

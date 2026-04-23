@@ -11,17 +11,35 @@ namespace BattleBase.Gameplay.Map
         [SerializeField] private float _ownerColorBlackoutFactor = 0.2f;
 
         private Territory _territory;
+        private bool _subscribed;
 
-        private void Awake()
+        private void OnEnable() =>
+            Subscribe();
+
+        private void OnDisable() =>
+            Unsubscribe();
+
+        public void SetTerritory(Territory territory)
         {
-            _territory = GetComponentInParent<Territory>();
+            _territory = territory != null ? territory : throw new ArgumentNullException(nameof(territory));
 
-            if (_territory == null)
-                throw new NullReferenceException($"{nameof(_territory)} on {gameObject.name} requires a {nameof(Territory)} component in parent.");
+            Transform territoryTransform = territory.transform;
+            transform.SetParent(territoryTransform);
+            transform.position = territoryTransform.position;
+
+            Subscribe();
         }
 
-        private void OnEnable()
+        private void Subscribe()
         {
+            if(_territory == null)
+                return;
+
+            if(_subscribed) 
+                return;
+
+            _subscribed = true;
+
             _territory.OwnerChanged += OnOwnerChanged;
             OnOwnerChanged();
 
@@ -29,8 +47,16 @@ namespace BattleBase.Gameplay.Map
             OnColorChanged();
         }
 
-        private void OnDisable()
+        private void Unsubscribe()
         {
+            if (_territory == null)
+                return;
+
+            if (_subscribed == false)
+                return;
+
+            _subscribed = false;
+
             _territory.OwnerChanged -= OnOwnerChanged;
             _territory.ColorChanged -= OnColorChanged;
         }

@@ -1,5 +1,5 @@
 {
-    "idSave": 530,
+    "idSave": 569,
     "SavesData": {
         "_volumeData": {
             "_generalVolume": 0.19251106679439546,
@@ -8,7 +8,7 @@
         },
         "_colorData": {
             "_playerColorIndex": 0,
-            "_enemyColorIndex": 6
+            "_enemyColorIndex": 5
         },
         "_territoryData": {
             "_conqueredTerritories": [
