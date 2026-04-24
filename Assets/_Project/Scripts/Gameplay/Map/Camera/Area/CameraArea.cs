@@ -17,6 +17,8 @@ namespace BattleBase.Gameplay.Map
         private Bounds _cachedOvershootBounds;
         private bool _isCacheValid = false;
 
+        public event Action Changed;
+
         public float Resistance => _resistance;
 
         public float ResistanceFadeDistance => _resistanceFadeDistance;
@@ -70,6 +72,8 @@ namespace BattleBase.Gameplay.Map
             Vector3 overshootSize = _cachedColliderBounds.size + new Vector3(_resistanceFadeDistance * OvershootScaleFactor, 0f, _resistanceFadeDistance * OvershootScaleFactor);
             _cachedOvershootBounds = new Bounds(_cachedColliderBounds.center, overshootSize);
             _isCacheValid = true;
+
+            Changed?.Invoke();
         }
 
         private void EnsureComponents()

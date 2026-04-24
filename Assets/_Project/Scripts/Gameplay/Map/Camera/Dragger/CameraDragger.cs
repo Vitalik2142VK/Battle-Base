@@ -7,7 +7,6 @@ namespace BattleBase.Gameplay.Map
     public class CameraDragger : ICameraDragger
     {
         private readonly Camera _camera;
-        private readonly ICameraBoundsLimiter _boundsLimiter;
         private readonly ICameraSnapBack _snapBack;
         private readonly Transform _cameraTransform;
 
@@ -21,7 +20,6 @@ namespace BattleBase.Gameplay.Map
             ICameraBoundsLimiter boundsLimiter)
         {
             _camera = camera != null ? camera : throw new ArgumentNullException(nameof(camera));
-            _boundsLimiter = boundsLimiter ?? throw new ArgumentNullException(nameof(boundsLimiter));
             _snapBack = snapBack ?? throw new ArgumentNullException(nameof(snapBack));
             _cameraTransform = _camera.transform;
 

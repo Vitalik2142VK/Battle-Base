@@ -1,5 +1,3 @@
-using BattleBase.Commands;
-using BattleBase.Core;
 using BattleBase.Gameplay.Map;
 using BattleBase.Gameplay.Map.InputSystem;
 using UnityEngine;
@@ -9,37 +7,27 @@ using YG;
 
 namespace BattleBase.DI
 {
-    public class MapScope : LifetimeScope 
+    public class TempGameScope : GameScope
     {
         [SerializeField] private Camera _camera;
+        [SerializeField] private CameraArea _cameraArea;
         [SerializeField] private CameraFrustumProjector _cameraFrustumProjector;
-        [SerializeField] private TerritorySelectPopUp _territorySelectPopUpPrefab;
-        [SerializeField] private LoadGameSceneCommand _gameSceneLoader;
         [SerializeField] private MouseInputConfig _mouseMapCameraConfig;
         [SerializeField] private TouchInputConfig _touchMapCameraConfig;
         [SerializeField] private CameraConfig _cameraConfig;
-        [SerializeField] private TerritoryPositionAnimationConfig _territoryPositionAnimationConfig;
 
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterComponent(_camera);
+            builder.RegisterComponent<ICameraArea>(_cameraArea);
             builder.RegisterComponent<ICameraFrustumProjector>(_cameraFrustumProjector);
             builder.RegisterComponent<ICameraConfig>(_cameraConfig);
-            builder.RegisterComponent(_gameSceneLoader);
-
-            builder.RegisterComponent(_territorySelectPopUpPrefab);
-            builder.Register<IFactory<TerritorySelectPopUp>, TerritorySelectPopUpFactory>(Lifetime.Scoped);
-            builder.Register<IPool<TerritorySelectPopUp>, Pool<TerritorySelectPopUp>>(Lifetime.Scoped);
-            builder.Register<ITerritorySelector, TerritorySelector>(Lifetime.Scoped);
-            builder.RegisterComponent(_territoryPositionAnimationConfig);
-            builder.Register<ITerritoryElevator, TerritoryElevator>(Lifetime.Scoped);
-            builder.Register<ITerritoryPopUpShower, TerritoryPopUpShower>(Lifetime.Scoped);
 
             builder.Register<IUIPointerChecker, UIPointerChecker>(Lifetime.Scoped);
             builder.Register<ICameraSnapBack, CameraSnapBack>(Lifetime.Scoped);
             builder.Register<ICameraBoundsLimiter, CameraBoundsLimiter>(Lifetime.Scoped);
             builder.Register<IVerticalFactorCalculator, VerticalFactorCalculator>(Lifetime.Scoped);
-            builder.Register<ICameraOrientationAdapter, MapSceneCameraOrientationAdapter>(Lifetime.Scoped);
+            builder.Register<ICameraOrientationAdapter, GameSceneCameraOrientationAdapter>(Lifetime.Scoped);
             builder.Register<ICameraZoom, CameraZoom>(Lifetime.Scoped);
             builder.Register<ICameraDragger, CameraDragger>(Lifetime.Scoped);
             builder.Register<ICameraInputReader, CameraInputReader>(Lifetime.Scoped);
@@ -60,12 +48,6 @@ namespace BattleBase.DI
                 builder.Register<IDragHandler, TouchDragHandler>(Lifetime.Scoped);
                 builder.Register<IZoomHandler, TouchPinchHandler>(Lifetime.Scoped);
             }
-
-            builder.RegisterBuildCallback(container =>
-            {
-                container.Resolve<ITerritoryElevator>();
-                container.Resolve<ITerritoryPopUpShower>();
-            });
         }
     }
 }

@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Map
 {
     public interface ICameraArea
     {
+        public event Action Changed;
+
         public float Resistance { get; }
 
         public float ResistanceFadeDistance { get; }

@@ -5,6 +5,7 @@ namespace BattleBase.Gameplay.Map.InputSystem
 {
     public class TouchPinchHandler : IZoomHandler
     {
+        private readonly Camera _camera;
         private readonly IUIPointerChecker _uiPointerChecker;
         private readonly float _minPinchDistance;
         private readonly float _zoomSensitivity;
@@ -14,9 +15,11 @@ namespace BattleBase.Gameplay.Map.InputSystem
         private bool _isBlockedByUI;
 
         public TouchPinchHandler(
+            Camera camera,
             IUIPointerChecker uiPointerChecker,
             ITouchConfig config)
         {
+            _camera = camera != null ? camera : throw new ArgumentNullException(nameof(camera));
             _uiPointerChecker = uiPointerChecker ?? throw new ArgumentNullException(nameof(uiPointerChecker));
             _minPinchDistance = config.MinPinchDistance;
             _zoomSensitivity = config.ZoomSensitivity;
@@ -98,8 +101,9 @@ namespace BattleBase.Gameplay.Map.InputSystem
                 float currentDistance = Vector2.Distance(touch0.position, touch1.position);
                 float delta = currentDistance - _previousPinchDistance;
                 _previousPinchDistance = currentDistance;
+                float sensitivity = _zoomSensitivity * _camera.orthographicSize;
 
-                return delta * _zoomSensitivity;
+                return delta * sensitivity;
             }
 
             return null;

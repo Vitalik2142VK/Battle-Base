@@ -4,10 +4,11 @@ using UnityEngine;
 
 namespace BattleBase.Gameplay.Map
 {
-    public class CameraOrientationAdapter : ICameraOrientationAdapter, IDisposable
+    public class GameSceneCameraOrientationAdapter : ICameraOrientationAdapter, IDisposable
     {
         private const float AspectComparisonEpsilon = 0.01f;
         private const float PortraitAspectThreshold = 1f;
+        private const float ReferenceAspect = 9f / 16f;
 
         private readonly Camera _camera;
         private readonly IUpdater _updater;
@@ -19,7 +20,7 @@ namespace BattleBase.Gameplay.Map
         private float _lastAspect;
         private bool _isPortrait;
 
-        public CameraOrientationAdapter(Camera camera, IUpdater updater, ICameraConfig config)
+        public GameSceneCameraOrientationAdapter(Camera camera, IUpdater updater, ICameraConfig config)
         {
             _camera = camera != null ? camera : throw new ArgumentNullException(nameof(camera));
             _updater = updater ?? throw new ArgumentNullException(nameof(updater));
@@ -51,6 +52,10 @@ namespace BattleBase.Gameplay.Map
             _updater.Subscribe(OnUpdate, UpdateType.Update);
         }
 
+        public event Action Changed;
+
+        public float CurrentOrtoSize => _camera.orthographicSize;
+
         public float MinimumOrtoSize => _effectiveMinimumOrtoSize;
 
         public float MaximumOrtoSize => _effectiveMaximumOrtoSize;
@@ -66,30 +71,30 @@ namespace BattleBase.Gameplay.Map
                 return;
 
             _lastAspect = currentAspect;
-            bool wasPortrait = _isPortrait;
             _isPortrait = currentAspect < PortraitAspectThreshold;
-
-            if (_isPortrait == wasPortrait)
-                return;
 
             float currentValue01 = ComputeValue01(_camera.orthographicSize, _effectiveMinimumOrtoSize, _effectiveMaximumOrtoSize);
             RecalculateEffectiveZoomBounds();
             float newSize = _effectiveMaximumOrtoSize - currentValue01 * (_effectiveMaximumOrtoSize - _effectiveMinimumOrtoSize);
             _camera.orthographicSize = Mathf.Clamp(newSize, _effectiveMinimumOrtoSize, _effectiveMaximumOrtoSize);
+
+            InvokeChanged();
         }
 
         private void RecalculateEffectiveZoomBounds()
         {
             if (_isPortrait)
             {
-                float aspectRatio = (float)Mathf.Max(Screen.width, Screen.height) / Mathf.Min(Screen.width, Screen.height);
-                _effectiveMinimumOrtoSize = _originalMinimumOrtoSize * aspectRatio;
-                _effectiveMaximumOrtoSize = _originalMaximumOrtoSize * aspectRatio;
+                float currentAspect = GetAspect();
+                float multiplier = ReferenceAspect / currentAspect;
+                _effectiveMinimumOrtoSize = _originalMinimumOrtoSize * multiplier;
+                _effectiveMaximumOrtoSize = _originalMaximumOrtoSize * multiplier;
             }
             else
             {
-                _effectiveMinimumOrtoSize = _originalMinimumOrtoSize;
-                _effectiveMaximumOrtoSize = _originalMaximumOrtoSize;
+                float aspectRatio = (float)Mathf.Max(Screen.width, Screen.height) / Mathf.Min(Screen.width, Screen.height);
+                _effectiveMinimumOrtoSize = _originalMinimumOrtoSize * aspectRatio;
+                _effectiveMaximumOrtoSize = _originalMaximumOrtoSize * aspectRatio;
             }
         }
 
@@ -98,6 +103,8 @@ namespace BattleBase.Gameplay.Map
             float currentValue01 = ComputeValue01(_camera.orthographicSize, _originalMinimumOrtoSize, _originalMaximumOrtoSize);
             float newSize = _effectiveMaximumOrtoSize - currentValue01 * (_effectiveMaximumOrtoSize - _effectiveMinimumOrtoSize);
             _camera.orthographicSize = Mathf.Clamp(newSize, _effectiveMinimumOrtoSize, _effectiveMaximumOrtoSize);
+
+            InvokeChanged();
         }
 
         private float ComputeValue01(float currentSize, float minimumBound, float maximumBound)
@@ -108,18 +115,13 @@ namespace BattleBase.Gameplay.Map
                 throw new ArgumentOutOfRangeException(nameof(range), range, "Value must be positive");
 
             float normalized = (currentSize - minimumBound) / range;
-
             return 1f - normalized;
         }
 
         private float GetAspect() =>
             (float)Screen.width / Screen.height;
-    }
 
-    public interface ICameraOrientationAdapter
-    {
-        public float MinimumOrtoSize { get; }
-
-        public float MaximumOrtoSize { get; }
+        private void InvokeChanged() =>
+            Changed?.Invoke();
     }
 }

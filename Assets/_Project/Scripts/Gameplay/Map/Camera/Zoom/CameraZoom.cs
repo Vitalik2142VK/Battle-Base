@@ -23,6 +23,8 @@ namespace BattleBase.Gameplay.Map
                 throw new ArgumentOutOfRangeException(nameof(_zoomSpeed), _zoomSpeed, "Value must be positive");
         }
 
+        public event Action Changed;
+
         public float Value01
         {
             get
@@ -62,7 +64,10 @@ namespace BattleBase.Gameplay.Map
             SetCameraSize(newSize);
         }
 
-        private void SetCameraSize(float size) =>
+        private void SetCameraSize(float size)
+        {
             _camera.orthographicSize = Mathf.Clamp(size, MinimumZoom, MaximumZoom);
+            Changed?.Invoke();
+        }
     }
 }

@@ -14,16 +14,30 @@ namespace BattleBase.Gameplay.Map
 
         public ICameraArea Area => _area;
 
-        private void Awake()
+        public IReadOnlyList<Vector3> Corners
         {
-            if (_camera == null)
-                throw new ArgumentNullException(nameof(_camera));
+            get
+            {
+                if (_projectionService == null)
+                    InitComponents();
 
-            if (_area == null)
-                throw new ArgumentNullException(nameof(_area));
-
-            _projectionService = new FrustumProjectionService(_camera, _area);
+                return _projectionService.Corners;
+            }
         }
+
+        public Vector3 ProjectedCenter
+        {
+            get
+            {
+                if (_projectionService == null)
+                    InitComponents();
+
+                return _projectionService.ProjectedCenter;
+            }
+        }
+
+        private void Awake() =>
+            InitComponents();
 
         public void ProjectCornersOntoPlaneFromPosition(Vector3 cameraPosition, List<Vector3> outCorners)
         {

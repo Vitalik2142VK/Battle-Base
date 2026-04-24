@@ -31,7 +31,8 @@ namespace BattleBase.Gameplay.Map.Editor
             if (area == null) 
                 return;
 
-            area.Refresh();
+            if (Application.isPlaying == false)
+                area.Refresh();
 
             Bounds bounds = area.ColliderBounds;
             Bounds overshootBounds = area.OvershootBounds;
