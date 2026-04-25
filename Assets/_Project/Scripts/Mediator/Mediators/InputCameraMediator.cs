@@ -26,8 +26,8 @@ namespace BattleBase.Mediators
         public void Construct(
             ICameraInputReader inputReader,
             ICameraDragger dragger,
-            IVerticalFactorCalculator angleCompensator,
             ICameraZoom zoom,
+            IVerticalFactorCalculator angleCompensator,
             IUIPointerChecker pointerChecker)
         {
             _inputReader = inputReader ?? throw new ArgumentNullException(nameof(inputReader));

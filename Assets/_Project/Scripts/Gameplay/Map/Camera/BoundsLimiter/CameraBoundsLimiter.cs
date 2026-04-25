@@ -7,11 +7,13 @@ namespace BattleBase.Gameplay.Map
 {
     public class CameraBoundsLimiter : ICameraBoundsLimiter
     {
-        private readonly ICameraFrustumProjector _frustumProjector;
+        private readonly IFrustumProjectionService _frustumProjectionService;
+        private readonly ICameraAreaService _cameraAreaService;
 
-        public CameraBoundsLimiter(ICameraFrustumProjector frustumProjector)
+        public CameraBoundsLimiter(IFrustumProjectionService frustumProjectionService, ICameraAreaService cameraAreaService)
         {
-            _frustumProjector = frustumProjector ?? throw new ArgumentNullException(nameof(frustumProjector));
+            _frustumProjectionService = frustumProjectionService ?? throw new ArgumentNullException(nameof(frustumProjectionService));
+            _cameraAreaService = cameraAreaService ?? throw new ArgumentNullException(nameof(cameraAreaService));
         }
 
         public bool IsWithinBoundsX(Vector3 position) =>
@@ -32,7 +34,7 @@ namespace BattleBase.Gameplay.Map
                 throw new ArgumentException($"Position is invalid (NaN or Infinity): {position}", nameof(position));
 
             List<Vector3> corners = new();
-            _frustumProjector.ProjectCornersOntoPlaneFromPosition(position, corners);
+            _frustumProjectionService.ProjectCornersOntoPlaneFromPosition(position, corners);
 
             float minX = float.MaxValue, maxX = float.MinValue;
             float minZ = float.MaxValue, maxZ = float.MinValue;
@@ -62,7 +64,7 @@ namespace BattleBase.Gameplay.Map
             Func<Bounds, float> getMaxBound)
         {
             CornerBounds bounds = GetCornerBounds(position);
-            Bounds areaBounds = _frustumProjector.Area.OvershootBounds;
+            Bounds areaBounds = _cameraAreaService.OvershootBounds;
             float minBound = getMinBound(areaBounds);
             float maxBound = getMaxBound(areaBounds);
 
@@ -79,7 +81,7 @@ namespace BattleBase.Gameplay.Map
             Func<Bounds, float> getMax)
         {
             CornerBounds bounds = GetCornerBounds(position);
-            Bounds areaBounds = _frustumProjector.Area.ColliderBounds;
+            Bounds areaBounds = _cameraAreaService.AreaBounds;
             float boundMin = getMin(areaBounds);
             float boundMax = getMax(areaBounds);
             float min = getCoord(new Vector3(bounds.MinX, 0, bounds.MinZ));

@@ -11,7 +11,6 @@ namespace BattleBase.DI
     {
         [SerializeField] private Camera _camera;
         [SerializeField] private CameraArea _cameraArea;
-        [SerializeField] private CameraFrustumProjector _cameraFrustumProjector;
         [SerializeField] private MouseInputConfig _mouseMapCameraConfig;
         [SerializeField] private TouchInputConfig _touchMapCameraConfig;
         [SerializeField] private CameraConfig _cameraConfig;
@@ -20,7 +19,6 @@ namespace BattleBase.DI
         {
             builder.RegisterComponent(_camera);
             builder.RegisterComponent<ICameraArea>(_cameraArea);
-            builder.RegisterComponent<ICameraFrustumProjector>(_cameraFrustumProjector);
             builder.RegisterComponent<ICameraConfig>(_cameraConfig);
 
             builder.Register<IUIPointerChecker, UIPointerChecker>(Lifetime.Scoped);
@@ -28,9 +26,12 @@ namespace BattleBase.DI
             builder.Register<ICameraBoundsLimiter, CameraBoundsLimiter>(Lifetime.Scoped);
             builder.Register<IVerticalFactorCalculator, VerticalFactorCalculator>(Lifetime.Scoped);
             builder.Register<ICameraOrientationAdapter, GameSceneCameraOrientationAdapter>(Lifetime.Scoped);
+            builder.Register<ICameraTracker, CameraTracker>(Lifetime.Scoped);
+            builder.Register<IFrustumProjectionService, FrustumProjectionService>(Lifetime.Scoped);
             builder.Register<ICameraZoom, CameraZoom>(Lifetime.Scoped);
             builder.Register<ICameraDragger, CameraDragger>(Lifetime.Scoped);
             builder.Register<ICameraInputReader, CameraInputReader>(Lifetime.Scoped);
+            builder.Register<ICameraAreaService, CameraAreaService>(Lifetime.Scoped);
 
             if (YG2.envir.isDesktop)
             {

@@ -11,16 +11,16 @@ namespace BattleBase.Gameplay.MiniMap
         [SerializeField] private MiniMapArea _miniMapArea;
         [SerializeField] private MiniMapCameraFrame _cameraFrame;
 
-        private ICameraArea _cameraArea;
-        private ICameraFrustumProjector _cameraFrustumProjector;
+        private ICameraAreaService _cameraAreaService;
+        private IFrustumProjectionService _frustumProjectionService;
 
         [Inject]
         public void Construct(
-            ICameraArea cameraArea, 
-            ICameraFrustumProjector cameraFrustumProjector)
+            ICameraAreaService cameraAreaService,
+            IFrustumProjectionService frustumProjectionService)
         {
-            _cameraArea = cameraArea ?? throw new ArgumentNullException(nameof(cameraArea));
-            _cameraFrustumProjector = cameraFrustumProjector ?? throw new ArgumentNullException(nameof(cameraFrustumProjector));
+            _cameraAreaService = cameraAreaService ?? throw new ArgumentNullException(nameof(cameraAreaService));
+            _frustumProjectionService = frustumProjectionService ?? throw new ArgumentNullException(nameof(frustumProjectionService));
         }
 
         private void OnEnable()
@@ -44,8 +44,8 @@ namespace BattleBase.Gameplay.MiniMap
 
         private void UpdatePosition()
         {
-            Vector3 worldCenter = _cameraFrustumProjector.ProjectedCenter;
-            Bounds bounds = _cameraArea.ColliderBounds;
+            Vector3 worldCenter = _frustumProjectionService.ProjectedCenter;
+            Bounds bounds = _cameraAreaService.AreaBounds;
 
             float normalizedX = (worldCenter.x - bounds.min.x) / bounds.size.x;
             float normalizedZ = (worldCenter.z - bounds.min.z) / bounds.size.z;

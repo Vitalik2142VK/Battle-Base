@@ -3,11 +3,15 @@ using UnityEngine;
 
 namespace BattleBase.Gameplay.Map
 {
-    public interface ICameraArea
+    public interface ICameraAreaService
     {
         public event Action Changed;
 
-        public BoxCollider Collider { get; }
+        public Bounds AreaBounds { get; }
+
+        public Bounds OvershootBounds { get; }
+
+        public float GroundPlaneY { get; }
 
         public float Resistance { get; }
 

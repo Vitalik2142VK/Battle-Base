@@ -7,12 +7,12 @@ namespace BattleBase.Gameplay.Map
     public class ResistanceCalculator
     {
         private readonly ICameraBoundsLimiter _boundsLimiter;
-        private readonly ICameraArea _cameraArea;
+        private readonly ICameraAreaService _cameraAreaService;
 
-        public ResistanceCalculator(ICameraBoundsLimiter boundsLimiter, ICameraArea cameraArea)
+        public ResistanceCalculator(ICameraBoundsLimiter boundsLimiter, ICameraAreaService cameraAreaService)
         {
             _boundsLimiter = boundsLimiter ?? throw new ArgumentNullException(nameof(boundsLimiter));
-            _cameraArea = cameraArea ?? throw new ArgumentNullException(nameof(cameraArea));
+            _cameraAreaService = cameraAreaService ?? throw new ArgumentNullException(nameof(cameraAreaService));
         }
 
         public Vector3 Calculate(Vector3 delta, Vector3 desiredPosition)
@@ -25,8 +25,8 @@ namespace BattleBase.Gameplay.Map
 
             float overshootX = _boundsLimiter.GetOvershootX(desiredPosition);
             float overshootZ = _boundsLimiter.GetOvershootZ(desiredPosition);
-            float maxOvershoot = _cameraArea.ResistanceFadeDistance;
-            float resistance = _cameraArea.Resistance;
+            float maxOvershoot = _cameraAreaService.ResistanceFadeDistance;
+            float resistance = _cameraAreaService.Resistance;
 
             Vector3 result = delta;
 

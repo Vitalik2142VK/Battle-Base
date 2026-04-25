@@ -12,7 +12,7 @@ namespace BattleBase.DI
     public class MapScope : LifetimeScope 
     {
         [SerializeField] private Camera _camera;
-        [SerializeField] private CameraFrustumProjector _cameraFrustumProjector;
+        [SerializeField] private CameraArea _cameraArea;
         [SerializeField] private TerritorySelectPopUp _territorySelectPopUpPrefab;
         [SerializeField] private LoadGameSceneCommand _gameSceneLoader;
         [SerializeField] private MouseInputConfig _mouseMapCameraConfig;
@@ -23,7 +23,7 @@ namespace BattleBase.DI
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterComponent(_camera);
-            builder.RegisterComponent<ICameraFrustumProjector>(_cameraFrustumProjector);
+            builder.RegisterComponent<ICameraArea>(_cameraArea);
             builder.RegisterComponent<ICameraConfig>(_cameraConfig);
             builder.RegisterComponent(_gameSceneLoader);
 
@@ -34,7 +34,10 @@ namespace BattleBase.DI
             builder.RegisterComponent(_territoryPositionAnimationConfig);
             builder.Register<ITerritoryElevator, TerritoryElevator>(Lifetime.Scoped);
             builder.Register<ITerritoryPopUpShower, TerritoryPopUpShower>(Lifetime.Scoped);
+            builder.Register<ICameraTracker, CameraTracker>(Lifetime.Scoped);
 
+            builder.Register<IFrustumProjectionService, FrustumProjectionService>(Lifetime.Scoped);
+            builder.Register<ICameraAreaService, CameraAreaService>(Lifetime.Scoped);
             builder.Register<IUIPointerChecker, UIPointerChecker>(Lifetime.Scoped);
             builder.Register<ICameraSnapBack, CameraSnapBack>(Lifetime.Scoped);
             builder.Register<ICameraBoundsLimiter, CameraBoundsLimiter>(Lifetime.Scoped);

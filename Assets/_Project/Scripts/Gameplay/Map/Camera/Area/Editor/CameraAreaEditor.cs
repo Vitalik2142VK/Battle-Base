@@ -1,4 +1,7 @@
 #if UNITY_EDITOR
+using System;
+using System.Collections.Generic;
+using BattleBase.UpdateService;
 using UnityEditor;
 using UnityEngine;
 
@@ -7,41 +10,68 @@ namespace BattleBase.Gameplay.Map.Editor
     [CustomEditor(typeof(CameraArea))]
     public class CameraAreaEditor : UnityEditor.Editor
     {
-        private const float Two = 2f;
+        private const float SphereRadius = 0.1f;
+        private const int CornerCount = 4;
 
-        private static readonly Color s_colliderBoundsColor = Color.blue;
-        private static readonly Color s_overshootColor = Color.red;
-
-        public override void OnInspectorGUI()
-        {
-            DrawDefaultInspector();
-
-            CameraArea cameraArea = (CameraArea)target;
-
-            if (GUI.changed)
-            {
-                cameraArea.Refresh();
-                SceneView.RepaintAll();
-            }
-        }
+        private static readonly Color s_AreaColor = Color.blue;
+        private static readonly Color s_OvershootColor = Color.red;
+        private static readonly Color s_FrustumColor = Color.yellow;
 
         [DrawGizmo(GizmoType.Selected | GizmoType.NonSelected)]
         private static void DrawCameraAreaGizmos(CameraArea area, GizmoType gizmoType)
         {
-            if (area == null) 
+            if (area == null)
                 return;
 
-            if (Application.isPlaying == false)
-                area.Refresh();
+            Camera mainCamera = Camera.main;
 
-            Bounds bounds = area.ColliderBounds;
-            Bounds overshootBounds = area.OvershootBounds;
+            if (mainCamera == null)
+                return;
 
-            Gizmos.color = s_colliderBoundsColor;
+            IUpdater updater = new EditorUpdater();
+            ICameraAreaService areaService = new CameraAreaService(area);
+            ICameraTracker cameraTracker = new CameraTracker(mainCamera, updater);
+            IFrustumProjectionService projectionService = new FrustumProjectionService(mainCamera, areaService, cameraTracker);
+
+            DrawArea(areaService);
+            DrawFrustum(projectionService);
+
+            if (projectionService is IDisposable disposable)
+                disposable.Dispose();
+
+            if (areaService is IDisposable areadisposable)
+                areadisposable.Dispose();
+
+            if (cameraTracker is IDisposable cameraTrackerdisposable)
+                cameraTrackerdisposable.Dispose();
+        }
+
+        private static void DrawArea(ICameraAreaService areaService)
+        {
+            Bounds bounds = areaService.AreaBounds;
+            Bounds overshootBounds = areaService.OvershootBounds;
+
+            Gizmos.color = s_AreaColor;
             Gizmos.DrawWireCube(bounds.center, bounds.size);
 
-            Gizmos.color = s_overshootColor;
+            Gizmos.color = s_OvershootColor;
             Gizmos.DrawWireCube(overshootBounds.center, overshootBounds.size);
+        }
+
+        private static void DrawFrustum(IFrustumProjectionService projectionService)
+        {
+            IReadOnlyList<Vector3> corners = projectionService.Corners;
+
+            if (corners.Count != CornerCount)
+                return;
+
+            Gizmos.color = s_FrustumColor;
+
+            foreach (Vector3 corner in corners)
+                Gizmos.DrawWireSphere(corner, SphereRadius);
+
+            for (int i = 0; i < corners.Count; i++)
+                Gizmos.DrawLine(corners[i], corners[(i + 1) % corners.Count]);
         }
     }
 }

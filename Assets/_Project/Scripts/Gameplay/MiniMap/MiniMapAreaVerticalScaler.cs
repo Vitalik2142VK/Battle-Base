@@ -12,33 +12,33 @@ namespace BattleBase.Gameplay.MiniMap
         [SerializeField] private MiniMapArea _miniMapArea;
 
         private ICameraOrientationAdapter _orientationAdapter;
-        private ICameraArea _cameraArea;
+        private ICameraAreaService _cameraAreaService;
 
         [Inject]
         public void Construct(
             ICameraOrientationAdapter orientationAdapter,
-            ICameraArea cameraArea)
+            ICameraAreaService cameraArea)
         {
             _orientationAdapter = orientationAdapter ?? throw new ArgumentNullException(nameof(orientationAdapter));
-            _cameraArea = cameraArea ?? throw new ArgumentNullException(nameof(cameraArea));
+            _cameraAreaService = cameraArea ?? throw new ArgumentNullException(nameof(cameraArea));
         }
 
         private void OnEnable()
         {
-            _cameraArea.Changed += OnAreaChanged;
+            _cameraAreaService.Changed += OnAreaChanged;
             _orientationAdapter.Changed += OnAreaChanged;
             OnAreaChanged();
         }
 
         private void OnDisable()
         {
-            _cameraArea.Changed -= OnAreaChanged;
+            _cameraAreaService.Changed -= OnAreaChanged;
             _orientationAdapter.Changed -= OnAreaChanged;
         }
 
         private void OnAreaChanged()
         {
-            Bounds colliderBounds = _cameraArea.ColliderBounds;
+            Bounds colliderBounds = _cameraAreaService.AreaBounds;
             float worldWidth = colliderBounds.size.x;
             float worldHeight = colliderBounds.size.z;
 

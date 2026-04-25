@@ -14332,7 +14332,7 @@ MonoBehaviour:
   - {fileID: 1616386744}
   - {fileID: 1074377339}
   _camera: {fileID: 2015845035}
-  _cameraFrustumProjector: {fileID: 2015845041}
+  _cameraArea: {fileID: 757988539}
   _territorySelectPopUpPrefab: {fileID: 7394446734637031766, guid: 9d3c244b7cd8d9748bc5bb13405a3835,
     type: 3}
   _gameSceneLoader: {fileID: 1990950056}
@@ -15068,7 +15068,6 @@ GameObject:
   - component: {fileID: 2015845035}
   - component: {fileID: 2015845034}
   - component: {fileID: 2015845037}
-  - component: {fileID: 2015845041}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -15194,20 +15193,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!114 &2015845041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2015845033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe0106452a4ca60478a98ce8186ca5c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _camera: {fileID: 2015845035}
-  _area: {fileID: 757988539}
 --- !u!64 &2022185478
 MeshCollider:
   m_ObjectHideFlags: 0

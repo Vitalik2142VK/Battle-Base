@@ -14,7 +14,8 @@ namespace BattleBase.Gameplay.MiniMap
 
         private ICameraOrientationAdapter _orientationAdapter;
         private ICameraZoom _cameraZoom;
-        private ICameraFrustumProjector _frustumProjector;
+        private IFrustumProjectionService _frustumProjectionService;
+        private ICameraTracker _cameraTracker;
 
         private List<Vector3> _cornersBuffer = new();
 
@@ -22,29 +23,33 @@ namespace BattleBase.Gameplay.MiniMap
         public void Construct(
             ICameraOrientationAdapter orientationAdapter,
             ICameraZoom cameraZoom,
-            ICameraFrustumProjector frustumProjector)
+            IFrustumProjectionService projectionService,
+            ICameraTracker cameraTracker)
         {
             _orientationAdapter = orientationAdapter ?? throw new ArgumentNullException(nameof(orientationAdapter));
             _cameraZoom = cameraZoom ?? throw new ArgumentNullException(nameof(cameraZoom));
-            _frustumProjector = frustumProjector ?? throw new ArgumentNullException(nameof(frustumProjector));
+            _frustumProjectionService = projectionService ?? throw new ArgumentNullException(nameof(projectionService));
+            _cameraTracker = cameraTracker ?? throw new ArgumentNullException(nameof(cameraTracker));
         }
 
         private void OnEnable()
         {
-            _cameraZoom.Changed += OnZoomChanged;
-            _area.SizeChanged += OnZoomChanged;
-            OnZoomChanged();
+            _cameraZoom.Changed += Refresh;
+            _area.SizeChanged += Refresh;
+            _cameraTracker.RotationChanged += Refresh;
+            Refresh();
         }
 
         private void OnDisable()
         {
-            _cameraZoom.Changed -= OnZoomChanged;
-            _area.SizeChanged -= OnZoomChanged;
+            _cameraZoom.Changed -= Refresh;
+            _area.SizeChanged -= Refresh;
+            _cameraTracker.RotationChanged -= Refresh;
         }
 
-        private void OnZoomChanged()
+        private void Refresh()
         {
-            _cornersBuffer = new(_frustumProjector.Corners);
+            _cornersBuffer = new(_frustumProjectionService.Corners);
 
             if (_cornersBuffer.Count < 4)
                 return;

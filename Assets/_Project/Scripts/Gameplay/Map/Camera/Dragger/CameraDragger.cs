@@ -15,7 +15,7 @@ namespace BattleBase.Gameplay.Map
 
         public CameraDragger(
             Camera camera,
-            ICameraFrustumProjector frustumProjector,
+            ICameraAreaService cameraAreaService,
             ICameraSnapBack snapBack,
             ICameraBoundsLimiter boundsLimiter)
         {
@@ -23,7 +23,7 @@ namespace BattleBase.Gameplay.Map
             _snapBack = snapBack ?? throw new ArgumentNullException(nameof(snapBack));
             _cameraTransform = _camera.transform;
 
-            _resistanceCalculator = new ResistanceCalculator(boundsLimiter, frustumProjector.Area);
+            _resistanceCalculator = new ResistanceCalculator(boundsLimiter, cameraAreaService);
             _positionRestrictor = new PositionRestrictor(boundsLimiter);
         }
 
