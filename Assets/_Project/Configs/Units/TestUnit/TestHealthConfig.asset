@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TestHealthConfig
   m_EditorClassIdentifier: 
   _maxHealth: 100
-  _armorCoefficient: 0.2
+  _armorCoefficient: 0.05

@@ -21,7 +21,7 @@ namespace BattleBase.Gameplay.CameraNavigation.Editor
         [DrawGizmo(GizmoType.Selected | GizmoType.NonSelected)]
         private static void DrawCameraAreaGizmos(CameraArea area, GizmoType gizmoType)
         {
-            if (area == null)
+            if (area == null || area.Enabled == false)
                 return;
 
             Camera mainCamera = Camera.main;

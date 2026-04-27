@@ -1,4 +1,4 @@
-﻿namespace BattleBase.Gameplay.Units
+﻿namespace BattleBase.Gameplay.HealthSystem
 {
     public interface IHealthConfig
     {
