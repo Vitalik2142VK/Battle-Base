@@ -1,0 +1,19 @@
+using System;
+using BattleBase.DI;
+using BattleBase.SceneLoadingService;
+using VContainer;
+
+namespace BattleBase.Commands
+{
+    public class ReloadCurrentSceneCommand : CommandBase, IInjectable
+    {
+        private ISceneLoader _sceneLoader;
+
+        [Inject]
+        public void Construct(ISceneLoader sceneLoader) =>
+            _sceneLoader = sceneLoader ?? throw new ArgumentNullException(nameof(sceneLoader));
+
+        public override void Execute() =>
+            _sceneLoader.ReloadCurrentScene();
+    }
+}
