@@ -10,11 +10,16 @@ namespace BattleBase.Gameplay.CameraNavigation
         [SerializeField][Min(0)] private float _resistanceFadeDistance = 0.5f;
         [SerializeField][Range(0f, 1f)] private float _resistance = 0.8f;
 
+        [Header("Debug")]
+        [SerializeField] private bool _enabled;
+
         public event Action Changed;
 
         public float Resistance => _resistance;
 
         public float ResistanceFadeDistance => _resistanceFadeDistance;
+
+        public bool Enabled => _enabled;
 
         public BoxCollider Collider
         {

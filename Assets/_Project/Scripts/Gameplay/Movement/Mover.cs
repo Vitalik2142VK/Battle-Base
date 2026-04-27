@@ -1,3 +1,4 @@
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,20 +8,24 @@ namespace BattleBase.Gameplay.Movement
     public class Mover : MonoBehaviour, IMover
     {
         [SerializeField] private GameObject _target;
-        [SerializeField] private MovementConfig _config;
 
         private Transform _transform;
         private NavMeshAgent _agent;
         private Vector3 _targetPoint;
+        private float distanceFinish;
 
-        private void OnValidate()
+        private void FixedUpdate()
         {
-            if (_config == null)
-                throw new System.NullReferenceException(nameof(_config));
+            if (Vector3.Distance(_targetPoint, _transform.position) < distanceFinish
+                && _agent.isStopped == false)
+                Stop();
         }
 
-        private void Awake()
+        public void Init(IMovementConfig config)
         {
+            if (config == null)
+                throw new System.ArgumentNullException(nameof(config));
+
             _transform = transform;
 
             if (_target != null)
@@ -29,17 +34,10 @@ namespace BattleBase.Gameplay.Movement
                 _targetPoint = Vector3.zero;
 
             _agent = GetComponent<NavMeshAgent>();
-            _agent.speed = _config.Speed;
-            _agent.angularSpeed = _config.AngularSpeed;
-            _agent.acceleration = _config.Acceleration;
-            _agent.stoppingDistance = _config.StoppingDistance;
-        }
-
-        private void FixedUpdate()
-        {
-            if (Vector3.Distance(_targetPoint, _transform.position) < _config.DistanceFinish 
-                && _agent.isStopped == false)
-                Stop();
+            _agent.speed = config.Speed;
+            _agent.angularSpeed = config.AngularSpeed;
+            _agent.acceleration = config.Acceleration;
+            _agent.stoppingDistance = config.StoppingDistance;
         }
 
         public void Move()
@@ -50,6 +48,6 @@ namespace BattleBase.Gameplay.Movement
             _agent.SetDestination(_targetPoint);
         }
 
-        private void Stop() => _agent.isStopped = true;
+        public void Stop() => _agent.isStopped = true;
     }
 }

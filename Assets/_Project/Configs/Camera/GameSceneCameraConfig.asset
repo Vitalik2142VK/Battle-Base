@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _restoreSpeed: 9
   _zoomSpeed: 1
-  _minimumOrtoSize: 4
-  _maximumOrtoSize: 16
+  _minimumOrtoSize: 16
+  _maximumOrtoSize: 64
