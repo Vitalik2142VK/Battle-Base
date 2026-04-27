@@ -6,8 +6,8 @@ namespace BattleBase.Gameplay.Map
     {
         private Territory _selectedTerritory;
 
-        public event Action<Territory> Unselected;
         public event Action<Territory> Selected;
+        public event Action<Territory> Unselected;
 
         public void Select(Territory territory)
         {

@@ -38,7 +38,8 @@ namespace BattleBase.Gameplay.Map.Editor
 
         private static void OnSelectionChanged()
         {
-            if (Application.isPlaying) return;
+            if (Application.isPlaying) 
+                return;
 
             ResetColors();
             GameObject selected = Selection.activeGameObject;
@@ -62,11 +63,11 @@ namespace BattleBase.Gameplay.Map.Editor
             if (s_currentSelectedTerritory == null)
                 return;
 
-            Event e = Event.current;
+            Event tempEvent = Event.current;
 
-            if (e.type == EventType.MouseDown && e.button == 0 && e.control && !e.alt)
+            if (tempEvent.type == EventType.MouseDown && tempEvent.button == 0 && tempEvent.control && !tempEvent.alt)
             {
-                GameObject clickedObject = HandleUtility.PickGameObject(e.mousePosition, false);
+                GameObject clickedObject = HandleUtility.PickGameObject(tempEvent.mousePosition, false);
 
                 if (clickedObject != null && clickedObject.TryGetComponent(out Territory clickedTerritory))
                 {
@@ -79,7 +80,7 @@ namespace BattleBase.Gameplay.Map.Editor
                     ApplyColors(s_currentSelectedTerritory);
 
                     EditorUtility.SetDirty(s_currentSelectedTerritory);
-                    e.Use();
+                    tempEvent.Use();
                 }
             }
         }

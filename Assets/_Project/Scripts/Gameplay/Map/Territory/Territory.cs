@@ -13,15 +13,15 @@ namespace BattleBase.Gameplay.Map
         public event Action ColorChanged;
         public event Action OwnerChanged;
 
-        public TerritoryOwnerType Owner {  get; private set; }
+        public Transform Target => transform;
 
         public Color? Color {  get; private set; }
 
-        public IReadOnlyList<Territory> Adjacents => _adjacents;
-
-        public Transform Target => transform;
+        public TerritoryOwnerType Owner {  get; private set; }
 
         public ITerritoryInfo Info => _config;
+
+        public IReadOnlyList<Territory> Adjacents => _adjacents;
 
         public void SetConfig(TerritoryConfig config) =>
             _config = config != null ? config : throw new ArgumentNullException(nameof(config));
@@ -38,6 +38,7 @@ namespace BattleBase.Gameplay.Map
             OwnerChanged?.Invoke();
         }
 
+        // todo : вынести в редакторский скрипт
 #if UNITY_EDITOR
         public void AddAdjacent(Territory territory)
         {

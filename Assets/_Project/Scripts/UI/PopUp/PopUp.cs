@@ -89,29 +89,6 @@ namespace BattleBase.UI.PopUps
             _currentTweens.Clear();
         }
 
-        private void PlaySequence(IEnumerable<Tweener> tweeners, Action onComplete)
-        {
-            List<Tweener> list = tweeners.ToList();
-
-            if (list.Count == 0)
-            {
-                onComplete?.Invoke();
-
-                return;
-            }
-
-            _currentSequence = DOTween.Sequence().SetUpdate(true);
-
-            foreach (Tweener tweener in list)
-                _currentSequence.Join(tweener);
-
-            _currentSequence.OnComplete(() =>
-            {
-                _currentSequence = null;
-                onComplete?.Invoke();
-            });
-        }
-
         private void WaitForAllTweens(IEnumerable<Tweener> tweeners, Action completed)
         {
             List<Tweener> list = tweeners.ToList();

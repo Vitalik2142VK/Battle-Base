@@ -215,11 +215,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _adjacents:
-  - {fileID: 2118637829}
   - {fileID: 968387555}
   - {fileID: 1786971555}
   - {fileID: 968387553}
   - {fileID: 1709388542}
+  - {fileID: 2118637829}
 --- !u!1 &40691631
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,8 +574,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _adjacents:
   - {fileID: 355251272}
-  - {fileID: 387198077}
   - {fileID: 152475097}
+  - {fileID: 387198077}
 --- !u!114 &115876093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1256,10 +1256,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _adjacents:
+  - {fileID: 109766687}
+  - {fileID: 1548954541}
   - {fileID: 1786971555}
   - {fileID: 848705258}
-  - {fileID: 1548954541}
-  - {fileID: 109766687}
 --- !u!1 &372451949
 GameObject:
   m_ObjectHideFlags: 0
@@ -1385,10 +1385,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _adjacents:
-  - {fileID: 109766687}
   - {fileID: 152475097}
   - {fileID: 2123326139}
   - {fileID: 965022042}
+  - {fileID: 109766687}
 --- !u!1 &396423659
 GameObject:
   m_ObjectHideFlags: 0
@@ -2185,13 +2185,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _adjacents:
-  - {fileID: 1855268221}
   - {fileID: 668106545}
   - {fileID: 737840494}
   - {fileID: 1597274202}
   - {fileID: 1215406637}
   - {fileID: 1137349377}
   - {fileID: 632894045}
+  - {fileID: 1855268221}
 --- !u!1 &616030883
 GameObject:
   m_ObjectHideFlags: 0
@@ -7700,9 +7700,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fbace59118a7474c8e4d388f5e20e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _resistanceFadeDistance: 2
+  _collider: {fileID: 757988537}
+  _resistanceFadeDistance: 2.44
   _resistance: 1
-  _areBoundsStatic: 1
 --- !u!114 &811022481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7790,9 +7790,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _adjacents:
-  - {fileID: 1786971555}
-  - {fileID: 1709388542}
   - {fileID: 355251272}
+  - {fileID: 1709388542}
+  - {fileID: 1786971555}
 --- !u!1 &869942878
 GameObject:
   m_ObjectHideFlags: 0
@@ -10211,11 +10211,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _adjacents:
-  - {fileID: 2118637829}
   - {fileID: 38758251}
   - {fileID: 1786971555}
   - {fileID: 1548954541}
   - {fileID: 2077758185}
+  - {fileID: 2118637829}
   - {fileID: 1477110968}
 --- !u!114 &968387554
 MonoBehaviour:
@@ -10243,8 +10243,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _adjacents:
-  - {fileID: 2118637829}
   - {fileID: 38758251}
+  - {fileID: 2118637829}
 --- !u!114 &968387556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12046,14 +12046,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _adjacents:
-  - {fileID: 968387553}
-  - {fileID: 2077758185}
   - {fileID: 1363673163}
-  - {fileID: 1548954541}
   - {fileID: 1973187526}
   - {fileID: 811022482}
   - {fileID: 1076440145}
   - {fileID: 1368442277}
+  - {fileID: 968387553}
+  - {fileID: 2077758185}
+  - {fileID: 1548954541}
 --- !u!64 &1477110972
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -12539,9 +12539,9 @@ MonoBehaviour:
   _adjacents:
   - {fileID: 968387553}
   - {fileID: 1786971555}
-  - {fileID: 1477110968}
   - {fileID: 1973187526}
   - {fileID: 355251272}
+  - {fileID: 1477110968}
 --- !u!64 &1548954545
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -13948,8 +13948,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _adjacents:
   - {fileID: 38758251}
-  - {fileID: 1786971555}
   - {fileID: 848705258}
+  - {fileID: 1786971555}
 --- !u!64 &1709388546
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14210,10 +14210,10 @@ MonoBehaviour:
   _adjacents:
   - {fileID: 38758251}
   - {fileID: 968387553}
+  - {fileID: 1548954541}
+  - {fileID: 355251272}
   - {fileID: 1709388542}
   - {fileID: 848705258}
-  - {fileID: 355251272}
-  - {fileID: 1548954541}
 --- !u!64 &1786971559
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14480,10 +14480,10 @@ MonoBehaviour:
   - {fileID: 655546005}
   - {fileID: 1510669410}
   - {fileID: 737840494}
-  - {fileID: 615924397}
   - {fileID: 668106545}
   - {fileID: 1958892789}
   - {fileID: 1617670433}
+  - {fileID: 615924397}
 --- !u!64 &1855268225
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -15376,9 +15376,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _adjacents:
   - {fileID: 968387553}
-  - {fileID: 1477110968}
   - {fileID: 1363673163}
   - {fileID: 847871214}
+  - {fileID: 1477110968}
 --- !u!64 &2077758189
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -15779,10 +15779,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _adjacents:
-  - {fileID: 968387557}
   - {fileID: 968387555}
   - {fileID: 38758251}
   - {fileID: 968387553}
+  - {fileID: 968387557}
 --- !u!64 &2118637833
 MeshCollider:
   m_ObjectHideFlags: 0

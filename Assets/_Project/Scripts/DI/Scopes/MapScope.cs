@@ -1,7 +1,8 @@
 using BattleBase.Commands;
 using BattleBase.Core;
+using BattleBase.Gameplay.CameraNavigation;
+using BattleBase.Gameplay.CameraNavigation.InputReader;
 using BattleBase.Gameplay.Map;
-using BattleBase.Gameplay.Map.InputSystem;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;

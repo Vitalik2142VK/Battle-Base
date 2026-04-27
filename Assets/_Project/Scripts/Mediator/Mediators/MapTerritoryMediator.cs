@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using BattleBase.DI;
+using BattleBase.Gameplay.CameraNavigation.InputReader;
 using BattleBase.Gameplay.Map;
-using BattleBase.Gameplay.Map.InputSystem;
 using BattleBase.SaveService;
 using UnityEngine;
 using VContainer;

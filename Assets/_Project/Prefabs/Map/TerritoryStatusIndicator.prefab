@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7750326261397464490}
   - component: {fileID: 3105939535996725678}
-  - component: {fileID: 5502538257464457211}
   m_Layer: 0
   m_Name: TerritoryStatusIndicator
   m_TagString: Untagged
@@ -50,18 +49,6 @@ MonoBehaviour:
   _base: {fileID: 21300000, guid: dd270913e937ccf40840b61b98788717, type: 3}
   _battle: {fileID: 21300000, guid: 3894c3a7c6c3b6b478f7204ad2cd4a96, type: 3}
   _ownerColorBlackoutFactor: 0.2
---- !u!114 &5502538257464457211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 26092418621527656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b731135d9b7fd9748bae718667f29d2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1356729581333049721
 GameObject:
   m_ObjectHideFlags: 0
