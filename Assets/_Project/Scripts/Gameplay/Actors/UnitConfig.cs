@@ -4,7 +4,7 @@ using BattleBase.Gameplay.Weapons;
 using BattleBase.Utils;
 using UnityEngine;
 
-namespace BattleBase.Gameplay.Units
+namespace BattleBase.Gameplay.Actors
 {
     [CreateAssetMenu(
         fileName = nameof(UnitConfig),
@@ -16,6 +16,7 @@ namespace BattleBase.Gameplay.Units
         [SerializeField] private HealthConfig _healthConfig;
         [SerializeField] private WeaponConfig _weaponConfig;
         [SerializeField] private MovementConfig _movementConfig;
+        [SerializeField][Min(3f)] private float _constructionTime = 5f;
 
         public UnitView Prefab => _prefab;
 
@@ -26,5 +27,7 @@ namespace BattleBase.Gameplay.Units
         public IWeaponConfig WeaponConfig => _weaponConfig;
 
         public IMovementConfig MovementConfig => _movementConfig;
+
+        public float ConstructionTime => _constructionTime;
     }
 }

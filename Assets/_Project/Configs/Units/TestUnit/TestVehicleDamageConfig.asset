@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37a24a7ae21bc0f4a95771ee0324fa23, type: 3}
-  m_Name: TestUnitMovementConfig
+  m_Script: {fileID: 11500000, guid: fbacb8fe3b3a65046b758e04b132abc8, type: 3}
+  m_Name: TestVehicleDamageConfig
   m_EditorClassIdentifier: 
-  _speed: 15
-  _angularSpeed: 120
-  _acceleration: 10
-  _stoppingDistance: 3
-  _distanceFinish: 0.1
+  _damageMask: -1
+  _damage: 60

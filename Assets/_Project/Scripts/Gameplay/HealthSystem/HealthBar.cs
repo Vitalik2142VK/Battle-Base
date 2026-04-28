@@ -15,7 +15,7 @@ namespace BattleBase.Gameplay.HealthSystem
 
         public bool IsActive => gameObject.activeSelf;
 
-        private void Awake()
+        public void Init()
         {
             _slider = GetComponent<Slider>();
             _slider.maxValue = MaxSliderValue;

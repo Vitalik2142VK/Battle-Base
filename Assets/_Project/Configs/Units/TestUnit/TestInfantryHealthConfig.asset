@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 40d71506c290b2f48985c80823b3af85, type: 3}
-  m_Name: TestHealthConfig
+  m_Name: TestInfantryHealthConfig
   m_EditorClassIdentifier: 
   _maxHealth: 100
   _armorCoefficient: 0.05

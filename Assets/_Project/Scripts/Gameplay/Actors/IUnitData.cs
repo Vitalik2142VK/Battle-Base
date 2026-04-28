@@ -1,7 +1,7 @@
 ﻿using BattleBase.Localization;
 using UnityEngine;
 
-namespace BattleBase.Gameplay.Units
+namespace BattleBase.Gameplay.Actors
 {
     public interface IUnitData
     {

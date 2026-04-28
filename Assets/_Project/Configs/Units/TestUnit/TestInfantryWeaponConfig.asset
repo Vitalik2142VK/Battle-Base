@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8368aa947f2bba2478fc99c70d338400, type: 3}
-  m_Name: TestWeaponConfig
+  m_Name: TestInfantryWeaponConfig
   m_EditorClassIdentifier: 
   _damageConfig: {fileID: 11400000, guid: 1f45cc7fd6c6156438954da63be0517e, type: 2}
   _rateShooting: 0.15

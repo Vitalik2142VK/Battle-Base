@@ -2,6 +2,6 @@ namespace BattleBase.Core
 {
     public interface IFactory<T>
     {
-        T Create();
+        public T Create();
     }
 }

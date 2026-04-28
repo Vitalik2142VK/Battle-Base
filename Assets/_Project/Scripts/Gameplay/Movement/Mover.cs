@@ -1,4 +1,3 @@
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,16 +6,14 @@ namespace BattleBase.Gameplay.Movement
     [RequireComponent(typeof(NavMeshAgent))]
     public class Mover : MonoBehaviour, IMover
     {
-        [SerializeField] private GameObject _target;
-
         private Transform _transform;
         private NavMeshAgent _agent;
-        private Vector3 _targetPoint;
-        private float distanceFinish;
+        private Vector3 _pointPosition;
+        private float _distanceFinish;
 
         private void FixedUpdate()
         {
-            if (Vector3.Distance(_targetPoint, _transform.position) < distanceFinish
+            if (Vector3.Distance(_pointPosition, _transform.position) < _distanceFinish
                 && _agent.isStopped == false)
                 Stop();
         }
@@ -28,26 +25,27 @@ namespace BattleBase.Gameplay.Movement
 
             _transform = transform;
 
-            if (_target != null)
-                _targetPoint = _target.transform.position;
-            else
-                _targetPoint = Vector3.zero;
-
             _agent = GetComponent<NavMeshAgent>();
             _agent.speed = config.Speed;
             _agent.angularSpeed = config.AngularSpeed;
             _agent.acceleration = config.Acceleration;
             _agent.stoppingDistance = config.StoppingDistance;
+            _distanceFinish = config.DistanceFinish;
         }
+
+        public void Stop() => _agent.isStopped = true;
 
         public void Move()
         {
             if (_agent.isStopped == true)
                 _agent.isStopped = false;
 
-            _agent.SetDestination(_targetPoint);
+            _agent.SetDestination(_pointPosition);
         }
 
-        public void Stop() => _agent.isStopped = true;
+        public void SetPointPosition(Vector3 pointPosition)
+        {
+            _pointPosition = pointPosition;
+        }
     }
 }

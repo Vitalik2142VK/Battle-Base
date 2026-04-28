@@ -2,7 +2,7 @@
 using BattleBase.Utils;
 using UnityEngine;
 
-namespace BattleBase.Gameplay.Units
+namespace BattleBase.Gameplay.Actors
 {
     [CreateAssetMenu(
     fileName = nameof(UnitData),

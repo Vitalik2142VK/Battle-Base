@@ -1,4 +1,4 @@
-﻿using BattleBase.Gameplay.Units;
+﻿using BattleBase.Gameplay.Actors;
 
 namespace BattleBase.Gameplay.Weapons
 {

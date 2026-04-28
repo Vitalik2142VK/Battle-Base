@@ -27,10 +27,13 @@ namespace BattleBase.Gameplay.Weapons
                 LookAtTarget();
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             if (_currentTarget != null)
+            {
                 _currentTarget.Destroyed -= OnRemoveTarget;
+                _currentTarget = null;
+            }
         }
 
         public void TakeAim(ITargetPoint target)

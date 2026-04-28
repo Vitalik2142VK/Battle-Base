@@ -1,9 +1,9 @@
-﻿namespace BattleBase.Gameplay.Units
+﻿namespace BattleBase.Gameplay.Actors
 {
     //todo temporarily, remove or change
     public enum SideUnit
     {
-        Blue,
-        Red
+        Player,
+        Enemy
     }
 }

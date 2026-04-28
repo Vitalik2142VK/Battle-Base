@@ -1,4 +1,4 @@
-using BattleBase.Gameplay.Units;
+using BattleBase.Gameplay.Actors;
 using BattleBase.Utils;
 using UnityEngine;
 
