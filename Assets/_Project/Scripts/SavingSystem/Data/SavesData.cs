@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace BattleBase.SaveService
@@ -7,9 +6,9 @@ namespace BattleBase.SaveService
     [Serializable]
     public class SavesData : ISavesData
     {
-        [SerializeField] private VolumeData _volumeData;
-        [SerializeField] private ColorData _colorData;
-        [SerializeField] private TerritoryData _territoryData;
+        [SerializeField] private VolumeData _volumeData = new();
+        [SerializeField] private ColorData _colorData = new();
+        [SerializeField] private TerritoryData _territoryData = new();
 
         public IVolumeData VolumeData => _volumeData;
 
