@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace BattleBase.Gameplay.Units 
+namespace BattleBase.Gameplay.Actors 
 {
     public class UnitView : MonoBehaviour
     {

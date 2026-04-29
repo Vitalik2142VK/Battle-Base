@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace BattleBase.Gameplay.Units
+namespace BattleBase.Gameplay.Actors
 {
     [RequireComponent(typeof(Unit))]
     public class EnemyDetectionSystem : MonoBehaviour
@@ -42,7 +42,7 @@ namespace BattleBase.Gameplay.Units
         {
             if (_isDebugEnable == false)
                 return;
- 
+
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, _findRadius);
         }
@@ -54,7 +54,7 @@ namespace BattleBase.Gameplay.Units
                 if (_unit.IsAttacking == false)
                 {
                     if (TryFindEnemyUnit(out IUnit unit))
-                    _unit.AttackUnit(unit);
+                        _unit.AttackUnit(unit);
                 }
 
                 yield return _tick;
@@ -66,10 +66,10 @@ namespace BattleBase.Gameplay.Units
             unit = null;
 
             int count = Physics.OverlapSphereNonAlloc(
-                _transform.position, 
-                _findRadius, 
-                _foundUnits, 
-                _findedLayerMask, 
+                _transform.position,
+                _findRadius,
+                _foundUnits,
+                _findedLayerMask,
                 QueryTriggerInteraction.Ignore);
 
             for (int i = 0; i < count; i++)

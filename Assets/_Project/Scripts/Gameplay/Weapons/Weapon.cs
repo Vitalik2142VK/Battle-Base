@@ -1,5 +1,5 @@
-﻿using BattleBase.Gameplay.DamageSystem;
-using BattleBase.Gameplay.Units;
+﻿using BattleBase.Gameplay.Actors;
+using BattleBase.Gameplay.DamageSystem;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -30,7 +30,6 @@ namespace BattleBase.Gameplay.Weapons
             _waitShoot = new WaitForSeconds(_config.RateShooting);
             _waitReload = new WaitForSeconds(_config.SpeedReload);
 
-            _tower.Aimed += OnShoot;
             _currentNumberShells = _config.NumberShells;
         }
 
@@ -45,12 +44,21 @@ namespace BattleBase.Gameplay.Weapons
             _tower.TakeAim(unit);
         }
 
+        internal void Enable()
+        {
+            _tower.Aimed += OnShoot;
+            _currentNumberShells = _config.NumberShells;
+        }
+
         public void Disable()
         {
-            _tower.Aimed -= OnShoot;
-
             if (_currentUnit != null)
+            {
                 _currentUnit.Destroyed -= OnRemoveTarget;
+                _currentUnit = null;
+            }
+
+            _tower.Aimed -= OnShoot;
 
             StopCoroutine();
         }

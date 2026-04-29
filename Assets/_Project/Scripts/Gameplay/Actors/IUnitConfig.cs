@@ -2,7 +2,7 @@
 using BattleBase.Gameplay.Movement;
 using BattleBase.Gameplay.Weapons;
 
-namespace BattleBase.Gameplay.Units
+namespace BattleBase.Gameplay.Actors
 {
     public interface IUnitConfig
     {
@@ -15,5 +15,7 @@ namespace BattleBase.Gameplay.Units
         public IWeaponConfig WeaponConfig { get; }
 
         public IMovementConfig MovementConfig { get; }
+
+        public float ConstructionTime { get; }
     }
 }

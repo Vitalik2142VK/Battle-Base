@@ -1,21 +1,22 @@
-﻿using BattleBase.Gameplay.DamageSystem;
+﻿using BattleBase.Core;
+using BattleBase.Gameplay.DamageSystem;
 using BattleBase.Gameplay.HealthSystem;
 using BattleBase.Gameplay.Movement;
 using BattleBase.Gameplay.Weapons;
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
-namespace BattleBase.Gameplay.Units
+namespace BattleBase.Gameplay.Actors
 {
     //todo Split into view and model
-    public class Unit : MonoBehaviour, IUnit
+    public class Unit : MonoBehaviour, IUnit, IPoolable<Unit>
     {
         [SerializeField] private UnitConfig _config;
         [SerializeField] private Mover _mover;
         [SerializeField] private Tower _tower;
         [SerializeField] private HealthBar _healthBar;
         [SerializeField] private WeaponView _weaponView;
-        [SerializeField] private SideUnit _sideUnit;
 
         private IUnit _attackedUnit;
         private IHealth _health;
@@ -24,31 +25,31 @@ namespace BattleBase.Gameplay.Units
 
         public bool IsAttacking => _attackedUnit != null;
 
+        public Vector3 Position => _transform.position;
+
+        public SideUnit SideUnit { get; private set; }
+
+        public float ConstructionTime => _config.ConstructionTime;
+
+        public event Action Destroyed;
+        public event Action<Unit> Deactivated;
+
         private void Awake()
         {
-            DamageModifier damageModifier = new DamageModifier();
+            DamageModifier damageModifier = new();
+            _healthBar.Init();
+            _mover.Init(_config.MovementConfig);
 
             _transform = transform;
             _health = new Health(_config.HealthConfig, _healthBar, damageModifier);
             _weapon = new Weapon(_config.WeaponConfig, _weaponView, _tower, this);
-            
-            _mover.Init(_config.MovementConfig);
         }
-
-        private void Start()
-        {
-            _health.Restore();
-        }
-
-        public Vector3 Position => _transform.position;
-
-        public SideUnit SideUnit => _sideUnit;
-
-        public event Action Destroyed;
 
         private void OnEnable()
         {
+            _weapon.Enable();
             _mover.Move();
+            _health.Restore();
         }
 
         private void OnDisable()
@@ -57,16 +58,17 @@ namespace BattleBase.Gameplay.Units
 
             _weapon.Disable();
 
-            if (_attackedUnit != null)
-                _attackedUnit.Destroyed -= OnRemoveAttackedUnit;
+            RemoveAttackedUnit();
         }
+
+        public void SetSide(SideUnit side) => SideUnit = side;
 
         public void TakeDamage(IDamage damage)
         {
             _health.TakeDamage(damage);
 
             if (_health.IsAlive == false)
-                Destroy(gameObject);
+                Deactivated?.Invoke(this);
         }
 
         public void AttackUnit(IUnit unit)
@@ -81,10 +83,25 @@ namespace BattleBase.Gameplay.Units
             _mover.Stop();
         }
 
+        public void SetMovePoint(Vector3 movePoint)
+        {
+            _mover.SetPointPosition(movePoint);
+        }
+
         private void OnRemoveAttackedUnit()
         {
-            _attackedUnit = null;
+            RemoveAttackedUnit();
+
             _mover.Move();
+        }
+
+        private void RemoveAttackedUnit()
+        {
+            if (_attackedUnit != null)
+            {
+                _attackedUnit.Destroyed -= OnRemoveAttackedUnit;
+                _attackedUnit = null;
+            }
         }
     }
 }

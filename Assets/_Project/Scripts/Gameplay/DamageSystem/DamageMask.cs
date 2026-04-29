@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BattleBase.Gameplay.Units
+namespace BattleBase.Gameplay.Actors
 {
     [Flags]
     public enum DamageMask
