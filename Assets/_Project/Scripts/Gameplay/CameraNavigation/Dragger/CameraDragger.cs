@@ -7,6 +7,7 @@ namespace BattleBase.Gameplay.CameraNavigation
     public class CameraDragger : ICameraDragger
     {
         private readonly Camera _camera;
+        private readonly Transform _cameraRig;
         private readonly ICameraSnapBack _snapBack;
         private readonly Transform _cameraTransform;
 
@@ -15,11 +16,18 @@ namespace BattleBase.Gameplay.CameraNavigation
 
         public CameraDragger(
             Camera camera,
+            CameraRig cameraRig,
             ICameraAreaService cameraAreaService,
             ICameraSnapBack snapBack,
             ICameraBoundsLimiter boundsLimiter)
         {
             _camera = camera != null ? camera : throw new ArgumentNullException(nameof(camera));
+
+            if(cameraRig == null)
+                throw new ArgumentNullException(nameof(cameraRig));
+
+            _cameraRig = cameraRig.transform;
+
             _snapBack = snapBack ?? throw new ArgumentNullException(nameof(snapBack));
             _cameraTransform = _camera.transform;
 
@@ -49,11 +57,14 @@ namespace BattleBase.Gameplay.CameraNavigation
 
         private void ApplyMovement(Vector3 worldDelta)
         {
-            Vector3 desiredPosition = _cameraTransform.position - worldDelta;
-            Vector3 correctedDelta = _resistanceCalculator.Calculate(worldDelta, desiredPosition);
-            Vector3 finalDesiredPosition = _cameraTransform.position - correctedDelta;
-            Vector3 restrictedPosition = _positionRestrictor.Restrict(finalDesiredPosition, _cameraTransform.position);
-            _cameraTransform.position = restrictedPosition;
+            Vector3 deltaGround = _cameraRig.right * worldDelta.x + _cameraRig.forward * worldDelta.z;
+            deltaGround.y = 0f;
+
+            Vector3 desiredRigPosition = _cameraRig.position - deltaGround;
+            Vector3 correctedDelta = _resistanceCalculator.Calculate(deltaGround, desiredRigPosition);
+            Vector3 finalDesiredRigPosition = _cameraRig.position - correctedDelta;
+            Vector3 restrictedPosition = _positionRestrictor.Restrict(finalDesiredRigPosition, _cameraRig.position);
+            _cameraRig.position = restrictedPosition;
         }
     }
 }

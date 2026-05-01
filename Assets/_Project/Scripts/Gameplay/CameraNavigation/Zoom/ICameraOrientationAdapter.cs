@@ -6,10 +6,10 @@ namespace BattleBase.Gameplay.CameraNavigation
     {
         public event Action Changed;
 
-        public float CurrentOrtoSize { get; }
+        public float CurrentOrthoSize { get; }
 
-        public float MinimumOrtoSize { get; }
+        public float MinimumOrthoSize { get; }
 
-        public float MaximumOrtoSize { get; }
+        public float MaximumOrthoSize { get; }
     }
 }

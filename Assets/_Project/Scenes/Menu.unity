@@ -666,7 +666,7 @@ GameObject:
   - component: {fileID: 181945718}
   - component: {fileID: 181945717}
   m_Layer: 0
-  m_Name: MenuBootstrap
+  m_Name: MenuEntryPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

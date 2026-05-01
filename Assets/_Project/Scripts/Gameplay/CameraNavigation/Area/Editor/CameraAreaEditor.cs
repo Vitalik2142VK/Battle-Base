@@ -21,7 +21,10 @@ namespace BattleBase.Gameplay.CameraNavigation.Editor
         [DrawGizmo(GizmoType.Selected | GizmoType.NonSelected)]
         private static void DrawCameraAreaGizmos(CameraArea area, GizmoType gizmoType)
         {
-            if (area == null || area.Enabled == false)
+            if (area == null)
+                return;
+
+            if (area.ShouldDrawGizmos == false)
                 return;
 
             Camera mainCamera = Camera.main;
@@ -37,14 +40,21 @@ namespace BattleBase.Gameplay.CameraNavigation.Editor
             DrawArea(areaService);
             DrawFrustum(projectionService);
 
-            if (projectionService is IDisposable disposable)
-                disposable.Dispose();
+            IDisposable[] disposables = new IDisposable[]
+            {
+                projectionService as IDisposable,
+                cameraTracker as IDisposable,
+                areaService as IDisposable,
+                updater as IDisposable,
+            };
 
-            if (areaService is IDisposable areadisposable)
-                areadisposable.Dispose();
+            DisposeAll(disposables);
+        }
 
-            if (cameraTracker is IDisposable cameraTrackerdisposable)
-                cameraTrackerdisposable.Dispose();
+        private static void DisposeAll(params IDisposable[] disposables)
+        {
+            foreach (IDisposable disposable in disposables)
+                disposable?.Dispose();
         }
 
         private static void DrawArea(ICameraAreaService areaService)

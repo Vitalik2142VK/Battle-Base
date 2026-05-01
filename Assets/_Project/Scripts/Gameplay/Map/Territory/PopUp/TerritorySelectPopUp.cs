@@ -25,7 +25,7 @@ namespace BattleBase.Gameplay.Map
         public event Action<TerritorySelectPopUp> Deactivated;
 
         [Inject]
-        public void Construct(LoadGameSceneCommand loadGameSceneCommand)
+        public void Construct(CommandLoadGameScene loadGameSceneCommand)
         {
             if (loadGameSceneCommand == null)
                 throw new ArgumentNullException(nameof(loadGameSceneCommand));

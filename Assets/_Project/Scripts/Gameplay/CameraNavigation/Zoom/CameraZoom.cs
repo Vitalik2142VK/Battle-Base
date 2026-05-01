@@ -40,9 +40,9 @@ namespace BattleBase.Gameplay.CameraNavigation
             }
         }
 
-        private float MinimumZoom => _orientationAdapter.MinimumOrtoSize;
+        private float MinimumZoom => _orientationAdapter.MinimumOrthoSize;
 
-        private float MaximumZoom => _orientationAdapter.MaximumOrtoSize;
+        private float MaximumZoom => _orientationAdapter.MaximumOrthoSize;
 
         public void SetValue01(float value)
         {

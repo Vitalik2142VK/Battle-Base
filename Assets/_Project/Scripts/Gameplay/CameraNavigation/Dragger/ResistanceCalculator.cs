@@ -30,19 +30,23 @@ namespace BattleBase.Gameplay.CameraNavigation
 
             Vector3 result = delta;
 
-            if (overshootX > 0f)
-            {
-                float factor = 1f - Mathf.Clamp01(overshootX / maxOvershoot) * resistance;
-                result.x *= factor;
-            }
-
-            if (overshootZ > 0f)
-            {
-                float factor = 1f - Mathf.Clamp01(overshootZ / maxOvershoot) * resistance;
-                result.z *= factor;
-            }
+            ApplyResistance(ref result.x, overshootX, maxOvershoot, resistance);
+            ApplyResistance(ref result.z, overshootZ, maxOvershoot, resistance);
 
             return result;
+        }
+
+        private static void ApplyResistance(
+            ref float component, 
+            float overshoot, 
+            float maxOvershoot, 
+            float resistance)
+        {
+            if (overshoot > 0f)
+            {
+                float factor = 1f - Mathf.Clamp01(overshoot / maxOvershoot) * resistance;
+                component *= factor;
+            }
         }
     }
 }

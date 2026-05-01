@@ -16,6 +16,13 @@ namespace BattleBase.UpdateService.Editor
             EditorApplication.update += OnUpdate;
         }
 
+        public void Dispose()
+        {
+            EditorApplication.update -= OnUpdate;
+            _updateActions.Clear();
+            _updateFloatActions.Clear();
+        }
+
         public IUpdater Subscribe(Action action, UpdateType updateType)
         {
             if (action == null) 
@@ -54,13 +61,6 @@ namespace BattleBase.UpdateService.Editor
 
         public IUpdater DebugPrint() =>
             this;
-
-        public void Dispose()
-        {
-            EditorApplication.update -= OnUpdate;
-            _updateActions.Clear();
-            _updateFloatActions.Clear();
-        }
 
         private void OnUpdate()
         {

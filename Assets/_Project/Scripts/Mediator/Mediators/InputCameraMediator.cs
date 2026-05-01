@@ -6,13 +6,14 @@ using BattleBase.Gameplay.CameraNavigation.InputReader;
 using UnityEngine;
 using UnityEngine.UI;
 using VContainer;
+using static UnityEngine.Rendering.DebugUI;
 
 namespace BattleBase.Mediators
 {
     public class InputCameraMediator : MediatorBase, IInjectable
     {
         [SerializeField] private List<Canvas> _canvasList;
-        [SerializeField] private Slider _slider;
+        [SerializeField] private List<Slider> _zoomSliders;
         [SerializeField] private bool _isDynamicAngle;
 
         private ICameraInputReader _inputReader;
@@ -37,11 +38,17 @@ namespace BattleBase.Mediators
             _pointerChecker = pointerChecker ?? throw new ArgumentNullException(nameof(pointerChecker));
         }
 
-        private void OnEnable() =>
-            _slider.onValueChanged.AddListener(OnSliderChanged);
+        private void OnEnable()
+        {
+            foreach (Slider zoom in _zoomSliders)
+                zoom.onValueChanged.AddListener(OnSliderChanged);
+        }
 
-        private void OnDisable() =>
-            _slider.onValueChanged.AddListener(OnSliderChanged);
+        private void OnDisable()
+        {
+            foreach (Slider zoom in _zoomSliders)
+                zoom.onValueChanged.RemoveListener(OnSliderChanged);
+        }
 
         public override void Init()
         {
@@ -49,7 +56,9 @@ namespace BattleBase.Mediators
                 _pointerChecker.AddCanvas(canvas);
 
             UpdateCompensation();
-            _slider.value = _zoom.Value01;
+
+            foreach (Slider zoom in _zoomSliders)
+                zoom.value = _zoom.Value01;
         }
 
         private void LateUpdate()
@@ -75,7 +84,10 @@ namespace BattleBase.Mediators
             _zoom.Update(_inputReader?.ZoomDelta);
 
             if (zoomDelta.HasValue)
-                _slider.value = _zoom.Value01;
+            {
+                foreach (Slider zoom in _zoomSliders)
+                    zoom.value = _zoom.Value01;
+            }
         }
 
         private void UpdateCompensation() =>

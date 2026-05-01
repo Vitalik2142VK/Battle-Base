@@ -39,6 +39,7 @@ namespace BattleBase.Core
                 return;
 
             element.Deactivated -= Return;
+            element.transform.SetParent(null);
             element.gameObject.SetActive(false);
             _elements.Push(element);
         }
@@ -46,9 +47,7 @@ namespace BattleBase.Core
         private T Create()
         {
             _count++;
-
-            T element = _factory.Create();
-            element.transform.SetParent(null);
+            T element = _factory.Create();            
 
             return element;
         }

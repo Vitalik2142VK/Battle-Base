@@ -8,12 +8,18 @@ namespace BattleBase.Gameplay.CameraNavigation
     {
         private const float Half = 0.5f;
 
+        private readonly Transform _cameraRig;
         private readonly IFrustumProjectionService _frustumProjectionService;
         private readonly ICameraAreaService _cameraAreaService;
         private readonly float _restoreSpeed;
 
-        public CameraSnapBack(IFrustumProjectionService frustumProjectionService, ICameraAreaService cameraAreaService, ICameraConfig config)
+        public CameraSnapBack(
+            CameraRig cameraRig,
+            IFrustumProjectionService frustumProjectionService,
+            ICameraAreaService cameraAreaService,
+            ICameraConfig config)
         {
+            _cameraRig = cameraRig != null ? cameraRig.transform : throw new ArgumentNullException(nameof(cameraRig));
             _frustumProjectionService = frustumProjectionService ?? throw new ArgumentNullException(nameof(frustumProjectionService));
             _cameraAreaService = cameraAreaService ?? throw new ArgumentNullException(nameof(cameraAreaService));
 
@@ -55,8 +61,8 @@ namespace BattleBase.Gameplay.CameraNavigation
 
             if (correction != Vector3.zero)
             {
-                Vector3 targetPos = cameraTransform.position + correction;
-                cameraTransform.position = Vector3.MoveTowards(cameraTransform.position, targetPos, _restoreSpeed * deltaTime);
+                Vector3 targetPos = _cameraRig.position + correction;
+                _cameraRig.position = Vector3.MoveTowards(_cameraRig.position, targetPos, _restoreSpeed * deltaTime);
             }
         }
 

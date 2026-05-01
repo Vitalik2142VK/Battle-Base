@@ -12,31 +12,26 @@ namespace BattleBase.Gameplay.MiniMap
         [SerializeField] private MiniMapArea _area;
         [SerializeField] private MiniMapCameraFrame _frame;
 
-        private ICameraOrientationAdapter _orientationAdapter;
+        private ICameraAreaService _areaService;
         private ICameraZoom _cameraZoom;
         private IFrustumProjectionService _frustumProjectionService;
-        private ICameraTracker _cameraTracker;
-
-        private List<Vector3> _cornersBuffer = new();
 
         [Inject]
         public void Construct(
-            ICameraOrientationAdapter orientationAdapter,
+            ICameraAreaService areaService,
             ICameraZoom cameraZoom,
-            IFrustumProjectionService projectionService,
-            ICameraTracker cameraTracker)
+            IFrustumProjectionService projectionService)
         {
-            _orientationAdapter = orientationAdapter ?? throw new ArgumentNullException(nameof(orientationAdapter));
+            _areaService = areaService ?? throw new ArgumentNullException(nameof(areaService));
             _cameraZoom = cameraZoom ?? throw new ArgumentNullException(nameof(cameraZoom));
             _frustumProjectionService = projectionService ?? throw new ArgumentNullException(nameof(projectionService));
-            _cameraTracker = cameraTracker ?? throw new ArgumentNullException(nameof(cameraTracker));
         }
 
         private void OnEnable()
         {
             _cameraZoom.Changed += Refresh;
             _area.SizeChanged += Refresh;
-            _cameraTracker.RotationChanged += Refresh;
+            _frustumProjectionService.Changed += Refresh;
             Refresh();
         }
 
@@ -44,42 +39,30 @@ namespace BattleBase.Gameplay.MiniMap
         {
             _cameraZoom.Changed -= Refresh;
             _area.SizeChanged -= Refresh;
-            _cameraTracker.RotationChanged -= Refresh;
+            _frustumProjectionService.Changed -= Refresh;
         }
 
         private void Refresh()
         {
-            _cornersBuffer = new(_frustumProjectionService.Corners);
+            float width = CalculateFrameSide(
+                _frustumProjectionService.CachedWidth,
+                _areaService.AreaBounds.size.x,
+                _area.Rect.width);
 
-            if (_cornersBuffer.Count < 4)
-                return;
+            float height = CalculateFrameSide(
+                _frustumProjectionService.CachedHeight,
+                _areaService.AreaBounds.size.z,
+                _area.Rect.height);
 
-            float minX = float.MaxValue, maxX = float.MinValue;
-            float minZ = float.MaxValue, maxZ = float.MinValue;
+            _frame.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width);
+            _frame.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height);
+        }
 
-            foreach (Vector3 corner in _cornersBuffer)
-            {
-                minX = Mathf.Min(minX, corner.x);
-                maxX = Mathf.Max(maxX, corner.x);
-                minZ = Mathf.Min(minZ, corner.z);
-                maxZ = Mathf.Max(maxZ, corner.z);
-            }
+        private float CalculateFrameSide(float frustumSize, float worldAreaSize, float mapAreaSize)
+        {
+            float factor = frustumSize / worldAreaSize;
 
-            float worldWidth = maxX - minX;
-            float worldHeight = maxZ - minZ;
-
-            if (worldWidth <= 0f)
-                return;
-
-            float current = _orientationAdapter.CurrentOrtoSize;
-            float max = _orientationAdapter.MaximumOrtoSize;
-            float frameAreaWidth = _area.Rect.width;
-            float factor = current / max;
-            float frameWidth = frameAreaWidth * factor;
-            float frameHeight = frameWidth * (worldHeight / worldWidth);
-
-            _frame.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, frameWidth);
-            _frame.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, frameHeight);
+            return mapAreaSize * factor;
         }
     }
 }

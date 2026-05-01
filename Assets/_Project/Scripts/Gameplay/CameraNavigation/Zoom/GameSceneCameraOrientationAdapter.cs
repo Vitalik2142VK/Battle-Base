@@ -1,5 +1,4 @@
 using System;
-using BattleBase.UpdateService;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.CameraNavigation
@@ -11,36 +10,39 @@ namespace BattleBase.Gameplay.CameraNavigation
         private const float ReferenceAspect = 9f / 16f;
 
         private readonly Camera _camera;
-        private readonly IUpdater _updater;
-        private readonly float _originalMinimumOrtoSize;
-        private readonly float _originalMaximumOrtoSize;
+        private readonly IScreenSizeTracker _screenSizeTracker;
+        private readonly float _originalMinimumOrthoSize;
+        private readonly float _originalMaximumOrthoSize;
 
-        private float _effectiveMinimumOrtoSize;
-        private float _effectiveMaximumOrtoSize;
+        private float _effectiveMinimumOrthoSize;
+        private float _effectiveMaximumOrthoSize;
         private float _lastAspect;
         private bool _isPortrait;
 
-        public GameSceneCameraOrientationAdapter(Camera camera, IUpdater updater, ICameraConfig config)
+        public GameSceneCameraOrientationAdapter(
+            Camera camera, 
+            IScreenSizeTracker screenSizeTracker, 
+            ICameraConfig config)
         {
             _camera = camera != null ? camera : throw new ArgumentNullException(nameof(camera));
-            _updater = updater ?? throw new ArgumentNullException(nameof(updater));
+            _screenSizeTracker = screenSizeTracker ?? throw new ArgumentNullException(nameof(screenSizeTracker));
 
             if (config == null)
                 throw new ArgumentNullException(nameof(config));
 
-            _originalMinimumOrtoSize = config.MinimumOrtoSize;
-            _originalMaximumOrtoSize = config.MaximumOrtoSize;
+            _originalMinimumOrthoSize = config.MinimumOrtoSize;
+            _originalMaximumOrthoSize = config.MaximumOrtoSize;
 
-            if (_originalMinimumOrtoSize < 0)
-                throw new ArgumentOutOfRangeException(nameof(_originalMinimumOrtoSize), _originalMinimumOrtoSize, "Value must be positive");
+            if (_originalMinimumOrthoSize < 0)
+                throw new ArgumentOutOfRangeException(nameof(_originalMinimumOrthoSize), _originalMinimumOrthoSize, "Value must be positive");
 
-            if (_originalMaximumOrtoSize < 0)
-                throw new ArgumentOutOfRangeException(nameof(_originalMaximumOrtoSize), _originalMaximumOrtoSize, "Value must be positive");
+            if (_originalMaximumOrthoSize < 0)
+                throw new ArgumentOutOfRangeException(nameof(_originalMaximumOrthoSize), _originalMaximumOrthoSize, "Value must be positive");
 
-            if (_originalMaximumOrtoSize <= _originalMinimumOrtoSize)
+            if (_originalMaximumOrthoSize <= _originalMinimumOrthoSize)
             {
                 throw new ArgumentException(
-                    $"MaximumOrtoSize ({_originalMaximumOrtoSize}) must be greater than MinimumOrtoSize ({_originalMinimumOrtoSize})",
+                    $"MaximumOrtoSize ({_originalMaximumOrthoSize}) must be greater than MinimumOrtoSize ({_originalMinimumOrthoSize})",
                     nameof(config));
             }
 
@@ -49,21 +51,76 @@ namespace BattleBase.Gameplay.CameraNavigation
             RecalculateEffectiveZoomBounds();
             AdjustCameraSizeToCurrentValue01();
 
-            _updater.Subscribe(OnUpdate, UpdateType.Update);
+            _screenSizeTracker.SizeChanged += OnSizeChanged;
         }
 
         public event Action Changed;
 
-        public float CurrentOrtoSize => _camera.orthographicSize;
+        public float CurrentOrthoSize => _camera.orthographicSize;
 
-        public float MinimumOrtoSize => _effectiveMinimumOrtoSize;
+        public float MinimumOrthoSize => _effectiveMinimumOrthoSize;
 
-        public float MaximumOrtoSize => _effectiveMaximumOrtoSize;
+        public float MaximumOrthoSize => _effectiveMaximumOrthoSize;
 
-        public void Dispose() =>
-            _updater?.Unsubscribe(OnUpdate, UpdateType.Update);
+        public void Dispose()
+        {
+            if (_screenSizeTracker != null)
+                _screenSizeTracker.SizeChanged -= OnSizeChanged;
+        }
 
-        private void OnUpdate()
+        private void RecalculateEffectiveZoomBounds()
+        {
+            if (_isPortrait)
+            {
+                float currentAspect = GetAspect();
+                float multiplier = ReferenceAspect / currentAspect;
+                _effectiveMinimumOrthoSize = _originalMinimumOrthoSize * multiplier;
+                _effectiveMaximumOrthoSize = _originalMaximumOrthoSize * multiplier;
+            }
+            else
+            {
+                int width = _screenSizeTracker.Width;
+                int height = _screenSizeTracker.Height;
+                float aspectRatio = (float)Mathf.Max(width, height) / Mathf.Min(width, height);
+                _effectiveMinimumOrthoSize = _originalMinimumOrthoSize * aspectRatio;
+                _effectiveMaximumOrthoSize = _originalMaximumOrthoSize * aspectRatio;
+            }
+        }
+
+        private void AdjustCameraSizeToCurrentValue01()
+        {
+            float currentValue01 = ComputeValue01(_camera.orthographicSize, _originalMinimumOrthoSize, _originalMaximumOrthoSize);
+            SetCameraSizeFromValue01(currentValue01);
+        }
+
+        private void SetCameraSizeFromValue01(float value01)
+        {
+            float newSize = ComputeSizeFromValue01(value01);
+            _camera.orthographicSize = Mathf.Clamp(newSize, _effectiveMinimumOrthoSize, _effectiveMaximumOrthoSize);
+            InvokeChanged();
+        }
+
+        private float ComputeValue01(float currentSize, float minimumBound, float maximumBound)
+        {
+            float range = maximumBound - minimumBound;
+
+            if (range <= float.Epsilon)
+                throw new ArgumentOutOfRangeException(nameof(range), range, "Value must be positive");
+
+            float normalized = (currentSize - minimumBound) / range;
+            return 1f - normalized;
+        }
+
+        private float GetAspect() =>
+            (float)_screenSizeTracker.Width / _screenSizeTracker.Height;
+
+        private void InvokeChanged() =>
+            Changed?.Invoke();
+
+        private float ComputeSizeFromValue01(float value01) =>
+            _effectiveMaximumOrthoSize - value01 * (_effectiveMaximumOrthoSize - _effectiveMinimumOrthoSize);
+
+        private void OnSizeChanged()
         {
             float currentAspect = GetAspect();
 
@@ -73,55 +130,9 @@ namespace BattleBase.Gameplay.CameraNavigation
             _lastAspect = currentAspect;
             _isPortrait = currentAspect < PortraitAspectThreshold;
 
-            float currentValue01 = ComputeValue01(_camera.orthographicSize, _effectiveMinimumOrtoSize, _effectiveMaximumOrtoSize);
+            float currentValue01 = ComputeValue01(_camera.orthographicSize, _effectiveMinimumOrthoSize, _effectiveMaximumOrthoSize);
             RecalculateEffectiveZoomBounds();
-            float newSize = _effectiveMaximumOrtoSize - currentValue01 * (_effectiveMaximumOrtoSize - _effectiveMinimumOrtoSize);
-            _camera.orthographicSize = Mathf.Clamp(newSize, _effectiveMinimumOrtoSize, _effectiveMaximumOrtoSize);
-
-            InvokeChanged();
+            SetCameraSizeFromValue01(currentValue01);
         }
-
-        private void RecalculateEffectiveZoomBounds()
-        {
-            if (_isPortrait)
-            {
-                float currentAspect = GetAspect();
-                float multiplier = ReferenceAspect / currentAspect;
-                _effectiveMinimumOrtoSize = _originalMinimumOrtoSize * multiplier;
-                _effectiveMaximumOrtoSize = _originalMaximumOrtoSize * multiplier;
-            }
-            else
-            {
-                float aspectRatio = (float)Mathf.Max(Screen.width, Screen.height) / Mathf.Min(Screen.width, Screen.height);
-                _effectiveMinimumOrtoSize = _originalMinimumOrtoSize * aspectRatio;
-                _effectiveMaximumOrtoSize = _originalMaximumOrtoSize * aspectRatio;
-            }
-        }
-
-        private void AdjustCameraSizeToCurrentValue01()
-        {
-            float currentValue01 = ComputeValue01(_camera.orthographicSize, _originalMinimumOrtoSize, _originalMaximumOrtoSize);
-            float newSize = _effectiveMaximumOrtoSize - currentValue01 * (_effectiveMaximumOrtoSize - _effectiveMinimumOrtoSize);
-            _camera.orthographicSize = Mathf.Clamp(newSize, _effectiveMinimumOrtoSize, _effectiveMaximumOrtoSize);
-
-            InvokeChanged();
-        }
-
-        private float ComputeValue01(float currentSize, float minimumBound, float maximumBound)
-        {
-            float range = maximumBound - minimumBound;
-
-            if (range <= 0f)
-                throw new ArgumentOutOfRangeException(nameof(range), range, "Value must be positive");
-
-            float normalized = (currentSize - minimumBound) / range;
-            return 1f - normalized;
-        }
-
-        private float GetAspect() =>
-            (float)Screen.width / Screen.height;
-
-        private void InvokeChanged() =>
-            Changed?.Invoke();
     }
 }
