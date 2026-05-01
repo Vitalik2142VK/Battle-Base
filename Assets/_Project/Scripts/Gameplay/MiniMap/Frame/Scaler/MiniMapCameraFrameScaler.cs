@@ -6,14 +6,16 @@ using VContainer;
 
 namespace BattleBase.Gameplay.MiniMap
 {
-    public class MiniMapCameraFrameHorizontalOrientationScaler : MonoBehaviour, IInjectable
+    [RequireComponent(typeof(MiniMapCameraFrame))]
+    public class MiniMapCameraFrameScaler : MonoBehaviour, IInjectable
     {
         [SerializeField] private MiniMapArea _area;
-        [SerializeField] private MiniMapCameraFrame _frame;
 
+        private MiniMapCameraFrame _frame;
         private ICameraAreaService _areaService;
         private ICameraZoom _cameraZoom;
         private IFrustumProjectionService _frustumProjectionService;
+        private IFrameSizeCalculator _calculator;
 
         [Inject]
         public void Construct(
@@ -24,6 +26,12 @@ namespace BattleBase.Gameplay.MiniMap
             _areaService = areaService ?? throw new ArgumentNullException(nameof(areaService));
             _cameraZoom = cameraZoom ?? throw new ArgumentNullException(nameof(cameraZoom));
             _frustumProjectionService = projectionService ?? throw new ArgumentNullException(nameof(projectionService));
+            
+            _frame = GetComponent<MiniMapCameraFrame>();
+
+            _calculator = _area.Orientation == ScreenOrientation.Vertical
+                    ? new VerticalFrameSizeCalculator()
+                    : new HorizontalFrameSizeCalculator();
         }
 
         private void OnEnable()
@@ -43,25 +51,19 @@ namespace BattleBase.Gameplay.MiniMap
 
         private void Refresh()
         {
-            float width = CalculateFrameSide(
-                _frustumProjectionService.CachedHeight,
-                _areaService.AreaBounds.size.z,
-                _area.Rect.width);
+            Bounds bounds = _areaService.AreaBounds;
 
-            float height = CalculateFrameSide(
-                _frustumProjectionService.CachedWidth,
-                _areaService.AreaBounds.size.x,
-                _area.Rect.height);
+            FrameSizeInput input = new()
+            {
+                FrustumSize = new Vector2(_frustumProjectionService.CachedWidth, _frustumProjectionService.CachedHeight),
+                WorldAreaSize = new Vector2(bounds.size.x, bounds.size.z),
+                MiniMapAreaSize = new Vector2(_area.Rect.width, _area.Rect.height),
+            };
 
-            _frame.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width);
-            _frame.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height);
-        }
+            Vector2 size = _calculator.Calculate(input);
 
-        private float CalculateFrameSide(float frustumSize, float worldAreaSize, float mapAreaSize)
-        {
-            float factor = frustumSize / worldAreaSize;
-
-            return mapAreaSize * factor;
+            _frame.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, size.x);
+            _frame.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, size.y);
         }
     }
 }

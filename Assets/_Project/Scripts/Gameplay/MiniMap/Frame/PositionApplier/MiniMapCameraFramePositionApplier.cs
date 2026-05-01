@@ -6,14 +6,16 @@ using VContainer;
 
 namespace BattleBase.Gameplay.MiniMap
 {
-    public class MiniMapCameraHorizontalFramePositionApplier : MonoBehaviour, IInjectable
+    [RequireComponent(typeof(MiniMapCameraFrame))]
+    public class MiniMapCameraFramePositionApplier : MonoBehaviour, IInjectable
     {
         [SerializeField] private MiniMapArea _miniMapArea;
-        [SerializeField] private MiniMapCameraFrame _cameraFrame;
 
+        private MiniMapCameraFrame _frame;
         private ICameraAreaService _cameraAreaService;
         private IFrustumProjectionService _frustumProjectionService;
         private ICameraTracker _cameraTracker;
+        private IFramePositionCalculator _calculator;
 
         [Inject]
         public void Construct(
@@ -24,6 +26,12 @@ namespace BattleBase.Gameplay.MiniMap
             _cameraTracker = cameraTracker ?? throw new ArgumentNullException(nameof(cameraTracker));
             _cameraAreaService = cameraAreaService ?? throw new ArgumentNullException(nameof(cameraAreaService));
             _frustumProjectionService = frustumProjectionService ?? throw new ArgumentNullException(nameof(frustumProjectionService));
+
+            _frame = GetComponent<MiniMapCameraFrame>();
+
+            _calculator = _miniMapArea.Orientation == ScreenOrientation.Vertical
+                ? new VerticalFramePositionCalculator()
+                : new HorizontalFramePositionCalculator();
         }
 
         private void OnEnable()
@@ -47,17 +55,15 @@ namespace BattleBase.Gameplay.MiniMap
 
         private void UpdatePosition()
         {
-            Vector3 worldCenter = _frustumProjectionService.ProjectedCenter;
-            Bounds bounds = _cameraAreaService.AreaBounds;
+            FramePositionInput input = new()
+            {
+                WorldCenter = _frustumProjectionService.ProjectedCenter,
+                AreaBounds = _cameraAreaService.AreaBounds,
+                MiniMapRect = _miniMapArea.Rect
+            };
 
-            float normalizedX = (worldCenter.z - bounds.min.z) / bounds.size.z;
-            float normalizedZ = (worldCenter.x - bounds.min.x) / bounds.size.x;
-
-            Rect miniMapRect = _miniMapArea.Rect;
-            float x = (normalizedX - 0.5f) * miniMapRect.width;
-            float y = (normalizedZ - 0.5f) * miniMapRect.height;
-
-            _cameraFrame.SetAnchoredPosition(new Vector2(x, y));
+            Vector2 position = _calculator.Calculate(input);
+            _frame.SetAnchoredPosition(position);
         }
     }
 }
