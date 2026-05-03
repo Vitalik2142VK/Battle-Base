@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9a1580139508a1468122a054bd64185, type: 3}
-  m_Name: GameSceneCameraConfig
+  m_Script: {fileID: 11500000, guid: 4f2479b43d54e674cb82d248610b2fe9, type: 3}
+  m_Name: GameSceneMouseCameraInputReaderConfig
   m_EditorClassIdentifier: 
-  _restoreSpeed: 60
-  _zoomSpeed: 1
-  _minimumOrtoSize: 16
-  _maximumOrtoSize: 64
+  _keyboardSpeed: 5
+  _scrollSensitivity: 22
+  _dragDeltaThreshold: 0.01
+  _keyboardAxisThreshold: 0.01
+  _scrollThreshold: 0.001
+  _clickDragThreshold: 20

@@ -66,6 +66,9 @@ namespace BattleBase.Gameplay.CameraNavigation
             originalTransform.SetPositionAndRotation(originalPosition, originalRotation);
         }
 
+        public void RefreshNow() => 
+            RefreshCache(_cameraTransform.position);
+
         private Vector3 ProjectPointOntoPlane(Vector3 point, Plane plane)
         {
             Ray ray = new(point, _cameraTransform.forward);

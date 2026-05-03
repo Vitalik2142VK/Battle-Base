@@ -2317,10 +2317,10 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 500
+  far clip plane: 700
   field of view: 60
   orthographic: 1
-  orthographic size: 90
+  orthographic size: 64
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2467,7 +2467,7 @@ Transform:
   m_GameObject: {fileID: 1486590662}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 200, z: -513.5}
+  m_LocalPosition: {x: 0, y: 200, z: -569}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3075,9 +3075,9 @@ MonoBehaviour:
   _camera: {fileID: 1361096462}
   _cameraRig: {fileID: 1486590664}
   _cameraArea: {fileID: 693117467}
-  _mouseMapCameraConfig: {fileID: 11400000, guid: 778e6ba21d80b5e4ea1286d3b1aca86b,
+  _mouseMapCameraConfig: {fileID: 11400000, guid: 129379c278afc5a4e93dadecf284d349,
     type: 2}
-  _touchMapCameraConfig: {fileID: 11400000, guid: fcd90a5925a93074683c9a5cdba8a6b9,
+  _touchMapCameraConfig: {fileID: 11400000, guid: 8f4eb62c666b7634a928d3b6dd7244d4,
     type: 2}
   _cameraConfig: {fileID: 11400000, guid: 4349dcb7853171b4e862073638d35ea7, type: 2}
 --- !u!1 &1670939634

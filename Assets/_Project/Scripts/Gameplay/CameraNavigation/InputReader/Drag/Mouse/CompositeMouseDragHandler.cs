@@ -19,6 +19,7 @@ namespace BattleBase.Gameplay.CameraNavigation.InputReader
         public Vector3? Update(float deltaTime)
         {
             Vector3? mouseDelta = _mouseDragHandler.Update();
+
             if (mouseDelta.HasValue)
                 return mouseDelta;
 

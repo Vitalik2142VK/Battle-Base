@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace BattleBase.Gameplay.CameraNavigation
 {
-
     public interface IFrustumProjectionService
     {
         public event Action Changed;
@@ -16,6 +15,8 @@ namespace BattleBase.Gameplay.CameraNavigation
         public float CachedHeight { get; }
 
         public float CachedWidth { get; }
+
+        public void RefreshNow();
 
         public void ProjectCornersOntoPlaneFromPosition(Vector3 cameraPosition, List<Vector3> outCorners);
     }

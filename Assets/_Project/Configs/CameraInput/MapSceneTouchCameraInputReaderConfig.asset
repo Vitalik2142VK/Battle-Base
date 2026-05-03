@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9a1580139508a1468122a054bd64185, type: 3}
-  m_Name: GameSceneCameraConfig
+  m_Script: {fileID: 11500000, guid: 85cfa880e1aeae74880b7a70077a8a2b, type: 3}
+  m_Name: MapSceneTouchCameraInputReaderConfig
   m_EditorClassIdentifier: 
-  _restoreSpeed: 60
-  _zoomSpeed: 1
-  _minimumOrtoSize: 16
-  _maximumOrtoSize: 64
+  _zoomSensitivity: 0.004
+  _minPinchDistance: 10
+  _dragDeltaThreshold: 0.01
+  _clickDragThreshold: 10
