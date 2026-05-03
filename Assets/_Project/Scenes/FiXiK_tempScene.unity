@@ -641,7 +641,7 @@ GameObject:
   - component: {fileID: 464749660}
   - component: {fileID: 464749661}
   m_Layer: 0
-  m_Name: ReloadCurrentSceneCommand
+  m_Name: CommandReloadCurrentScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -685,7 +685,7 @@ GameObject:
   - component: {fileID: 508073688}
   - component: {fileID: 508073689}
   m_Layer: 0
-  m_Name: PlayGameMusicCommand
+  m_Name: CommandPlayGameMusic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -730,7 +730,7 @@ GameObject:
   - component: {fileID: 589091745}
   - component: {fileID: 589091746}
   m_Layer: 0
-  m_Name: HideAllPopUpCommand
+  m_Name: CommandHideAllPopUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -787,7 +787,7 @@ GameObject:
   - component: {fileID: 610110813}
   - component: {fileID: 610110814}
   m_Layer: 0
-  m_Name: InitAllPopUpsCommand
+  m_Name: CommandInitAllPopUps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1151,7 +1151,7 @@ GameObject:
   - component: {fileID: 702927996}
   - component: {fileID: 702927997}
   m_Layer: 0
-  m_Name: ShowPauseBoxPopUpCommand
+  m_Name: CommandShowPauseBoxPopUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1198,7 +1198,7 @@ GameObject:
   - component: {fileID: 726934591}
   - component: {fileID: 726934592}
   m_Layer: 0
-  m_Name: PauseGameCommand
+  m_Name: CommandPauseGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1242,7 +1242,7 @@ GameObject:
   - component: {fileID: 742587571}
   - component: {fileID: 742587570}
   m_Layer: 0
-  m_Name: PlayAudioPopUpEnterCommand
+  m_Name: CommandPlayAudioPopUpEnter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1287,7 +1287,7 @@ GameObject:
   - component: {fileID: 749841361}
   - component: {fileID: 749841362}
   m_Layer: 0
-  m_Name: ShowAnticlickerCommand
+  m_Name: CommandShowAnticlicker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1805,7 +1805,7 @@ GameObject:
   - component: {fileID: 979302679}
   - component: {fileID: 979302680}
   m_Layer: 0
-  m_Name: NextLanguageCommand
+  m_Name: CommandNextLanguage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2224,7 +2224,7 @@ GameObject:
   - component: {fileID: 1278902335}
   - component: {fileID: 1278902334}
   m_Layer: 0
-  m_Name: PlayAudioButtonClickCommand
+  m_Name: CommandPlayAudioButtonClick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2591,7 +2591,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!1 &1504405562
 GameObject:
@@ -2638,7 +2638,7 @@ GameObject:
   - component: {fileID: 1562034126}
   - component: {fileID: 1562034127}
   m_Layer: 0
-  m_Name: ShowPauseGamePopUpCommand
+  m_Name: CommandShowPauseGamePopUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2685,7 +2685,7 @@ GameObject:
   - component: {fileID: 1584913895}
   - component: {fileID: 1584913896}
   m_Layer: 0
-  m_Name: ResumeGameCommand
+  m_Name: CommandResumeGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2729,7 +2729,7 @@ GameObject:
   - component: {fileID: 1601365666}
   - component: {fileID: 1601365667}
   m_Layer: 0
-  m_Name: PreviosLanguageCommand
+  m_Name: CommandPreviosLanguage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3197,7 +3197,7 @@ GameObject:
   - component: {fileID: 1681788441}
   - component: {fileID: 1681788442}
   m_Layer: 0
-  m_Name: ShowDialogResetProgressCommand
+  m_Name: CommandShowDialogResetProgress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3244,7 +3244,7 @@ GameObject:
   - component: {fileID: 1686120767}
   - component: {fileID: 1686120766}
   m_Layer: 0
-  m_Name: ShowSettingsPopUpCommand
+  m_Name: CommandShowSettingsPopUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4070,7 +4070,7 @@ GameObject:
   - component: {fileID: 1911615918}
   - component: {fileID: 1911615919}
   m_Layer: 0
-  m_Name: LoadMenuSceneCommand
+  m_Name: CommandLoadMenuScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4114,7 +4114,7 @@ GameObject:
   - component: {fileID: 1951402863}
   - component: {fileID: 1951402864}
   m_Layer: 0
-  m_Name: RebuildLayoutButtonResetProgressCommand
+  m_Name: CommandRebuildLayoutButtonResetProgress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4147,7 +4147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef4262c73817b04694ddec9fdcc7c96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rectTransform: {fileID: 1797456459}
+  _rectTransformList:
+  - {fileID: 1797456459}
 --- !u!1 &1990416121
 GameObject:
   m_ObjectHideFlags: 0
@@ -4265,7 +4266,7 @@ GameObject:
   - component: {fileID: 2018028510}
   - component: {fileID: 2018028509}
   m_Layer: 0
-  m_Name: ResetProgressCommand
+  m_Name: CommandResetProgress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

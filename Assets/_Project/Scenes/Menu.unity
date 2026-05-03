@@ -1013,7 +1013,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef4262c73817b04694ddec9fdcc7c96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rectTransform: {fileID: 184710744}
+  _rectTransformList:
+  - {fileID: 184710744}
 --- !u!4 &395697106
 Transform:
   m_ObjectHideFlags: 0

@@ -17,6 +17,7 @@ namespace BattleBase.DI
         [SerializeField] private CameraArea _cameraArea;
         [SerializeField] private TerritorySelectPopUp _territorySelectPopUpPrefab;
         [SerializeField] private CommandLoadGameScene _commandLoadGameScene;
+        [SerializeField] private CommandRebuildLayout _commandRebuildLayout;
         [SerializeField] private MouseInputConfig _mouseMapCameraConfig;
         [SerializeField] private TouchInputConfig _touchMapCameraConfig;
         [SerializeField] private CameraConfig _cameraConfig;
@@ -37,6 +38,7 @@ namespace BattleBase.DI
         private void RegisterCommands()
         {
             _builder.RegisterComponent(_commandLoadGameScene);
+            _builder.RegisterComponent(_commandRebuildLayout);
         }
 
         private void RegisterCameraSystem()
