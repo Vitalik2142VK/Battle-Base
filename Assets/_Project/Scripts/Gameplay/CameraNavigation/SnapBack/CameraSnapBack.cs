@@ -31,14 +31,19 @@ namespace BattleBase.Gameplay.CameraNavigation
 
         public void Restore(Transform cameraTransform, float deltaTime)
         {
-            if (cameraTransform == null)
-                throw new ArgumentNullException(nameof(cameraTransform));
+            Vector3 correction = GetCorrection(cameraTransform.position);
 
-            if (deltaTime < 0)
-                throw new ArgumentOutOfRangeException(nameof(deltaTime), deltaTime, "Value must be positive");
+            if (correction != Vector3.zero)
+            {
+                Vector3 targetPos = _cameraRig.position + correction;
+                _cameraRig.position = Vector3.MoveTowards(_cameraRig.position, targetPos, _restoreSpeed * deltaTime);
+            }
+        }
 
+        public Vector3 GetCorrection(Vector3 position)
+        {
             List<Vector3> corners = new();
-            _frustumProjectionService.ProjectCornersOntoPlaneFromPosition(cameraTransform.position, corners);
+            _frustumProjectionService.ProjectCornersOntoPlaneFromPosition(position, corners);
 
             Bounds bounds = _cameraAreaService.AreaBounds;
             Vector2 minMaxX = GetMinMax(corners, true);
@@ -46,24 +51,16 @@ namespace BattleBase.Gameplay.CameraNavigation
             Vector3 correction = Vector3.zero;
 
             correction.x = CalculateCorrection(
-                minMaxX.x,
-                minMaxX.y,
-                bounds.min.x,
-                bounds.max.x,
+                minMaxX.x, minMaxX.y,
+                bounds.min.x, bounds.max.x,
                 bounds.center.x);
 
             correction.z = CalculateCorrection(
-                minMaxZ.x,
-                minMaxZ.y,
-                bounds.min.z,
-                bounds.max.z,
+                minMaxZ.x, minMaxZ.y,
+                bounds.min.z, bounds.max.z,
                 bounds.center.z);
 
-            if (correction != Vector3.zero)
-            {
-                Vector3 targetPos = _cameraRig.position + correction;
-                _cameraRig.position = Vector3.MoveTowards(_cameraRig.position, targetPos, _restoreSpeed * deltaTime);
-            }
+            return correction;
         }
 
         private Vector2 GetMinMax(List<Vector3> corners, bool isX)

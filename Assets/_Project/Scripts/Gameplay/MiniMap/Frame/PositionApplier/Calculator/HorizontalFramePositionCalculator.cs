@@ -10,7 +10,7 @@ namespace BattleBase.Gameplay.MiniMap
             float normalizedZ = (input.WorldCenter.x - input.AreaBounds.min.x) / input.AreaBounds.size.x;
 
             float x = (normalizedX - 0.5f) * input.MiniMapRect.width;
-            float y = (normalizedZ - 0.5f) * input.MiniMapRect.height;
+            float y = (0.5f - normalizedZ) * input.MiniMapRect.height;
 
             return new(x, y);
         }

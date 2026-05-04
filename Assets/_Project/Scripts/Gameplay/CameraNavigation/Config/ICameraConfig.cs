@@ -9,5 +9,7 @@ namespace BattleBase.Gameplay.CameraNavigation
         public float MinimumOrtoSize { get; }
 
         public float MaximumOrtoSize { get; }
+
+        public float InertiaDamping { get; }
     }
 }

@@ -16,3 +16,4 @@ MonoBehaviour:
   _zoomSpeed: 1
   _minimumOrtoSize: 16
   _maximumOrtoSize: 64
+  _inertiaDamping: 2

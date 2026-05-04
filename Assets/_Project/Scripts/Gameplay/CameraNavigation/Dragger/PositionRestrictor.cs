@@ -17,9 +17,6 @@ namespace BattleBase.Gameplay.CameraNavigation
         {
             if (VectorValidation.IsValid(desiredPosition) == false)
                 throw new ArgumentException($"Desired position is invalid (NaN or Infinity): {desiredPosition}", nameof(desiredPosition));
-            
-            if (VectorValidation.IsValid(currentPosition) == false)
-                throw new ArgumentException($"Current position is invalid (NaN or Infinity): {currentPosition}", nameof(currentPosition));
 
             Vector3 result = currentPosition;
 
@@ -27,6 +24,32 @@ namespace BattleBase.Gameplay.CameraNavigation
                 result.x = desiredPosition.x;
 
             if (_boundsLimiter.IsWithinBoundsZ(desiredPosition))
+                result.z = desiredPosition.z;
+
+            return result;
+        }
+
+        public Vector3 RestrictX(Vector3 desiredPosition, Vector3 currentPosition)
+        {
+            if (VectorValidation.IsValid(desiredPosition) == false)
+                throw new ArgumentException($"Desired position is invalid (NaN or Infinity): {desiredPosition}", nameof(desiredPosition));
+
+            Vector3 result = currentPosition;
+
+            if (_boundsLimiter.IsWithinBoundsX(desiredPosition))
+                result.x = desiredPosition.x;
+
+            return result;
+        }
+
+        public Vector3 RestrictZ(Vector3 desiredPosition, Vector3 currentPosition)
+        {
+            if (VectorValidation.IsValid(desiredPosition) == false)
+                throw new ArgumentException($"Desired position is invalid (NaN or Infinity): {desiredPosition}", nameof(desiredPosition));
+
+            Vector3 result = currentPosition;
+
+            if (_boundsLimiter.IsWithinBoundsX(desiredPosition))
                 result.z = desiredPosition.z;
 
             return result;

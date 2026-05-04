@@ -20,7 +20,7 @@ namespace FiXiK.SceneBrowserWindow.Editor
         public const string OpenEyeTextureTooltip = "Скрыть из избранного";
         public const string ClosedEyeTextureTooltip = "Перенести в избранное";
         public const string HiddenSceneBlockName = "Остальные сцены";
-        public const string Version = "1.0.3";
+        public const string Version = "1.0.4";
 
         public const int LabelHeight = 25;
     }

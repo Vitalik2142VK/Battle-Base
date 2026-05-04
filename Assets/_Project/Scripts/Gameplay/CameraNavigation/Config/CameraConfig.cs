@@ -12,6 +12,7 @@ namespace BattleBase.Gameplay.CameraNavigation
         [SerializeField][Min(0f)] private float _zoomSpeed = 1;
         [SerializeField][Min(0f)] private float _minimumOrtoSize = 0.3f;
         [SerializeField][Min(0f)] private float _maximumOrtoSize = 1.2f;
+        [SerializeField][Min(0f)] private float _inertiaDamping = 5f;
 
         public float RestoreSpeed => _restoreSpeed;
 
@@ -20,5 +21,7 @@ namespace BattleBase.Gameplay.CameraNavigation
         public float MinimumOrtoSize => _minimumOrtoSize;
 
         public float MaximumOrtoSize => _maximumOrtoSize;
+
+        public float InertiaDamping => _inertiaDamping;
     }
 }
