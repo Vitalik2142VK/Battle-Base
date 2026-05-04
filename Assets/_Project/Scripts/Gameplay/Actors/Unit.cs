@@ -1,10 +1,9 @@
 ﻿using BattleBase.Core;
-using BattleBase.Gameplay.DamageSystem;
-using BattleBase.Gameplay.HealthSystem;
-using BattleBase.Gameplay.Movement;
-using BattleBase.Gameplay.Weapons;
+using BattleBase.Gameplay.Actors.DamageSystem;
+using BattleBase.Gameplay.Actors.HealthSystem;
+using BattleBase.Gameplay.Actors.Movement;
+using BattleBase.Gameplay.Actors.Weapons;
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors
@@ -12,7 +11,7 @@ namespace BattleBase.Gameplay.Actors
     //todo Split into view and model
     public class Unit : MonoBehaviour, IUnit, IPoolable<Unit>
     {
-        [SerializeField] private UnitConfig _config;
+        [SerializeField] private ActorConfig _config;
         [SerializeField] private Mover _mover;
         [SerializeField] private Tower _tower;
         [SerializeField] private HealthBar _healthBar;
@@ -37,12 +36,13 @@ namespace BattleBase.Gameplay.Actors
         private void Awake()
         {
             DamageModifier damageModifier = new();
-            _healthBar.Init();
-            _mover.Init(_config.MovementConfig);
 
             _transform = transform;
-            _health = new Health(_config.HealthConfig, _healthBar, damageModifier);
+            //_health = new Health(_config.HealthConfig, damageModifier);
             _weapon = new Weapon(_config.WeaponConfig, _weaponView, _tower, this);
+
+            _healthBar.Init(_health);
+            _mover.Init(_config.MovementConfig);
         }
 
         private void OnEnable()

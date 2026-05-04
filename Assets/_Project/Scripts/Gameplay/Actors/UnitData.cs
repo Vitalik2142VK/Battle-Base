@@ -1,13 +1,10 @@
 ﻿using BattleBase.Localization;
-using BattleBase.Utils;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors
 {
-    [CreateAssetMenu(
-    fileName = nameof(UnitData),
-    menuName = Constants.ConfigsAssetMenuPath + nameof(UnitConfig) + "/" + nameof(UnitData))]
-    public class UnitData : ScriptableObject, IUnitData
+    [System.Serializable]
+    public class UnitData : IUnitData
     {
         [SerializeField] private Sprite _icon;
         [SerializeField] private LanguageTextsSet _name;

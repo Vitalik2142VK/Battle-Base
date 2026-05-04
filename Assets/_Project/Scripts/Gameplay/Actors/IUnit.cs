@@ -1,5 +1,5 @@
-﻿using BattleBase.Gameplay.DamageSystem;
-using BattleBase.Gameplay.Weapons;
+﻿using BattleBase.Gameplay.Actors.DamageSystem;
+using BattleBase.Gameplay.Actors.Weapons;
 
 namespace BattleBase.Gameplay.Actors
 {

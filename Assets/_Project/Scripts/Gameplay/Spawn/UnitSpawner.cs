@@ -1,7 +1,6 @@
 using BattleBase.Core;
 using BattleBase.Gameplay.Actors;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Spawn
@@ -29,7 +28,7 @@ namespace BattleBase.Gameplay.Spawn
             _pool = new Pool<Unit>(_factory);
         }
 
-        public void Start()
+        private void Start()
         {
             StartCoroutine(Spawn());
         }
