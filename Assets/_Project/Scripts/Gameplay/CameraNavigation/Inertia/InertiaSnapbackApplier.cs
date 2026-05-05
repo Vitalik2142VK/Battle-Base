@@ -35,6 +35,12 @@ namespace BattleBase.Gameplay.CameraNavigation
             _inertiaForward = new(config);
         }
 
+        public void ResetInertia()
+        {
+            _inertiaRight.ResetInertia();
+            _inertiaForward.ResetInertia();
+        }
+
         public void UpdateInertia(Vector3 worldDragDelta, float deltaTime)
         {
             if (deltaTime < 0)

@@ -8,14 +8,25 @@ namespace BattleBase.Gameplay.CameraNavigation
         private readonly IDragApplier _dragApplier;
         private readonly IInertiaSnapbackApplier _inertiaApplier;
 
+        private bool _enabled;
+
         public CameraDragger(IDragApplier dragApplier, IInertiaSnapbackApplier inertiaSnapbackApplier)
         {
             _dragApplier = dragApplier ?? throw new ArgumentNullException(nameof(dragApplier));
             _inertiaApplier = inertiaSnapbackApplier ?? throw new ArgumentNullException(nameof(inertiaSnapbackApplier));
         }
 
+        public void Enable() =>
+            _enabled = true;
+
+        public void Disable() =>
+            _enabled = false;
+
         public void Update(float deltaTime, Vector3? worldDragDelta)
         {
+            if(_enabled == false)
+                return;
+
             if (deltaTime < 0)
                 throw new ArgumentOutOfRangeException(nameof(deltaTime));
 

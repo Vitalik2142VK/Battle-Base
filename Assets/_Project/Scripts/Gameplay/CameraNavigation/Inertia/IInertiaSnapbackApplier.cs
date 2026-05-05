@@ -7,5 +7,7 @@ namespace BattleBase.Gameplay.CameraNavigation
         public void UpdateInertia(Vector3 worldDragDelta, float deltaTime);
 
         public void Apply(float deltaTime);
+
+        public void ResetInertia();
     }
 }

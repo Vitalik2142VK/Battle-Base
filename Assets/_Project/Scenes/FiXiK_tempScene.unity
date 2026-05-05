@@ -942,7 +942,7 @@ MonoBehaviour:
   _collider: {fileID: 693117468}
   _resistanceFadeDistance: 20
   _resistance: 1
-  _isStaticSizeCollider: 0
+  _isStaticSizeCollider: 1
   _cameraConfig: {fileID: 11400000, guid: 4349dcb7853171b4e862073638d35ea7, type: 2}
   _shouldDrawGizmos: 1
 --- !u!65 &693117468
@@ -3080,7 +3080,6 @@ MonoBehaviour:
     type: 2}
   _touchMapCameraConfig: {fileID: 11400000, guid: 8f4eb62c666b7634a928d3b6dd7244d4,
     type: 2}
-  _cameraConfig: {fileID: 11400000, guid: 4349dcb7853171b4e862073638d35ea7, type: 2}
 --- !u!1 &1670939634
 GameObject:
   m_ObjectHideFlags: 0

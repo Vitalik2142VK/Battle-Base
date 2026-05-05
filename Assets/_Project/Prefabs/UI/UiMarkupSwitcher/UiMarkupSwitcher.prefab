@@ -453,6 +453,7 @@ GameObject:
   - component: {fileID: 8258027290236501325}
   - component: {fileID: 7352207918594504528}
   - component: {fileID: 6329971407564317078}
+  - component: {fileID: 4240742305314874243}
   m_Layer: 5
   m_Name: MiniMapArea
   m_TagString: Untagged
@@ -545,6 +546,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 738067c5c34a39c4199d95182dede2a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4240742305314874243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733054883535720771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d817fe0b5a1024da3675216973d96f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _miniMapArea: {fileID: 7352207918594504528}
 --- !u!1 &1744197188766175318
 GameObject:
   m_ObjectHideFlags: 0
@@ -1100,7 +1114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.99621856, g: 1, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1204,6 +1218,7 @@ GameObject:
   - component: {fileID: 8595430762434449897}
   - component: {fileID: 8930082244728957441}
   - component: {fileID: 5995647649115902931}
+  - component: {fileID: 589390876624373876}
   m_Layer: 5
   m_Name: MiniMapArea
   m_TagString: Untagged
@@ -1296,6 +1311,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 738067c5c34a39c4199d95182dede2a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &589390876624373876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4727705573856993000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d817fe0b5a1024da3675216973d96f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _miniMapArea: {fileID: 8930082244728957441}
 --- !u!1 &5198174553422253200
 GameObject:
   m_ObjectHideFlags: 0
@@ -1803,7 +1831,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.99621856, g: 1, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
