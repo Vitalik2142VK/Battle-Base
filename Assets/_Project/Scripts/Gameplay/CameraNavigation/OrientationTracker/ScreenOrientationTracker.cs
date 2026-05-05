@@ -4,15 +4,13 @@ namespace BattleBase.Gameplay.CameraNavigation
 {
     public class ScreenOrientationTracker : IScreenOrientationTracker, IDisposable
     {
-        private const float PortraitAspectThreshold = 1f;
-
         private readonly IScreenSizeTracker _screenSizeTracker;
 
         public ScreenOrientationTracker(IScreenSizeTracker screenSizeTracker)
         {
             _screenSizeTracker = screenSizeTracker ?? throw new ArgumentNullException(nameof(screenSizeTracker));
 
-            IsPortrait = GetCurrentIsPortrait();
+            IsPortrait = IsCurrentOrientationPortrait();
             _screenSizeTracker.SizeChanged += OnSizeChanged;
         }
 
@@ -27,16 +25,12 @@ namespace BattleBase.Gameplay.CameraNavigation
         public void Dispose() =>
             _screenSizeTracker.SizeChanged -= OnSizeChanged;
 
-        private bool GetCurrentIsPortrait()
-        {
-            float aspect = (float)_screenSizeTracker.Width / _screenSizeTracker.Height;
-            
-            return aspect < PortraitAspectThreshold;
-        }
+        private bool IsCurrentOrientationPortrait() =>
+            _screenSizeTracker.Height > _screenSizeTracker.Width;
 
         private void OnSizeChanged()
         {
-            bool currentIsPortrait = GetCurrentIsPortrait();
+            bool currentIsPortrait = IsCurrentOrientationPortrait();
 
             if (currentIsPortrait == IsPortrait)
                 return;

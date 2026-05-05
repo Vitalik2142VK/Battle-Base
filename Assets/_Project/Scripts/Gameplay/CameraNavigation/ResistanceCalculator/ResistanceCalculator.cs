@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BattleBase.Gameplay.CameraNavigation
 {
-    public class ResistanceCalculator
+    public class ResistanceCalculator : IResistanceCalculator
     {
         private readonly ICameraBoundsLimiter _boundsLimiter;
         private readonly ICameraAreaService _cameraAreaService;

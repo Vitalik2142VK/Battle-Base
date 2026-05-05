@@ -6,22 +6,20 @@ namespace BattleBase.Gameplay.CameraNavigation
 {
     public sealed class CameraTracker : ICameraTracker, IDisposable
     {
-        private const float PositionSqrThreshold = 0.0001f;
-        private const float RotationAngleThreshold = 0.01f;
-        private const float OrthoSizeThreshold = 0.0001f;
-
         private static readonly UpdateType s_UpdateType = UpdateType.Update;
 
         private readonly Camera _camera;
         private readonly Transform _cameraTransform;
         private readonly IUpdater _updater;
+        private readonly ICameraTrackingConfig _config;
 
-        public CameraTracker(Camera camera, IUpdater updater)
+        public CameraTracker(Camera camera, IUpdater updater, ICameraTrackingConfig config)
         {
             _camera = camera != null ? camera : throw new ArgumentNullException(nameof(camera));
             _updater = updater ?? throw new ArgumentNullException(nameof(updater));
-            _cameraTransform = camera.transform;
+            _config = config ?? throw new ArgumentNullException(nameof(config));
 
+            _cameraTransform = camera.transform;
             CachedPosition = _cameraTransform.position;
             CachedRotation = _cameraTransform.rotation;
             CachedOrthoSize = _camera.orthographicSize;
@@ -46,7 +44,7 @@ namespace BattleBase.Gameplay.CameraNavigation
         {
             Vector3 currentPosition = _cameraTransform.position;
 
-            if ((currentPosition - CachedPosition).sqrMagnitude > PositionSqrThreshold)
+            if ((currentPosition - CachedPosition).sqrMagnitude > _config.PositionSqrThreshold)
             {
                 CachedPosition = currentPosition;
                 PositionChanged?.Invoke();
@@ -55,13 +53,13 @@ namespace BattleBase.Gameplay.CameraNavigation
             Quaternion currentRotation = _cameraTransform.rotation;
             float angle = Quaternion.Angle(currentRotation, CachedRotation);
 
-            if (angle > RotationAngleThreshold)
+            if (angle > _config.RotationAngleThreshold)
             {
                 CachedRotation = currentRotation;
                 RotationChanged?.Invoke();
             }
 
-            if (Math.Abs(_camera.orthographicSize - CachedOrthoSize) > OrthoSizeThreshold)
+            if (Math.Abs(_camera.orthographicSize - CachedOrthoSize) > _config.OrthoSizeThreshold)
             {
                 CachedOrthoSize = _camera.orthographicSize;
                 OrthoSizeChanged?.Invoke();

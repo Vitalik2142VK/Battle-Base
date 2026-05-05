@@ -10,13 +10,15 @@ namespace BattleBase.Gameplay.CameraNavigation
         [SerializeField][Min(0)] private float _resistanceFadeDistance = 0.5f;
         [SerializeField][Range(0f, 1f)] private float _resistance = 0.8f;
         [SerializeField] private bool _isStaticSizeCollider;
+        [SerializeField] private CameraConfig _cameraConfig;
+
+#if UNITY_EDITOR
+        [SerializeField] private bool _shouldDrawGizmos;
+#endif
 
         private Vector3 _cachedColliderSize;
         private Vector3 _cachedColliderCenter;
         private Vector3 _cachedLocalScale;
-
-        [Header("Debug")]
-        [SerializeField] private bool _shouldDrawGizmos;
 
         public event Action Changed;
 
@@ -24,7 +26,11 @@ namespace BattleBase.Gameplay.CameraNavigation
 
         public float ResistanceFadeDistance => _resistanceFadeDistance;
 
+        public CameraConfig Config => _cameraConfig;
+
+#if UNITY_EDITOR
         public bool ShouldDrawGizmos => _shouldDrawGizmos;
+#endif
 
         public BoxCollider Collider
         {
@@ -54,11 +60,10 @@ namespace BattleBase.Gameplay.CameraNavigation
             if (_collider == null)
                 return;
 
-            if (_collider.size != _cachedColliderSize 
-                || _collider.center != _cachedColliderCenter 
+            if (_collider.size != _cachedColliderSize
+                || _collider.center != _cachedColliderCenter
                 || transform.localScale != _cachedLocalScale)
             {
-                Debug.Log($"Collider changed: size {_collider.size} vs cached {_cachedColliderSize}");
                 CacheColliderSize();
                 InvokeChange();
             }

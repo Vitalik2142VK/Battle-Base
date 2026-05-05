@@ -17,7 +17,7 @@ namespace BattleBase.Gameplay.CameraNavigation
         public MapSceneCameraOrientationAdapter(
             Camera camera, 
             IScreenOrientationTracker orientationTracker, 
-            ICameraConfig config)
+            IOrthographicSizeConfig config)
         {
             _camera = camera != null ? camera : throw new ArgumentNullException(nameof(camera));
             _orientationTracker = orientationTracker ?? throw new ArgumentNullException(nameof(orientationTracker));
@@ -25,8 +25,8 @@ namespace BattleBase.Gameplay.CameraNavigation
             if (config == null)
                 throw new ArgumentNullException(nameof(config));
 
-            _originalMinimumOrthoSize = config.MinimumOrtoSize;
-            _originalMaximumOrthoSize = config.MaximumOrtoSize;
+            _originalMinimumOrthoSize = config.MinimumOrthoSize;
+            _originalMaximumOrthoSize = config.MaximumOrthoSize;
 
             if (_originalMinimumOrthoSize < 0)
                 throw new ArgumentOutOfRangeException(nameof(_originalMinimumOrthoSize), _originalMinimumOrthoSize, "Value must be positive");

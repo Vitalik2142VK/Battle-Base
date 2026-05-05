@@ -14,7 +14,6 @@ namespace BattleBase.DI
         [SerializeField] private CameraArea _cameraArea;
         [SerializeField] private MouseInputConfig _mouseMapCameraConfig;
         [SerializeField] private TouchInputConfig _touchMapCameraConfig;
-        [SerializeField] private CameraConfig _cameraConfig;
 
         private IContainerBuilder _builder;
 
@@ -31,20 +30,24 @@ namespace BattleBase.DI
             _builder.RegisterComponent(_camera);
             _builder.RegisterComponent(_cameraRig);
             _builder.RegisterComponent<ICameraArea>(_cameraArea);
-            _builder.RegisterComponent<ICameraConfig>(_cameraConfig);
+            _builder.RegisterComponent(_cameraArea.Config).AsImplementedInterfaces();
 
-            _builder.Register<IUIPointerChecker, UIPointerChecker>(Lifetime.Scoped);
+            _builder.Register<ICameraTracker, CameraTracker>(Lifetime.Scoped);
+            _builder.Register<IFrustumProjectionService, FrustumProjectionService>(Lifetime.Scoped);
+            _builder.Register<ICameraAreaService, CameraAreaService>(Lifetime.Scoped);
             _builder.Register<ICameraSnapBack, CameraSnapBack>(Lifetime.Scoped);
+            _builder.Register<IUIPointerChecker, UIPointerChecker>(Lifetime.Scoped);
             _builder.Register<ICameraBoundsLimiter, CameraBoundsLimiter>(Lifetime.Scoped);
             _builder.Register<IVerticalFactorCalculator, VerticalFactorCalculator>(Lifetime.Scoped);
             _builder.Register<ICameraOrientationAdapter, GameSceneCameraOrientationAdapter>(Lifetime.Scoped);
             _builder.Register<IScreenSizeTracker, ScreenSizeTracker>(Lifetime.Scoped);
             _builder.Register<IScreenOrientationTracker, ScreenOrientationTracker>(Lifetime.Scoped);
-            _builder.Register<ICameraTracker, CameraTracker>(Lifetime.Scoped);
-            _builder.Register<IFrustumProjectionService, FrustumProjectionService>(Lifetime.Scoped);
             _builder.Register<ICameraZoom, CameraZoom>(Lifetime.Scoped);
             _builder.Register<ICameraDragger, CameraDragger>(Lifetime.Scoped);
-            _builder.Register<ICameraAreaService, CameraAreaService>(Lifetime.Scoped);
+            _builder.Register<IPositionRestrictor, PositionRestrictor>(Lifetime.Scoped);
+            _builder.Register<IResistanceCalculator, ResistanceCalculator>(Lifetime.Scoped);
+            _builder.Register<IDragApplier, DragApplier>(Lifetime.Scoped);
+            _builder.Register<IInertiaSnapbackApplier, InertiaSnapbackApplier>(Lifetime.Scoped);
         }
 
         private void RegisterCameraInputReader()

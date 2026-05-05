@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using BattleBase.Utils;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.CameraNavigation
@@ -11,41 +12,43 @@ namespace BattleBase.Gameplay.CameraNavigation
         private readonly Transform _cameraRig;
         private readonly IFrustumProjectionService _frustumProjectionService;
         private readonly ICameraAreaService _cameraAreaService;
-        private readonly float _restoreSpeed;
+        private readonly ICameraSnapBackConfig _snapBackConfig;
 
         public CameraSnapBack(
             CameraRig cameraRig,
             IFrustumProjectionService frustumProjectionService,
             ICameraAreaService cameraAreaService,
-            ICameraConfig config)
+            ICameraSnapBackConfig snapBackConfig)
         {
             _cameraRig = cameraRig != null ? cameraRig.transform : throw new ArgumentNullException(nameof(cameraRig));
             _frustumProjectionService = frustumProjectionService ?? throw new ArgumentNullException(nameof(frustumProjectionService));
             _cameraAreaService = cameraAreaService ?? throw new ArgumentNullException(nameof(cameraAreaService));
-
-            if (config == null)
-                throw new ArgumentNullException(nameof(config));
-
-            _restoreSpeed = config.RestoreSpeed;
+            _snapBackConfig = snapBackConfig ?? throw new ArgumentNullException(nameof(snapBackConfig));
         }
 
-        public void Restore(Transform cameraTransform, float deltaTime)
-        {
-            Vector3 correction = GetCorrection(cameraTransform.position);
+        public float Speed => _snapBackConfig.SnapBackSpeed;
 
-            if (correction != Vector3.zero)
-            {
-                Vector3 targetPos = _cameraRig.position + correction;
-                _cameraRig.position = Vector3.MoveTowards(_cameraRig.position, targetPos, _restoreSpeed * deltaTime);
-            }
+        public void ClampByOvershoot()
+        {
+            Vector3 position = _cameraRig.position;
+            Vector3 correction = GetCorrectionOvershootBounds(position);
+            _cameraRig.position = position + correction;
         }
 
-        public Vector3 GetCorrection(Vector3 position)
+        public Vector3 GetCorrectionAreaBounds(Vector3 position) =>
+            GetCorrectionBounds(_cameraAreaService.AreaBounds, position);
+
+        public Vector3 GetCorrectionOvershootBounds(Vector3 position) =>
+            GetCorrectionBounds(_cameraAreaService.OvershootBounds, position);
+
+        public Vector3 GetCorrectionBounds(Bounds bounds, Vector3 position)
         {
+            if (VectorValidation.IsValid(position) == false)
+                throw new ArgumentException($"Position is invalid (NaN or Infinity): {position}", nameof(position));
+
             List<Vector3> corners = new();
             _frustumProjectionService.ProjectCornersOntoPlaneFromPosition(position, corners);
 
-            Bounds bounds = _cameraAreaService.AreaBounds;
             Vector2 minMaxX = GetMinMax(corners, true);
             Vector2 minMaxZ = GetMinMax(corners, false);
             Vector3 correction = Vector3.zero;

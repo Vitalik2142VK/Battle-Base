@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,19 +6,16 @@ namespace BattleBase.Gameplay.CameraNavigation
 {
     public class AxisInertiaHandler
     {
-        private const float VelocityEpsilon = 0.01f;
-        private const int SmoothingWindow = 4;
+        private readonly ICameraInertiaConfig _config;
+        private readonly Queue<float> _velocityBuffer;
 
-        private readonly float _damping;
-        private readonly Queue<float> _velocityBuffer = new(SmoothingWindow);
         private float _currentVelocity;
 
-        public AxisInertiaHandler(float damping)
+        public AxisInertiaHandler(ICameraInertiaConfig inertiaConfig)
         {
-            _damping = damping;
+            _config = inertiaConfig ?? throw new ArgumentNullException(nameof(inertiaConfig));
+            _velocityBuffer = new(_config.InertiaSmoothingWindow);
         }
-
-        public bool HasInertia => Mathf.Abs(_currentVelocity) > VelocityEpsilon;
 
         public void AddDelta(float worldDelta, float deltaTime)
         {
@@ -27,7 +25,7 @@ namespace BattleBase.Gameplay.CameraNavigation
             float velocity = worldDelta / deltaTime;
             _velocityBuffer.Enqueue(velocity);
 
-            while (_velocityBuffer.Count > SmoothingWindow)
+            while (_velocityBuffer.Count > _config.InertiaSmoothingWindow)
                 _velocityBuffer.Dequeue();
 
             float sum = 0f;
@@ -45,12 +43,12 @@ namespace BattleBase.Gameplay.CameraNavigation
             if (deltaTime <= 0)
                 return false;
 
-            if (Mathf.Abs(_currentVelocity) < VelocityEpsilon)
+            if (Mathf.Abs(_currentVelocity) < _config.InertiaVelocityEpsilon)
                 return false;
 
-            _currentVelocity *= Mathf.Exp(-_damping * deltaTime);
+            _currentVelocity *= Mathf.Exp(-_config.InertiaDamping * deltaTime);
 
-            if (Mathf.Abs(_currentVelocity) < VelocityEpsilon)
+            if (Mathf.Abs(_currentVelocity) < _config.InertiaVelocityEpsilon)
 
                 return false;
 
@@ -59,12 +57,20 @@ namespace BattleBase.Gameplay.CameraNavigation
             return true;
         }
 
-        public void DampenVelocity(float extraDampingPerSecond, float deltaTime)
+        public void DampenVelocity(float deltaTime, float factor)
         {
             if (deltaTime <= 0f)
                 return;
 
-            _currentVelocity = Mathf.MoveTowards(_currentVelocity, 0f, extraDampingPerSecond * deltaTime);
+            if (factor == 0)
+            {
+                _currentVelocity = 0;
+
+                return;
+            }
+
+            float dynamicDamping = _config.InertiaExtraDampingFactor / factor;
+            _currentVelocity = Mathf.MoveTowards(_currentVelocity, 0f, dynamicDamping * deltaTime);
         }
     }
 }

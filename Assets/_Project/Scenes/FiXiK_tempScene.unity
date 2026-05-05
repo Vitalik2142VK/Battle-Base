@@ -943,6 +943,7 @@ MonoBehaviour:
   _resistanceFadeDistance: 20
   _resistance: 1
   _isStaticSizeCollider: 0
+  _cameraConfig: {fileID: 11400000, guid: 4349dcb7853171b4e862073638d35ea7, type: 2}
   _shouldDrawGizmos: 1
 --- !u!65 &693117468
 BoxCollider:

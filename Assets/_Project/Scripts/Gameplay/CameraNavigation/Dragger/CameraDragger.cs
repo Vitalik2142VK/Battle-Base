@@ -5,36 +5,13 @@ namespace BattleBase.Gameplay.CameraNavigation
 {
     public class CameraDragger : ICameraDragger
     {
-        private readonly DragApplier _dragApplier;
-        private readonly InertiaSnapbackApplier _inertiaApplier;
+        private readonly IDragApplier _dragApplier;
+        private readonly IInertiaSnapbackApplier _inertiaApplier;
 
-        public CameraDragger(
-            CameraRig cameraRig,
-            ICameraAreaService cameraAreaService,
-            ICameraSnapBack snapBack,
-            ICameraBoundsLimiter boundsLimiter,
-            ICameraConfig config)
+        public CameraDragger(IDragApplier dragApplier, IInertiaSnapbackApplier inertiaSnapbackApplier)
         {
-            if (cameraRig == null)
-                throw new ArgumentNullException(nameof(cameraRig));
-            if (config == null)
-                throw new ArgumentNullException(nameof(config));
-
-            Transform cameraRigTransform = cameraRig.transform;
-            ResistanceCalculator resistanceCalculator = new(boundsLimiter, cameraAreaService);
-            PositionRestrictor positionRestrictor = new(boundsLimiter);
-
-            _dragApplier = new DragApplier(
-                cameraRigTransform,
-                resistanceCalculator,
-                positionRestrictor);
-
-            _inertiaApplier = new InertiaSnapbackApplier(
-                cameraRigTransform,
-                snapBack,
-                boundsLimiter,
-                positionRestrictor,
-                config);
+            _dragApplier = dragApplier ?? throw new ArgumentNullException(nameof(dragApplier));
+            _inertiaApplier = inertiaSnapbackApplier ?? throw new ArgumentNullException(nameof(inertiaSnapbackApplier));
         }
 
         public void Update(float deltaTime, Vector3? worldDragDelta)

@@ -34,7 +34,7 @@ namespace BattleBase.Gameplay.CameraNavigation.Editor
 
             IUpdater updater = new EditorUpdater();
             ICameraAreaService areaService = new CameraAreaService(area);
-            ICameraTracker cameraTracker = new CameraTracker(mainCamera, updater);
+            ICameraTracker cameraTracker = new CameraTracker(mainCamera, updater, area.Config);
             IFrustumProjectionService projectionService = new FrustumProjectionService(mainCamera, areaService, cameraTracker);
 
             DrawArea(areaService);

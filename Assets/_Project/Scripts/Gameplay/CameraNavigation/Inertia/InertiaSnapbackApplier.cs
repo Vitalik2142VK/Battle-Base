@@ -1,47 +1,54 @@
+using System;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.CameraNavigation
 {
-    public class InertiaSnapbackApplier
+    public class InertiaSnapbackApplier : IInertiaSnapbackApplier
     {
-        private const float ExtraDampingFactor = 3000f;
-
         private readonly Transform _cameraRig;
         private readonly ICameraSnapBack _snapBack;
         private readonly ICameraBoundsLimiter _boundsLimiter;
-        private readonly PositionRestrictor _restrictor;
-        private readonly float _restoreSpeed;
+        private readonly IPositionRestrictor _restrictor;
+        private readonly ICameraAreaService _cameraAreaService;
 
         private readonly AxisInertiaHandler _inertiaRight;
         private readonly AxisInertiaHandler _inertiaForward;
 
         public InertiaSnapbackApplier(
-            Transform cameraRig,
+            CameraRig cameraRig,
             ICameraSnapBack snapBack,
             ICameraBoundsLimiter boundsLimiter,
-            PositionRestrictor restrictor,
-            ICameraConfig config)
+            IPositionRestrictor restrictor,
+            ICameraAreaService cameraAreaService,
+            ICameraInertiaConfig config)
         {
-            _cameraRig = cameraRig;
-            _snapBack = snapBack;
-            _boundsLimiter = boundsLimiter;
-            _restrictor = restrictor;
+            if (cameraRig == null)
+                throw new ArgumentNullException(nameof(cameraRig));
 
-            _restoreSpeed = config.RestoreSpeed;
-            float inertiaDamping = config.InertiaDamping;
+            _cameraRig = cameraRig.transform;
+            _snapBack = snapBack ?? throw new ArgumentNullException(nameof(snapBack));
+            _boundsLimiter = boundsLimiter ?? throw new ArgumentNullException(nameof(boundsLimiter));
+            _restrictor = restrictor ?? throw new ArgumentNullException(nameof(restrictor));
+            _cameraAreaService = cameraAreaService ?? throw new ArgumentNullException(nameof(cameraAreaService));
 
-            _inertiaRight = new AxisInertiaHandler(inertiaDamping);
-            _inertiaForward = new AxisInertiaHandler(inertiaDamping);
+            _inertiaRight = new(config);
+            _inertiaForward = new(config);
         }
 
         public void UpdateInertia(Vector3 worldDragDelta, float deltaTime)
         {
+            if (deltaTime < 0)
+                throw new ArgumentOutOfRangeException(nameof(deltaTime), deltaTime, "Value mast be positive");
+
             _inertiaRight.AddDelta(worldDragDelta.x, deltaTime);
             _inertiaForward.AddDelta(worldDragDelta.z, deltaTime);
         }
 
         public void Apply(float deltaTime)
         {
+            if (deltaTime < 0)
+                throw new ArgumentOutOfRangeException(nameof(deltaTime), deltaTime, "Value mast be positive");
+
             float rightShift = ComputeRightAxis(deltaTime);
             float forwardShift = ComputeForwardAxis(deltaTime);
 
@@ -49,20 +56,26 @@ namespace BattleBase.Gameplay.CameraNavigation
             Vector3 newPosition = _cameraRig.position - moveDelta;
             newPosition = _restrictor.Restrict(newPosition, _cameraRig.position);
             _cameraRig.position = newPosition;
+            _snapBack.ClampByOvershoot();
         }
 
         private float ComputeRightAxis(float deltaTime) =>
-            ComputeAxisShift(_inertiaRight, deltaTime, _cameraRig.right, isXAxis: true);
+            ComputeAxisShift(_inertiaRight, deltaTime, _cameraRig.right);
 
         private float ComputeForwardAxis(float deltaTime) =>
-            ComputeAxisShift(_inertiaForward, deltaTime, _cameraRig.forward, isXAxis: false);
+            ComputeAxisShift(_inertiaForward, deltaTime, _cameraRig.forward);
 
         private float ComputeAxisShift(
             AxisInertiaHandler inertia,
             float deltaTime,
-            Vector3 axisDirection,
-            bool isXAxis)
+            Vector3 axisDirection)
         {
+            float resistance = _cameraAreaService.Resistance;
+            float maxOvershoot = _cameraAreaService.ResistanceFadeDistance;
+
+            bool isXAxis = Mathf.Abs(Vector3.Dot(axisDirection, Vector3.right)) >
+                           Mathf.Abs(Vector3.Dot(axisDirection, Vector3.forward));
+
             if (inertia.TryGetVelocity(deltaTime, out float velocity))
             {
                 float deltaMove = velocity * deltaTime;
@@ -74,7 +87,8 @@ namespace BattleBase.Gameplay.CameraNavigation
 
                 if (overshoot > 0)
                 {
-                    inertia.DampenVelocity(ExtraDampingFactor, deltaTime);
+                    float factor = 1f - Mathf.Clamp01(overshoot / maxOvershoot) * resistance;
+                    inertia.DampenVelocity(deltaTime, factor);
 
                     if (inertia.TryGetVelocity(deltaTime, out velocity))
                         deltaMove = velocity * deltaTime;
@@ -85,9 +99,9 @@ namespace BattleBase.Gameplay.CameraNavigation
                 return deltaMove;
             }
 
-            Vector3 worldCorrection = _snapBack.GetCorrection(_cameraRig.position);
+            Vector3 worldCorrection = _snapBack.GetCorrectionAreaBounds(_cameraRig.position);
             float snapbackShift = -Vector3.Dot(worldCorrection, axisDirection);
-            float maximumSnapback = _restoreSpeed * deltaTime;
+            float maximumSnapback = _snapBack.Speed * deltaTime;
             snapbackShift = Mathf.Clamp(snapbackShift, -maximumSnapback, maximumSnapback);
 
             return snapbackShift;

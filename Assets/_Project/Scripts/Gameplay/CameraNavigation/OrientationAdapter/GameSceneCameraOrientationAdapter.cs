@@ -6,38 +6,39 @@ namespace BattleBase.Gameplay.CameraNavigation
     public class GameSceneCameraOrientationAdapter : ICameraOrientationAdapter, IDisposable
     {
         private const float AspectComparisonEpsilon = 0.01f;
-        private const float PortraitAspectThreshold = 1f;
-        private const float PortraitReferenceAspect = 9f / 16f;
 
         private readonly Camera _camera;
         private readonly IScreenSizeTracker _screenSizeTracker;
+        private readonly IScreenOrientationTracker _orientationTracker;
         private readonly IVerticalFactorCalculator _verticalFactorCalculator;
         private readonly ICameraTracker _cameraTracker;
         private readonly float _originalMinimumOrthoSize;
         private readonly float _originalMaximumOrthoSize;
+        private readonly float _portraitReferenceAspect;
 
         private float _effectiveMinimumOrthoSize;
         private float _effectiveMaximumOrthoSize;
         private float _lastAspect;
-        private bool _isPortrait;
 
         public GameSceneCameraOrientationAdapter(
             Camera camera,
             IScreenSizeTracker screenSizeTracker,
-            ICameraConfig config,
+            IScreenOrientationTracker orientationTracker,
+            IOrthographicSizeConfig config,
             IVerticalFactorCalculator verticalFactorCalculator,
             ICameraTracker cameraTracker)
         {
             _camera = camera != null ? camera : throw new ArgumentNullException(nameof(camera));
             _screenSizeTracker = screenSizeTracker ?? throw new ArgumentNullException(nameof(screenSizeTracker));
+            _orientationTracker = orientationTracker ?? throw new ArgumentNullException(nameof(orientationTracker));
             _verticalFactorCalculator = verticalFactorCalculator ?? throw new ArgumentNullException(nameof(verticalFactorCalculator));
             _cameraTracker = cameraTracker ?? throw new ArgumentNullException(nameof(cameraTracker));
 
             if (config == null)
                 throw new ArgumentNullException(nameof(config));
 
-            _originalMinimumOrthoSize = config.MinimumOrtoSize;
-            _originalMaximumOrthoSize = config.MaximumOrtoSize;
+            _originalMinimumOrthoSize = config.MinimumOrthoSize;
+            _originalMaximumOrthoSize = config.MaximumOrthoSize;
 
             if (_originalMinimumOrthoSize < 0)
                 throw new ArgumentOutOfRangeException(nameof(_originalMinimumOrthoSize), _originalMinimumOrthoSize, "Value must be positive");
@@ -52,12 +53,16 @@ namespace BattleBase.Gameplay.CameraNavigation
                     nameof(config));
             }
 
+            _portraitReferenceAspect =
+                Mathf.Min(config.ReferenceValuePortraitOrientation.x, config.ReferenceValuePortraitOrientation.y) /
+                Mathf.Max(config.ReferenceValuePortraitOrientation.x, config.ReferenceValuePortraitOrientation.y);
+
             _lastAspect = GetAspect();
-            _isPortrait = _lastAspect < PortraitAspectThreshold;
             RecalculateEffectiveZoomBounds();
             AdjustCameraSizeToCurrentValue01();
 
             _screenSizeTracker.SizeChanged += OnSizeChanged;
+            _orientationTracker.OrientationChanged += OnOrientationChanged;
             _cameraTracker.RotationChanged += OnRotationChanged;
         }
 
@@ -74,22 +79,25 @@ namespace BattleBase.Gameplay.CameraNavigation
             if (_screenSizeTracker != null)
                 _screenSizeTracker.SizeChanged -= OnSizeChanged;
 
+            if (_orientationTracker != null)
+                _orientationTracker.OrientationChanged -= OnOrientationChanged;
+
             if (_cameraTracker != null)
                 _cameraTracker.RotationChanged -= OnRotationChanged;
         }
 
         private void RecalculateEffectiveZoomBounds()
         {
-            if (_isPortrait)
+            if (_orientationTracker.IsPortrait)
             {
                 float currentAspect = GetAspect();
-                float multiplier = PortraitReferenceAspect / currentAspect;
+                float multiplier = _portraitReferenceAspect / currentAspect;
                 _effectiveMinimumOrthoSize = _originalMinimumOrthoSize * multiplier;
                 _effectiveMaximumOrthoSize = _originalMaximumOrthoSize * multiplier;
             }
             else
             {
-                float multiplier = PortraitReferenceAspect;
+                float multiplier = _portraitReferenceAspect;
                 float verticalFactor = _verticalFactorCalculator.CalculateVerticalFactor();
                 float tiltCompensation = 1f / verticalFactor;
 
@@ -142,8 +150,14 @@ namespace BattleBase.Gameplay.CameraNavigation
                 return;
 
             _lastAspect = currentAspect;
-            _isPortrait = currentAspect < PortraitAspectThreshold;
 
+            float currentValue01 = ComputeValue01(_camera.orthographicSize, _effectiveMinimumOrthoSize, _effectiveMaximumOrthoSize);
+            RecalculateEffectiveZoomBounds();
+            SetCameraSizeFromValue01(currentValue01);
+        }
+
+        private void OnOrientationChanged()
+        {
             float currentValue01 = ComputeValue01(_camera.orthographicSize, _effectiveMinimumOrthoSize, _effectiveMaximumOrthoSize);
             RecalculateEffectiveZoomBounds();
             SetCameraSizeFromValue01(currentValue01);
@@ -152,10 +166,7 @@ namespace BattleBase.Gameplay.CameraNavigation
         private void OnRotationChanged()
         {
             float currentAspect = GetAspect();
-
             _lastAspect = currentAspect;
-            _isPortrait = currentAspect < PortraitAspectThreshold;
-
             float currentValue01 = ComputeValue01(_camera.orthographicSize, _effectiveMinimumOrthoSize, _effectiveMaximumOrthoSize);
             RecalculateEffectiveZoomBounds();
             SetCameraSizeFromValue01(currentValue01);
