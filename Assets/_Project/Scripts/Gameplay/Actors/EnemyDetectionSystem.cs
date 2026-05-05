@@ -78,7 +78,7 @@ namespace BattleBase.Gameplay.Actors
 
                 if (collider.TryGetComponent(out unit))
                 {
-                    if (_unit.SideUnit != unit.SideUnit)
+                    if (_unit.TeamType != unit.TeamType)
                         return true;
                 }
             }

@@ -2,8 +2,8 @@
 
 namespace BattleBase.Gameplay.Actors.HealthSystem
 {
-    public interface IHealth : IDamageble, IActorComponent, IHealthEvents
+    public interface IHealthPresenter
     {
-        public bool IsAlive { get; }
+        public void SendDamage(IDamage damage);
     }
 }

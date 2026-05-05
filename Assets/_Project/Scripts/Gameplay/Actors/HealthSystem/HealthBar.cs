@@ -14,16 +14,8 @@ namespace BattleBase.Gameplay.Actors.HealthSystem
         private CanvasGroup _canvasGroup;
         private Slider _slider;
 
-        //todo remove
-        private void Awake()
-        {
-            _slider = GetComponent<Slider>();
-        }
-
         private void OnEnable()
         {
-            _slider.value = MaxValue;
-
             if (_healthEvents != null)
                 _healthEvents.HealthChanged += OnUpdateDataHealth;
         }
@@ -32,6 +24,8 @@ namespace BattleBase.Gameplay.Actors.HealthSystem
         {
             if (_healthEvents != null)
                 _healthEvents.HealthChanged -= OnUpdateDataHealth;
+
+            _canvasGroup.alpha = MinValue;
         }
 
         public void Init(IHealthEvents healthEvents)
@@ -41,14 +35,15 @@ namespace BattleBase.Gameplay.Actors.HealthSystem
             _canvasGroup = GetComponent<CanvasGroup>();
             _canvasGroup.alpha = MinValue;
             _canvasGroup.interactable = false;
+
             _slider = GetComponent<Slider>();
             _slider.maxValue = MaxValue;
             _slider.minValue = MinValue;
 
             if (gameObject.activeSelf)
-            {
                 _healthEvents.HealthChanged += OnUpdateDataHealth;
-            }
+
+            Debug.Log("HealthBar.Init");
         }
 
         private void OnUpdateDataHealth(float maxHealth, float currentHealth)

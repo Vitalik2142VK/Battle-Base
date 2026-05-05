@@ -26,9 +26,9 @@ namespace BattleBase.Gameplay.Actors
 
         public Vector3 Position => _transform.position;
 
-        public SideUnit SideUnit { get; private set; }
+        public TeamType TeamType { get; private set; }
 
-        public float ConstructionTime => _config.ConstructionTime;
+        public float ConstructionTime => 0;
 
         public event Action Destroyed;
         public event Action<Unit> Deactivated;
@@ -39,17 +39,16 @@ namespace BattleBase.Gameplay.Actors
 
             _transform = transform;
             //_health = new Health(_config.HealthConfig, damageModifier);
-            _weapon = new Weapon(_config.WeaponConfig, _weaponView, _tower, this);
+            //_weapon = new Weapon(_config.WeaponConfig, _weaponView, _tower, this);
 
-            _healthBar.Init(_health);
-            _mover.Init(_config.MovementConfig);
+            //_healthBar.Init(_health);
+            //_mover.Init(_config.MovementConfig);
         }
 
         private void OnEnable()
         {
             _weapon.Enable();
             _mover.Move();
-            _health.Restore();
         }
 
         private void OnDisable()
@@ -61,7 +60,7 @@ namespace BattleBase.Gameplay.Actors
             RemoveAttackedUnit();
         }
 
-        public void SetSide(SideUnit side) => SideUnit = side;
+        public void SetSide(TeamType team) => TeamType = team;
 
         public void TakeDamage(IDamage damage)
         {
@@ -77,7 +76,7 @@ namespace BattleBase.Gameplay.Actors
                 return;
 
             _attackedUnit = unit ?? throw new ArgumentNullException(nameof(unit));
-            _attackedUnit.Destroyed += OnRemoveAttackedUnit;
+            //_attackedUnit.Destroyed += OnRemoveAttackedUnit;
 
             _weapon.ShootUnit(_attackedUnit);
             _mover.Stop();
@@ -99,7 +98,7 @@ namespace BattleBase.Gameplay.Actors
         {
             if (_attackedUnit != null)
             {
-                _attackedUnit.Destroyed -= OnRemoveAttackedUnit;
+                //_attackedUnit.Destroyed -= OnRemoveAttackedUnit;
                 _attackedUnit = null;
             }
         }

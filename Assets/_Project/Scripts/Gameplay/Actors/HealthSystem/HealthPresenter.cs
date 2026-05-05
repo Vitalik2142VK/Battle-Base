@@ -1,18 +1,20 @@
-﻿using System;
+﻿using BattleBase.Gameplay.Actors.DamageSystem;
+using System;
 
 namespace BattleBase.Gameplay.Actors.HealthSystem
 {
-    public class HealthPresenter : IActorComponentPresenter
+    public class HealthPresenter : IHealthPresenter
     {
-        private readonly IHealth _health;
-        private readonly IHealthViewComponent _view;
+        private readonly IHealth _model;
 
-        public HealthPresenter(IHealth health, IHealthViewComponent view)
+        public HealthPresenter(IHealth model)
         {
-            _health = health ?? throw new ArgumentNullException(nameof(health));
-            _view = view ?? throw new ArgumentNullException(nameof(view));
+            _model = model ?? throw new ArgumentNullException(nameof(model));
+        }
 
-            _view.Init(_health);
+        public void SendDamage(IDamage damage)
+        {
+            _model.TakeDamage(damage);
         }
     }
 }

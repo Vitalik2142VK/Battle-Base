@@ -20,6 +20,9 @@ namespace BattleBase.Gameplay.Actors
                 AddActorViewComponents(gameObject.GetComponents<IActorViewComponent>());
         }
 
+        public void SetActive(bool isActive) => gameObject.SetActive(isActive);
+
+
         public bool TryGetViewComponent<T>(out T component) where T : class, IActorViewComponent
         {
             if (_components.TryGetValue(typeof(T), out var value))
@@ -38,7 +41,7 @@ namespace BattleBase.Gameplay.Actors
         {
             foreach (var component in components)
             {
-                var heir = FindHeir(component);
+                Type heir = FindHeir(component);
 
                 _components[heir] = component;
             }

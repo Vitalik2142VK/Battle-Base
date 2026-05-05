@@ -21,13 +21,6 @@ namespace BattleBase.Gameplay.Actors.HealthSystem
 
         public bool IsAlive => _currentHealth > 0;
 
-        public void Restore()
-        {
-            _currentHealth = _config.MaxHealth;
-
-            HealthChanged?.Invoke(_config.MaxHealth, _currentHealth);
-        }
-
         public void TakeDamage(IDamage damage)
         {
             if (damage == null)
@@ -50,6 +43,15 @@ namespace BattleBase.Gameplay.Actors.HealthSystem
 
                 Destroyed?.Invoke();
             }
+        }
+
+        public void Reset()
+        {
+            _currentHealth = _config.MaxHealth;
+
+            HealthChanged?.Invoke(_config.MaxHealth, _currentHealth);
+
+            UnityEngine.Debug.Log("Health.Reset");
         }
     }
 }

@@ -5,10 +5,10 @@ namespace BattleBase.Gameplay.Actors
 {
     public interface IUnit : ITargetPoint, IDamageble 
     {
-        public SideUnit SideUnit { get; }
+        public TeamType TeamType { get; }
 
         public float ConstructionTime { get; }
 
-        public void SetSide(SideUnit side);
+        public void SetSide(TeamType side);
     }
 }

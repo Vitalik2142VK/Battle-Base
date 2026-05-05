@@ -1,5 +1,4 @@
-﻿using BattleBase.Core;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors
 {

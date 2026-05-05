@@ -34,13 +34,13 @@ namespace BattleBase.Gameplay.Actors.Weapons
 
         public void ShootUnit(IUnit unit)
         {
-            if (_currentUnit != null)
-                _currentUnit.Destroyed -= OnRemoveTarget;
+            //if (_currentUnit != null)
+            //    _currentUnit.Destroyed -= OnRemoveTarget;
 
-            _currentUnit = unit ?? throw new ArgumentNullException(nameof(unit));
-            _currentUnit.Destroyed += OnRemoveTarget;
+            //_currentUnit = unit ?? throw new ArgumentNullException(nameof(unit));
+            //_currentUnit.Destroyed += OnRemoveTarget;
 
-            _tower.TakeAim(unit);
+            //_tower.TakeAim(unit);
         }
 
         internal void Enable()
@@ -51,11 +51,11 @@ namespace BattleBase.Gameplay.Actors.Weapons
 
         public void Disable()
         {
-            if (_currentUnit != null)
-            {
-                _currentUnit.Destroyed -= OnRemoveTarget;
-                _currentUnit = null;
-            }
+            //if (_currentUnit != null)
+            //{
+            //    _currentUnit.Destroyed -= OnRemoveTarget;
+            //    _currentUnit = null;
+            //}
 
             _tower.Aimed -= OnShoot;
 
@@ -72,8 +72,8 @@ namespace BattleBase.Gameplay.Actors.Weapons
 
         private void OnRemoveTarget()
         {
-            _currentUnit.Destroyed -= OnRemoveTarget;
-            _currentUnit = null;
+            //_currentUnit.Destroyed -= OnRemoveTarget;
+            //_currentUnit = null;
         }
 
         private void StopCoroutine()
