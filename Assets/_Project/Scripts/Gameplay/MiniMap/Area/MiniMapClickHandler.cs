@@ -1,7 +1,6 @@
 using System;
 using BattleBase.DI;
 using BattleBase.Gameplay.CameraNavigation;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using VContainer;
@@ -102,7 +101,7 @@ namespace BattleBase.Gameplay.MiniMap
 
         private Vector3 ComputeWorldPoint(Bounds bounds, float groundY, float normX, float normY)
         {
-            if (_miniMapArea.Orientation == ScreenOrientation.Vertical)
+            if (_miniMapArea.Orientation == ScreenOrientationType.Portrait)
             {
                 float worldX = bounds.min.x + normX * bounds.size.x;
                 float worldZ = bounds.min.z + normY * bounds.size.z;

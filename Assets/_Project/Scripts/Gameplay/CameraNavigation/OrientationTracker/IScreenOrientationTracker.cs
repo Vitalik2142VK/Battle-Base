@@ -6,7 +6,7 @@ namespace BattleBase.Gameplay.CameraNavigation
     {
         public event Action OrientationChanged;
 
-        public bool IsPortrait { get; }
+        public ScreenOrientationType ScreenOrientation { get; }
 
         public int Width { get; }
 

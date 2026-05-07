@@ -12,7 +12,6 @@ namespace BattleBase.Gameplay.CameraNavigation
 
         private float _effectiveMinimumOrthoSize;
         private float _effectiveMaximumOrthoSize;
-        private bool _isPortrait;
 
         public MapSceneCameraOrientationAdapter(
             Camera camera, 
@@ -41,7 +40,6 @@ namespace BattleBase.Gameplay.CameraNavigation
                     nameof(config));
             }
 
-            _isPortrait = _orientationTracker.IsPortrait;
             RecalculateEffectiveZoomBounds();
             AdjustCameraSizeToCurrentValue01();
 
@@ -64,7 +62,7 @@ namespace BattleBase.Gameplay.CameraNavigation
 
         private void RecalculateEffectiveZoomBounds()
         {
-            if (_isPortrait)
+            if (_orientationTracker.ScreenOrientation == ScreenOrientationType.Portrait)
             {
                 int width = _orientationTracker.Width;
                 int height = _orientationTracker.Height;
@@ -112,13 +110,6 @@ namespace BattleBase.Gameplay.CameraNavigation
 
         private void OnOrientationChanged()
         {
-            bool isPortrait = _orientationTracker.IsPortrait;
-
-            if (_isPortrait == isPortrait)
-                return;
-
-            _isPortrait = isPortrait;
-
             float currentValue01 = ComputeValue01(_camera.orthographicSize, _effectiveMinimumOrthoSize, _effectiveMaximumOrthoSize);
             RecalculateEffectiveZoomBounds();
             SetCameraSizeFromValue01(currentValue01);

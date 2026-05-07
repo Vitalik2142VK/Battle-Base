@@ -19,7 +19,7 @@ namespace BattleBase.Gameplay.MiniMap
             _cameraAreaService = areaService ?? throw new ArgumentNullException(nameof(areaService));
             _miniMapArea = GetComponent<MiniMapArea>();
 
-            _calculator = _miniMapArea.Orientation == ScreenOrientation.Vertical
+            _calculator = _miniMapArea.Orientation == ScreenOrientationType.Portrait
                 ? new VerticalAreaSizeCalculator()
                 : new HorizontalAreaSizeCalculator();
         }

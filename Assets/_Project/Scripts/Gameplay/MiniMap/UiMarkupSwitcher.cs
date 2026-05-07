@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using BattleBase.DI;
 using BattleBase.Gameplay.CameraNavigation;
 using UnityEngine;
@@ -45,7 +44,7 @@ namespace BattleBase.Gameplay.MiniMap
         private void OnOrientationChanged()
         {
             Vector3 oldCenter = _frustumProjectionService.ProjectedCenter;
-            bool isPortrait = _orientationTracker.IsPortrait;
+            bool isPortrait = _orientationTracker.ScreenOrientation == ScreenOrientationType.Portrait;
             _verticalCanvas.SetActive(isPortrait);
             _horizontalCanvas.SetActive(isPortrait == false);
             Vector3 angles = _cameraRig.transform.eulerAngles;

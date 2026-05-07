@@ -1378,6 +1378,9 @@ MonoBehaviour:
   - {fileID: 610110814}
   - {fileID: 702927997}
   - {fileID: 508073689}
+  _strongholds:
+  - {fileID: 1637819677}
+  - {fileID: 1004994014}
 --- !u!1001 &780516707
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1851,8 +1854,9 @@ GameObject:
   - component: {fileID: 1004994012}
   - component: {fileID: 1004994011}
   - component: {fileID: 1004994010}
+  - component: {fileID: 1004994014}
   m_Layer: 0
-  m_Name: EnemyBase
+  m_Name: EnemyStronghold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1944,6 +1948,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 154730537}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1004994014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004994009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91c39468e49388f46a9afc45aafe1912, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _color: {r: 0.11813736, g: 0, b: 1, a: 1}
 --- !u!1 &1133668723
 GameObject:
   m_ObjectHideFlags: 0
@@ -2814,8 +2831,9 @@ GameObject:
   - component: {fileID: 1637819675}
   - component: {fileID: 1637819674}
   - component: {fileID: 1637819673}
+  - component: {fileID: 1637819677}
   m_Layer: 0
-  m_Name: PlayerBase
+  m_Name: PlayerStronghold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2907,6 +2925,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 154730537}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1637819677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637819672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91c39468e49388f46a9afc45aafe1912, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _color: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &1644701816
 GameObject:
   m_ObjectHideFlags: 0
@@ -3073,6 +3104,7 @@ MonoBehaviour:
   - {fileID: 2018028508}
   - {fileID: 97672651}
   - {fileID: 1607534127}
+  - {fileID: 775632552}
   _camera: {fileID: 1361096462}
   _cameraRig: {fileID: 1486590664}
   _cameraArea: {fileID: 693117467}
@@ -4551,6 +4583,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: UiMarkupSwitcher
       objectReference: {fileID: 0}
+    - target: {fileID: 1744197188766175318, guid: 3a287957ae6273745b7ca7e4fe6e48c8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4503192531857055601, guid: 3a287957ae6273745b7ca7e4fe6e48c8,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4503192531857055601, guid: 3a287957ae6273745b7ca7e4fe6e48c8,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4503192531857055601, guid: 3a287957ae6273745b7ca7e4fe6e48c8,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5745359407666814845, guid: 3a287957ae6273745b7ca7e4fe6e48c8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4599,6 +4651,11 @@ PrefabInstance:
     - target: {fileID: 5745359407666814845, guid: 3a287957ae6273745b7ca7e4fe6e48c8,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7937497210689266394, guid: 3a287957ae6273745b7ca7e4fe6e48c8,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

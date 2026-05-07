@@ -8,7 +8,7 @@ namespace BattleBase.Gameplay.CameraNavigation
         private readonly IDragApplier _dragApplier;
         private readonly IInertiaSnapbackApplier _inertiaApplier;
 
-        private bool _enabled;
+        private bool _enabled = true;
 
         public CameraDragger(IDragApplier dragApplier, IInertiaSnapbackApplier inertiaSnapbackApplier)
         {

@@ -88,7 +88,7 @@ namespace BattleBase.Gameplay.CameraNavigation
 
         private void RecalculateEffectiveZoomBounds()
         {
-            if (_orientationTracker.IsPortrait)
+            if (_orientationTracker.ScreenOrientation == ScreenOrientationType.Portrait)
             {
                 float currentAspect = GetAspect();
                 float multiplier = _portraitReferenceAspect / currentAspect;

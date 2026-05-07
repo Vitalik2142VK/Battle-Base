@@ -29,7 +29,7 @@ namespace BattleBase.Gameplay.MiniMap
 
             _frame = GetComponent<MiniMapCameraFrame>();
 
-            _calculator = _miniMapArea.Orientation == ScreenOrientation.Vertical
+            _calculator = _miniMapArea.Orientation == ScreenOrientationType.Portrait
                 ? new VerticalFramePositionCalculator()
                 : new HorizontalFramePositionCalculator();
         }
