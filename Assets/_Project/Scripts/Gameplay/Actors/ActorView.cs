@@ -1,3 +1,4 @@
+using BattleBase.Gameplay.Actors.HealthSystem;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,8 @@ namespace BattleBase.Gameplay.Actors
 
             foreach (var gameObject in _viewComponents)
                 AddActorViewComponents(gameObject.GetComponents<IActorViewComponent>());
+
+            Debug.Log($"_components.Count = {_components.Count}");
         }
 
         public void SetActive(bool isActive) => gameObject.SetActive(isActive);
@@ -51,12 +54,13 @@ namespace BattleBase.Gameplay.Actors
         {
             var interfaces = component.GetType().GetInterfaces();
 
-            foreach (var @interface in interfaces)
+            foreach (var interfaceType in interfaces)
             {
-                if (typeof(IActorViewComponent).IsAssignableFrom(@interface))
-                {
-                    return @interface;
-                }
+                if (interfaceType == typeof(IActorViewComponent))
+                    continue;
+
+                if (typeof(IActorViewComponent).IsAssignableFrom(interfaceType))
+                    return interfaceType;
             }
 
             return typeof(IActorViewComponent);

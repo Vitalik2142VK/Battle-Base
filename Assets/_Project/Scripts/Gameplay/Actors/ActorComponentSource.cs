@@ -2,8 +2,5 @@
 
 namespace BattleBase.Gameplay.Actors
 {
-    public abstract class ActorComponentSource : ScriptableObject, IComponentSource
-    {
-        public abstract IActorComponent Create();
-    }
+    public abstract class ActorComponentSource : ScriptableObject { }
 }

@@ -1,5 +1,4 @@
 ﻿using BattleBase.Gameplay.Actors.DamageSystem;
-using BattleBase.Gameplay.Actors.HealthSystem;
 using System;
 using System.Collections.Generic;
 
@@ -47,8 +46,6 @@ namespace BattleBase.Gameplay.Actors
 
             _components[heir] = component;
 
-            UnityEngine.Debug.Log($"Components: actor.IHealth == {typeof(T)}");
-
             return this;
         }
 
@@ -61,12 +58,13 @@ namespace BattleBase.Gameplay.Actors
         {
             var interfaces = component.GetType().GetInterfaces();
 
-            foreach (var @interface in interfaces)
+            foreach (var interfaceType in interfaces)
             {
-                if (typeof(IActorComponent).IsAssignableFrom(@interface))
-                {
-                    return @interface;
-                }
+                if (interfaceType == typeof(IActorComponent))
+                    continue;
+
+                if (typeof(IActorComponent).IsAssignableFrom(interfaceType))
+                    return interfaceType;
             }
 
             return typeof(IActorComponent);

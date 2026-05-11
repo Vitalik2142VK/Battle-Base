@@ -1,9 +1,8 @@
 using BattleBase.Core;
-using BattleBase.Gameplay.Actors;
 using System;
 using System.Collections.Generic;
 
-namespace BattleBase.Gameplay.Spawn
+namespace BattleBase.Gameplay.Actors.Spawn
 {
     public class ActorPool : IPool<Actor>
     {

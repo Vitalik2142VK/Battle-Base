@@ -43,7 +43,7 @@ namespace BattleBase.Gameplay.Actors.HealthSystem
             if (gameObject.activeSelf)
                 _healthEvents.HealthChanged += OnUpdateDataHealth;
 
-            Debug.Log("HealthBar.Init");
+            Debug.Log($"HealthBar.Init");
         }
 
         private void OnUpdateDataHealth(float maxHealth, float currentHealth)

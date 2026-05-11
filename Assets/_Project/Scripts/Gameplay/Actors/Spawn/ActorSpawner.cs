@@ -1,9 +1,7 @@
-using BattleBase.Gameplay.Actors;
-using BattleBase.Utils;
 using System.Collections;
 using UnityEngine;
 
-namespace BattleBase.Gameplay.Spawn
+namespace BattleBase.Gameplay.Actors.Spawn
 {
     public class ActorSpawner : MonoBehaviour
     {

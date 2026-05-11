@@ -7,13 +7,10 @@ namespace BattleBase.Gameplay.Actors
     [CreateAssetMenu(
         fileName = nameof(HealthComponentSource),
         menuName = Constants.ConfigsAssetMenuPath + nameof(ActorConfig) + "/" + nameof(HealthComponentSource))]
-    public class HealthComponentSource : ActorComponentSource, IComponentSource
+    public class HealthComponentSource : ActorComponentSource, IHealthComponentSource
     {
         [SerializeField] private HealthConfig _healthConfig;
 
-        public override IActorComponent Create()
-        {
-            return new Health(_healthConfig, new DamageModifier());
-        }
+        public IHealthConfig Config => _healthConfig;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BattleBase.Gameplay.Actors.DamageSystem;
+using System;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.Weapons
@@ -10,15 +11,24 @@ namespace BattleBase.Gameplay.Actors.Weapons
         [SerializeField] private Muzzle _muzzle;
         [SerializeField][Min(1f)] private float _speedRotate = 25f;
 
+        private IWeaponPresenter _presenter;
+        private IWeaponEvents _weaponEvents;
         private ITargetPoint _currentTarget;
         private Transform _transform;
         private bool _isAimed;
 
-        public event Action<bool> Aimed;
-
         private void Awake()
         {
             _transform = transform;
+        }
+
+        private void OnEnable()
+        {
+            if (_weaponEvents != null)
+            {
+                _weaponEvents.TargetSelected += OnTakeAim;
+                _weaponEvents.TargetReseted += OnRemoveTarget;
+            }
         }
 
         private void Update()
@@ -29,21 +39,25 @@ namespace BattleBase.Gameplay.Actors.Weapons
 
         private void OnDisable()
         {
-            if (_currentTarget != null)
+            OnRemoveTarget();
+
+            if (_weaponEvents != null)
             {
-                _currentTarget.Destroyed -= OnRemoveTarget;
-                _currentTarget = null;
+                _weaponEvents.TargetSelected -= OnTakeAim;
+                _weaponEvents.TargetReseted -= OnRemoveTarget;
             }
         }
 
-        public void TakeAim(ITargetPoint target)
+        public void Init(IWeaponPresenter presenter, IWeaponEvents weaponEvents)
         {
-            if (_currentTarget != null)
-                _currentTarget.Destroyed -= OnRemoveTarget;
+            _presenter = presenter ?? throw new ArgumentNullException(nameof(presenter));
+            _weaponEvents = weaponEvents ?? throw new ArgumentNullException(nameof(weaponEvents));
 
-            _currentTarget = target ?? throw new ArgumentNullException(nameof(target));
-            _currentTarget.Destroyed += OnRemoveTarget;
-            _isAimed = false;
+            if (gameObject.activeSelf)
+            {
+                _weaponEvents.TargetSelected += OnTakeAim;
+                _weaponEvents.TargetReseted += OnRemoveTarget;
+            }
         }
 
         private void LookAtTarget()
@@ -68,16 +82,17 @@ namespace BattleBase.Gameplay.Actors.Weapons
             float dot = Vector3.Dot(_transform.forward, direction.normalized);
 
             if (_isAimed != dot > DotAim)
-            {
                 _isAimed = dot > DotAim;
+        }
 
-                Aimed?.Invoke(_isAimed);
-            }
+        private void OnTakeAim(ITargetPoint target)
+        {
+            _currentTarget = target ?? throw new ArgumentNullException(nameof(target));
+            _isAimed = false;
         }
 
         private void OnRemoveTarget()
         {
-            _currentTarget.Destroyed -= OnRemoveTarget;
             _currentTarget = null;
         }
     }

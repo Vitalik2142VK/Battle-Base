@@ -1,7 +1,13 @@
-﻿namespace BattleBase.Gameplay.Actors.Weapons
+﻿using BattleBase.Gameplay.Actors.DamageSystem;
+
+namespace BattleBase.Gameplay.Actors.Weapons
 {
-    public interface IWeapon
+    public interface IWeapon : IActorComponent, IUpdateable, IWeaponEvents
     {
-        public void ShootUnit(IUnit unit);
+        public void SetTarget(ITarget target);
+
+        public void Shoot();
+
+        public void ShootStop();
     }
 }

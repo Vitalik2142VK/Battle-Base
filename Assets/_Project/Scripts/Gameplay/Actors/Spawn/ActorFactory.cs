@@ -1,11 +1,11 @@
 using BattleBase.Core;
-using BattleBase.Gameplay.Actors;
 using BattleBase.Gameplay.Actors.DamageSystem;
 using BattleBase.Gameplay.Actors.HealthSystem;
+using BattleBase.Gameplay.Actors.Weapons;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BattleBase.Gameplay.Spawn
+namespace BattleBase.Gameplay.Actors.Spawn
 {
     [RequireComponent(typeof(Renderer))]
     public class ActorFactory : MonoBehaviour, IFactory<Actor>
@@ -31,6 +31,7 @@ namespace BattleBase.Gameplay.Spawn
             view.gameObject.name = name;
             view.Init();
 
+            ComponentFactoryRegistry componentFactoryRegistry = CreateComponentFactoryRegistry();
             ActorDataModifier actorDataModified = new(_config.Data, _team);
             ActorBuilder builder = new();
             builder
@@ -41,7 +42,7 @@ namespace BattleBase.Gameplay.Spawn
 
             foreach (var componentSource in componentSources)
             {
-                IActorComponent component = componentSource.Create();
+                IActorComponent component = componentFactoryRegistry.Create(componentSource);
                 builder.AddComponent(component);
 
                 if (component is IDamagebleEvents damagebleEvents)
@@ -66,6 +67,15 @@ namespace BattleBase.Gameplay.Spawn
             //...
 
             return actor;
+        }
+
+        private ComponentFactoryRegistry CreateComponentFactoryRegistry()
+        {
+            return new ComponentFactoryRegistry(new List<IComponentFactory>()
+            {
+                new HealthFactory(),
+                new WeaponFactory()
+            });
         }
     }
 }

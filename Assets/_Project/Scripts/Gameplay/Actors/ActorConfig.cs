@@ -1,5 +1,6 @@
 ﻿using BattleBase.Utils;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors
@@ -20,7 +21,10 @@ namespace BattleBase.Gameplay.Actors
 
         public IEnumerable<IComponentSource> GetComponentSources()
         {
-            return _components;
+            return _components
+                .Where(c => c is IComponentSource)
+                .Select(c => (IComponentSource)c)
+                .ToList();
         }
     }
 }

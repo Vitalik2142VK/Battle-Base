@@ -2,6 +2,8 @@
 {
     public interface IActorComponent
     {
-        public void Reset();
+        public void Enable();
+
+        public void Disable();
     }
 }

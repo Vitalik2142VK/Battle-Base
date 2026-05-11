@@ -43,7 +43,7 @@ namespace BattleBase.Gameplay.Actors.DamageSystem
 
         public Vector3 Position => _transform.position;
 
-        public void TryHit(Vector3 hitPosition) => _collider.bounds.Contains(hitPosition);
+        public bool HasHit(Vector3 hitPosition) => _collider.bounds.Contains(hitPosition);
 
         public void TakeDamage(IDamage damage)
         {

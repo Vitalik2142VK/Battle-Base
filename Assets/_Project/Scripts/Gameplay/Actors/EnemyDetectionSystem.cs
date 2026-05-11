@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors
 {
-    [RequireComponent(typeof(Unit))]
     public class EnemyDetectionSystem : MonoBehaviour
     {
         [SerializeField] private LayerMask _findedLayerMask;
@@ -15,7 +14,6 @@ namespace BattleBase.Gameplay.Actors
         [SerializeField] private bool _isDebugEnable;
 
         private Transform _transform;
-        private Unit _unit;
         private Collider[] _foundUnits;
         private Coroutine _coroutine;
         private WaitForSeconds _tick;
@@ -23,14 +21,13 @@ namespace BattleBase.Gameplay.Actors
         private void Awake()
         {
             _transform = transform;
-            _unit = GetComponent<Unit>();
             _tick = new WaitForSeconds(_timeUpdate);
             _foundUnits = new Collider[_maxFindedUnits];
         }
 
         private void OnEnable()
         {
-            _coroutine = StartCoroutine(Activate());
+            //_coroutine = StartCoroutine(Activate());
         }
 
         private void OnDisable()
@@ -47,43 +44,43 @@ namespace BattleBase.Gameplay.Actors
             Gizmos.DrawWireSphere(transform.position, _findRadius);
         }
 
-        private IEnumerator Activate()
-        {
-            while (gameObject.activeSelf)
-            {
-                if (_unit.IsAttacking == false)
-                {
-                    if (TryFindEnemyUnit(out IUnit unit))
-                        _unit.AttackUnit(unit);
-                }
+        //private IEnumerator Activate()
+        //{
+        //    //while (gameObject.activeSelf)
+        //    //{
+        //    //    if (_unit.IsAttacking == false)
+        //    //    {
+        //    //        if (TryFindEnemyUnit(out IUnit unit))
+        //    //            _unit.AttackUnit(unit);
+        //    //    }
 
-                yield return _tick;
-            }
-        }
+        //    //    yield return _tick;
+        //    //}
+        //}
 
-        private bool TryFindEnemyUnit(out IUnit unit)
-        {
-            unit = null;
+        //private bool TryFindEnemyUnit(out IUnit unit)
+        //{
+        //    unit = null;
 
-            int count = Physics.OverlapSphereNonAlloc(
-                _transform.position,
-                _findRadius,
-                _foundUnits,
-                _findedLayerMask,
-                QueryTriggerInteraction.Ignore);
+        //    int count = Physics.OverlapSphereNonAlloc(
+        //        _transform.position,
+        //        _findRadius,
+        //        _foundUnits,
+        //        _findedLayerMask,
+        //        QueryTriggerInteraction.Ignore);
 
-            for (int i = 0; i < count; i++)
-            {
-                Collider collider = _foundUnits[i];
+        //    for (int i = 0; i < count; i++)
+        //    {
+        //        Collider collider = _foundUnits[i];
 
-                if (collider.TryGetComponent(out unit))
-                {
-                    if (_unit.TeamType != unit.TeamType)
-                        return true;
-                }
-            }
+        //        if (collider.TryGetComponent(out unit))
+        //        {
+        //            if (_unit.TeamType != unit.TeamType)
+        //                return true;
+        //        }
+        //    }
 
-            return false;
-        }
+        //    return false;
+        //}
     }
 }

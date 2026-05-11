@@ -1,14 +1,10 @@
-﻿using BattleBase.Gameplay.Actors;
-using BattleBase.Gameplay.Actors.DamageSystem;
-using BattleBase.Utils;
+﻿using BattleBase.Gameplay.Actors.DamageSystem;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.Weapons
 {
-    [CreateAssetMenu(
-        fileName = nameof(WeaponConfig),
-        menuName = Constants.ConfigsAssetMenuPath + nameof(ActorConfig) + "/" + nameof(WeaponConfig))]
-    public class WeaponConfig : ScriptableObject, IWeaponConfig
+    [System.Serializable]
+    public class WeaponConfig : IWeaponConfig
     {
         [SerializeField] private DamageConfig _damageConfig;
         [SerializeField][Min(0.1f)] private float _rateShooting = 0.5f;

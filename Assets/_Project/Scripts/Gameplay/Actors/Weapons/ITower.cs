@@ -1,11 +1,7 @@
-﻿using System;
-
-namespace BattleBase.Gameplay.Actors.Weapons
+﻿namespace BattleBase.Gameplay.Actors.Weapons
 {
-    public interface ITower
+    public interface ITower : IActorViewComponent
     {
-        public event Action<bool> Aimed;
-
-        public void TakeAim(ITargetPoint target);
+        public void Init(IWeaponPresenter presenter, IWeaponEvents weaponEvents);
     }
 }
