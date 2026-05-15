@@ -39,17 +39,17 @@ namespace BattleBase.Gameplay.CameraNavigation
         public bool TryGetVelocity(float deltaTime, out float velocity)
         {
             velocity = 0;
+            _velocityBuffer.Clear();
 
             if (deltaTime <= 0)
                 return false;
 
-            if (Mathf.Abs(_currentVelocity) < _config.InertiaVelocityEpsilon)
+            if (IsVelocityBelowEpsilon())
                 return false;
 
             _currentVelocity *= Mathf.Exp(-_config.InertiaDamping * deltaTime);
 
-            if (Mathf.Abs(_currentVelocity) < _config.InertiaVelocityEpsilon)
-
+            if (IsVelocityBelowEpsilon())
                 return false;
 
             velocity = _currentVelocity;
@@ -64,7 +64,7 @@ namespace BattleBase.Gameplay.CameraNavigation
 
             if (factor == 0)
             {
-                _currentVelocity = 0;
+                ResetInertia();
 
                 return;
             }
@@ -78,5 +78,8 @@ namespace BattleBase.Gameplay.CameraNavigation
             _currentVelocity = 0f;
             _velocityBuffer.Clear();
         }
+
+        private bool IsVelocityBelowEpsilon() =>
+            Mathf.Abs(_currentVelocity) < _config.InertiaVelocityEpsilon;
     }
 }
