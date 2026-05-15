@@ -26,14 +26,14 @@ namespace BattleBase.Gameplay.MiniMap
 
         private void OnEnable()
         {
-            _cameraAreaService.Changed += UpdateVerticalSize;
-            UpdateVerticalSize();
+            _cameraAreaService.Changed += UpdateAreaSize;
+            UpdateAreaSize();
         }
 
         private void OnDisable() =>
-            _cameraAreaService.Changed -= UpdateVerticalSize;
+            _cameraAreaService.Changed -= UpdateAreaSize;
 
-        private void UpdateVerticalSize()
+        private void UpdateAreaSize()
         {
             Bounds bounds = _cameraAreaService.AreaBounds;
             Vector2 worldSize = new(bounds.size.x, bounds.size.z);
@@ -47,8 +47,7 @@ namespace BattleBase.Gameplay.MiniMap
 
             Vector2 newSize = _calculator.CalculateNewSize(input);
 
-            _miniMapArea.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, newSize.x);
-            _miniMapArea.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, newSize.y);
+            _miniMapArea.SetSizeWithCurrentAnchors(newSize);
         }
     }
 }

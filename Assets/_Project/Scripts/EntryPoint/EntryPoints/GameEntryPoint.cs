@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using BattleBase.Gameplay;
 using BattleBase.Gameplay.MiniMap;
 using UnityEngine;
@@ -9,21 +8,23 @@ namespace BattleBase.EntryPoints
 {
     public class GameEntryPoint : EntryPointBase
     {
-        [SerializeField] private List<Stronghold> _strongholds;
+        [SerializeField] private Transform _environment;
 
-        private IMiniMapObjectRegistry _miniMapObjectRegistry;
+        private IEntityTrackerFactory _trackerFactory;
 
         [Inject]
-        public void Construct(IMiniMapObjectRegistry miniMapObjectRegistry) =>
-            _miniMapObjectRegistry = miniMapObjectRegistry ?? throw new ArgumentNullException(nameof(miniMapObjectRegistry));
-
+        public void Construct(IEntityTrackerFactory trackerFactory) =>
+            _trackerFactory = trackerFactory ?? throw new ArgumentNullException(nameof(trackerFactory));
 
         protected override void Start()
         {
             base.Start();
 
-            foreach (Stronghold stronghold in _strongholds)
-                _miniMapObjectRegistry.Register(stronghold);
+            foreach (Entity entity in _environment.GetComponentsInChildren<Entity>(false))
+            {
+                if (entity is RoadLane or Stronghold or IBuildingSite)
+                    _trackerFactory.CreateTracker(entity, PositionTrackingType.Static);
+            }
         }
     }
 }

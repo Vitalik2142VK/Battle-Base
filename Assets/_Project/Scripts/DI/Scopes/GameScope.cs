@@ -1,3 +1,5 @@
+using BattleBase.Core;
+using BattleBase.Gameplay;
 using BattleBase.Gameplay.CameraNavigation;
 using BattleBase.Gameplay.CameraNavigation.InputReader;
 using BattleBase.Gameplay.MiniMap;
@@ -15,6 +17,7 @@ namespace BattleBase.DI
         [SerializeField] private CameraArea _cameraArea;
         [SerializeField] private MouseInputConfig _mouseMapCameraConfig;
         [SerializeField] private TouchInputConfig _touchMapCameraConfig;
+        [SerializeField] private IconMapObject _iconMapObjectPrefab;
 
         private IContainerBuilder _builder;
 
@@ -25,11 +28,22 @@ namespace BattleBase.DI
             RegisterMiniMapSystem();
             RegisterCameraSystem();
             RegisterCameraInputReader();
+            RegisterBuildingSiteSelector();
+        }
+
+        private void RegisterBuildingSiteSelector()
+        {
+            _builder.Register<IBuildingSiteSelector, BuildingSiteSelector>(Lifetime.Scoped);
         }
 
         private void RegisterMiniMapSystem()
         {
-            _builder.Register<IMiniMapObjectRegistry, MiniMapObjectRegistry>(Lifetime.Scoped);
+            _builder.Register<IEntityTrackersRegistry, EntityTrackersRegistry>(Lifetime.Scoped);
+            _builder.Register<IPool<IconMapObject>, Pool<IconMapObject>>(Lifetime.Scoped);
+            _builder.Register<IEntitySizeCalculator, RenderersSizeCalculator>(Lifetime.Scoped);
+            _builder.Register<IEntityTrackerFactory, EntityTrackerFactory>(Lifetime.Scoped);
+            _builder.Register<IFactory<IconMapObject>, IconMapObjectFactory>(Lifetime.Scoped);
+            _builder.RegisterInstance(_iconMapObjectPrefab);
         }
 
         private void RegisterCameraSystem()

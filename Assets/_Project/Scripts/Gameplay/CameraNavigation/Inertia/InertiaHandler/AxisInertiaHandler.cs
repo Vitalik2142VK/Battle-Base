@@ -73,7 +73,10 @@ namespace BattleBase.Gameplay.CameraNavigation
             _currentVelocity = Mathf.MoveTowards(_currentVelocity, 0f, dynamicDamping * deltaTime);
         }
 
-        public void ResetInertia() =>
-            _currentVelocity = 0;
+        public void ResetInertia()
+        {
+            _currentVelocity = 0f;
+            _velocityBuffer.Clear();
+        }
     }
 }
