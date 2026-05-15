@@ -82,7 +82,10 @@ namespace BattleBase.Gameplay.Actors.Weapons
             float dot = Vector3.Dot(_transform.forward, direction.normalized);
 
             if (_isAimed != dot > DotAim)
+            {
                 _isAimed = dot > DotAim;
+                _presenter.EstablishAimState(_isAimed);
+            }
         }
 
         private void OnTakeAim(ITargetPoint target)

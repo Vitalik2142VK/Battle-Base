@@ -11,18 +11,16 @@ namespace BattleBase.Gameplay.Actors.Spawn
         [SerializeField] private List<MissileFactory> _factories;
 
         private Dictionary<string, Pool<Missile>> _pools;
-        private Dictionary<string, GameObject> _containers;
+        private Dictionary<string, Transform> _containers;
 
         private void Awake()
         {
             _pools = new Dictionary<string, Pool<Missile>>();
-            _containers = new Dictionary<string, GameObject>();
+            _containers = new Dictionary<string, Transform>();
 
             foreach (var factory in _factories)
             {
-                GameObject poolContainer = new();
-                poolContainer.name = $"{factory.MissileId}Pool";
-                transform.SetParent(poolContainer.transform);
+                _containers.Add(factory.MissileId, factory.transform);
 
                 Pool<Missile> pool = new(factory);
                 _pools.Add(factory.MissileId, pool);
@@ -42,7 +40,8 @@ namespace BattleBase.Gameplay.Actors.Spawn
             if (pool.TryGive(out Missile missile) == false)
                 throw new InvalidOperationException($"There are too many objects, expand the pool");
 
-            _containers[missileId].transform.SetParent(missile.transform);
+            missile.gameObject.SetActive(true);
+            missile.transform.SetParent(_containers[missileId]);
 
             return missile;
         }

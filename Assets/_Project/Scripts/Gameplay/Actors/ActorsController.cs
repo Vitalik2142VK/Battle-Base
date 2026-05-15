@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors
 {
-    public class ActorController : MonoBehaviour, IActorsController
+    public class ActorsController : MonoBehaviour, IActorsController
     {
         private List<IActor> _activeActors;
 

@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcdda66dd6e00e6479068be24f4df7ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _finishDistance: 0.05
-  _speed: 50
+  _finishDistance: 0.1
+  _speed: 80
 --- !u!114 &7550878289047074185
 MonoBehaviour:
   m_ObjectHideFlags: 0

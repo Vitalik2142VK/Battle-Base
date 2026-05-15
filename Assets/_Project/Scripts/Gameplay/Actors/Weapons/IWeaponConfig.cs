@@ -6,6 +6,8 @@ namespace BattleBase.Gameplay.Actors.Weapons
     {
         public IDamageConfig DamageConfig { get; }
 
+        public float FiringRange { get; }
+
         public float RateShooting { get; }
 
         public float SpeedReload { get; }

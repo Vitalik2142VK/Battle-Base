@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weaponConfig:
     _damageConfig: {fileID: 11400000, guid: 6b977260a8a194a42bc6d0735b0933d6, type: 2}
-    _rateShooting: 0.5
+    _firingRange: 20
+    _rateShooting: 0.1
     _speedReload: 3
     _numberShells: 15

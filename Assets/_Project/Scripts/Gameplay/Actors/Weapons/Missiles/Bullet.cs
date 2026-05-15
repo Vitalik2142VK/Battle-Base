@@ -18,12 +18,12 @@ namespace BattleBase.Gameplay.Actors.Weapons.Missiles
             _mover = GetComponent<IMissileMover>();
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (_target == null)
                 return;
 
-            _mover.Move(Time.deltaTime);
+            _mover.Move(Time.fixedDeltaTime);
 
             if (HasHit())
                 return;

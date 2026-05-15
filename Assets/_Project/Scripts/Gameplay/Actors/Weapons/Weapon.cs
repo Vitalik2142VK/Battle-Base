@@ -6,7 +6,6 @@ namespace BattleBase.Gameplay.Actors.Weapons
 {
     public class Weapon : IWeapon
     {
-        private readonly IWeaponConfig _config;
         private readonly Timer _timer;
 
         private ITarget _currentTarget;
@@ -20,10 +19,13 @@ namespace BattleBase.Gameplay.Actors.Weapons
 
         public Weapon(IWeaponConfig config)
         {
-            _config = config ?? throw new ArgumentNullException(nameof(config));
+            Config = config ?? throw new ArgumentNullException(nameof(config));
 
-            _timer = new Timer(_config.RateShooting);
+            _timer = new Timer(Config.RateShooting);
+            _currentNumberShells = 0;
         }
+
+        public IWeaponConfig Config { get; }
 
         public void Enable()
         {
@@ -69,20 +71,20 @@ namespace BattleBase.Gameplay.Actors.Weapons
                 ShootTarget();
         }
 
-        public void ShootStop()
+        public void StopShoot()
         {
             _isShotActive = false;
         }
 
         private void ShootTarget()
         {
-            TargetFired?.Invoke(_currentTarget, _config.DamageConfig);
+            TargetFired?.Invoke(_currentTarget, Config.DamageConfig);
             Shooted?.Invoke();
 
-            if (_currentNumberShells > 0)
+
+            if (--_currentNumberShells > 0)
             {
-                _timer.SetWaitTime(_config.RateShooting);
-                _currentNumberShells--;
+                _timer.SetWaitTime(Config.RateShooting);
             }
             else
             {
@@ -95,12 +97,14 @@ namespace BattleBase.Gameplay.Actors.Weapons
 
         private void Reload()
         {
-            _timer.SetWaitTime(_config.SpeedReload);
-            _currentNumberShells = _config.NumberShells;
+            _timer.SetWaitTime(Config.SpeedReload);
+            _currentNumberShells = Config.NumberShells;
         }
 
         private void OnResetTurget()
         {
+            _currentTarget = null;
+
             TargetReseted?.Invoke();
         }
     }

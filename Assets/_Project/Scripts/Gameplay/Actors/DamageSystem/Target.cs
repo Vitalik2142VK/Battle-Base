@@ -7,17 +7,19 @@ namespace BattleBase.Gameplay.Actors.DamageSystem
     [RequireComponent(typeof(BoxCollider))]
     public class Target : MonoBehaviour, ITarget
     {
+        [SerializeField] private Transform _aimingPoint;
+        [SerializeField, Min(0.1f)] private float _hitDistance = 0.5f;
+
         private IHealthPresenter _healthPresenter;
         private IDamagebleEvents _damagebleEvents;
-        private Transform _transform;
-        private BoxCollider _collider;
+        private ITeamable _teamable;
 
         public event Action Destroyed;
 
-        private void Awake()
+        private void OnValidate()
         {
-            _transform = transform;
-            _collider = GetComponent<BoxCollider>();
+            if (_aimingPoint == null)
+                _aimingPoint = transform;
         }
 
         private void OnEnable()
@@ -32,18 +34,26 @@ namespace BattleBase.Gameplay.Actors.DamageSystem
                 _damagebleEvents.Destroyed -= OnDied;
         }
 
-        public void Init(IHealthPresenter healthPresenter, IDamagebleEvents damagebleEvents)
+        public void Init(IHealthPresenter healthPresenter, IDamagebleEvents damagebleEvents, ITeamable teamable)
         {
             _healthPresenter = healthPresenter ?? throw new ArgumentNullException(nameof(healthPresenter));
             _damagebleEvents = damagebleEvents ?? throw new ArgumentNullException(nameof(damagebleEvents));
+            _teamable = teamable ?? throw new ArgumentNullException(nameof(teamable));
 
             if (gameObject.activeSelf)
                 _damagebleEvents.Destroyed += OnDied;
         }
 
-        public Vector3 Position => _transform.position;
+        public TeamType TeamType => _teamable.TeamType;
 
-        public bool HasHit(Vector3 hitPosition) => _collider.bounds.Contains(hitPosition);
+        public Vector3 Position => _aimingPoint.position;
+
+        public bool HasHit(Vector3 hitPosition)
+        {
+            float sqrDistance = (_aimingPoint.position - hitPosition).sqrMagnitude;
+
+            return sqrDistance < _hitDistance * _hitDistance;
+        }
 
         public void TakeDamage(IDamage damage)
         {

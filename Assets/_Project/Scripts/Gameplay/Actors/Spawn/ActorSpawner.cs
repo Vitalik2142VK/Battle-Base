@@ -5,6 +5,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
 {
     public class ActorSpawner : MonoBehaviour
     {
+        [SerializeField] private ActorsController _controller;
         [SerializeField] private Transform _container;
         [SerializeField] private Transform _spawnPoint;
         [SerializeField] private Transform _target;
@@ -42,6 +43,8 @@ namespace BattleBase.Gameplay.Actors.Spawn
                     IActorData data = actor.Data;
 
                     EstablishTransform(actor.View);
+
+                    _controller.AddActor(actor);
 
                     yield return new WaitForSeconds(data.ConstructionTime);
                 }

@@ -14,12 +14,18 @@ namespace BattleBase.Gameplay.Actors.Spawn
         [SerializeField] private TeamType _team;
 
         private Renderer _renderer;
+        private ComponentFactoryRegistry _componentFactoryRegistry;
+        private ActorBinderRegistry _actorBinderRegistry;
         private int _spawnedUnits;
 
         private void Awake()
         {
             _renderer = GetComponent<Renderer>();
             _spawnedUnits = 0;
+
+            //todo Add to Containers
+            _componentFactoryRegistry = CreateComponentFactoryRegistry();
+            _actorBinderRegistry = CreateActorBinderRegistry();
         }
 
         public Actor Create()
@@ -31,7 +37,6 @@ namespace BattleBase.Gameplay.Actors.Spawn
             view.gameObject.name = name;
             view.Init();
 
-            ComponentFactoryRegistry componentFactoryRegistry = CreateComponentFactoryRegistry();
             ActorDataModifier actorDataModified = new(_config.Data, _team);
             ActorBuilder builder = new();
             builder
@@ -42,7 +47,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
             foreach (var componentSource in componentSources)
             {
-                IActorComponent component = componentFactoryRegistry.Create(componentSource);
+                IActorComponent component = _componentFactoryRegistry.Create(componentSource);
                 builder.AddComponent(component);
 
                 if (component is IDamagebleEvents damagebleEvents)
@@ -51,13 +56,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
             Actor actor = builder.Build();
 
-            //todo Add to Container 
-            ActorBinderRegistry actorBinderRegistry = new(new List<IActorComponentBinder>()
-            {
-                new HealthBinder()
-            });
-
-            actorBinderRegistry.Bind(actor, view);
+            _actorBinderRegistry.Bind(actor, view);
 
             //todo Delete after the selected color is implemented ...
             var renderersActor = GetComponentsInChildren<MeshRenderer>(true);
@@ -75,6 +74,15 @@ namespace BattleBase.Gameplay.Actors.Spawn
             {
                 new HealthFactory(),
                 new WeaponFactory()
+            });
+        }
+
+        private ActorBinderRegistry CreateActorBinderRegistry()
+        {
+            return new(new List<IActorComponentBinder>()
+            {
+                new HealthBinder(),
+                new WeaponBinder()
             });
         }
     }

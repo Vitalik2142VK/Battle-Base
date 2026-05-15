@@ -13,18 +13,19 @@ namespace BattleBase.Gameplay.Actors.HealthSystem
             if (view == null)
                 throw new ArgumentNullException(nameof(view));
 
-            UnityEngine.Debug.Log($"HealthBinder: actor.TryGetComponent(IHealth) == {actor.TryGetComponent(out IHealth _)} || view.TryGetViewComponent(IHealthViewComponent) = {view.TryGetViewComponent(out IHealthViewComponent _)}");
-
             if (actor.TryGetComponent(out IHealth health) &&
                 view.TryGetViewComponent(out IHealthViewComponent healthView))
             {
                 healthView.Init(health);
             }
 
+            HealthPresenter presenter = new(health);
+
+            UnityEngine.Debug.Log($"HealthBinder (view.TryGetViewComponent(out ITarget target) == {view.TryGetViewComponent(out ITarget _)}");
+
             if (view.TryGetViewComponent(out ITarget target))
             {
-                HealthPresenter healthPresenter = new(health);
-                target.Init(healthPresenter, health);
+                target.Init(presenter, health, actor.Data);
             }
         }
     }
