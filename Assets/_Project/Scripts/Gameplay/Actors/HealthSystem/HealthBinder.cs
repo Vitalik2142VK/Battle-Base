@@ -18,10 +18,12 @@ namespace BattleBase.Gameplay.Actors.HealthSystem
             {
                 healthView.Init(health);
             }
+            else
+            {
+                return;
+            }
 
             HealthPresenter presenter = new(health);
-
-            UnityEngine.Debug.Log($"HealthBinder (view.TryGetViewComponent(out ITarget target) == {view.TryGetViewComponent(out ITarget _)}");
 
             if (view.TryGetViewComponent(out ITarget target))
             {

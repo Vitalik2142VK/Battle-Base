@@ -1,6 +1,4 @@
-﻿using BattleBase.Gameplay.Actors.HealthSystem;
-
-namespace BattleBase.Gameplay.Actors
+﻿namespace BattleBase.Gameplay.Actors.HealthSystem
 {
     public interface IHealthComponentSource : IComponentSource
     {

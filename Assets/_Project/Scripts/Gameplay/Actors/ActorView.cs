@@ -18,8 +18,6 @@ namespace BattleBase.Gameplay.Actors
 
             foreach (var gameObject in _viewComponents)
                 AddActorViewComponents(gameObject.GetComponents<IActorViewComponent>());
-
-            UnityEngine.Debug.Log($"_components.Count == {_components.Count}");
         }
 
         public void SetActive(bool isActive) => gameObject.SetActive(isActive);

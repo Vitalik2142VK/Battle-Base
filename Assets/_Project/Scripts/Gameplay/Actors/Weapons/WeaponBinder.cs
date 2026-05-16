@@ -17,6 +17,10 @@ namespace BattleBase.Gameplay.Actors.Weapons
             {
                 weaponView.Init(weapon);
             }
+            else
+            {
+                return;
+            }
 
             WeaponPresenter presenter = new(weapon);
 

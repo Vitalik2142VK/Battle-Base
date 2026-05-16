@@ -1,51 +1,71 @@
-using UnityEngine;
-using UnityEngine.AI;
+using System;
+using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.Movement
 {
-    [RequireComponent(typeof(NavMeshAgent))]
-    public class Mover : MonoBehaviour, IMover
+    public class Mover : IMover
     {
-        private Transform _transform;
-        private NavMeshAgent _agent;
-        private Vector3 _pointPosition;
-        private float _distanceFinish;
+        private readonly Queue<IWaypoint> _waypoints;
 
-        private void FixedUpdate()
+        private IWaypoint _currentWaypoint;
+
+        public event Action<IWaypoint> WaypointChanged;
+        public event Action Moved;
+        public event Action Stoped;
+
+        public Mover(IMoveConfig moveConfig)
         {
-            if (Vector3.Distance(_pointPosition, _transform.position) < _distanceFinish
-                && _agent.isStopped == false)
-                Stop();
+            Config = moveConfig ?? throw new ArgumentNullException(nameof(moveConfig));
+
+            _waypoints = new Queue<IWaypoint>();
         }
 
-        public void Init(IMovementConfig config)
+        public IMoveConfig Config { get; }
+
+        public bool CanMove => _currentWaypoint != null;
+
+        public void Enable()
         {
-            if (config == null)
-                throw new System.ArgumentNullException(nameof(config));
-
-            _transform = transform;
-
-            _agent = GetComponent<NavMeshAgent>();
-            _agent.speed = config.Speed;
-            _agent.angularSpeed = config.AngularSpeed;
-            _agent.acceleration = config.Acceleration;
-            _agent.stoppingDistance = config.StoppingDistance;
-            _distanceFinish = config.DistanceFinish;
+            Stop();
         }
 
-        public void Stop() => _agent.isStopped = true;
+        public void Disable()
+        {
+            _waypoints.Clear();
+            _currentWaypoint = null;
+        }
+
+        public void AddWaypoints(IEnumerable<IWaypoint> waypoints)
+        {
+            if (waypoints == null)
+                throw new ArgumentNullException(nameof(waypoints));
+
+            foreach (IWaypoint waypoint in waypoints)
+                _waypoints.Enqueue(waypoint);
+        }
+
+        public void EstablishNextPoint()
+        {
+            if (_waypoints.Count == 0)
+            {
+                _currentWaypoint = null;
+
+                return;
+            }
+
+            _currentWaypoint = _waypoints.Dequeue();
+
+            WaypointChanged?.Invoke(_currentWaypoint);
+        }
 
         public void Move()
         {
-            if (_agent.isStopped == true)
-                _agent.isStopped = false;
-
-            _agent.SetDestination(_pointPosition);
+            Moved?.Invoke();
         }
 
-        public void SetPointPosition(Vector3 pointPosition)
+        public void Stop()
         {
-            _pointPosition = pointPosition;
+            Stoped?.Invoke();
         }
     }
 }

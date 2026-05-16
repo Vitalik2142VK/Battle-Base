@@ -10,6 +10,9 @@ namespace BattleBase.Gameplay.Actors.DamageSystem
         [SerializeField] private Transform _aimingPoint;
         [SerializeField, Min(0.1f)] private float _hitDistance = 0.5f;
 
+        [Header("Dubug")]
+        [SerializeField] private bool _isDebugEnable = false;
+
         private IHealthPresenter _healthPresenter;
         private IDamagebleEvents _damagebleEvents;
         private ITeamable _teamable;
@@ -32,6 +35,15 @@ namespace BattleBase.Gameplay.Actors.DamageSystem
         {
             if (_healthPresenter != null)
                 _damagebleEvents.Destroyed -= OnDied;
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            if (_isDebugEnable == false)
+                return;
+
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(_aimingPoint.position, _hitDistance);
         }
 
         public void Init(IHealthPresenter healthPresenter, IDamagebleEvents damagebleEvents, ITeamable teamable)

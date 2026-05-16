@@ -1,18 +1,20 @@
+using BattleBase.Gameplay.Actors.Movement;
 using System.Collections;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.Spawn
 {
+    [RequireComponent(typeof(WaypointController))]
     public class ActorSpawner : MonoBehaviour
     {
         [SerializeField] private ActorsController _controller;
         [SerializeField] private Transform _container;
         [SerializeField] private Transform _spawnPoint;
-        [SerializeField] private Transform _target;
         [SerializeField] private ActorFactory _factory;
         [SerializeField][Min(20)] private int _maxSpawnCount = 50;
 
         private ActorPool _pool;
+        private WaypointController _waypointsController;
 
         private void OnValidate()
         {
@@ -26,6 +28,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
         private void Awake()
         {
             _pool = new ActorPool(_factory, _maxSpawnCount);
+            _waypointsController = GetComponent<WaypointController>();
         }
 
         private void Start()
@@ -45,6 +48,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
                     EstablishTransform(actor.View);
 
                     _controller.AddActor(actor);
+                    _waypointsController.SpecifyActorRoute(actor);
 
                     yield return new WaitForSeconds(data.ConstructionTime);
                 }

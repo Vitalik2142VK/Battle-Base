@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _aimingPoint: {fileID: 76675062255935283}
   _hitDistance: 0.5
+  _isDebugEnable: 0
 --- !u!65 &3270969691848823979
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -268,7 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _muzzle: {fileID: 8129855086914959886}
-  _speedRotate: 25
+  _speedRotate: 60
 --- !u!1 &4384487142294468564
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,6 +285,8 @@ GameObject:
   - component: {fileID: 2820894397910918844}
   - component: {fileID: 77737162196835469}
   - component: {fileID: 6315512346928461976}
+  - component: {fileID: 7755921519922698881}
+  - component: {fileID: 8252227546436227247}
   - component: {fileID: 4161205306769823559}
   m_Layer: 6
   m_Name: TestUnit
@@ -427,6 +430,32 @@ MonoBehaviour:
   _viewComponents:
   - {fileID: 5030417917597953887}
   - {fileID: 2863369727045292479}
+--- !u!114 &7755921519922698881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4384487142294468564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8585f2eb5ef9f214cb95a3ee84f5897f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _viewComponents: []
+--- !u!114 &8252227546436227247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4384487142294468564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cbec3b16e3fff044ae3a44a8e96b227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _distanceFinish: 0.5
 --- !u!114 &4161205306769823559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,7 +518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e23fbfb1ad5a6624c9a09193952ed639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shotPoint: {fileID: 3652746381348903157}
+  _shotPoint: {fileID: 3386449082994813270}
 --- !u!1 &5609631442497594405
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,7 +617,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a1f5c6c5a368364e858c600beedff77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speedRotate: 25
+  _speedRotate: 60
 --- !u!1 &6658852161468868349
 GameObject:
   m_ObjectHideFlags: 0

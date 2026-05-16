@@ -1,7 +1,6 @@
-﻿using BattleBase.Gameplay.Actors.HealthSystem;
-using System;
+﻿using System;
 
-namespace BattleBase.Gameplay.Actors
+namespace BattleBase.Gameplay.Actors.HealthSystem
 {
     public class HealthFactory : IComponentFactory
     {

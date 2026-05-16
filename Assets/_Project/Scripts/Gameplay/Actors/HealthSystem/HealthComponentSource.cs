@@ -1,8 +1,7 @@
-﻿using BattleBase.Gameplay.Actors.HealthSystem;
-using BattleBase.Utils;
+﻿using BattleBase.Utils;
 using UnityEngine;
 
-namespace BattleBase.Gameplay.Actors
+namespace BattleBase.Gameplay.Actors.HealthSystem
 {
     [CreateAssetMenu(
         fileName = nameof(HealthComponentSource),

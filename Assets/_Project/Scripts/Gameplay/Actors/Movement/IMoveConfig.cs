@@ -1,6 +1,6 @@
 namespace BattleBase.Gameplay.Actors.Movement
 {
-    public interface IMovementConfig
+    public interface IMoveConfig
     {
         public float Speed { get; }
 
@@ -9,7 +9,5 @@ namespace BattleBase.Gameplay.Actors.Movement
         public float Acceleration { get; }
 
         public float StoppingDistance { get; }
-
-        public float DistanceFinish { get; }
     }
 }

@@ -1,26 +1,31 @@
 using BattleBase.Core;
 using BattleBase.Gameplay.Actors.DamageSystem;
 using BattleBase.Gameplay.Actors.HealthSystem;
+using BattleBase.Gameplay.Actors.Movement;
 using BattleBase.Gameplay.Actors.Weapons;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.Spawn
 {
-    [RequireComponent(typeof(Renderer))]
     public class ActorFactory : MonoBehaviour, IFactory<Actor>
     {
         [SerializeField] private ActorConfig _config;
+        [SerializeField] private Renderer _renderer;
         [SerializeField] private TeamType _team;
 
-        private Renderer _renderer;
         private ComponentFactoryRegistry _componentFactoryRegistry;
         private ActorBinderRegistry _actorBinderRegistry;
         private int _spawnedUnits;
 
+        private void OnValidate()
+        {
+            if (TryGetComponent(out Renderer renderer))
+                _renderer = renderer;
+        }
+
         private void Awake()
         {
-            _renderer = GetComponent<Renderer>();
             _spawnedUnits = 0;
 
             //todo Add to Containers
@@ -73,7 +78,8 @@ namespace BattleBase.Gameplay.Actors.Spawn
             return new ComponentFactoryRegistry(new List<IComponentFactory>()
             {
                 new HealthFactory(),
-                new WeaponFactory()
+                new WeaponFactory(),
+                new MoverFactory()
             });
         }
 
@@ -82,7 +88,8 @@ namespace BattleBase.Gameplay.Actors.Spawn
             return new(new List<IActorComponentBinder>()
             {
                 new HealthBinder(),
-                new WeaponBinder()
+                new WeaponBinder(),
+                new MoverBinder()
             });
         }
     }
