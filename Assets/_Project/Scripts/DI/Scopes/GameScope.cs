@@ -52,7 +52,7 @@ namespace BattleBase.DI
         {
             _builder.Register<IEntityTrackersRegistry, EntityTrackersRegistry>(Lifetime.Scoped);
             _builder.Register<IPool<IconMapObject>, Pool<IconMapObject>>(Lifetime.Scoped);
-            _builder.Register<IEntitySizeCalculator, RenderersSizeCalculator>(Lifetime.Scoped);
+            _builder.Register<IEntitySizeCalculator, WorldBoundsSizeCalculator>(Lifetime.Transient);
             _builder.Register<IEntityTrackerFactory, EntityTrackerFactory>(Lifetime.Scoped);
             _builder.Register<IFactory<IconMapObject>, IconMapObjectFactory>(Lifetime.Scoped);
             _builder.RegisterInstance(_iconMapObjectPrefab);
