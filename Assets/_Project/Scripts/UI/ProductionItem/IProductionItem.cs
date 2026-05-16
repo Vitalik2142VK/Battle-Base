@@ -5,7 +5,7 @@ namespace BattleBase.UI
 {
     public interface IProductionItem
     {
-        public event Action<ProductionItem> Clicked;
+        public event Action<ProductionItem> ItemClicked;
 
         public IProductionItemInfo Info { get; }
 

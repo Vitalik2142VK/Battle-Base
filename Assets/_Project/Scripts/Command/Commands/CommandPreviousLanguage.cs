@@ -2,9 +2,9 @@ using BattleBase.Localization;
 
 namespace BattleBase.Commands
 {
-    public class CommandPreviousLanguage : CommandBase
+    public sealed class CommandPreviousLanguage : CommandBase
     {
-        public override void Execute() =>
+        protected override void OnExecute() =>
             YandexGameLanguageSystemAdapter.Previous(); 
     }
 }

@@ -21,4 +21,12 @@ MonoBehaviour:
       _text: Factory
     _tr:
       _text: Fabrika
+  _description:
+    _ru:
+      _text: "\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435
+        \u0434\u043B\u044F \u043F\u0440\u0438\u0437\u044B\u0432\u0430 \u0442\u0435\u0445\u043D\u0438\u043A\u0438"
+    _en:
+      _text: Use it to summon equipment
+    _tr:
+      _text: "Ekipman\u0131 \xE7a\u011F\u0131rmak i\xE7in kullan\u0131n"
   _price: 400

@@ -7,7 +7,7 @@ using VContainer;
 
 namespace BattleBase.Commands
 {
-    public class CommandResetProgress : CommandBase, IInjectable
+    public sealed class CommandResetProgress : CommandBase, IInjectable
     {
         [SerializeField] private SavingMediator _savingMediator;
 
@@ -17,7 +17,7 @@ namespace BattleBase.Commands
         public void Construct(ISaver saver) =>
             _saver = saver ?? throw new ArgumentNullException(nameof(saver));
 
-        public override void Execute()
+        protected override void OnExecute()
         {
             _savingMediator.DisableSaving();
             _saver.ResetProgress();

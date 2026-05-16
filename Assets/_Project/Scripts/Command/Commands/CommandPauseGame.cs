@@ -5,7 +5,7 @@ using VContainer;
 
 namespace BattleBase.Commands
 {
-    public class CommandPauseGame : CommandBase, IInjectable
+    public sealed class CommandPauseGame : CommandBase, IInjectable
     {
         private IPauseSwitcher _pauseSwitcher;
 
@@ -13,7 +13,7 @@ namespace BattleBase.Commands
         public void Construct(IPauseSwitcher pauseSwitcher) =>
             _pauseSwitcher = pauseSwitcher ?? throw new ArgumentNullException(nameof(pauseSwitcher));
 
-        public override void Execute() =>
+        protected override void OnExecute() =>
             _pauseSwitcher.Pause();
     }
 }

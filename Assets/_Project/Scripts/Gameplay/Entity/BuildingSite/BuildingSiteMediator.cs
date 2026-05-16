@@ -82,7 +82,7 @@ namespace BattleBase.Gameplay
             foreach (IProductionItem item in _items)
             {
                 _productionPanel.AddItem(item);
-                item.Clicked += OnItemClick;
+                item.ItemClicked += OnItemClick;
             }
         }
 
@@ -92,7 +92,7 @@ namespace BattleBase.Gameplay
             _commandHideProductionPanel.Execute();
 
             foreach (IProductionItem item in _items)
-                item.Clicked -= OnItemClick;
+                item.ItemClicked -= OnItemClick;
 
             _items.Clear();
         }

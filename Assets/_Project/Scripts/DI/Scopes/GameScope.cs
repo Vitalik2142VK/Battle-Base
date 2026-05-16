@@ -1,14 +1,16 @@
-using System.Collections.Generic;
+using BattleBase.Commands;
 using BattleBase.Core;
 using BattleBase.Gameplay;
 using BattleBase.Gameplay.CameraNavigation;
 using BattleBase.Gameplay.CameraNavigation.InputReader;
 using BattleBase.Gameplay.MiniMap;
 using BattleBase.UI;
+using BattleBase.UI.PopUps;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 using YG;
+using static UnityEditor.ObjectChangeEventStream;
 
 namespace BattleBase.DI
 {
@@ -21,6 +23,8 @@ namespace BattleBase.DI
         [SerializeField] private TouchInputConfig _touchMapCameraConfig;
         [SerializeField] private IconMapObject _iconMapObjectPrefab;
         [SerializeField] private ProductionItem _itemPrefab;
+        [SerializeField] private ItemInfoPopUp _itemInfoPopUp;
+        [SerializeField] private CommandBase _commandShowItemInfoPopUp;
 
         private IContainerBuilder _builder;
 
@@ -40,6 +44,9 @@ namespace BattleBase.DI
             _builder.Register<IProductionItemFactory, ProductionItemFactory>(Lifetime.Scoped);
             _builder.Register<IEntityFactory, EntityFactory>(Lifetime.Scoped);
             _builder.RegisterInstance(_itemPrefab);
+
+            _builder.RegisterComponent(_itemInfoPopUp);            
+            _builder.RegisterInstance(_commandShowItemInfoPopUp).Keyed("ShowItemInfoPopUp");
         }
 
         private void RegisterMiniMapSystem()

@@ -12,6 +12,8 @@ namespace BattleBase.UI
 
         public LanguageTextsSet Name { get; }
 
+        public LanguageTextsSet Description { get; }
+
         public int Price { get; }
     }
 }

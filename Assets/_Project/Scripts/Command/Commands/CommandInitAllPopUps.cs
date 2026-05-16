@@ -8,7 +8,7 @@ namespace BattleBase.Commands
     {
         [SerializeField] private List<PopUp> _popUps;
 
-        public override void Execute()
+        protected override void OnExecute()
         {
             foreach (PopUp popUp in _popUps)
             {

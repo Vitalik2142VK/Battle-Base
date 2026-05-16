@@ -5,18 +5,9 @@ using UnityEngine.UI;
 
 namespace BattleBase.Commands
 {
-    public class CommandRebuildLayout : CommandBase
+    public sealed class CommandRebuildLayout : CommandBase
     {
         [SerializeField] private List<RectTransform> _rectTransformList;
-
-        public override void Execute()
-        {
-            foreach (RectTransform rectTransform in _rectTransformList)
-            {
-                if (rectTransform != null)
-                    LayoutRebuilder.ForceRebuildLayoutImmediate(rectTransform);
-            }
-        }
 
         public void Add(RectTransform rectTransform)
         {
@@ -34,6 +25,15 @@ namespace BattleBase.Commands
 
             if (_rectTransformList.Contains(rectTransform))
                 _rectTransformList.Remove(rectTransform);
+        }
+
+        protected override void OnExecute()
+        {
+            foreach (RectTransform rectTransform in _rectTransformList)
+            {
+                if (rectTransform != null)
+                    LayoutRebuilder.ForceRebuildLayoutImmediate(rectTransform);
+            }
         }
     }
 }

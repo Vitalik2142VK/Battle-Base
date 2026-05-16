@@ -5,7 +5,7 @@ using VContainer;
 
 namespace BattleBase.Commands
 {
-    public class CommandReloadCurrentScene : CommandBase, IInjectable
+    public sealed class CommandReloadCurrentScene : CommandBase, IInjectable
     {
         private ISceneLoader _sceneLoader;
 
@@ -13,7 +13,7 @@ namespace BattleBase.Commands
         public void Construct(ISceneLoader sceneLoader) =>
             _sceneLoader = sceneLoader ?? throw new ArgumentNullException(nameof(sceneLoader));
 
-        public override void Execute() =>
+        protected override void OnExecute() =>
             _sceneLoader.ReloadCurrentScene();
     }
 }

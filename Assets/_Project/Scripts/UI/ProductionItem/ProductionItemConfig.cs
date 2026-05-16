@@ -13,6 +13,7 @@ namespace BattleBase.UI
         [SerializeField] private Entity _prefab;
         [SerializeField] private Sprite _sprite;
         [SerializeField] private LanguageTextsSet _name;
+        [SerializeField] private LanguageTextsSet _description;
         [SerializeField] private int _price;
 
         public Entity Prefab => _prefab;
@@ -20,6 +21,8 @@ namespace BattleBase.UI
         public Sprite Sprite => _sprite;
 
         public LanguageTextsSet Name => _name;
+
+        public LanguageTextsSet Description => _description;
 
         public int Price => _price;
     }

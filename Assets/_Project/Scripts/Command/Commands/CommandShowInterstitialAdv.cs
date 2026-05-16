@@ -5,7 +5,7 @@ using VContainer;
 
 namespace BattleBase.Commands
 {
-    public class CommandShowInterstitialAdv : CommandBase, IInjectable
+    public sealed class CommandShowInterstitialAdv : CommandBase, IInjectable
     {
         private IAdvService _advService;
 
@@ -13,7 +13,7 @@ namespace BattleBase.Commands
         public void Construct(IAdvService advService) =>
             _advService = advService ?? throw new ArgumentNullException(nameof(advService));
 
-        public override void Execute() =>
+        protected override void OnExecute() =>
             _advService.ShowInterstitialAdv();
     }
 }

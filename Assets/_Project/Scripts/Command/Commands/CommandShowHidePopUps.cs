@@ -4,17 +4,17 @@ using UnityEngine;
 
 namespace BattleBase.Commands
 {
-    public class CommandShowHidePopUps : CommandBase
+    public sealed class CommandShowHidePopUps : CommandBase
     {
         [SerializeField] private List<PopUp> _popUpsToHide;
         [SerializeField] private List<PopUp> _popUpsToShow;
 
-        public override void Execute()
+        protected override void OnExecute()
         {
             foreach (PopUp popUp in _popUpsToHide)
                 popUp.Hide();
 
-            foreach (PopUp popUp in _popUpsToShow) 
+            foreach (PopUp popUp in _popUpsToShow)
                 popUp.Show();
         }
     }

@@ -6,7 +6,7 @@ using VContainer;
 
 namespace BattleBase.Commands
 {
-    public class CommandPlaySfx : CommandBase, IInjectable
+    public sealed class CommandPlaySfx : CommandBase, IInjectable
     {
         [SerializeField] private AudioClip _audioClip;
 
@@ -16,7 +16,7 @@ namespace BattleBase.Commands
         public void Construct(IAudioService audioService) =>
             _audioService = audioService ?? throw new ArgumentNullException(nameof(audioService));
 
-        public override void Execute() =>
+        protected override void OnExecute() =>
             _audioService.Sfx.PlayOneShot(_audioClip);
     }
 }
