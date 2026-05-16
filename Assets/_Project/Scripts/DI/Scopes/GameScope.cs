@@ -1,8 +1,10 @@
+using System.Collections.Generic;
 using BattleBase.Core;
 using BattleBase.Gameplay;
 using BattleBase.Gameplay.CameraNavigation;
 using BattleBase.Gameplay.CameraNavigation.InputReader;
 using BattleBase.Gameplay.MiniMap;
+using BattleBase.UI;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -18,6 +20,7 @@ namespace BattleBase.DI
         [SerializeField] private MouseInputConfig _mouseMapCameraConfig;
         [SerializeField] private TouchInputConfig _touchMapCameraConfig;
         [SerializeField] private IconMapObject _iconMapObjectPrefab;
+        [SerializeField] private ProductionItem _itemPrefab;
 
         private IContainerBuilder _builder;
 
@@ -34,6 +37,9 @@ namespace BattleBase.DI
         private void RegisterBuildingSiteSelector()
         {
             _builder.Register<IBuildingSiteSelector, BuildingSiteSelector>(Lifetime.Scoped);
+            _builder.Register<IProductionItemFactory, ProductionItemFactory>(Lifetime.Scoped);
+            _builder.Register<IEntityFactory, EntityFactory>(Lifetime.Scoped);
+            _builder.RegisterInstance(_itemPrefab);
         }
 
         private void RegisterMiniMapSystem()

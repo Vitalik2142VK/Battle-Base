@@ -5,13 +5,10 @@ namespace BattleBase.Gameplay
 {
     public class BuildingSite : Entity, IBuildingSite
     {
-        [SerializeField] private Color _color;
-        [SerializeField] private bool _isPlayer;
+        [SerializeField] private Color _color;        
         [SerializeField] private BuildingSiteState _state;
 
         public event Action StateChanged;
-
-        public bool IsPlayer => _isPlayer;
 
         public BuildingSiteState State => _state;
 
@@ -20,7 +17,7 @@ namespace BattleBase.Gameplay
 
         public bool TrySelect()
         {
-            if (_isPlayer && _state == BuildingSiteState.Active)
+            if (IsPlayer && _state == BuildingSiteState.Active)
             {
                 _state = BuildingSiteState.Selected;
                 StateChanged?.Invoke();
@@ -33,11 +30,17 @@ namespace BattleBase.Gameplay
 
         public void Unselect()
         {
-            if(_isPlayer && _state == BuildingSiteState.Selected)
+            if(IsPlayer && _state == BuildingSiteState.Selected)
             {
                 _state = BuildingSiteState.Active;
                 StateChanged?.Invoke();
             }
+        }
+
+        public void SetInactiveState()
+        {
+            _state = BuildingSiteState.Inactive;
+            StateChanged?.Invoke();
         }
     }
 }
