@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using BattleBase.Utils;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.CameraNavigation
@@ -8,56 +9,61 @@ namespace BattleBase.Gameplay.CameraNavigation
     {
         private const float Half = 0.5f;
 
+        private readonly Transform _cameraRig;
         private readonly IFrustumProjectionService _frustumProjectionService;
         private readonly ICameraAreaService _cameraAreaService;
-        private readonly float _restoreSpeed;
+        private readonly ICameraSnapBackConfig _snapBackConfig;
 
-        public CameraSnapBack(IFrustumProjectionService frustumProjectionService, ICameraAreaService cameraAreaService, ICameraConfig config)
+        public CameraSnapBack(
+            CameraRig cameraRig,
+            IFrustumProjectionService frustumProjectionService,
+            ICameraAreaService cameraAreaService,
+            ICameraSnapBackConfig snapBackConfig)
         {
+            _cameraRig = cameraRig != null ? cameraRig.transform : throw new ArgumentNullException(nameof(cameraRig));
             _frustumProjectionService = frustumProjectionService ?? throw new ArgumentNullException(nameof(frustumProjectionService));
             _cameraAreaService = cameraAreaService ?? throw new ArgumentNullException(nameof(cameraAreaService));
-
-            if (config == null)
-                throw new ArgumentNullException(nameof(config));
-
-            _restoreSpeed = config.RestoreSpeed;
+            _snapBackConfig = snapBackConfig ?? throw new ArgumentNullException(nameof(snapBackConfig));
         }
 
-        public void Restore(Transform cameraTransform, float deltaTime)
-        {
-            if (cameraTransform == null)
-                throw new ArgumentNullException(nameof(cameraTransform));
+        public float Speed => _snapBackConfig.SnapBackSpeed;
 
-            if (deltaTime < 0)
-                throw new ArgumentOutOfRangeException(nameof(deltaTime), deltaTime, "Value must be positive");
+        public void ClampByOvershoot()
+        {
+            Vector3 position = _cameraRig.position;
+            Vector3 correction = GetCorrectionOvershootBounds(position);
+            _cameraRig.position = position + correction;
+        }
+
+        public Vector3 GetCorrectionAreaBounds(Vector3 position) =>
+            GetCorrectionBounds(_cameraAreaService.AreaBounds, position);
+
+        public Vector3 GetCorrectionOvershootBounds(Vector3 position) =>
+            GetCorrectionBounds(_cameraAreaService.OvershootBounds, position);
+
+        public Vector3 GetCorrectionBounds(Bounds bounds, Vector3 position)
+        {
+            if (VectorValidation.IsValid(position) == false)
+                throw new ArgumentException($"Position is invalid (NaN or Infinity): {position}", nameof(position));
 
             List<Vector3> corners = new();
-            _frustumProjectionService.ProjectCornersOntoPlaneFromPosition(cameraTransform.position, corners);
+            _frustumProjectionService.ProjectCornersOntoPlaneFromPosition(position, corners);
 
-            Bounds bounds = _cameraAreaService.AreaBounds;
             Vector2 minMaxX = GetMinMax(corners, true);
             Vector2 minMaxZ = GetMinMax(corners, false);
             Vector3 correction = Vector3.zero;
 
             correction.x = CalculateCorrection(
-                minMaxX.x,
-                minMaxX.y,
-                bounds.min.x,
-                bounds.max.x,
+                minMaxX.x, minMaxX.y,
+                bounds.min.x, bounds.max.x,
                 bounds.center.x);
 
             correction.z = CalculateCorrection(
-                minMaxZ.x,
-                minMaxZ.y,
-                bounds.min.z,
-                bounds.max.z,
+                minMaxZ.x, minMaxZ.y,
+                bounds.min.z, bounds.max.z,
                 bounds.center.z);
 
-            if (correction != Vector3.zero)
-            {
-                Vector3 targetPos = cameraTransform.position + correction;
-                cameraTransform.position = Vector3.MoveTowards(cameraTransform.position, targetPos, _restoreSpeed * deltaTime);
-            }
+            return correction;
         }
 
         private Vector2 GetMinMax(List<Vector3> corners, bool isX)

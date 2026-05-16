@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9a1580139508a1468122a054bd64185, type: 3}
   m_Name: GameSceneCameraConfig
   m_EditorClassIdentifier: 
-  _restoreSpeed: 9
-  _zoomSpeed: 1
-  _minimumOrtoSize: 16
-  _maximumOrtoSize: 64
+  _snapBackSpeed: 60
+  _minimumOrthoSize: 16
+  _maximumOrthoSize: 64
+  _inertiaDamping: 2
+  _inertiaExtraDampingFactor: 100
+  _positionSqrThreshold: 0.0001
+  _rotationAngleThreshold: 0.01
+  _orthoSizeThreshold: 0.0001

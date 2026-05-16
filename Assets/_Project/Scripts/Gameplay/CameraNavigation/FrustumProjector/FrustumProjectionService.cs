@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using BattleBase.UpdateService;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.CameraNavigation
@@ -33,7 +32,7 @@ namespace BattleBase.Gameplay.CameraNavigation
             _areaService.Changed += OnAreaChanged;
             _cameraTracker.PositionChanged += OnPositionChanged;
             _cameraTracker.RotationChanged += OnRotationChanged;
-            _cameraTracker.OrtoSizeChanged += OnOrtoSizeChanged;
+            _cameraTracker.OrthoSizeChanged += OnOrtoSizeChanged;
 
             RefreshCache(_cameraTransform.position);
         }
@@ -43,6 +42,10 @@ namespace BattleBase.Gameplay.CameraNavigation
         public IReadOnlyList<Vector3> Corners { get; private set; }
 
         public Vector3 ProjectedCenter { get; private set; }
+
+        public float CachedHeight { get; private set; }
+
+        public float CachedWidth { get; private set; }
 
         public void ProjectCornersOntoPlaneFromPosition(Vector3 cameraPosition, List<Vector3> outCorners)
         {
@@ -62,6 +65,9 @@ namespace BattleBase.Gameplay.CameraNavigation
 
             originalTransform.SetPositionAndRotation(originalPosition, originalRotation);
         }
+
+        public void RefreshNow() => 
+            RefreshCache(_cameraTransform.position);
 
         private Vector3 ProjectPointOntoPlane(Vector3 point, Plane plane)
         {
@@ -88,8 +94,22 @@ namespace BattleBase.Gameplay.CameraNavigation
             originalTransform.SetPositionAndRotation(originalPosition, originalRotation);
             Corners = cornersList.AsReadOnly();
 
-            if (Corners.Count > 0)
+            if (Corners.Count >= 4)
             {
+                float minX = float.MaxValue, maxX = float.MinValue;
+                float minZ = float.MaxValue, maxZ = float.MinValue;
+
+                foreach (Vector3 corner in Corners)
+                {
+                    if (corner.x < minX) minX = corner.x;
+                    if (corner.x > maxX) maxX = corner.x;
+                    if (corner.z < minZ) minZ = corner.z;
+                    if (corner.z > maxZ) maxZ = corner.z;
+                }
+
+                CachedWidth = maxX - minX;
+                CachedHeight = maxZ - minZ;
+
                 Vector3 sum = Vector3.zero;
 
                 foreach (var corner in Corners)
@@ -99,6 +119,8 @@ namespace BattleBase.Gameplay.CameraNavigation
             }
             else
             {
+                CachedWidth = 0f;
+                CachedHeight = 0f;
                 ProjectedCenter = Vector3.zero;
             }
         }
@@ -126,72 +148,5 @@ namespace BattleBase.Gameplay.CameraNavigation
             RefreshCache(_cameraTransform.position);
             Changed?.Invoke();
         }
-    }
-
-    public class CameraTracker : ICameraTracker, IDisposable
-    {
-        private readonly Camera _camera;
-        private readonly Transform _cameraTransform;
-        private readonly IUpdater _updater;
-
-        public CameraTracker(Camera camera, IUpdater updater)
-        {
-            _camera = camera != null ? camera : throw new ArgumentNullException(nameof(camera));
-            _updater = updater ?? throw new ArgumentNullException(nameof(updater));
-            _cameraTransform = camera.transform;
-
-            CashedPosition = _cameraTransform.position;
-            CashedRotation = _cameraTransform.rotation;
-            CashedOrtoSize = _camera.orthographicSize;
-
-            _updater.Subscribe(OnUpdate, UpdateType.Update);
-        }
-
-        public event Action RotationChanged;
-        public event Action PositionChanged;
-        public event Action OrtoSizeChanged;
-
-        public Vector3 CashedPosition { get; private set; }
-
-        public Quaternion CashedRotation { get; private set; }
-
-        public float CashedOrtoSize { get; private set; }
-
-        public void Dispose() =>
-            _updater?.Unsubscribe(OnUpdate, UpdateType.Update);
-
-        private void OnUpdate()
-        {
-            if (_cameraTransform.rotation != CashedRotation)
-            {
-                CashedRotation = _cameraTransform.rotation;
-                RotationChanged?.Invoke();
-            }
-
-            if (_cameraTransform.position != CashedPosition)
-            {
-                CashedPosition = _cameraTransform.position;
-                PositionChanged?.Invoke();
-            }
-
-            if (_camera.orthographicSize != CashedOrtoSize)
-            {
-                CashedOrtoSize = _camera.orthographicSize;
-                OrtoSizeChanged?.Invoke();
-            }
-        }
-    }
-
-    public interface ICameraTracker
-    {
-        public event Action RotationChanged;
-        public event Action PositionChanged;
-        public event Action OrtoSizeChanged;
-
-        public Vector3 CashedPosition { get; }
-
-        public Quaternion CashedRotation { get; }
-
-        public float CashedOrtoSize { get; }
     }
 }

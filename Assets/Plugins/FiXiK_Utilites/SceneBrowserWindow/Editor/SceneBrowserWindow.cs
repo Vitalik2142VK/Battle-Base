@@ -1,5 +1,4 @@
 #if UNITY_EDITOR
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEditor;
@@ -27,6 +26,7 @@ namespace FiXiK.SceneBrowserWindow.Editor
         private void OnEnable()
         {
             EditorApplication.projectChanged += RefreshSceneList;
+            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
             LoadIcons();
 
             EditorApplication.delayCall += () =>
@@ -43,6 +43,7 @@ namespace FiXiK.SceneBrowserWindow.Editor
         private void OnDisable()
         {
             EditorApplication.projectChanged -= RefreshSceneList;
+            EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
 
             if (_config != null)
                 _config.Save();
@@ -208,6 +209,15 @@ namespace FiXiK.SceneBrowserWindow.Editor
                                       .Where(path => path.EndsWith(".unity"))
                                       .OrderBy(path => Path.GetFileNameWithoutExtension(path))
                                       .ToArray();
+        }
+
+        private void OnPlayModeStateChanged(PlayModeStateChange state)
+        {
+            if (state == PlayModeStateChange.EnteredEditMode)
+            {
+                RefreshSceneList();
+                Repaint();
+            }
         }
 
         private void HideScene(string scenePath)

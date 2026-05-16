@@ -9,9 +9,16 @@ namespace BattleBase.Gameplay.CameraNavigation
         [SerializeField] private BoxCollider _collider;
         [SerializeField][Min(0)] private float _resistanceFadeDistance = 0.5f;
         [SerializeField][Range(0f, 1f)] private float _resistance = 0.8f;
+        [SerializeField] private bool _isStaticSizeCollider;
+        [SerializeField] private CameraConfig _cameraConfig;
 
-        [Header("Debug")]
-        [SerializeField] private bool _enabled;
+#if UNITY_EDITOR
+        [SerializeField] private bool _shouldDrawGizmos;
+#endif
+
+        private Vector3 _cachedColliderSize;
+        private Vector3 _cachedColliderCenter;
+        private Vector3 _cachedLocalScale;
 
         public event Action Changed;
 
@@ -19,7 +26,11 @@ namespace BattleBase.Gameplay.CameraNavigation
 
         public float ResistanceFadeDistance => _resistanceFadeDistance;
 
-        public bool Enabled => _enabled;
+        public CameraConfig Config => _cameraConfig;
+
+#if UNITY_EDITOR
+        public bool ShouldDrawGizmos => _shouldDrawGizmos;
+#endif
 
         public BoxCollider Collider
         {
@@ -37,7 +48,25 @@ namespace BattleBase.Gameplay.CameraNavigation
         private void Start()
         {
             EnsureComponents();
+            CacheColliderSize();
             InvokeChange();
+        }
+
+        private void Update()
+        {
+            if (_isStaticSizeCollider)
+                return;
+
+            if (_collider == null)
+                return;
+
+            if (_collider.size != _cachedColliderSize
+                || _collider.center != _cachedColliderCenter
+                || transform.localScale != _cachedLocalScale)
+            {
+                CacheColliderSize();
+                InvokeChange();
+            }
         }
 
         private void EnsureComponents()
@@ -49,6 +78,16 @@ namespace BattleBase.Gameplay.CameraNavigation
 
             if (_collider == null)
                 throw new ArgumentNullException(nameof(_collider));
+        }
+
+        private void CacheColliderSize()
+        {
+            if (_collider != null)
+            {
+                _cachedColliderSize = _collider.size;
+                _cachedColliderCenter = _collider.center;
+                _cachedLocalScale = transform.localScale;
+            }
         }
 
         private void InvokeChange() =>
