@@ -25,12 +25,16 @@ namespace BattleBase.Gameplay.Map
         public event Action<TerritorySelectPopUp> Deactivated;
 
         [Inject]
-        public void Construct(LoadGameSceneCommand loadGameSceneCommand)
+        public void Construct(CommandLoadGameScene commandLoadGameScene, CommandRebuildLayout commandRebuildLayout)
         {
-            if (loadGameSceneCommand == null)
-                throw new ArgumentNullException(nameof(loadGameSceneCommand));
+            if (commandLoadGameScene == null)
+                throw new ArgumentNullException(nameof(commandLoadGameScene));
 
-            _battleButton.AddCommand(loadGameSceneCommand);
+            if (commandRebuildLayout == null)
+                throw new ArgumentNullException(nameof(commandRebuildLayout));
+
+            _battleButton.AddCommand(commandLoadGameScene);
+            commandRebuildLayout.Add(_battleButton.transform as RectTransform);
         }
 
         private void Update()

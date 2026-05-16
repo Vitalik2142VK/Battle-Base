@@ -28,35 +28,6 @@ namespace BattleBase.Gameplay.CameraNavigation
         public float GetOvershootZ(Vector3 position) =>
             GetOvershootAlongAxis(position, c => c.z, b => b.min.z, b => b.max.z);
 
-        private CornerBounds GetCornerBounds(Vector3 position)
-        {
-            if (VectorValidation.IsValid(position) == false)
-                throw new ArgumentException($"Position is invalid (NaN or Infinity): {position}", nameof(position));
-
-            List<Vector3> corners = new();
-            _frustumProjectionService.ProjectCornersOntoPlaneFromPosition(position, corners);
-
-            float minX = float.MaxValue, maxX = float.MinValue;
-            float minZ = float.MaxValue, maxZ = float.MinValue;
-
-            foreach (Vector3 corner in corners)
-            {
-                if (corner.x < minX)
-                    minX = corner.x;
-
-                if (corner.x > maxX)
-                    maxX = corner.x;
-
-                if (corner.z < minZ)
-                    minZ = corner.z;
-
-                if (corner.z > maxZ)
-                    maxZ = corner.z;
-            }
-
-            return new CornerBounds(minX, maxX, minZ, maxZ);
-        }
-
         private bool IsValidPositionAlongAxis(
             Vector3 position,
             Func<Vector3, float> getCornerCoord,
@@ -91,10 +62,40 @@ namespace BattleBase.Gameplay.CameraNavigation
 
             if (min < boundMin)
                 overshoot = boundMin - min;
+
             if (max > boundMax)
                 overshoot = Mathf.Max(overshoot, max - boundMax);
 
             return overshoot;
+        }
+
+        private CornerBounds GetCornerBounds(Vector3 position)
+        {
+            if (VectorValidation.IsValid(position) == false)
+                throw new ArgumentException($"Position is invalid (NaN or Infinity): {position}", nameof(position));
+
+            List<Vector3> corners = new();
+            _frustumProjectionService.ProjectCornersOntoPlaneFromPosition(position, corners);
+
+            float minX = float.MaxValue, maxX = float.MinValue;
+            float minZ = float.MaxValue, maxZ = float.MinValue;
+
+            foreach (Vector3 corner in corners)
+            {
+                if (corner.x < minX)
+                    minX = corner.x;
+
+                if (corner.x > maxX)
+                    maxX = corner.x;
+
+                if (corner.z < minZ)
+                    minZ = corner.z;
+
+                if (corner.z > maxZ)
+                    maxZ = corner.z;
+            }
+
+            return new CornerBounds(minX, maxX, minZ, maxZ);
         }
     }
 }

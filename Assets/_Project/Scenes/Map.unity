@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 40691632}
   - component: {fileID: 40691633}
   m_Layer: 0
-  m_Name: NextLanguageCommand
+  m_Name: CommandNextLanguage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -322,7 +322,7 @@ GameObject:
   - component: {fileID: 41834584}
   - component: {fileID: 41834585}
   m_Layer: 0
-  m_Name: ShowGeneralSettingsCommand
+  m_Name: CommandShowGeneralSettings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -435,7 +435,7 @@ GameObject:
   - component: {fileID: 61858977}
   - component: {fileID: 61858978}
   m_Layer: 0
-  m_Name: InitAllPopUpsCommand
+  m_Name: CommandInitAllPopUps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -485,7 +485,7 @@ GameObject:
   - component: {fileID: 76942877}
   - component: {fileID: 76942878}
   m_Layer: 0
-  m_Name: PreviosLanguageCommand
+  m_Name: CommandPreviosLanguage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1496,7 +1496,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2015845036}
+  - {fileID: 927422350}
   - {fileID: 757988536}
   m_Father: {fileID: 117679390}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1831,7 +1831,7 @@ GameObject:
   - component: {fileID: 562984275}
   - component: {fileID: 562984274}
   m_Layer: 0
-  m_Name: LoadMenuSceneCommand
+  m_Name: CommandLoadMenuScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2531,7 +2531,7 @@ GameObject:
   - component: {fileID: 660803558}
   - component: {fileID: 660803559}
   m_Layer: 0
-  m_Name: RebuildLayoutButtonResetProgressCommand
+  m_Name: CommandRebuildLayout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2564,7 +2564,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef4262c73817b04694ddec9fdcc7c96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rectTransform: {fileID: 1304364777}
+  _rectTransformList:
+  - {fileID: 1304364777}
 --- !u!114 &668106544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7703,6 +7704,9 @@ MonoBehaviour:
   _collider: {fileID: 757988537}
   _resistanceFadeDistance: 2.44
   _resistance: 1
+  _isStaticSizeCollider: 0
+  _cameraConfig: {fileID: 11400000, guid: 63b9ccbc3b019744ea3347f39c60f1b9, type: 2}
+  _shouldDrawGizmos: 1
 --- !u!114 &811022481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7804,7 +7808,7 @@ GameObject:
   - component: {fileID: 869942879}
   - component: {fileID: 869942880}
   m_Layer: 0
-  m_Name: ShowColorSettingsCommand
+  m_Name: CommandShowColorSettings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7840,6 +7844,51 @@ MonoBehaviour:
   _popUpsToHide: []
   _popUpsToShow:
   - {fileID: 1291722025}
+--- !u!1 &927422349
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 927422350}
+  - component: {fileID: 927422351}
+  m_Layer: 0
+  m_Name: CameraRig
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &927422350
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927422349}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.19, y: 15, z: -13.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2015845036}
+  m_Father: {fileID: 406961967}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &927422351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927422349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eb608f0173cf1d47b9d10734c958ab7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &954324417
 GameObject:
   m_ObjectHideFlags: 0
@@ -7851,7 +7900,7 @@ GameObject:
   - component: {fileID: 954324418}
   - component: {fileID: 954324419}
   m_Layer: 0
-  m_Name: MapBootstrap
+  m_Name: MapEntryPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10534,7 +10583,7 @@ GameObject:
   - component: {fileID: 1060910273}
   - component: {fileID: 1060910274}
   m_Layer: 0
-  m_Name: HideAllPopApsCommand
+  m_Name: CommandHideAllPopAps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10636,7 +10685,7 @@ GameObject:
   - component: {fileID: 1074377340}
   - component: {fileID: 1074377341}
   m_Layer: 0
-  m_Name: ResetProgressCommand
+  m_Name: CommandResetProgress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10960,7 +11009,7 @@ GameObject:
   - component: {fileID: 1197876495}
   - component: {fileID: 1197876496}
   m_Layer: 0
-  m_Name: PlayAudioPopUpEnterCommand
+  m_Name: CommandPlayAudioPopUpEnter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11533,7 +11582,7 @@ GameObject:
   - component: {fileID: 1320628436}
   - component: {fileID: 1320628435}
   m_Layer: 0
-  m_Name: ShowDialogResetProgressCommand
+  m_Name: CommandShowDialogResetProgress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11580,7 +11629,7 @@ GameObject:
   - component: {fileID: 1323731857}
   - component: {fileID: 1323731856}
   m_Layer: 0
-  m_Name: PlayAudioButtonClickCommand
+  m_Name: CommandPlayAudioButtonClick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12109,7 +12158,7 @@ GameObject:
   - component: {fileID: 1485491387}
   - component: {fileID: 1485491388}
   m_Layer: 0
-  m_Name: ShowButtonsMapCommand
+  m_Name: CommandShowButtonsMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12886,7 +12935,7 @@ GameObject:
   - component: {fileID: 1616386745}
   - component: {fileID: 1616386746}
   m_Layer: 0
-  m_Name: PlayMapMusicCommand
+  m_Name: CommandPlayMapMusic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13119,7 +13168,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvasList:
   - {fileID: 1666586599}
-  _slider: {fileID: 1594278952}
+  _zoomSliders:
+  - {fileID: 1594278952}
   _isDynamicAngle: 0
 --- !u!1 &1666586596
 GameObject:
@@ -13708,7 +13758,7 @@ GameObject:
   - component: {fileID: 1682443215}
   - component: {fileID: 1682443216}
   m_Layer: 0
-  m_Name: ShowAnticlickerCommand
+  m_Name: CommandShowAnticlicker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14332,10 +14382,12 @@ MonoBehaviour:
   - {fileID: 1616386744}
   - {fileID: 1074377339}
   _camera: {fileID: 2015845035}
+  _cameraRig: {fileID: 927422351}
   _cameraArea: {fileID: 757988539}
   _territorySelectPopUpPrefab: {fileID: 7394446734637031766, guid: 9d3c244b7cd8d9748bc5bb13405a3835,
     type: 3}
-  _gameSceneLoader: {fileID: 1990950056}
+  _commandLoadGameScene: {fileID: 1990950056}
+  _commandRebuildLayout: {fileID: 660803559}
   _mouseMapCameraConfig: {fileID: 11400000, guid: 778e6ba21d80b5e4ea1286d3b1aca86b,
     type: 2}
   _touchMapCameraConfig: {fileID: 11400000, guid: fcd90a5925a93074683c9a5cdba8a6b9,
@@ -14920,7 +14972,7 @@ GameObject:
   - component: {fileID: 1990950055}
   - component: {fileID: 1990950056}
   m_Layer: 0
-  m_Name: LoadGameSceneCommand
+  m_Name: CommandLoadGameScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15093,7 +15145,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.21927373, g: 0.25217432, b: 0.3886792, a: 1}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -15143,11 +15195,11 @@ Transform:
   m_GameObject: {fileID: 2015845033}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: -0, z: -0, w: 0.8660254}
-  m_LocalPosition: {x: -1.19, y: 15, z: -13.6}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 406961967}
+  m_Father: {fileID: 927422350}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2015845037
 MonoBehaviour:

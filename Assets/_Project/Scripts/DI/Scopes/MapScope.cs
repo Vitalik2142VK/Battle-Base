@@ -10,66 +10,101 @@ using YG;
 
 namespace BattleBase.DI
 {
-    public class MapScope : LifetimeScope 
+    public class MapScope : LifetimeScope
     {
         [SerializeField] private Camera _camera;
+        [SerializeField] private CameraRig _cameraRig;
         [SerializeField] private CameraArea _cameraArea;
         [SerializeField] private TerritorySelectPopUp _territorySelectPopUpPrefab;
-        [SerializeField] private LoadGameSceneCommand _gameSceneLoader;
+        [SerializeField] private CommandLoadGameScene _commandLoadGameScene;
+        [SerializeField] private CommandRebuildLayout _commandRebuildLayout;
         [SerializeField] private MouseInputConfig _mouseMapCameraConfig;
         [SerializeField] private TouchInputConfig _touchMapCameraConfig;
-        [SerializeField] private CameraConfig _cameraConfig;
         [SerializeField] private TerritoryPositionAnimationConfig _territoryPositionAnimationConfig;
+
+        private IContainerBuilder _builder;
 
         protected override void Configure(IContainerBuilder builder)
         {
-            builder.RegisterComponent(_camera);
-            builder.RegisterComponent<ICameraArea>(_cameraArea);
-            builder.RegisterComponent<ICameraConfig>(_cameraConfig);
-            builder.RegisterComponent(_gameSceneLoader);
+            _builder = builder;
 
-            builder.RegisterComponent(_territorySelectPopUpPrefab);
-            builder.Register<IFactory<TerritorySelectPopUp>, TerritorySelectPopUpFactory>(Lifetime.Scoped);
-            builder.Register<IPool<TerritorySelectPopUp>, Pool<TerritorySelectPopUp>>(Lifetime.Scoped);
-            builder.Register<ITerritorySelector, TerritorySelector>(Lifetime.Scoped);
-            builder.RegisterComponent(_territoryPositionAnimationConfig);
-            builder.Register<ITerritoryElevator, TerritoryElevator>(Lifetime.Scoped);
-            builder.Register<ITerritoryPopUpShower, TerritoryPopUpShower>(Lifetime.Scoped);
-            builder.Register<ICameraTracker, CameraTracker>(Lifetime.Scoped);
+            RegisterCommands();
+            RegisterCameraSystem();
+            RegisterTerritorySystem();
+            RegisterInputReader();
+        }
 
-            builder.Register<IFrustumProjectionService, FrustumProjectionService>(Lifetime.Scoped);
-            builder.Register<ICameraAreaService, CameraAreaService>(Lifetime.Scoped);
-            builder.Register<IUIPointerChecker, UIPointerChecker>(Lifetime.Scoped);
-            builder.Register<ICameraSnapBack, CameraSnapBack>(Lifetime.Scoped);
-            builder.Register<ICameraBoundsLimiter, CameraBoundsLimiter>(Lifetime.Scoped);
-            builder.Register<IVerticalFactorCalculator, VerticalFactorCalculator>(Lifetime.Scoped);
-            builder.Register<ICameraOrientationAdapter, MapSceneCameraOrientationAdapter>(Lifetime.Scoped);
-            builder.Register<ICameraZoom, CameraZoom>(Lifetime.Scoped);
-            builder.Register<ICameraDragger, CameraDragger>(Lifetime.Scoped);
-            builder.Register<ICameraInputReader, CameraInputReader>(Lifetime.Scoped);
+        private void RegisterCommands()
+        {
+            _builder.RegisterComponent(_commandLoadGameScene);
+            _builder.RegisterComponent(_commandRebuildLayout);
+        }
+
+        private void RegisterCameraSystem()
+        {
+            _builder.RegisterComponent(_camera);
+            _builder.RegisterComponent(_cameraRig);
+            _builder.RegisterComponent<ICameraArea>(_cameraArea);
+            _builder.RegisterComponent(_cameraArea.Config).AsImplementedInterfaces();
+
+            _builder.Register<ICameraTracker, CameraTracker>(Lifetime.Scoped);
+            _builder.Register<IFrustumProjectionService, FrustumProjectionService>(Lifetime.Scoped);
+            _builder.Register<ICameraAreaService, CameraAreaService>(Lifetime.Scoped);
+            _builder.Register<ICameraSnapBack, CameraSnapBack>(Lifetime.Scoped);
+            _builder.Register<IUIPointerChecker, UIPointerChecker>(Lifetime.Scoped);
+            _builder.Register<ICameraBoundsLimiter, CameraBoundsLimiter>(Lifetime.Scoped);
+            _builder.Register<IVerticalFactorCalculator, VerticalFactorCalculator>(Lifetime.Scoped);
+            _builder.Register<ICameraOrientationAdapter, MapSceneCameraOrientationAdapter>(Lifetime.Scoped);
+            _builder.Register<IScreenSizeTracker, ScreenSizeTracker>(Lifetime.Scoped);
+            _builder.Register<IScreenOrientationTracker, ScreenOrientationTracker>(Lifetime.Scoped);
+            _builder.Register<ICameraZoom, CameraZoom>(Lifetime.Scoped);
+            _builder.Register<ICameraDragger, CameraDragger>(Lifetime.Scoped);
+            _builder.Register<IPositionRestrictor, PositionRestrictor>(Lifetime.Scoped);
+            _builder.Register<IResistanceCalculator, ResistanceCalculator>(Lifetime.Scoped);
+            _builder.Register<IDragApplier, DragApplier>(Lifetime.Scoped);
+            _builder.Register<IInertiaSnapbackApplier, InertiaSnapbackApplier>(Lifetime.Scoped);
+        }
+
+        private void RegisterTerritorySystem()
+        {
+
+            _builder.RegisterComponent(_territorySelectPopUpPrefab);
+            _builder.RegisterComponent(_territoryPositionAnimationConfig);
+
+            _builder.Register<TerritoryElevator>(Lifetime.Scoped);
+            _builder.Register<TerritoryPopUpShower>(Lifetime.Scoped);
+
+            _builder.Register<ITerritorySelector, TerritorySelector>(Lifetime.Scoped);
+            _builder.Register<IPool<TerritorySelectPopUp>, Pool<TerritorySelectPopUp>>(Lifetime.Scoped);
+            _builder.Register<IFactory<TerritorySelectPopUp>, TerritorySelectPopUpFactory>(Lifetime.Scoped);
+
+            _builder.RegisterBuildCallback(container =>
+            {
+                container.Resolve<TerritoryElevator>();
+                container.Resolve<TerritoryPopUpShower>();
+            });
+        }
+
+        private void RegisterInputReader()
+        {
+            _builder.Register<ICameraInputReader, CameraInputReader>(Lifetime.Scoped);
 
             if (YG2.envir.isDesktop)
             {
-                builder.RegisterComponent(_mouseMapCameraConfig).AsImplementedInterfaces();
-                builder.Register<IClickDetector, MouseClickDetector>(Lifetime.Scoped);
-                builder.Register<IMouseDragHandler, MouseDragHandler>(Lifetime.Scoped);
-                builder.Register<IDragHandler, CompositeMouseDragHandler>(Lifetime.Scoped);
-                builder.Register<IKeyboardDragHandler, KeyboardDragHandler>(Lifetime.Scoped);
-                builder.Register<IZoomHandler, MouseZoomHandler>(Lifetime.Scoped);
+                _builder.RegisterComponent(_mouseMapCameraConfig).AsImplementedInterfaces();
+                _builder.Register<IClickDetector, MouseClickDetector>(Lifetime.Scoped);
+                _builder.Register<IMouseDragHandler, MouseDragHandler>(Lifetime.Scoped);
+                _builder.Register<IDragHandler, CompositeMouseDragHandler>(Lifetime.Scoped);
+                _builder.Register<IKeyboardDragHandler, KeyboardDragHandler>(Lifetime.Scoped);
+                _builder.Register<IZoomHandler, MouseZoomHandler>(Lifetime.Scoped);
             }
             else
             {
-                builder.RegisterComponent(_touchMapCameraConfig).AsImplementedInterfaces();
-                builder.Register<IClickDetector, TouchClickDetector>(Lifetime.Scoped);
-                builder.Register<IDragHandler, TouchDragHandler>(Lifetime.Scoped);
-                builder.Register<IZoomHandler, TouchPinchHandler>(Lifetime.Scoped);
+                _builder.RegisterComponent(_touchMapCameraConfig).AsImplementedInterfaces();
+                _builder.Register<IClickDetector, TouchClickDetector>(Lifetime.Scoped);
+                _builder.Register<IDragHandler, TouchDragHandler>(Lifetime.Scoped);
+                _builder.Register<IZoomHandler, TouchPinchHandler>(Lifetime.Scoped);
             }
-
-            builder.RegisterBuildCallback(container =>
-            {
-                container.Resolve<ITerritoryElevator>();
-                container.Resolve<ITerritoryPopUpShower>();
-            });
         }
     }
 }

@@ -7,20 +7,11 @@ namespace BattleBase.Gameplay.CameraNavigation
     {
         private readonly Camera _camera;
         private readonly ICameraOrientationAdapter _orientationAdapter;
-        private readonly float _zoomSpeed;
 
-        public CameraZoom(Camera camera, ICameraOrientationAdapter orientationAdapter, ICameraConfig config)
+        public CameraZoom(Camera camera, ICameraOrientationAdapter orientationAdapter)
         {
             _camera = camera != null ? camera : throw new ArgumentNullException(nameof(camera));
             _orientationAdapter = orientationAdapter ?? throw new ArgumentNullException(nameof(orientationAdapter));
-
-            if (config == null)
-                throw new ArgumentNullException(nameof(config));
-
-            _zoomSpeed = config.ZoomSpeed;
-
-            if (_zoomSpeed <= 0)
-                throw new ArgumentOutOfRangeException(nameof(_zoomSpeed), _zoomSpeed, "Value must be positive");
         }
 
         public event Action Changed;
@@ -40,9 +31,9 @@ namespace BattleBase.Gameplay.CameraNavigation
             }
         }
 
-        private float MinimumZoom => _orientationAdapter.MinimumOrtoSize;
+        private float MinimumZoom => _orientationAdapter.MinimumOrthoSize;
 
-        private float MaximumZoom => _orientationAdapter.MaximumOrtoSize;
+        private float MaximumZoom => _orientationAdapter.MaximumOrthoSize;
 
         public void SetValue01(float value)
         {
@@ -60,7 +51,7 @@ namespace BattleBase.Gameplay.CameraNavigation
             if (zoomDelta.HasValue == false)
                 return;
 
-            float newSize = _camera.orthographicSize - zoomDelta.Value * _zoomSpeed;
+            float newSize = _camera.orthographicSize - zoomDelta.Value;
             SetCameraSize(newSize);
         }
 

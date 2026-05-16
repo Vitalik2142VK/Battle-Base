@@ -666,7 +666,7 @@ GameObject:
   - component: {fileID: 181945718}
   - component: {fileID: 181945717}
   m_Layer: 0
-  m_Name: MenuBootstrap
+  m_Name: MenuEntryPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1013,7 +1013,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef4262c73817b04694ddec9fdcc7c96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rectTransform: {fileID: 184710744}
+  _rectTransformList:
+  - {fileID: 184710744}
 --- !u!4 &395697106
 Transform:
   m_ObjectHideFlags: 0
