@@ -13,7 +13,7 @@ using YG;
 
 namespace BattleBase.DI
 {
-    public class GameScope : LifetimeScope
+    public class NewGameScope : LifetimeScope
     {
         [SerializeField] private Camera _camera;
         [SerializeField] private CameraRig _cameraRig;
@@ -44,7 +44,7 @@ namespace BattleBase.DI
             _builder.Register<IEntityFactory, EntityFactory>(Lifetime.Scoped);
             _builder.RegisterInstance(_itemPrefab);
 
-            _builder.RegisterComponent(_itemInfoPopUp);            
+            _builder.RegisterComponent(_itemInfoPopUp);
             _builder.RegisterInstance(_commandShowItemInfoPopUp).Keyed("ShowItemInfoPopUp");
         }
 
@@ -52,7 +52,7 @@ namespace BattleBase.DI
         {
             _builder.Register<IEntityTrackersRegistry, EntityTrackersRegistry>(Lifetime.Scoped);
             _builder.Register<IPool<IconMapObject>, Pool<IconMapObject>>(Lifetime.Scoped);
-            _builder.Register<IEntitySizeCalculator, WorldBoundsSizeCalculator>(Lifetime.Transient);
+            _builder.Register<IEntitySizeCalculator, RenderersSizeCalculator>(Lifetime.Scoped);
             _builder.Register<IEntityTrackerFactory, EntityTrackerFactory>(Lifetime.Scoped);
             _builder.Register<IFactory<IconMapObject>, IconMapObjectFactory>(Lifetime.Scoped);
             _builder.RegisterInstance(_iconMapObjectPrefab);

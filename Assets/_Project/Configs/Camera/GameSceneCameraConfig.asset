@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: GameSceneCameraConfig
   m_EditorClassIdentifier: 
   _snapBackSpeed: 60
-  _minimumOrthoSize: 16
-  _maximumOrthoSize: 64
+  _referenceValuePortraitOrientation: {x: 1080, y: 1920}
+  _minimumOrthoSize: 36
+  _maximumOrthoSize: 89
   _inertiaDamping: 2
   _inertiaExtraDampingFactor: 100
+  _inertiaVelocityEpsilon: 0.01
+  _inertiaSmoothingWindow: 4
   _positionSqrThreshold: 0.0001
   _rotationAngleThreshold: 0.01
   _orthoSizeThreshold: 0.0001
