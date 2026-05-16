@@ -4040,27 +4040,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 7065964193247767244}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 706c6754bab9e7e45a67b87358171d17, type: 3}
+  m_Script: {fileID: 11500000, guid: 571603f2f9518ba4c9bd242ae9acd640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   parentReference:
     TypeName: 
   autoRun: 1
   autoInjectGameObjects:
-  - {fileID: 5675427728758443881}
-  - {fileID: 2571965884914646567}
-  - {fileID: 1647735942846959792}
   - {fileID: 4579749433430287963}
+  - {fileID: 5675427728758443881}
+  - {fileID: 1647735942846959792}
+  - {fileID: 2571965884914646567}
   - {fileID: 4382673810868372553}
   - {fileID: 3429465003633623946}
-  - {fileID: 3929996692295447646}
   - {fileID: 1596173728880169195}
+  - {fileID: 3929996692295447646}
   - {fileID: 7562514991673074198}
   - {fileID: 2719130602856556474}
-  - {fileID: 6197598071820692631}
   - {fileID: 5120806646057539739}
-  - {fileID: 7565747926303922591}
+  - {fileID: 6197598071820692631}
   - {fileID: 7903608509274515486}
+  - {fileID: 7565747926303922591}
   _camera: {fileID: 1663286324867439843}
   _cameraRig: {fileID: 2842761841083738346}
   _cameraArea: {fileID: 922424184830207504}
