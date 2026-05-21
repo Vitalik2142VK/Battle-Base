@@ -7,7 +7,7 @@ namespace BattleBase.Utils
         private float _timeWait;
         private float _waitingTime = 0;
 
-        public Timer(float timeWait)
+        public Timer(float timeWait = 1f)
         {
             if (timeWait <= 0)
                 throw new ArgumentOutOfRangeException(nameof(timeWait));
@@ -17,7 +17,7 @@ namespace BattleBase.Utils
 
         public bool IsTimeUp => _waitingTime <= 0;
 
-        public void SkipTick(float delta)
+        public void Tick(float delta)
         {
             if (delta <= 0)
                 throw new ArgumentOutOfRangeException(nameof(delta));

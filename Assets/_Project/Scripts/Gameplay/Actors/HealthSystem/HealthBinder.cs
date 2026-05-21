@@ -27,7 +27,7 @@ namespace BattleBase.Gameplay.Actors.HealthSystem
 
             if (view.TryGetViewComponent(out ITarget target))
             {
-                target.Init(presenter, health, actor.Data);
+                target.Init(presenter, health, actor);
             }
         }
     }

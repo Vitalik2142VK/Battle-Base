@@ -3,24 +3,21 @@ using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors
 {
-    public class ActorBinderRegistry
+    public class ActorBinderRegistry : IActorBinderRegistry
     {
-        private readonly HashSet<IActorComponentBinder> _builders;
+        private readonly List<IActorComponentBinder> _binds;
 
-        public ActorBinderRegistry(ICollection<IActorComponentBinder> builders)
+        public ActorBinderRegistry(IEnumerable<IActorComponentBinder> binds)
         {
-            if (builders == null)
-                throw new ArgumentNullException(nameof(builders));
+            if (binds == null)
+                throw new ArgumentNullException(nameof(binds));
 
-            if (builders.Count == 0)
-                throw new ArgumentException($"{nameof(builders)} cannot be empty");
-
-            _builders = new HashSet<IActorComponentBinder>(builders);
+            _binds = new List<IActorComponentBinder>(binds);
         }
 
         public void Bind(IActor actor, IActorView view)
         {
-            foreach (var binder in _builders)
+            foreach (var binder in _binds)
                 binder.Bind(actor, view);
         }
     }

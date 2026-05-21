@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65d2e2c2420ac6b45b0d480f9633fd48, type: 3}
   m_Name: TankUnit
   m_EditorClassIdentifier: 
-  _prefab: {fileID: -182613013899953493, guid: 0f0f9588e318b11448c6262d5d88e520, type: 3}
   _data:
+    _prefab: {fileID: -182613013899953493, guid: 0f0f9588e318b11448c6262d5d88e520,
+      type: 3}
     _icon: {fileID: 0}
     _name:
       _ru:
@@ -30,6 +31,7 @@ MonoBehaviour:
       _tr:
         _text: Test
     _constructionTime: 25
+    _price: 20
   _components:
   - {fileID: 11400000, guid: ff56b4e8f4a58364087e08013890db6b, type: 2}
   - {fileID: 11400000, guid: 0caae24fe7f666d4c9d571fd16da8a07, type: 2}

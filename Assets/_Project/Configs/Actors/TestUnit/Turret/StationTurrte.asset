@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65d2e2c2420ac6b45b0d480f9633fd48, type: 3}
   m_Name: StationTurrte
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 6082468932349043140, guid: 978cd50cda4fc414a8f7cfa09e3bb7bb, type: 3}
   _data:
+    _prefab: {fileID: 6082468932349043140, guid: 978cd50cda4fc414a8f7cfa09e3bb7bb,
+      type: 3}
     _icon: {fileID: 0}
     _name:
       _ru:
@@ -30,6 +31,7 @@ MonoBehaviour:
       _tr:
         _text: Test
     _constructionTime: 30
+    _price: 20
   _components:
   - {fileID: 11400000, guid: 3a2b253477cf0274598af07de37809f6, type: 2}
   - {fileID: 11400000, guid: 4485fb472c2ad0440bb4d041bfcfb199, type: 2}

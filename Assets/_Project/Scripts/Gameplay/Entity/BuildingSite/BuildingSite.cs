@@ -3,21 +3,25 @@ using UnityEngine;
 
 namespace BattleBase.Gameplay
 {
-    public class BuildingSite : Entity, IBuildingSite
+    [RequireComponent(typeof(Collider))]
+    public class BuildingSite : MonoBehaviour, IBuildingSite
     {
-        [SerializeField] private Color _color;        
         [SerializeField] private BuildingSiteState _state;
+
+        private Collider _collider;
 
         public event Action StateChanged;
 
         public BuildingSiteState State => _state;
 
-        private void Awake() =>
-            SetColor(_color);
+        private void Awake()
+        {
+            _collider = GetComponent<Collider>();
+        }
 
         public bool TrySelect()
         {
-            if (IsPlayer && _state == BuildingSiteState.Active)
+            if (_state == BuildingSiteState.Active)
             {
                 _state = BuildingSiteState.Selected;
                 StateChanged?.Invoke();
@@ -30,15 +34,22 @@ namespace BattleBase.Gameplay
 
         public void Unselect()
         {
-            if(IsPlayer && _state == BuildingSiteState.Selected)
+            if (_state == BuildingSiteState.Selected)
             {
                 _state = BuildingSiteState.Active;
                 StateChanged?.Invoke();
             }
         }
 
+        public void SetActiveState()
+        {
+            _collider.enabled = true;
+            _state = BuildingSiteState.Active;
+        }
+
         public void SetInactiveState()
         {
+            _collider.enabled = false;
             _state = BuildingSiteState.Inactive;
             StateChanged?.Invoke();
         }

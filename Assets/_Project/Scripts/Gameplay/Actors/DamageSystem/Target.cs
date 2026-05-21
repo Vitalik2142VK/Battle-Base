@@ -14,7 +14,7 @@ namespace BattleBase.Gameplay.Actors.DamageSystem
         [SerializeField] private bool _isDebugEnable = false;
 
         private IHealthPresenter _healthPresenter;
-        private IDamagebleEvents _damagebleEvents;
+        private IDestroyableEvents _damagebleEvents;
         private ITeamable _teamable;
 
         public event Action Destroyed;
@@ -46,7 +46,7 @@ namespace BattleBase.Gameplay.Actors.DamageSystem
             Gizmos.DrawWireSphere(_aimingPoint.position, _hitDistance);
         }
 
-        public void Init(IHealthPresenter healthPresenter, IDamagebleEvents damagebleEvents, ITeamable teamable)
+        public void Init(IHealthPresenter healthPresenter, IDestroyableEvents damagebleEvents, ITeamable teamable)
         {
             _healthPresenter = healthPresenter ?? throw new ArgumentNullException(nameof(healthPresenter));
             _damagebleEvents = damagebleEvents ?? throw new ArgumentNullException(nameof(damagebleEvents));

@@ -17,7 +17,7 @@ namespace BattleBase.Gameplay.MiniMap
             _updater = updater ?? throw new ArgumentNullException(nameof(updater));
         }
 
-        public IEntityTracker CreateTracker(IEntity entity, PositionTrackingType positionTrackingType)
+        public IEntityTracker CreateTracker(ITrackable entity, PositionTrackingType positionTrackingType)
         {
             Transform transform = entity.Transform;
             IEntitySizeTracker sizeTracker = new StaticSizeTracker(transform, _sizeCalculator);

@@ -1,52 +1,47 @@
 using BattleBase.Core;
 using BattleBase.Gameplay.Actors.DamageSystem;
-using BattleBase.Gameplay.Actors.HealthSystem;
-using BattleBase.Gameplay.Actors.Movement;
-using BattleBase.Gameplay.Actors.Weapons;
+using System;
 using System.Collections.Generic;
-using UnityEngine;
+using VContainer;
+using VContainer.Unity;
 
 namespace BattleBase.Gameplay.Actors.Spawn
 {
-    public class ActorFactory : MonoBehaviour, IFactory<Actor>
+    public class ActorFactory : IFactory<Actor>
     {
-        [SerializeField] private ActorConfig _config;
-        [SerializeField] private Renderer _renderer;
-        [SerializeField] private TeamType _team;
+        private readonly IObjectResolver _resolver;
+        private readonly IComponentFactoryRegistry _componentFactoryRegistry;
+        private readonly IActorBinderRegistry _actorBinderRegistry;
+        private readonly ActorConfig _config;
 
-        private ComponentFactoryRegistry _componentFactoryRegistry;
-        private ActorBinderRegistry _actorBinderRegistry;
-        private int _spawnedUnits;
+        private int _unitCounter;
 
-        private void OnValidate()
+        public ActorFactory(
+            ActorConfig config,
+            IComponentFactoryRegistry componentFactoryRegistry,
+            IActorBinderRegistry actorBinderRegistry,
+            IObjectResolver resolver)
         {
-            if (TryGetComponent(out Renderer renderer))
-                _renderer = renderer;
-        }
+            _config = config != null ? config : throw new ArgumentNullException(nameof(config));
+            _resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
+            _componentFactoryRegistry = componentFactoryRegistry ?? throw new ArgumentNullException(nameof(componentFactoryRegistry));
+            _actorBinderRegistry = actorBinderRegistry ?? throw new ArgumentNullException(nameof(actorBinderRegistry));
 
-        private void Awake()
-        {
-            _spawnedUnits = 0;
-
-            //todo Add to Containers
-            _componentFactoryRegistry = CreateComponentFactoryRegistry();
-            _actorBinderRegistry = CreateActorBinderRegistry();
+            _unitCounter = 0;
         }
 
         public Actor Create()
         {
-            ActorView prefab = _config.Prefab;
-            string name = $"{_team}_{prefab.name}_{++_spawnedUnits}";
+            ActorView prefab = _config.Data.Prefab;
+            prefab.name = $"{prefab.name}_{++_unitCounter}";
 
-            ActorView view = Instantiate(prefab, transform);
-            view.gameObject.name = name;
+            ActorView view = _resolver.Instantiate(prefab);
             view.Init();
 
-            ActorDataModifier actorDataModified = new(_config.Data, _team);
             ActorBuilder builder = new();
             builder
                 .ActorView(view)
-                .ActorData(actorDataModified);
+                .ActorData(_config.Data);
 
             IEnumerable<IComponentSource> componentSources = _config.GetComponentSources();
 
@@ -55,7 +50,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
                 IActorComponent component = _componentFactoryRegistry.Create(componentSource);
                 builder.AddComponent(component);
 
-                if (component is IDamagebleEvents damagebleEvents)
+                if (component is IDestroyableEvents damagebleEvents)
                     builder.DamagebleEvents(damagebleEvents);
             }
 
@@ -63,34 +58,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
             _actorBinderRegistry.Bind(actor, view);
 
-            //todo Delete after the selected color is implemented ...
-            var renderersActor = GetComponentsInChildren<MeshRenderer>(true);
-
-            foreach (var renderer in renderersActor)
-                renderer.material = _renderer.material;
-            //...
-
             return actor;
-        }
-
-        private ComponentFactoryRegistry CreateComponentFactoryRegistry()
-        {
-            return new ComponentFactoryRegistry(new List<IComponentFactory>()
-            {
-                new HealthFactory(),
-                new WeaponFactory(),
-                new MoverFactory()
-            });
-        }
-
-        private ActorBinderRegistry CreateActorBinderRegistry()
-        {
-            return new(new List<IActorComponentBinder>()
-            {
-                new HealthBinder(),
-                new WeaponBinder(),
-                new MoverBinder()
-            });
         }
     }
 }

@@ -9,7 +9,9 @@ namespace BattleBase.Gameplay.Actors
     {
         private readonly Dictionary<Type, IActorComponent> _components;
         private readonly List<IUpdateable> _updateableComponents;
-        private readonly IDamagebleEvents _damagebleEvents;
+        private readonly IDestroyableEvents _damagebleEvents;
+
+        private TeamType _teamType;
 
         public event Action<Actor> Deactivated;
 
@@ -17,7 +19,7 @@ namespace BattleBase.Gameplay.Actors
             Dictionary<Type, IActorComponent> components, 
             IActorView view, 
             IActorData actorData,
-            IDamagebleEvents damagebleEvent)
+            IDestroyableEvents damagebleEvent)
         {
             if (components == null)
                 throw new ArgumentNullException(nameof(components));
@@ -27,6 +29,7 @@ namespace BattleBase.Gameplay.Actors
 
             _components = components;
             _damagebleEvents = damagebleEvent ?? throw new ArgumentNullException(nameof(damagebleEvent));
+            _teamType = TeamType.None;
 
             View = view ?? throw new ArgumentNullException(nameof(view));
             Data = actorData ?? throw new ArgumentNullException(nameof(actorData));
@@ -39,6 +42,8 @@ namespace BattleBase.Gameplay.Actors
                     _updateableComponents.Add(componentUpdateable);
             }
         }
+
+        public TeamType TeamType => _teamType;
 
         public IActorData Data { get; }
 
@@ -90,6 +95,8 @@ namespace BattleBase.Gameplay.Actors
             foreach (var component in _components.Values)
                 component.Disable();
         }
+
+        public void SetTeam(TeamType teamType) => _teamType = teamType;
 
         private void OnDestroy()
         {

@@ -6,6 +6,9 @@ namespace BattleBase.Gameplay
 
         public bool TrySelect(IBuildingSite site)
         {
+            if (site == null) 
+                throw new System.ArgumentNullException(nameof(site));
+
             if (site.TrySelect())
             {
                 Unselect();
