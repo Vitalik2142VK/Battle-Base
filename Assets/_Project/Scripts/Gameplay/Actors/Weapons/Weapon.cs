@@ -38,7 +38,7 @@ namespace BattleBase.Gameplay.Actors.Weapons
         public void Disable()
         {
             if (_currentTarget != null)
-                _currentTarget.Destroyed -= OnResetTurget;
+                _currentTarget.Destroyed -= OnResetTarget;
         }
 
         public void Update(float delta)
@@ -46,7 +46,7 @@ namespace BattleBase.Gameplay.Actors.Weapons
             if (_currentTarget == null || _isShotActive == false)
                 return;
 
-            _timer.SkipTick(delta);
+            _timer.Tick(delta);
 
             if (_timer.IsTimeUp)
                 ShootTarget();
@@ -55,10 +55,10 @@ namespace BattleBase.Gameplay.Actors.Weapons
         public void SetTarget(ITarget target)
         {
             if (_currentTarget != null)
-                _currentTarget.Destroyed -= OnResetTurget;
+                _currentTarget.Destroyed -= OnResetTarget;
 
             _currentTarget = target ?? throw new ArgumentNullException(nameof(target));
-            _currentTarget.Destroyed += OnResetTurget;
+            _currentTarget.Destroyed += OnResetTarget;
 
             TargetSelected?.Invoke(_currentTarget);
         }
@@ -81,7 +81,6 @@ namespace BattleBase.Gameplay.Actors.Weapons
             TargetFired?.Invoke(_currentTarget, Config.DamageConfig);
             Shooted?.Invoke();
 
-
             if (--_currentNumberShells > 0)
             {
                 _timer.SetWaitTime(Config.RateShooting);
@@ -92,7 +91,6 @@ namespace BattleBase.Gameplay.Actors.Weapons
             }
 
             _timer.RestartTimer();
-
         }
 
         private void Reload()
@@ -101,7 +99,7 @@ namespace BattleBase.Gameplay.Actors.Weapons
             _currentNumberShells = Config.NumberShells;
         }
 
-        private void OnResetTurget()
+        private void OnResetTarget()
         {
             _currentTarget = null;
 

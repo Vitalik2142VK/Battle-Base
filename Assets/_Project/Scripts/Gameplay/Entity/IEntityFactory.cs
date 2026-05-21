@@ -1,15 +1,15 @@
 using System.Collections.Generic;
-using BattleBase.UI;
+using BattleBase.Gameplay.Actors;
 using UnityEngine;
 
 namespace BattleBase.Gameplay
 {
     public interface IEntityFactory
     {
-        public void SetBarracksInfos(IReadOnlyList<IProductionItemInfo> barracksItemInfos);
+        public void SetBarracksInfos(IReadOnlyList<IActorData> barracksItemInfos);
 
-        public void SetMachineFactoryInfos(IReadOnlyList<IProductionItemInfo> machineFactoryItemInfos);
+        public void SetMachineFactoryInfos(IReadOnlyList<IActorData> machineFactoryItemInfos);
 
-        public IEntity Create(Entity prefab, Transform target);
+        public ITrackable Create(Trackable prefab, Transform target);
     }
 }

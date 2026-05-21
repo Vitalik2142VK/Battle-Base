@@ -5,13 +5,13 @@ namespace BattleBase.Gameplay.MiniMap
 {
     public class EntityTracker : IEntityTracker, IDisposable
     {
-        private readonly IEntity _entity;
+        private readonly ITrackable _entity;
         private readonly IEntitySizeTracker _sizeTracker;
         private readonly IEntityPositionTracker _positionTracker;
         private readonly IEntityRotationTracker _rotationTracker;
 
         public EntityTracker(
-            IEntity entity, 
+            ITrackable entity, 
             IEntitySizeTracker sizeTracker,
             IEntityPositionTracker positionTracker,
             IEntityRotationTracker rotationTracker)
@@ -57,10 +57,10 @@ namespace BattleBase.Gameplay.MiniMap
             Disposed?.Invoke(this);
         }
 
-        private void OnDeactivated(IEntity entity) =>
+        private void OnDeactivated(ITrackable entity) =>
             Dispose();
 
-        private void OnColorChanged(IEntity entity) =>
+        private void OnColorChanged(ITrackable entity) =>
             ColorChanged?.Invoke(this);
 
         private void OnSizeChanged() =>

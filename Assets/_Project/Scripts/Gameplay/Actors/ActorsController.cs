@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using BattleBase.Gameplay.Actors.DamageSystem;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors
@@ -10,6 +11,15 @@ namespace BattleBase.Gameplay.Actors
         private void Awake()
         {
             _activeActors = new List<IActor>();
+        }
+
+        private void OnDisable()
+        {
+            foreach (var actor in _activeActors)
+            {
+                if (actor.TryGetComponent(out IOnTimeDestroyable destroyable))
+                    destroyable.Destroy();
+            }
         }
 
         public void AddActor(IActor actor)

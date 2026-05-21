@@ -9,7 +9,7 @@ namespace BattleBase.Gameplay.Actors
         private readonly Dictionary<Type, IActorComponent> _components;
         private IActorView _view;
         private IActorData _actorData;
-        private IDamagebleEvents _damagebleEvent;
+        private IDestroyableEvents _damagebleEvent;
 
         public ActorBuilder()
         {
@@ -30,7 +30,7 @@ namespace BattleBase.Gameplay.Actors
             return this;
         }
 
-        public ActorBuilder DamagebleEvents(IDamagebleEvents damagebleEvent)
+        public ActorBuilder DamagebleEvents(IDestroyableEvents damagebleEvent)
         {
             _damagebleEvent = damagebleEvent ?? throw new ArgumentNullException(nameof(damagebleEvent));
 
@@ -51,7 +51,18 @@ namespace BattleBase.Gameplay.Actors
 
         public Actor Build()
         {
+            if (_damagebleEvent == null)
+                AddOnTimeDamageble();
+
             return new Actor(_components, _view, _actorData, _damagebleEvent);
+        }
+
+        private void AddOnTimeDamageble()
+        {
+            IOnTimeDestroyable onTimeDamageble = new OnTimeDestroyable();
+            _damagebleEvent = onTimeDamageble;
+
+            AddComponent(onTimeDamageble);
         }
 
         private Type FindHeir(IActorComponent component)

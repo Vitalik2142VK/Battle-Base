@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors 
 {
-    public class ActorView : MonoBehaviour, IActorView
+    public class ActorView : Trackable, IActorView
     {
         [SerializeField][SerializeIterface(typeof(IActorViewComponent))] private GameObject[] _viewComponents;
 
@@ -21,7 +21,6 @@ namespace BattleBase.Gameplay.Actors
         }
 
         public void SetActive(bool isActive) => gameObject.SetActive(isActive);
-
 
         public bool TryGetViewComponent<T>(out T component) where T : class, IActorViewComponent
         {

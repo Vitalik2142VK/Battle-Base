@@ -1,3 +1,4 @@
+using BattleBase.Gameplay.Actors;
 using System;
 using System.Collections.Generic;
 using VContainer;
@@ -16,14 +17,14 @@ namespace BattleBase.UI
             _resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
         }
 
-        public List<IProductionItem> Create(IReadOnlyList<IProductionItemInfo> infos)
+        public List<IProductionItem> Create(IEnumerable<IActorData> infos)
         {
             if (infos == null)
                 return new();
 
             List<IProductionItem> items = new();
 
-            foreach (IProductionItemInfo info in infos)
+            foreach (IActorData info in infos)
             {
                 IProductionItem item = _resolver.Instantiate(_itemPrefab);
                 item.SetInfo(info);

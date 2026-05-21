@@ -47,8 +47,8 @@ namespace BattleBase.Gameplay
 
         private void UpdateState()
         {
-            if (_buildingSite.IsPlayer == false)
-                return;
+            //if (_buildingSite.IsPlayer == false)
+            //    return;
 
             switch (_buildingSite.State)
             {

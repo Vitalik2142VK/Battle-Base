@@ -1,6 +1,6 @@
 ﻿namespace BattleBase.Gameplay.Actors
 {
-    public interface IActor : IUpdateable
+    public interface IActor : IUpdateable, ITeamSetter
     {
         public IActorData Data { get; }
 

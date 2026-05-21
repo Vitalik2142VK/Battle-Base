@@ -1,73 +1,82 @@
-using BattleBase.Gameplay.Actors.Movement;
-using System.Collections;
-using UnityEngine;
+using BattleBase.Utils;
+using System;
+using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.Spawn
 {
-    [RequireComponent(typeof(WaypointController))]
-    public class ActorSpawner : MonoBehaviour
+    public class ActorSpawner : IActorSpawner
     {
-        [SerializeField] private ActorsController _controller;
-        [SerializeField] private Transform _container;
-        [SerializeField] private Transform _spawnPoint;
-        [SerializeField] private ActorFactory _factory;
-        [SerializeField][Min(20)] private int _maxSpawnCount = 50;
+        private readonly HashSet<IActorData> _actorsToCreate;
+        private readonly List<IActorData> _actorsData;
+        private readonly IActorSpawnService _spawnService;
+        private readonly Timer _timer;
 
-        private ActorPool _pool;
-        private WaypointController _waypointsController;
+        private ITeamable _teamable;
+        private IActorData _currentActorData;
 
-        private void OnValidate()
+        public event Action<Actor> Spawned;
+
+        public ActorSpawner(IEnumerable<IActorData> actorsToCreate, IActorSpawnService actorSpawnService)
         {
-            if (_container == null)
-                _container = transform;
+            if (actorsToCreate == null)
+                throw new ArgumentNullException(nameof(actorsToCreate));
 
-            if (_spawnPoint == null)
-                _spawnPoint = transform;
+            _actorsToCreate = new HashSet<IActorData>(actorsToCreate);
+            _actorsData = new List<IActorData>(actorsToCreate);
+            _spawnService = actorSpawnService ?? throw new ArgumentNullException(nameof(actorSpawnService));
+            _currentActorData = _actorsData[0];
+            _timer = new(_currentActorData.ConstructionTime);
         }
 
-        private void Awake()
+        public IEnumerable<IActorData> ActorsData => _actorsData.ToArray();
+
+        public void Init(ITeamable teamable)
         {
-            _pool = new ActorPool(_factory, _maxSpawnCount);
-            _waypointsController = GetComponent<WaypointController>();
+            _teamable = teamable ?? throw new ArgumentNullException(nameof(teamable));
         }
 
-        private void Start()
+        public void Enable()
         {
-            StartCoroutine(Spawn());
+            _timer.SetWaitTime(_currentActorData.ConstructionTime);
         }
 
-        private IEnumerator Spawn()
+        public void Disable()
         {
-            while (gameObject.activeSelf)
+            _currentActorData = _actorsData[0];
+        }
+
+        public void Update(float delta)
+        {
+            if (_timer.IsTimeUp)
             {
-                if (_pool.TryGive(out Actor actor))
-                {
-                    actor.Enable();
-                    IActorData data = actor.Data;
+                _timer.Tick(delta);
 
-                    EstablishTransform(actor.View);
+                return;
+            }
 
-                    _controller.AddActor(actor);
-                    _waypointsController.SpecifyActorRoute(actor);
+            if (_spawnService.TrySpawn(_currentActorData.Prefab.name, _teamable.TeamType, out Actor actor))
+            {
+                Spawned?.Invoke(actor);
 
-                    yield return new WaitForSeconds(data.ConstructionTime);
-                }
-                else
-                {
-                    yield return new WaitForFixedUpdate();
-                }
+                _timer.RestartTimer();
             }
         }
 
-        private void EstablishTransform(IActorView view)
+        public void SelectActorData(IActorData actorData)
         {
-            if (view is MonoBehaviour actor == false)
-                throw new System.InvalidOperationException();
+            if (actorData == null)
+                throw new ArgumentNullException(nameof(actorData));
 
-            var unitTransform = actor.transform;
-            unitTransform.SetParent(_container);
-            unitTransform.SetPositionAndRotation(_spawnPoint.position, _spawnPoint.rotation);
-            unitTransform.gameObject.SetActive(true);
+            if (_actorsToCreate.TryGetValue(actorData, out IActorData actualValue))
+            {
+                _currentActorData = actualValue;
+                _timer.SetWaitTime(_currentActorData.ConstructionTime);
+                _timer.RestartTimer();
+            }
+            else
+            {
+                throw new InvalidOperationException($"{nameof(actorData)} not found");
+            }
         }
     }
 }

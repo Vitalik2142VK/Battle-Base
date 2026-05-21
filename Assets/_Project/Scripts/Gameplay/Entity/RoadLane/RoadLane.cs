@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace BattleBase.Gameplay
 {
-    public class RoadLane : Entity
+    public class RoadLane : Trackable
     {
         [SerializeField] private Color _color;
 

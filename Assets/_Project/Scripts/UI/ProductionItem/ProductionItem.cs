@@ -1,6 +1,7 @@
 using System;
 using BattleBase.Commands;
 using BattleBase.DI;
+using BattleBase.Gameplay.Actors;
 using BattleBase.UI.Buttons;
 using BattleBase.UI.PopUps;
 using TMPro;
@@ -19,9 +20,9 @@ namespace BattleBase.UI
 
         private ItemInfoPopUp _popUp;
 
-        public event Action<ProductionItem> ItemClicked;
+        public event Action<IProductionItem> ItemClicked;
 
-        public IProductionItemInfo Info { get; private set; }
+        public IActorData Info { get; private set; }
 
         [Inject]
         public void Construct(ItemInfoPopUp popUp, [Key("ShowItemInfoPopUp")] CommandBase commandShowItemInfoPopUp)
@@ -48,11 +49,11 @@ namespace BattleBase.UI
         public void ResetParent() =>
             transform.SetParent(null, false);
 
-        public void SetInfo(IProductionItemInfo info)
+        public void SetInfo(IActorData info)
         {
             Info = info;
 
-            _icon.sprite = Info.Sprite;
+            _icon.sprite = Info.Icon;
             _price.text = Info.Price.ToString();
         }
 

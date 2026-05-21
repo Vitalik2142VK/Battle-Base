@@ -31,7 +31,7 @@ namespace BattleBase.Gameplay.Actors.Weapons
 
             if (view.TryGetViewComponent(out ITargetFinder targetFinder))
             {
-                targetFinder.Init(presenter, weapon.Config, actor.Data);
+                targetFinder.Init(presenter, weapon.Config, actor);
             }
         }
     }
