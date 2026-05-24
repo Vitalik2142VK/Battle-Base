@@ -12,7 +12,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
         private IActorSpawnerPresenter _presenter;
         private IActorSpawnerEvents _events;
-
+        //todo remove
         public IEnumerable<IActorData> ActorsData => _presenter.ActorsDatas;
 
         public IBuildingSite BuildingSite { get; private set; }
@@ -41,8 +41,6 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
         public void Init(IActorSpawnerPresenter presenter, IActorSpawnerEvents events)
         {
-            Debug.Log("ActorViewSpawner.Init");
-
             _presenter = presenter ?? throw new ArgumentNullException(nameof(presenter));
             _events = events ?? throw new ArgumentNullException(nameof(events));
 

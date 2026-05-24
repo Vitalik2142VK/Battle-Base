@@ -27,7 +27,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
             var actorsToCreate = spawnComponentSource.ActorsConfigs.Select(a => a.Data);
 
-            return new LoopActorSpawner(actorsToCreate, _spawnService);
+            return new MultiActorSpawner(actorsToCreate, _spawnService);
         }
     }
 }

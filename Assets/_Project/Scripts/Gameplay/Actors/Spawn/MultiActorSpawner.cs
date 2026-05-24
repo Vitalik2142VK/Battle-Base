@@ -4,9 +4,10 @@ using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.Spawn
 {
-    public class ActorSpawner : IActorSpawner
+    public class MultiActorSpawner : IActorSpawner
     {
         private readonly List<IActorData> _actorsToCreate;
+        private readonly Queue<IActorData> _actorsQueue;
         private readonly IActorSpawnService _spawnService;
         private readonly Timer _timer;
 
@@ -16,29 +17,32 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
         public event Action<Actor> Spawned;
 
-        public ActorSpawner(IEnumerable<IActorData> actorsToCreate, IActorSpawnService actorSpawnService)
+        public MultiActorSpawner(IEnumerable<IActorData> actorsToCreate, IActorSpawnService actorSpawnService)
         {
             if (actorsToCreate == null)
                 throw new ArgumentNullException(nameof(actorsToCreate));
 
             _actorsToCreate = new List<IActorData>(actorsToCreate);
+            _actorsQueue = new Queue<IActorData>();
+
             _spawnService = actorSpawnService ?? throw new ArgumentNullException(nameof(actorSpawnService));
             _timer = new();
         }
 
         public IEnumerable<IActorData> ActorsData => _actorsToCreate.ToArray();
 
+
         public void Init(ITeamable teamable)
         {
             _teamable = teamable ?? throw new ArgumentNullException(nameof(teamable));
         }
 
-        public void Enable()
+        public virtual void Enable()
         {
             _isDisable = false;
         }
 
-        public void Disable()
+        public virtual void Disable()
         {
             _isDisable = true;
             _currentActorData = null;
@@ -49,22 +53,10 @@ namespace BattleBase.Gameplay.Actors.Spawn
             if (_currentActorData == null || _isDisable)
                 return;
 
-            if (_timer.IsTimeUp == false)
-            {
-                _timer.Tick(delta);
+            _timer.Tick(delta);
 
-                return;
-            }
-
-            if (_spawnService.TrySpawn(_currentActorData.Prefab.name, out Actor actor))
-            {
-                Spawned?.Invoke(actor);
-
-                actor.Enable();
-                actor.SetTeam(_teamable.TeamType);
-
-                _currentActorData = null;
-            }
+            if (_timer.IsTimeUp)
+                ProcessSpawn();
         }
 
         public void SelectActorData(IActorData actorData)
@@ -74,14 +66,38 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
             if (_actorsToCreate.Contains(actorData))
             {
-                _currentActorData = actorData;
-                _timer.SetWaitTime(_currentActorData.ConstructionTime);
-                _timer.RestartTimer();
+                if (_currentActorData == null)
+                    EstablisCurrentActorSpawn(actorData);
+                else
+                    _actorsQueue.Enqueue(actorData);
             }
             else
             {
                 throw new InvalidOperationException($"{nameof(actorData)} not found");
             }
+        }
+
+        private void ProcessSpawn()
+        {
+            if (_spawnService.TrySpawn(_currentActorData.Prefab.name, out Actor actor))
+            {
+                Spawned?.Invoke(actor);
+
+                actor.Enable();
+                actor.SetTeam(_teamable.TeamType);
+
+                if (_actorsQueue.Count > 0)
+                    EstablisCurrentActorSpawn(_actorsQueue.Dequeue());
+                else
+                    _currentActorData = null;
+            }
+        }
+
+        private void EstablisCurrentActorSpawn(IActorData actorData)
+        {
+            _currentActorData = actorData;
+            _timer.SetWaitTime(_currentActorData.ConstructionTime);
+            _timer.RestartTimer();
         }
     }
 }

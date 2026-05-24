@@ -1,5 +1,6 @@
 using BattleBase.Gameplay.Actors;
 using BattleBase.Gameplay.Actors.DamageSystem;
+using BattleBase.Gameplay.Actors.Movement;
 using BattleBase.Gameplay.Actors.Spawn;
 using System;
 using System.Collections.Generic;
