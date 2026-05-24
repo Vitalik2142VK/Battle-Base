@@ -1,5 +1,6 @@
 using BattleBase.Gameplay.Actors;
 using BattleBase.Gameplay.Actors.DamageSystem;
+using BattleBase.Gameplay.Actors.Movement;
 using BattleBase.Gameplay.Actors.Spawn;
 using System;
 using System.Collections.Generic;
@@ -66,11 +67,11 @@ namespace BattleBase.Gameplay
             }
 
             Actor actor = builder.Build();
-            actor.SetTeam(teamType);
-            actor.Enable();
-
             _actorBinderRegistry.Bind(actor, view);
             _actorsController.AddActor(actor);
+
+            actor.SetTeam(teamType);
+            actor.Enable();
         }
     }
 }

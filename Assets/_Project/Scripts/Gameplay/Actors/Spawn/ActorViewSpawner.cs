@@ -12,7 +12,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
         private IActorSpawnerPresenter _presenter;
         private IActorSpawnerEvents _events;
-
+        //todo remove
         public IEnumerable<IActorData> ActorsData => _presenter.ActorsDatas;
 
         public IBuildingSite BuildingSite { get; private set; }
@@ -71,7 +71,6 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
             var unitTransform = actor.transform;
             unitTransform.SetPositionAndRotation(_spawnPoint.position, _spawnPoint.rotation);
-            unitTransform.gameObject.SetActive(true);
 
             if (view.TryGetViewComponent(out IActorViewSpawner component))
             {

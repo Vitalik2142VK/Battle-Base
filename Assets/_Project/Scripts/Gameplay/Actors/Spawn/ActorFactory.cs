@@ -33,10 +33,10 @@ namespace BattleBase.Gameplay.Actors.Spawn
         public Actor Create()
         {
             ActorView prefab = _config.Data.Prefab;
-            prefab.name = $"{prefab.name}_{++_unitCounter}";
 
             ActorView view = _resolver.Instantiate(prefab);
             view.Init();
+            view.name = $"{prefab.name}_{++_unitCounter}";
 
             ActorBuilder builder = new();
             builder

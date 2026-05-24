@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.Movement
 {
-    public class WaypointController : MonoBehaviour
+    public class WaypointController : MonoBehaviour, IWaypointController
     {
         [SerializeField] private Transform[] _points;
 

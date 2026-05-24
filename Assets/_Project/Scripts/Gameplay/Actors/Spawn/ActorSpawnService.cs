@@ -13,13 +13,12 @@ namespace BattleBase.Gameplay.Actors.Spawn
             _actorsController = actorsController ?? throw new ArgumentNullException(nameof(actorsController));
         }
 
-        public bool TrySpawn(string prefabName, TeamType teamType, out Actor actor)
+        public bool TrySpawn(string prefabName, out Actor actor)
         {
             if (_poolRegistry.TryGive(out actor, prefabName) == false)
+            {
                 return false;
-
-            actor.Enable();
-            actor.SetTeam(teamType);
+            }
 
             _actorsController.AddActor(actor);
 
