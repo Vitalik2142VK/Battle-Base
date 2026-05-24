@@ -88,6 +88,8 @@ namespace BattleBase.Gameplay
         private void OnSelectItem(IProductionItem item)
         {
             _currentViewSpawner.SelectActorData(item.Info);
+
+            HandleUnselectEntity();
         }
     }
 }

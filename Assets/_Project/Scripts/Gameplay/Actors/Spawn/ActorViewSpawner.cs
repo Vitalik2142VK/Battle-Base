@@ -41,6 +41,8 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
         public void Init(IActorSpawnerPresenter presenter, IActorSpawnerEvents events)
         {
+            Debug.Log("ActorViewSpawner.Init");
+
             _presenter = presenter ?? throw new ArgumentNullException(nameof(presenter));
             _events = events ?? throw new ArgumentNullException(nameof(events));
 
@@ -71,7 +73,6 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
             var unitTransform = actor.transform;
             unitTransform.SetPositionAndRotation(_spawnPoint.position, _spawnPoint.rotation);
-            unitTransform.gameObject.SetActive(true);
 
             if (view.TryGetViewComponent(out IActorViewSpawner component))
             {
