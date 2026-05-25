@@ -4,18 +4,18 @@ using VContainer;
 
 namespace BattleBase.Gameplay.Actors.Spawn
 {
-    public class LoopActorSpawnerFactory : IComponentFactory
+    public class MultiActorSpawnerFactory : IComponentFactory
     {
         private readonly IObjectResolver _resolver;
 
         private IActorSpawnService _spawnService;
 
-        public LoopActorSpawnerFactory(IObjectResolver resolver)
+        public MultiActorSpawnerFactory(IObjectResolver resolver)
         {
             _resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
         }
 
-        public Type SourceType => typeof(LoopSpawnComponentSource);
+        public Type SourceType => typeof(MultiSpawnComponentSource);
 
         public IActorComponent Create(IComponentSource source)
         {

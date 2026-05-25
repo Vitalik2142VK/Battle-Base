@@ -11,6 +11,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
         private readonly Timer _timer;
 
         private ITeamable _teamable;
+        private ISpawnData _spawnData;
         private IActorData _currentActorData;
         private bool _isDisable;
 
@@ -28,9 +29,10 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
         public IEnumerable<IActorData> ActorsData => _actorsToCreate.ToArray();
 
-        public void Init(ITeamable teamable)
+        public void Init(ITeamable teamable, ISpawnData spawnData)
         {
             _teamable = teamable ?? throw new ArgumentNullException(nameof(teamable));
+            _spawnData = spawnData ?? throw new ArgumentNullException(nameof(spawnData));
         }
 
         public void Enable()
@@ -56,7 +58,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
                 return;
             }
 
-            if (_spawnService.TrySpawn(_currentActorData.Prefab.name, out Actor actor))
+            if (_spawnService.TrySpawn(_currentActorData.Prefab.name, _spawnData, out Actor actor))
             {
                 Spawned?.Invoke(actor);
 

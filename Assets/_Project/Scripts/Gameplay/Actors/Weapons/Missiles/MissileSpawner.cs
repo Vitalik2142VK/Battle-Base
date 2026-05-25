@@ -1,10 +1,10 @@
 using BattleBase.Core;
-using BattleBase.Gameplay.Actors.Weapons.Missiles;
+using BattleBase.Gameplay.Actors.Spawn;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BattleBase.Gameplay.Actors.Spawn
+namespace BattleBase.Gameplay.Actors.Weapons.Missiles
 {
     public class MissileSpawner : MonoBehaviour, IMissileSpawner
     {

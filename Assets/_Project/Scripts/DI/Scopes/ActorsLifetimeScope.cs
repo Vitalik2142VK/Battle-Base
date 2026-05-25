@@ -28,7 +28,7 @@ public class ActorsLifetimeScope : LifetimeScope
         _builder.Register<IComponentFactory, WeaponFactory>(Lifetime.Scoped);
         _builder.Register<IComponentFactory, MoverFactory>(Lifetime.Scoped);
         _builder.Register<IComponentFactory, ActorSpawnerFactory>(Lifetime.Scoped);
-        _builder.Register<IComponentFactory, LoopActorSpawnerFactory>(Lifetime.Scoped);
+        _builder.Register<IComponentFactory, MultiActorSpawnerFactory>(Lifetime.Scoped);
         _builder.Register<IComponentFactoryRegistry, ComponentFactoryRegistry>(Lifetime.Scoped);
 
         _builder.Register<IActorComponentBinder, HealthBinder>(Lifetime.Scoped);

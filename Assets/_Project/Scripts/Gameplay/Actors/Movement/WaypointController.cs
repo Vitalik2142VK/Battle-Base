@@ -1,24 +1,10 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.Movement
 {
     public class WaypointController : MonoBehaviour, IWaypointController
     {
-        [SerializeField] private Transform[] _points;
-
-        private List<Waypoint> _waypoints;
-
-        private void Awake()
-        {
-            _waypoints = new List<Waypoint>();
-
-            foreach (var point in _points)
-            {
-                Waypoint waypoint = new(point.position);
-                _waypoints.Add(waypoint);
-            }
-        }
+        [SerializeField] private RouteStartArea[] _routeStartAreas;
 
         public void SpecifyActorRoute(IActor actor)
         {
@@ -28,7 +14,7 @@ namespace BattleBase.Gameplay.Actors.Movement
             if (actor.TryGetComponent(out IMover mover) == false)
                 return;
 
-            mover.AddWaypoints(_waypoints.ToArray());
+            mover.AddWaypoints(null); //todo
             mover.EstablishNextPoint();
             mover.Move();
         } 
