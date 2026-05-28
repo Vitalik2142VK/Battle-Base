@@ -1,3 +1,4 @@
+using BattleBase.Gameplay.Actors;
 using System;
 using UnityEngine;
 
@@ -7,12 +8,15 @@ namespace BattleBase.Gameplay
     public class BuildingSite : MonoBehaviour, IBuildingSite
     {
         [SerializeField] private BuildingSiteState _state;
+        
+        [field:SerializeField] public TeamType TeamType { get; private set; }
 
         private Collider _collider;
 
         public event Action StateChanged;
 
         public BuildingSiteState State => _state;
+
 
         private void Awake()
         {

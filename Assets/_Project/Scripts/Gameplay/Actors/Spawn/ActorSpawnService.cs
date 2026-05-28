@@ -28,12 +28,11 @@ namespace BattleBase.Gameplay.Actors.Spawn
                 throw new ArgumentNullException(nameof(spawnData));
 
             if (_poolRegistry.TryGive(out actor, prefabName) == false)
-            {
                 return false;
-            }
 
+            actor.SetSpawnData(spawnData);
+            _waypointController.SpecifyActorRoute(actor, spawnData);
             _actorsController.AddActor(actor);
-            _waypointController.SpecifyActorRoute(actor);
 
             return true;
         }

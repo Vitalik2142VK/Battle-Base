@@ -195,6 +195,11 @@ PrefabInstance:
       propertyPath: _isPlayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <TeamType>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -276,6 +281,11 @@ PrefabInstance:
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
       propertyPath: _isPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <TeamType>k__BackingField
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -433,6 +443,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 120401455}
+  - component: {fileID: 120401456}
   m_Layer: 0
   m_Name: Waypoint_2_1
   m_TagString: Untagged
@@ -455,6 +466,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 871274737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &120401456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120401454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2388c8a912adeb54493c669347662a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &156863860
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -522,6 +545,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <TeamType>k__BackingField
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -606,6 +634,11 @@ PrefabInstance:
       propertyPath: _isPlayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <TeamType>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -687,6 +720,11 @@ PrefabInstance:
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
       propertyPath: _isPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <TeamType>k__BackingField
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -790,6 +828,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 220939990}
+  - component: {fileID: 220939991}
   m_Layer: 0
   m_Name: Waypoint_4_1
   m_TagString: Untagged
@@ -812,6 +851,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 871274737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &220939991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220939989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2388c8a912adeb54493c669347662a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &229767064
 GameObject:
   m_ObjectHideFlags: 0
@@ -821,6 +872,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 229767065}
+  - component: {fileID: 229767066}
   m_Layer: 0
   m_Name: Waypoint_4_2_West
   m_TagString: Untagged
@@ -843,6 +895,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 871274737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &229767066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229767064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2388c8a912adeb54493c669347662a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &232845517
 GameObject:
   m_ObjectHideFlags: 0
@@ -858,7 +922,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &232845518
 Transform:
@@ -884,7 +948,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 232845517}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e49c217e354f4804c9da8a8f8f690349, type: 3}
+  m_Script: {fileID: 11500000, guid: 58fca36317b131645b61fcdfad828a68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _misslePrefab: {fileID: 7550878289047074185, guid: 0e7462a956c1f3d43ba581feb1d144c8,
@@ -1769,6 +1833,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 325669608}
+  - component: {fileID: 325669609}
   m_Layer: 0
   m_Name: Lane4
   m_TagString: Untagged
@@ -1794,6 +1859,26 @@ Transform:
   - {fileID: 1612391129}
   m_Father: {fileID: 597667320}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &325669609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 325669607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eecfded45db110488bc2f7ebf06ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _route:
+  - {fileID: 1566528351}
+  - {fileID: 1209873052}
+  - {fileID: 1166586435}
+  _center: {x: 0, y: 0, z: 0}
+  _size: {x: 10, y: 6, z: 40}
+  _radiusWaypoint: 1
+  _isDebugEnable: 0
 --- !u!224 &327120671 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5219462047094601566, guid: b4fe34715dcc7694c82f40dd1ad5547a,
@@ -2142,6 +2227,11 @@ PrefabInstance:
       propertyPath: _isPlayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <TeamType>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2156,6 +2246,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 391509076}
+  - component: {fileID: 391509077}
   m_Layer: 0
   m_Name: Lane3
   m_TagString: Untagged
@@ -2181,6 +2272,26 @@ Transform:
   - {fileID: 1613516402}
   m_Father: {fileID: 1161357289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &391509077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391509075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eecfded45db110488bc2f7ebf06ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _route:
+  - {fileID: 220939991}
+  - {fileID: 990055835}
+  - {fileID: 1993727103}
+  _center: {x: 0, y: 0, z: 0}
+  _size: {x: 10, y: 6, z: 40}
+  _radiusWaypoint: 1
+  _isDebugEnable: 0
 --- !u!1001 &401247465
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2253,6 +2364,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _isPlayer
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <TeamType>k__BackingField
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2559,6 +2675,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <TeamType>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2579,7 +2700,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &433170247
 Transform:
@@ -2774,6 +2895,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <TeamType>k__BackingField
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3082,6 +3208,11 @@ PrefabInstance:
       propertyPath: _isPlayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <TeamType>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3245,6 +3376,11 @@ PrefabInstance:
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
       propertyPath: _isPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <TeamType>k__BackingField
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3465,6 +3601,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 643464271}
+  - component: {fileID: 643464272}
   m_Layer: 0
   m_Name: Waypoint_5_2_West
   m_TagString: Untagged
@@ -3487,6 +3624,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 871274737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &643464272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 643464270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2388c8a912adeb54493c669347662a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &652001560
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3721,6 +3870,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _isPlayer
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <TeamType>k__BackingField
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4072,6 +4226,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 771502293}
+  - component: {fileID: 771502294}
   m_Layer: 0
   m_Name: Lane4
   m_TagString: Untagged
@@ -4097,6 +4252,26 @@ Transform:
   - {fileID: 470404522}
   m_Father: {fileID: 1161357289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &771502294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771502292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eecfded45db110488bc2f7ebf06ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _route:
+  - {fileID: 1440739180}
+  - {fileID: 1848163452}
+  - {fileID: 1993727103}
+  _center: {x: 0, y: 0, z: 0}
+  _size: {x: 10, y: 6, z: 40}
+  _radiusWaypoint: 1
+  _isDebugEnable: 0
 --- !u!1 &791671402
 GameObject:
   m_ObjectHideFlags: 0
@@ -4106,6 +4281,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 791671403}
+  - component: {fileID: 791671404}
   m_Layer: 0
   m_Name: Lane1
   m_TagString: Untagged
@@ -4131,6 +4307,26 @@ Transform:
   - {fileID: 702258828}
   m_Father: {fileID: 597667320}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &791671404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 791671402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eecfded45db110488bc2f7ebf06ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _route:
+  - {fileID: 220939991}
+  - {fileID: 229767066}
+  - {fileID: 1166586435}
+  _center: {x: 0, y: 0, z: 0}
+  _size: {x: 10, y: 6, z: 40}
+  _radiusWaypoint: 1
+  _isDebugEnable: 0
 --- !u!1 &796794752
 GameObject:
   m_ObjectHideFlags: 0
@@ -4259,6 +4455,11 @@ PrefabInstance:
       propertyPath: _interactable
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <TeamType>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4345,6 +4546,11 @@ PrefabInstance:
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
       propertyPath: _interactable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <TeamType>k__BackingField
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -4645,6 +4851,11 @@ PrefabInstance:
       propertyPath: _isPlayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <TeamType>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4664,7 +4875,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &849014627
 Transform:
@@ -4674,7 +4885,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 849014626}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4682,6 +4893,7 @@ Transform:
   - {fileID: 433170247}
   - {fileID: 1063209184}
   - {fileID: 1305751703}
+  - {fileID: 1904091221}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &853155535 stripped
@@ -4768,6 +4980,11 @@ PrefabInstance:
       propertyPath: _isPlayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <TeamType>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4781,6 +4998,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 791671403}
     m_Modifications:
+    - target: {fileID: 1184572026871751672, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1927838053464246575, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
       propertyPath: m_Name
@@ -4789,7 +5011,7 @@ PrefabInstance:
     - target: {fileID: 1927838053464246575, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1934111880513334086, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
@@ -4841,6 +5063,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8184685119931026650, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
       propertyPath: _state
@@ -4849,6 +5076,11 @@ PrefabInstance:
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
       propertyPath: _isPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <TeamType>k__BackingField
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -5283,6 +5515,7 @@ MonoBehaviour:
   - {fileID: 1840300234}
   _poolsRegistrator: {fileID: 1305751704}
   _actorController: {fileID: 433170248}
+  _waypointController: {fileID: 1904091222}
 --- !u!4 &939699205
 Transform:
   m_ObjectHideFlags: 0
@@ -5387,6 +5620,11 @@ PrefabInstance:
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
       propertyPath: _isPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <TeamType>k__BackingField
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -5533,6 +5771,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 990055834}
+  - component: {fileID: 990055835}
   m_Layer: 0
   m_Name: Waypoint_4_2_East
   m_TagString: Untagged
@@ -5555,6 +5794,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 871274737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &990055835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990055833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2388c8a912adeb54493c669347662a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1002282873
 GameObject:
   m_ObjectHideFlags: 0
@@ -5647,6 +5898,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1018935589}
+  - component: {fileID: 1018935590}
   m_Layer: 0
   m_Name: Lane0
   m_TagString: Untagged
@@ -5672,6 +5924,26 @@ Transform:
   - {fileID: 2051423821}
   m_Father: {fileID: 1161357289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1018935590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018935588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eecfded45db110488bc2f7ebf06ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _route:
+  - {fileID: 1566528351}
+  - {fileID: 1238189399}
+  - {fileID: 1993727103}
+  _center: {x: 0, y: 0, z: 0}
+  _size: {x: 10, y: 6, z: 40}
+  _radiusWaypoint: 1
+  _isDebugEnable: 0
 --- !u!1 &1019701355
 GameObject:
   m_ObjectHideFlags: 0
@@ -5843,6 +6115,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 791671403}
     m_Modifications:
+    - target: {fileID: 1184572026871751672, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1927838053464246575, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
       propertyPath: m_Name
@@ -5851,7 +6128,7 @@ PrefabInstance:
     - target: {fileID: 1927838053464246575, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1934111880513334086, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
@@ -5903,6 +6180,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8184685119931026650, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
       propertyPath: _state
@@ -5911,6 +6193,11 @@ PrefabInstance:
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
       propertyPath: _isPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <TeamType>k__BackingField
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -6105,7 +6392,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1063209184
 Transform:
@@ -6133,7 +6420,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1063209183}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 040684cb439de0047b329d9c060e6e17, type: 3}
+  m_Script: {fileID: 11500000, guid: efd88e83f0aa8d1428e6a777012257dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _factories:
@@ -6154,6 +6441,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1069148337}
+  - component: {fileID: 1069148338}
   m_Layer: 0
   m_Name: Lane2
   m_TagString: Untagged
@@ -6179,6 +6467,26 @@ Transform:
   - {fileID: 1988248583}
   m_Father: {fileID: 1161357289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1069148338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069148336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eecfded45db110488bc2f7ebf06ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _route:
+  - {fileID: 1382606845}
+  - {fileID: 1655569276}
+  - {fileID: 1993727103}
+  _center: {x: 0, y: 0, z: 0}
+  _size: {x: 10, y: 6, z: 40}
+  _radiusWaypoint: 1
+  _isDebugEnable: 0
 --- !u!1 &1088363524
 GameObject:
   m_ObjectHideFlags: 0
@@ -6508,6 +6816,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1166586434}
+  - component: {fileID: 1166586435}
   m_Layer: 0
   m_Name: Waypoint_Finish_West
   m_TagString: Untagged
@@ -6530,6 +6839,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 871274737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1166586435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166586433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2388c8a912adeb54493c669347662a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1195721078
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6740,6 +7061,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1209873051}
+  - component: {fileID: 1209873052}
   m_Layer: 0
   m_Name: Waypoint_1_2_West
   m_TagString: Untagged
@@ -6762,6 +7084,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 871274737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1209873052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209873050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2388c8a912adeb54493c669347662a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1222024584
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6834,6 +7168,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _isPlayer
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <TeamType>k__BackingField
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7024,6 +7363,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1238189398}
+  - component: {fileID: 1238189399}
   m_Layer: 0
   m_Name: Waypoint_1_2_East
   m_TagString: Untagged
@@ -7046,6 +7386,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 871274737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1238189399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238189397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2388c8a912adeb54493c669347662a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1260958811
 GameObject:
   m_ObjectHideFlags: 0
@@ -7124,7 +7476,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1287639811
 Transform:
@@ -7150,7 +7502,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1287639810}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e49c217e354f4804c9da8a8f8f690349, type: 3}
+  m_Script: {fileID: 11500000, guid: 58fca36317b131645b61fcdfad828a68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _misslePrefab: {fileID: 7550878289047074185, guid: ed12269b9172a4a44bfe5966c7513ee1,
@@ -7170,7 +7522,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1305751703
 Transform:
@@ -7434,6 +7786,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1348982554}
+  - component: {fileID: 1348982555}
   m_Layer: 0
   m_Name: Waypoint_2_2_West
   m_TagString: Untagged
@@ -7456,6 +7809,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 871274737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1348982555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348982553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2388c8a912adeb54493c669347662a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1349499088 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
@@ -7559,6 +7924,11 @@ PrefabInstance:
       propertyPath: _isPlayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <TeamType>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7573,6 +7943,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1382606844}
+  - component: {fileID: 1382606845}
   m_Layer: 0
   m_Name: Waypoint_3_1
   m_TagString: Untagged
@@ -7595,6 +7966,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 871274737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1382606845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382606843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2388c8a912adeb54493c669347662a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1391002687
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7871,6 +8254,11 @@ PrefabInstance:
       propertyPath: _interactable
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <TeamType>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8045,6 +8433,11 @@ PrefabInstance:
       propertyPath: _isPlayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <TeamType>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8059,6 +8452,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1440739179}
+  - component: {fileID: 1440739180}
   m_Layer: 0
   m_Name: Waypoint_5_1
   m_TagString: Untagged
@@ -8081,6 +8475,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 871274737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1440739180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440739178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2388c8a912adeb54493c669347662a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1463786411
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8168,6 +8574,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1466650721}
+  - component: {fileID: 1466650722}
   m_Layer: 0
   m_Name: Lane2
   m_TagString: Untagged
@@ -8193,6 +8600,26 @@ Transform:
   - {fileID: 2110180135}
   m_Father: {fileID: 597667320}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1466650722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466650720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eecfded45db110488bc2f7ebf06ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _route:
+  - {fileID: 1382606845}
+  - {fileID: 2028401460}
+  - {fileID: 1166586435}
+  _center: {x: 0, y: 0, z: 0}
+  _size: {x: 10, y: 6, z: 40}
+  _radiusWaypoint: 1
+  _isDebugEnable: 0
 --- !u!114 &1478754036 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
@@ -8387,6 +8814,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1499063419}
+  - component: {fileID: 1499063420}
   m_Layer: 0
   m_Name: Waypoint_2_2_East
   m_TagString: Untagged
@@ -8409,6 +8837,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 871274737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1499063420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499063418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2388c8a912adeb54493c669347662a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1501538207
 GameObject:
   m_ObjectHideFlags: 0
@@ -8491,6 +8931,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 791671403}
     m_Modifications:
+    - target: {fileID: 1184572026871751672, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1927838053464246575, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
       propertyPath: m_Name
@@ -8499,7 +8944,7 @@ PrefabInstance:
     - target: {fileID: 1927838053464246575, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1934111880513334086, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
@@ -8551,6 +8996,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8184685119931026650, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
       propertyPath: _state
@@ -8559,6 +9009,11 @@ PrefabInstance:
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
       propertyPath: _isPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <TeamType>k__BackingField
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -8776,13 +9231,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1543772463}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e761b253974930c40812ed65527b9832, type: 3}
+  m_Script: {fileID: 11500000, guid: 9eecfded45db110488bc2f7ebf06ed88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _points:
-  - {fileID: 1440739179}
-  - {fileID: 643464271}
-  - {fileID: 1166586434}
+  _route:
+  - {fileID: 1440739180}
+  - {fileID: 643464272}
+  - {fileID: 1166586435}
+  _center: {x: 0, y: 0, z: 0}
+  _size: {x: 10, y: 6, z: 40}
+  _radiusWaypoint: 1
+  _isDebugEnable: 0
 --- !u!1 &1550470214
 GameObject:
   m_ObjectHideFlags: 0
@@ -9038,6 +9497,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1566528350}
+  - component: {fileID: 1566528351}
   m_Layer: 0
   m_Name: Waypoint_1_1
   m_TagString: Untagged
@@ -9060,6 +9520,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 871274737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1566528351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566528349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2388c8a912adeb54493c669347662a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1586223618
 GameObject:
   m_ObjectHideFlags: 0
@@ -9302,6 +9774,11 @@ PrefabInstance:
       propertyPath: _isPlayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <TeamType>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9316,6 +9793,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1655569275}
+  - component: {fileID: 1655569276}
   m_Layer: 0
   m_Name: Waypoint_3_2_East
   m_TagString: Untagged
@@ -9338,6 +9816,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 871274737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1655569276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655569274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2388c8a912adeb54493c669347662a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1662215038
 GameObject:
   m_ObjectHideFlags: 0
@@ -9740,6 +10230,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1692226897}
+  - component: {fileID: 1692226898}
   m_Layer: 0
   m_Name: Lane3
   m_TagString: Untagged
@@ -9765,6 +10256,26 @@ Transform:
   - {fileID: 435506315}
   m_Father: {fileID: 597667320}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1692226898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692226896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eecfded45db110488bc2f7ebf06ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _route:
+  - {fileID: 120401456}
+  - {fileID: 1348982555}
+  - {fileID: 1166586435}
+  _center: {x: 0, y: 0, z: 0}
+  _size: {x: 10, y: 6, z: 40}
+  _radiusWaypoint: 1
+  _isDebugEnable: 0
 --- !u!1 &1703028351
 GameObject:
   m_ObjectHideFlags: 0
@@ -10167,6 +10678,11 @@ PrefabInstance:
       propertyPath: _isPlayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <TeamType>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10337,6 +10853,11 @@ PrefabInstance:
       propertyPath: _isPlayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <TeamType>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10414,6 +10935,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _isPlayer
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <TeamType>k__BackingField
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10685,7 +11211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _config: {fileID: 11400000, guid: e53997fa8c063fd48bf4346b0c382c59, type: 2}
-  _playerBuildingSites:
+  _buildingSites:
   - {fileID: 1131239419}
   - {fileID: 1349499088}
   - {fileID: 1332455162}
@@ -10701,7 +11227,6 @@ MonoBehaviour:
   - {fileID: 1924203176}
   - {fileID: 1478754036}
   - {fileID: 1612391132}
-  _enemyBuildingSites:
   - {fileID: 1899637004}
   - {fileID: 421169869}
   - {fileID: 2051423824}
@@ -10874,6 +11399,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1848163451}
+  - component: {fileID: 1848163452}
   m_Layer: 0
   m_Name: Waypoint_5_2_East
   m_TagString: Untagged
@@ -10896,6 +11422,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 871274737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1848163452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848163450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2388c8a912adeb54493c669347662a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1860966962
 GameObject:
   m_ObjectHideFlags: 0
@@ -10905,6 +11443,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1860966963}
+  - component: {fileID: 1860966964}
   m_Layer: 0
   m_Name: Lane1
   m_TagString: Untagged
@@ -10930,6 +11469,26 @@ Transform:
   - {fileID: 2072318321}
   m_Father: {fileID: 1161357289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1860966964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860966962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eecfded45db110488bc2f7ebf06ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _route:
+  - {fileID: 120401456}
+  - {fileID: 1499063420}
+  - {fileID: 1993727103}
+  _center: {x: 0, y: 0, z: 0}
+  _size: {x: 10, y: 6, z: 40}
+  _radiusWaypoint: 1
+  _isDebugEnable: 0
 --- !u!1 &1870377758
 GameObject:
   m_ObjectHideFlags: 0
@@ -10997,6 +11556,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9b2233ddcfd9724d8303ea7d6d8c669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1904091220
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1904091221}
+  - component: {fileID: 1904091222}
+  m_Layer: 0
+  m_Name: WaypointController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &1904091221
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904091220}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 849014627}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1904091222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904091220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e761b253974930c40812ed65527b9832, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _routeStartAreas:
+  - {fileID: 1543772465}
+  - {fileID: 791671404}
+  - {fileID: 1466650722}
+  - {fileID: 1692226898}
+  - {fileID: 325669609}
+  - {fileID: 1018935590}
+  - {fileID: 1860966964}
+  - {fileID: 1069148338}
+  - {fileID: 391509077}
+  - {fileID: 771502294}
 --- !u!114 &1914249410 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2498995844911848430, guid: 9a71dcfb25e356044854cab27857a3f4,
@@ -11211,6 +11825,11 @@ PrefabInstance:
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
       propertyPath: _isPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <TeamType>k__BackingField
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -11691,6 +12310,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1993727102}
+  - component: {fileID: 1993727103}
   m_Layer: 0
   m_Name: Waypoint_Finish_East
   m_TagString: Untagged
@@ -11713,6 +12333,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 871274737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1993727103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993727101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2388c8a912adeb54493c669347662a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2021501309
 GameObject:
   m_ObjectHideFlags: 0
@@ -11768,6 +12400,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2028401459}
+  - component: {fileID: 2028401460}
   m_Layer: 0
   m_Name: Waypoint_3_2_West
   m_TagString: Untagged
@@ -11790,6 +12423,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 871274737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2028401460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2028401458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2388c8a912adeb54493c669347662a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2029971508
 GameObject:
   m_ObjectHideFlags: 0
@@ -11970,6 +12615,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _isPlayer
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <TeamType>k__BackingField
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12349,5 +12999,5 @@ SceneRoots:
   - {fileID: 271519615}
   - {fileID: 1958580243}
   - {fileID: 975294607}
-  - {fileID: 1019701356}
   - {fileID: 849014627}
+  - {fileID: 1019701356}

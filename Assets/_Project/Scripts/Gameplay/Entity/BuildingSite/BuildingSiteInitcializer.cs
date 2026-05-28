@@ -1,6 +1,5 @@
 using BattleBase.Gameplay.Actors;
 using BattleBase.Gameplay.Actors.DamageSystem;
-using BattleBase.Gameplay.Actors.Movement;
 using BattleBase.Gameplay.Actors.Spawn;
 using System;
 using System.Collections.Generic;
@@ -12,8 +11,7 @@ namespace BattleBase.Gameplay
     public class BuildingSiteInitcializer : MonoBehaviour
     {
         [SerializeField] private ActorConfig _config;
-        [SerializeField] private BuildingSite[] _playerBuildingSites;
-        [SerializeField] private BuildingSite[] _enemyBuildingSites;
+        [SerializeField] private BuildingSite[] _buildingSites;
 
         private IComponentFactoryRegistry _componentFactoryRegistry;
         private IActorBinderRegistry _actorBinderRegistry;
@@ -32,14 +30,11 @@ namespace BattleBase.Gameplay
 
         private void Start()
         {
-            foreach (var buildingSite in _playerBuildingSites)
-                InitBuildingSite(buildingSite, TeamType.Player);
-
-            foreach (var buildingSite in _enemyBuildingSites)
-                InitBuildingSite(buildingSite, TeamType.Enemy);
+            foreach (var buildingSite in _buildingSites)
+                InitBuildingSite(buildingSite);
         }
 
-        private void InitBuildingSite(BuildingSite buildingSite, TeamType teamType)
+        private void InitBuildingSite(BuildingSite buildingSite)
         {
             if (buildingSite.TryGetComponent(out ActorView view) == false)
                 throw new InvalidOperationException($"{nameof(buildingSite)} don't constrain component {nameof(ActorView)}");
@@ -70,7 +65,7 @@ namespace BattleBase.Gameplay
             _actorBinderRegistry.Bind(actor, view);
             _actorsController.AddActor(actor);
 
-            actor.SetTeam(teamType);
+            actor.SetTeam(buildingSite.TeamType);
             actor.Enable();
         }
     }

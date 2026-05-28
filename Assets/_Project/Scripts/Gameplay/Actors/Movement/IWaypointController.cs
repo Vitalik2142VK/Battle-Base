@@ -1,7 +1,9 @@
+using BattleBase.Gameplay.Actors.Spawn;
+
 namespace BattleBase.Gameplay.Actors.Movement
 {
     public interface IWaypointController
     {
-        public void SpecifyActorRoute(IActor actor);
+        public void SpecifyActorRoute(IActor actor, ISpawnData spawnData);
     }
 }

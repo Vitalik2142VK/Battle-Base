@@ -11,6 +11,7 @@ public class ActorsLifetimeScope : LifetimeScope
 {
     [SerializeField] private ActorPoolsRegistrator _poolsRegistrator;
     [SerializeField] private ActorsController _actorController;
+    [SerializeField] private WaypointController _waypointController;
 
     private IContainerBuilder _builder;
 
@@ -20,6 +21,7 @@ public class ActorsLifetimeScope : LifetimeScope
 
         _builder.RegisterComponent<IActorPoolsRegistrator>(_poolsRegistrator);
         _builder.RegisterInstance<IActorsController>(_actorController);
+        _builder.RegisterInstance<IWaypointController>(_waypointController);
         
         _builder.Register<IActorSpawnService, ActorSpawnService>(Lifetime.Scoped);
         _builder.Register<IActorPoolRegistry, ActorPoolRegistry>(Lifetime.Scoped);
