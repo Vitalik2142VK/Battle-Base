@@ -1,3 +1,4 @@
+using BattleBase.Gameplay.Actors.Movement;
 using System;
 
 namespace BattleBase.Gameplay.Actors.Spawn
@@ -6,20 +7,31 @@ namespace BattleBase.Gameplay.Actors.Spawn
     {
         private readonly IActorPoolRegistry _poolRegistry;
         private readonly IActorsController _actorsController;
+        private readonly IWaypointController _waypointController;
 
-        public ActorSpawnService(IActorPoolRegistry poolRegistry, IActorsController actorsController)
+        public ActorSpawnService(
+            IActorPoolRegistry poolRegistry, 
+            IActorsController actorsController,
+            IWaypointController waypointController)
         {
             _poolRegistry = poolRegistry ?? throw new ArgumentNullException(nameof(poolRegistry));
             _actorsController = actorsController ?? throw new ArgumentNullException(nameof(actorsController));
+            _waypointController = waypointController ?? throw new ArgumentNullException(nameof(waypointController));
         }
 
-        public bool TrySpawn(string prefabName, out Actor actor)
+        public bool TrySpawn(string prefabName, ISpawnData spawnData, out Actor actor)
         {
-            if (_poolRegistry.TryGive(out actor, prefabName) == false)
-            {
-                return false;
-            }
+            if (string.IsNullOrEmpty(prefabName))
+                throw new ArgumentException($"{nameof(prefabName)} cannot be empty or null");
 
+            if (spawnData == null)
+                throw new ArgumentNullException(nameof(spawnData));
+
+            if (_poolRegistry.TryGive(out actor, prefabName) == false)
+                return false;
+
+            actor.SetSpawnData(spawnData);
+            _waypointController.SpecifyActorRoute(actor, spawnData);
             _actorsController.AddActor(actor);
 
             return true;

@@ -10,28 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65d2e2c2420ac6b45b0d480f9633fd48, type: 3}
-  m_Name: StationTurrte
+  m_Name: WallTower
   m_EditorClassIdentifier: 
   _data:
-    _prefab: {fileID: 6082468932349043140, guid: 978cd50cda4fc414a8f7cfa09e3bb7bb,
-      type: 3}
+    _prefab: {fileID: 0}
     _icon: {fileID: 0}
     _name:
       _ru:
-        _text: "\u0422\u0435\u0441\u0442"
+        _text: text
       _en:
-        _text: Test
+        _text: text
       _tr:
-        _text: Test
+        _text: text
     _description:
       _ru:
-        _text: "\u0422\u0435\u0441\u0442"
+        _text: text
       _en:
-        _text: Test
+        _text: text
       _tr:
-        _text: Test
+        _text: text
     _constructionTime: 3
-    _price: 20
+    _price: 1
   _components:
-  - {fileID: 11400000, guid: 3a2b253477cf0274598af07de37809f6, type: 2}
-  - {fileID: 11400000, guid: 4485fb472c2ad0440bb4d041bfcfb199, type: 2}
+  - {fileID: 11400000, guid: 3aa49d4e21f5c4746804f7d9847ca7ec, type: 2}

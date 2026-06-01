@@ -1,8 +1,7 @@
 using BattleBase.Core;
-using BattleBase.Gameplay.Actors.Weapons.Missiles;
 using UnityEngine;
 
-namespace BattleBase.Gameplay.Actors.Spawn
+namespace BattleBase.Gameplay.Actors.Weapons.Missiles
 {
     public class MissileFactory : MonoBehaviour, IFactory<Missile>
     {

@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdf74636eff29f84ca02f04824211d3e, type: 3}
-  m_Name: LoopSpawnComponentSource
+  m_Script: {fileID: 11500000, guid: 1b62adaca64cf4e419274f6b0c405de1, type: 3}
+  m_Name: MultiSpawnComponentSource
   m_EditorClassIdentifier: 
   _actorsConfigs:
   - {fileID: 11400000, guid: 835f7b6885aa1524bbe469cd672f2cb6, type: 2}
+  - {fileID: 11400000, guid: a01aceef08e36ba478d1e585dd4a12f7, type: 2}

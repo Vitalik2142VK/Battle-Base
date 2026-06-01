@@ -2,13 +2,13 @@ using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.Movement
 {
-    public class Waypoint : IWaypoint
+    public class Waypoint : MonoBehaviour, IWaypoint
     {
-        public Waypoint(Vector3 position)
+        private void Awake()
         {
-            Position = position;
+            Position = transform.position;
         }
 
-        public Vector3 Position { get; }
+        public Vector3 Position { get; private set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BattleBase.Core;
 using BattleBase.Gameplay.Actors.DamageSystem;
+using BattleBase.Gameplay.Actors.Spawn;
 using System;
 using System.Collections.Generic;
 
@@ -96,7 +97,11 @@ namespace BattleBase.Gameplay.Actors
                 component.Disable();
         }
 
-        public void SetTeam(TeamType teamType) => _teamType = teamType;
+        public void SetTeam(TeamType teamType) => 
+            _teamType = teamType;
+
+        public void SetSpawnData(ISpawnData spawnData) =>
+            View.SetSpawnData(spawnData);
 
         private void OnDestroy()
         {

@@ -47,7 +47,8 @@ namespace BattleBase.Gameplay
 
         private void UpdateState()
         {
-            //if (_buildingSite.IsPlayer == false)
+            // todo Temporarily
+            //if (_buildingSite.TeamType != Actors.TeamType.Player)
             //    return;
 
             switch (_buildingSite.State)
