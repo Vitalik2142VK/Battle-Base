@@ -9,20 +9,20 @@ namespace BattleBase.Gameplay.Actors.Spawn
 {
     public class ActorFactory : IFactory<Actor>
     {
+        private readonly IActorConfig _config;
         private readonly IObjectResolver _resolver;
         private readonly IComponentFactoryRegistry _componentFactoryRegistry;
         private readonly IActorBinderRegistry _actorBinderRegistry;
-        private readonly ActorConfig _config;
 
         private int _unitCounter;
 
         public ActorFactory(
-            ActorConfig config,
+            IActorConfig config,
             IComponentFactoryRegistry componentFactoryRegistry,
             IActorBinderRegistry actorBinderRegistry,
             IObjectResolver resolver)
         {
-            _config = config != null ? config : throw new ArgumentNullException(nameof(config));
+            _config = config ?? throw new ArgumentNullException(nameof(config));
             _resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
             _componentFactoryRegistry = componentFactoryRegistry ?? throw new ArgumentNullException(nameof(componentFactoryRegistry));
             _actorBinderRegistry = actorBinderRegistry ?? throw new ArgumentNullException(nameof(actorBinderRegistry));
