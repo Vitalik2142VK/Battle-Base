@@ -22,14 +22,6 @@ namespace BattleBase.Gameplay.Actors
             }
         }
 
-        public void AddActor(IActor actor)
-        {
-            if (actor == null)
-                throw new System.ArgumentNullException(nameof(actor));
-
-            _activeActors.Add(actor);
-        }
-
         public void FixedUpdate()
         {
             for (int i = 0; i < _activeActors.Count; i++)
@@ -41,6 +33,14 @@ namespace BattleBase.Gameplay.Actors
                 else
                     _activeActors.RemoveAt(i--);
             }
+        }
+
+        public void AddActor(IActor actor)
+        {
+            if (actor == null)
+                throw new System.ArgumentNullException(nameof(actor));
+
+            _activeActors.Add(actor);
         }
     }
 }

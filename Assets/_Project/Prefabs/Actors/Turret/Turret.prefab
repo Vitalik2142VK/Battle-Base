@@ -279,7 +279,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6250075048593077300}
-  - component: {fileID: 2946031724876407730}
+  - component: {fileID: 2538186911070342148}
   m_Layer: 6
   m_Name: ShotPoint
   m_TagString: Untagged
@@ -302,7 +302,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8947718906451670666}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2946031724876407730
+--- !u!114 &2538186911070342148
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -311,10 +311,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5377877199478670452}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e23fbfb1ad5a6624c9a09193952ed639, type: 3}
+  m_Script: {fileID: 11500000, guid: d0ad4bfc0660ece4e905f94c2ec4a268, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shotPoint: {fileID: 8722567222769954593}
 --- !u!1 &6870971017679259433
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,6 +426,7 @@ GameObject:
   - component: {fileID: 1306297043415999413}
   - component: {fileID: 1728929433622048263}
   - component: {fileID: 8181701730991523191}
+  - component: {fileID: 1559153239644510060}
   m_Layer: 6
   m_Name: Turret
   m_TagString: Untagged
@@ -467,6 +467,7 @@ MonoBehaviour:
   _viewComponents:
   - {fileID: 6870971017679259433}
   - {fileID: 4426447066821534083}
+  - {fileID: 5377877199478670452}
 --- !u!114 &1306297043415999413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -514,6 +515,18 @@ MonoBehaviour:
   _timeUpdate: 0.5
   _maxFindedUnits: 10
   _isDebugEnable: 0
+--- !u!114 &1559153239644510060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7927907826797576134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f9f03888d30feb46b7460fea52cb111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3005996754586830111
 PrefabInstance:
   m_ObjectHideFlags: 0

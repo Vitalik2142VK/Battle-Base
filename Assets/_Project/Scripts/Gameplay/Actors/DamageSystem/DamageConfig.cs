@@ -1,5 +1,5 @@
 ﻿using BattleBase.Gameplay.Actors.DamageSystem;
-using BattleBase.Gameplay.Actors.Weapons.Missiles;
+using BattleBase.Gameplay.Actors.AttackSystem.Missiles;
 using BattleBase.Utils;
 using UnityEngine;
 

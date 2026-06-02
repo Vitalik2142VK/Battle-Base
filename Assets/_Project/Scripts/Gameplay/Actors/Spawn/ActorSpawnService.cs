@@ -10,7 +10,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
         private readonly IWaypointController _waypointController;
 
         public ActorSpawnService(
-            IActorPoolRegistry poolRegistry, 
+            IActorPoolRegistry poolRegistry,
             IActorsController actorsController,
             IWaypointController waypointController)
         {
@@ -31,7 +31,10 @@ namespace BattleBase.Gameplay.Actors.Spawn
                 return false;
 
             actor.SetSpawnData(spawnData);
-            _waypointController.SpecifyActorRoute(actor, spawnData);
+
+            if (actor.TryGetComponent(out IMover mover))
+                _waypointController.SpecifyActorRoute(mover, spawnData);
+
             _actorsController.AddActor(actor);
 
             return true;

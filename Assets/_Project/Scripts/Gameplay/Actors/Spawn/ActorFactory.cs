@@ -1,4 +1,5 @@
 using BattleBase.Core;
+using BattleBase.Gameplay.Actors.AI;
 using BattleBase.Gameplay.Actors.DamageSystem;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
         private readonly IObjectResolver _resolver;
         private readonly IComponentFactoryRegistry _componentFactoryRegistry;
         private readonly IActorBinderRegistry _actorBinderRegistry;
+        private readonly IStateMachineInitializer _stateMachineInitializer;
 
         private int _unitCounter;
 
@@ -20,12 +22,14 @@ namespace BattleBase.Gameplay.Actors.Spawn
             IActorConfig config,
             IComponentFactoryRegistry componentFactoryRegistry,
             IActorBinderRegistry actorBinderRegistry,
-            IObjectResolver resolver)
+            IObjectResolver resolver,
+            IStateMachineInitializer stateMachineInitializer)
         {
             _config = config ?? throw new ArgumentNullException(nameof(config));
             _resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
             _componentFactoryRegistry = componentFactoryRegistry ?? throw new ArgumentNullException(nameof(componentFactoryRegistry));
             _actorBinderRegistry = actorBinderRegistry ?? throw new ArgumentNullException(nameof(actorBinderRegistry));
+            _stateMachineInitializer = stateMachineInitializer ?? throw new ArgumentNullException(nameof(stateMachineInitializer));
 
             _unitCounter = 0;
         }
@@ -56,6 +60,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
             Actor actor = builder.Build();
 
+            _stateMachineInitializer.Initialize(actor);
             _actorBinderRegistry.Bind(actor, view);
 
             return actor;
