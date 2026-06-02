@@ -13,6 +13,8 @@ namespace BattleBase.Gameplay.Actors
         private Dictionary<Type, IActorViewComponent> _components;
         private Transform _transform;
 
+        public Vector3 Position => _transform.position;
+
         public void Init()
         {
             _transform = transform;

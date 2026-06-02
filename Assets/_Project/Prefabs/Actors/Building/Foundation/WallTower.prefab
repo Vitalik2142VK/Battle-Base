@@ -45,9 +45,9 @@ GameObject:
   - component: {fileID: 6962596869492421820}
   - component: {fileID: 213978777576619185}
   - component: {fileID: 7118721749791112455}
-  - component: {fileID: 4375962578859929941}
   - component: {fileID: 7141208724168978270}
   - component: {fileID: 6847555881119917799}
+  - component: {fileID: 4375962578859929941}
   m_Layer: 0
   m_Name: WallTower
   m_TagString: Untagged
@@ -174,18 +174,6 @@ MonoBehaviour:
   _edgeSelectedColor: {r: 1, g: 0.9529412, b: 0, a: 1}
   _surfaceIndexMaterial: 0
   _edgeIndexMaterial: 0
---- !u!114 &4375962578859929941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3938421100369199330}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f9f03888d30feb46b7460fea52cb111, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7141208724168978270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,6 +200,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPoint: {fileID: 6096175220627421554}
+--- !u!114 &4375962578859929941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3938421100369199330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f9f03888d30feb46b7460fea52cb111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7458362114815451786
 GameObject:
   m_ObjectHideFlags: 0

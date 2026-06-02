@@ -5515,6 +5515,7 @@ MonoBehaviour:
   _poolsRegistrator: {fileID: 1305751704}
   _actorController: {fileID: 433170248}
   _waypointController: {fileID: 1904091222}
+  _missileSpawner: {fileID: 1063209185}
 --- !u!4 &939699205
 Transform:
   m_ObjectHideFlags: 0
