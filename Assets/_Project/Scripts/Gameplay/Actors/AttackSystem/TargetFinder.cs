@@ -9,7 +9,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
     {
         [SerializeField] private LayerMask _findedLayerMask;
         [SerializeField][Min(0.1f)] private float _timeUpdate = 0.5f;
-        [SerializeField][Range(5, 15)] private int _maxFindedUnits = 10;
+        [SerializeField][Range(5, 30)] private int _maxFindedUnits = 20;
 
         [Header("Debug")]
         [SerializeField] private bool _isDebugEnable;
