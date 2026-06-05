@@ -1,5 +1,6 @@
 ﻿using BattleBase.Core;
 using BattleBase.Gameplay.Actors.DamageSystem;
+using BattleBase.Gameplay.Actors.Spawn;
 using System;
 using System.Collections.Generic;
 
@@ -8,7 +9,7 @@ namespace BattleBase.Gameplay.Actors
     public class Actor : IActor, IPoolable<Actor>
     {
         private readonly Dictionary<Type, IActorComponent> _components;
-        private readonly List<IUpdateable> _updateableComponents;
+        private readonly IUpdateableController _updateableController;
         private readonly IDestroyableEvents _damagebleEvents;
 
         private TeamType _teamType;
@@ -16,10 +17,11 @@ namespace BattleBase.Gameplay.Actors
         public event Action<Actor> Deactivated;
 
         public Actor(
-            Dictionary<Type, IActorComponent> components, 
-            IActorView view, 
+            Dictionary<Type, IActorComponent> components,
+            IActorView view,
             IActorData actorData,
-            IDestroyableEvents damagebleEvent)
+            IDestroyableEvents damagebleEvent,
+            IUpdateableController updateableController = null)
         {
             if (components == null)
                 throw new ArgumentNullException(nameof(components));
@@ -29,18 +31,11 @@ namespace BattleBase.Gameplay.Actors
 
             _components = components;
             _damagebleEvents = damagebleEvent ?? throw new ArgumentNullException(nameof(damagebleEvent));
+            _updateableController = updateableController ?? new UpdateableController(_components.Values);
             _teamType = TeamType.None;
 
             View = view ?? throw new ArgumentNullException(nameof(view));
             Data = actorData ?? throw new ArgumentNullException(nameof(actorData));
-
-            _updateableComponents = new List<IUpdateable>();
-
-            foreach (var component in _components.Values)
-            {
-                if (component is IUpdateable componentUpdateable)
-                    _updateableComponents.Add(componentUpdateable);
-            }
         }
 
         public TeamType TeamType => _teamType;
@@ -50,29 +45,6 @@ namespace BattleBase.Gameplay.Actors
         public IActorView View { get; }
 
         public bool IsEnabled { get; private set; }
-
-        public void Update(float delta)
-        {
-            if (_updateableComponents.Count == 0)
-                return;
-
-            for (int i = 0; i < _updateableComponents.Count; i++)
-                _updateableComponents[i].Update(delta);
-        }
-
-        public bool TryGetComponent<T>(out T component) where T : class, IActorComponent
-        {
-            if (_components.TryGetValue(typeof(T), out var value))
-            {
-                component = (T)value;
-
-                return true;
-            }
-
-            component = null;
-
-            return false;
-        }
 
         public void Enable()
         {
@@ -96,7 +68,28 @@ namespace BattleBase.Gameplay.Actors
                 component.Disable();
         }
 
-        public void SetTeam(TeamType teamType) => _teamType = teamType;
+        public bool TryGetComponent<T>(out T component) where T : class, IActorComponent
+        {
+            if (_components.TryGetValue(typeof(T), out var value))
+            {
+                component = (T)value;
+
+                return true;
+            }
+
+            component = null;
+
+            return false;
+        }
+
+        public void Update(float delta) =>
+            _updateableController.Update(delta);
+
+        public void SetTeam(TeamType teamType) =>
+            _teamType = teamType;
+
+        public void SetSpawnData(ISpawnData spawnData) =>
+            View.SetSpawnData(spawnData);
 
         private void OnDestroy()
         {

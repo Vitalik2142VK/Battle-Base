@@ -1,4 +1,4 @@
-using BattleBase.Gameplay.Actors.Weapons.Missiles;
+using BattleBase.Gameplay.Actors.AttackSystem.Missiles;
 
 namespace BattleBase.Gameplay.Actors.Spawn
 {

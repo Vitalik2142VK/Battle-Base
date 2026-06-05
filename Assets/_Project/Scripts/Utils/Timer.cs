@@ -13,6 +13,7 @@ namespace BattleBase.Utils
                 throw new ArgumentOutOfRangeException(nameof(timeWait));
 
             _timeWait = timeWait;
+            _waitingTime = 0;
         }
 
         public bool IsTimeUp => _waitingTime <= 0;

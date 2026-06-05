@@ -1,4 +1,5 @@
 using BattleBase.Core;
+using BattleBase.Gameplay.Actors.AI;
 using BattleBase.Gameplay.Actors.DamageSystem;
 using System;
 using System.Collections.Generic;
@@ -9,23 +10,26 @@ namespace BattleBase.Gameplay.Actors.Spawn
 {
     public class ActorFactory : IFactory<Actor>
     {
+        private readonly IActorConfig _config;
         private readonly IObjectResolver _resolver;
         private readonly IComponentFactoryRegistry _componentFactoryRegistry;
         private readonly IActorBinderRegistry _actorBinderRegistry;
-        private readonly ActorConfig _config;
+        private readonly IStateMachineInitializer _stateMachineInitializer;
 
         private int _unitCounter;
 
         public ActorFactory(
-            ActorConfig config,
+            IActorConfig config,
             IComponentFactoryRegistry componentFactoryRegistry,
             IActorBinderRegistry actorBinderRegistry,
-            IObjectResolver resolver)
+            IObjectResolver resolver,
+            IStateMachineInitializer stateMachineInitializer)
         {
-            _config = config != null ? config : throw new ArgumentNullException(nameof(config));
+            _config = config ?? throw new ArgumentNullException(nameof(config));
             _resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
             _componentFactoryRegistry = componentFactoryRegistry ?? throw new ArgumentNullException(nameof(componentFactoryRegistry));
             _actorBinderRegistry = actorBinderRegistry ?? throw new ArgumentNullException(nameof(actorBinderRegistry));
+            _stateMachineInitializer = stateMachineInitializer ?? throw new ArgumentNullException(nameof(stateMachineInitializer));
 
             _unitCounter = 0;
         }
@@ -33,10 +37,10 @@ namespace BattleBase.Gameplay.Actors.Spawn
         public Actor Create()
         {
             ActorView prefab = _config.Data.Prefab;
-            prefab.name = $"{prefab.name}_{++_unitCounter}";
 
             ActorView view = _resolver.Instantiate(prefab);
             view.Init();
+            view.name = $"{prefab.name}_{++_unitCounter}";
 
             ActorBuilder builder = new();
             builder
@@ -56,6 +60,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
             Actor actor = builder.Build();
 
+            _stateMachineInitializer.Initialize(actor);
             _actorBinderRegistry.Bind(actor, view);
 
             return actor;

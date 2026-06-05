@@ -75,8 +75,6 @@ namespace BattleBase.Gameplay.Actors.Movement
 
         private void ReachPoint()
         {
-            Debug.Log($"NavigationAgent.ReachPoint");
-
             _presenter.ReachPoint();
         }
 

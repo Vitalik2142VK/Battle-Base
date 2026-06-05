@@ -26,11 +26,17 @@ namespace BattleBase.Gameplay.Actors.Movement
 
         public void Enable()
         {
-            Stop();
+            if (_waypoints.Count > 0)
+            {
+                EstablishNextPoint();
+                Move();
+            }
         }
 
         public void Disable()
         {
+            Stop();
+
             _waypoints.Clear();
             _currentWaypoint = null;
         }

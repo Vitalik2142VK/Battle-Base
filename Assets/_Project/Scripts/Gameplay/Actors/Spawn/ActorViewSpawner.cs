@@ -12,8 +12,12 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
         private IActorSpawnerPresenter _presenter;
         private IActorSpawnerEvents _events;
-
+        //todo remove
         public IEnumerable<IActorData> ActorsData => _presenter.ActorsDatas;
+
+        public Vector3 SpawnPosition => _spawnPoint.position;
+
+        public Quaternion SpawnRotation => _spawnPoint.rotation;
 
         public IBuildingSite BuildingSite { get; private set; }
 
@@ -61,30 +65,8 @@ namespace BattleBase.Gameplay.Actors.Spawn
             if (actor == null)
                 throw new ArgumentNullException(nameof(actor));
 
-            EstablishTransform(actor.View);
-        }
-
-        private void EstablishTransform(IActorView view)
-        {
-            if (view is MonoBehaviour actor == false)
-                throw new InvalidOperationException();
-
-            var unitTransform = actor.transform;
-            unitTransform.SetPositionAndRotation(_spawnPoint.position, _spawnPoint.rotation);
-            unitTransform.gameObject.SetActive(true);
-
-            if (view.TryGetViewComponent(out IActorViewSpawner component))
-            {
-                BuildingSite.SetInactiveState();
-                component.SetBuildingSite(BuildingSite);
-            }
-
-            //todo Delete after the selected color is implemented ...
-            //var renderersActor = GetComponentsInChildren<MeshRenderer>(true);
-
-            //foreach (var renderer in renderersActor)
-            //    renderer.material = _renderer.material;
-            //...
+            if (actor.View.TryGetViewComponent(out IActorViewSpawner actorViewSpawner))
+                actorViewSpawner.SetBuildingSite(BuildingSite);
         }
     }
 }

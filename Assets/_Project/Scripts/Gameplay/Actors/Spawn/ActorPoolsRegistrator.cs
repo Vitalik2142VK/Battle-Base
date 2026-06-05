@@ -1,3 +1,4 @@
+using BattleBase.Gameplay.Actors.AI;
 using BattleBase.Utils;
 using System;
 using System.Collections.Generic;
@@ -24,8 +25,14 @@ namespace BattleBase.Gameplay.Actors.Spawn
             {
                 IComponentFactoryRegistry componentFactoryRegistry = resolver.Resolve<IComponentFactoryRegistry>();
                 IActorBinderRegistry actorBinderRegistry = resolver.Resolve<IActorBinderRegistry>();
+                IStateMachineInitializer stateMachineInitializer = resolver.Resolve<IStateMachineInitializer>();
 
-                ActorFactory factory = new(config, componentFactoryRegistry, actorBinderRegistry, resolver);
+                ActorFactory factory = new(
+                    config,
+                    componentFactoryRegistry,
+                    actorBinderRegistry,
+                    resolver,
+                    stateMachineInitializer);
                 ActorPool pool = new(factory, Constants.PoolMaximumSize);
 
                 Pools.Add(config.Data.Prefab.name, pool);

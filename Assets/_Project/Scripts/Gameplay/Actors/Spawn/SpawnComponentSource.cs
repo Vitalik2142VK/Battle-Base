@@ -5,8 +5,8 @@ using UnityEngine;
 namespace BattleBase.Gameplay.Actors.Spawn
 {
     [CreateAssetMenu(
-        fileName = nameof(SpawnComponentSource),
-        menuName = Constants.ConfigsAssetMenuPath + nameof(ActorConfig) + "/" + nameof(SpawnComponentSource))]
+        fileName = nameof(MultiSpawnComponentSource),
+        menuName = Constants.ConfigsAssetMenuPath + nameof(ActorConfig) + "/" + nameof(MultiSpawnComponentSource))]
     public class SpawnComponentSource : ActorComponentSource, ISpawnComponentSource
     {
         [SerializeField] private ActorConfig[] _actorsConfigs;

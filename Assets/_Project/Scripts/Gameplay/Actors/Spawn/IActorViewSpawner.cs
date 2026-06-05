@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.Spawn
 {
-    public interface IActorViewSpawner : IActorViewComponent 
+    public interface IActorViewSpawner : IActorViewComponent, ISpawnData
     {
         public IBuildingSite BuildingSite { get; }
 
