@@ -13,23 +13,22 @@ namespace BattleBase.Gameplay.MiniMap
         [SerializeField] private float _verticalCameraRotationY;
         [SerializeField] private float _horizontalCameraRotationY;
 
-        private Transform _cameraRig;
+        private ICameraHandle _cameraHandle;
         private IScreenOrientationTracker _orientationTracker;
         private IFrustumProjectionService _frustumProjectionService;
+        private ICameraOrientationAdapter _cameraOrientationAdapter;
 
         [Inject]
         public void Construct(
-            CameraRig cameraRig, 
+            ICameraHandle cameraHandle,
             IScreenOrientationTracker orientationTracker,
-            IFrustumProjectionService frustumProjectionService)
+            IFrustumProjectionService frustumProjectionService,
+            ICameraOrientationAdapter cameraOrientationAdapter)
         {
-            if (cameraRig == null)
-                throw new ArgumentNullException(nameof(cameraRig));
-
-            _cameraRig = cameraRig.transform;
-
+            _cameraHandle = cameraHandle ?? throw new ArgumentNullException(nameof(cameraHandle));
             _orientationTracker = orientationTracker ?? throw new ArgumentNullException(nameof(orientationTracker));
             _frustumProjectionService = frustumProjectionService ?? throw new ArgumentNullException(nameof(frustumProjectionService));
+            _cameraOrientationAdapter = cameraOrientationAdapter ?? throw new ArgumentNullException(nameof(cameraOrientationAdapter));
         }
 
         private void OnEnable()
@@ -43,17 +42,22 @@ namespace BattleBase.Gameplay.MiniMap
 
         private void OnOrientationChanged()
         {
-            Vector3 oldCenter = _frustumProjectionService.ProjectedCenter;
+            Vector3 positionToRestore = _frustumProjectionService.Projection.Center;
+
             bool isPortrait = _orientationTracker.ScreenOrientation == ScreenOrientationType.Portrait;
             _verticalCanvas.SetActive(isPortrait);
             _horizontalCanvas.SetActive(isPortrait == false);
-            Vector3 angles = _cameraRig.transform.eulerAngles;
+
+            Transform cameraRig = _cameraHandle.CameraRigTransform;
+            Vector3 angles = cameraRig.transform.eulerAngles;
             angles.y = isPortrait ? _verticalCameraRotationY : _horizontalCameraRotationY;
-            _cameraRig.transform.eulerAngles = angles;
-            _frustumProjectionService.RefreshNow();
-            Vector3 newCenter = _frustumProjectionService.ProjectedCenter;
-            Vector3 delta = oldCenter - newCenter;
-            _cameraRig.position += delta;
+            _cameraHandle.SetCameraRigEulerAngles(angles);
+            _cameraOrientationAdapter.Refresh();
+
+            Vector3 currentPosition = _frustumProjectionService.Projection.Center;
+            Vector3 delta = currentPosition - positionToRestore;
+
+            _cameraHandle.SetCameraRigPosition(_cameraHandle.CameraRigPosition - delta);
         }
     }
 }

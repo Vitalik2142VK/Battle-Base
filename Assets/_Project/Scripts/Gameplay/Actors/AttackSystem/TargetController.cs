@@ -1,5 +1,5 @@
-﻿using BattleBase.Gameplay.Actors.DamageSystem;
-using BattleBase.Utils;
+using BattleBase.Gameplay.Actors.DamageSystem;
+using BattleBase.Utils.Extensions;
 using System;
 
 namespace BattleBase.Gameplay.Actors.AttackSystem
@@ -43,8 +43,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             if (_currentTarget == null)
                 return;
 
-            if (VectorTool.IsWithinDistance(
-                _actorPosition.Position, 
+            if (_actorPosition.Position.IsWithinDistance( 
                 _currentTarget.Position, 
                 _weaponRange.Range) == false)
             {

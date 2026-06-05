@@ -14,8 +14,6 @@ namespace BattleBase.Gameplay
     public class ActorViewMediator : MonoBehaviour, IInjectable
     {
         [SerializeField] private ProductionPanel _productionPanel;
-        [SerializeField] private CommandShowHidePopUps _commandShowProductionPanel;
-        [SerializeField] private CommandShowHidePopUps _commandHideProductionPanel;
 
         private List<IProductionItem> _items = new();
 
@@ -45,7 +43,11 @@ namespace BattleBase.Gameplay
         private void OnClickDetected(Collider collider)
         {
             if (collider == null)
+            {
+                HandleUnselectEntity();
+
                 return;
+            }
 
             if (collider.TryGetComponent(out IActorViewSpawner viewSpawner))
             {
@@ -69,9 +71,9 @@ namespace BattleBase.Gameplay
             _items = _productionItemFactory.Create(_currentViewSpawner.ActorsData);
 
             if (_items.Count == 0)
-                _commandHideProductionPanel.Execute();
+                _productionPanel.Hide();
             else
-                _commandShowProductionPanel.Execute();
+                _productionPanel.Show();
 
             foreach (IProductionItem item in _items)
             {
@@ -83,7 +85,7 @@ namespace BattleBase.Gameplay
         private void HandleUnselectEntity()
         {
             _selector.Unselect();
-            _commandHideProductionPanel.Execute();
+            _productionPanel.Hide();
             _items.Clear();
         }
 

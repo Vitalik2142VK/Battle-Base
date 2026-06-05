@@ -14,9 +14,9 @@ namespace BattleBase.Gameplay.CameraNavigation
         private float _effectiveMaximumOrthoSize;
 
         public MapSceneCameraOrientationAdapter(
-            Camera camera, 
-            IScreenOrientationTracker orientationTracker, 
-            IOrthographicSizeConfig config)
+            Camera camera,
+            IScreenOrientationTracker orientationTracker,
+            IProjectionSizeConfig config)
         {
             _camera = camera != null ? camera : throw new ArgumentNullException(nameof(camera));
             _orientationTracker = orientationTracker ?? throw new ArgumentNullException(nameof(orientationTracker));
@@ -44,20 +44,28 @@ namespace BattleBase.Gameplay.CameraNavigation
             AdjustCameraSizeToCurrentValue01();
 
             _orientationTracker.OrientationChanged += OnOrientationChanged;
+            Refresh();
         }
 
         public event Action Changed;
 
-        public float CurrentOrthoSize => _camera.orthographicSize;
+        public float CurrentSize => _camera.orthographicSize;
 
-        public float MinimumOrthoSize => _effectiveMinimumOrthoSize;
+        public float MinimumSize => _effectiveMinimumOrthoSize;
 
-        public float MaximumOrthoSize => _effectiveMaximumOrthoSize;
+        public float MaximumSize => _effectiveMaximumOrthoSize;
 
         public void Dispose()
         {
             if (_orientationTracker != null)
                 _orientationTracker.OrientationChanged -= OnOrientationChanged;
+        }
+
+        public void Refresh()
+        {
+            float currentValue01 = ComputeValue01(_camera.orthographicSize, _effectiveMinimumOrthoSize, _effectiveMaximumOrthoSize);
+            RecalculateEffectiveZoomBounds();
+            SetCameraSizeFromValue01(currentValue01);
         }
 
         private void RecalculateEffectiveZoomBounds()
@@ -98,7 +106,7 @@ namespace BattleBase.Gameplay.CameraNavigation
                 throw new ArgumentOutOfRangeException(nameof(range), range, "Value must be positive");
 
             float normalized = (currentSize - minimumBound) / range;
-            
+
             return 1f - normalized;
         }
 
@@ -108,11 +116,7 @@ namespace BattleBase.Gameplay.CameraNavigation
         private void InvokeChanged() =>
             Changed?.Invoke();
 
-        private void OnOrientationChanged()
-        {
-            float currentValue01 = ComputeValue01(_camera.orthographicSize, _effectiveMinimumOrthoSize, _effectiveMaximumOrthoSize);
-            RecalculateEffectiveZoomBounds();
-            SetCameraSizeFromValue01(currentValue01);
-        }
+        private void OnOrientationChanged() =>
+            Refresh();
     }
 }

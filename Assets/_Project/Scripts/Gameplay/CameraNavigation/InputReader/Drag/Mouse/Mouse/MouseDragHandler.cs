@@ -1,5 +1,6 @@
 using System;
 using BattleBase.Utils;
+using BattleBase.Utils.Constants;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.CameraNavigation.InputReader
@@ -15,7 +16,7 @@ namespace BattleBase.Gameplay.CameraNavigation.InputReader
         private bool _isBlockedByUI;
 
         public MouseDragHandler(
-            Camera camera, 
+            Camera camera,
             IUIPointerChecker uiPointerChecker,
             IDragConfig config)
         {
@@ -27,9 +28,9 @@ namespace BattleBase.Gameplay.CameraNavigation.InputReader
         public Vector3? Update()
         {
             Vector2 mousePosition = Input.mousePosition;
-            bool buttonDown = Input.GetMouseButtonDown(InputConstants.DragMouseButton);
-            bool buttonPressed = Input.GetMouseButton(InputConstants.DragMouseButton);
-            bool buttonUp = Input.GetMouseButtonUp(InputConstants.DragMouseButton);
+            bool buttonDown = Input.GetMouseButtonDown(Inputs.DragMouseButton);
+            bool buttonPressed = Input.GetMouseButton(Inputs.DragMouseButton);
+            bool buttonUp = Input.GetMouseButtonUp(Inputs.DragMouseButton);
 
             if (buttonDown)
                 return OnButtonDown(mousePosition);

@@ -12,7 +12,7 @@ namespace BattleBase.Gameplay.MiniMap
             if (transform == null)
                 throw new ArgumentNullException(nameof(transform));
 
-            if(_renderers == null)
+            if (_renderers == null)
                 _renderers = transform.GetComponentsInChildren<Renderer>();
 
             if (_renderers.Length == 0)
@@ -22,8 +22,8 @@ namespace BattleBase.Gameplay.MiniMap
                 return Vector2.one;
             }
 
-            Vector3 min = new (float.PositiveInfinity, 0, float.PositiveInfinity);
-            Vector3 max = new (float.NegativeInfinity, 0, float.NegativeInfinity);
+            Vector3 min = new(float.PositiveInfinity, 0, float.PositiveInfinity);
+            Vector3 max = new(float.NegativeInfinity, 0, float.NegativeInfinity);
             bool anyPoint = false;
 
             foreach (Renderer rend in _renderers)

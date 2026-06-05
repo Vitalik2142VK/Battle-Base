@@ -163,18 +163,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1892839}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b687384755887af42ae66f6a086cb8e6, type: 3}
+  m_Script: {fileID: 11500000, guid: 41345b61cf9540145b0e55f38a6b26c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _popUpsToHide:
   - {fileID: 22450705}
-  - {fileID: 345202930}
-  - {fileID: 423185700}
+  - {fileID: 1538378398}
   - {fileID: 2121700780}
   - {fileID: 43507818}
+  - {fileID: 345202930}
+  - {fileID: 423185700}
   - {fileID: 2017069398}
-  - {fileID: 1538378398}
-  _popUpsToShow: []
 --- !u!1 &17930716
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,16 +561,7 @@ MonoBehaviour:
     TypeName: 
   autoRun: 1
   autoInjectGameObjects:
-  - {fileID: 17930716}
-  - {fileID: 262085289}
-  - {fileID: 1735762123}
-  - {fileID: 889319952}
-  - {fileID: 1398874147}
-  - {fileID: 1186610034}
-  - {fileID: 1213336417}
-  - {fileID: 840937193}
-  - {fileID: 1013308450}
-  - {fileID: 60828270}
+  - {fileID: 181945716}
 --- !u!4 &94164246
 Transform:
   m_ObjectHideFlags: 0
@@ -1092,7 +1082,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b687384755887af42ae66f6a086cb8e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _popUpsToHide: []
   _popUpsToShow:
   - {fileID: 2121700780}
 --- !u!1 &573278743
@@ -1298,7 +1287,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b687384755887af42ae66f6a086cb8e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _popUpsToHide: []
   _popUpsToShow:
   - {fileID: 2017069398}
 --- !u!114 &697637081 stripped
@@ -1735,7 +1723,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b687384755887af42ae66f6a086cb8e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _popUpsToHide: []
   _popUpsToShow:
   - {fileID: 423185700}
 --- !u!1 &1002130757
@@ -1782,7 +1769,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b687384755887af42ae66f6a086cb8e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _popUpsToHide: []
   _popUpsToShow:
   - {fileID: 345202930}
 --- !u!1 &1013308450
@@ -2362,7 +2348,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b687384755887af42ae66f6a086cb8e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _popUpsToHide: []
   _popUpsToShow:
   - {fileID: 22450705}
 --- !u!1 &1624405596
@@ -2409,7 +2394,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b687384755887af42ae66f6a086cb8e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _popUpsToHide: []
   _popUpsToShow:
   - {fileID: 1538378398}
 --- !u!1 &1655447779
@@ -2774,7 +2758,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b687384755887af42ae66f6a086cb8e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _popUpsToHide: []
   _popUpsToShow:
   - {fileID: 43507818}
 --- !u!1 &1921628147

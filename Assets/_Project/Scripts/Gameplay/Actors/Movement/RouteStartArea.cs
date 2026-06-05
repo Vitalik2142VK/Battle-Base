@@ -47,8 +47,9 @@ namespace BattleBase.Gameplay.Actors.Movement
         {
             Vector3 localPoint = _transform.InverseTransformPoint(position);
 
-            Vector3 min = _center - _size * Constants.HalfValue;
-            Vector3 max = _center + _size * Constants.HalfValue;
+            float halfValue = 0.5f;
+            Vector3 min = _center - _size * halfValue;
+            Vector3 max = _center + _size * halfValue;
 
             return localPoint.x >= min.x && localPoint.x <= max.x &&
                    localPoint.y >= min.y && localPoint.y <= max.y &&

@@ -7,7 +7,7 @@ namespace BattleBase.SaveService
     [Serializable]
     public class TerritoryData : ITerritoryData
     {
-        [SerializeField] private List<int> _conqueredTerritories = new() { 0, };
+        [SerializeField] private List<int> _conqueredTerritories = new() { 0, 1, 5, 9 };
 
         public TerritoryData() { }
 
@@ -24,6 +24,26 @@ namespace BattleBase.SaveService
                 throw new ArgumentNullException(nameof(data));
 
             _conqueredTerritories = new(data.ConqueredTerritories);
+        }
+
+        public bool IsChangedFrom(ITerritoryData other)
+        {
+            if (other == null)
+                return true;
+
+            IReadOnlyList<int> current = ConqueredTerritories;
+            IReadOnlyList<int> newList = other.ConqueredTerritories;
+
+            if (current.Count != newList.Count)
+                return true;
+
+            for (int i = 0; i < current.Count; i++)
+            {
+                if (current[i] != newList[i])
+                    return true;
+            }
+
+            return false;
         }
     }
 }

@@ -33,7 +33,11 @@ namespace BattleBase.Gameplay.Actors.Spawn
                     actorBinderRegistry,
                     resolver,
                     stateMachineInitializer);
-                ActorPool pool = new(factory, Constants.PoolMaximumSize);
+
+                // todo: Constants.PoolMaximumSize it doesn't hurt anymore
+                // it may need to be moved to the config
+                int tempPoolSize = int.MaxValue;
+                ActorPool pool = new(factory, tempPoolSize);
 
                 Pools.Add(config.Data.Prefab.name, pool);
             }
