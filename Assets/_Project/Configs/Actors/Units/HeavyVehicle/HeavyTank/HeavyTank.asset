@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65d2e2c2420ac6b45b0d480f9633fd48, type: 3}
-  m_Name: Tank
+  m_Name: HeavyTank
   m_EditorClassIdentifier: 
   _data:
-    _prefab: {fileID: 6568237595620025500, guid: 0f0f9588e318b11448c6262d5d88e520,
+    _prefab: {fileID: 5923623242493629742, guid: ae0ba1cc559ac7a41ae63cc43cb2e2ca,
       type: 3}
     _icon: {fileID: 21300000, guid: 7377fe35883e14c469ce7192e6207fbc, type: 3}
     _name:
@@ -30,10 +30,10 @@ MonoBehaviour:
         _text: Test
       _tr:
         _text: Test
-    _constructionTime: 15
-    _price: 245
+    _constructionTime: 2
+    _price: 800
   _components:
-  - {fileID: 11400000, guid: ff56b4e8f4a58364087e08013890db6b, type: 2}
-  - {fileID: 11400000, guid: c099570af72dd8a4998f3869d679e3ee, type: 2}
-  - {fileID: 11400000, guid: 661277890a999f548bf150a4a5afc2af, type: 2}
-  - {fileID: 11400000, guid: 0caae24fe7f666d4c9d571fd16da8a07, type: 2}
+  - {fileID: 11400000, guid: 8e2b03bc014c35147a167ccd0fa2ee1b, type: 2}
+  - {fileID: 11400000, guid: 43f56c0a04e4137409425827c37d546d, type: 2}
+  - {fileID: 11400000, guid: 6c9ac064b32c3394cb712afafb2b3bf5, type: 2}
+  - {fileID: 11400000, guid: cde8283c56fb62440932dc302ef7a70d, type: 2}
