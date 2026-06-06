@@ -15,7 +15,7 @@ ModelImporter:
       name: Surface
     second: {fileID: 2100000, guid: de4e4f3c6fcee3f479549b7ab276b224, type: 2}
   materials:
-    materialImportMode: 2
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
