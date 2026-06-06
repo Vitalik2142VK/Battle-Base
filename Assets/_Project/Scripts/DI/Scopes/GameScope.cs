@@ -14,7 +14,7 @@ using YG;
 
 namespace BattleBase.DI
 {
-    public class GameScope : LifetimeScope
+    public class GameScopeNew : LifetimeScope
     {
         [SerializeField] private Camera _camera;
         [SerializeField] private CameraRig _cameraRig;
