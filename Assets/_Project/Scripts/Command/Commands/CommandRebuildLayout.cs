@@ -11,7 +11,7 @@ namespace BattleBase.Commands
 
         public void Add(RectTransform rectTransform)
         {
-            if(rectTransform == null)
+            if (rectTransform == null)
                 throw new ArgumentNullException(nameof(rectTransform));
 
             if (_rectTransformList.Contains(rectTransform) == false)
@@ -27,7 +27,7 @@ namespace BattleBase.Commands
                 _rectTransformList.Remove(rectTransform);
         }
 
-        protected override void OnExecute()
+        public override void Execute()
         {
             foreach (RectTransform rectTransform in _rectTransformList)
             {

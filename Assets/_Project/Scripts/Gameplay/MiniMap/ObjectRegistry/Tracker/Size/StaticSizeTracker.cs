@@ -11,6 +11,7 @@ namespace BattleBase.Gameplay.MiniMap
                 throw new ArgumentNullException(nameof(sizeCalculator));
 
             WorldSize = sizeCalculator.Calculate(transform);
+
             Changed?.Invoke();
         }
 

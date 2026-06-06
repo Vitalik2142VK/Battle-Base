@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1927090957343537847}
-  - component: {fileID: 4658472000363475635}
   m_Layer: 0
   m_Name: AudioService
   m_TagString: Untagged
@@ -34,20 +33,6 @@ Transform:
   - {fileID: 7281350382365330584}
   m_Father: {fileID: 7338854348664582720}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4658472000363475635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 165864516377375857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd4e1dbaf2ab432418ce385fd631bb03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _music: {fileID: 2700085328363820840}
-  _sfx: {fileID: 1070958317077069249}
 --- !u!1 &2778647615449349339
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,7 +627,8 @@ MonoBehaviour:
     TypeName: 
   autoRun: 1
   autoInjectGameObjects: []
-  _audioService: {fileID: 4658472000363475635}
+  _music: {fileID: 2700085328363820840}
+  _sfx: {fileID: 1070958317077069249}
   _updater: {fileID: 5188074657740111950}
   _sceneLoader: {fileID: 822412592347165104}
 --- !u!1 &8210641645181033592

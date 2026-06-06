@@ -355,7 +355,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b687384755887af42ae66f6a086cb8e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _popUpsToHide: []
   _popUpsToShow:
   - {fileID: 1678453581}
 --- !u!1 &54648510
@@ -804,6 +803,59 @@ MonoBehaviour:
   - {fileID: 109766687}
   - {fileID: 387198077}
   - {fileID: 2123326139}
+--- !u!1 &157875323
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 157875324}
+  - component: {fileID: 157875325}
+  m_Layer: 2
+  m_Name: Overshoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &157875324
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157875323}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 757988536}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &157875325
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157875323}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 28.5, y: 0.01, z: 22.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!64 &163632182
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7646,7 +7698,7 @@ GameObject:
   - component: {fileID: 757988536}
   - component: {fileID: 757988537}
   - component: {fileID: 757988539}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CameraArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7663,9 +7715,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 25, y: 1, z: 19}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 157875324}
   m_Father: {fileID: 406961967}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &757988537
@@ -7683,11 +7736,11 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.01, z: 1}
+  m_Size: {x: 25, y: 0.01, z: 19}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &757988539
 MonoBehaviour:
@@ -7701,12 +7754,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fbace59118a7474c8e4d388f5e20e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collider: {fileID: 757988537}
-  _resistanceFadeDistance: 2.44
-  _resistance: 1
-  _isStaticSizeCollider: 0
-  _cameraConfig: {fileID: 11400000, guid: 63b9ccbc3b019744ea3347f39c60f1b9, type: 2}
   _shouldDrawGizmos: 1
+  _isStaticSizeCollider: 0
+  _resistance: 1
+  _area: {fileID: 757988537}
+  _overshoot: {fileID: 157875325}
+  <Config>k__BackingField: {fileID: 11400000, guid: 63b9ccbc3b019744ea3347f39c60f1b9,
+    type: 2}
+  <CameraRig>k__BackingField: {fileID: 927422351}
 --- !u!114 &811022481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7841,7 +7896,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b687384755887af42ae66f6a086cb8e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _popUpsToHide: []
   _popUpsToShow:
   - {fileID: 1291722025}
 --- !u!1 &927422349
@@ -7870,7 +7924,7 @@ Transform:
   m_GameObject: {fileID: 927422349}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.19, y: 15, z: -13.6}
+  m_LocalPosition: {x: -1.19, y: 0, z: -13.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10613,7 +10667,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1060910272}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b687384755887af42ae66f6a086cb8e6, type: 3}
+  m_Script: {fileID: 11500000, guid: 41345b61cf9540145b0e55f38a6b26c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _popUpsToHide:
@@ -10622,7 +10676,6 @@ MonoBehaviour:
   - {fileID: 1291722025}
   - {fileID: 2038309401}
   - {fileID: 1678453581}
-  _popUpsToShow: []
 --- !u!114 &1070276218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11600,7 +11653,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b687384755887af42ae66f6a086cb8e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _popUpsToHide: []
   _popUpsToShow:
   - {fileID: 2038309401}
 --- !u!4 &1320628436
@@ -12191,7 +12243,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b687384755887af42ae66f6a086cb8e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _popUpsToHide: []
   _popUpsToShow:
   - {fileID: 2144673242}
 --- !u!64 &1492910505
@@ -13791,7 +13842,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b687384755887af42ae66f6a086cb8e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _popUpsToHide: []
   _popUpsToShow:
   - {fileID: 472266178}
 --- !u!64 &1690499155
@@ -14370,17 +14420,7 @@ MonoBehaviour:
     TypeName: 
   autoRun: 1
   autoInjectGameObjects:
-  - {fileID: 1661853818}
-  - {fileID: 276965428}
-  - {fileID: 2052060557}
-  - {fileID: 2104703340}
-  - {fileID: 1319283443}
-  - {fileID: 562984273}
-  - {fileID: 1990950054}
-  - {fileID: 1323731855}
-  - {fileID: 1197876494}
-  - {fileID: 1616386744}
-  - {fileID: 1074377339}
+  - {fileID: 954324417}
   _camera: {fileID: 2015845035}
   _cameraRig: {fileID: 927422351}
   _cameraArea: {fileID: 757988539}
@@ -14392,7 +14432,6 @@ MonoBehaviour:
     type: 2}
   _touchMapCameraConfig: {fileID: 11400000, guid: fcd90a5925a93074683c9a5cdba8a6b9,
     type: 2}
-  _cameraConfig: {fileID: 11400000, guid: 63b9ccbc3b019744ea3347f39c60f1b9, type: 2}
   _territoryPositionAnimationConfig: {fileID: 11400000, guid: ea79a8aa12c1d1548978bb1c3ec4b0c0,
     type: 2}
 --- !u!114 &1840346265
@@ -15195,7 +15234,7 @@ Transform:
   m_GameObject: {fileID: 2015845033}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: -0, z: -0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

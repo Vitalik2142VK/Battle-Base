@@ -1,33 +1,45 @@
 using System;
+using System.Security.Principal;
 using BattleBase.UpdateService;
 using UnityEngine;
+using VContainer;
 
 namespace BattleBase.Gameplay.MiniMap
 {
     public class EntityTrackerFactory : IEntityTrackerFactory
     {
         private readonly IEntityTrackersRegistry _entityRegistry;
-        private readonly IEntitySizeCalculator _sizeCalculator;
+        private readonly IObjectResolver _resolver;
         private readonly IUpdater _updater;
 
-        public EntityTrackerFactory(IEntityTrackersRegistry entityRegistry, IEntitySizeCalculator sizeCalculator, IUpdater updater)
+        public EntityTrackerFactory(IEntityTrackersRegistry entityRegistry, IObjectResolver resolver, IUpdater updater)
         {
             _entityRegistry = entityRegistry ?? throw new ArgumentNullException(nameof(entityRegistry));
-            _sizeCalculator = sizeCalculator ?? throw new ArgumentNullException(nameof(sizeCalculator));
+            _resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
             _updater = updater ?? throw new ArgumentNullException(nameof(updater));
         }
 
         public IEntityTracker CreateTracker(ITrackable entity, PositionTrackingType positionTrackingType)
         {
             Transform transform = entity.Transform;
-            IEntitySizeTracker sizeTracker = new StaticSizeTracker(transform, _sizeCalculator);
-            IEntityPositionTracker positionTracker = CreatePositionTracker(transform, positionTrackingType);
-            IEntityRotationTracker rotationTracker = new FixedRotationTracker(transform);
-            IEntityTracker tracker = new EntityTracker(entity, sizeTracker, positionTracker, rotationTracker);
+
+            IEntityTracker tracker = new EntityTracker(
+                entity,
+                CreateSizeTracker(transform),
+                CreatePositionTracker(transform, positionTrackingType),
+                CreateRotationTracker(transform));
 
             _entityRegistry.Register(tracker);
 
             return tracker;
+        }
+
+        private IEntitySizeTracker CreateSizeTracker(Transform transform)
+        {
+            IEntitySizeCalculator sizeCalculator = _resolver.Resolve<IEntitySizeCalculator>();
+            IEntitySizeTracker sizeTracker = new StaticSizeTracker(transform, sizeCalculator);
+
+            return sizeTracker;
         }
 
         private IEntityPositionTracker CreatePositionTracker(Transform transform, PositionTrackingType trackingType)
@@ -38,6 +50,13 @@ namespace BattleBase.Gameplay.MiniMap
                 PositionTrackingType.PerFrame => new PerFramePositionTracker(transform, _updater),
                 _ => throw new NotImplementedException(),
             };
+        }
+
+        private IEntityRotationTracker CreateRotationTracker(Transform transform)
+        {
+            IEntityRotationTracker rotationTracker = new FixedRotationTracker(transform);
+
+            return rotationTracker;
         }
     }
 }

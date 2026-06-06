@@ -5,6 +5,8 @@ namespace BattleBase.Gameplay.MiniMap
 {
     public class RenderersSizeCalculator : IEntitySizeCalculator
     {
+        private Renderer[] _renderers;
+
         public Vector2 Calculate(Transform transform)
         {
             if (transform == null)
@@ -21,11 +23,12 @@ namespace BattleBase.Gameplay.MiniMap
 
         private Vector2 ComputeLocalSize(Transform transform)
         {
-            Renderer[] renderers = transform.GetComponentsInChildren<Renderer>();
+            _renderers ??= transform.GetComponentsInChildren<Renderer>();
+
             Vector3 localMin;
             Vector3 localMax;
 
-            if (renderers.Length == 0)
+            if (_renderers.Length == 0)
             {
                 Debug.LogWarning($"Build {transform.name} has no renderers, returning default size 1x1", transform);
 
@@ -36,7 +39,7 @@ namespace BattleBase.Gameplay.MiniMap
             localMax = Vector3.negativeInfinity;
             bool anyPoint = false;
 
-            foreach (Renderer rend in renderers)
+            foreach (Renderer rend in _renderers)
             {
                 if (rend == null)
                     continue;

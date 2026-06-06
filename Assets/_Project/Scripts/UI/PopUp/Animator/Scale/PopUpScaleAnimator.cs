@@ -1,5 +1,5 @@
 using System;
-using BattleBase.Utils;
+using BattleBase.Utils.Extensions;
 using DG.Tweening;
 using UnityEngine;
 
@@ -8,7 +8,7 @@ namespace BattleBase.UI.PopUps
     public class PopUpScaleAnimator : PopUpAnimatorBase
     {
         [SerializeField] private ScaleAnimationConfig _showConfig;
-        [SerializeField] private ScaleAnimationConfig _hideConfig; 
+        [SerializeField] private ScaleAnimationConfig _hideConfig;
 
         private Transform _transform;
 

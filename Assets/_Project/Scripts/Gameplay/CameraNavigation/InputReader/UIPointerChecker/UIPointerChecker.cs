@@ -14,8 +14,6 @@ namespace BattleBase.Gameplay.CameraNavigation.InputReader
         private Vector2 _lastPosition;
         private bool _lastResult;
 
-        private PointerEventData _cachedEventData;
-
         public void AddCanvas(Canvas canvas)
         {
             if (canvas == null)

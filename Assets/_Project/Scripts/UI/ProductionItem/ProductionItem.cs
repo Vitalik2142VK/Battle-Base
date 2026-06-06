@@ -4,6 +4,7 @@ using BattleBase.DI;
 using BattleBase.Gameplay.Actors;
 using BattleBase.UI.Buttons;
 using BattleBase.UI.PopUps;
+using BattleBase.Utils.Constants;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,7 +26,7 @@ namespace BattleBase.UI
         public IActorData Info { get; private set; }
 
         [Inject]
-        public void Construct(ItemInfoPopUp popUp, [Key("ShowItemInfoPopUp")] CommandBase commandShowItemInfoPopUp)
+        public void Construct(ItemInfoPopUp popUp, [Key(VContainerKeys.CommandShowItemInfoPopUp)] CommandBase commandShowItemInfoPopUp)
         {
             _popUp = popUp != null ? popUp : throw new ArgumentNullException(nameof(popUp));
             _moreInfoButton.AddCommand(commandShowItemInfoPopUp);
