@@ -7559,7 +7559,15 @@ MonoBehaviour:
   _actorsConfigs:
   - {fileID: 11400000, guid: 45dd7c761e2fe5b40b7def0debed41f9, type: 2}
   - {fileID: 11400000, guid: 835f7b6885aa1524bbe469cd672f2cb6, type: 2}
+  - {fileID: 11400000, guid: 9f81944311ed51b439dcd449efc2e5fd, type: 2}
+  - {fileID: 11400000, guid: 4bfe99f3fe6e0c14db0c9497080e03d8, type: 2}
+  - {fileID: 11400000, guid: e21039b04fa34f14097db1b34175f911, type: 2}
+  - {fileID: 11400000, guid: 2069bf6504a12de4ab3c8e86cca4cef6, type: 2}
+  - {fileID: 11400000, guid: 292c450663b84384f968d6d256496423, type: 2}
+  - {fileID: 11400000, guid: eacfd7c0f370f984ab0e4855bf213890, type: 2}
+  - {fileID: 11400000, guid: e5cdd49978f695d4ba531e6dbe34705c, type: 2}
   - {fileID: 11400000, guid: a01aceef08e36ba478d1e585dd4a12f7, type: 2}
+  - {fileID: 11400000, guid: aa64e7bd2396d084fb38961449adedcc, type: 2}
   - {fileID: 11400000, guid: 74e5c17f8ca8b844abacc1f7204ba21f, type: 2}
 --- !u!1001 &1319954808
 PrefabInstance:
@@ -11746,7 +11754,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 21583e009529de2498db37e0c7b79bfe, type: 2}
+      objectReference: {fileID: 2100000, guid: 237f62aa41095d34c97012076fbcbdce, type: 2}
     - target: {fileID: 3622978099640830396, guid: 67a8f1c7703f1c642b4849a41c944b61,
         type: 3}
       propertyPath: m_LocalPosition.x

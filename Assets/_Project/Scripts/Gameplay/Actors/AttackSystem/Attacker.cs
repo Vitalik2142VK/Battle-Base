@@ -63,7 +63,11 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
                 _weapon.Update(delta);
 
                 if (_weapon.CanAttack)
+                {
                     _weapon.AttackTarget(_targetController.CurrentTarget);
+
+                    Attacked?.Invoke();
+                }
             }
 
             if (_targetController.HasTarget == false && _isAttacking)
