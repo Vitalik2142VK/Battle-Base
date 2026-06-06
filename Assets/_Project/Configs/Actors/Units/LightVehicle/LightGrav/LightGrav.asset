@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65d2e2c2420ac6b45b0d480f9633fd48, type: 3}
+  m_Name: LightGrav
+  m_EditorClassIdentifier: 
+  _data:
+    _prefab: {fileID: 7507686706299500832, guid: 39dc2b2194311a64fbfe7f03d42989f5,
+      type: 3}
+    _icon: {fileID: 0}
+    _name:
+      _ru:
+        _text: "\u0422\u0435\u0441\u0442"
+      _en:
+        _text: Test
+      _tr:
+        _text: Test
+    _description:
+      _ru:
+        _text: "\u0422\u0435\u0441\u0442"
+      _en:
+        _text: Test
+      _tr:
+        _text: Test
+    _constructionTime: 9
+    _price: 220
+  _components:
+  - {fileID: 11400000, guid: 23e2b93ebd2b00149bfc93604c7a2608, type: 2}
+  - {fileID: 11400000, guid: cc2332e03dcd24949b6ebf6d41c36aaf, type: 2}
+  - {fileID: 11400000, guid: 9f498a03074f1a6489ec0c2496b0474a, type: 2}
+  - {fileID: 11400000, guid: 1021e4f1f28610544a73aaa5977b44ea, type: 2}
