@@ -64,9 +64,9 @@ namespace BattleBase.Gameplay.Actors.Building
             _actorsController.AddActor(actor);
 
             TeamType team = baseView.Team;
+            actor.Enable();
             actor.SetTeam(team);
             actor.ChangeColor(_colorGetter.GetTeamColor(team));
-            actor.Enable();
         }
     }
 }

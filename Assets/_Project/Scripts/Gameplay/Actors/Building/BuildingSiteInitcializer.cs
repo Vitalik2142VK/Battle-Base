@@ -69,8 +69,10 @@ namespace BattleBase.Gameplay.Actors.Building
             _actorBinderRegistry.Bind(actor, view);
             _actorsController.AddActor(actor);
 
-            actor.SetTeam(buildingSite.Team);
+            TeamType team = buildingSite.Team;
             actor.Enable();
+            actor.SetTeam(team);
+            actor.ChangeColor(_colorGetter.GetTeamColor(team));
         }
     }
 }

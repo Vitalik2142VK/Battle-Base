@@ -197,6 +197,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
+      propertyPath: <Team>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
       propertyPath: <TeamType>k__BackingField
       value: 2
       objectReference: {fileID: 0}
@@ -213,6 +218,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1161357289}
     m_Modifications:
+    - target: {fileID: 213978777576619185, guid: 5777c9dad92fe254984036f5f58bcca5,
+        type: 3}
+      propertyPath: _state
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 213978777576619185, guid: 5777c9dad92fe254984036f5f58bcca5,
+        type: 3}
+      propertyPath: <Team>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 213978777576619185, guid: 5777c9dad92fe254984036f5f58bcca5,
         type: 3}
       propertyPath: <TeamType>k__BackingField
@@ -372,6 +387,11 @@ PrefabInstance:
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
       propertyPath: _isPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <Team>k__BackingField
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
@@ -617,6 +637,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
+      propertyPath: <Team>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
       propertyPath: <TeamType>k__BackingField
       value: 2
       objectReference: {fileID: 0}
@@ -705,6 +730,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
+      propertyPath: <Team>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
       propertyPath: <TeamType>k__BackingField
       value: 1
       objectReference: {fileID: 0}
@@ -789,6 +819,11 @@ PrefabInstance:
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
       propertyPath: _isPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <Team>k__BackingField
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
@@ -1892,6 +1927,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 597667320}
     m_Modifications:
+    - target: {fileID: 213978777576619185, guid: 5777c9dad92fe254984036f5f58bcca5,
+        type: 3}
+      propertyPath: <Team>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2621469656622409667, guid: 5777c9dad92fe254984036f5f58bcca5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2313,6 +2353,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
+      propertyPath: <Team>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
       propertyPath: <TeamType>k__BackingField
       value: 2
       objectReference: {fileID: 0}
@@ -2448,6 +2493,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _isPlayer
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <Team>k__BackingField
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
@@ -2754,6 +2804,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
+      propertyPath: <Team>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
       propertyPath: <TeamType>k__BackingField
       value: 2
       objectReference: {fileID: 0}
@@ -2925,6 +2980,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <Team>k__BackingField
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
@@ -3195,6 +3255,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
+      propertyPath: <Team>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
       propertyPath: <TeamType>k__BackingField
       value: 2
       objectReference: {fileID: 0}
@@ -3361,6 +3426,11 @@ PrefabInstance:
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
       propertyPath: _isPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <Team>k__BackingField
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
@@ -3637,6 +3707,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 597667320}
     m_Modifications:
+    - target: {fileID: 213978777576619185, guid: 5777c9dad92fe254984036f5f58bcca5,
+        type: 3}
+      propertyPath: <Team>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2621469656622409667, guid: 5777c9dad92fe254984036f5f58bcca5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3864,6 +3939,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _isPlayer
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <Team>k__BackingField
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
@@ -4172,6 +4252,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 213978777576619185, guid: 5777c9dad92fe254984036f5f58bcca5,
         type: 3}
+      propertyPath: _state
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 213978777576619185, guid: 5777c9dad92fe254984036f5f58bcca5,
+        type: 3}
+      propertyPath: <Team>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 213978777576619185, guid: 5777c9dad92fe254984036f5f58bcca5,
+        type: 3}
       propertyPath: <TeamType>k__BackingField
       value: 2
       objectReference: {fileID: 0}
@@ -4448,6 +4538,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
+      propertyPath: <Team>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
       propertyPath: <TeamType>k__BackingField
       value: 1
       objectReference: {fileID: 0}
@@ -4537,6 +4632,11 @@ PrefabInstance:
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
       propertyPath: _interactable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <Team>k__BackingField
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
@@ -4841,6 +4941,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
+      propertyPath: <Team>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
       propertyPath: <TeamType>k__BackingField
       value: 1
       objectReference: {fileID: 0}
@@ -4970,6 +5075,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
+      propertyPath: <Team>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
       propertyPath: <TeamType>k__BackingField
       value: 1
       objectReference: {fileID: 0}
@@ -5064,6 +5174,11 @@ PrefabInstance:
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
       propertyPath: _isPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <Team>k__BackingField
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
@@ -5555,10 +5670,12 @@ MonoBehaviour:
   - {fileID: 1398720891}
   - {fileID: 1840300234}
   - {fileID: 870893053}
+  - {fileID: 2065427242}
   _poolsRegistrator: {fileID: 1305751704}
   _actorController: {fileID: 433170248}
   _waypointController: {fileID: 1904091222}
   _missileSpawner: {fileID: 1063209185}
+  _colorGetter: {fileID: 2065427244}
 --- !u!4 &939699205
 Transform:
   m_ObjectHideFlags: 0
@@ -5575,6 +5692,7 @@ Transform:
   - {fileID: 1398720893}
   - {fileID: 1840300235}
   - {fileID: 870893054}
+  - {fileID: 2065427243}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &961575897 stripped
@@ -5665,6 +5783,11 @@ PrefabInstance:
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
       propertyPath: _isPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <Team>k__BackingField
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
@@ -6228,6 +6351,11 @@ PrefabInstance:
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
       propertyPath: _isPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <Team>k__BackingField
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
@@ -7130,6 +7258,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
+      propertyPath: <Team>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
       propertyPath: <TeamType>k__BackingField
       value: 2
       objectReference: {fileID: 0}
@@ -7473,6 +7606,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 597667320}
     m_Modifications:
+    - target: {fileID: 213978777576619185, guid: 5777c9dad92fe254984036f5f58bcca5,
+        type: 3}
+      propertyPath: <Team>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2621469656622409667, guid: 5777c9dad92fe254984036f5f58bcca5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7835,6 +7973,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 213978777576619185, guid: 5777c9dad92fe254984036f5f58bcca5,
         type: 3}
+      propertyPath: _state
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 213978777576619185, guid: 5777c9dad92fe254984036f5f58bcca5,
+        type: 3}
+      propertyPath: <Team>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 213978777576619185, guid: 5777c9dad92fe254984036f5f58bcca5,
+        type: 3}
       propertyPath: <TeamType>k__BackingField
       value: 2
       objectReference: {fileID: 0}
@@ -8065,6 +8213,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
+      propertyPath: <Team>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
       propertyPath: <TeamType>k__BackingField
       value: 2
       objectReference: {fileID: 0}
@@ -8264,8 +8417,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _config: {fileID: 11400000, guid: 5eecd783702f4b6488e2b8ec388b8a55, type: 2}
-  _playerBase: {fileID: 2017716157}
-  _enemyBase: {fileID: 1470984087}
+  _playerBase: {fileID: 2017716160}
+  _enemyBase: {fileID: 2029002955}
 --- !u!4 &1398720893
 Transform:
   m_ObjectHideFlags: 0
@@ -8362,6 +8515,11 @@ PrefabInstance:
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
       propertyPath: _interactable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <Team>k__BackingField
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
@@ -8545,6 +8703,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
+      propertyPath: <Team>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
       propertyPath: <TeamType>k__BackingField
       value: 2
       objectReference: {fileID: 0}
@@ -8720,6 +8883,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Base
       objectReference: {fileID: 0}
+    - target: {fileID: 8227608053269126083, guid: 2a5c3eede0267bb4bb0b222817489885,
+        type: 3}
+      propertyPath: _team
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8731,18 +8899,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1470984085}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1470984087 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7006616072971690949, guid: 2a5c3eede0267bb4bb0b222817489885,
-    type: 3}
-  m_PrefabInstance: {fileID: 1470984085}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36e584db489aaf94396bbe3c4aabcefa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1478754036 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
@@ -9132,6 +9288,11 @@ PrefabInstance:
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
       propertyPath: _isPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <Team>k__BackingField
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
@@ -9725,6 +9886,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 597667320}
     m_Modifications:
+    - target: {fileID: 213978777576619185, guid: 5777c9dad92fe254984036f5f58bcca5,
+        type: 3}
+      propertyPath: <Team>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2621469656622409667, guid: 5777c9dad92fe254984036f5f58bcca5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9938,6 +10104,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _isPlayer
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <Team>k__BackingField
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
@@ -10798,6 +10969,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
+      propertyPath: <Team>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
       propertyPath: <TeamType>k__BackingField
       value: 1
       objectReference: {fileID: 0}
@@ -10968,6 +11144,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
+      propertyPath: <Team>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
       propertyPath: <TeamType>k__BackingField
       value: 2
       objectReference: {fileID: 0}
@@ -11048,6 +11229,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _isPlayer
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: <Team>k__BackingField
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
@@ -11832,6 +12018,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
+      propertyPath: <Team>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
       propertyPath: <TeamType>k__BackingField
       value: 1
       objectReference: {fileID: 0}
@@ -12224,6 +12415,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Base
       objectReference: {fileID: 0}
+    - target: {fileID: 8227608053269126083, guid: 2a5c3eede0267bb4bb0b222817489885,
+        type: 3}
+      propertyPath: _team
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12235,16 +12431,16 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2017716155}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2017716157 stripped
+--- !u!114 &2017716160 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7006616072971690949, guid: 2a5c3eede0267bb4bb0b222817489885,
+  m_CorrespondingSourceObject: {fileID: 8227608053269126083, guid: 2a5c3eede0267bb4bb0b222817489885,
     type: 3}
   m_PrefabInstance: {fileID: 2017716155}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36e584db489aaf94396bbe3c4aabcefa, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d513c5066e5cc848bf72cbb1a922fa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2021501309
@@ -12334,6 +12530,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2388c8a912adeb54493c669347662a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2029002955 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8227608053269126083, guid: 2a5c3eede0267bb4bb0b222817489885,
+    type: 3}
+  m_PrefabInstance: {fileID: 1470984085}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d513c5066e5cc848bf72cbb1a922fa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2029971508
@@ -12519,6 +12727,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
+      propertyPath: <Team>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
       propertyPath: <TeamType>k__BackingField
       value: 2
       objectReference: {fileID: 0}
@@ -12557,6 +12770,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9b2233ddcfd9724d8303ea7d6d8c669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2065427242
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2065427243}
+  - component: {fileID: 2065427244}
+  m_Layer: 0
+  m_Name: ColorGetter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2065427243
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2065427242}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 939699205}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2065427244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2065427242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00607922a12aa0a47afbea3ba77e5c15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _colorSetConfig: {fileID: 11400000, guid: 94d99406106bd6e4cbc3017e9c72ac38, type: 2}
 --- !u!1 &2066491329
 GameObject:
   m_ObjectHideFlags: 0
@@ -12804,6 +13062,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1161357289}
     m_Modifications:
+    - target: {fileID: 213978777576619185, guid: 5777c9dad92fe254984036f5f58bcca5,
+        type: 3}
+      propertyPath: _state
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 213978777576619185, guid: 5777c9dad92fe254984036f5f58bcca5,
+        type: 3}
+      propertyPath: <Team>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 213978777576619185, guid: 5777c9dad92fe254984036f5f58bcca5,
         type: 3}
       propertyPath: <TeamType>k__BackingField

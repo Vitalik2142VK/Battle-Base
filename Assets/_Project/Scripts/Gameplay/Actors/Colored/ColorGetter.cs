@@ -13,8 +13,13 @@ namespace BattleBase.Gameplay.Actors.Colored
         private IColorData _colorData;
 
         [Inject]
-        public void Construct(IColorSaver colorSaver) =>
-            _colorData = colorSaver.ColorData ?? throw new ArgumentNullException(nameof(colorSaver));
+        public void Construct(ISaver saver)
+        {
+            if (saver == null)
+                throw new ArgumentNullException(nameof(saver));
+
+            _colorData = saver.ColorData;
+        }
 
         public Color GetTeamColor(TeamType teamType)
         {
