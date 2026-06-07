@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace BattleBase.Gameplay
+namespace BattleBase.Gameplay.MiniMap
 {
-    public class RoadLane : Trackable
+    public class StateTrackable : Trackable
     {
         [SerializeField] private Color _color;
 

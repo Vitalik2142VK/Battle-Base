@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace BattleBase.Gameplay
+namespace BattleBase.Gameplay.MiniMap
 {
     public interface ITrackable
     {

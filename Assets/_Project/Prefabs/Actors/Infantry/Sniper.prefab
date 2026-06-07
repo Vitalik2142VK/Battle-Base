@@ -225,13 +225,14 @@ GameObject:
   m_Component:
   - component: {fileID: 4879441476603814059}
   - component: {fileID: 6786283487373586654}
-  - component: {fileID: 6693341931602576685}
   - component: {fileID: 2340738806007906808}
   - component: {fileID: 1443887238144825098}
   - component: {fileID: 8835932190610070057}
   - component: {fileID: 7002751168224485885}
   - component: {fileID: 8435549855437907888}
   - component: {fileID: 6458224156504176077}
+  - component: {fileID: 6226743867916182533}
+  - component: {fileID: 6768163323022612871}
   m_Layer: 6
   m_Name: Sniper
   m_TagString: Untagged
@@ -279,18 +280,6 @@ NavMeshAgent:
   m_BaseOffset: -0.05
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &6693341931602576685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7084381187864296177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f9f03888d30feb46b7460fea52cb111, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2340738806007906808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,6 +368,35 @@ MonoBehaviour:
   _timeUpdate: 0.5
   _maxFindedUnits: 10
   _isDebugEnable: 0
+--- !u!114 &6226743867916182533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7084381187864296177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2baba43e52e3761468f410caf30b55c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6768163323022612871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7084381187864296177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15b15a821077e3748b8c5b0030c12b9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderers:
+  - {fileID: 4867520340714919357}
+  - {fileID: 6590013426644859062}
+  - {fileID: 3961649164173775143}
+  _targetMaterial: {fileID: 2100000, guid: 2182440ddf123974fb0dbf1a13fb7786, type: 2}
 --- !u!1001 &907939399721619384
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -625,9 +643,27 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6074637178568149305}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &3961649164173775143 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -2109962019458082786, guid: 606fc54405cea514fb9d936f20a033e8,
+    type: 3}
+  m_PrefabInstance: {fileID: 6074637178568149305}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &4867520340714919357 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 606fc54405cea514fb9d936f20a033e8,
+    type: 3}
+  m_PrefabInstance: {fileID: 6074637178568149305}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6037017203563491026 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 606fc54405cea514fb9d936f20a033e8,
+    type: 3}
+  m_PrefabInstance: {fileID: 6074637178568149305}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &6590013426644859062 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -8126433129119927921, guid: 606fc54405cea514fb9d936f20a033e8,
     type: 3}
   m_PrefabInstance: {fileID: 6074637178568149305}
   m_PrefabAsset: {fileID: 0}

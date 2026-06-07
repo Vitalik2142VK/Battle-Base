@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using BattleBase.Gameplay.Actors;
+using BattleBase.Gameplay.MiniMap;
 using UnityEngine;
 
 namespace BattleBase.Gameplay

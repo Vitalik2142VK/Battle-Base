@@ -3,6 +3,7 @@ using BattleBase.Gameplay.Actors.DamageSystem;
 using BattleBase.Gameplay.Actors.Spawn;
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors
 {
@@ -11,8 +12,6 @@ namespace BattleBase.Gameplay.Actors
         private readonly Dictionary<Type, IActorComponent> _components;
         private readonly IUpdateableController _updateableController;
         private readonly IDestroyableEvents _damagebleEvents;
-
-        private TeamType _teamType;
 
         public event Action<Actor> Deactivated;
 
@@ -32,17 +31,19 @@ namespace BattleBase.Gameplay.Actors
             _components = components;
             _damagebleEvents = damagebleEvent ?? throw new ArgumentNullException(nameof(damagebleEvent));
             _updateableController = updateableController ?? new UpdateableController(_components.Values);
-            _teamType = TeamType.None;
+            TeamType = TeamType.None;
 
             View = view ?? throw new ArgumentNullException(nameof(view));
             Data = actorData ?? throw new ArgumentNullException(nameof(actorData));
         }
 
-        public TeamType TeamType => _teamType;
-
         public IActorData Data { get; }
 
         public IActorView View { get; }
+
+        public TeamType TeamType { get; private set; }
+
+        public Color Color { get; private set; }
 
         public bool IsEnabled { get; private set; }
 
@@ -86,7 +87,10 @@ namespace BattleBase.Gameplay.Actors
             _updateableController.Update(delta);
 
         public void SetTeam(TeamType teamType) =>
-            _teamType = teamType;
+            TeamType = teamType;
+
+        public void SetColor(Color color) =>
+            Color = color;
 
         public void SetSpawnData(ISpawnData spawnData) =>
             View.SetSpawnData(spawnData);

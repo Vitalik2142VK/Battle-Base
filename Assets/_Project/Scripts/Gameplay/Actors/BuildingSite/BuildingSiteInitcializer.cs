@@ -18,7 +18,7 @@ namespace BattleBase.Gameplay
         private IActorsController _actorsController;
 
         [Inject]
-        public void Constract(
+        public void Construct(
             IComponentFactoryRegistry componentFactoryRegistry, 
             IActorBinderRegistry actorBinderRegistry,
             IActorsController actorsController)
@@ -34,6 +34,7 @@ namespace BattleBase.Gameplay
                 InitBuildingSite(buildingSite);
         }
 
+        //todo get rid of the copy paste in to BaseInitcializer
         private void InitBuildingSite(BuildingSite buildingSite)
         {
             if (buildingSite.TryGetComponent(out ActorView view) == false)

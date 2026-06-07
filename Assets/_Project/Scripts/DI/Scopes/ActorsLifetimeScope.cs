@@ -1,14 +1,15 @@
 using BattleBase.Gameplay.Actors;
 using BattleBase.Gameplay.Actors.AI;
 using BattleBase.Gameplay.Actors.AI.Transition;
+using BattleBase.Gameplay.Actors.AttackSystem;
+using BattleBase.Gameplay.Actors.AttackSystem.Missiles;
+using BattleBase.Gameplay.Actors.Colored;
 using BattleBase.Gameplay.Actors.HealthSystem;
 using BattleBase.Gameplay.Actors.Movement;
 using BattleBase.Gameplay.Actors.Spawn;
-using BattleBase.Gameplay.Actors.AttackSystem;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
-using BattleBase.Gameplay.Actors.AttackSystem.Missiles;
 
 public class ActorsLifetimeScope : LifetimeScope
 {
@@ -43,6 +44,7 @@ public class ActorsLifetimeScope : LifetimeScope
         _builder.Register<IActorComponentBinder, AttackerBinder>(Lifetime.Scoped);
         _builder.Register<IActorComponentBinder, MoverBinder>(Lifetime.Scoped);
         _builder.Register<IActorComponentBinder, ActorSpawnerBinder>(Lifetime.Scoped);
+        _builder.Register<IActorComponentBinder, ColoredActorBinder>(Lifetime.Scoped);
         _builder.Register<IActorBinderRegistry, ActorBinderRegistry>(Lifetime.Scoped);
 
         _builder.Register<IStateTransitionFactory, AttackStateTransitionFactory>(Lifetime.Scoped);
