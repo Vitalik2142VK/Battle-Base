@@ -1,5 +1,5 @@
-using BattleBase.Commands;
 using BattleBase.DI;
+using BattleBase.Gameplay.Actors.Building;
 using BattleBase.Gameplay.Actors.Spawn;
 using BattleBase.Gameplay.CameraNavigation.InputReader;
 using BattleBase.UI;
@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using VContainer;
 
-namespace BattleBase.Gameplay
+namespace BattleBase.Gameplay.Actors
 {
     public class ActorViewMediator : MonoBehaviour, IInjectable
     {

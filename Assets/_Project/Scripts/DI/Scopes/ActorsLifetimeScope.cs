@@ -17,6 +17,7 @@ public class ActorsLifetimeScope : LifetimeScope
     [SerializeField] private ActorsController _actorController;
     [SerializeField] private WaypointController _waypointController;
     [SerializeField] private MissileSpawner _missileSpawner;
+    [SerializeField] private ColorGetter _colorGetter;
 
     private IContainerBuilder _builder;
 
@@ -28,6 +29,7 @@ public class ActorsLifetimeScope : LifetimeScope
         _builder.RegisterInstance<IActorsController>(_actorController);
         _builder.RegisterInstance<IWaypointController>(_waypointController);
         _builder.RegisterInstance<IMissileSpawner>(_missileSpawner);
+        _builder.RegisterInstance<IColorGetter>(_colorGetter);
         
         _builder.Register<IActorSpawnService, ActorSpawnService>(Lifetime.Scoped);
         _builder.Register<IActorPoolRegistry, ActorPoolRegistry>(Lifetime.Scoped);

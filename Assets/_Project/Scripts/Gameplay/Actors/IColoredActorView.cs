@@ -1,4 +1,4 @@
-namespace BattleBase.Gameplay.Actors 
+namespace BattleBase.Gameplay.Actors.Colored
 {
     public interface IColoredActorView : IActorViewComponent
     {

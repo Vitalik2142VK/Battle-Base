@@ -29,26 +29,33 @@ namespace BattleBase.Gameplay.Actors.Colored
         private void OnEnable()
         {
             if (_colored != null)
-                CnangeColor();
+                _colored.ColorChanged += CnangeColor;
+        }
+
+        private void OnDisable()
+        {
+            if (_colored != null)
+                _colored.ColorChanged -= CnangeColor;
         }
 
         public void Init(IColored colored)
         {
             _colored ??= colored ?? throw new System.ArgumentNullException(nameof(colored));
 
-            CnangeColor();
+            if (gameObject.activeSelf)
+                colored.ColorChanged += CnangeColor;
         }
 
-        private void CnangeColor()
+        private void CnangeColor(Color color)
         {
             foreach (var data in _datas)
             {
                 data.Renderer.GetPropertyBlock(_propertyBlock, data.MaterialIndex);
-                _propertyBlock.SetColor(BaseColorId, _colored.Color);
+                _propertyBlock.SetColor(BaseColorId, color);
                 data.Renderer.SetPropertyBlock(_propertyBlock, data.MaterialIndex);
             }
 
-            _trackable.SetColor(_colored.Color);
+            _trackable.SetColor(color);
         }
 
         private void CacheRenderers()

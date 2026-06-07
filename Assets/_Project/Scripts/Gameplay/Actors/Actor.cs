@@ -14,6 +14,7 @@ namespace BattleBase.Gameplay.Actors
         private readonly IDestroyableEvents _damagebleEvents;
 
         public event Action<Actor> Deactivated;
+        public event Action<Color> ColorChanged;
 
         public Actor(
             Dictionary<Type, IActorComponent> components,
@@ -42,8 +43,6 @@ namespace BattleBase.Gameplay.Actors
         public IActorView View { get; }
 
         public TeamType TeamType { get; private set; }
-
-        public Color Color { get; private set; }
 
         public bool IsEnabled { get; private set; }
 
@@ -89,9 +88,8 @@ namespace BattleBase.Gameplay.Actors
         public void SetTeam(TeamType teamType) =>
             TeamType = teamType;
 
-        public void SetColor(Color color) =>
-            Color = color;
-
+        public void ChangeColor(Color color) =>
+            ColorChanged?.Invoke(color);
         public void SetSpawnData(ISpawnData spawnData) =>
             View.SetSpawnData(spawnData);
 

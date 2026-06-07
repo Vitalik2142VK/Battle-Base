@@ -12,6 +12,6 @@ namespace BattleBase.Gameplay.Actors
 
         public void SetTeam(TeamType teamType);
 
-        public void SetColor(Color color);
+        public void ChangeColor(Color color);
     }
 }

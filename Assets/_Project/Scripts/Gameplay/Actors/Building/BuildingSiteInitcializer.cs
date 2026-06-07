@@ -1,4 +1,4 @@
-using BattleBase.Gameplay.Actors;
+using BattleBase.Gameplay.Actors.Colored;
 using BattleBase.Gameplay.Actors.DamageSystem;
 using BattleBase.Gameplay.Actors.Spawn;
 using System;
@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using VContainer;
 
-namespace BattleBase.Gameplay
+namespace BattleBase.Gameplay.Actors.Building
 {
     public class BuildingSiteInitcializer : MonoBehaviour
     {
@@ -16,16 +16,19 @@ namespace BattleBase.Gameplay
         private IComponentFactoryRegistry _componentFactoryRegistry;
         private IActorBinderRegistry _actorBinderRegistry;
         private IActorsController _actorsController;
+        private IColorGetter _colorGetter;
 
         [Inject]
         public void Construct(
-            IComponentFactoryRegistry componentFactoryRegistry, 
+            IComponentFactoryRegistry componentFactoryRegistry,
             IActorBinderRegistry actorBinderRegistry,
-            IActorsController actorsController)
+            IActorsController actorsController,
+            IColorGetter colorGetter)
         {
             _componentFactoryRegistry = componentFactoryRegistry ?? throw new ArgumentNullException(nameof(componentFactoryRegistry));
             _actorBinderRegistry = actorBinderRegistry ?? throw new ArgumentNullException(nameof(actorBinderRegistry));
             _actorsController = actorsController ?? throw new ArgumentNullException(nameof(actorsController));
+            _colorGetter = colorGetter ?? throw new ArgumentNullException(nameof(colorGetter));
         }
 
         private void Start()
@@ -66,7 +69,7 @@ namespace BattleBase.Gameplay
             _actorBinderRegistry.Bind(actor, view);
             _actorsController.AddActor(actor);
 
-            actor.SetTeam(buildingSite.TeamType);
+            actor.SetTeam(buildingSite.Team);
             actor.Enable();
         }
     }

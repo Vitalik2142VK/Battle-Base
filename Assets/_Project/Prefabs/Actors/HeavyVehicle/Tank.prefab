@@ -178,7 +178,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _viewComponents:
   - {fileID: 5642488798100309159}
-  - {fileID: 0}
 --- !u!114 &-3406431523814767431
 MonoBehaviour:
   m_ObjectHideFlags: 0

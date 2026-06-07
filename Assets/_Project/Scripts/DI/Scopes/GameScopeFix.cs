@@ -1,6 +1,7 @@
 using BattleBase.Commands;
 using BattleBase.Core;
 using BattleBase.Gameplay;
+using BattleBase.Gameplay.Actors.Building;
 using BattleBase.Gameplay.CameraNavigation;
 using BattleBase.Gameplay.CameraNavigation.InputReader;
 using BattleBase.Gameplay.MiniMap;
