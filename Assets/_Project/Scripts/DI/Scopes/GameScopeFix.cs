@@ -1,6 +1,7 @@
 using BattleBase.Commands;
 using BattleBase.Core;
 using BattleBase.Gameplay;
+using BattleBase.Gameplay.Actors.Building;
 using BattleBase.Gameplay.CameraNavigation;
 using BattleBase.Gameplay.CameraNavigation.InputReader;
 using BattleBase.Gameplay.MiniMap;
@@ -42,7 +43,7 @@ namespace BattleBase.DI
         {
             _builder.Register<IBuildingSiteSelector, BuildingSiteSelector>(Lifetime.Scoped);
             _builder.Register<IProductionItemFactory, ProductionItemFactory>(Lifetime.Scoped);
-            _builder.Register<IEntityFactory, EntityFactory>(Lifetime.Scoped);
+            _builder.Register<IEntityFactory, EntityFactory>(Lifetime.Scoped); //todo remove if no use
             _builder.RegisterInstance(_itemPrefab);
 
             _builder.RegisterComponent(_itemInfoPopUp);

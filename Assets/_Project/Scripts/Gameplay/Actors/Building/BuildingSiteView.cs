@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace BattleBase.Gameplay
+namespace BattleBase.Gameplay.Actors.Building
 {
     [RequireComponent(typeof(MeshRenderer))]
     [RequireComponent(typeof(BuildingSite))]

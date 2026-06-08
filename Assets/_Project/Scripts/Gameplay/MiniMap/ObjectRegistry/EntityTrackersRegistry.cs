@@ -23,6 +23,8 @@ namespace BattleBase.Gameplay.MiniMap
             _trackers.Add(tracker);
             tracker.Disposed += Unregister;
             Added?.Invoke(tracker);
+
+            UnityEngine.Debug.Log($"EntityTrackersRegistry.Register");
         }
 
         public void Unregister(IEntityTracker tracker)
@@ -36,6 +38,8 @@ namespace BattleBase.Gameplay.MiniMap
             tracker.Disposed -= Unregister;
             _trackers.Remove(tracker);
             Removed?.Invoke(tracker);
+
+            UnityEngine.Debug.Log($"EntityTrackersRegistry.Unregister");
         }
     }
 }

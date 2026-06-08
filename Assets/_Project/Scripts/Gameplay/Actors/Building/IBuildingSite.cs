@@ -1,4 +1,4 @@
-namespace BattleBase.Gameplay
+namespace BattleBase.Gameplay.Actors.Building
 {
     public interface IBuildingSite
     {

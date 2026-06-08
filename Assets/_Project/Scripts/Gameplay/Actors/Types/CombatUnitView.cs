@@ -1,4 +1,5 @@
 using BattleBase.Gameplay.Actors.AttackSystem;
+using BattleBase.Gameplay.Actors.Colored;
 using BattleBase.Gameplay.Actors.DamageSystem;
 using BattleBase.Gameplay.Actors.HealthSystem;
 using BattleBase.Gameplay.Actors.Movement;
@@ -24,6 +25,9 @@ namespace BattleBase.Gameplay.Actors.Types
 
             if (gameObject.TryGetComponent(out TargetFinder _) == false)
                 gameObject.AddComponent<TargetFinder>();
+
+            if (gameObject.TryGetComponent(out ColoredActorView _) == false)
+                gameObject.AddComponent<ColoredActorView>();
 
             if (gameObject.GetComponentInChildren<Target>() == null)
             {

@@ -225,9 +225,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2350165021463385202}
-  - component: {fileID: 6945422783525794773}
   - component: {fileID: 1961284443509400903}
   - component: {fileID: 6783436263434746996}
+  - component: {fileID: 5654716281030089568}
+  - component: {fileID: 2831787851049788649}
   m_Layer: 0
   m_Name: Barrack
   m_TagString: Untagged
@@ -254,18 +255,6 @@ Transform:
   - {fileID: 2458164755995087952}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6945422783525794773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8250388917834149455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f9f03888d30feb46b7460fea52cb111, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1961284443509400903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,6 +283,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _viewComponents:
   - {fileID: 2946236338787349776}
+--- !u!114 &5654716281030089568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8250388917834149455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2baba43e52e3761468f410caf30b55c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2831787851049788649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8250388917834149455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15b15a821077e3748b8c5b0030c12b9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderers:
+  - {fileID: 1967958733548517318}
+  _targetMaterial: {fileID: 2100000, guid: 2182440ddf123974fb0dbf1a13fb7786, type: 2}
 --- !u!1001 &904675604571089730
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -375,6 +391,12 @@ PrefabInstance:
 --- !u!4 &793958266376195241 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cf2b08317873799428469681ec4a8e18,
+    type: 3}
+  m_PrefabInstance: {fileID: 904675604571089730}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1967958733548517318 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: cf2b08317873799428469681ec4a8e18,
     type: 3}
   m_PrefabInstance: {fileID: 904675604571089730}
   m_PrefabAsset: {fileID: 0}

@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors 
 {
-    [RequireComponent(typeof(Trackable))]
     public class ActorView : MonoBehaviour, IActorView
     {
         [SerializeField][SerializeIterface(typeof(IActorViewComponent))] private GameObject[] _viewComponents;

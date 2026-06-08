@@ -1,3 +1,4 @@
+using BattleBase.Gameplay.Actors.Colored;
 using BattleBase.Utils;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
         private readonly List<IActorData> _actorsToCreate;
         private readonly Queue<IActorData> _actorsQueue;
         private readonly IActorSpawnService _spawnService;
+        private readonly IActorColorService _colorService;
         private readonly Timer _timer;
 
         private ITeamable _teamable;
@@ -18,7 +20,10 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
         public event Action<Actor> Spawned;
 
-        public MultiActorSpawner(IEnumerable<IActorData> actorsToCreate, IActorSpawnService actorSpawnService)
+        public MultiActorSpawner(
+            IEnumerable<IActorData> actorsToCreate, 
+            IActorSpawnService actorSpawnService,
+            IActorColorService colorService)
         {
             if (actorsToCreate == null)
                 throw new ArgumentNullException(nameof(actorsToCreate));
@@ -27,6 +32,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
             _actorsQueue = new Queue<IActorData>();
 
             _spawnService = actorSpawnService ?? throw new ArgumentNullException(nameof(actorSpawnService));
+            _colorService = colorService ?? throw new ArgumentNullException(nameof(colorService));
             _timer = new();
         }
 
@@ -85,8 +91,11 @@ namespace BattleBase.Gameplay.Actors.Spawn
             {
                 Spawned?.Invoke(actor);
 
+                TeamType team = _teamable.TeamType;
                 actor.Enable();
-                actor.SetTeam(_teamable.TeamType);
+                actor.SetTeam(team);
+
+                _colorService.EstabilshColor(actor, actor.View);
 
                 if (_actorsQueue.Count > 0)
                     EstablisCurrentActorSpawn(_actorsQueue.Dequeue());

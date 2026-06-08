@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace BattleBase.Gameplay
+namespace BattleBase.Gameplay.MiniMap
 {
     public interface ITrackable
     {
@@ -11,7 +11,5 @@ namespace BattleBase.Gameplay
         public Transform Transform { get; }
 
         public Color Color { get; }
-
-        public void SetColor(Color color);
     }
 }

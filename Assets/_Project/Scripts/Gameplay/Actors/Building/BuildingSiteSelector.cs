@@ -1,4 +1,4 @@
-namespace BattleBase.Gameplay
+namespace BattleBase.Gameplay.Actors.Building
 {
     public class BuildingSiteSelector : IBuildingSiteSelector
     {
@@ -6,7 +6,7 @@ namespace BattleBase.Gameplay
 
         public bool TrySelect(IBuildingSite site)
         {
-            if (site == null) 
+            if (site == null)
                 throw new System.ArgumentNullException(nameof(site));
 
             if (site.TrySelect())

@@ -1,3 +1,4 @@
+using BattleBase.Gameplay.Actors.Colored;
 using System;
 using System.Linq;
 using VContainer;
@@ -9,6 +10,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
         private readonly IObjectResolver _resolver;
 
         private IActorSpawnService _spawnService;
+        private IActorColorService _colorService;
 
         public ActorSpawnerFactory(IObjectResolver resolver)
         {
@@ -24,10 +26,11 @@ namespace BattleBase.Gameplay.Actors.Spawn
                     $"{nameof(source)} 'source' does not implement {nameof(ISpawnComponentSource)}");
 
             _spawnService ??= _resolver.Resolve<IActorSpawnService>();
+            _colorService ??= _resolver.Resolve<IActorColorService>();
 
             var actorsToCreate = spawnComponentSource.ActorsConfigs.Select(a => a.Data);
 
-            return new ActorSpawner(actorsToCreate, _spawnService);
+            return new ActorSpawner(actorsToCreate, _spawnService, _colorService);
         }
     }
 }

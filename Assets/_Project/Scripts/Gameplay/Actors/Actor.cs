@@ -1,8 +1,10 @@
 ﻿using BattleBase.Core;
 using BattleBase.Gameplay.Actors.DamageSystem;
+using BattleBase.Gameplay.Actors.Movement;
 using BattleBase.Gameplay.Actors.Spawn;
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors
 {
@@ -12,9 +14,8 @@ namespace BattleBase.Gameplay.Actors
         private readonly IUpdateableController _updateableController;
         private readonly IDestroyableEvents _damagebleEvents;
 
-        private TeamType _teamType;
-
         public event Action<Actor> Deactivated;
+        public event Action<Color> ColorChanged;
 
         public Actor(
             Dictionary<Type, IActorComponent> components,
@@ -32,19 +33,23 @@ namespace BattleBase.Gameplay.Actors
             _components = components;
             _damagebleEvents = damagebleEvent ?? throw new ArgumentNullException(nameof(damagebleEvent));
             _updateableController = updateableController ?? new UpdateableController(_components.Values);
-            _teamType = TeamType.None;
 
             View = view ?? throw new ArgumentNullException(nameof(view));
             Data = actorData ?? throw new ArgumentNullException(nameof(actorData));
-        }
 
-        public TeamType TeamType => _teamType;
+            TeamType = TeamType.None;
+            IsStatic = _components.ContainsKey(typeof(IMover)) == false;
+        }
 
         public IActorData Data { get; }
 
         public IActorView View { get; }
 
+        public TeamType TeamType { get; private set; }
+
         public bool IsEnabled { get; private set; }
+
+        public bool IsStatic { get; }
 
         public void Enable()
         {
@@ -86,8 +91,10 @@ namespace BattleBase.Gameplay.Actors
             _updateableController.Update(delta);
 
         public void SetTeam(TeamType teamType) =>
-            _teamType = teamType;
+            TeamType = teamType;
 
+        public void ChangeColor(Color color) =>
+            ColorChanged?.Invoke(color);
         public void SetSpawnData(ISpawnData spawnData) =>
             View.SetSpawnData(spawnData);
 
