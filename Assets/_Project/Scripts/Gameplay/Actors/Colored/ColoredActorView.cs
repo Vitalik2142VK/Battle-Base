@@ -17,6 +17,8 @@ namespace BattleBase.Gameplay.Actors.Colored
         private MaterialPropertyBlock _propertyBlock;
         private Trackable _trackable;
 
+        public ITrackable Trackable => _trackable;
+
         private void Awake()
         {
             _trackable = GetComponent<Trackable>();
@@ -36,6 +38,8 @@ namespace BattleBase.Gameplay.Actors.Colored
         {
             if (_colored != null)
                 _colored.ColorChanged -= CnangeColor;
+
+            _trackable.Deactivate();
         }
 
         public void Init(IColored colored)

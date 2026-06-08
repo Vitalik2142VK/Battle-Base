@@ -1,5 +1,6 @@
 ﻿using BattleBase.Core;
 using BattleBase.Gameplay.Actors.DamageSystem;
+using BattleBase.Gameplay.Actors.Movement;
 using BattleBase.Gameplay.Actors.Spawn;
 using System;
 using System.Collections.Generic;
@@ -32,10 +33,12 @@ namespace BattleBase.Gameplay.Actors
             _components = components;
             _damagebleEvents = damagebleEvent ?? throw new ArgumentNullException(nameof(damagebleEvent));
             _updateableController = updateableController ?? new UpdateableController(_components.Values);
-            TeamType = TeamType.None;
 
             View = view ?? throw new ArgumentNullException(nameof(view));
             Data = actorData ?? throw new ArgumentNullException(nameof(actorData));
+
+            TeamType = TeamType.None;
+            IsStatic = _components.ContainsKey(typeof(IMover)) == false;
         }
 
         public IActorData Data { get; }
@@ -45,6 +48,8 @@ namespace BattleBase.Gameplay.Actors
         public TeamType TeamType { get; private set; }
 
         public bool IsEnabled { get; private set; }
+
+        public bool IsStatic { get; }
 
         public void Enable()
         {

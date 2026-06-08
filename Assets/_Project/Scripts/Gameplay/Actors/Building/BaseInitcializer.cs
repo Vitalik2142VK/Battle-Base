@@ -14,22 +14,25 @@ namespace BattleBase.Gameplay.Actors.Building
         [SerializeField] private Base _playerBase;
         [SerializeField] private Base _enemyBase;
 
-        private IComponentFactoryRegistry _componentFactoryRegistry;
-        private IActorBinderRegistry _actorBinderRegistry;
-        private IActorsController _actorsController;
-        private IColorGetter _colorGetter;
+        //private IComponentFactoryRegistry _componentFactoryRegistry;
+        //private IActorBinderRegistry _actorBinderRegistry;
+        //private IActorsController _actorsController;
+        //private IActorColorService _colorService;
+        private IActorComposer _composer;
 
         [Inject]
         public void Construct(
-            IComponentFactoryRegistry componentFactoryRegistry,
-            IActorBinderRegistry actorBinderRegistry,
-            IActorsController actorsController,
-            IColorGetter colorGetter)
+            //IComponentFactoryRegistry componentFactoryRegistry,
+            //IActorBinderRegistry actorBinderRegistry,
+            //IActorsController actorsController,
+            //IActorColorService colorService,
+            IActorComposer composer)
         {
-            _componentFactoryRegistry = componentFactoryRegistry ?? throw new ArgumentNullException(nameof(componentFactoryRegistry));
-            _actorBinderRegistry = actorBinderRegistry ?? throw new ArgumentNullException(nameof(actorBinderRegistry));
-            _actorsController = actorsController ?? throw new ArgumentNullException(nameof(actorsController));
-            _colorGetter = colorGetter ?? throw new ArgumentNullException(nameof(colorGetter));
+            //_componentFactoryRegistry = componentFactoryRegistry ?? throw new ArgumentNullException(nameof(componentFactoryRegistry));
+            //_actorBinderRegistry = actorBinderRegistry ?? throw new ArgumentNullException(nameof(actorBinderRegistry));
+            //_actorsController = actorsController ?? throw new ArgumentNullException(nameof(actorsController));
+            //_colorService = colorService ?? throw new ArgumentNullException(nameof(colorService));
+            _composer = composer ?? throw new ArgumentNullException(nameof(composer));
         }
 
         private void Start()
@@ -38,35 +41,7 @@ namespace BattleBase.Gameplay.Actors.Building
             InitBase(_enemyBase);
         }
 
-        //todo get rid of the copy paste in to BuildingSiteInitcializer
-        private void InitBase(Base baseView)
-        {
-            baseView.Init();
-
-            ActorBuilder builder = new();
-            builder
-                .ActorView(baseView)
-                .ActorData(_config.Data);
-
-            IEnumerable<IComponentSource> componentSources = _config.GetComponentSources();
-
-            foreach (var componentSource in componentSources)
-            {
-                IActorComponent component = _componentFactoryRegistry.Create(componentSource);
-                builder.AddComponent(component);
-
-                if (component is IDestroyableEvents damagebleEvents)
-                    builder.DamagebleEvents(damagebleEvents);
-            }
-
-            Actor actor = builder.Build();
-            _actorBinderRegistry.Bind(actor, baseView);
-            _actorsController.AddActor(actor);
-
-            TeamType team = baseView.Team;
-            actor.Enable();
-            actor.SetTeam(team);
-            actor.ChangeColor(_colorGetter.GetTeamColor(team));
-        }
+        private void InitBase(Base view) => 
+            _composer.Compose(view, _config, view.Team);
     }
 }

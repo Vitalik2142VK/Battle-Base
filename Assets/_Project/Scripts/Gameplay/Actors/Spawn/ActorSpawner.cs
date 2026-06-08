@@ -9,7 +9,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
     {
         private readonly List<IActorData> _actorsToCreate;
         private readonly IActorSpawnService _spawnService;
-        private readonly IColorGetter _colorGetter;
+        private readonly IActorColorService _colorService;
         private readonly Timer _timer;
 
         private ITeamable _teamable;
@@ -22,14 +22,14 @@ namespace BattleBase.Gameplay.Actors.Spawn
         public ActorSpawner(
             IEnumerable<IActorData> actorsToCreate, 
             IActorSpawnService actorSpawnService,
-            IColorGetter colorGetter)
+            IActorColorService colorService)
         {
             if (actorsToCreate == null)
                 throw new ArgumentNullException(nameof(actorsToCreate));
 
             _actorsToCreate = new List<IActorData>(actorsToCreate);
             _spawnService = actorSpawnService ?? throw new ArgumentNullException(nameof(actorSpawnService));
-            _colorGetter = colorGetter ?? throw new ArgumentNullException(nameof(colorGetter));
+            _colorService = colorService ?? throw new ArgumentNullException(nameof(colorService));
             _timer = new();
         }
 
@@ -71,8 +71,8 @@ namespace BattleBase.Gameplay.Actors.Spawn
                 TeamType team = _teamable.TeamType;
                 actor.Enable();
                 actor.SetTeam(team);
-                actor.ChangeColor(_colorGetter.GetTeamColor(team));
 
+                _colorService.EstabilshColor(actor, actor.View);
                 _currentActorData = null;
             }
         }

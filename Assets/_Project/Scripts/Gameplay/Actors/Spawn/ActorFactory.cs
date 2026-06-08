@@ -37,7 +37,6 @@ namespace BattleBase.Gameplay.Actors.Spawn
         public Actor Create()
         {
             ActorView prefab = _config.Data.Prefab;
-
             ActorView view = _resolver.Instantiate(prefab);
             view.Init();
             view.name = $"{prefab.name}_{++_unitCounter}";
@@ -59,7 +58,6 @@ namespace BattleBase.Gameplay.Actors.Spawn
             }
 
             Actor actor = builder.Build();
-
             _stateMachineInitializer.Initialize(actor);
             _actorBinderRegistry.Bind(actor, view);
 

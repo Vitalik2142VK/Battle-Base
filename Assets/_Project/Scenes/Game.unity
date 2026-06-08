@@ -5664,7 +5664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentReference:
-    TypeName: 
+    TypeName: BattleBase.DI.GameScopeFix
   autoRun: 1
   autoInjectGameObjects:
   - {fileID: 1398720891}
@@ -5693,7 +5693,7 @@ Transform:
   - {fileID: 1840300235}
   - {fileID: 870893054}
   - {fileID: 2065427243}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1391712153}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &961575897 stripped
 MonoBehaviour:
@@ -8299,7 +8299,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 939699205}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1391712154
@@ -13160,7 +13161,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1391712153}
-  - {fileID: 939699205}
   - {fileID: 355586218}
   - {fileID: 271519615}
   - {fileID: 1958580243}

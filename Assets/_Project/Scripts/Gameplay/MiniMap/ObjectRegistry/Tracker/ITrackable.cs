@@ -11,7 +11,5 @@ namespace BattleBase.Gameplay.MiniMap
         public Transform Transform { get; }
 
         public Color Color { get; }
-
-        public void SetColor(Color color);
     }
 }

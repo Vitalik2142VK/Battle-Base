@@ -13,22 +13,25 @@ namespace BattleBase.Gameplay.Actors.Building
         [SerializeField] private ActorConfig _config;
         [SerializeField] private BuildingSite[] _buildingSites;
 
-        private IComponentFactoryRegistry _componentFactoryRegistry;
-        private IActorBinderRegistry _actorBinderRegistry;
-        private IActorsController _actorsController;
-        private IColorGetter _colorGetter;
+        //private IComponentFactoryRegistry _componentFactoryRegistry;
+        //private IActorBinderRegistry _actorBinderRegistry;
+        //private IActorsController _actorsController;
+        //private IActorColorService _colorService;
+        private IActorComposer _composer;
 
         [Inject]
         public void Construct(
-            IComponentFactoryRegistry componentFactoryRegistry,
-            IActorBinderRegistry actorBinderRegistry,
-            IActorsController actorsController,
-            IColorGetter colorGetter)
+            //IComponentFactoryRegistry componentFactoryRegistry,
+            //IActorBinderRegistry actorBinderRegistry,
+            //IActorsController actorsController,
+            //IActorColorService colorService,
+            IActorComposer composer)
         {
-            _componentFactoryRegistry = componentFactoryRegistry ?? throw new ArgumentNullException(nameof(componentFactoryRegistry));
-            _actorBinderRegistry = actorBinderRegistry ?? throw new ArgumentNullException(nameof(actorBinderRegistry));
-            _actorsController = actorsController ?? throw new ArgumentNullException(nameof(actorsController));
-            _colorGetter = colorGetter ?? throw new ArgumentNullException(nameof(colorGetter));
+            //_componentFactoryRegistry = componentFactoryRegistry ?? throw new ArgumentNullException(nameof(componentFactoryRegistry));
+            //_actorBinderRegistry = actorBinderRegistry ?? throw new ArgumentNullException(nameof(actorBinderRegistry));
+            //_actorsController = actorsController ?? throw new ArgumentNullException(nameof(actorsController));
+            //_colorService = colorService ?? throw new ArgumentNullException(nameof(colorService));
+            _composer = composer ?? throw new ArgumentNullException(nameof(composer));
         }
 
         private void Start()
@@ -46,33 +49,38 @@ namespace BattleBase.Gameplay.Actors.Building
             if (buildingSite.TryGetComponent(out IActorViewSpawner actorViewSpawner) == false)
                 throw new InvalidOperationException($"{nameof(buildingSite)} don't constrain component {nameof(IActorViewSpawner)}");
 
-            view.Init();
+            _composer.Compose(view, _config, buildingSite.Team);
             actorViewSpawner.SetBuildingSite(buildingSite);
 
-            ActorBuilder builder = new();
-            builder
-                .ActorView(view)
-                .ActorData(_config.Data);
 
-            IEnumerable<IComponentSource> componentSources = _config.GetComponentSources();
+            //view.Init();
+            //actorViewSpawner.SetBuildingSite(buildingSite);
 
-            foreach (var componentSource in componentSources)
-            {
-                IActorComponent component = _componentFactoryRegistry.Create(componentSource);
-                builder.AddComponent(component);
+            //ActorBuilder builder = new();
+            //builder
+            //    .ActorView(view)
+            //    .ActorData(_config.Data);
 
-                if (component is IDestroyableEvents damagebleEvents)
-                    builder.DamagebleEvents(damagebleEvents);
-            }
+            //IEnumerable<IComponentSource> componentSources = _config.GetComponentSources();
 
-            Actor actor = builder.Build();
-            _actorBinderRegistry.Bind(actor, view);
-            _actorsController.AddActor(actor);
+            //foreach (var componentSource in componentSources)
+            //{
+            //    IActorComponent component = _componentFactoryRegistry.Create(componentSource);
+            //    builder.AddComponent(component);
 
-            TeamType team = buildingSite.Team;
-            actor.Enable();
-            actor.SetTeam(team);
-            actor.ChangeColor(_colorGetter.GetTeamColor(team));
+            //    if (component is IDestroyableEvents damagebleEvents)
+            //        builder.DamagebleEvents(damagebleEvents);
+            //}
+
+            //Actor actor = builder.Build();
+            //_actorBinderRegistry.Bind(actor, view);
+            //_actorsController.AddActor(actor);
+
+            //TeamType team = buildingSite.Team;
+            //actor.Enable();
+            //actor.SetTeam(team);
+
+            //_colorService.EstabilshColor(actor, view);
         }
     }
 }
