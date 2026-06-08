@@ -47,7 +47,6 @@ GameObject:
   - component: {fileID: 7118721749791112455}
   - component: {fileID: 7141208724168978270}
   - component: {fileID: 6847555881119917799}
-  - component: {fileID: 2202590742216192765}
   m_Layer: 0
   m_Name: WallTower
   m_TagString: Untagged
@@ -156,7 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _state: 1
-  <TeamType>k__BackingField: 1
+  <Team>k__BackingField: 0
 --- !u!114 &7118721749791112455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,18 +199,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPoint: {fileID: 6096175220627421554}
---- !u!114 &2202590742216192765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3938421100369199330}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2baba43e52e3761468f410caf30b55c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7458362114815451786
 GameObject:
   m_ObjectHideFlags: 0
