@@ -1,8 +1,5 @@
-using BattleBase.Gameplay.Actors.Colored;
-using BattleBase.Gameplay.Actors.DamageSystem;
 using BattleBase.Gameplay.Actors.Types;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using VContainer;
 
@@ -14,24 +11,12 @@ namespace BattleBase.Gameplay.Actors.Building
         [SerializeField] private Base _playerBase;
         [SerializeField] private Base _enemyBase;
 
-        //private IComponentFactoryRegistry _componentFactoryRegistry;
-        //private IActorBinderRegistry _actorBinderRegistry;
-        //private IActorsController _actorsController;
-        //private IActorColorService _colorService;
         private IActorComposer _composer;
 
         [Inject]
         public void Construct(
-            //IComponentFactoryRegistry componentFactoryRegistry,
-            //IActorBinderRegistry actorBinderRegistry,
-            //IActorsController actorsController,
-            //IActorColorService colorService,
             IActorComposer composer)
         {
-            //_componentFactoryRegistry = componentFactoryRegistry ?? throw new ArgumentNullException(nameof(componentFactoryRegistry));
-            //_actorBinderRegistry = actorBinderRegistry ?? throw new ArgumentNullException(nameof(actorBinderRegistry));
-            //_actorsController = actorsController ?? throw new ArgumentNullException(nameof(actorsController));
-            //_colorService = colorService ?? throw new ArgumentNullException(nameof(colorService));
             _composer = composer ?? throw new ArgumentNullException(nameof(composer));
         }
 
