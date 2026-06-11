@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2961025265337623857}
-  - component: {fileID: 5224371199151147391}
-  - component: {fileID: 7550878289047074185}
+  - component: {fileID: 4103263803844325991}
+  - component: {fileID: 1069512764962686299}
   m_Layer: 0
-  m_Name: TankMissle
+  m_Name: Missle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 7320096966455630097}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5224371199151147391
+--- !u!114 &4103263803844325991
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,12 +43,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4831685795835175593}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcdda66dd6e00e6479068be24f4df7ff, type: 3}
+  m_Script: {fileID: 11500000, guid: cd652b8a32587894db6a4c7f4099b88c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _finishDistance: 0.1
-  _speed: 80
---- !u!114 &7550878289047074185
+  _turnRate: 360
+  _speed: 40
+  _maxRange: 100
+  _finishDistance: 0.2
+--- !u!114 &1069512764962686299
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -57,7 +59,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4831685795835175593}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48608c211986a034cab8706b9cd33160, type: 3}
+  m_Script: {fileID: 11500000, guid: f502e702a7977bd49b69236b100819ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1725789140751168159

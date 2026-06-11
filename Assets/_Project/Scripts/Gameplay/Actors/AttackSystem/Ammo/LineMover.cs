@@ -6,7 +6,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
 {
     public class LineMover : MonoBehaviour, IProjectileMover
     {
-        [SerializeField][Range(0, 1f)] private float _finishDistance = 0.05f;
+        [SerializeField][Range(0.01f, 1f)] private float _finishDistance = 0.05f;
         [SerializeField][Min(10f)] private float _speed = 50f;
 
         private Transform _transform;

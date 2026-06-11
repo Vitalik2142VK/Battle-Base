@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: RocketLauncher_WeaponConfig
   m_EditorClassIdentifier: 
   _projectileConfig:
-    _projectilePrefab: {fileID: 7550878289047074185, guid: 0e7462a956c1f3d43ba581feb1d144c8,
+    _projectilePrefab: {fileID: 1069512764962686299, guid: 322ffe0642e93444f84e0ff9da8f742e,
       type: 3}
-    _speed: 40
+    _speed: 30
   _damageConfig:
     _damageMask: 0
     _damage: 35
   _firingRange: 35
   _rateShooting: 0.5
-  _speedReload: 3
+  _speedReload: 4
   _numberShells: 2
