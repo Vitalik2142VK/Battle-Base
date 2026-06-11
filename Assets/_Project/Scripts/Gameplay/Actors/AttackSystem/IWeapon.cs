@@ -1,4 +1,4 @@
-﻿using BattleBase.Gameplay.Actors.AttackSystem.Missiles;
+﻿using BattleBase.Gameplay.Actors.AttackSystem.Ammo;
 using BattleBase.Gameplay.Actors.DamageSystem;
 
 namespace BattleBase.Gameplay.Actors.AttackSystem
@@ -9,7 +9,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
         public bool CanAttack { get; }
 
-        public void Init(IMissileController missileController);
+        public void Init(IProjectileController projectileController);
 
         public void Enable();
 

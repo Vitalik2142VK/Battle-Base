@@ -1,4 +1,4 @@
-﻿using BattleBase.Gameplay.Actors.AttackSystem.Missiles;
+﻿using BattleBase.Gameplay.Actors.AttackSystem.Ammo;
 using BattleBase.Gameplay.Actors.DamageSystem;
 
 namespace BattleBase.Gameplay.Actors.AttackSystem
@@ -7,7 +7,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
     {
         public IWeaponConfig WeaponConfig { get; }
 
-        public void Init(ITargetController targetController, IMissileController missileController);
+        public void Init(ITargetController targetController, IProjectileController projectileController);
 
         public void SetTarget(ITarget target);
 

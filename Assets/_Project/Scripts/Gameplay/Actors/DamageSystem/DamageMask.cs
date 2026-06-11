@@ -8,9 +8,10 @@ namespace BattleBase.Gameplay.Actors
         [Obsolete("Empty mask is not allowed", true)]
         None = 0,
 
-        Infantry = 1 << 0,
-        LightVehicle = 1 << 1,
-        HeavyVehicle = 1 << 2,
-        Air = 1 << 3
+        Building = 1 << 0,
+        Infantry = 1 << 1,
+        LightVehicle = 1 << 2,
+        HeavyVehicle = 1 << 3,
+        Air = 1 << 4
     }
 }

@@ -1,4 +1,4 @@
-﻿using BattleBase.Gameplay.Actors.AttackSystem.Missiles;
+﻿using BattleBase.Gameplay.Actors.AttackSystem.Ammo;
 using BattleBase.Gameplay.Actors.DamageSystem;
 using BattleBase.Utils;
 using System;
@@ -9,7 +9,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
     {
         private readonly Timer _timer;
 
-        private IMissileController _missileController;
+        private IProjectileController _projectileController;
         private int _currentNumberShells;
 
         public Weapon(IWeaponConfig config)
@@ -24,9 +24,9 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
         public bool CanAttack { get; private set; }
 
-        public void Init(IMissileController missileController)
+        public void Init(IProjectileController projectileController)
         {
-            _missileController ??= missileController ?? throw new ArgumentNullException(nameof(missileController));
+            _projectileController ??= projectileController ?? throw new ArgumentNullException(nameof(projectileController));
         }
 
         public void Enable()
@@ -54,7 +54,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
             CanAttack = false;
 
-            _missileController.ShootMissile(target);
+            _projectileController.ShootMissile(target);
 
             if (--_currentNumberShells > 0)
             {

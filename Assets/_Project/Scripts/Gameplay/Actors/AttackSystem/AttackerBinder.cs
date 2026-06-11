@@ -1,4 +1,4 @@
-﻿using BattleBase.Gameplay.Actors.AttackSystem.Missiles;
+﻿using BattleBase.Gameplay.Actors.AttackSystem.Ammo;
 using BattleBase.Gameplay.Actors.DamageSystem;
 using BattleBase.Gameplay.Actors.Spawn;
 using System;
@@ -7,11 +7,11 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 {
     public class AttackerBinder : IActorComponentBinder
     {
-        private readonly IMissileSpawner _missileSpawner;
+        private readonly IProjectileSpawner _projectileSpawner;
 
-        public AttackerBinder(IMissileSpawner missileSpawner)
+        public AttackerBinder(IProjectileSpawner projectileSpawner)
         {
-            _missileSpawner = missileSpawner ?? throw new ArgumentNullException(nameof(missileSpawner));
+            _projectileSpawner = projectileSpawner ?? throw new ArgumentNullException(nameof(projectileSpawner));
         }
 
         public void Bind(IActor actor, IActorView view)
@@ -29,10 +29,15 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
                     throw new InvalidOperationException($"'{nameof(view)}' don't contain module '{nameof(IShotPoint)}'");
 
                 IDamageConfig damageConfig = attacker.WeaponConfig.DamageConfig;
+                IProjectileConfig projectileConfig = attacker.WeaponConfig.ProjectileConfig;
                 TargetController targetController = new(view, attacker.WeaponConfig);
-                MissileController missileController = new(_missileSpawner, shotPoint, damageConfig);
+                ProjectileController projectileController = new(
+                    _projectileSpawner, 
+                    shotPoint, 
+                    projectileConfig, 
+                    damageConfig);
 
-                attacker.Init(targetController, missileController);
+                attacker.Init(targetController, projectileController);
                 weaponView.Init(attacker);
             }
             else
@@ -41,7 +46,6 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             }
 
             AttackerPresenter presenter = new(attacker);
-
 
             if (view.TryGetViewComponent(out IAim aim))
             {

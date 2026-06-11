@@ -30,7 +30,7 @@ MonoBehaviour:
         _text: Test
       _tr:
         _text: Test
-    _constructionTime: 2
+    _constructionTime: 20
     _price: 800
   _components:
   - {fileID: 11400000, guid: 8e2b03bc014c35147a167ccd0fa2ee1b, type: 2}

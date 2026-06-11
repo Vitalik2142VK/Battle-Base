@@ -68,7 +68,7 @@ namespace BattleBase.DI
             _builder.RegisterComponent(_territoryPositionAnimationConfig);
 
             _builder.Register<ITerritorySelector, TerritorySelector>(Lifetime.Scoped);
-            _builder.Register<IPool<TerritorySelectPopUp>, Pool<TerritorySelectPopUp>>(Lifetime.Scoped);
+            _builder.Register<IPool<TerritorySelectPopUp>, StaticPool<TerritorySelectPopUp>>(Lifetime.Scoped);
             _builder.Register<IFactory<TerritorySelectPopUp>, TerritorySelectPopUpFactory>(Lifetime.Scoped);
             _builder.Register<TerritoryElevator>(Lifetime.Scoped);
             _builder.Register<TerritoryPopUpShower>(Lifetime.Scoped);

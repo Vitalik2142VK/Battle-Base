@@ -53,7 +53,7 @@ namespace BattleBase.DI
         private void RegisterMiniMapSystem()
         {
             _builder.Register<IEntityTrackersRegistry, EntityTrackersRegistry>(Lifetime.Singleton);
-            _builder.Register<IPool<IconMapObject>, Pool<IconMapObject>>(Lifetime.Singleton);
+            _builder.Register<IPool<IconMapObject>, StaticPool<IconMapObject>>(Lifetime.Singleton);
             _builder.Register<IEntitySizeCalculator, WorldBoundsSizeCalculator>(Lifetime.Transient);
             _builder.Register<IEntityTrackerFactory, EntityTrackerFactory>(Lifetime.Singleton);
             _builder.Register<IFactory<IconMapObject>, IconMapObjectFactory>(Lifetime.Singleton);

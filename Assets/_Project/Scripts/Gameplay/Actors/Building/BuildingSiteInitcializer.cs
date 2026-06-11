@@ -13,8 +13,7 @@ namespace BattleBase.Gameplay.Actors.Building
         private IActorComposer _composer;
 
         [Inject]
-        public void Construct(
-            IActorComposer composer)
+        public void Construct(IActorComposer composer)
         {
             _composer = composer ?? throw new ArgumentNullException(nameof(composer));
         }

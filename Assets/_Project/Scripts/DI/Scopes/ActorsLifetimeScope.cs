@@ -2,7 +2,7 @@ using BattleBase.Gameplay.Actors;
 using BattleBase.Gameplay.Actors.AI;
 using BattleBase.Gameplay.Actors.AI.Transition;
 using BattleBase.Gameplay.Actors.AttackSystem;
-using BattleBase.Gameplay.Actors.AttackSystem.Missiles;
+using BattleBase.Gameplay.Actors.AttackSystem.Ammo;
 using BattleBase.Gameplay.Actors.Building;
 using BattleBase.Gameplay.Actors.Colored;
 using BattleBase.Gameplay.Actors.HealthSystem;
@@ -19,7 +19,7 @@ namespace BattleBase.DI
         [SerializeField] private ActorPoolsRegistrator _poolsRegistrator;
         [SerializeField] private ActorsController _actorController;
         [SerializeField] private WaypointController _waypointController;
-        [SerializeField] private MissileSpawner _missileSpawner;
+        [SerializeField] private ProjectileSpawner _projectileSpawner;
         [SerializeField] private ColorGetter _colorGetter;
 
         private IContainerBuilder _builder;
@@ -31,7 +31,7 @@ namespace BattleBase.DI
             _builder.RegisterComponent<IActorPoolsRegistrator>(_poolsRegistrator);
             _builder.RegisterInstance<IActorsController>(_actorController);
             _builder.RegisterInstance<IWaypointController>(_waypointController);
-            _builder.RegisterInstance<IMissileSpawner>(_missileSpawner);
+            _builder.RegisterInstance<IProjectileSpawner>(_projectileSpawner);
             _builder.RegisterInstance<IColorGetter>(_colorGetter);
 
             _builder.Register<IActorSpawnService, ActorSpawnService>(Lifetime.Scoped);

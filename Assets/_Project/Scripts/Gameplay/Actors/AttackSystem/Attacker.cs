@@ -1,4 +1,4 @@
-﻿using BattleBase.Gameplay.Actors.AttackSystem.Missiles;
+﻿using BattleBase.Gameplay.Actors.AttackSystem.Ammo;
 using BattleBase.Gameplay.Actors.DamageSystem;
 using System;
 
@@ -26,11 +26,11 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
         public IWeaponConfig WeaponConfig => _weapon.Config;
 
-        public void Init(ITargetController targetController, IMissileController missileController)
+        public void Init(ITargetController targetController, IProjectileController projectileController)
         {
             _targetController ??= targetController ?? throw new ArgumentNullException(nameof(targetController));
 
-            _weapon.Init(missileController);
+            _weapon.Init(projectileController);
         }
 
         public void Enable()
