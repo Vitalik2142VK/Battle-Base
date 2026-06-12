@@ -3,5 +3,7 @@
     public interface IHealthComponentSource : IComponentSource
     {
         public IHealthConfig Config { get; }
+
+        public DamageMask Type { get; }
     }
 }

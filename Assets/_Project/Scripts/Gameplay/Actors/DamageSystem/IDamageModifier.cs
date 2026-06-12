@@ -1,6 +1,6 @@
-﻿using BattleBase.Gameplay.Actors.DamageSystem;
+﻿using BattleBase.Gameplay.Actors.HealthSystem;
 
-namespace BattleBase.Gameplay.Actors.HealthSystem
+namespace BattleBase.Gameplay.Actors.DamageSystem
 {
     public interface IDamageModifier
     {

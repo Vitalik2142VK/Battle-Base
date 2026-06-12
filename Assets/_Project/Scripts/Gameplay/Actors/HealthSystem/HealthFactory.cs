@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BattleBase.Gameplay.Actors.DamageSystem;
+using System;
 
 namespace BattleBase.Gameplay.Actors.HealthSystem
 {
