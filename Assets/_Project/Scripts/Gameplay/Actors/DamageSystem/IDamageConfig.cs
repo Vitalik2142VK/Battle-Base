@@ -2,7 +2,7 @@
 {
     public interface IDamageConfig
     {
-        public ActorMask ActorMask { get; }
+        public ITargetingProfile TargetingProfile { get; }
         
         public DamageMask DamageMask { get; }
 

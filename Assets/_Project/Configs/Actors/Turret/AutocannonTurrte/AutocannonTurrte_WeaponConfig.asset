@@ -17,6 +17,8 @@ MonoBehaviour:
       type: 3}
     _speed: 50
   _damageConfig:
+    _targetingProfile: {fileID: 11400000, guid: 869fcacf3269d224f85b0b7189df785e,
+      type: 2}
     _damageMask: 0
     _damage: 35
   _firingRange: 40

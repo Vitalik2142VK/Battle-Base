@@ -28,14 +28,9 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
                 if (view.TryGetViewComponent(out IShotPoint shotPoint) == false)
                     throw new InvalidOperationException($"'{nameof(view)}' don't contain module '{nameof(IShotPoint)}'");
 
-                IDamageConfig damageConfig = attacker.WeaponConfig.DamageConfig;
                 IProjectileConfig projectileConfig = attacker.WeaponConfig.ProjectileConfig;
                 TargetController targetController = new(view, attacker.WeaponConfig);
-                ProjectileController projectileController = new(
-                    _projectileSpawner, 
-                    shotPoint, 
-                    projectileConfig, 
-                    damageConfig);
+                ProjectileController projectileController = new(_projectileSpawner, shotPoint, projectileConfig);
 
                 attacker.Init(targetController, projectileController);
                 weaponView.Init(attacker);
@@ -48,14 +43,10 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             AttackerPresenter presenter = new(attacker);
 
             if (view.TryGetViewComponent(out IAim aim))
-            {
                 aim.Init(presenter, attacker);
-            }
 
             if (view.TryGetViewComponent(out ITargetFinder targetFinder))
-            {
                 targetFinder.Init(presenter, attacker.WeaponConfig, actor);
-            }
         }
     }
 }

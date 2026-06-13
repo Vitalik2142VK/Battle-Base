@@ -3,13 +3,15 @@ using System;
 
 namespace BattleBase.Gameplay.Actors.DamageSystem.Modifiers
 {
-    public class IgnoreArmorModifier : IDamageModifier
+    public class DamageByTypeModifier : IDamageModifier
     {
         private readonly IDamageModifier _modifier;
+        private readonly ActorMask _actorType;
 
-        public IgnoreArmorModifier(IDamageModifier modifier)
+        public DamageByTypeModifier(IDamageModifier modifier, ActorMask actorType)
         {
             _modifier = modifier ?? throw new ArgumentNullException(nameof(modifier));
+            _actorType = actorType;
         }
 
         public float CalculateDamage(IDamage damage, IHealthConfig healthConfig)
@@ -17,8 +19,8 @@ namespace BattleBase.Gameplay.Actors.DamageSystem.Modifiers
             if (damage == null)
                 throw new ArgumentNullException(nameof(damage));
 
-            if (damage.DamageMask.Contains(DamageMask.ArmorPiercing))
-                return damage.Value;
+            if (damage.HasPriority(_actorType, out float damageCoefficient))
+                return damageCoefficient * _modifier.CalculateDamage(damage, healthConfig);
             else
                 return _modifier.CalculateDamage(damage, healthConfig);
         }

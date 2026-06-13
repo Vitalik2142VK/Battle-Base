@@ -8,6 +8,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
     public class Weapon : IWeapon
     {
         private readonly Timer _timer;
+        private readonly Damage _damage;
 
         private IProjectileController _projectileController;
         private int _currentNumberShells;
@@ -16,6 +17,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         {
             Config = config ?? throw new ArgumentNullException(nameof(config));
 
+            _damage = new(Config.DamageConfig);
             _timer = new Timer(Config.RateShooting);
             _currentNumberShells = 0;
         }
@@ -54,7 +56,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
             CanAttack = false;
 
-            _projectileController.ShootMissile(target);
+            _projectileController.ShootMissile(target, _damage);
 
             if (--_currentNumberShells > 0)
             {

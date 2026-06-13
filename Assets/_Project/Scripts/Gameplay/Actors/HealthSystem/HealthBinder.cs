@@ -26,9 +26,7 @@ namespace BattleBase.Gameplay.Actors.HealthSystem
             HealthPresenter presenter = new(health);
 
             if (view.TryGetViewComponent(out ITarget target))
-            {
-                target.Init(presenter, health, actor);
-            }
+                target.Init(presenter, health, actor, health.ActorMask);
         }
     }
 }

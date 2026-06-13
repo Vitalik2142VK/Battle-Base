@@ -12,6 +12,7 @@ namespace BattleBase.Gameplay.Actors.DamageSystem.Modifiers
 
             IDamageModifier modifier = new DefaultModifier();
             modifier = new IgnoreArmorModifier(modifier);
+            modifier = new DamageByTypeModifier(modifier, componentSource.Type);
 
             return modifier;
         }
