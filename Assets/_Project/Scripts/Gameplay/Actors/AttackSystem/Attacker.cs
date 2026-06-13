@@ -1,6 +1,7 @@
 ﻿using BattleBase.Gameplay.Actors.AttackSystem.Ammo;
 using BattleBase.Gameplay.Actors.DamageSystem;
 using System;
+using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.AttackSystem
 {
@@ -43,9 +44,9 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             _targetController.LoseTarget();
         }
 
-        public void SetTarget(ITarget target)
+        public void SetTargets(IEnumerable<ITarget> targets)
         {
-            if (_targetController.TryChangeTarget(target))
+            if (_targetController.TrySelectTarget(targets))
             {
                 TargetSelected?.Invoke(_targetController.CurrentTarget);
 

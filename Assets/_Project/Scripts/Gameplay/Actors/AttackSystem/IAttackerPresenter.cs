@@ -1,11 +1,12 @@
 ﻿using BattleBase.Gameplay.Actors.DamageSystem;
+using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.AttackSystem
 {
     public interface IAttackerPresenter
     {
-        void SpecifyTarget(ITarget target);
+        public void SetTargets(IEnumerable<ITarget> targets);
 
-        void EstablishAimState(bool isAimed);
+        public void EstablishAimState(bool isAimed);
     }
 }

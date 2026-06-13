@@ -1,6 +1,7 @@
 ﻿using BattleBase.Gameplay.Actors.DamageSystem;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.AttackSystem
@@ -9,11 +10,12 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
     {
         [SerializeField] private LayerMask _findedLayerMask;
         [SerializeField][Min(0.1f)] private float _timeUpdate = 0.5f;
-        [SerializeField][Range(5, 30)] private int _maxFindedUnits = 20;
+        [SerializeField][Range(32, 256)] private int _maxFindedUnits = 64;
 
         [Header("Debug")]
         [SerializeField] private bool _isDebugEnable;
 
+        private List<ITarget> _targets;
         private IAttackerPresenter _presenter;
         private IWeaponRange _weaponRange;
         private ITeamable _teamable;
@@ -25,6 +27,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         private void Awake()
         {
             _transform = transform;
+            _targets = new List<ITarget>(_maxFindedUnits);
             _tick = new WaitForSeconds(_timeUpdate);
             _foundUnits = new Collider[_maxFindedUnits];
         }
@@ -62,16 +65,16 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
                 if (_weaponRange == null)
                     yield return null;
 
-                if (TryFindEnemyUnit(out ITarget enemy))
-                    _presenter.SpecifyTarget(enemy);
+                if (TryFindEnemies())
+                    _presenter.SetTargets(_targets);
 
                 yield return _tick;
             }
         }
 
-        private bool TryFindEnemyUnit(out ITarget enemy)
+        private bool TryFindEnemies()
         {
-            enemy = null;
+            _targets.Clear();
 
             int count = Physics.OverlapSphereNonAlloc(
                 _transform.position,
@@ -84,14 +87,14 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             {
                 Collider collider = _foundUnits[i];
 
-                if (collider.TryGetComponent(out enemy))
+                if (collider.TryGetComponent(out ITarget enemy))
                 {
                     if (_teamable.TeamType != enemy.TeamType)
-                        return true;
+                        _targets.Add(enemy);
                 }
             }
 
-            return false;
+            return _targets.Count > 0;
         }
     }
 }

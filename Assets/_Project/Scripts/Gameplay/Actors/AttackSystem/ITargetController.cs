@@ -1,4 +1,5 @@
 ﻿using BattleBase.Gameplay.Actors.DamageSystem;
+using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.AttackSystem
 {
@@ -8,7 +9,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
         public bool HasTarget { get; }
 
-        public bool TryChangeTarget(ITarget newTarget);
+        public bool TrySelectTarget(IEnumerable<ITarget> targets);
 
         public void LoseTarget();
     }

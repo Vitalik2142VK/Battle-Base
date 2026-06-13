@@ -1,5 +1,6 @@
 ﻿using BattleBase.Gameplay.Actors.AttackSystem.Ammo;
 using BattleBase.Gameplay.Actors.DamageSystem;
+using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.AttackSystem
 {
@@ -9,7 +10,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
         public void Init(ITargetController targetController, IProjectileController projectileController);
 
-        public void SetTarget(ITarget target);
+        public void SetTargets(IEnumerable<ITarget> targets);
 
         public void SetAim(bool isAiming);
 

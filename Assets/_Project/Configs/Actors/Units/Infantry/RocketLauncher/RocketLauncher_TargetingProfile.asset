@@ -15,6 +15,6 @@ MonoBehaviour:
   _notAttacked: 0
   _priorityActorTypes:
   - _actorMask: 4
-    _damageCoefficient: 3
-  - _actorMask: 8
+    _damageCoefficient: 4
+  - _actorMask: 9
     _damageCoefficient: 2.5

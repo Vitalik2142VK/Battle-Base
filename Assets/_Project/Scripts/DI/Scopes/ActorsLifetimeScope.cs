@@ -9,6 +9,7 @@ using BattleBase.Gameplay.Actors.DamageSystem.Modifiers;
 using BattleBase.Gameplay.Actors.HealthSystem;
 using BattleBase.Gameplay.Actors.Movement;
 using BattleBase.Gameplay.Actors.Spawn;
+using BattleBase.Gameplay.Levels;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -40,6 +41,7 @@ namespace BattleBase.DI
             _builder.Register<IActorPoolRegistry, ActorPoolRegistry>(Lifetime.Scoped);
             _builder.Register<IActorComposer, ActorComposer>(Lifetime.Scoped);
             _builder.Register<IDamageModifierFactory, DamageModifierFactory>(Lifetime.Scoped);
+            _builder.Register<IWinStateController, WinStateController>(Lifetime.Scoped);
 
             RegisterComponentFactoryRegistry();
             RegisterActorBinderRegistry();

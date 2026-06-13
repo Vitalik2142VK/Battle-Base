@@ -366,7 +366,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _timeUpdate: 0.5
-  _maxFindedUnits: 10
+  _maxFindedUnits: 64
   _isDebugEnable: 0
 --- !u!114 &6226743867916182533
 MonoBehaviour:

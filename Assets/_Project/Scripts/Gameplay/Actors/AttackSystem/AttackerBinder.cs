@@ -28,8 +28,10 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
                 if (view.TryGetViewComponent(out IShotPoint shotPoint) == false)
                     throw new InvalidOperationException($"'{nameof(view)}' don't contain module '{nameof(IShotPoint)}'");
 
-                IProjectileConfig projectileConfig = attacker.WeaponConfig.ProjectileConfig;
-                TargetController targetController = new(view, attacker.WeaponConfig);
+                IWeaponConfig weaponConfig = attacker.WeaponConfig;
+                ITargetingProfile targetingProfile = weaponConfig.DamageConfig.TargetingProfile;
+                IProjectileConfig projectileConfig = weaponConfig.ProjectileConfig;
+                TargetController targetController = new(view, attacker.WeaponConfig, targetingProfile);
                 ProjectileController projectileController = new(_projectileSpawner, shotPoint, projectileConfig);
 
                 attacker.Init(targetController, projectileController);
