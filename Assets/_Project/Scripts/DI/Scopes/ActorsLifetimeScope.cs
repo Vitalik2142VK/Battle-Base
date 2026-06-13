@@ -5,6 +5,7 @@ using BattleBase.Gameplay.Actors.AttackSystem;
 using BattleBase.Gameplay.Actors.AttackSystem.Ammo;
 using BattleBase.Gameplay.Actors.Building;
 using BattleBase.Gameplay.Actors.Colored;
+using BattleBase.Gameplay.Actors.DamageSystem.Modifiers;
 using BattleBase.Gameplay.Actors.HealthSystem;
 using BattleBase.Gameplay.Actors.Movement;
 using BattleBase.Gameplay.Actors.Spawn;
@@ -38,7 +39,15 @@ namespace BattleBase.DI
             _builder.Register<IActorColorService, ActorColorService>(Lifetime.Scoped);
             _builder.Register<IActorPoolRegistry, ActorPoolRegistry>(Lifetime.Scoped);
             _builder.Register<IActorComposer, ActorComposer>(Lifetime.Scoped);
+            _builder.Register<IDamageModifierFactory, DamageModifierFactory>(Lifetime.Scoped);
 
+            RegisterComponentFactoryRegistry();
+            RegisterActorBinderRegistry();
+            RegisterStateMachineInitializer();
+        }
+
+        private void RegisterComponentFactoryRegistry()
+        {
             _builder.Register<IComponentFactory, HealthFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, AttackerFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, MoverFactory>(Lifetime.Scoped);
@@ -46,14 +55,20 @@ namespace BattleBase.DI
             _builder.Register<IComponentFactory, MultiActorSpawnerFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, ActorStateMachineFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactoryRegistry, ComponentFactoryRegistry>(Lifetime.Scoped);
+        }
 
+        private void RegisterActorBinderRegistry()
+        {
             _builder.Register<IActorComponentBinder, HealthBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, AttackerBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, MoverBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, ActorSpawnerBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, ColoredActorBinder>(Lifetime.Scoped);
             _builder.Register<IActorBinderRegistry, ActorBinderRegistry>(Lifetime.Scoped);
+        }
 
+        private void RegisterStateMachineInitializer()
+        {
             _builder.Register<IStateTransitionFactory, AttackStateTransitionFactory>(Lifetime.Scoped);
             _builder.Register<IStateTransitionFactory, AttackToMoveStateTransitionFactory>(Lifetime.Scoped);
             _builder.Register<IStateMachineInitializer, StateMachineInitializer>(Lifetime.Scoped);

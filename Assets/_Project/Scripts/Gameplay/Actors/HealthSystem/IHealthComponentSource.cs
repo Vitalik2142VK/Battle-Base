@@ -4,6 +4,6 @@
     {
         public IHealthConfig Config { get; }
 
-        public DamageMask Type { get; }
+        public ActorMask Type { get; }
     }
 }

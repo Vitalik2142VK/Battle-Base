@@ -1,9 +1,9 @@
 ﻿using BattleBase.Gameplay.Actors.HealthSystem;
 using System;
 
-namespace BattleBase.Gameplay.Actors.DamageSystem
+namespace BattleBase.Gameplay.Actors.DamageSystem.Modifiers
 {
-    public class DamageModifier : IDamageModifier
+    public class DefaultModifier : IDamageModifier
     {
         public float CalculateDamage(IDamage damage, IHealthConfig healthConfig)
         {

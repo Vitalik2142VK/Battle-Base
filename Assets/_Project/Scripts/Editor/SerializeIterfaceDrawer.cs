@@ -24,12 +24,18 @@ public class SerializeIterfaceDrawer : PropertyDrawer
         UpdatePropertyValue(property, requiredType);
         UpdateDropIcon(position, requiredType);
 
-        property.objectReferenceValue = EditorGUI.ObjectField(position, label, property.objectReferenceValue, typeof(GameObject), true);
+        property.objectReferenceValue = EditorGUI.ObjectField(
+            position, 
+            label, 
+            property.objectReferenceValue, 
+            typeof(GameObject), 
+            true);
     }
 
     private bool IsValidField()
     {
-        return fieldInfo.FieldType == typeof(GameObject) || typeof(IEnumerable<GameObject>).IsAssignableFrom(fieldInfo.FieldType);
+        return fieldInfo.FieldType == typeof(GameObject) 
+            || typeof(IEnumerable<GameObject>).IsAssignableFrom(fieldInfo.FieldType);
     }
 
     private void UpdatePropertyValue(SerializedProperty property, Type requiredType)

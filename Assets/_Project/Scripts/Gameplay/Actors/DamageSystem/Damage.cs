@@ -11,6 +11,8 @@ namespace BattleBase.Gameplay.Actors.DamageSystem
             _config = attributes ?? throw new ArgumentNullException(nameof(attributes));
         }
 
+        public ActorMask ActorMask => _config.ActorMask;
+
         public DamageMask DamageMask => _config.DamageMask;
 
         public float Value => _config.Damage;

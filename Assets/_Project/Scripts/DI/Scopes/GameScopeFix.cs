@@ -43,7 +43,6 @@ namespace BattleBase.DI
         {
             _builder.Register<IBuildingSiteSelector, BuildingSiteSelector>(Lifetime.Singleton);
             _builder.Register<IProductionItemFactory, ProductionItemFactory>(Lifetime.Singleton);
-            //_builder.Register<IEntityFactory, EntityFactory>(Lifetime.Singleton); //todo remove if no use
             _builder.RegisterInstance(_itemPrefab);
 
             _builder.RegisterComponent(_itemInfoPopUp);

@@ -41,6 +41,7 @@ Transform:
   - {fileID: 2665490104822483925}
   - {fileID: 2035811931871922348}
   - {fileID: 1515168311811637013}
+  - {fileID: 5807773247830002803}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &5725778854224797010
@@ -95,6 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _viewComponents:
   - {fileID: 1413854959399954165}
+  - {fileID: 5139264985573023292}
 --- !u!114 &635485968430430107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,6 +355,50 @@ MonoBehaviour:
   _aimingPoint: {fileID: 1515168311811637013}
   _hitDistance: 1.2
   _isDebugEnable: 1
+--- !u!1 &5139264985573023292
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5807773247830002803}
+  - component: {fileID: 689147918127052652}
+  m_Layer: 6
+  m_Name: ConsoleHealthCounter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5807773247830002803
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5139264985573023292}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6111352941628996183}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &689147918127052652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5139264985573023292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d268ea234bdd94a83b78b8d5b6efce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6846467243499233891
 GameObject:
   m_ObjectHideFlags: 0

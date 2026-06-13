@@ -9,10 +9,10 @@ namespace BattleBase.Gameplay.Actors.HealthSystem
     public class HealthComponentSource : ActorComponentSource, IHealthComponentSource
     {
         [SerializeField] private HealthConfig _healthConfig;
-        [SerializeField] private DamageMask _type;
+        [SerializeField][SingleFlag] private ActorMask _type = ActorMask.Building;
 
         public IHealthConfig Config => _healthConfig;
 
-        public DamageMask Type => _type;
+        public ActorMask Type => _type;
     }
 }

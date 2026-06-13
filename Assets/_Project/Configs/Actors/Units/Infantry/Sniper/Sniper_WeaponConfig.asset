@@ -15,9 +15,10 @@ MonoBehaviour:
   _projectileConfig:
     _projectilePrefab: {fileID: 7550878289047074185, guid: ed12269b9172a4a44bfe5966c7513ee1,
       type: 3}
-    _speed: 70
+    _speed: 100
   _damageConfig:
-    _damageMask: 0
+    _actorMask: 0
+    _damageMask: -1
     _damage: 60
   _firingRange: 50
   _rateShooting: 3

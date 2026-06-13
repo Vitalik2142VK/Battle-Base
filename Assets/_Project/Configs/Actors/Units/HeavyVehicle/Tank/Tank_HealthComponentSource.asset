@@ -15,3 +15,4 @@ MonoBehaviour:
   _healthConfig:
     _maxHealth: 550
     _armorCoefficient: 0.3
+  _type: 4
