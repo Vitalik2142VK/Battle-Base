@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Base
   m_EditorClassIdentifier: 
   _data:
-    _prefab: {fileID: 7006616072971690949, guid: 2a5c3eede0267bb4bb0b222817489885,
+    _prefab: {fileID: 8227608053269126083, guid: 2a5c3eede0267bb4bb0b222817489885,
       type: 3}
-    _icon: {fileID: 0}
+    _icon: {fileID: 21300000, guid: 42e7ee87413818041884606df6265c97, type: 3}
     _name:
       _ru:
         _text: text

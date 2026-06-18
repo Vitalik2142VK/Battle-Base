@@ -15,7 +15,7 @@ MonoBehaviour:
   _data:
     _prefab: {fileID: 1961284443509400903, guid: 268682394b9e3474c871507e5f9291b9,
       type: 3}
-    _icon: {fileID: 21300000, guid: a10c9e990f6c54642a89cab87d6c0c51, type: 3}
+    _icon: {fileID: 21300000, guid: 7ea2d68f3ec3f064b9301f8df0dab71d, type: 3}
     _name:
       _ru:
         _text: "\u0422\u0435\u0441\u0442"

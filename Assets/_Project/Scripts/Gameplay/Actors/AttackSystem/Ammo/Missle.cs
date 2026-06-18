@@ -9,6 +9,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
     {
         private IProjectileMover _mover;
         private ITarget _target;
+        private Vector3 _lastTargetPosition;
 
         public override event Action<Projectile> Deactivated;
 
@@ -19,10 +20,12 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
 
         private void FixedUpdate()
         {
-            if (_target == null)
-                return;
-
-            _mover.SetPointPosition(_target.Position);
+            if (_target != null)
+            {
+                _lastTargetPosition = _target.Position;
+                _mover.SetPointPosition(_lastTargetPosition);
+            }
+            
             _mover.Move(Time.fixedDeltaTime);
 
             if (HasHit())
@@ -32,20 +35,28 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
                 Deactivate();
         }
 
+        private void OnDisable()
+        {
+            OnTargetLost();
+        }
+
         public override void ShootTarget(Vector3 startPosition, ITarget target)
         {
             if (_target != null)
                 return;
 
             _target = target ?? throw new ArgumentNullException(nameof(target));
+            _lastTargetPosition = _target.Position;
             _mover.SetStartPosition(startPosition);
-            _mover.SetPointPosition(_target.Position);
+            _mover.SetPointPosition(_lastTargetPosition);
             _mover.SetSpeed(Config.Speed);
+
+            _target.Destroyed += OnTargetLost;
         }
 
         private bool HasHit()
         {
-            if (_target.HasHit(_mover.CurrentPosition) == false)
+            if (_target == null || _target.HasHit(_mover.CurrentPosition) == false)
                 return false;
 
             _target.TakeDamage(Damage);
@@ -57,9 +68,18 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
 
         private void Deactivate()
         {
-            _target = null;
+            OnTargetLost();
 
             Deactivated?.Invoke(this);
+        }
+
+        private void OnTargetLost()
+        {
+            if (_target == null)
+                return;
+
+            _target.Destroyed -= OnTargetLost;
+            _target = null;
         }
     }
 }

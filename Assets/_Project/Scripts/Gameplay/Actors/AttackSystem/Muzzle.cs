@@ -9,10 +9,17 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         [SerializeField][Min(1f)] private float _speedRotate = 25f;
 
         private Transform _transform;
+        private Quaternion _startRotation;
 
         private void Awake()
         {
             _transform = transform;
+            _startRotation = _transform.rotation;
+        }
+
+        private void OnEnable()
+        {
+            _transform.localRotation = _startRotation;
         }
 
         public void LookAtTarget(Vector3 localTargetPosition)

@@ -14,6 +14,8 @@ namespace BattleBase.Gameplay.Actors.Visual
 
         public string Id => gameObject.name;
 
+        public bool IsActive => gameObject != null && gameObject.activeSelf;
+
         private void Awake()
         {
             _transform = transform;
@@ -30,6 +32,9 @@ namespace BattleBase.Gameplay.Actors.Visual
 
         public void SetPosition(Vector3 position) =>
             _transform.position = position;
+
+        public void SetRotation(Quaternion rotation) =>
+            _transform.rotation = rotation;
 
         public void Stop() =>
             _particle.Stop(true, ParticleSystemStopBehavior.StopEmitting);

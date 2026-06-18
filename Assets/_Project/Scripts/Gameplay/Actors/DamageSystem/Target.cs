@@ -79,7 +79,7 @@ namespace BattleBase.Gameplay.Actors.DamageSystem
             _healthPresenter.SendDamage(damage);
         }
 
-        public void OnDied()
+        private void OnDied()
         {
             Destroyed?.Invoke();
         }

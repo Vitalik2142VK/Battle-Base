@@ -15,11 +15,13 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         private IAttackEvents _weaponEvents;
         private ITargetPoint _currentTarget;
         private Transform _transform;
+        private Quaternion _startRotation;
         private bool _isAimed;
 
         private void Awake()
         {
             _transform = transform;
+            _startRotation = _transform.localRotation;
         }
 
         private void OnEnable()
@@ -29,6 +31,8 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
                 _weaponEvents.TargetSelected += OnTakeAim;
                 _weaponEvents.AttackDeactivated += OnRemoveTarget;
             }
+
+            _transform.localRotation = _startRotation;
         }
 
         private void Update()

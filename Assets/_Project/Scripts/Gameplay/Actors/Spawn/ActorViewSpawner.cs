@@ -9,7 +9,6 @@ namespace BattleBase.Gameplay.Actors.Spawn
     public class ActorViewSpawner : MonoBehaviour, IActorViewSpawner
     {
         [SerializeField] private Transform _spawnPoint;
-        //[SerializeField] private Renderer _renderer;
 
         private IActorSpawnerPresenter _presenter;
         private IActorSpawnerEvents _events;
@@ -24,10 +23,6 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
         private void OnValidate()
         {
-            //todo remove or change
-            //if (TryGetComponent(out Renderer renderer))
-            //    _renderer = renderer;
-
             if (_spawnPoint == null)
                 _spawnPoint = transform;
         }
@@ -56,10 +51,8 @@ namespace BattleBase.Gameplay.Actors.Spawn
         public void SelectActorData(IActorData actorData) =>
             _presenter.SendActorData(actorData);
 
-        public void SetBuildingSite(IBuildingSite buildingSite)
-        {
+        public void SetBuildingSite(IBuildingSite buildingSite) =>
             BuildingSite = buildingSite ?? throw new ArgumentNullException(nameof(buildingSite));
-        }
 
         private void OnSpawn(Actor actor)
         {

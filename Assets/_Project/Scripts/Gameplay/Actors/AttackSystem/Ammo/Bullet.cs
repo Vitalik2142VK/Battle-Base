@@ -19,9 +19,6 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
 
         private void FixedUpdate()
         {
-            if (_target == null)
-                return;
-
             _mover.Move(Time.fixedDeltaTime);
 
             if (HasHit())

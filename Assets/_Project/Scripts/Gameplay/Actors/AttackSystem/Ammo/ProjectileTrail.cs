@@ -27,11 +27,13 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
         private void FixedUpdate()
         {
             _trailParticle.SetPosition(_transform.position);
+            _trailParticle.SetRotation(_transform.rotation);
         }
 
         private void OnDisable()
         {
-            _trailParticle.Stop();   
+            if (_trailParticle.IsActive)
+                _trailParticle.Stop();
         }
 
         [Inject]
