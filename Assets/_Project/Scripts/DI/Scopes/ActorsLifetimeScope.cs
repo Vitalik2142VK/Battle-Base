@@ -9,6 +9,7 @@ using BattleBase.Gameplay.Actors.DamageSystem.Modifiers;
 using BattleBase.Gameplay.Actors.HealthSystem;
 using BattleBase.Gameplay.Actors.Movement;
 using BattleBase.Gameplay.Actors.Spawn;
+using BattleBase.Gameplay.Actors.Visual;
 using BattleBase.Gameplay.Levels;
 using UnityEngine;
 using VContainer;
@@ -22,6 +23,7 @@ namespace BattleBase.DI
         [SerializeField] private ActorsController _actorController;
         [SerializeField] private WaypointController _waypointController;
         [SerializeField] private ProjectileSpawner _projectileSpawner;
+        [SerializeField] private TrailParticleSpawner _trailParticleSpawner;
         [SerializeField] private ColorGetter _colorGetter;
 
         private IContainerBuilder _builder;
@@ -34,6 +36,7 @@ namespace BattleBase.DI
             _builder.RegisterInstance<IActorsController>(_actorController);
             _builder.RegisterInstance<IWaypointController>(_waypointController);
             _builder.RegisterInstance<IProjectileSpawner>(_projectileSpawner);
+            _builder.RegisterInstance<ITrailParticleSpawner>(_trailParticleSpawner);
             _builder.RegisterInstance<IColorGetter>(_colorGetter);
 
             _builder.Register<IActorSpawnService, ActorSpawnService>(Lifetime.Scoped);

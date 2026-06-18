@@ -1146,7 +1146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9e688735f0f6ec4787c864e1460e961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _misslePrefab: {fileID: 7550878289047074185, guid: 0e7462a956c1f3d43ba581feb1d144c8,
+  _projectilePrefab: {fileID: 7550878289047074185, guid: 0e7462a956c1f3d43ba581feb1d144c8,
     type: 3}
 --- !u!4 &236917390 stripped
 Transform:
@@ -3421,7 +3421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9e688735f0f6ec4787c864e1460e961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _misslePrefab: {fileID: 1069512764962686299, guid: 322ffe0642e93444f84e0ff9da8f742e,
+  _projectilePrefab: {fileID: 1069512764962686299, guid: 322ffe0642e93444f84e0ff9da8f742e,
     type: 3}
 --- !u!1 &555573206
 GameObject:
@@ -5105,6 +5105,7 @@ Transform:
   m_Children:
   - {fileID: 433170247}
   - {fileID: 1063209184}
+  - {fileID: 1531430614}
   - {fileID: 1305751703}
   - {fileID: 1904091221}
   m_Father: {fileID: 0}
@@ -5792,10 +5793,13 @@ MonoBehaviour:
   - {fileID: 1840300234}
   - {fileID: 870893053}
   - {fileID: 2065427242}
+  - {fileID: 1063209183}
+  - {fileID: 1531430613}
   _poolsRegistrator: {fileID: 1305751704}
   _actorController: {fileID: 433170248}
   _waypointController: {fileID: 1904091222}
   _projectileSpawner: {fileID: 1063209185}
+  _trailParticleSpawner: {fileID: 1531430615}
   _colorGetter: {fileID: 2065427244}
 --- !u!4 &939699205
 Transform:
@@ -6179,6 +6183,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1002282873}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1018887921
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1018887922}
+  m_Layer: 0
+  m_Name: TrailContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &1018887922
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018887921}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1018935588
 GameObject:
   m_ObjectHideFlags: 0
@@ -7717,7 +7752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9e688735f0f6ec4787c864e1460e961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _misslePrefab: {fileID: 7550878289047074185, guid: ed12269b9172a4a44bfe5966c7513ee1,
+  _projectilePrefab: {fileID: 7550878289047074185, guid: ed12269b9172a4a44bfe5966c7513ee1,
     type: 3}
 --- !u!1001 &1294916246
 PrefabInstance:
@@ -9441,6 +9476,100 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1524036838}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1531430613
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1531430614}
+  - component: {fileID: 1531430615}
+  m_Layer: 0
+  m_Name: TrailParticleSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1531430614
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1531430613}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1532382362}
+  m_Father: {fileID: 849014627}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1531430615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1531430613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba595f29ebb66e479a62c968b446072, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _factories:
+  - {fileID: 1532382363}
+  _container: {fileID: 1018887922}
+--- !u!1 &1532382361
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1532382362}
+  - component: {fileID: 1532382363}
+  m_Layer: 0
+  m_Name: RocketTrailFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1532382362
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532382361}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1531430614}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1532382363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532382361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82b65cda4f8fe7f4f8e1fb70fe598f28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _trailPrefab: {fileID: 6397649131468027063, guid: c1cad7abcc13a3746bf8881ed90fc71d,
+    type: 3}
 --- !u!114 &1539930787 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
@@ -13163,3 +13292,4 @@ SceneRoots:
   - {fileID: 849014627}
   - {fileID: 1019701356}
   - {fileID: 1697783764}
+  - {fileID: 1018887922}

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2961025265337623857}
   - component: {fileID: 4103263803844325991}
   - component: {fileID: 1069512764962686299}
+  - component: {fileID: 5835098188176184700}
   m_Layer: 0
   m_Name: Missle
   m_TagString: Untagged
@@ -62,6 +63,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f502e702a7977bd49b69236b100819ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5835098188176184700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4831685795835175593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f992a3bb8afda534ba8c23ef18ff3ccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefabTrailParticle: {fileID: 277915464471442047, guid: c1cad7abcc13a3746bf8881ed90fc71d,
+    type: 3}
 --- !u!1001 &6245350872259853756
 PrefabInstance:
   m_ObjectHideFlags: 0
