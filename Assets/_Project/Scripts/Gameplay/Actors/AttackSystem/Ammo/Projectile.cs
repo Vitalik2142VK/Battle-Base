@@ -15,10 +15,10 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
 
         protected IProjectileConfig Config { get; private set; }
 
-        public void SetProjectileConfig(IProjectileConfig config) => 
+        public virtual void SetProjectileConfig(IProjectileConfig config) => 
             Config = config ?? throw new ArgumentNullException(nameof(config));
 
-        public void SetDamage(IDamage damage) => 
+        public virtual void SetDamage(IDamage damage) => 
             Damage = damage ?? throw new ArgumentNullException(nameof(damage));
 
         public abstract void ShootTarget(Vector3 startPosition, ITarget target);

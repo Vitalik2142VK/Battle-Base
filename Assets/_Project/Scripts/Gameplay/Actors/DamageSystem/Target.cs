@@ -74,14 +74,10 @@ namespace BattleBase.Gameplay.Actors.DamageSystem
             return sqrDistance < _hitDistance * _hitDistance;
         }
 
-        public void TakeDamage(IDamage damage)
-        {
+        public void TakeDamage(IDamage damage) => 
             _healthPresenter.SendDamage(damage);
-        }
 
-        private void OnDied()
-        {
+        private void OnDied() => 
             Destroyed?.Invoke();
-        }
     }
 }
