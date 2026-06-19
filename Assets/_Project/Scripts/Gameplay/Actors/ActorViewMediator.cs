@@ -21,7 +21,8 @@ namespace BattleBase.Gameplay.Actors
         private IClickDetector _clickDetector;
         private IBuildingSiteSelector _selector;
         private IProductionItemFactory _productionItemFactory;
-        private bool _isBuildingSite;
+
+        private IBuildingSite _currentBuildingSite;
 
         [Inject]
         public void Construct(
@@ -51,7 +52,7 @@ namespace BattleBase.Gameplay.Actors
 
             if (collider.TryGetComponent(out IActorViewSpawner viewSpawner))
             {
-                _isBuildingSite = collider.TryGetComponent(out IBuildingSite _);
+                collider.TryGetComponent(out _currentBuildingSite);
                 _currentViewSpawner = viewSpawner;
 
                 SelectViewSpawner();
@@ -93,8 +94,12 @@ namespace BattleBase.Gameplay.Actors
         {
             _currentViewSpawner.SelectActorData(item.Info);
 
-            if (_isBuildingSite)
+            if (_currentBuildingSite != null)
+            {
                 HandleUnselectEntity();
+                _currentBuildingSite.Hide();
+                _currentBuildingSite = null;
+            }
         }
     }
 }

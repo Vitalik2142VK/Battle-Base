@@ -6,6 +6,10 @@ namespace BattleBase.Gameplay.Actors.Building
 
         public void Unselect();
 
+        public void Show();
+
+        public void Hide();
+
         public void SetActiveState();
 
         public void SetInactiveState();

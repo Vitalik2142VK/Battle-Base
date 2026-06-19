@@ -7,7 +7,7 @@ namespace BattleBase.Gameplay.Actors.Building
         public bool TrySelect(IBuildingSite site)
         {
             if (site == null)
-                throw new System.ArgumentNullException(nameof(site));
+                return false;
 
             if (site.TrySelect())
             {

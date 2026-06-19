@@ -44,6 +44,12 @@ namespace BattleBase.Gameplay.Actors.Building
             }
         }
 
+        public void Show() =>
+            gameObject.SetActive(true);
+
+        public void Hide() =>
+            gameObject.SetActive(false);
+
         public void SetActiveState()
         {
             _collider.enabled = true;
