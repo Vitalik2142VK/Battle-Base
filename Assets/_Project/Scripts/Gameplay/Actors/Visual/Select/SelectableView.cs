@@ -1,11 +1,11 @@
 using System;
 using UnityEngine;
 
-namespace BattleBase.Gameplay.Actors.Building
+namespace BattleBase.Gameplay.Actors.Visual.Select
 {
     [RequireComponent(typeof(MeshRenderer))]
-    [RequireComponent(typeof(BuildingSite))]
-    public class BuildingSiteView : MonoBehaviour
+    [RequireComponent(typeof(Selectable))]
+    public class SelectableView : MonoBehaviour
     {
         private static readonly int ColorPropertyId = Shader.PropertyToID("_BaseColor");
 
@@ -15,7 +15,7 @@ namespace BattleBase.Gameplay.Actors.Building
         [SerializeField] private int _surfaceIndexMaterial;
         [SerializeField] private int _edgeIndexMaterial;
 
-        private BuildingSite _buildingSite;
+        private Selectable _buildingSite;
         private MeshRenderer _renderer;
         private MaterialPropertyBlock _propertyBlock;
         private Color _surfaceInitialColor;
@@ -24,7 +24,7 @@ namespace BattleBase.Gameplay.Actors.Building
         private void Awake()
         {
             _renderer = GetComponent<MeshRenderer>();
-            _buildingSite = GetComponent<BuildingSite>();
+            _buildingSite = GetComponent<Selectable>();
             _propertyBlock = new();
 
             Material surfaceMaterial = _renderer.sharedMaterials[_surfaceIndexMaterial];
@@ -47,21 +47,17 @@ namespace BattleBase.Gameplay.Actors.Building
 
         private void UpdateState()
         {
-            // todo Temporarily
-            //if (_buildingSite.TeamType != Actors.TeamType.Player)
-            //    return;
-
             switch (_buildingSite.State)
             {
-                case BuildingSiteState.Inactive:
+                case SelectableState.Inactive:
                     HandleInactiveState();
                     break;
 
-                case BuildingSiteState.Active:
+                case SelectableState.Active:
                     HandleActiveState();
                     break;
 
-                case BuildingSiteState.Selected:
+                case SelectableState.Selected:
                     HandleSelectedState();
                     break;
 

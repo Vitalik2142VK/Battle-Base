@@ -1,4 +1,4 @@
-﻿namespace BattleBase.Gameplay.Actors.Visual
+﻿namespace BattleBase.Gameplay.Actors.Visual.Particle
 {
     public interface ITrailParticleSpawner
     {

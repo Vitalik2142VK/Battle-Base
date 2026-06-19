@@ -1,7 +1,7 @@
 using BattleBase.Commands;
 using BattleBase.Core;
 using BattleBase.Gameplay;
-using BattleBase.Gameplay.Actors.Building;
+using BattleBase.Gameplay.Actors.Visual.Select;
 using BattleBase.Gameplay.CameraNavigation;
 using BattleBase.Gameplay.CameraNavigation.InputReader;
 using BattleBase.Gameplay.MiniMap;
@@ -41,7 +41,7 @@ namespace BattleBase.DI
 
         private void RegisterBuildingSiteSelector()
         {
-            _builder.Register<IBuildingSiteSelector, BuildingSiteSelector>(Lifetime.Singleton);
+            _builder.Register<ISelector, Selector>(Lifetime.Singleton);
             _builder.Register<IProductionItemFactory, ProductionItemFactory>(Lifetime.Singleton);
             _builder.RegisterInstance(_itemPrefab);
 

@@ -17,7 +17,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
         private IActorData _currentActorData;
         private bool _isDisable;
 
-        public event Action<Actor> Spawned;
+        public event Action<IActor> Spawned;
 
         public ActorSpawner(
             IEnumerable<IActorData> actorsToCreate, 

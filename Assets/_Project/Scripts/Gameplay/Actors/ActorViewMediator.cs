@@ -1,6 +1,6 @@
 using BattleBase.DI;
-using BattleBase.Gameplay.Actors.Building;
 using BattleBase.Gameplay.Actors.Spawn;
+using BattleBase.Gameplay.Actors.Visual.Select;
 using BattleBase.Gameplay.CameraNavigation.InputReader;
 using BattleBase.UI;
 using BattleBase.UI.PopUps;
@@ -19,15 +19,15 @@ namespace BattleBase.Gameplay.Actors
 
         private IActorViewSpawner _currentViewSpawner;
         private IClickDetector _clickDetector;
-        private IBuildingSiteSelector _selector;
+        private ISelector _selector;
         private IProductionItemFactory _productionItemFactory;
 
-        private IBuildingSite _currentBuildingSite;
+        private ISelectable _selectable;
 
         [Inject]
         public void Construct(
             IClickDetector clickDetector,
-            IBuildingSiteSelector selector,
+            ISelector selector,
             IProductionItemFactory productionItemFactory)
         {
             _clickDetector = clickDetector ?? throw new ArgumentNullException(nameof(clickDetector));
@@ -52,7 +52,7 @@ namespace BattleBase.Gameplay.Actors
 
             if (collider.TryGetComponent(out IActorViewSpawner viewSpawner))
             {
-                collider.TryGetComponent(out _currentBuildingSite);
+                collider.TryGetComponent(out _selectable);
                 _currentViewSpawner = viewSpawner;
 
                 SelectViewSpawner();
@@ -65,8 +65,8 @@ namespace BattleBase.Gameplay.Actors
 
         private void SelectViewSpawner()
         {
-            IBuildingSite buildingSite = _currentViewSpawner.BuildingSite;
-            _selector.TrySelect(buildingSite);
+            if (_selector.TrySelect(_selectable) == false)
+                _selector.Unselect();
 
             _productionPanel.ClearContext();
             _items = _productionItemFactory.Create(_currentViewSpawner.ActorsData);
@@ -94,11 +94,10 @@ namespace BattleBase.Gameplay.Actors
         {
             _currentViewSpawner.SelectActorData(item.Info);
 
-            if (_currentBuildingSite != null)
+            if (_selectable != null)
             {
                 HandleUnselectEntity();
-                _currentBuildingSite.Hide();
-                _currentBuildingSite = null;
+                _selectable = null;
             }
         }
     }

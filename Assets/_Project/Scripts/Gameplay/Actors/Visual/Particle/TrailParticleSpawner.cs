@@ -2,7 +2,7 @@ using BattleBase.Core;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BattleBase.Gameplay.Actors.Visual
+namespace BattleBase.Gameplay.Actors.Visual.Particle
 {
     public class TrailParticleSpawner : MonoBehaviour, ITrailParticleSpawner
     {

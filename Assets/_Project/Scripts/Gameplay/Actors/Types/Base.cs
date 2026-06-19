@@ -1,11 +1,10 @@
-﻿using BattleBase.Gameplay.Actors.Building;
-using BattleBase.Gameplay.Actors.Colored;
+﻿using BattleBase.Gameplay.Actors.Colored;
 using BattleBase.Gameplay.Actors.HealthSystem;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.Types
 {
-    public class Base : ActorView, IBase
+    public class Base : ActorView
     {
         [SerializeField] private TeamType _team;
 

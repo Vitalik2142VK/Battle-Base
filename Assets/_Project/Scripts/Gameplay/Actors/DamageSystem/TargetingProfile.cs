@@ -7,7 +7,7 @@ namespace BattleBase.Gameplay.Actors.DamageSystem
     [CreateAssetMenu(
         fileName = nameof(TargetingProfile),
         menuName = AssetMenuPaths.ScriptableObjects + nameof(ActorConfig) + "/" + nameof(TargetingProfile))]
-    public class TargetingProfile : ActorComponentSource, ITargetingProfile
+    public class TargetingProfile : ScriptableObject, ITargetingProfile
     {
         [SerializeField] private ActorMask _notAttacked;
         [SerializeField] private PriorityActorType[] _priorityActorTypes;

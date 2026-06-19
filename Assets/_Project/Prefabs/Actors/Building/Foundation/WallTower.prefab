@@ -43,9 +43,9 @@ GameObject:
   - component: {fileID: 1010852780667698125}
   - component: {fileID: 2378008077639779811}
   - component: {fileID: 6962596869492421820}
+  - component: {fileID: 6167790791083087650}
   - component: {fileID: 213978777576619185}
   - component: {fileID: 7118721749791112455}
-  - component: {fileID: 7141208724168978270}
   - component: {fileID: 6847555881119917799}
   m_Layer: 0
   m_Name: WallTower
@@ -142,6 +142,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5, y: 4.2000003, z: 5}
   m_Center: {x: 0, y: 2.1000001, z: 0}
+--- !u!114 &6167790791083087650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3938421100369199330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 731126e48a4838840bf07d4d96788c62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _viewComponents: []
+  <Team>k__BackingField: 0
 --- !u!114 &213978777576619185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,8 +168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9b2233ddcfd9724d8303ea7d6d8c669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collider: {fileID: 6962596869492421820}
   _state: 1
-  <Team>k__BackingField: 0
 --- !u!114 &7118721749791112455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,19 +187,6 @@ MonoBehaviour:
   _edgeSelectedColor: {r: 1, g: 0.9529412, b: 0, a: 1}
   _surfaceIndexMaterial: 0
   _edgeIndexMaterial: 0
---- !u!114 &7141208724168978270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3938421100369199330}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36e584db489aaf94396bbe3c4aabcefa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _viewComponents: []
 --- !u!114 &6847555881119917799
 MonoBehaviour:
   m_ObjectHideFlags: 0

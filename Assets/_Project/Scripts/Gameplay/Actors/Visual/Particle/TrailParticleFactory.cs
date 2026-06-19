@@ -3,7 +3,7 @@ using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
-namespace BattleBase.Gameplay.Actors.Visual
+namespace BattleBase.Gameplay.Actors.Visual.Particle
 {
     public class TrailParticleFactory : MonoBehaviour, IFactory<TrailParticle>
     {

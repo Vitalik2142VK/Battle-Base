@@ -1,4 +1,3 @@
-using BattleBase.Gameplay.Actors.Building;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,15 +10,12 @@ namespace BattleBase.Gameplay.Actors.Spawn
         [SerializeField] private Transform _spawnPoint;
 
         private IActorSpawnerPresenter _presenter;
-        private IActorSpawnerEvents _events;
-        //todo remove
+
         public IEnumerable<IActorData> ActorsData => _presenter.ActorsDatas;
 
         public Vector3 SpawnPosition => _spawnPoint.position;
 
         public Quaternion SpawnRotation => _spawnPoint.rotation;
-
-        public IBuildingSite BuildingSite { get; private set; }
 
         private void OnValidate()
         {
@@ -27,40 +23,12 @@ namespace BattleBase.Gameplay.Actors.Spawn
                 _spawnPoint = transform;
         }
 
-        private void OnEnable()
-        {
-            if (_events != null)
-                _events.Spawned += OnSpawn;
-        }
-
-        private void OnDisable()
-        {
-            if (_events != null)
-                _events.Spawned -= OnSpawn;
-        }
-
-        public void Init(IActorSpawnerPresenter presenter, IActorSpawnerEvents events)
+        public void Init(IActorSpawnerPresenter presenter)
         {
             _presenter = presenter ?? throw new ArgumentNullException(nameof(presenter));
-            _events = events ?? throw new ArgumentNullException(nameof(events));
-
-            if (gameObject.activeSelf)
-                _events.Spawned += OnSpawn;
         }
 
         public void SelectActorData(IActorData actorData) =>
             _presenter.SendActorData(actorData);
-
-        public void SetBuildingSite(IBuildingSite buildingSite) =>
-            BuildingSite = buildingSite ?? throw new ArgumentNullException(nameof(buildingSite));
-
-        private void OnSpawn(Actor actor)
-        {
-            if (actor == null)
-                throw new ArgumentNullException(nameof(actor));
-
-            if (actor.View.TryGetViewComponent(out IActorViewSpawner actorViewSpawner))
-                actorViewSpawner.SetBuildingSite(BuildingSite);
-        }
     }
 }

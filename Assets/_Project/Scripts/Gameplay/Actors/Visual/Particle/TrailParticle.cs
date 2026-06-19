@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-namespace BattleBase.Gameplay.Actors.Visual
+namespace BattleBase.Gameplay.Actors.Visual.Particle
 {
     [RequireComponent(typeof(ParticleSystem))]
     public class TrailParticle : MonoBehaviour, ITrailParticle, IPoolable<TrailParticle>

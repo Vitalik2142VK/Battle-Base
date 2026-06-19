@@ -1,18 +1,13 @@
-using BattleBase.Gameplay.Actors.Building;
 using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.Spawn
 {
     public interface IActorViewSpawner : IActorViewComponent, ISpawnData
     {
-        public IBuildingSite BuildingSite { get; }
-
         public IEnumerable<IActorData> ActorsData { get; }
 
-        public void Init(IActorSpawnerPresenter presenter, IActorSpawnerEvents events);
+        public void Init(IActorSpawnerPresenter presenter);
 
         public void SelectActorData(IActorData actorData);
-
-        public void SetBuildingSite(IBuildingSite buildingSite);
     }
 }

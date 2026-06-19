@@ -1,18 +1,18 @@
-namespace BattleBase.Gameplay.Actors.Building
+namespace BattleBase.Gameplay.Actors.Visual.Select
 {
-    public class BuildingSiteSelector : IBuildingSiteSelector
+    public class Selector : ISelector
     {
-        private IBuildingSite _selected;
+        private ISelectable _selected;
 
-        public bool TrySelect(IBuildingSite site)
+        public bool TrySelect(ISelectable selectable)
         {
-            if (site == null)
+            if (selectable == null)
                 return false;
 
-            if (site.TrySelect())
+            if (selectable.TrySelect())
             {
                 Unselect();
-                _selected = site;
+                _selected = selectable;
 
                 return true;
             }

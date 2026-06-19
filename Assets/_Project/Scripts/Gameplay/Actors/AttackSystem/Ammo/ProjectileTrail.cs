@@ -1,4 +1,4 @@
-﻿using BattleBase.Gameplay.Actors.Visual;
+﻿using BattleBase.Gameplay.Actors.Visual.Particle;
 using UnityEngine;
 using VContainer;
 
