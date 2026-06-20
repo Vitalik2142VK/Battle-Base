@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using BattleBase.DI;
 using BattleBase.Gameplay.CameraNavigation.InputReader;
 using BattleBase.Gameplay.Map;
@@ -44,7 +45,7 @@ namespace BattleBase.Mediators
         {
             if (_territories == null)
                 throw new NullReferenceException(nameof(_territories));
-           
+
             if (_territoryConfigs == null)
                 throw new NullReferenceException(nameof(_territoryConfigs));
 
@@ -98,7 +99,14 @@ namespace BattleBase.Mediators
                     conqueredTerritories.Add(i);
             }
 
-            _saver.SetTerritoryData(new TerritoryData(conqueredTerritories));
+            Territory selectedTerritory = _territorySelector.SelectedTerritory;
+            int territoryIndex = _territories.IndexOf(selectedTerritory);
+
+            if (selectedTerritory.Owner == TerritoryOwnerType.Enemy)
+                territoryIndex = -1;
+
+            TerritoryData newData = new(conqueredTerritories, territoryIndex);
+            _saver.SetTerritoryData(newData);
         }
 
         private void OnClick(Collider collider)
