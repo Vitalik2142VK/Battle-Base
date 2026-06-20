@@ -413,18 +413,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1730727658}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &103546626 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6593606244768337706, guid: 9a71dcfb25e356044854cab27857a3f4,
-    type: 3}
-  m_PrefabInstance: {fileID: 251606390}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &117706248
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1930,54 +1918,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 305998068}
   m_CullTransparentMesh: 1
---- !u!1 &322507200
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 322507201}
-  - component: {fileID: 322507202}
-  m_Layer: 0
-  m_Name: AudioVolumeMediator
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &322507201
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 322507200}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 515237436}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &322507202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 322507200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a85ae21aed15ce498787d7f286ccf32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _generalSlider: {fileID: 103546626}
-  _musicSlider: {fileID: 1942271554}
-  _sfxSlider: {fileID: 1365083804}
-  _mixer: {fileID: 24100000, guid: 6425667c4d7ab5d4ba51ad913fa93ae7, type: 2}
 --- !u!1 &325669607
 GameObject:
   m_ObjectHideFlags: 0
@@ -2323,7 +2263,7 @@ Transform:
   m_Children:
   - {fileID: 515237436}
   - {fileID: 1586223619}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1391712153}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &355586219
 MonoBehaviour:
@@ -2339,7 +2279,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mediators:
   - {fileID: 1060354007}
-  - {fileID: 322507202}
   - {fileID: 1393786516}
   _commandsToStart:
   - {fileID: 932678551}
@@ -3303,7 +3242,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1060354006}
-  - {fileID: 322507201}
   - {fileID: 1393786515}
   - {fileID: 1678781974}
   m_Father: {fileID: 355586218}
@@ -6845,8 +6783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99be2118d02e2024aaf743c23d449c5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _saveables:
-  - {fileID: 322507202}
+  _saveables: []
 --- !u!1 &1063209183
 GameObject:
   m_ObjectHideFlags: 0
@@ -8593,18 +8530,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2388c8a912adeb54493c669347662a36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1365083804 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3096326436606333015, guid: 9a71dcfb25e356044854cab27857a3f4,
-    type: 3}
-  m_PrefabInstance: {fileID: 251606390}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1376155635 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1934111880513334086, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
@@ -8779,6 +8704,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 939699205}
+  - {fileID: 355586218}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1391712154
@@ -12677,18 +12603,6 @@ MonoBehaviour:
   m_Spacing: {x: 50, y: 50}
   m_Constraint: 1
   m_ConstraintCount: 2
---- !u!114 &1942271554 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8962550540741425845, guid: 9a71dcfb25e356044854cab27857a3f4,
-    type: 3}
-  m_PrefabInstance: {fileID: 251606390}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1944271227
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14438,7 +14352,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1391712153}
-  - {fileID: 355586218}
   - {fileID: 271519615}
   - {fileID: 1958580243}
   - {fileID: 975294607}

@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using BattleBase.AudioService;
 using BattleBase.DI;
 using BattleBase.SaveService;
+using BattleBase.Shop;
 using UnityEngine;
 using VContainer;
 
@@ -9,15 +11,20 @@ namespace BattleBase.Mediators
 {
     public class SavingMediator : MediatorBase, IInjectable
     {
-        [SerializeField] private List<MonoBehaviour> _saveables;  
+        [SerializeField] private List<MonoBehaviour> _saveables;
 
-        private bool _isSaving = true;
+        private readonly List<ISaveable> _saveblesNew = new();
 
         private ISaver _saver;
+        private bool _isSaving = true;
 
         [Inject]
-        public void Construct(ISaver saver) =>
-            _saver = saver ?? throw new ArgumentNullException(nameof(saver));            
+        public void Construct(ISaver saver, CreditsModel credits, AudioVolumeModel volumeModel)
+        {
+            _saver = saver ?? throw new ArgumentNullException(nameof(saver));
+            _saveblesNew.Add(credits);
+            _saveblesNew.Add(volumeModel);
+        }
 
         private void OnDisable()
         {
@@ -25,6 +32,7 @@ namespace BattleBase.Mediators
                 return;
 
             ProcessSaveables(saveable => saveable.Save(), ignoreNull: true);
+
             _saver.SaveProgress();
         }
 
@@ -55,6 +63,9 @@ namespace BattleBase.Mediators
                 else
                     throw new InvalidOperationException($"Object: {mono.gameObject.name}, Component: {mono.GetType().Name} does not implement ISaveable");
             }
+
+            foreach (ISaveable saveable in _saveblesNew)
+                action(saveable);
         }
     }
 }
