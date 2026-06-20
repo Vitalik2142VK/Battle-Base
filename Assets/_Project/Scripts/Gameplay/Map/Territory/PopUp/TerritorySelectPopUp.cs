@@ -27,6 +27,8 @@ namespace BattleBase.Gameplay.Map
 
         public Canvas Canvas => _canvas;
 
+        public int CommandCount => _battleButton.CommandCount;
+
         [Inject]
         public void Construct(CommandLoadGameScene commandLoadGameScene, CommandRebuildLayout commandRebuildLayout)
         {

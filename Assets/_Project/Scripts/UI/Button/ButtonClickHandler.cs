@@ -13,6 +13,8 @@ namespace BattleBase.UI.Buttons
 
         private Button _button;
 
+        public int CommandCount => _commands.Count;
+
         public event Action<ButtonClickHandler> Clicked;
 
         private void Awake() =>

@@ -100,10 +100,13 @@ namespace BattleBase.Mediators
             }
 
             Territory selectedTerritory = _territorySelector.SelectedTerritory;
-            int territoryIndex = _territories.IndexOf(selectedTerritory);
+            int territoryIndex = -1;
 
-            if (selectedTerritory.Owner == TerritoryOwnerType.Enemy)
-                territoryIndex = -1;
+            if (selectedTerritory != null)
+            {
+                if (selectedTerritory.Owner != TerritoryOwnerType.Enemy)
+                    territoryIndex = _territories.IndexOf(selectedTerritory);
+            }
 
             TerritoryData newData = new(conqueredTerritories, territoryIndex);
             _saver.SetTerritoryData(newData);
