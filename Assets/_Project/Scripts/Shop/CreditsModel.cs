@@ -5,7 +5,7 @@ namespace BattleBase.Shop
 {
     public class CreditsModel : ISaveable
     {
-        private ICreditsSaver _saver;
+        private readonly ICreditsSaver _saver;
 
         public CreditsModel(ICreditsSaver saver)
         {

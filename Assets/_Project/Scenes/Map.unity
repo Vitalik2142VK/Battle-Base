@@ -1172,7 +1172,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _saveables:
-  - {fileID: 2104703342}
   - {fileID: 1319283445}
 --- !u!1 &286930598
 GameObject:

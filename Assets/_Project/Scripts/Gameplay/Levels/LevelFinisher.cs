@@ -38,7 +38,7 @@ namespace BattleBase.Gameplay.Levels
                 if (conqueredTerritories.Contains(currentTerritoryIndex) == false)
                 {
                     conqueredTerritories.Add(currentTerritoryIndex);
-                    TerritoryData newData = new(conqueredTerritories);
+                    TerritoryData newData = new(conqueredTerritories, currentTerritoryIndex);
                     _territorySaver.SetTerritoryData(newData);
                 }
             }

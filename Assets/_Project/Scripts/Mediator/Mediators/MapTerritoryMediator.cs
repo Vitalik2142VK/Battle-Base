@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using BattleBase.DI;
 using BattleBase.Gameplay.CameraNavigation.InputReader;
 using BattleBase.Gameplay.Map;
@@ -10,7 +9,7 @@ using VContainer;
 
 namespace BattleBase.Mediators
 {
-    public class MapTerritoryMediator : MediatorBase, ISaveable, IInjectable
+    public class MapTerritoryMediator : MediatorBase, IInjectable
     {
         [SerializeField] private List<Territory> _territories;
         [SerializeField] private List<TerritoryConfig> _territoryConfigs;
@@ -56,13 +55,11 @@ namespace BattleBase.Mediators
             {
                 Territory territory = _territories[i];
                 territory.SetConfig(_territoryConfigs[i]);
+                territory.SetIndex(i);
                 TerritoryStatusIndicator indicator = Instantiate(_territoryStatusIndicatorPrefab);
                 indicator.SetTerritory(territory);
             }
-        }
 
-        public void Load()
-        {
             HashSet<int> conqueredSet = new(_saver.TerritoryData.ConqueredTerritories);
 
             for (int i = 0; i < _territories.Count; i++)
@@ -87,29 +84,6 @@ namespace BattleBase.Mediators
             }
 
             Changed?.Invoke();
-        }
-
-        public void Save()
-        {
-            List<int> conqueredTerritories = new();
-
-            for (int i = 0; i < _territories.Count; i++)
-            {
-                if (_territories[i].Owner == TerritoryOwnerType.Player)
-                    conqueredTerritories.Add(i);
-            }
-
-            Territory selectedTerritory = _territorySelector.SelectedTerritory;
-            int territoryIndex = -1;
-
-            if (selectedTerritory != null)
-            {
-                if (selectedTerritory.Owner != TerritoryOwnerType.Enemy)
-                    territoryIndex = _territories.IndexOf(selectedTerritory);
-            }
-
-            TerritoryData newData = new(conqueredTerritories, territoryIndex);
-            _saver.SetTerritoryData(newData);
         }
 
         private void OnClick(Collider collider)

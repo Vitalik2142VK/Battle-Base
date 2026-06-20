@@ -23,6 +23,8 @@ namespace BattleBase.Gameplay.Map
 
         public IReadOnlyList<Territory> Adjacents => _adjacents;
 
+        public int Index {  get; private set; }
+
         public void SetConfig(TerritoryConfig config) =>
             _config = config != null ? config : throw new ArgumentNullException(nameof(config));
 
@@ -37,6 +39,9 @@ namespace BattleBase.Gameplay.Map
             Owner = owner;
             OwnerChanged?.Invoke();
         }
+
+        public void SetIndex(int index) =>
+            Index = index;
 
 #if UNITY_EDITOR
         public void AddAdjacent(Territory territory)
