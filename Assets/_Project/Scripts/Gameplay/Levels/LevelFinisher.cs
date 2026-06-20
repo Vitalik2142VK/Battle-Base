@@ -11,7 +11,7 @@ namespace BattleBase.Gameplay.Levels
     public class LevelFinisher : MonoBehaviour
     {
         //todo a temporary solution
-        [SerializeField] private CommandLoadMenuScene _command;
+        [SerializeField] private List<CommandBase> _finishCommands;
 
         private IWinStateController _winStateController;
         private ITerritorySaver _territorySaver;
@@ -43,7 +43,8 @@ namespace BattleBase.Gameplay.Levels
                 }
             }
 
-            _command.Execute();
+            foreach (CommandBase command in _finishCommands)
+                command.Execute();
         }
     }
 }
