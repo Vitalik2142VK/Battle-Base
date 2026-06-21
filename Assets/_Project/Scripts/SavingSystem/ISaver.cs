@@ -1,6 +1,6 @@
 namespace BattleBase.SaveService
 {
-    public interface ISaver : IAudioVolumeSaver, IColorSaver, ITerritorySaver
+    public interface ISaver : IAudioVolumeSaver, IColorSaver, ITerritorySaver, ICreditsSaver
     {
         public void SaveProgress();
 
