@@ -41,8 +41,8 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
         public void Init(ITeamable teamable, ISpawnData spawnData)
         {
-            _teamable = teamable ?? throw new ArgumentNullException(nameof(teamable));
-            _spawnData = spawnData ?? throw new ArgumentNullException(nameof(spawnData));
+            _teamable ??= teamable ?? throw new ArgumentNullException(nameof(teamable));
+            _spawnData ??= spawnData ?? throw new ArgumentNullException(nameof(spawnData));
         }
 
         public virtual void Enable()

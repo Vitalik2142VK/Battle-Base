@@ -5,28 +5,38 @@ using System;
 
 namespace BattleBase.Gameplay.Actors.Building
 {
-    public class RegisteredBuildingSites
+    public class RegisteredBuildingSite : IRegisteredBuildingSite
     {
+        private readonly IActor _buildingSiteActor;
         private readonly IBuildingSite _buildingSite;
         private readonly IActorSpawnerEvents _events;
 
+        private IActor _currentActor;
         private IDestroyableEvents _destroyableEvents;
 
-        public RegisteredBuildingSites(IBuildingSite buildingSite, IActorSpawnerEvents events)
+        public RegisteredBuildingSite(IActor buildingSiteActor, IBuildingSite buildingSite)
         {
+            _buildingSiteActor = buildingSiteActor ?? throw new ArgumentNullException(nameof(buildingSiteActor));
             _buildingSite = buildingSite ?? throw new ArgumentNullException(nameof(buildingSite));
-            _events = events ?? throw new ArgumentNullException(nameof(events));
+            _currentActor = _buildingSiteActor;
 
+            if (_buildingSiteActor.TryGetComponent(out IActorSpawner actorSpawner) == false)
+                throw new InvalidOperationException($"{nameof(buildingSiteActor)} don't constrain component {nameof(IActorSpawner)}");
+
+            _events = actorSpawner;
             _events.Spawned += OnSetActor;
         }
 
-        public void Disabele()
+        public void Disable()
         {
             _events.Spawned -= OnSetActor;
 
             if (_destroyableEvents != null)
                 _destroyableEvents.Destroyed -= OnShowBuildingSite;
         }
+
+        public bool TryGetActorSpawner(out IActorSpawner spawner) =>
+            _currentActor.TryGetComponent(out spawner);
 
         private void OnSetActor(IActor actor)
         {
@@ -35,6 +45,7 @@ namespace BattleBase.Gameplay.Actors.Building
 
             if (actor.TryGetComponent(out IHealth health))
             {
+                _currentActor = actor;
                 _destroyableEvents = health;
                 _destroyableEvents.Destroyed += OnShowBuildingSite;
                 _buildingSite.Hide();
@@ -43,6 +54,7 @@ namespace BattleBase.Gameplay.Actors.Building
 
         private void OnShowBuildingSite()
         {
+            _currentActor = _buildingSiteActor;
             _buildingSite.Show();
             _destroyableEvents.Destroyed -= OnShowBuildingSite;
             _destroyableEvents = null;

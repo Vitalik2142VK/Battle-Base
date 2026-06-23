@@ -17,10 +17,10 @@ namespace BattleBase.Gameplay.Actors.Building
 #endif
 
         private IActorComposer _composer;
-        private IBuildingSitesHandler _handler;
+        private IBuildingSitesController _handler;
 
         [Inject]
-        public void Construct(IActorComposer composer, IBuildingSitesHandler handler)
+        public void Construct(IActorComposer composer, IBuildingSitesController handler)
         {
             _composer = composer ?? throw new ArgumentNullException(nameof(composer));
             _handler = handler ?? throw new ArgumentNullException(nameof(handler));
@@ -47,13 +47,8 @@ namespace BattleBase.Gameplay.Actors.Building
             InitEnemyBuildingSite(buildingSite, team);
         }
 
-        private void RegisterBuildingSite(Actor actor, BuildingSite buildingSite)
-        {
-            if (actor.TryGetComponent(out IActorSpawner actorSpawner) == false)
-                throw new InvalidOperationException($"{nameof(actor)} don't constrain component {nameof(ActorSpawner)}");
-
-            _handler.Register(buildingSite, actorSpawner);
-        }
+        private void RegisterBuildingSite(Actor actor, BuildingSite buildingSite) => 
+            _handler.Register(actor, buildingSite);
 
         private void InitEnemyBuildingSite(BuildingSite buildingSite, TeamType team)
         {

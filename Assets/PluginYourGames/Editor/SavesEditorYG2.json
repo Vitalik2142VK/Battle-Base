@@ -1,5 +1,5 @@
 {
-    "idSave": 5,
+    "idSave": 8,
     "SavesData": {
         "_volumeData": {
             "_generalVolume": 1.0,
@@ -12,8 +12,14 @@
         },
         "_territoryData": {
             "_conqueredTerritories": [
-                0
-            ]
+                0,
+                -1,
+                1
+            ],
+            "_selectedTerritory": 1
+        },
+        "_creditsData": {
+            "_credits": 1000
         }
     }
 }

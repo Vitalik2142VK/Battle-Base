@@ -6,8 +6,8 @@ namespace BattleBase.Gameplay.Actors.Spawn
     {
         public IEnumerable<IActorData> ActorsData { get; }
 
-        public void SelectActorData(IActorData actorData);
-
         public void Init(ITeamable teamable, ISpawnData spawnData);
+
+        public void SelectActorData(IActorData actorData);
     }
 }
