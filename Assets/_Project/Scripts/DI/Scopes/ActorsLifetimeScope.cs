@@ -10,6 +10,7 @@ using BattleBase.Gameplay.Actors.HealthSystem;
 using BattleBase.Gameplay.Actors.Movement;
 using BattleBase.Gameplay.Actors.Spawn;
 using BattleBase.Gameplay.Actors.Visual.Particle;
+using BattleBase.Gameplay.AI;
 using BattleBase.Gameplay.Levels;
 using UnityEngine;
 using VContainer;
@@ -45,11 +46,12 @@ namespace BattleBase.DI
             _builder.Register<IActorComposer, ActorComposer>(Lifetime.Scoped);
             _builder.Register<IDamageModifierFactory, DamageModifierFactory>(Lifetime.Scoped);
             _builder.Register<IWinStateController, WinStateController>(Lifetime.Scoped);
-            _builder.Register<IBuildingSitesHandler, BuildingSitesHandler>(Lifetime.Scoped);
+            _builder.Register<IBuildingSitesController, BuildingSitesController>(Lifetime.Scoped);
 
             RegisterComponentFactoryRegistry();
             RegisterActorBinderRegistry();
             RegisterStateMachineInitializer();
+            RegisterAI();
         }
 
         private void RegisterComponentFactoryRegistry()
@@ -78,6 +80,13 @@ namespace BattleBase.DI
             _builder.Register<IStateTransitionFactory, AttackStateTransitionFactory>(Lifetime.Scoped);
             _builder.Register<IStateTransitionFactory, AttackToMoveStateTransitionFactory>(Lifetime.Scoped);
             _builder.Register<IStateMachineInitializer, StateMachineInitializer>(Lifetime.Scoped);
+        }
+
+        private void RegisterAI()
+        {
+            _builder.Register<IBrain, Brain>(Lifetime.Scoped);
+            _builder.Register<ITactic, RandomTactic>(Lifetime.Scoped);
+            _builder.Register<RandomTacticSetting>(Lifetime.Scoped).WithParameter(TeamType.Enemy);
         }
     }
 }
