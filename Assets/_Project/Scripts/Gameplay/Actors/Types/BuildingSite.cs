@@ -7,9 +7,6 @@ namespace BattleBase.Gameplay.Actors.Types
     [RequireComponent(typeof(Selectable))]
     public class BuildingSite : ActorView, IBuildingSite
     {
-        [SerializeField] private Collider _collider;
-        [SerializeField] private Renderer _renderer;
-
         private Selectable _selectable;
 
         [field: SerializeField] public TeamType Team { get; private set; }
