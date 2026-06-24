@@ -7,6 +7,8 @@ namespace BattleBase.Gameplay.Actors.Colored
     {
         private static readonly int BaseColorId = Shader.PropertyToID("_BaseColor");
 
+        [SerializeField] private Color _defaultColor = Color.white;
+
         [SerializeField] private MeshRenderer[] _renderers;
         [SerializeField] private Material _targetMaterial;
 
@@ -21,6 +23,7 @@ namespace BattleBase.Gameplay.Actors.Colored
             _datas = new();
 
             CacheRenderers();
+            Change(_defaultColor);
         }
 
         public void Change(Color color)
