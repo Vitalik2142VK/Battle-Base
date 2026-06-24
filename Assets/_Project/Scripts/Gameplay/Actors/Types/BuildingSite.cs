@@ -22,7 +22,7 @@ namespace BattleBase.Gameplay.Actors.Types
         public void Hide() =>
             gameObject.SetActive(false);
 
-        public void IstablishInactiveState() => 
+        public void EstablishInactiveState() => 
             _selectable.SetInactiveState();
     }
 }

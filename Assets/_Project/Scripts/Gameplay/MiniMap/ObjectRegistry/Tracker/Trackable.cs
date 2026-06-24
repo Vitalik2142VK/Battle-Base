@@ -18,7 +18,7 @@ namespace BattleBase.Gameplay.MiniMap
             ColorChanged?.Invoke(this);
         }
 
-        public virtual void Deactivate()
+        public void Deactivate()
         {
             gameObject.SetActive(false);
             Deactivated?.Invoke(this);

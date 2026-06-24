@@ -15,7 +15,7 @@ namespace BattleBase.Gameplay.Actors.Visual.Select
         [SerializeField] private int _surfaceIndexMaterial;
         [SerializeField] private int _edgeIndexMaterial;
 
-        private Selectable _buildingSite;
+        private Selectable _selectable;
         private MeshRenderer _renderer;
         private MaterialPropertyBlock _propertyBlock;
         private Color _surfaceInitialColor;
@@ -24,7 +24,7 @@ namespace BattleBase.Gameplay.Actors.Visual.Select
         private void Awake()
         {
             _renderer = GetComponent<MeshRenderer>();
-            _buildingSite = GetComponent<Selectable>();
+            _selectable = GetComponent<Selectable>();
             _propertyBlock = new();
 
             Material surfaceMaterial = _renderer.sharedMaterials[_surfaceIndexMaterial];
@@ -36,18 +36,18 @@ namespace BattleBase.Gameplay.Actors.Visual.Select
 
         private void OnEnable()
         {
-            _buildingSite.StateChanged += UpdateState;
+            _selectable.StateChanged += UpdateState;
             UpdateState();
         }
 
         private void OnDisable()
         {
-            _buildingSite.StateChanged -= UpdateState;
+            _selectable.StateChanged -= UpdateState;
         }
 
         private void UpdateState()
         {
-            switch (_buildingSite.State)
+            switch (_selectable.State)
             {
                 case SelectableState.Inactive:
                     HandleInactiveState();

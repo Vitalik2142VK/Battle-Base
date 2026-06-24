@@ -18,7 +18,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
                 ActorSpawnerPresenter presenter = new(spawner);
 
                 spawner.Init(actor, spawnerView);
-                spawnerView.Init(presenter);
+                spawnerView.Init(presenter, actor);
             }
             else
             {

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1054459911784302067}
   - component: {fileID: 1073653863077341322}
   - component: {fileID: 6867567173463317856}
+  - component: {fileID: 6878382100233974802}
   m_Layer: 6
   m_Name: HeavyFactory
   m_TagString: Untagged
@@ -88,6 +89,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15b15a821077e3748b8c5b0030c12b9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _trackable: {fileID: 1073653863077341322}
+  _colorChanger: {fileID: 6878382100233974802}
+--- !u!114 &6878382100233974802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3206096470210064783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4fc82c6d6848fa45a985c2c4351a2eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _renderers:
@@ -211,6 +226,7 @@ GameObject:
   - component: {fileID: 8840065084002982206}
   - component: {fileID: 8669870628320183167}
   - component: {fileID: 4790025668822903471}
+  - component: {fileID: 1949089101306313593}
   m_Layer: 6
   m_Name: ActorViewSpawner
   m_TagString: Untagged
@@ -282,6 +298,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPoint: {fileID: 7479802209012638704}
+--- !u!114 &1949089101306313593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8617324682831357373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9b2233ddcfd9724d8303ea7d6d8c669, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collider: {fileID: 8840065084002982206}
+  _state: 0
 --- !u!1001 &267532143101984222
 PrefabInstance:
   m_ObjectHideFlags: 0

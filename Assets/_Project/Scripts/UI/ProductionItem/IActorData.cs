@@ -16,5 +16,7 @@ namespace BattleBase.Gameplay.Actors
         public float ConstructionTime { get; }
 
         public int Price { get; }
+
+        public bool IsSummable { get; }
     }
 }

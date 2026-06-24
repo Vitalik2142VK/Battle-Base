@@ -6,7 +6,9 @@ namespace BattleBase.Gameplay.Actors.Spawn
     {
         public IEnumerable<IActorData> ActorsData { get; }
 
-        public void Init(IActorSpawnerPresenter presenter);
+        public TeamType TeamType { get; }
+
+        public void Init(IActorSpawnerPresenter presenter, ITeamable teamable);
 
         public void SelectActorData(IActorData actorData);
     }

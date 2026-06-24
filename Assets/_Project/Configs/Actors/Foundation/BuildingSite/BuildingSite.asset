@@ -31,5 +31,6 @@ MonoBehaviour:
         _text: text
     _constructionTime: 3
     _price: 1
+    _isSummable: 0
   _components:
   - {fileID: 11400000, guid: 92d1c394e7288c4428adbb703424fd65, type: 2}

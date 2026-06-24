@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 3154548772487976163}
   - component: {fileID: 6684115283417586072}
   - component: {fileID: 2531936527227689744}
+  - component: {fileID: 2201142894092860540}
   m_Layer: 6
   m_Name: ActorViewSpawner
   m_TagString: Untagged
@@ -216,6 +217,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPoint: {fileID: 2824623979953441018}
+--- !u!114 &2201142894092860540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4221573033741287438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9b2233ddcfd9724d8303ea7d6d8c669, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collider: {fileID: 3154548772487976163}
+  _state: 0
 --- !u!1 &6902210289723226953
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,6 +244,7 @@ GameObject:
   - component: {fileID: 8964810102023405844}
   - component: {fileID: 1250166047839988499}
   - component: {fileID: 4529018783364352543}
+  - component: {fileID: 6491726582765295569}
   m_Layer: 6
   m_Name: LightFactory
   m_TagString: Untagged
@@ -305,6 +321,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15b15a821077e3748b8c5b0030c12b9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _trackable: {fileID: 1250166047839988499}
+  _colorChanger: {fileID: 6491726582765295569}
+--- !u!114 &6491726582765295569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6902210289723226953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4fc82c6d6848fa45a985c2c4351a2eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _renderers:

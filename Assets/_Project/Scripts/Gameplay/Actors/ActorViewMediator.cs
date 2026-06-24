@@ -50,14 +50,16 @@ namespace BattleBase.Gameplay.Actors
                 return;
             }
 
-            if (collider.TryGetComponent(out IActorViewSpawner viewSpawner))
+            if (collider.TryGetComponent(out _currentViewSpawner))
             {
-                collider.TryGetComponent(out _selectable);
-                _currentViewSpawner = viewSpawner;
+                if (_currentViewSpawner.TeamType == TeamType.Player)
+                {
+                    collider.TryGetComponent(out _selectable);
 
-                SelectViewSpawner();
+                    SelectViewSpawner();
 
-                return;
+                    return;
+                }
             }
 
             HandleUnselectEntity();
@@ -92,9 +94,11 @@ namespace BattleBase.Gameplay.Actors
 
         private void OnSelectItem(IProductionItem item)
         {
-            _currentViewSpawner.SelectActorData(item.Info);
+            IActorData info = item.Info;
 
-            if (_selectable != null)
+            _currentViewSpawner.SelectActorData(info);
+
+            if (_selectable != null && info.IsSummable == false)
             {
                 HandleUnselectEntity();
                 _selectable = null;
