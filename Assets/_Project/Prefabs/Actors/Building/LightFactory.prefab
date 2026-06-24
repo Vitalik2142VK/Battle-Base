@@ -339,7 +339,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _renderers:
   - {fileID: 609892043237165267}
-  - {fileID: 1530850875595254026}
   _targetMaterial: {fileID: 2100000, guid: 2182440ddf123974fb0dbf1a13fb7786, type: 2}
 --- !u!1001 &2285383525263709271
 PrefabInstance:
@@ -427,7 +426,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 2209eff45bbfae14e82cdddc25f1d4bf,
         type: 3}
       propertyPath: m_Name
-      value: struct_Factory_Light_A_yup
+      value: Body
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2209eff45bbfae14e82cdddc25f1d4bf,
         type: 3}
@@ -462,12 +461,6 @@ PrefabInstance:
 --- !u!23 &609892043237165267 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 2209eff45bbfae14e82cdddc25f1d4bf,
-    type: 3}
-  m_PrefabInstance: {fileID: 2285383525263709271}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &1530850875595254026 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -8463955884242043555, guid: 2209eff45bbfae14e82cdddc25f1d4bf,
     type: 3}
   m_PrefabInstance: {fileID: 2285383525263709271}
   m_PrefabAsset: {fileID: 0}

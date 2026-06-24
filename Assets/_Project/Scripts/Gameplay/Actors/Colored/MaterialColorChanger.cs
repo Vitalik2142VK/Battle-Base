@@ -41,16 +41,28 @@ namespace BattleBase.Gameplay.Actors.Colored
 
             foreach (var renderer in _renderers)
             {
-                Material[] materials = renderer.sharedMaterials;
+                AddRenderer(renderer);
 
-                for (int i = 0; i < materials.Length; i++)
+                var childRenderers = renderer.transform.GetComponentsInChildren<Renderer>();
+
+                foreach (var childRenderer in childRenderers)
                 {
-                    if (materials[i] == _targetMaterial)
-                    {
-                        _datas.Add(new RendererData(renderer, i));
+                    AddRenderer(childRenderer);
+                }
+            }
+        }
 
-                        break;
-                    }
+        private void AddRenderer(Renderer renderer)
+        {
+            Material[] materials = renderer.sharedMaterials;
+
+            for (int i = 0; i < materials.Length; i++)
+            {
+                if (materials[i] == _targetMaterial)
+                {
+                    _datas.Add(new RendererData(renderer, i));
+
+                    break;
                 }
             }
         }
