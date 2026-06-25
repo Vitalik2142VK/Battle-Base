@@ -1,24 +1,13 @@
+using System;
 using UnityEngine;
 
-namespace BattleBase.Shop
+namespace BattleBase.ShopSystem
 {
-    public readonly struct ShopUpgradePanelInfo
+    [Serializable]
+    public class ShopUpgradePanelInfo
     {
-        public readonly UpgradeButtonInfo DamageInfo;
-        public readonly UpgradeButtonInfo ArmorInfo;
-        public readonly UpgradeButtonInfo BuildTimeInfo;
-        public readonly Sprite Preview;
-
-        public ShopUpgradePanelInfo(
-            UpgradeButtonInfo damageInfo, 
-            UpgradeButtonInfo armorInfo, 
-            UpgradeButtonInfo buildTimeInfo, 
-            Sprite preview)
-        {
-            DamageInfo = damageInfo;
-            ArmorInfo = armorInfo;
-            BuildTimeInfo = buildTimeInfo;
-            Preview = preview;
-        }
+        [field: SerializeField] public UpgradeButtonInfo DamageInfo;
+        [field: SerializeField] public UpgradeButtonInfo ArmorInfo;
+        [field: SerializeField] public UpgradeButtonInfo BuildTimeInfo;
     }
 }

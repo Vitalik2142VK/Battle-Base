@@ -28,12 +28,15 @@ namespace BattleBase.Localization
 
         public void SetTexts(LanguageTextsSet texts)
         {
-            _texts = texts ?? throw new ArgumentNullException(nameof(texts));
+            _texts = texts;
             UpdateInfo();
         }
 
         private void UpdateInfo()
         {
+            if (_text == null)
+                Awake();
+
             TextLangParams langParams =
                 _texts.GetByLanguage(YandexGameLanguageSystemAdapter.CurrentLanguage)
                 ?? throw new ArgumentNullException($"{nameof(LocalizedText)} on {name} has no params for current language");

@@ -4,13 +4,11 @@ using TMPro;
 using UnityEngine;
 using VContainer;
 
-namespace BattleBase.Shop
+namespace BattleBase.ShopSystem
 {
     [RequireComponent(typeof(TMP_Text))]
     public class CreditsTextView : MonoBehaviour, IInjectable
     {
-        private const string AvailableCreditsText = "Доступно кредитов: {0}";
-
         private TMP_Text _text;
         private CreditsModel _credits;
 
@@ -31,6 +29,6 @@ namespace BattleBase.Shop
             _credits.Changed -= OnChanged;
 
         private void OnChanged() =>
-            _text.text = string.Format(AvailableCreditsText, _credits.Value);
+            _text.text = _credits.Value.ToString();
     }
 }

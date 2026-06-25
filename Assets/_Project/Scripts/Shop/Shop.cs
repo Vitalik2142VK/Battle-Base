@@ -1,34 +1,63 @@
 using System;
-using BattleBase.Localization;
+using System.Collections.Generic;
+using BattleBase.Commands;
+using BattleBase.DI;
+using UnityEngine;
+using VContainer;
 
-namespace BattleBase.Shop
+namespace BattleBase.ShopSystem
 {
-    public class Shop
+    public class Shop : MonoBehaviour, IInjectable
     {
+        [SerializeField] private CommandRebuildLayout _commandRebuildLayout;
+        [SerializeField] private ShopUnitsScroll _scroll;
+        [SerializeField] private ShopUpgradePanel _panel;
 
-    }
+        // todo эти данные придут из конфигов, сейчас тестово тут
+        [SerializeField] private List<ShopUnitItemInfo> _infos;
 
-    public readonly struct UpgradeButtonInfo
-    {
-        public readonly LanguageTextsSet Name;
-        public readonly int Price;
-        public readonly int MaximumLevel;
-        public readonly int CurrentLevel;
-        public readonly Action Clicked;
+        private CreditsModel _credits;
 
-        public UpgradeButtonInfo(
-            LanguageTextsSet name,
-            int price,
-            int maximumLevel,
-            int currentLevel,
-            Action clicked)
+        [Inject]
+        public void Construct(CreditsModel credits)
         {
-            Name = name;
-            Price = price;
-            MaximumLevel = maximumLevel;
-            CurrentLevel = currentLevel;
-            Clicked = clicked;
+            _credits = credits ?? throw new ArgumentNullException(nameof(credits));
         }
 
+        private void Awake()
+        {
+            foreach (ShopUnitItemInfo info in _infos)
+            {
+                info.Clicked = OnClickItem;
+                info.PanelInfo.DamageInfo.Clicked = OnUpgradeClicked;
+                info.PanelInfo.ArmorInfo.Clicked = OnUpgradeClicked;
+                info.PanelInfo.BuildTimeInfo.Clicked = OnUpgradeClicked;
+            }
+
+            _scroll.Init(_infos);
+
+            OnClickItem(_scroll.CurrentItem);
+        }
+
+        private void OnClickItem(ShopUnitItem item)
+        {
+            _scroll.Select(item);
+            _panel.SetInfo(item.PanelInfo, item.Info.Preview);
+            _commandRebuildLayout.Execute();
+        }
+
+        private void OnUpgradeClicked(ShopUpgradeButton button)
+        {
+            UpgradeButtonInfo upgradeInfo = button.Info;
+
+            if (_credits.TrySpend(button.Price))
+            {
+                upgradeInfo.CurrentLevel++;
+                _scroll.UpdateInfo(_scroll.CurrentItem.Info);
+                _panel.UpdateInfo();
+
+                _commandRebuildLayout.Execute();
+            }            
+        }
     }
 }
