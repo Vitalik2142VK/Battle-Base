@@ -5,9 +5,8 @@ using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.Spawn
 {
-    public class MultiActorSpawner : ActorSpawner
+    public class SingleActorSpawner : ActorSpawner
     {
-        private readonly Queue<IActorData> _actorsQueue;
         private readonly IActorSpawnService _spawnService;
         private readonly IActorColorService _colorService;
         private readonly Timer _timer;
@@ -17,16 +16,11 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
         public override event Action<IActor> Spawned;
 
-        public MultiActorSpawner(
+        public SingleActorSpawner(
             IEnumerable<IActorData> actorsToCreate, 
             IActorSpawnService actorSpawnService,
             IActorColorService colorService) : base (actorsToCreate)
         {
-            if (actorsToCreate == null)
-                throw new ArgumentNullException(nameof(actorsToCreate));
-
-            _actorsQueue = new Queue<IActorData>();
-
             _spawnService = actorSpawnService ?? throw new ArgumentNullException(nameof(actorSpawnService));
             _colorService = colorService ?? throw new ArgumentNullException(nameof(colorService));
             _timer = new();
@@ -48,32 +42,13 @@ namespace BattleBase.Gameplay.Actors.Spawn
             if (_currentActorData == null || _isDisable)
                 return;
 
-            _timer.Tick(delta);
-
-            if (_timer.IsTimeUp)
-                ProcessSpawn();
-        }
-
-        public override void SelectActorData(IActorData actorData)
-        {
-            if (actorData == null)
-                throw new ArgumentNullException(nameof(actorData));
-
-            if (ConstrainActorData(actorData))
+            if (_timer.IsTimeUp == false)
             {
-                if (_currentActorData == null)
-                    EstablisCurrentActorSpawn(actorData);
-                else
-                    _actorsQueue.Enqueue(actorData);
-            }
-            else
-            {
-                throw new InvalidOperationException($"{nameof(actorData)} not found");
-            }
-        }
+                _timer.Tick(delta);
 
-        private void ProcessSpawn()
-        {
+                return;
+            }
+
             if (_spawnService.TrySpawn(_currentActorData.Prefab.name, SpawnData, out Actor actor))
             {
                 Spawned?.Invoke(actor);
@@ -83,19 +58,25 @@ namespace BattleBase.Gameplay.Actors.Spawn
                 actor.SetTeam(team);
 
                 _colorService.EstabilshColor(actor, actor.View);
-
-                if (_actorsQueue.Count > 0)
-                    EstablisCurrentActorSpawn(_actorsQueue.Dequeue());
-                else
-                    _currentActorData = null;
+                _currentActorData = null;
             }
         }
 
-        private void EstablisCurrentActorSpawn(IActorData actorData)
+        public override void SelectActorData(IActorData actorData)
         {
-            _currentActorData = actorData;
-            _timer.SetWaitTime(_currentActorData.ConstructionTime);
-            _timer.RestartTimer();
+            if (actorData == null)
+                throw new ArgumentNullException(nameof(actorData));
+
+            if (ConstrainActorData(actorData))
+            {
+                _currentActorData = actorData;
+                _timer.SetWaitTime(_currentActorData.ConstructionTime);
+                _timer.RestartTimer();
+            }
+            else
+            {
+                throw new InvalidOperationException($"{nameof(actorData)} not found");
+            }
         }
     }
 }

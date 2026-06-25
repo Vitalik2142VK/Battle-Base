@@ -1,3 +1,4 @@
+using BattleBase.Gameplay.Actors.Production;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
         private IActorSpawnerPresenter _presenter;
         private ITeamable _teamable;
 
-        public IEnumerable<IActorData> ActorsData => _presenter.ActorsDatas;
+        public IEnumerable<ProductionOption> ProductionOptions => _presenter.ProductionOptions;
 
         public TeamType TeamType => _teamable.TeamType;
 
@@ -31,8 +32,5 @@ namespace BattleBase.Gameplay.Actors.Spawn
             _presenter = presenter ?? throw new ArgumentNullException(nameof(presenter));
             _teamable = teamable ?? throw new ArgumentNullException(nameof(teamable));
         }
-
-        public void SelectActorData(IActorData actorData) =>
-            _presenter.SendActorData(actorData);
     }
 }

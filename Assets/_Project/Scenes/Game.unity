@@ -810,21 +810,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5708417131109932906, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
-        type: 3}
-      propertyPath: _selectColor.b
-      value: 0.36078432
-      objectReference: {fileID: 0}
-    - target: {fileID: 5708417131109932906, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
-        type: 3}
-      propertyPath: _selectColor.g
-      value: 0.36078432
-      objectReference: {fileID: 0}
-    - target: {fileID: 5708417131109932906, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
-        type: 3}
-      propertyPath: _selectColor.r
-      value: 0.35686275
-      objectReference: {fileID: 0}
     - target: {fileID: 6288524358068639159, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
       propertyPath: <Team>k__BackingField

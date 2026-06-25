@@ -1,4 +1,6 @@
-﻿namespace BattleBase.Gameplay.AI
+﻿using BattleBase.Core;
+
+namespace BattleBase.Gameplay.AI
 {
     public class Brain : IBrain
     {

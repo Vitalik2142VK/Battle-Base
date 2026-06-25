@@ -1,12 +1,10 @@
 using BattleBase.Localization;
 using UnityEngine;
 
-namespace BattleBase.Gameplay.Actors
+namespace BattleBase.Gameplay.Actors.Production
 {
-    public interface IActorData
+    public interface IProductionData
     {
-        public ActorView Prefab { get; }
-
         public Sprite Icon { get; }
 
         public LanguageTextsSet Name { get; }

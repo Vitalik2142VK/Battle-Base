@@ -1,3 +1,4 @@
+using BattleBase.Core;
 using System.Collections;
 using UnityEngine;
 using VContainer;

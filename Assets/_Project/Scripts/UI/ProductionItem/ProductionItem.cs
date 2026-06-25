@@ -1,7 +1,7 @@
 using System;
 using BattleBase.Commands;
 using BattleBase.DI;
-using BattleBase.Gameplay.Actors;
+using BattleBase.Gameplay.Actors.Production;
 using BattleBase.UI.Buttons;
 using BattleBase.UI.PopUps;
 using BattleBase.Utils.Constants;
@@ -20,10 +20,11 @@ namespace BattleBase.UI
         [SerializeField] private TMP_Text _price;
 
         private ItemInfoPopUp _popUp;
+        private ProductionOption _productionOption;
 
-        public event Action<IProductionItem> ItemClicked;
+        public event Action<ProductionOption> ItemClicked;
 
-        public IActorData Info { get; private set; }
+        public IProductionData Info => _productionOption.ProductionData;
 
         [Inject]
         public void Construct(ItemInfoPopUp popUp, [Key(VContainerKeys.CommandShowItemInfoPopUp)] CommandBase commandShowItemInfoPopUp)
@@ -50,16 +51,16 @@ namespace BattleBase.UI
         public void ResetParent() =>
             transform.SetParent(null, false);
 
-        public void SetInfo(IActorData info)
+        public void SetInfo(ProductionOption productionOption)
         {
-            Info = info;
+            _productionOption = productionOption;
 
             _icon.sprite = Info.Icon;
             _price.text = Info.Price.ToString();
         }
 
         private void OnItemButton(ButtonClickHandler handler) =>
-            ItemClicked?.Invoke(this);
+            ItemClicked?.Invoke(_productionOption);
 
         private void OnMoreInfoClicked(ButtonClickHandler handler) =>
             _popUp.SetInfo(Info);

@@ -1,4 +1,4 @@
-﻿namespace BattleBase.Gameplay.AI
+﻿namespace BattleBase.Core
 {
     public interface ICommand
     {

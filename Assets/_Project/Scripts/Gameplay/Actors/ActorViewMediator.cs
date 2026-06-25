@@ -1,4 +1,5 @@
 using BattleBase.DI;
+using BattleBase.Gameplay.Actors.Production;
 using BattleBase.Gameplay.Actors.Spawn;
 using BattleBase.Gameplay.Actors.Visual.Select;
 using BattleBase.Gameplay.CameraNavigation.InputReader;
@@ -71,7 +72,7 @@ namespace BattleBase.Gameplay.Actors
                 _selector.Unselect();
 
             _productionPanel.ClearContext();
-            _items = _productionItemFactory.Create(_currentViewSpawner.ActorsData);
+            _items = _productionItemFactory.Create(_currentViewSpawner.ProductionOptions);
 
             if (_items.Count == 0)
                 _productionPanel.Hide();
@@ -92,11 +93,10 @@ namespace BattleBase.Gameplay.Actors
             _items.Clear();
         }
 
-        private void OnSelectItem(IProductionItem item)
+        private void OnSelectItem(ProductionOption productionOption)
         {
-            IActorData info = item.Info;
-
-            _currentViewSpawner.SelectActorData(info);
+            productionOption.Execute();
+            IProductionData info = productionOption.ProductionData;
 
             if (_selectable != null && info.IsSummable == false)
             {

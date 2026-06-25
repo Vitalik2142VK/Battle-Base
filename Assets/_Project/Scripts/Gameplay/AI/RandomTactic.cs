@@ -1,5 +1,6 @@
-﻿using BattleBase.Gameplay.Actors;
+﻿using BattleBase.Core;
 using BattleBase.Gameplay.Actors.Building;
+using BattleBase.Gameplay.Actors.Production;
 using BattleBase.Gameplay.Actors.Spawn;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace BattleBase.Gameplay.AI
     public partial class RandomTactic : ITactic
     {
         private readonly List<IRegisteredBuildingSite> _buildingSites;
-        private readonly List<IActorData> _actorDatas;
+        private readonly List<ProductionOption> _productionOptions;
         private readonly IBuildingSitesController _controller;
         private readonly Random _random;
         private readonly RandomTacticSetting _setting;
@@ -22,7 +23,7 @@ namespace BattleBase.Gameplay.AI
             _setting = setting ?? throw new ArgumentNullException(nameof(setting));
 
             _buildingSites = new List<IRegisteredBuildingSite>();
-            _actorDatas = new List<IActorData>();
+            _productionOptions = new List<ProductionOption>();
             _random = new Random();
         }
 
@@ -40,12 +41,15 @@ namespace BattleBase.Gameplay.AI
         public ICommand GetCommand()
         {
             if (_currentSpawner == null)
-                throw new InvalidOperationException("First, tactics must be checked for the possibility of action");
+            {
+                if (CanAction() == false)
+                    throw new InvalidOperationException("Tactics cannot be used");
+            }
 
-            IActorData actorData = GetRandomActorData();
+            ProductionOption productionOption = GetRandomActorData();
             int count = _random.Next(_setting.MinNumSpawn, _setting.MaxNumSpawn);
 
-            return new SpawnCommand(_currentSpawner, actorData, count);
+            return new MultiActionCommand(productionOption, count);
         }
 
         private bool TryGetRandomSpawner()
@@ -70,14 +74,14 @@ namespace BattleBase.Gameplay.AI
             return false;
         }
 
-        private IActorData GetRandomActorData()
+        private ProductionOption GetRandomActorData()
         {
-            _actorDatas.Clear();
-            _actorDatas.AddRange(_currentSpawner.ActorsData);
+            _productionOptions.Clear();
+            _productionOptions.AddRange(_currentSpawner.ProductionOptions);
 
-            int index = _random.Next(_actorDatas.Count);
+            int index = _random.Next(_productionOptions.Count);
 
-            return _actorDatas[index];
+            return _productionOptions[index];
         }
     }
 }
