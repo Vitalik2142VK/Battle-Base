@@ -1,7 +1,7 @@
 using System;
 using BattleBase.SaveService;
 
-namespace BattleBase.Shop
+namespace BattleBase.ShopSystem
 {
     public class CreditsModel : ISaveable
     {
@@ -30,7 +30,7 @@ namespace BattleBase.Shop
         {
             if (CanSpend(value))
             {
-                Value -= Value;
+                Value -= value;
 
                 Changed?.Invoke();
 

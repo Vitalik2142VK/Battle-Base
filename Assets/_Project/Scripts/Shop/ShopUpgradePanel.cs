@@ -1,21 +1,29 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace BattleBase.Shop
+namespace BattleBase.ShopSystem
 {
     public class ShopUpgradePanel : MonoBehaviour
     {
-        [SerializeField] private ShopUpgradeButton _damageButton;
-        [SerializeField] private ShopUpgradeButton _armorButton;
-        [SerializeField] private ShopUpgradeButton _buildTimeButton;
+        [SerializeField] private DamageShopUpgradeButton _damageButton;
+        [SerializeField] private ArmorShopUpgradeButton _armorButton;
+        [SerializeField] private BuildTimeShopUpgradeButton _buildTimeButton;
         [SerializeField] private Image _preview;
 
-        public void SetInfo(ShopUpgradePanelInfo info)
+        public ShopUpgradePanelInfo Info { get; internal set; }
+
+        public void SetInfo(ShopUpgradePanelInfo info, Sprite preview)
         {
-            _damageButton.SetInfo(info.DamageInfo);
-            _armorButton.SetInfo(info.ArmorInfo);
-            _buildTimeButton.SetInfo(info.BuildTimeInfo);
-            _preview.sprite = info.Preview;
+            _preview.sprite = preview;
+            Info = info;
+            UpdateInfo();
+        }
+
+        public void UpdateInfo()
+        {
+            _damageButton.SetInfo(Info.DamageInfo);
+            _armorButton.SetInfo(Info.ArmorInfo);
+            _buildTimeButton.SetInfo(Info.BuildTimeInfo);
         }
     }
 }

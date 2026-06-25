@@ -3,7 +3,7 @@ using BattleBase.AudioService;
 using BattleBase.PauseService;
 using BattleBase.SaveService;
 using BattleBase.SceneLoadingService;
-using BattleBase.Shop;
+using BattleBase.ShopSystem;
 using BattleBase.UpdateService;
 using UnityEngine;
 using UnityEngine.Audio;

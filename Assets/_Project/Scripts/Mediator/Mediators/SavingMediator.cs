@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using BattleBase.AudioService;
 using BattleBase.DI;
 using BattleBase.SaveService;
-using BattleBase.Shop;
+using BattleBase.ShopSystem;
 using UnityEngine;
 using VContainer;
 
