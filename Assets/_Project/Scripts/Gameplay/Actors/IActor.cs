@@ -13,6 +13,8 @@ namespace BattleBase.Gameplay.Actors
 
         public bool TryGetComponent<T>(out T component) where T : class, IActorComponent;
 
+        public void AddComponent<T>(T component) where T : class, IActorComponent;
+
         public void SetTeam(TeamType teamType);
 
         public void ChangeColor(Color color);

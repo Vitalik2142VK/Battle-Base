@@ -11,11 +11,6 @@ namespace BattleBase.Gameplay.Actors.Building
         [SerializeField] private ActorConfig _config;
         [SerializeField] private BuildingSite[] _buildingSites;
 
-#if UNITY_EDITOR
-        [Header("Debug")]
-        [SerializeField] private bool _isEnableEnemySites = false;
-#endif
-
         private IActorComposer _composer;
         private IBuildingSitesController _handler;
 
@@ -37,9 +32,6 @@ namespace BattleBase.Gameplay.Actors.Building
             if (buildingSite.TryGetComponent(out ActorView view) == false)
                 throw new InvalidOperationException($"{nameof(buildingSite)} don't constrain component {nameof(ActorView)}");
 
-            if (buildingSite.TryGetComponent(out ActorViewSpawner actorViewSpawner) == false)
-                throw new InvalidOperationException($"{nameof(buildingSite)} don't constrain component {nameof(ActorViewSpawner)}");
-
             TeamType team = buildingSite.Team;
             Actor actor = _composer.Compose(view, _config, team);
 
@@ -54,11 +46,6 @@ namespace BattleBase.Gameplay.Actors.Building
         {
             if (team != TeamType.Enemy)
                 return;
-
-#if UNITY_EDITOR
-            if (_isEnableEnemySites)
-                return;
-#endif
 
             buildingSite.EstablishInactiveState();
         }

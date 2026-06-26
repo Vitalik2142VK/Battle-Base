@@ -15,7 +15,7 @@ namespace BattleBase.Gameplay.AI
         private readonly Random _random;
         private readonly RandomTacticSetting _setting;
 
-        private IActorSpawner _currentSpawner;
+        private IProductionService _currentProductionService;
 
         public RandomTactic(IBuildingSitesController controller, RandomTacticSetting setting)
         {
@@ -40,7 +40,7 @@ namespace BattleBase.Gameplay.AI
 
         public ICommand GetCommand()
         {
-            if (_currentSpawner == null)
+            if (_currentProductionService == null)
             {
                 if (CanAction() == false)
                     throw new InvalidOperationException("Tactics cannot be used");
@@ -60,7 +60,7 @@ namespace BattleBase.Gameplay.AI
             {
                 index = _random.Next(_buildingSites.Count);
 
-                if (_buildingSites[index].TryGetActorSpawner(out _currentSpawner))
+                if (_buildingSites[index].TryGetActorSpawner(out _currentProductionService))
                 {
                     return true;
                 }
@@ -77,7 +77,7 @@ namespace BattleBase.Gameplay.AI
         private ProductionOption GetRandomActorData()
         {
             _productionOptions.Clear();
-            _productionOptions.AddRange(_currentSpawner.ProductionOptions);
+            _productionOptions.AddRange(_currentProductionService.ProductionOptions);
 
             int index = _random.Next(_productionOptions.Count);
 

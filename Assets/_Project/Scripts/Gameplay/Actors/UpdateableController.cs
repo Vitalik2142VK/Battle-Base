@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BattleBase.Gameplay.Actors
@@ -9,6 +10,9 @@ namespace BattleBase.Gameplay.Actors
 
         public UpdateableController(IEnumerable<IActorComponent> components)
         {
+            if (components == null)
+                throw new ArgumentNullException(nameof(components));
+
             _components = components
                 .OfType<IUpdateable>()
                 .ToList();

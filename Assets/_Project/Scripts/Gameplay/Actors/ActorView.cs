@@ -1,4 +1,5 @@
 using BattleBase.Gameplay.Actors.Spawn;
+using BattleBase.Utils;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,7 +29,7 @@ namespace BattleBase.Gameplay.Actors
         public void SetActive(bool isActive) => 
             gameObject.SetActive(isActive);
 
-        public void SetSpawnData(ISpawnData spawnData)
+        public void SetSpawnData(ISpawnPoint spawnData)
         {
             if (spawnData == null)
                 throw new ArgumentNullException(nameof(spawnData));
@@ -54,26 +55,10 @@ namespace BattleBase.Gameplay.Actors
         {
             foreach (var component in components)
             {
-                Type heir = FindHeir(component);
+                Type heir = TypeTools.FindDerivedInterface<IActorViewComponent>(component);
 
                 _components[heir] = component;
             }
-        }
-
-        private Type FindHeir(IActorViewComponent component)
-        {
-            var interfaces = component.GetType().GetInterfaces();
-
-            foreach (var interfaceType in interfaces)
-            {
-                if (interfaceType == typeof(IActorViewComponent))
-                    continue;
-
-                if (typeof(IActorViewComponent).IsAssignableFrom(interfaceType))
-                    return interfaceType;
-            }
-
-            return typeof(IActorViewComponent);
         }
     }
 }

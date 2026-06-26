@@ -5,19 +5,19 @@ using VContainer;
 
 namespace BattleBase.Gameplay.Actors.Spawn
 {
-    public class ActorSpawnerFactory : IComponentFactory
+    public class SingleActorSpawnerFactory : IComponentFactory
     {
         private readonly IObjectResolver _resolver;
 
         private IActorSpawnService _spawnService;
         private IActorColorService _colorService;
 
-        public ActorSpawnerFactory(IObjectResolver resolver)
+        public SingleActorSpawnerFactory(IObjectResolver resolver)
         {
             _resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
         }
 
-        public Type SourceType => typeof(SpawnComponentSource);
+        public Type SourceType => typeof(SingleSpawnComponentSource);
 
         public IActorComponent Create(IComponentSource source)
         {

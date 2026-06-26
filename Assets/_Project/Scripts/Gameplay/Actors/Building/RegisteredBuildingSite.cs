@@ -1,5 +1,6 @@
 using BattleBase.Gameplay.Actors.DamageSystem;
 using BattleBase.Gameplay.Actors.HealthSystem;
+using BattleBase.Gameplay.Actors.Production;
 using BattleBase.Gameplay.Actors.Spawn;
 using System;
 
@@ -35,8 +36,8 @@ namespace BattleBase.Gameplay.Actors.Building
                 _destroyableEvents.Destroyed -= OnShowBuildingSite;
         }
 
-        public bool TryGetActorSpawner(out IActorSpawner spawner) =>
-            _currentActor.TryGetComponent(out spawner);
+        public bool TryGetActorSpawner(out IProductionService productionService) =>
+            _currentActor.TryGetComponent(out productionService);
 
         private void OnSetActor(IActor actor)
         {

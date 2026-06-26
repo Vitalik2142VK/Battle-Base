@@ -1,13 +1,10 @@
 using BattleBase.Gameplay.Actors.Production;
-using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.Spawn
 {
-    public interface IActorSpawner : IActorComponent, IUpdateable, IActorSpawnerEvents
+    public interface IActorSpawner : IActorComponent, IUpdateable, IActorSpawnerEvents, IProductionStorage
     {
-        public IEnumerable<ProductionOption> ProductionOptions { get; }
-
-        public void Init(ITeamable teamable, ISpawnData spawnData);
+        public void Init(ITeamable teamable, ISpawnPoint spawnData);
 
         public void SelectActorData(IActorData actorData);
     }
