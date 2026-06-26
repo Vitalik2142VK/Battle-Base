@@ -233,6 +233,7 @@ GameObject:
   - component: {fileID: 5667386504002330882}
   - component: {fileID: 6389059201603078023}
   - component: {fileID: 409291876743534903}
+  - component: {fileID: 2761779993974313035}
   m_Layer: 6
   m_Name: HeavyTank
   m_TagString: Untagged
@@ -392,10 +393,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15b15a821077e3748b8c5b0030c12b9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _trackable: {fileID: 6389059201603078023}
+  _colorChanger: {fileID: 2761779993974313035}
+--- !u!114 &2761779993974313035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8609745583798080351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4fc82c6d6848fa45a985c2c4351a2eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _renderers:
   - {fileID: 4462656124247681575}
-  - {fileID: 595673833848086045}
-  - {fileID: 4212080076585816820}
   _targetMaterial: {fileID: 2100000, guid: 2182440ddf123974fb0dbf1a13fb7786, type: 2}
 --- !u!1001 &799874752397640468
 PrefabInstance:
@@ -667,12 +680,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 8339498764701423066}
   m_SourcePrefab: {fileID: 100100000, guid: 27bd82939c0d1db4694f803f108b685a, type: 3}
---- !u!23 &595673833848086045 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -6743193169122219842, guid: 27bd82939c0d1db4694f803f108b685a,
-    type: 3}
-  m_PrefabInstance: {fileID: 3039683148668712611}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1722381516613549341 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4771494101582263362, guid: 27bd82939c0d1db4694f803f108b685a,
@@ -702,12 +709,6 @@ MonoBehaviour:
 --- !u!4 &3289218469993566536 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 27bd82939c0d1db4694f803f108b685a,
-    type: 3}
-  m_PrefabInstance: {fileID: 3039683148668712611}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &4212080076585816820 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -8044749193064586153, guid: 27bd82939c0d1db4694f803f108b685a,
     type: 3}
   m_PrefabInstance: {fileID: 3039683148668712611}
   m_PrefabAsset: {fileID: 0}

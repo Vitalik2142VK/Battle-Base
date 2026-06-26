@@ -9,6 +9,9 @@ namespace BattleBase.Gameplay.Actors.Visual.Select
             if (selectable == null)
                 return false;
 
+            if (_selected == selectable)
+                return true;
+
             if (selectable.TrySelect())
             {
                 Unselect();

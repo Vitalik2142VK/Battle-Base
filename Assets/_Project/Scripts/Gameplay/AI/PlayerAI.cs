@@ -1,3 +1,4 @@
+using BattleBase.Core;
 using System.Collections;
 using UnityEngine;
 using VContainer;
@@ -6,7 +7,7 @@ namespace BattleBase.Gameplay.AI
 {
     public class PlayerAI : MonoBehaviour
     {
-        [SerializeField][Range(0.1f, 30f)] private float _timeTick = 2f;
+        [SerializeField][Range(1f, 30f)] private float _timeTick = 2f;
         [SerializeField][Range(2f, 20f)] private float _timeBeforeStart = 2f;
 
         private IBrain _brain;

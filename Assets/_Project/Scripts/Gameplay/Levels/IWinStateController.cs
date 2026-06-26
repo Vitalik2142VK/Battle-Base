@@ -5,7 +5,7 @@ namespace BattleBase.Gameplay.Levels
 {
     public interface IWinStateController
     {
-        public event Action<Actor> BaseDestoyed;
+        public event Action<bool> Winned;
 
         public void AddBase(Actor actor);
     }

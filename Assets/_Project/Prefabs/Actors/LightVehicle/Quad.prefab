@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 714051084032765796}
   - component: {fileID: 7855518504725781483}
   - component: {fileID: 7184598050098246381}
+  - component: {fileID: 4830241397895366054}
   m_Layer: 6
   m_Name: Quad
   m_TagString: Untagged
@@ -177,9 +178,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15b15a821077e3748b8c5b0030c12b9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _trackable: {fileID: 7855518504725781483}
+  _colorChanger: {fileID: 4830241397895366054}
+--- !u!114 &4830241397895366054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4835168311171162677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4fc82c6d6848fa45a985c2c4351a2eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _renderers:
   - {fileID: 8409724749085746548}
-  - {fileID: 9134322728103904541}
   _targetMaterial: {fileID: 2100000, guid: 2182440ddf123974fb0dbf1a13fb7786, type: 2}
 --- !u!1 &6680967508696787711
 GameObject:
@@ -695,12 +709,6 @@ MonoBehaviour:
 --- !u!23 &8409724749085746548 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: f0da961ccf2c63d4d9a1ff6af0c3cef3,
-    type: 3}
-  m_PrefabInstance: {fileID: 7166579112691350000}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &9134322728103904541 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -7082069174371304211, guid: f0da961ccf2c63d4d9a1ff6af0c3cef3,
     type: 3}
   m_PrefabInstance: {fileID: 7166579112691350000}
   m_PrefabAsset: {fileID: 0}

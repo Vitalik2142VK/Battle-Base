@@ -14,7 +14,7 @@ namespace BattleBase.Gameplay.Levels
             _bases = new List<Actor>();
         }
 
-        public event Action<Actor> BaseDestoyed;
+        public event Action<bool> Winned;
 
         public void AddBase(Actor actor)
         {
@@ -36,11 +36,12 @@ namespace BattleBase.Gameplay.Levels
 
         private void OnDestroyBase(Actor destroyedBase)
         {
+            bool isWin = destroyedBase.TeamType != TeamType.Player;
             destroyedBase.Disable();
 
             Dispose();
 
-            BaseDestoyed?.Invoke(destroyedBase);
+            Winned?.Invoke(isWin);
         }
     }
 }

@@ -14,9 +14,10 @@
             "_conqueredTerritories": [
                 0,
                 -1,
-                1
+                1,
+                4
             ],
-            "_selectedTerritory": 4
+            "_selectedTerritory": 0
         },
         "_shopData": {
             "_credits": 380,

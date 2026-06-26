@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using BattleBase.Gameplay.Actors.Production;
+using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors
 {
     public interface IActor : IUpdateable, ITeamable, IColored
     {
-        public IActorData Data { get; }
+        public IProductionData Data { get; }
 
         public bool IsEnabled { get; }
 

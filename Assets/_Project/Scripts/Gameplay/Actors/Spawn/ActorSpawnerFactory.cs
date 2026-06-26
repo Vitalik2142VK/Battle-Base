@@ -30,7 +30,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
             var actorsToCreate = spawnComponentSource.ActorsConfigs.Select(a => a.Data);
 
-            return new ActorSpawner(actorsToCreate, _spawnService, _colorService);
+            return new SingleActorSpawner(actorsToCreate, _spawnService, _colorService);
         }
     }
 }

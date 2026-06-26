@@ -1,53 +1,28 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.Visual.Select
 {
-    [RequireComponent(typeof(MeshRenderer))]
-    [RequireComponent(typeof(Selectable))]
-    public class SelectableView : MonoBehaviour
+    public abstract class SelectableView : MonoBehaviour
     {
-        private static readonly int ColorPropertyId = Shader.PropertyToID("_BaseColor");
-
-        [SerializeField] private Canvas _ui;
-        [SerializeField] private Color _surfaceActiveColor;
-        [SerializeField] private Color _edgeSelectedColor;
-        [SerializeField] private int _surfaceIndexMaterial;
-        [SerializeField] private int _edgeIndexMaterial;
-
-        private Selectable _buildingSite;
-        private MeshRenderer _renderer;
-        private MaterialPropertyBlock _propertyBlock;
-        private Color _surfaceInitialColor;
-        private Color _edgeInitialColor;
-
-        private void Awake()
-        {
-            _renderer = GetComponent<MeshRenderer>();
-            _buildingSite = GetComponent<Selectable>();
-            _propertyBlock = new();
-
-            Material surfaceMaterial = _renderer.sharedMaterials[_surfaceIndexMaterial];
-            Material edgeMaterial = _renderer.sharedMaterials[_edgeIndexMaterial];
-            _surfaceInitialColor = surfaceMaterial != null ? surfaceMaterial.color : Color.white;
-            _edgeInitialColor = edgeMaterial != null ? edgeMaterial.color : Color.white;
-            HandleInactiveState();
-        }
+        [SerializeField] private Selectable _selectable;
 
         private void OnEnable()
         {
-            _buildingSite.StateChanged += UpdateState;
-            UpdateState();
+            _selectable.StateChanged += UpdateState;
+
+            StartCoroutine(LateUpdateState());
         }
 
         private void OnDisable()
         {
-            _buildingSite.StateChanged -= UpdateState;
+            _selectable.StateChanged -= UpdateState;
         }
 
         private void UpdateState()
         {
-            switch (_buildingSite.State)
+            switch (_selectable.State)
             {
                 case SelectableState.Inactive:
                     HandleInactiveState();
@@ -66,32 +41,17 @@ namespace BattleBase.Gameplay.Actors.Visual.Select
             }
         }
 
-        private void HandleInactiveState()
+        private IEnumerator LateUpdateState()
         {
-            _ui.gameObject.SetActive(false);
-            SetColor(_surfaceIndexMaterial, _surfaceInitialColor);
-            SetColor(_edgeIndexMaterial, _edgeInitialColor);
+            yield return null;
+
+            UpdateState();
         }
 
-        private void HandleActiveState()
-        {
-            _ui.gameObject.SetActive(true);
-            SetColor(_surfaceIndexMaterial, _surfaceActiveColor);
-            SetColor(_edgeIndexMaterial, _edgeInitialColor);
-        }
+        protected abstract void HandleInactiveState();
 
-        private void HandleSelectedState()
-        {
-            _ui.gameObject.SetActive(true);
-            SetColor(_surfaceIndexMaterial, _surfaceActiveColor);
-            SetColor(_edgeIndexMaterial, _edgeSelectedColor);
-        }
+        protected abstract void HandleActiveState();
 
-        private void SetColor(int materialIndex, Color color)
-        {
-            _renderer.GetPropertyBlock(_propertyBlock, materialIndex);
-            _propertyBlock.SetColor(ColorPropertyId, color);
-            _renderer.SetPropertyBlock(_propertyBlock, materialIndex);
-        }
+        protected abstract void HandleSelectedState();
     }
 }

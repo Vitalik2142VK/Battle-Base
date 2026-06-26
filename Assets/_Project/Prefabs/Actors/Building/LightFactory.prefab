@@ -145,6 +145,9 @@ GameObject:
   - component: {fileID: 3154548772487976163}
   - component: {fileID: 6684115283417586072}
   - component: {fileID: 2531936527227689744}
+  - component: {fileID: 2201142894092860540}
+  - component: {fileID: 9007311548921714139}
+  - component: {fileID: 6773532078898968822}
   m_Layer: 6
   m_Name: ActorViewSpawner
   m_TagString: Untagged
@@ -216,6 +219,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPoint: {fileID: 2824623979953441018}
+--- !u!114 &2201142894092860540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4221573033741287438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9b2233ddcfd9724d8303ea7d6d8c669, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collider: {fileID: 3154548772487976163}
+  _state: 1
+--- !u!114 &9007311548921714139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4221573033741287438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de71c6580f0f1164cb87124c113a67b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _selectable: {fileID: 2201142894092860540}
+  _colorChanger: {fileID: 6773532078898968822}
+  _selectColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+--- !u!114 &6773532078898968822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4221573033741287438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4fc82c6d6848fa45a985c2c4351a2eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  _renderers:
+  - {fileID: 609892043237165267}
+  _targetMaterial: {fileID: 2100000, guid: 237f62aa41095d34c97012076fbcbdce, type: 2}
 --- !u!1 &6902210289723226953
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,6 +277,7 @@ GameObject:
   - component: {fileID: 8964810102023405844}
   - component: {fileID: 1250166047839988499}
   - component: {fileID: 4529018783364352543}
+  - component: {fileID: 6491726582765295569}
   m_Layer: 6
   m_Name: LightFactory
   m_TagString: Untagged
@@ -307,9 +356,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15b15a821077e3748b8c5b0030c12b9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _trackable: {fileID: 1250166047839988499}
+  _colorChanger: {fileID: 6491726582765295569}
+--- !u!114 &6491726582765295569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6902210289723226953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4fc82c6d6848fa45a985c2c4351a2eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _defaultColor: {r: 1, g: 1, b: 1, a: 1}
   _renderers:
   - {fileID: 609892043237165267}
-  - {fileID: 1530850875595254026}
   _targetMaterial: {fileID: 2100000, guid: 2182440ddf123974fb0dbf1a13fb7786, type: 2}
 --- !u!1001 &2285383525263709271
 PrefabInstance:
@@ -397,7 +460,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 2209eff45bbfae14e82cdddc25f1d4bf,
         type: 3}
       propertyPath: m_Name
-      value: struct_Factory_Light_A_yup
+      value: Body
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2209eff45bbfae14e82cdddc25f1d4bf,
         type: 3}
@@ -432,12 +495,6 @@ PrefabInstance:
 --- !u!23 &609892043237165267 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 2209eff45bbfae14e82cdddc25f1d4bf,
-    type: 3}
-  m_PrefabInstance: {fileID: 2285383525263709271}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &1530850875595254026 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -8463955884242043555, guid: 2209eff45bbfae14e82cdddc25f1d4bf,
     type: 3}
   m_PrefabInstance: {fileID: 2285383525263709271}
   m_PrefabAsset: {fileID: 0}

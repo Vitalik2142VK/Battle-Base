@@ -5,30 +5,26 @@ using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.Spawn
 {
-    public class MultiActorSpawner : IActorSpawner
+    public class MultiActorSpawner : ActorSpawner
     {
-        private readonly List<IActorData> _actorsToCreate;
         private readonly Queue<IActorData> _actorsQueue;
         private readonly IActorSpawnService _spawnService;
         private readonly IActorColorService _colorService;
         private readonly Timer _timer;
 
-        private ITeamable _teamable;
-        private ISpawnData _spawnData;
         private IActorData _currentActorData;
         private bool _isDisable;
 
-        public event Action<IActor> Spawned;
+        public override event Action<IActor> Spawned;
 
         public MultiActorSpawner(
             IEnumerable<IActorData> actorsToCreate, 
             IActorSpawnService actorSpawnService,
-            IActorColorService colorService)
+            IActorColorService colorService) : base (actorsToCreate)
         {
             if (actorsToCreate == null)
                 throw new ArgumentNullException(nameof(actorsToCreate));
 
-            _actorsToCreate = new List<IActorData>(actorsToCreate);
             _actorsQueue = new Queue<IActorData>();
 
             _spawnService = actorSpawnService ?? throw new ArgumentNullException(nameof(actorSpawnService));
@@ -36,27 +32,18 @@ namespace BattleBase.Gameplay.Actors.Spawn
             _timer = new();
         }
 
-        public IEnumerable<IActorData> ActorsData => _actorsToCreate.ToArray();
-
-
-        public void Init(ITeamable teamable, ISpawnData spawnData)
-        {
-            _teamable ??= teamable ?? throw new ArgumentNullException(nameof(teamable));
-            _spawnData ??= spawnData ?? throw new ArgumentNullException(nameof(spawnData));
-        }
-
-        public virtual void Enable()
+        public override void Enable()
         {
             _isDisable = false;
         }
 
-        public virtual void Disable()
+        public override void Disable()
         {
             _isDisable = true;
             _currentActorData = null;
         }
 
-        public void Update(float delta)
+        public override void Update(float delta)
         {
             if (_currentActorData == null || _isDisable)
                 return;
@@ -67,12 +54,12 @@ namespace BattleBase.Gameplay.Actors.Spawn
                 ProcessSpawn();
         }
 
-        public void SelectActorData(IActorData actorData)
+        public override void SelectActorData(IActorData actorData)
         {
             if (actorData == null)
                 throw new ArgumentNullException(nameof(actorData));
 
-            if (_actorsToCreate.Contains(actorData))
+            if (ConstrainActorData(actorData))
             {
                 if (_currentActorData == null)
                     EstablisCurrentActorSpawn(actorData);
@@ -87,11 +74,11 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
         private void ProcessSpawn()
         {
-            if (_spawnService.TrySpawn(_currentActorData.Prefab.name, _spawnData, out Actor actor))
+            if (_spawnService.TrySpawn(_currentActorData.Prefab.name, SpawnData, out Actor actor))
             {
                 Spawned?.Invoke(actor);
 
-                TeamType team = _teamable.TeamType;
+                TeamType team = Teamable.TeamType;
                 actor.Enable();
                 actor.SetTeam(team);
 

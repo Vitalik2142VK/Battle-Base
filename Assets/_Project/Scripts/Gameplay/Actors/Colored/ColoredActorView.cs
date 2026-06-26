@@ -1,43 +1,27 @@
 using BattleBase.Gameplay.MiniMap;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.Colored
 {
-    [RequireComponent(typeof(Trackable))]
-    public class ColoredActorView : MonoBehaviour, IColoredActorView
+    public partial class ColoredActorView : MonoBehaviour, IColoredActorView
     {
-        private static readonly int BaseColorId = Shader.PropertyToID("_BaseColor");
-
-        [SerializeField] private MeshRenderer[] _renderers;
-        [SerializeField] private Material _targetMaterial;
+        [SerializeField] private Trackable _trackable;
+        [SerializeField] private MaterialColorChanger _colorChanger;
 
         private IColored _colored;
-        private List<RendererData> _datas;
-        private MaterialPropertyBlock _propertyBlock;
-        private Trackable _trackable;
-
+        
         public ITrackable Trackable => _trackable;
-
-        private void Awake()
-        {
-            _trackable = GetComponent<Trackable>();
-            _propertyBlock = new MaterialPropertyBlock();
-            _datas = new();
-
-            CacheRenderers();
-        }
 
         private void OnEnable()
         {
             if (_colored != null)
-                _colored.ColorChanged += CnangeColor;
+                _colored.ColorChanged += ChangeColor;
         }
 
         private void OnDisable()
         {
             if (_colored != null)
-                _colored.ColorChanged -= CnangeColor;
+                _colored.ColorChanged -= ChangeColor;
 
             _trackable.Deactivate();
         }
@@ -47,51 +31,16 @@ namespace BattleBase.Gameplay.Actors.Colored
             _colored ??= colored ?? throw new System.ArgumentNullException(nameof(colored));
 
             if (gameObject.activeSelf)
-                colored.ColorChanged += CnangeColor;
+                colored.ColorChanged += ChangeColor;
         }
 
-        private void CnangeColor(Color color)
+        private void ChangeColor(Color color)
         {
-            foreach (var data in _datas)
-            {
-                data.Renderer.GetPropertyBlock(_propertyBlock, data.MaterialIndex);
-                _propertyBlock.SetColor(BaseColorId, color);
-                data.Renderer.SetPropertyBlock(_propertyBlock, data.MaterialIndex);
-            }
+            if (_colorChanger.CurrentColor != color)
+                _colorChanger.Change(color);
 
-            _trackable.SetColor(color);
-        }
-
-        private void CacheRenderers()
-        {
-            _datas.Clear();
-
-            foreach (var renderer in _renderers)
-            {
-                Material[] materials = renderer.sharedMaterials;
-
-                for (int i = 0; i < materials.Length; i++)
-                {
-                    if (materials[i] == _targetMaterial)
-                    {
-                        _datas.Add(new RendererData(renderer, i));
-
-                        break;
-                    }
-                }
-            }
-        }
-
-        private readonly struct RendererData
-        {
-            public readonly Renderer Renderer;
-            public readonly int MaterialIndex;
-
-            public RendererData(Renderer renderer, int materialIndex)
-            {
-                Renderer = renderer;
-                MaterialIndex = materialIndex;
-            }
+            if (_trackable.Color != color)
+                _trackable.SetColor(color);
         }
     }
 }

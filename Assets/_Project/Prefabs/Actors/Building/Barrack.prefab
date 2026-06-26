@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 6710926423783540134}
   - component: {fileID: 3303039170524124842}
   - component: {fileID: 7001609615903635736}
+  - component: {fileID: 9181698108579277868}
+  - component: {fileID: 6175121113942133952}
+  - component: {fileID: 7008766035005376505}
   m_Layer: 6
   m_Name: ActorViewSpawner
   m_TagString: Untagged
@@ -83,6 +86,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPoint: {fileID: 3143160806874920823}
+--- !u!114 &9181698108579277868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125710169622562004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9b2233ddcfd9724d8303ea7d6d8c669, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collider: {fileID: 6710926423783540134}
+  _state: 1
+--- !u!114 &6175121113942133952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125710169622562004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de71c6580f0f1164cb87124c113a67b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _selectable: {fileID: 9181698108579277868}
+  _colorChanger: {fileID: 7008766035005376505}
+  _selectColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+--- !u!114 &7008766035005376505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125710169622562004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4fc82c6d6848fa45a985c2c4351a2eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  _renderers:
+  - {fileID: 1967958733548517318}
+  _targetMaterial: {fileID: 2100000, guid: 237f62aa41095d34c97012076fbcbdce, type: 2}
 --- !u!1 &2996852806174028797
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,6 +277,7 @@ GameObject:
   - component: {fileID: 6783436263434746996}
   - component: {fileID: 5654716281030089568}
   - component: {fileID: 2831787851049788649}
+  - component: {fileID: 133053709472552314}
   m_Layer: 6
   m_Name: Barrack
   m_TagString: Untagged
@@ -307,6 +356,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15b15a821077e3748b8c5b0030c12b9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _trackable: {fileID: 5654716281030089568}
+  _colorChanger: {fileID: 133053709472552314}
+--- !u!114 &133053709472552314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8250388917834149455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4fc82c6d6848fa45a985c2c4351a2eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _defaultColor: {r: 1, g: 1, b: 1, a: 1}
   _renderers:
   - {fileID: 1967958733548517318}
   _targetMaterial: {fileID: 2100000, guid: 2182440ddf123974fb0dbf1a13fb7786, type: 2}

@@ -1,6 +1,7 @@
 ﻿using BattleBase.Core;
 using BattleBase.Gameplay.Actors.DamageSystem;
 using BattleBase.Gameplay.Actors.Movement;
+using BattleBase.Gameplay.Actors.Production;
 using BattleBase.Gameplay.Actors.Spawn;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace BattleBase.Gameplay.Actors
         public Actor(
             Dictionary<Type, IActorComponent> components,
             IActorView view,
-            IActorData actorData,
+            IProductionData actorData,
             IDestroyableEvents damagebleEvent,
             IUpdateableController updateableController = null)
         {
@@ -41,7 +42,7 @@ namespace BattleBase.Gameplay.Actors
             IsStatic = _components.ContainsKey(typeof(IMover)) == false;
         }
 
-        public IActorData Data { get; }
+        public IProductionData Data { get; }
 
         public IActorView View { get; }
 

@@ -1,12 +1,10 @@
 using BattleBase.Localization;
 using UnityEngine;
 
-namespace BattleBase.Gameplay.Actors
+namespace BattleBase.Gameplay.Actors.Production
 {
-    public interface IActorData
+    public interface IProductionData
     {
-        public ActorView Prefab { get; }
-
         public Sprite Icon { get; }
 
         public LanguageTextsSet Name { get; }
@@ -16,5 +14,7 @@ namespace BattleBase.Gameplay.Actors
         public float ConstructionTime { get; }
 
         public int Price { get; }
+
+        public bool IsSummable { get; }
     }
 }

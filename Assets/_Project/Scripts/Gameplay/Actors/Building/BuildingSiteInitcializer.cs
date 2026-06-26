@@ -60,7 +60,7 @@ namespace BattleBase.Gameplay.Actors.Building
                 return;
 #endif
 
-            buildingSite.IstablishInactiveState();
+            buildingSite.EstablishInactiveState();
         }
     }
 }

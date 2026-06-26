@@ -12,6 +12,7 @@ namespace BattleBase.Gameplay.Actors
         [SerializeField] private LanguageTextsSet _description; 
         [SerializeField][Min(0.5f)] private float _constructionTime = 5f;
         [SerializeField][Min(1)] private int _price = 20;
+        [SerializeField] private bool _isSummable = true;
 
         public ActorView Prefab => _prefab;
 
@@ -24,5 +25,7 @@ namespace BattleBase.Gameplay.Actors
         public float ConstructionTime => _constructionTime;
 
         public int Price => _price;
+
+        public bool IsSummable => _isSummable;
     }
 }

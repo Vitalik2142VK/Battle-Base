@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using BattleBase.Gameplay.Actors.Production;
+using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.Spawn
 {
@@ -11,9 +12,6 @@ namespace BattleBase.Gameplay.Actors.Spawn
             _model = model ?? throw new System.ArgumentNullException(nameof(model));
         }
 
-        public IEnumerable<IActorData> ActorsDatas => _model.ActorsData;
-
-        public void SendActorData(IActorData actorData) => 
-            _model.SelectActorData(actorData);
+        public IEnumerable<ProductionOption> ProductionOptions => _model.ProductionOptions;
     }
 }

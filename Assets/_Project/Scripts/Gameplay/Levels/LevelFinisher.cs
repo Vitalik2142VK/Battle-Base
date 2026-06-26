@@ -10,7 +10,6 @@ namespace BattleBase.Gameplay.Levels
 {
     public class LevelFinisher : MonoBehaviour
     {
-        //todo a temporary solution
         [SerializeField] private List<CommandBase> _finishCommands;
 
         private IWinStateController _winStateController;
@@ -22,13 +21,11 @@ namespace BattleBase.Gameplay.Levels
             _winStateController = winStateController ?? throw new ArgumentNullException(nameof(winStateController));
             _territorySaver = territorySaver ?? throw new ArgumentNullException(nameof(territorySaver));
 
-            _winStateController.BaseDestoyed += OnFinishLevel;
+            _winStateController.Winned += OnFinishLevel;
         }
 
-        private void OnFinishLevel(Actor _)
+        private void OnFinishLevel(bool isWin)
         {
-            bool isWin = true;
-
             if (isWin)
             {
                 ITerritoryData data = _territorySaver.TerritoryData;
