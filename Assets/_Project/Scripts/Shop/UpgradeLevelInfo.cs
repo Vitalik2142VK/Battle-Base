@@ -4,8 +4,15 @@ using UnityEngine;
 namespace BattleBase.ShopSystem
 {
     [Serializable]
-    public class UpgradeLevelInfo
+    public class UpgradeLevelInfo : IUpgradeLevelInfo
     {
-        [field: SerializeField] public int Price;
+        [SerializeField] private int _price;
+
+        public UpgradeLevelInfo(IUpgradeLevelInfo other)
+        {
+            _price = other.Price;
+        }
+
+        public int Price => _price;
     }
 }

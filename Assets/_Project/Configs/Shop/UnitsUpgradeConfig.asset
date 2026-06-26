@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e5244a6e83e7e445b727c619b0249ea, type: 3}
+  m_Name: UnitsUpgradeConfig
+  m_EditorClassIdentifier: 
+  _infos:
+  - _preview: {fileID: 21300000, guid: fbb290a447cc15f4d9cffd5b25cdd99f, type: 3}
+    _unitName:
+      _ru:
+        _text: HeavyTank
+      _en:
+        _text: HeavyTank
+      _tr:
+        _text: HeavyTank
+    _panelInfo:
+      _damageInfo:
+        _levels:
+        - _price: 10
+        - _price: 50
+        - _price: 70
+        - _price: 250
+        _currentLevel: 0
+      _armorInfo:
+        _levels:
+        - _price: 10
+        - _price: 50
+        - _price: 70
+        - _price: 250
+        _currentLevel: 0
+      _buildTimeInfo:
+        _levels:
+        - _price: 10
+        - _price: 50
+        - _price: 70
+        - _price: 250
+        _currentLevel: 0
+  - _preview: {fileID: 21300000, guid: fbb290a447cc15f4d9cffd5b25cdd99f, type: 3}
+    _unitName:
+      _ru:
+        _text: HeavyTank
+      _en:
+        _text: HeavyTank
+      _tr:
+        _text: HeavyTank
+    _panelInfo:
+      _damageInfo:
+        _levels:
+        - _price: 10
+        - _price: 50
+        - _price: 70
+        - _price: 250
+        _currentLevel: 0
+      _armorInfo:
+        _levels:
+        - _price: 10
+        - _price: 50
+        - _price: 70
+        - _price: 250
+        _currentLevel: 0
+      _buildTimeInfo:
+        _levels:
+        - _price: 10
+        - _price: 50
+        - _price: 70
+        - _price: 250
+        _currentLevel: 0
+  - _preview: {fileID: 21300000, guid: fbb290a447cc15f4d9cffd5b25cdd99f, type: 3}
+    _unitName:
+      _ru:
+        _text: HeavyTank
+      _en:
+        _text: HeavyTank
+      _tr:
+        _text: HeavyTank
+    _panelInfo:
+      _damageInfo:
+        _levels:
+        - _price: 10
+        - _price: 50
+        - _price: 70
+        - _price: 250
+        _currentLevel: 0
+      _armorInfo:
+        _levels:
+        - _price: 10
+        - _price: 50
+        - _price: 70
+        - _price: 250
+        _currentLevel: 0
+      _buildTimeInfo:
+        _levels:
+        - _price: 10
+        - _price: 50
+        - _price: 70
+        - _price: 250
+        _currentLevel: 0
+  - _preview: {fileID: 21300000, guid: fbb290a447cc15f4d9cffd5b25cdd99f, type: 3}
+    _unitName:
+      _ru:
+        _text: HeavyTank
+      _en:
+        _text: HeavyTank
+      _tr:
+        _text: HeavyTank
+    _panelInfo:
+      _damageInfo:
+        _levels:
+        - _price: 10
+        - _price: 50
+        - _price: 70
+        - _price: 250
+        _currentLevel: 0
+      _armorInfo:
+        _levels:
+        - _price: 10
+        - _price: 50
+        - _price: 70
+        - _price: 250
+        _currentLevel: 0
+      _buildTimeInfo:
+        _levels:
+        - _price: 10
+        - _price: 50
+        - _price: 70
+        - _price: 250
+        _currentLevel: 0

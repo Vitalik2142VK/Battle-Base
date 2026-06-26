@@ -12,7 +12,7 @@ namespace BattleBase.SaveService
 
         public ITerritoryData TerritoryData => Data.TerritoryData;
 
-        public ICreditsData CreditsData => Data.CreditsData;
+        public IShopData ShopData => Data.ShopData;
 
         private SavesData Data => YG2.saves.SavesData;
 
@@ -59,11 +59,11 @@ namespace BattleBase.SaveService
             }
         }
 
-        public void SetCreditsData(ICreditsData data)
+        public void SetShopData(IShopData data)
         {
-            if (Data.CreditsData.IsChangedFrom(data))
+            if (Data.ShopData.IsChangedFrom(data))
             {
-                Data.SetCreditsData(data);
+                Data.SetShopData(data);
                 _isDirty = true;
             }
         }

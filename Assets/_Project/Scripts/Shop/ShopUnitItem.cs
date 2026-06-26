@@ -16,18 +16,18 @@ namespace BattleBase.ShopSystem
 
         private Action<ShopUnitItem> _clicked;
 
-        public LanguageTextsSet UnitName { get; private set; }
+        public ILanguageTextsSet UnitName { get; private set; }
 
-        public ShopUpgradePanelInfo PanelInfo { get; private set; }
+        public IShopUpgradePanelInfo PanelInfo { get; private set; }
 
-        public ShopUnitItemInfo Info { get; private set; }
+        public IShopUnitItemInfo Info { get; private set; }
 
-        public void SetInfo(ShopUnitItemInfo info)
+        public void SetInfo(IShopUnitItemInfo info, Action<ShopUnitItem> clicked)
         {
             _preview.sprite = info.Preview;
             UnitName = info.UnitName;
             _unitName.SetTexts(UnitName);
-            _clicked = info.Clicked;
+            _clicked = clicked;
             PanelInfo = info.PanelInfo;
             Info = info;
         }

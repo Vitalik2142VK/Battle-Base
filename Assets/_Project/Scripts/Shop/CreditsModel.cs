@@ -5,9 +5,9 @@ namespace BattleBase.ShopSystem
 {
     public class CreditsModel : ISaveable
     {
-        private readonly ICreditsSaver _saver;
+        private readonly IShopSaver _saver;
 
-        public CreditsModel(ICreditsSaver saver)
+        public CreditsModel(IShopSaver saver)
         {
             _saver = saver ?? throw new ArgumentNullException(nameof(saver));
 
@@ -52,15 +52,15 @@ namespace BattleBase.ShopSystem
 
         public void Load()
         {
-            Value = _saver.CreditsData.Credits;
+            Value = _saver.ShopData.Credits;
 
             Changed?.Invoke();
         }
 
         public void Save()
         {
-            CreditsData data = new(Value);
-            _saver.SetCreditsData(data);
+            ShopData data = new(Value);
+            _saver.SetShopData(data);
         }
     }
 }

@@ -19,6 +19,7 @@ namespace BattleBase.DI
         [SerializeField] private Updater _updater;
         [SerializeField] private SceneLoader _sceneLoader;
         [SerializeField] private AudioMixer _mixer;
+        [SerializeField] private UnitsUpgradeConfig _unitsUpgradeConfig;
 
         protected override void Configure(IContainerBuilder builder)
         {
@@ -27,11 +28,13 @@ namespace BattleBase.DI
             builder.Register<IAdvertisingService, YandexGameAdvertisingAdapter>(Lifetime.Singleton);
             builder.Register<CreditsModel>(Lifetime.Singleton);
             builder.Register<AudioVolumeModel>(Lifetime.Singleton);
+            builder.Register<UnitsUpgradeModel>(Lifetime.Singleton);
             builder.RegisterComponent<IMusic>(_music);
             builder.RegisterComponent<ISfx>(_sfx);
             builder.RegisterComponent<ISceneLoader>(_sceneLoader);
             builder.RegisterComponent<IUpdater>(_updater);
             builder.RegisterInstance(_mixer);
+            builder.RegisterInstance(_unitsUpgradeConfig);
         }
     }
 }

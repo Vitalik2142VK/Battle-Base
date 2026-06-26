@@ -5,11 +5,32 @@ using UnityEngine;
 namespace BattleBase.ShopSystem
 {
     [Serializable]
-    public class ShopUnitItemInfo
+    public class ShopUnitItemInfo : IShopUnitItemInfo
     {
-        [field: SerializeField] public Sprite Preview;
-        [field: SerializeField] public LanguageTextsSet UnitName;
-        [field: SerializeField] public ShopUpgradePanelInfo PanelInfo;
-        public Action<ShopUnitItem> Clicked;
+        [SerializeField] private Sprite _preview;
+        [SerializeField] private LanguageTextsSet _unitName;
+        [SerializeField] private ShopUpgradePanelInfo _panelInfo;
+
+        public ShopUnitItemInfo(IShopUnitItemInfo other)
+        {
+            _preview = other.Preview;
+            _unitName = new(other.UnitName);
+            _panelInfo = new(other.PanelInfo);
+        }
+
+        public void IncreaseDamageLevel() =>
+            _panelInfo.IncreaseDamageLevel();
+
+        public void IncreaseArmorLevel() =>
+            _panelInfo.IncreaseArmorLevel();
+
+        public void IncreaseBuildTimeLevel() =>
+            _panelInfo.IncreaseBuildTimeLevel();
+
+        public Sprite Preview => _preview;
+
+        public ILanguageTextsSet UnitName => _unitName;
+
+        public IShopUpgradePanelInfo PanelInfo => _panelInfo;
     }
 }

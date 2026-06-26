@@ -26,9 +26,9 @@ namespace BattleBase.Localization
         private void OnDisable() =>
             YandexGameLanguageSystemAdapter.Changed -= UpdateInfo;
 
-        public void SetTexts(LanguageTextsSet texts)
+        public void SetTexts(ILanguageTextsSet texts)
         {
-            _texts = texts;
+            _texts = new(texts);
             UpdateInfo();
         }
 

@@ -1,12 +1,16 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using BattleBase.Commands;
 using BattleBase.Utils.Extensions;
 using UnityEngine;
+using VContainer;
 
 namespace BattleBase.ShopSystem
 {
     public class ShopUnitsScroll : MonoBehaviour
     {
+        [SerializeField] private CommandRebuildLayout _commandRebuildLayout;
         [SerializeField] private Transform _content;
         [SerializeField] private ShopUnitItem _prefab;
 
@@ -14,15 +18,25 @@ namespace BattleBase.ShopSystem
 
         public ShopUnitItem CurrentItem { get; private set; }
 
-        public void Init(IReadOnlyList<ShopUnitItemInfo> infos)
+        private UnitsUpgradeModel _unitsUpgradeModel;
+
+        [Inject]
+        public void Construct(UnitsUpgradeModel unitsUpgradeModel)
+        {
+            _unitsUpgradeModel = unitsUpgradeModel ?? throw new ArgumentNullException(nameof(unitsUpgradeModel));
+
+            Init(unitsUpgradeModel.Infos);
+        }
+
+        public void Init(IReadOnlyList<IShopUnitItemInfo> infos)
         {
             _content.ClearChilds();
             _items.Clear();
 
-            foreach (ShopUnitItemInfo info in infos)
+            foreach (IShopUnitItemInfo info in infos)
             {
                 ShopUnitItem item = Instantiate(_prefab, _content);
-                item.SetInfo(info);
+                item.SetInfo(info, Select);
                 item.Unselect();
                 _items.Add(item);
             }
@@ -30,20 +44,15 @@ namespace BattleBase.ShopSystem
             Select(_items.First());
         }
 
-        public void UpdateInfo(ShopUnitItemInfo info)
-        {
-            foreach (ShopUnitItem item in _items)
-            {
-                if (item.UnitName == info.UnitName)
-                    item.SetInfo(info);
-            }
-        }
-
         public void Select(ShopUnitItem item)
         {
             UnselectAll();
             item.Select();
             CurrentItem = item;
+
+            _unitsUpgradeModel.SelectUnit(item.Info);
+
+            _commandRebuildLayout.Execute();
         }
 
         private void UnselectAll()
