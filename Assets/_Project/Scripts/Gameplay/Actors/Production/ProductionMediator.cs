@@ -1,6 +1,4 @@
 using BattleBase.DI;
-using BattleBase.Gameplay.Actors.Production;
-using BattleBase.Gameplay.Actors.Spawn;
 using BattleBase.Gameplay.Actors.Visual.Select;
 using BattleBase.Gameplay.CameraNavigation.InputReader;
 using BattleBase.UI;
@@ -10,15 +8,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using VContainer;
 
-namespace BattleBase.Gameplay.Actors
+namespace BattleBase.Gameplay.Actors.Production
 {
-    public class ActorViewMediator : MonoBehaviour, IInjectable
+    public class ProductionMediator : MonoBehaviour, IInjectable
     {
         [SerializeField] private ProductionPanel _productionPanel;
 
         private List<IProductionItem> _items = new();
 
-        private IActorViewSpawner _currentViewSpawner;
+        private IProductionView _productionView;
         private IClickDetector _clickDetector;
         private ISelector _selector;
         private IProductionItemFactory _productionItemFactory;
@@ -51,9 +49,9 @@ namespace BattleBase.Gameplay.Actors
                 return;
             }
 
-            if (collider.TryGetComponent(out _currentViewSpawner))
+            if (collider.TryGetComponent(out _productionView))
             {
-                if (_currentViewSpawner.TeamType == TeamType.Player)
+                if (_productionView.TeamType == TeamType.Player)
                 {
                     collider.TryGetComponent(out _selectable);
 
@@ -72,7 +70,7 @@ namespace BattleBase.Gameplay.Actors
                 _selector.Unselect();
 
             _productionPanel.ClearContext();
-            _items = _productionItemFactory.Create(_currentViewSpawner.ProductionOptions);
+            _items = _productionItemFactory.Create(_productionView.ProductionOptions);
 
             if (_items.Count == 0)
                 _productionPanel.Hide();

@@ -1,5 +1,5 @@
 {
-    "idSave": 20,
+    "idSave": 12,
     "SavesData": {
         "_volumeData": {
             "_generalVolume": 1.0,
@@ -19,9 +19,8 @@
             ],
             "_selectedTerritory": 0
         },
-        "_shopData": {
-            "_credits": 380,
-            "_unitUpgrades": []
+        "_creditsData": {
+            "_credits": 0
         }
     }
 }

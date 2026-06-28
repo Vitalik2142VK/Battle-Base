@@ -13,13 +13,7 @@ namespace BattleBase.Gameplay.Actors.Colored
                 throw new ArgumentNullException(nameof(view));
 
             if (view.TryGetViewComponent(out IColoredActorView coloredView))
-            {
                 coloredView.Init(actor);
-            }
-            else
-            {
-                return;
-            }
         }
     }
 }

@@ -8,6 +8,7 @@ using BattleBase.Gameplay.Actors.Colored;
 using BattleBase.Gameplay.Actors.DamageSystem.Modifiers;
 using BattleBase.Gameplay.Actors.HealthSystem;
 using BattleBase.Gameplay.Actors.Movement;
+using BattleBase.Gameplay.Actors.Production;
 using BattleBase.Gameplay.Actors.Spawn;
 using BattleBase.Gameplay.Actors.Visual.Particle;
 using BattleBase.Gameplay.AI;
@@ -57,9 +58,10 @@ namespace BattleBase.DI
             _builder.Register<IComponentFactory, HealthFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, AttackerFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, MoverFactory>(Lifetime.Scoped);
-            _builder.Register<IComponentFactory, ActorSpawnerFactory>(Lifetime.Scoped);
+            _builder.Register<IComponentFactory, SingleActorSpawnerFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, MultiActorSpawnerFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, ActorStateMachineFactory>(Lifetime.Scoped);
+            _builder.Register<ProductionServiceFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactoryRegistry, ComponentFactoryRegistry>(Lifetime.Scoped);
         }
 

@@ -2,6 +2,6 @@ namespace BattleBase.Gameplay.Actors.Spawn
 {
     public interface IActorSpawnService
     {
-        bool TrySpawn(string prefabName, ISpawnData spawnData, out Actor actor);
+        bool TrySpawn(string prefabName, ISpawnPoint spawnData, out Actor actor);
     }
 }

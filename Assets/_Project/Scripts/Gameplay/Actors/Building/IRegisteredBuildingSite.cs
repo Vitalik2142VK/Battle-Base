@@ -1,9 +1,9 @@
-﻿using BattleBase.Gameplay.Actors.Spawn;
+﻿using BattleBase.Gameplay.Actors.Production;
 
 namespace BattleBase.Gameplay.Actors.Building
 {
     public interface IRegisteredBuildingSite
     {
-        public bool TryGetActorSpawner(out IActorSpawner spawner);
+        public bool TryGetActorSpawner(out IProductionService productionService);
     }
 }

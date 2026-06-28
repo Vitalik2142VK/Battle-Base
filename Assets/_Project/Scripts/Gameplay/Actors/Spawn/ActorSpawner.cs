@@ -29,13 +29,11 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
         public IEnumerable<ProductionOption> ProductionOptions => _productionOptions;
 
-        protected IReadOnlyList<IActorData> ActorsDatas => _actorsDatas;
-
         protected ITeamable Teamable { get; private set; }
 
-        protected ISpawnData SpawnData { get; private set; }
+        protected ISpawnPoint SpawnData { get; private set; }
 
-        public void Init(ITeamable teamable, ISpawnData spawnData)
+        public void Init(ITeamable teamable, ISpawnPoint spawnData)
         {
             Teamable ??= teamable ?? throw new ArgumentNullException(nameof(teamable));
             SpawnData ??= spawnData ?? throw new ArgumentNullException(nameof(spawnData));

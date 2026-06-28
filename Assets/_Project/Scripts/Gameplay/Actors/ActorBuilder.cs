@@ -3,6 +3,7 @@ using BattleBase.Gameplay.Actors.AI;
 using System;
 using System.Collections.Generic;
 using BattleBase.Gameplay.Actors.Production;
+using BattleBase.Utils;
 
 namespace BattleBase.Gameplay.Actors
 {
@@ -49,10 +50,13 @@ namespace BattleBase.Gameplay.Actors
 
         public ActorBuilder AddComponent<T>(T component) where T : class, IActorComponent
         {
+            if (component == null) 
+                throw new ArgumentNullException(nameof(component));
+
             if (typeof(T).IsInterface == false)
                 throw new InvalidOperationException($"Use interface type instead of {typeof(T)}");
 
-            Type heir = FindHeir(component);
+            Type heir = TypeTools.FindDerivedInterface<IActorComponent>(component);
 
             _components[heir] = component;
 
@@ -73,22 +77,6 @@ namespace BattleBase.Gameplay.Actors
             _destroyableEvents = onTimeDamageble;
 
             AddComponent(onTimeDamageble);
-        }
-
-        private Type FindHeir(IActorComponent component)
-        {
-            var interfaces = component.GetType().GetInterfaces();
-
-            foreach (var interfaceType in interfaces)
-            {
-                if (interfaceType == typeof(IActorComponent))
-                    continue;
-
-                if (typeof(IActorComponent).IsAssignableFrom(interfaceType))
-                    return interfaceType;
-            }
-
-            return typeof(IActorComponent);
         }
     }
 }

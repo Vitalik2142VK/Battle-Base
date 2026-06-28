@@ -12,20 +12,15 @@ namespace BattleBase.Gameplay.Actors.Movement
             if (view == null)
                 throw new ArgumentNullException(nameof(view));
 
-            if (actor.TryGetComponent(out IMover mover) &&
-                view.TryGetViewComponent(out IMoverViewComponent moverView))
-            {
-                moverView.Init(mover);
-            }
-            else
-            {
+            if (actor.TryGetComponent(out IMover mover) == false)
                 return;
-            }
 
-            MoverPresenter presenter = new(mover);
+            if (view.TryGetViewComponent(out IMoverViewComponent moverView))
+                moverView.Init(mover);
 
             if (view.TryGetViewComponent(out INavigationAgent agent))
             {
+                MoverPresenter presenter = new(mover);
                 agent.Init(presenter, mover.Config, mover);
             }
         }

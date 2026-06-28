@@ -7,7 +7,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
     [CreateAssetMenu(
         fileName = nameof(MultiSpawnComponentSource),
         menuName = AssetMenuPaths.ScriptableObjects + nameof(ActorConfig) + "/" + nameof(MultiSpawnComponentSource))]
-    public class SpawnComponentSource : ActorComponentSource, ISpawnComponentSource
+    public class SingleSpawnComponentSource : ActorComponentSource, ISpawnComponentSource
     {
         [SerializeField] private ActorConfig[] _actorsConfigs;
 
