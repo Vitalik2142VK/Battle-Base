@@ -1,3 +1,4 @@
+using System;
 using YG;
 
 namespace BattleBase.SaveService
@@ -5,6 +6,8 @@ namespace BattleBase.SaveService
     public class YandexGameSaveSystemAdapter : ISaver
     {
         private bool _isDirty;
+
+        public event Action ProgressReseted;
 
         public IVolumeData VolumeData => Data.VolumeData;
 
@@ -30,6 +33,8 @@ namespace BattleBase.SaveService
             YG2.SetDefaultSaves();
             _isDirty = true;
             SaveProgress();
+
+            ProgressReseted?.Invoke();
         }
 
         public void SetVolumeData(IVolumeData data)

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b960e3a53ccdc154d9abddb2d58ace5a, type: 3}
+  m_Name: Shooter
+  m_EditorClassIdentifier: 
+  _preview: {fileID: 21300000, guid: 95e85c2f13a09a64cb96b5d3d88fee9d, type: 3}
+  _unitName: {fileID: 11400000, guid: b6e95832757adc74b9329c80502cced4, type: 2}
+  _stats: {fileID: 11400000, guid: e8c836bc2c54e7d459544db6f2035e33, type: 2}

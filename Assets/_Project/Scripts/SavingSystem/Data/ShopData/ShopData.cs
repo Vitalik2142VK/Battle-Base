@@ -12,12 +12,17 @@ namespace BattleBase.SaveService
 
         public ShopData() { }
 
-        public ShopData(int credits)
+        public ShopData(IShopData data)
         {
-            if (credits < 0)
-                throw new ArgumentOutOfRangeException(nameof(credits), credits, "Value must be positive");
+            if (data == null)
+                throw new ArgumentNullException(nameof(data));
 
-            _credits = credits;
+            _credits = data.Credits;
+
+            _unitUpgrades.Clear();
+
+            foreach (IUnitUpgradeData item in data.UnitsUpgrades)
+                _unitUpgrades.Add(new(item));
         }
 
         public int Credits => _credits;
@@ -31,27 +36,29 @@ namespace BattleBase.SaveService
 
             _credits = data.Credits;
 
+            SetUnitsUpgrades(data.UnitsUpgrades);
+        }
+
+        public void SetUnitsUpgrades(IReadOnlyList<IUnitUpgradeData> datas)
+        {
             _unitUpgrades.Clear();
 
-            foreach (IUnitUpgradeData unitUpgrade in data.UnitsUpgrades)
-            {
-                UnitUpgradeData unitData = new();
-
-                unitData.SetName(unitUpgrade.Name);
-                unitData.SetDamageLevel(unitUpgrade.DamageLevel);
-                unitData.SetArmorLevel(unitUpgrade.ArmorLevel);
-                unitData.SetBuildTimeLevel(unitUpgrade.BuildTimeLevel);
-
-                _unitUpgrades.Add(unitData);
-            }
+            foreach (IUnitUpgradeData unitUPgrade in datas)
+                _unitUpgrades.Add(new(unitUPgrade));
         }
+
+        public void SetCredits(int value) =>
+            _credits = value;
 
         public bool IsChangedFrom(IShopData other)
         {
             if (other == null)
-                return true;
+                throw new ArgumentNullException(nameof(other));
 
             if (_credits != other.Credits)
+                return true;
+
+            if (_unitUpgrades.Count != other.UnitsUpgrades.Count)
                 return true;
 
             for (int i = 0; i < _unitUpgrades.Count; i++)

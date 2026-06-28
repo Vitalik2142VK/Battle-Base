@@ -5889,7 +5889,7 @@ MonoBehaviour:
   - {fileID: 1398720891}
   - {fileID: 1840300234}
   - {fileID: 870893053}
-  - {fileID: 2065427242}
+  - {fileID: 0}
   - {fileID: 1063209183}
   - {fileID: 1531430613}
   - {fileID: 563600969}
@@ -5898,7 +5898,6 @@ MonoBehaviour:
   _waypointController: {fileID: 1904091222}
   _projectileSpawner: {fileID: 1063209185}
   _trailParticleSpawner: {fileID: 1531430615}
-  _colorGetter: {fileID: 2065427244}
 --- !u!4 &939699205
 Transform:
   m_ObjectHideFlags: 0
@@ -5916,7 +5915,6 @@ Transform:
   - {fileID: 1398720893}
   - {fileID: 1840300235}
   - {fileID: 870893054}
-  - {fileID: 2065427243}
   m_Father: {fileID: 1391712153}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &956850148
@@ -6831,7 +6829,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99be2118d02e2024aaf743c23d449c5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _saveables: []
 --- !u!1 &1063209183
 GameObject:
   m_ObjectHideFlags: 0
@@ -13505,51 +13502,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731126e48a4838840bf07d4d96788c62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &2065427242
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2065427243}
-  - component: {fileID: 2065427244}
-  m_Layer: 0
-  m_Name: ColorGetter
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
---- !u!4 &2065427243
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2065427242}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 939699205}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2065427244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2065427242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00607922a12aa0a47afbea3ba77e5c15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _colorSetConfig: {fileID: 11400000, guid: 94d99406106bd6e4cbc3017e9c72ac38, type: 2}
 --- !u!1 &2066491329
 GameObject:
   m_ObjectHideFlags: 0

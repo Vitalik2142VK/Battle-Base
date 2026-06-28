@@ -218,7 +218,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99be2118d02e2024aaf743c23d449c5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _saveables: []
 --- !u!1001 &22450703
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3058,6 +3057,7 @@ GameObject:
   - component: {fileID: 1059234575}
   - component: {fileID: 1059234577}
   - component: {fileID: 1059234576}
+  - component: {fileID: 1059234578}
   m_Layer: 5
   m_Name: SelectedPreview
   m_TagString: Untagged
@@ -3122,6 +3122,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1059234574}
   m_CullTransparentMesh: 1
+--- !u!114 &1059234578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059234574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dde0b04863d7293418025bbca3d33985, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _preview: {fileID: 1059234576}
 --- !u!224 &1067497871 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5745931620904622054, guid: 181a46d8259015c478fb2392bf007eb2,
@@ -3137,7 +3150,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1090778427}
-  - component: {fileID: 1090778428}
   - component: {fileID: 1090778431}
   - component: {fileID: 1090778430}
   - component: {fileID: 1090778429}
@@ -3171,19 +3183,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1080, y: 0}
   m_Pivot: {x: 1, y: 0.5}
---- !u!114 &1090778428
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1090778426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dde0b04863d7293418025bbca3d33985, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _preview: {fileID: 1059234576}
 --- !u!114 &1090778429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3993,7 +3992,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _commands.Array.data[4]
       value: 
-      objectReference: {fileID: 60828272}
+      objectReference: {fileID: 1002130759}
     - target: {fileID: 4768878436380982283, guid: b7acccf8384472a4982fab8f812023a9,
         type: 3}
       propertyPath: m_Name

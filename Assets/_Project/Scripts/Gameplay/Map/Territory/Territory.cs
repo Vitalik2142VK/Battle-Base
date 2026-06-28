@@ -8,31 +8,15 @@ namespace BattleBase.Gameplay.Map
     {
         [SerializeField] private List<Territory> _adjacents;
 
-        private TerritoryConfig _config;
-
-        public event Action ColorChanged;
         public event Action OwnerChanged;
 
         public Transform Target => transform;
 
-        public Color? Color { get; private set; }
-
         public TerritoryOwnerType Owner { get; private set; }
-
-        public ITerritoryInfo Info => _config;
 
         public IReadOnlyList<Territory> Adjacents => _adjacents;
 
         public int Index {  get; private set; }
-
-        public void SetConfig(TerritoryConfig config) =>
-            _config = config != null ? config : throw new ArgumentNullException(nameof(config));
-
-        public void SetColor(Color color)
-        {
-            Color = color;
-            ColorChanged?.Invoke();
-        }
 
         public void SetOwner(TerritoryOwnerType owner)
         {
@@ -52,24 +36,15 @@ namespace BattleBase.Gameplay.Map
             if (_adjacents.Contains(territory) == false)
             {
                 _adjacents.Add(territory);
-                territory.AddAdjacentInternal(this);
+                territory.AddAdjacent(this);
             }
         }
 
         public void RemoveAdjacent(Territory territory)
         {
             if (_adjacents.Remove(territory))
-                territory.RemoveAdjacentInternal(this);
+                territory.RemoveAdjacent(this);
         }
-
-        private void AddAdjacentInternal(Territory territory)
-        {
-            if (_adjacents.Contains(territory) == false)
-                _adjacents.Add(territory);
-        }
-
-        private void RemoveAdjacentInternal(Territory territory) =>
-            _adjacents.Remove(territory);
 #endif
     }
 }
