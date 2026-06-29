@@ -31,12 +31,12 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
 
         public void Reset()
         {
-            Price = (int)(_initialPrice * _data.PriceCoefficient) + _data.Price;
+            Price = _initialPrice;
         }
 
         public void Modify()
         {
-            Price = (int)(Price * _data.PriceCoefficient) + _data.Price;
+            Price = (int)((Price + _data.Price) * _data.PriceCoefficient);
         }
 
         public void SetInitialPrice(int initialPrice)
@@ -45,6 +45,8 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
                 throw new ArgumentOutOfRangeException(nameof(initialPrice));
 
             _initialPrice = initialPrice;
+
+            Reset();
         }
     }
 }

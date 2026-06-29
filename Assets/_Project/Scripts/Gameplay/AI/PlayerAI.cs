@@ -10,6 +10,11 @@ namespace BattleBase.Gameplay.AI
         [SerializeField][Range(1f, 30f)] private float _timeTick = 2f;
         [SerializeField][Range(2f, 20f)] private float _timeBeforeStart = 2f;
 
+#if UNITY_EDITOR
+        [Header("Debug")]
+        [SerializeField] private bool _isDisable = false;
+#endif
+
         private IBrain _brain;
         private WaitForSeconds _sleepTime;
 
@@ -20,6 +25,11 @@ namespace BattleBase.Gameplay.AI
 
         private void Start()
         {
+#if UNITY_EDITOR
+            if (_isDisable)
+                return;
+#endif
+
             StartCoroutine(ActionAI());
         }
 

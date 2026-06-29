@@ -31,5 +31,5 @@ MonoBehaviour:
       _tr:
         _text: text
     _constructionTime: 3
-    _priceCoefficient: 1.25
-    _priceIncrease: 200
+    _priceCoefficient: 1.2
+    _priceIncrease: 50

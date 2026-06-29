@@ -18,6 +18,15 @@ namespace BattleBase.Gameplay.Actors
                 .ToList();
         }
 
+        public void AddComponent(IActorComponent component)
+        {
+            if (component == null)
+                throw new ArgumentNullException(nameof(component));
+
+            if (component is IUpdateable updateable)
+                _components.Add(updateable);
+        }
+
         public void Update(float delta)
         {
             foreach (var component in _components)

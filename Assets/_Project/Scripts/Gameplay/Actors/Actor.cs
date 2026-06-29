@@ -97,6 +97,7 @@ namespace BattleBase.Gameplay.Actors
             Type heir = TypeTools.FindDerivedInterface<IActorComponent>(component);
 
             _components[heir] = component;
+            _updateableController.AddComponent(component);
         }
 
         public void Update(float delta) =>

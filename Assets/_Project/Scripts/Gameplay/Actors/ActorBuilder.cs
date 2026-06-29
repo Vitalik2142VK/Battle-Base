@@ -12,7 +12,6 @@ namespace BattleBase.Gameplay.Actors
         private readonly Dictionary<Type, IActorComponent> _components;
         private IActorView _view;
         private IProductionData _actorData;
-        private IActorStateMachine _stateMachine;
         private IDestroyableEvents _destroyableEvents;
 
         public ActorBuilder()
@@ -30,15 +29,6 @@ namespace BattleBase.Gameplay.Actors
         public ActorBuilder ActorData(IProductionData actorData)
         {
             _actorData = actorData ?? throw new ArgumentNullException(nameof(actorData));
-
-            return this;
-        }
-
-        public ActorBuilder StateMachine(IActorStateMachine stateMachine)
-        {
-            //todo remove and change IUpdateableController if don't use
-
-            _stateMachine = stateMachine ?? throw new ArgumentNullException(nameof(stateMachine));
 
             return this;
         }
@@ -70,7 +60,7 @@ namespace BattleBase.Gameplay.Actors
             if (_destroyableEvents == null)
                 AddOnTimeDamageble();
 
-            return new Actor(_components, _view, _actorData, _destroyableEvents, _stateMachine);
+            return new Actor(_components, _view, _actorData, _destroyableEvents);
         }
 
         private void AddOnTimeDamageble()

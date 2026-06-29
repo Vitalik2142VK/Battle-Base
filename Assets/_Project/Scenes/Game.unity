@@ -3498,6 +3498,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timeTick: 3
   _timeBeforeStart: 2
+  _isDisable: 1
 --- !u!1001 &587338748
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5456,7 +5457,6 @@ MonoBehaviour:
   - {fileID: 1990850140}
   - {fileID: 2143905259}
   - {fileID: 1804508009}
-  _isEnableEnemySites: 1
 --- !u!1 &871274736
 GameObject:
   m_ObjectHideFlags: 0
@@ -12004,7 +12004,6 @@ MonoBehaviour:
   - {fileID: 1710647031}
   - {fileID: 2131159209}
   - {fileID: 932717737}
-  _isEnableEnemySites: 1
 --- !u!1001 &1846253519
 PrefabInstance:
   m_ObjectHideFlags: 0
