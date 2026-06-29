@@ -1,17 +1,18 @@
-﻿using BattleBase.Gameplay.MiniMap;
 using System;
+using BattleBase.Gameplay.Map;
+using BattleBase.Gameplay.MiniMap;
 
 namespace BattleBase.Gameplay.Actors.Colored
 {
     public class ActorColorService : IActorColorService
     {
         private readonly IEntityTrackerFactory _trackerFactory;
-        private readonly IColorGetter _colorGetter;
+        private readonly TeamColorModel _teamColorModel;
 
-        public ActorColorService(IEntityTrackerFactory trackerFactory, IColorGetter colorGetter)
+        public ActorColorService(IEntityTrackerFactory trackerFactory, TeamColorModel teamColorModel)
         {
             _trackerFactory = trackerFactory ?? throw new ArgumentNullException(nameof(trackerFactory));
-            _colorGetter = colorGetter ?? throw new ArgumentNullException(nameof(colorGetter));
+            _teamColorModel = teamColorModel ?? throw new ArgumentNullException(nameof(teamColorModel));
         }
 
         public void EstabilshColor(IActor actor, IActorView view)
@@ -22,7 +23,7 @@ namespace BattleBase.Gameplay.Actors.Colored
             if (view == null)
                 throw new ArgumentNullException(nameof(view));
 
-            actor.ChangeColor(_colorGetter.GetTeamColor(actor.TeamType));
+            actor.ChangeColor(_teamColorModel.GetColor(actor.TeamType));
 
             if (view.TryGetViewComponent(out IColoredActorView coloredView))
             {

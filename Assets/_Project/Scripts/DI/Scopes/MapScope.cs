@@ -21,6 +21,7 @@ namespace BattleBase.DI
         [SerializeField] private MouseInputConfig _mouseMapCameraConfig;
         [SerializeField] private TouchInputConfig _touchMapCameraConfig;
         [SerializeField] private TerritoryPositionAnimationConfig _territoryPositionAnimationConfig;
+        [SerializeField] private TerritoryStatusIndicator _territoryStatusIndicatorPrefab;
 
         private IContainerBuilder _builder;
 
@@ -66,12 +67,14 @@ namespace BattleBase.DI
         {
             _builder.RegisterInstance(_territorySelectPopUpPrefab);
             _builder.RegisterInstance(_territoryPositionAnimationConfig);
+            _builder.RegisterInstance(_territoryStatusIndicatorPrefab);
 
             _builder.Register<ITerritorySelector, TerritorySelector>(Lifetime.Singleton);
             _builder.Register<IPool<TerritorySelectPopUp>, StaticPool<TerritorySelectPopUp>>(Lifetime.Singleton);
             _builder.Register<IFactory<TerritorySelectPopUp>, TerritorySelectPopUpFactory>(Lifetime.Singleton);
             _builder.Register<TerritoryElevator>(Lifetime.Singleton);
             _builder.Register<TerritoryPopUpShower>(Lifetime.Singleton);
+            _builder.Register<TerritoryStatusIndicatorFactory>(Lifetime.Singleton);
 
             _builder.RegisterBuildCallback(container =>
             {

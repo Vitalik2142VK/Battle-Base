@@ -12,6 +12,15 @@ namespace BattleBase.SaveService
 
         public TerritoryData() { }
 
+        public TerritoryData(ITerritoryData data)
+        {
+            if (data == null)
+                throw new ArgumentNullException(nameof(data));
+
+            _conqueredTerritories = new(data.ConqueredTerritories);
+            _selectedTerritory = data.SelectedTerritory;
+        }
+
         public TerritoryData(List<int> conqueredTerritories, int selectedTerritory = -1)
         {
             _conqueredTerritories = conqueredTerritories ?? throw new ArgumentNullException(nameof(conqueredTerritories));
@@ -20,7 +29,7 @@ namespace BattleBase.SaveService
 
         public IReadOnlyList<int> ConqueredTerritories => _conqueredTerritories;
 
-        public int SelectedTerrytory => _selectedTerritory;
+        public int SelectedTerritory => _selectedTerritory;
 
         public void SetData(ITerritoryData data)
         {
@@ -28,7 +37,24 @@ namespace BattleBase.SaveService
                 throw new ArgumentNullException(nameof(data));
 
             _conqueredTerritories = new(data.ConqueredTerritories);
-            _selectedTerritory = data.SelectedTerrytory;
+            _selectedTerritory = data.SelectedTerritory;
+        }
+
+        public void SetSelectedTerritory(int index)
+        {
+            if (index < 0)
+                throw new ArgumentOutOfRangeException(nameof(index), index, "Value must be positive");
+
+            _selectedTerritory = index;
+        }
+
+        public void AddConqueredTerritory(int index)
+        {
+            if (index < 0)
+                throw new ArgumentOutOfRangeException(nameof(index), index, "Value must be positive");
+
+            if (_conqueredTerritories.Contains(index) == false)
+                _conqueredTerritories.Add(index);
         }
 
         public bool IsChangedFrom(ITerritoryData other)
@@ -48,7 +74,7 @@ namespace BattleBase.SaveService
                     return true;
             }
 
-            if (_selectedTerritory != other.SelectedTerrytory)
+            if (_selectedTerritory != other.SelectedTerritory)
                 return true;
 
             return false;
