@@ -4,6 +4,6 @@ namespace BattleBase.Mediators
 {
     public abstract class MediatorBase : MonoBehaviour
     {
-        public abstract void Init();
+        public virtual void Init() { }
     }
 }
