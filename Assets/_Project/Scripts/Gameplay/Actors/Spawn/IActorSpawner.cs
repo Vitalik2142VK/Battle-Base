@@ -1,8 +1,6 @@
-using BattleBase.Gameplay.Actors.Production;
-
 namespace BattleBase.Gameplay.Actors.Spawn
 {
-    public interface IActorSpawner : IActorComponent, IUpdateable, IActorSpawnerEvents, IProductionStorage
+    public interface IActorSpawner : IActorComponent, IActorDataStorage, IUpdateable, IActorSpawnerEvents
     {
         public void Init(ITeamable teamable, ISpawnPoint spawnData);
 

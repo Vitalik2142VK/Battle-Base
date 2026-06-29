@@ -77,7 +77,7 @@ namespace BattleBase.Gameplay.AI
         private ProductionOption GetRandomActorData()
         {
             _productionOptions.Clear();
-            _productionOptions.AddRange(_currentProductionService.ProductionOptions);
+            _productionOptions.AddRange(_currentProductionService.GetProductionOptions());
 
             int index = _random.Next(_productionOptions.Count);
 

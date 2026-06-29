@@ -11,6 +11,6 @@ namespace BattleBase.Gameplay.Actors.Production
             _model = model ?? throw new System.ArgumentNullException(nameof(model));
         }
 
-        public IEnumerable<ProductionOption> ProductionOptions => _model.ProductionOptions;
+        public IEnumerable<ProductionOption> ProductionOptions => _model.GetProductionOptions();
     }
 }

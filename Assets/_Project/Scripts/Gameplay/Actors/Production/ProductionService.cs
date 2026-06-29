@@ -4,37 +4,36 @@ namespace BattleBase.Gameplay.Actors.Production
 {
     public class ProductionService : IProductionService
     {
-        private readonly List<IProductionStorage> _productionStorages;
-        private readonly List<ProductionOption> _productionOptions;
+        private readonly List<IProductionOptionsFactory> _factories;
 
         public ProductionService()
         {
-            _productionStorages = new List<IProductionStorage>();
-            _productionOptions = new List<ProductionOption>();
+            _factories = new List<IProductionOptionsFactory>();
         }
 
-        public IEnumerable<ProductionOption> ProductionOptions => _productionOptions;
+        public void Enable() { }
 
-        public void Enable()
+        public void Disable() { }
+
+        public void AddProductionFactory(IProductionOptionsFactory factory)
         {
-            foreach (var productionStorage in _productionStorages)
-                _productionOptions.AddRange(productionStorage.ProductionOptions);
-        }
+            if (factory == null)
+                throw new System.ArgumentNullException(nameof(factory));
 
-        public void Disable()
-        {
-            _productionOptions.Clear();
-        }
-
-        public void AddProductionStorage(IProductionStorage productionStorage)
-        {
-            if (productionStorage == null)
-                throw new System.ArgumentNullException(nameof(productionStorage));
-
-            if (_productionStorages.Contains(productionStorage))
+            if (_factories.Contains(factory))
                 return;
 
-            _productionStorages.Add(productionStorage);
+            _factories.Add(factory);
+        }
+
+        public IEnumerable<ProductionOption> GetProductionOptions()
+        {
+            List<ProductionOption> productionOptions = new();
+
+            foreach (var factory in _factories)
+                productionOptions.AddRange(factory.Create());
+
+            return productionOptions;
         }
     }
 }

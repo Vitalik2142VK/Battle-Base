@@ -34,3 +34,4 @@ MonoBehaviour:
     _isSummable: 0
   _components:
   - {fileID: 11400000, guid: 92d1c394e7288c4428adbb703424fd65, type: 2}
+  - {fileID: 11400000, guid: e629ce5a760c9a3438910ab681147319, type: 2}

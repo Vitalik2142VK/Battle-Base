@@ -36,3 +36,5 @@ MonoBehaviour:
   _components:
   - {fileID: 11400000, guid: d4f8dc8d8be022d4ca8d389559c9a1bc, type: 2}
   - {fileID: 11400000, guid: 7b77f4c68d1816146a47c6e5d7afc285, type: 2}
+  - {fileID: 11400000, guid: f5c7534f5ed833048922450dceb78768, type: 2}
+  - {fileID: 11400000, guid: e629ce5a760c9a3438910ab681147319, type: 2}

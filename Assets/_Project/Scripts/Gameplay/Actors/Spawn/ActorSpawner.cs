@@ -1,4 +1,3 @@
-using BattleBase.Gameplay.Actors.Production;
 using System;
 using System.Collections.Generic;
 
@@ -6,8 +5,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
 {
     public abstract class ActorSpawner : IActorSpawner
     {
-        private readonly List<ProductionOption> _productionOptions;
-        private readonly List<IActorData> _actorsDatas;
+        private readonly List<IActorData> _actorDatas;
 
         public abstract event Action<IActor> Spawned;
 
@@ -16,18 +14,10 @@ namespace BattleBase.Gameplay.Actors.Spawn
             if (actorsToCreate == null)
                 throw new ArgumentNullException(nameof(actorsToCreate));
 
-            _actorsDatas = new List<IActorData>(actorsToCreate);
-            _productionOptions = new List<ProductionOption>(_actorsDatas.Count);
-
-            foreach (var data in _actorsDatas)
-            {
-                SpawnCommand command = new(this, data);
-                ProductionOption productionOption = new(command, data);
-                _productionOptions.Add(productionOption);
-            }
+            _actorDatas = new List<IActorData>(actorsToCreate);
         }
 
-        public IEnumerable<ProductionOption> ProductionOptions => _productionOptions;
+        public IEnumerable<IActorData> ActorDatas => _actorDatas;
 
         protected ITeamable Teamable { get; private set; }
 
@@ -48,6 +38,6 @@ namespace BattleBase.Gameplay.Actors.Spawn
         public abstract void SelectActorData(IActorData actorData);
 
         protected bool ConstrainActorData(IActorData actorData) =>
-            _actorsDatas.Contains(actorData);
+            _actorDatas.Contains(actorData);
     }
 }

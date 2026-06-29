@@ -7,6 +7,7 @@ using BattleBase.Gameplay.Actors.Building;
 using BattleBase.Gameplay.Actors.Colored;
 using BattleBase.Gameplay.Actors.DamageSystem.Modifiers;
 using BattleBase.Gameplay.Actors.HealthSystem;
+using BattleBase.Gameplay.Actors.ImproveSystem;
 using BattleBase.Gameplay.Actors.Movement;
 using BattleBase.Gameplay.Actors.Production;
 using BattleBase.Gameplay.Actors.Spawn;
@@ -63,7 +64,8 @@ namespace BattleBase.DI
             _builder.Register<IComponentFactory, SingleActorSpawnerFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, MultiActorSpawnerFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, ActorStateMachineFactory>(Lifetime.Scoped);
-            _builder.Register<ProductionServiceFactory>(Lifetime.Scoped);
+            _builder.Register<IComponentFactory, ImprovementFactory>(Lifetime.Scoped);
+            _builder.Register<IComponentFactory, ProductionServiceFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactoryRegistry, ComponentFactoryRegistry>(Lifetime.Scoped);
         }
 
@@ -74,6 +76,8 @@ namespace BattleBase.DI
             _builder.Register<IActorComponentBinder, MoverBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, ActorSpawnerBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, ColoredActorBinder>(Lifetime.Scoped);
+            _builder.Register<IActorComponentBinder, ImprovementBinder>(Lifetime.Scoped);
+            _builder.Register<IActorComponentBinder, ProductionServiceBinder>(Lifetime.Scoped);
             _builder.Register<IActorBinderRegistry, ActorBinderRegistry>(Lifetime.Scoped);
         }
 

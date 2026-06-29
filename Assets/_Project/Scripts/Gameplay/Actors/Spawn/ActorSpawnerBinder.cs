@@ -5,13 +5,6 @@ namespace BattleBase.Gameplay.Actors.Spawn
 {
     public class ActorSpawnerBinder : IActorComponentBinder
     {
-        private readonly ProductionServiceFactory _factory;
-
-        public ActorSpawnerBinder(ProductionServiceFactory factory)
-        {
-            _factory = factory ?? throw new ArgumentNullException(nameof(factory));
-        }
-
         public void Bind(IActor actor, IActorView view)
         {
             if (actor == null)
@@ -30,11 +23,6 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
             if (view.TryGetViewComponent(out IActorSpawnerView spawnerView))
                 spawnerView.Init(spawner);
-
-            if (actor.TryGetComponent(out IProductionService productionService) == false)
-                productionService = _factory.Create(actor, view);
-
-            productionService.AddProductionStorage(spawner);
         }
     }
 }

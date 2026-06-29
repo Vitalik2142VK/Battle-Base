@@ -1,25 +1,19 @@
+using System;
+
 namespace BattleBase.Gameplay.Actors.Production
 {
-    public class ProductionServiceFactory
+    public class ProductionServiceFactory : IComponentFactory
     {
-        public ProductionService Create(IActor actor, IActorView actorView)
+        public Type SourceType => typeof(ProductionServiceSource);
+
+        public IActorComponent Create(IComponentSource source)
         {
-            if (actor == null) 
-                throw new System.ArgumentNullException(nameof(actor));
+            if (source is ProductionServiceSource productionServiceSource == false)
+                throw new ArgumentException(
+                    $"{nameof(source)} 'source' does not implement {nameof(ProductionServiceSource)}");
 
-            if (actorView == null)
-                throw new System.ArgumentNullException(nameof(actorView));
 
-            ProductionService productionService = new();
-            actor.AddComponent(productionService);
-
-            if (actorView.TryGetViewComponent(out IProductionView productionView))
-            {
-                ProductionPresenter presenter = new(productionService);
-                productionView.Init(presenter, actor);
-            }
-
-            return productionService;
+            return new ProductionService();
         }
     }
 }

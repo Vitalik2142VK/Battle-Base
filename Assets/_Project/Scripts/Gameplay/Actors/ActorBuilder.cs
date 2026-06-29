@@ -36,6 +36,8 @@ namespace BattleBase.Gameplay.Actors
 
         public ActorBuilder StateMachine(IActorStateMachine stateMachine)
         {
+            //todo remove and change IUpdateableController if don't use
+
             _stateMachine = stateMachine ?? throw new ArgumentNullException(nameof(stateMachine));
 
             return this;
