@@ -188,6 +188,7 @@ MonoBehaviour:
     _tr:
       _text: "D\xFC\u015Fman topraklar\u0131.  Ona sald\u0131rarak bu topraklar\u0131
         kontrol alt\u0131na alabilirsiniz"
+  _canvas: {fileID: 2247111289242053922}
 --- !u!1 &3440802316653604416
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,7 +802,7 @@ PrefabInstance:
     - target: {fileID: 5824143777861574492, guid: 266cbcce9e7138c4991c063825df54fd,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -10
+      value: -32.58
       objectReference: {fileID: 0}
     - target: {fileID: 6464750526478679555, guid: 266cbcce9e7138c4991c063825df54fd,
         type: 3}

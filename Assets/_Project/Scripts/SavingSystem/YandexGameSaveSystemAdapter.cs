@@ -12,6 +12,8 @@ namespace BattleBase.SaveService
 
         public ITerritoryData TerritoryData => Data.TerritoryData;
 
+        public ICreditsData CreditsData => Data.CreditsData;
+
         private SavesData Data => YG2.saves.SavesData;
 
         public void SaveProgress()
@@ -53,6 +55,15 @@ namespace BattleBase.SaveService
             if (Data.TerritoryData.IsChangedFrom(data))
             {
                 Data.SetTerritoryData(data);
+                _isDirty = true;
+            }
+        }
+
+        public void SetCreditsData(ICreditsData data)
+        {
+            if (Data.CreditsData.IsChangedFrom(data))
+            {
+                Data.SetCreditsData(data);
                 _isDirty = true;
             }
         }

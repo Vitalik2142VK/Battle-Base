@@ -14,7 +14,7 @@ namespace BattleBase.Gameplay.Actors.Visual.Particle
 
         public string Id => gameObject.name;
 
-        public bool IsActive => gameObject != null && gameObject.activeSelf;
+        public bool IsActive { get; private set; }
 
         private void Awake()
         {
@@ -23,6 +23,16 @@ namespace BattleBase.Gameplay.Actors.Visual.Particle
             _particle = GetComponent<ParticleSystem>();
             var main = _particle.main;
             main.stopAction = ParticleSystemStopAction.Callback;
+        }
+
+        private void OnEnable()
+        {
+            IsActive = true;
+        }
+
+        private void OnDisable()
+        {
+            IsActive = false;
         }
 
         private void OnParticleSystemStopped()

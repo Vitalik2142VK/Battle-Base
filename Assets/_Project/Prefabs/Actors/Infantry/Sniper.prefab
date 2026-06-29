@@ -233,6 +233,7 @@ GameObject:
   - component: {fileID: 6458224156504176077}
   - component: {fileID: 6226743867916182533}
   - component: {fileID: 6768163323022612871}
+  - component: {fileID: 5340200041064323473}
   m_Layer: 6
   m_Name: Sniper
   m_TagString: Untagged
@@ -392,10 +393,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15b15a821077e3748b8c5b0030c12b9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _trackable: {fileID: 6226743867916182533}
+  _colorChanger: {fileID: 5340200041064323473}
+--- !u!114 &5340200041064323473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7084381187864296177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4fc82c6d6848fa45a985c2c4351a2eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _renderers:
   - {fileID: 4867520340714919357}
-  - {fileID: 6590013426644859062}
-  - {fileID: 3961649164173775143}
   _targetMaterial: {fileID: 2100000, guid: 2182440ddf123974fb0dbf1a13fb7786, type: 2}
 --- !u!1001 &907939399721619384
 PrefabInstance:
@@ -643,12 +656,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6074637178568149305}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &3961649164173775143 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -2109962019458082786, guid: 606fc54405cea514fb9d936f20a033e8,
-    type: 3}
-  m_PrefabInstance: {fileID: 6074637178568149305}
-  m_PrefabAsset: {fileID: 0}
 --- !u!23 &4867520340714919357 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 606fc54405cea514fb9d936f20a033e8,
@@ -658,12 +665,6 @@ MeshRenderer:
 --- !u!4 &6037017203563491026 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 606fc54405cea514fb9d936f20a033e8,
-    type: 3}
-  m_PrefabInstance: {fileID: 6074637178568149305}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &6590013426644859062 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -8126433129119927921, guid: 606fc54405cea514fb9d936f20a033e8,
     type: 3}
   m_PrefabInstance: {fileID: 6074637178568149305}
   m_PrefabAsset: {fileID: 0}

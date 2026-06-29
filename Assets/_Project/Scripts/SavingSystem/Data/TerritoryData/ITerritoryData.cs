@@ -5,5 +5,6 @@ namespace BattleBase.SaveService
     public interface ITerritoryData : IChangeTrackable<ITerritoryData>
     {
         public IReadOnlyList<int> ConqueredTerritories { get; }
+        int SelectedTerrytory { get; }
     }
 }

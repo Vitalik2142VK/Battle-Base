@@ -1,6 +1,8 @@
+using System;
+using System.Collections.Generic;
 using BattleBase.Commands;
 using BattleBase.Gameplay.Actors;
-using System;
+using BattleBase.SaveService;
 using UnityEngine;
 using VContainer;
 
@@ -8,21 +10,38 @@ namespace BattleBase.Gameplay.Levels
 {
     public class LevelFinisher : MonoBehaviour
     {
-        //todo a temporary solution
-        [SerializeField] private CommandLoadMenuScene _command;
+        [SerializeField] private List<CommandBase> _finishCommands;
 
         private IWinStateController _winStateController;
+        private ITerritorySaver _territorySaver;
 
         [Inject]
-        public void Construct(IWinStateController winStateController)
+        public void Construct(IWinStateController winStateController, ITerritorySaver territorySaver)
         {
             _winStateController = winStateController ?? throw new ArgumentNullException(nameof(winStateController));
-            _winStateController.BaseDestoyed += OnFinishLevel;
+            _territorySaver = territorySaver ?? throw new ArgumentNullException(nameof(territorySaver));
+
+            _winStateController.Winned += OnFinishLevel;
         }
 
-        private void OnFinishLevel(Actor _)
+        private void OnFinishLevel(bool isWin)
         {
-            _command.Execute();
+            if (isWin)
+            {
+                ITerritoryData data = _territorySaver.TerritoryData;
+                List<int> conqueredTerritories = new(data.ConqueredTerritories);
+                int currentTerritoryIndex = data.SelectedTerrytory;
+
+                if (conqueredTerritories.Contains(currentTerritoryIndex) == false)
+                {
+                    conqueredTerritories.Add(currentTerritoryIndex);
+                    TerritoryData newData = new(conqueredTerritories, currentTerritoryIndex);
+                    _territorySaver.SetTerritoryData(newData);
+                }
+            }
+
+            foreach (CommandBase command in _finishCommands)
+                command.Execute();
         }
     }
 }

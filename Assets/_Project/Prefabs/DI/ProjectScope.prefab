@@ -631,6 +631,7 @@ MonoBehaviour:
   _sfx: {fileID: 1070958317077069249}
   _updater: {fileID: 5188074657740111950}
   _sceneLoader: {fileID: 822412592347165104}
+  _mixer: {fileID: 24100000, guid: 6425667c4d7ab5d4ba51ad913fa93ae7, type: 2}
 --- !u!1 &8210641645181033592
 GameObject:
   m_ObjectHideFlags: 0

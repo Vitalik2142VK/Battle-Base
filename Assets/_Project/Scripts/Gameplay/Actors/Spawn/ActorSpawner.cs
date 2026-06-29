@@ -1,97 +1,43 @@
-using BattleBase.Gameplay.Actors.Colored;
-using BattleBase.Utils;
 using System;
 using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.Spawn
 {
-    public class ActorSpawner : IActorSpawner
+    public abstract class ActorSpawner : IActorSpawner
     {
-        private readonly List<IActorData> _actorsToCreate;
-        private readonly IActorSpawnService _spawnService;
-        private readonly IActorColorService _colorService;
-        private readonly Timer _timer;
+        private readonly List<IActorData> _actorDatas;
 
-        private ITeamable _teamable;
-        private ISpawnData _spawnData;
-        private IActorData _currentActorData;
-        private bool _isDisable;
+        public abstract event Action<IActor> Spawned;
 
-        public event Action<IActor> Spawned;
-
-        public ActorSpawner(
-            IEnumerable<IActorData> actorsToCreate, 
-            IActorSpawnService actorSpawnService,
-            IActorColorService colorService)
+        public ActorSpawner(IEnumerable<IActorData> actorsToCreate)
         {
             if (actorsToCreate == null)
                 throw new ArgumentNullException(nameof(actorsToCreate));
 
-            _actorsToCreate = new List<IActorData>(actorsToCreate);
-            _spawnService = actorSpawnService ?? throw new ArgumentNullException(nameof(actorSpawnService));
-            _colorService = colorService ?? throw new ArgumentNullException(nameof(colorService));
-            _timer = new();
+            _actorDatas = new List<IActorData>(actorsToCreate);
         }
 
-        public IEnumerable<IActorData> ActorsData => _actorsToCreate.ToArray();
+        public IEnumerable<IActorData> ActorDatas => _actorDatas;
 
-        public void Init(ITeamable teamable, ISpawnData spawnData)
+        protected ITeamable Teamable { get; private set; }
+
+        protected ISpawnPoint SpawnData { get; private set; }
+
+        public void Init(ITeamable teamable, ISpawnPoint spawnData)
         {
-            _teamable = teamable ?? throw new ArgumentNullException(nameof(teamable));
-            _spawnData = spawnData ?? throw new ArgumentNullException(nameof(spawnData));
+            Teamable ??= teamable ?? throw new ArgumentNullException(nameof(teamable));
+            SpawnData ??= spawnData ?? throw new ArgumentNullException(nameof(spawnData));
         }
 
-        public void Enable()
-        {
-            _isDisable = false;
-        }
+        public abstract void Enable();
 
-        public void Disable()
-        {
-            _isDisable = true;
-            _currentActorData = null;
-        }
+        public abstract void Disable();
 
-        public void Update(float delta)
-        {
-            if (_currentActorData == null || _isDisable)
-                return;
+        public abstract void Update(float delta);
 
-            if (_timer.IsTimeUp == false)
-            {
-                _timer.Tick(delta);
+        public abstract void SelectActorData(IActorData actorData);
 
-                return;
-            }
-
-            if (_spawnService.TrySpawn(_currentActorData.Prefab.name, _spawnData, out Actor actor))
-            {
-                Spawned?.Invoke(actor);
-
-                TeamType team = _teamable.TeamType;
-                actor.Enable();
-                actor.SetTeam(team);
-
-                _colorService.EstabilshColor(actor, actor.View);
-                _currentActorData = null;
-            }
-        }
-
-        public void SelectActorData(IActorData actorData)
-        {
-            if (actorData == null)
-                throw new ArgumentNullException(nameof(actorData));
-
-            if (_actorsToCreate.Contains(actorData))
-            {
-                _currentActorData = actorData;
-                _timer.SetWaitTime(_currentActorData.ConstructionTime);
-                _timer.RestartTimer();
-            }
-            else
-            {
-                throw new InvalidOperationException($"{nameof(actorData)} not found");
-            }
-        }
+        protected bool ConstrainActorData(IActorData actorData) =>
+            _actorDatas.Contains(actorData);
     }
 }

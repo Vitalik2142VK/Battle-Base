@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using BattleBase.Commands;
 using BattleBase.Core;
 using BattleBase.Localization;
+using BattleBase.SaveService;
 using BattleBase.UI.Buttons;
 using BattleBase.UI.PopUps;
 using UnityEngine;
@@ -19,13 +21,23 @@ namespace BattleBase.Gameplay.Map
         [SerializeField] private LanguageTextsSet _playerOwnership;
         [SerializeField] private LanguageTextsSet _enemyOwnership;
         [SerializeField] private LanguageTextsSet _contestedOwnership;
+        [SerializeField] private Canvas _canvas;
 
         private Transform _target;
+        private ITerritorySaver _saver;
+        private int _territoryIndex;
 
         public event Action<TerritorySelectPopUp> Deactivated;
 
+        public Canvas Canvas => _canvas;
+
+        public int CommandCount => _battleButton.CommandCount;
+
         [Inject]
-        public void Construct(CommandLoadGameScene commandLoadGameScene, CommandRebuildLayout commandRebuildLayout)
+        public void Construct(
+            CommandLoadGameScene commandLoadGameScene, 
+            CommandRebuildLayout commandRebuildLayout, 
+            ITerritorySaver saver)
         {
             if (commandLoadGameScene == null)
                 throw new ArgumentNullException(nameof(commandLoadGameScene));
@@ -33,9 +45,17 @@ namespace BattleBase.Gameplay.Map
             if (commandRebuildLayout == null)
                 throw new ArgumentNullException(nameof(commandRebuildLayout));
 
+            _saver = saver ?? throw new ArgumentNullException(nameof(saver));
+
             _battleButton.AddCommand(commandLoadGameScene);
             commandRebuildLayout.Add(_battleButton.transform as RectTransform);
         }
+
+        private void OnEnable() =>
+            _battleButton.Clicked += OnBattleClick;
+
+        private void OnDisable() =>
+            _battleButton.Clicked -= OnBattleClick;
 
         private void Update()
         {
@@ -52,6 +72,9 @@ namespace BattleBase.Gameplay.Map
 
         public void SetTarget(Transform target) =>
             _target = target != null ? target : throw new ArgumentNullException(nameof(target));
+
+        public void SetIndex(int territoryIndex) =>
+            _territoryIndex = territoryIndex;
 
         public void SetInfo(ITerritoryInfo info) =>
             _territoryName.SetTexts(info.TerritoryName);
@@ -91,5 +114,13 @@ namespace BattleBase.Gameplay.Map
 
         public void Deactivate() =>
             Deactivated?.Invoke(this);
+
+        private void OnBattleClick(ButtonClickHandler handler)
+        {
+            ITerritoryData data = _saver.TerritoryData;
+            List<int> conqueredTerritories = new(data.ConqueredTerritories);
+            TerritoryData newData = new(conqueredTerritories, _territoryIndex);
+            _saver.SetTerritoryData(newData);
+        }
     }
 }

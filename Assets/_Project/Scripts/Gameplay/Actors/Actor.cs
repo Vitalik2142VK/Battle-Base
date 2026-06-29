@@ -1,7 +1,9 @@
 ﻿using BattleBase.Core;
 using BattleBase.Gameplay.Actors.DamageSystem;
 using BattleBase.Gameplay.Actors.Movement;
+using BattleBase.Gameplay.Actors.Production;
 using BattleBase.Gameplay.Actors.Spawn;
+using BattleBase.Utils;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,7 +22,7 @@ namespace BattleBase.Gameplay.Actors
         public Actor(
             Dictionary<Type, IActorComponent> components,
             IActorView view,
-            IActorData actorData,
+            IProductionData actorData,
             IDestroyableEvents damagebleEvent,
             IUpdateableController updateableController = null)
         {
@@ -41,7 +43,7 @@ namespace BattleBase.Gameplay.Actors
             IsStatic = _components.ContainsKey(typeof(IMover)) == false;
         }
 
-        public IActorData Data { get; }
+        public IProductionData Data { get; }
 
         public IActorView View { get; }
 
@@ -87,6 +89,17 @@ namespace BattleBase.Gameplay.Actors
             return false;
         }
 
+        public void AddComponent<T>(T component) where T : class, IActorComponent
+        {
+            if (component == null)
+                throw new ArgumentNullException(nameof(component));
+
+            Type heir = TypeTools.FindDerivedInterface<IActorComponent>(component);
+
+            _components[heir] = component;
+            _updateableController.AddComponent(component);
+        }
+
         public void Update(float delta) =>
             _updateableController.Update(delta);
 
@@ -95,7 +108,8 @@ namespace BattleBase.Gameplay.Actors
 
         public void ChangeColor(Color color) =>
             ColorChanged?.Invoke(color);
-        public void SetSpawnData(ISpawnData spawnData) =>
+
+        public void SetSpawnData(ISpawnPoint spawnData) =>
             View.SetSpawnData(spawnData);
 
         private void OnDestroy()

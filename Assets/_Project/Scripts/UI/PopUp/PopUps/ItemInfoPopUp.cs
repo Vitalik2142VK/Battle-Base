@@ -1,4 +1,4 @@
-using BattleBase.Gameplay.Actors;
+using BattleBase.Gameplay.Actors.Production;
 using BattleBase.Localization;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,7 +11,7 @@ namespace BattleBase.UI.PopUps
         [SerializeField] private LocalizedText _description;
         [SerializeField] private Image _preview;
 
-        public void SetInfo(IActorData info)
+        public void SetInfo(IProductionData info)
         {
             _name.SetTexts(info.Name);
             _preview.sprite = info.Icon;

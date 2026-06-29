@@ -35,6 +35,7 @@ namespace BattleBase.Gameplay.Map
                 _currentPopUp.SetTarget(territory.Target);
                 _currentPopUp.SetInfo(territory.Info);
                 _currentPopUp.SetOwner(owner);
+                _currentPopUp.SetIndex(territory.Index);
                 _currentPopUp.Show();
             }
         }

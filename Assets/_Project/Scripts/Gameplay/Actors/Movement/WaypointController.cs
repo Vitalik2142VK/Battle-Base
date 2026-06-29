@@ -9,7 +9,7 @@ namespace BattleBase.Gameplay.Actors.Movement
     {
         [SerializeField] private RouteStartArea[] _routeStartAreas;
 
-        public void SpecifyActorRoute(IMover mover, ISpawnData spawnData)
+        public void SpecifyActorRoute(IMover mover, ISpawnPoint spawnData)
         {
             if (mover == null) 
                 throw new ArgumentNullException(nameof(mover));

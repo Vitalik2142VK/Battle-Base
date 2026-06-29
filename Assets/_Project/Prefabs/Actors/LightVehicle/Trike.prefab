@@ -311,6 +311,7 @@ GameObject:
   - component: {fileID: 2078123791982664625}
   - component: {fileID: 971598086245315658}
   - component: {fileID: 7574382238841517571}
+  - component: {fileID: 2169116753253183092}
   m_Layer: 6
   m_Name: Trike
   m_TagString: Untagged
@@ -470,9 +471,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15b15a821077e3748b8c5b0030c12b9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _trackable: {fileID: 971598086245315658}
+  _colorChanger: {fileID: 2169116753253183092}
+--- !u!114 &2169116753253183092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2640142135244227979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4fc82c6d6848fa45a985c2c4351a2eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _renderers:
   - {fileID: 219566160117332832}
-  - {fileID: 6560738650046983600}
   _targetMaterial: {fileID: 2100000, guid: 2182440ddf123974fb0dbf1a13fb7786, type: 2}
 --- !u!1 &2753104308582534388
 GameObject:

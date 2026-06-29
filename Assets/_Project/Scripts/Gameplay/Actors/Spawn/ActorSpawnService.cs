@@ -19,7 +19,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
             _waypointController = waypointController ?? throw new ArgumentNullException(nameof(waypointController));
         }
 
-        public bool TrySpawn(string prefabName, ISpawnData spawnData, out Actor actor)
+        public bool TrySpawn(string prefabName, ISpawnPoint spawnData, out Actor actor)
         {
             if (string.IsNullOrEmpty(prefabName))
                 throw new ArgumentException($"{nameof(prefabName)} cannot be empty or null");

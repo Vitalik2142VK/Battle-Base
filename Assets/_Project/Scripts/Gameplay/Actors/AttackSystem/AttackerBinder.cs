@@ -22,25 +22,22 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             if (view == null)
                 throw new ArgumentNullException(nameof(view));
 
-            if (actor.TryGetComponent(out IAttacker attacker) &&
-                view.TryGetViewComponent(out IAttackerViewComponent weaponView))
-            {
-                if (view.TryGetViewComponent(out IShotPoint shotPoint) == false)
-                    throw new InvalidOperationException($"'{nameof(view)}' don't contain module '{nameof(IShotPoint)}'");
-
-                IWeaponConfig weaponConfig = attacker.WeaponConfig;
-                ITargetingProfile targetingProfile = weaponConfig.DamageConfig.TargetingProfile;
-                IProjectileConfig projectileConfig = weaponConfig.ProjectileConfig;
-                TargetController targetController = new(view, attacker.WeaponConfig, targetingProfile);
-                ProjectileController projectileController = new(_projectileSpawner, shotPoint, projectileConfig);
-
-                attacker.Init(targetController, projectileController);
-                weaponView.Init(attacker);
-            }
-            else
-            {
+            if (actor.TryGetComponent(out IAttacker attacker) == false)
                 return;
-            }
+
+            if (view.TryGetViewComponent(out IShotPoint shotPoint) == false)
+                throw new InvalidOperationException($"'{nameof(view)}' don't contain module '{nameof(IShotPoint)}'");
+
+            IWeaponConfig weaponConfig = attacker.WeaponConfig;
+            ITargetingProfile targetingProfile = weaponConfig.DamageConfig.TargetingProfile;
+            IProjectileConfig projectileConfig = weaponConfig.ProjectileConfig;
+            TargetController targetController = new(view, attacker.WeaponConfig, targetingProfile);
+            ProjectileController projectileController = new(_projectileSpawner, shotPoint, projectileConfig);
+
+            attacker.Init(targetController, projectileController);
+
+            if (view.TryGetViewComponent(out IAttackerViewComponent weaponView))
+                weaponView.Init(attacker);
 
             AttackerPresenter presenter = new(attacker);
 

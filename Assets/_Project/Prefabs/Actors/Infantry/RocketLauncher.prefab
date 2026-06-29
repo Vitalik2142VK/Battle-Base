@@ -189,6 +189,7 @@ GameObject:
   - component: {fileID: 4161205306769823559}
   - component: {fileID: 5738217198848376548}
   - component: {fileID: 7642767016271415410}
+  - component: {fileID: 158108213470059190}
   m_Layer: 6
   m_Name: RocketLauncher
   m_TagString: Untagged
@@ -347,10 +348,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15b15a821077e3748b8c5b0030c12b9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _trackable: {fileID: 5738217198848376548}
+  _colorChanger: {fileID: 158108213470059190}
+--- !u!114 &158108213470059190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4384487142294468564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4fc82c6d6848fa45a985c2c4351a2eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _renderers:
   - {fileID: 6383318707779439316}
-  - {fileID: 2369601514725127384}
-  - {fileID: 3829455497771461271}
   _targetMaterial: {fileID: 2100000, guid: 2182440ddf123974fb0dbf1a13fb7786, type: 2}
 --- !u!1 &5030417917597953887
 GameObject:
@@ -666,12 +679,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 750940047468715932}
   m_SourcePrefab: {fileID: 100100000, guid: 4896dd80171214e4789827bd093675c4, type: 3}
---- !u!23 &2369601514725127384 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -1174019829967543672, guid: 4896dd80171214e4789827bd093675c4,
-    type: 3}
-  m_PrefabInstance: {fileID: 5717195665540257360}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3503621643043689657 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9207840855142122217, guid: 4896dd80171214e4789827bd093675c4,
@@ -692,12 +699,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _muzzle: {fileID: 750940047468715932}
   _speedRotate: 45
---- !u!23 &3829455497771461271 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 8823530608228285639, guid: 4896dd80171214e4789827bd093675c4,
-    type: 3}
-  m_PrefabInstance: {fileID: 5717195665540257360}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4253056168788488906 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8381879675857003674, guid: 4896dd80171214e4789827bd093675c4,
