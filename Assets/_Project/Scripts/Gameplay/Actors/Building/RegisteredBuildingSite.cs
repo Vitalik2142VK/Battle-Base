@@ -13,7 +13,7 @@ namespace BattleBase.Gameplay.Actors.Building
         private readonly IActorSpawnerEvents _events;
 
         private IActor _currentActor;
-        private IDestroyableEvents _destroyableEvents;
+        private IDestroyableEvent _destroyableEvents;
 
         public RegisteredBuildingSite(IActor buildingSiteActor, IBuildingSite buildingSite)
         {

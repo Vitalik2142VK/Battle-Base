@@ -1,5 +1,4 @@
 ﻿using BattleBase.Gameplay.Actors.DamageSystem;
-using BattleBase.Gameplay.Actors.AI;
 using System;
 using System.Collections.Generic;
 using BattleBase.Gameplay.Actors.Production;
@@ -12,7 +11,7 @@ namespace BattleBase.Gameplay.Actors
         private readonly Dictionary<Type, IActorComponent> _components;
         private IActorView _view;
         private IProductionData _actorData;
-        private IDestroyableEvents _destroyableEvents;
+        private IDestroyComponent _destroyComponent;
 
         public ActorBuilder()
         {
@@ -33,9 +32,18 @@ namespace BattleBase.Gameplay.Actors
             return this;
         }
 
-        public ActorBuilder DamagebleEvents(IDestroyableEvents damagebleEvent)
+        public ActorBuilder AddDestroyableEvent(IDestroyableEvent damagebleEvent)
         {
-            _destroyableEvents = damagebleEvent ?? throw new ArgumentNullException(nameof(damagebleEvent));
+            if (_destroyComponent == null)
+            {
+                _destroyComponent = new DestroyComponent(damagebleEvent);
+
+                AddComponent(_destroyComponent);
+            }
+            else
+            {
+                _destroyComponent.AddDestroyableEvent(damagebleEvent);
+            }
 
             return this;
         }
@@ -57,18 +65,18 @@ namespace BattleBase.Gameplay.Actors
 
         public Actor Build()
         {
-            if (_destroyableEvents == null)
+            if (_destroyComponent == null)
                 AddOnTimeDamageble();
 
-            return new Actor(_components, _view, _actorData, _destroyableEvents);
+            return new Actor(_components, _view, _actorData, _destroyComponent);
         }
 
         private void AddOnTimeDamageble()
         {
             IOnTimeDestroyable onTimeDamageble = new OnTimeDestroyable();
-            _destroyableEvents = onTimeDamageble;
 
             AddComponent(onTimeDamageble);
+            AddDestroyableEvent(onTimeDamageble);
         }
     }
 }
