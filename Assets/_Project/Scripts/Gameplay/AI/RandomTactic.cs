@@ -1,7 +1,6 @@
 ﻿using BattleBase.Core;
 using BattleBase.Gameplay.Actors.Building;
 using BattleBase.Gameplay.Actors.Production;
-using BattleBase.Gameplay.Actors.Spawn;
 using System;
 using System.Collections.Generic;
 
@@ -79,7 +78,8 @@ namespace BattleBase.Gameplay.AI
             _productionOptions.Clear();
             _productionOptions.AddRange(_currentProductionService.GetProductionOptions());
 
-            int index = _random.Next(_productionOptions.Count);
+            int maxIndex = _productionOptions.Count;
+            int index = _random.Next(maxIndex);
 
             return _productionOptions[index];
         }

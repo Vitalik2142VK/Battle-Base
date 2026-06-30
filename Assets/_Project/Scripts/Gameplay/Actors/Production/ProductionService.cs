@@ -11,10 +11,6 @@ namespace BattleBase.Gameplay.Actors.Production
             _factories = new List<IProductionOptionsFactory>();
         }
 
-        public void Enable() { }
-
-        public void Disable() { }
-
         public void AddProductionFactory(IProductionOptionsFactory factory)
         {
             if (factory == null)
@@ -35,5 +31,9 @@ namespace BattleBase.Gameplay.Actors.Production
 
             return productionOptions;
         }
+
+        public void Enable() { }
+
+        public void Disable() { }
     }
 }

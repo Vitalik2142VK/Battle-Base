@@ -1,5 +1,4 @@
-﻿using BattleBase.Gameplay.Actors.Production;
-using System;
+﻿using System;
 
 namespace BattleBase.Gameplay.Actors.Spawn
 {

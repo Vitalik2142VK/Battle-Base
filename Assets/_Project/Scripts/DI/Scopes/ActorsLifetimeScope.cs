@@ -6,6 +6,7 @@ using BattleBase.Gameplay.Actors.AttackSystem.Ammo;
 using BattleBase.Gameplay.Actors.Building;
 using BattleBase.Gameplay.Actors.Colored;
 using BattleBase.Gameplay.Actors.DamageSystem.Modifiers;
+using BattleBase.Gameplay.Actors.DamageSystem.Removal;
 using BattleBase.Gameplay.Actors.HealthSystem;
 using BattleBase.Gameplay.Actors.ImproveSystem;
 using BattleBase.Gameplay.Actors.Movement;
@@ -17,6 +18,7 @@ using BattleBase.Gameplay.Levels;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
+using static BattleBase.Gameplay.Actors.DamageSystem.Removal.DemolitionBinder;
 
 namespace BattleBase.DI
 {
@@ -51,6 +53,7 @@ namespace BattleBase.DI
 
             RegisterComponentFactoryRegistry();
             RegisterActorBinderRegistry();
+            RegisterActorConnectorRegistry();
             RegisterStateMachineInitializer();
             RegisterAI();
         }
@@ -64,6 +67,7 @@ namespace BattleBase.DI
             _builder.Register<IComponentFactory, MultiActorSpawnerFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, ActorStateMachineFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, ImprovementFactory>(Lifetime.Scoped);
+            _builder.Register<IComponentFactory, DemolitionFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, ProductionServiceFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactoryRegistry, ComponentFactoryRegistry>(Lifetime.Scoped);
         }
@@ -76,8 +80,16 @@ namespace BattleBase.DI
             _builder.Register<IActorComponentBinder, ActorSpawnerBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, ColoredActorBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, ImprovementBinder>(Lifetime.Scoped);
+            _builder.Register<IActorComponentBinder, DemolitionBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, ProductionServiceBinder>(Lifetime.Scoped);
             _builder.Register<IActorBinderRegistry, ActorBinderRegistry>(Lifetime.Scoped);
+        }
+
+        private void RegisterActorConnectorRegistry()
+        {
+            _builder.Register<IActorComponentConnector, ProductionServiceConnector>(Lifetime.Scoped);
+            _builder.Register<IActorComponentConnector, DemolitionServiceConnector>(Lifetime.Scoped);
+            _builder.Register<IActorConnectorRegistry, ActorConnectorRegistry>(Lifetime.Scoped);
         }
 
         private void RegisterStateMachineInitializer()

@@ -9,16 +9,19 @@ namespace BattleBase.Gameplay.Actors.Spawn
     {
         private readonly IComponentFactoryRegistry _componentFactoryRegistry;
         private readonly IActorBinderRegistry _actorBinderRegistry;
+        private readonly IActorConnectorRegistry _actorConnectorRegistry;
         private readonly IStateMachineInitializer _stateMachineInitializer;
 
         public ActorCreator(
             IComponentFactoryRegistry componentFactoryRegistry,
             IActorBinderRegistry actorBinderRegistry,
+            IActorConnectorRegistry actorConnectorRegistry,
             IStateMachineInitializer stateMachineInitializer)
         {
-            _componentFactoryRegistry = componentFactoryRegistry;
-            _actorBinderRegistry = actorBinderRegistry;
-            _stateMachineInitializer = stateMachineInitializer;
+            _componentFactoryRegistry = componentFactoryRegistry ?? throw new ArgumentNullException(nameof(componentFactoryRegistry));
+            _actorBinderRegistry = actorBinderRegistry ?? throw new ArgumentNullException(nameof(componentFactoryRegistry));
+            _actorConnectorRegistry = actorConnectorRegistry ?? throw new ArgumentNullException(nameof(actorConnectorRegistry));
+            _stateMachineInitializer = stateMachineInitializer ?? throw new ArgumentNullException(nameof(componentFactoryRegistry));
         }
 
         public Actor Create(ActorView view, IActorConfig config)
@@ -50,6 +53,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
             Actor actor = builder.Build();
             _stateMachineInitializer.Initialize(actor);
             _actorBinderRegistry.Bind(actor, view);
+            _actorConnectorRegistry.Connect(actor);
 
             return actor;
         }

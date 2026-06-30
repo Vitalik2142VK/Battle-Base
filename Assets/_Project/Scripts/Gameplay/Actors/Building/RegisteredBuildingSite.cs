@@ -1,5 +1,4 @@
 using BattleBase.Gameplay.Actors.DamageSystem;
-using BattleBase.Gameplay.Actors.HealthSystem;
 using BattleBase.Gameplay.Actors.Production;
 using BattleBase.Gameplay.Actors.Spawn;
 using System;
@@ -44,10 +43,10 @@ namespace BattleBase.Gameplay.Actors.Building
             if (actor == null) 
                 throw new ArgumentNullException(nameof(actor));
 
-            if (actor.TryGetComponent(out IHealth health))
+            if (actor.TryGetComponent(out IDestroyComponent component))
             {
                 _currentActor = actor;
-                _destroyableEvents = health;
+                _destroyableEvents = component;
                 _destroyableEvents.Destroyed += OnShowBuildingSite;
                 _buildingSite.Hide();
             }

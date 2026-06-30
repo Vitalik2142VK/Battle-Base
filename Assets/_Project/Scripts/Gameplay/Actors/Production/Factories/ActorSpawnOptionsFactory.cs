@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace BattleBase.Gameplay.Actors.Production
+namespace BattleBase.Gameplay.Actors.Production.Factories
 {
     public class ActorSpawnOptionsFactory : IProductionOptionsFactory
     {

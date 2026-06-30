@@ -1,5 +1,3 @@
-using BattleBase.Gameplay.Actors.AI;
-using BattleBase.Utils;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
