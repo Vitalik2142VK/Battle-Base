@@ -23,8 +23,6 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
             _data.SetInitialPrice(currentData.Price);
         }
 
-        public void Enable() { }
-
         public void Disable()
         {
             _data.Reset();
@@ -34,5 +32,7 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
         {
             _data.Modify();
         }
+
+        public void Enable() { }
     }
 }

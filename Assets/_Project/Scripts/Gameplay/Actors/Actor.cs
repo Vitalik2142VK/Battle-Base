@@ -14,7 +14,7 @@ namespace BattleBase.Gameplay.Actors
     {
         private readonly Dictionary<Type, IActorComponent> _components;
         private readonly IUpdateableController _updateableController;
-        private readonly IDestroyableEvents _damagebleEvents;
+        private readonly IDestroyComponent _destroyComponent;
 
         public event Action<Actor> Deactivated;
         public event Action<Color> ColorChanged;
@@ -23,7 +23,7 @@ namespace BattleBase.Gameplay.Actors
             Dictionary<Type, IActorComponent> components,
             IActorView view,
             IProductionData actorData,
-            IDestroyableEvents damagebleEvent,
+            IDestroyComponent destroyComponent,
             IUpdateableController updateableController = null)
         {
             if (components == null)
@@ -33,7 +33,7 @@ namespace BattleBase.Gameplay.Actors
                 throw new ArgumentException($"{nameof(components)} cannot be empty");
 
             _components = components;
-            _damagebleEvents = damagebleEvent ?? throw new ArgumentNullException(nameof(damagebleEvent));
+            _destroyComponent = destroyComponent ?? throw new ArgumentNullException(nameof(destroyComponent));
             _updateableController = updateableController ?? new UpdateableController(_components.Values);
 
             View = view ?? throw new ArgumentNullException(nameof(view));
@@ -55,7 +55,7 @@ namespace BattleBase.Gameplay.Actors
 
         public void Enable()
         {
-            _damagebleEvents.Destroyed += OnDestroy;
+            _destroyComponent.Destroyed += OnDestroy;
             IsEnabled = true;
 
             View.SetActive(true);
@@ -66,7 +66,7 @@ namespace BattleBase.Gameplay.Actors
 
         public void Disable()
         {
-            _damagebleEvents.Destroyed -= OnDestroy;
+            _destroyComponent.Destroyed -= OnDestroy;
             IsEnabled = false;
 
             View.SetActive(false);
@@ -77,11 +77,21 @@ namespace BattleBase.Gameplay.Actors
 
         public bool TryGetComponent<T>(out T component) where T : class, IActorComponent
         {
-            if (_components.TryGetValue(typeof(T), out var value))
+            if (_components.TryGetValue(typeof(T), out var exact))
             {
-                component = (T)value;
+                component = (T)exact;
 
                 return true;
+            }
+
+            foreach (var value in _components.Values)
+            {
+                if (value is T type)
+                {
+                    component = type;
+
+                    return true;
+                }
             }
 
             component = null;

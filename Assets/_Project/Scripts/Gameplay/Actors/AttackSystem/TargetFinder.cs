@@ -21,7 +21,6 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         private ITeamable _teamable;
         private Transform _transform;
         private Collider[] _foundUnits;
-        private Coroutine _coroutine;
         private WaitForSeconds _tick;
 
         private void Awake()
@@ -34,12 +33,9 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
         private void OnEnable()
         {
-            _coroutine = StartCoroutine(Activate());
-        }
+            _targets.Clear();
 
-        private void OnDisable()
-        {
-            StopCoroutine(_coroutine);
+            StartCoroutine(Activate());
         }
 
         private void OnDrawGizmosSelected()

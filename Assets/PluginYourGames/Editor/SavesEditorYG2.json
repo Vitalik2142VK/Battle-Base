@@ -1,5 +1,5 @@
 {
-    "idSave": 12,
+    "idSave": 14,
     "SavesData": {
         "_volumeData": {
             "_generalVolume": 1.0,
@@ -17,10 +17,54 @@
                 1,
                 4
             ],
-            "_selectedTerritory": 0
+            "_selectedTerritory": 4
         },
-        "_creditsData": {
-            "_credits": 0
+        "_shopData": {
+            "_credits": 1000,
+            "_unitUpgrades": [
+                {
+                    "_name": "Heavy Tank",
+                    "_damageLevel": 0,
+                    "_armorLevel": 0,
+                    "_buildTimeLevel": 0
+                },
+                {
+                    "_name": "IFV",
+                    "_damageLevel": 0,
+                    "_armorLevel": 0,
+                    "_buildTimeLevel": 0
+                },
+                {
+                    "_name": "Light Grav",
+                    "_damageLevel": 0,
+                    "_armorLevel": 0,
+                    "_buildTimeLevel": 0
+                },
+                {
+                    "_name": "Quad",
+                    "_damageLevel": 0,
+                    "_armorLevel": 0,
+                    "_buildTimeLevel": 0
+                },
+                {
+                    "_name": "Rocket Launcher",
+                    "_damageLevel": 0,
+                    "_armorLevel": 0,
+                    "_buildTimeLevel": 0
+                },
+                {
+                    "_name": "Shooter",
+                    "_damageLevel": 0,
+                    "_armorLevel": 0,
+                    "_buildTimeLevel": 0
+                },
+                {
+                    "_name": "Sniper",
+                    "_damageLevel": 0,
+                    "_armorLevel": 0,
+                    "_buildTimeLevel": 0
+                }
+            ]
         }
     }
 }

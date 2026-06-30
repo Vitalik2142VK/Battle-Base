@@ -9,7 +9,7 @@ namespace BattleBase.Gameplay.Actors.DamageSystem
 
         public void Init(
             IHealthPresenter healthPresenter, 
-            IDestroyableEvents damagebleEvents, 
+            IDestroyableEvent damagebleEvents, 
             ITeamable teamable, 
             ActorMask actorMask);
 

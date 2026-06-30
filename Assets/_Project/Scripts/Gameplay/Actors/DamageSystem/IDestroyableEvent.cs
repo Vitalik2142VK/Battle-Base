@@ -2,7 +2,7 @@
 
 namespace BattleBase.Gameplay.Actors.DamageSystem
 {
-    public interface IDestroyableEvents
+    public interface IDestroyableEvent
     {
         public event Action Destroyed;
     }

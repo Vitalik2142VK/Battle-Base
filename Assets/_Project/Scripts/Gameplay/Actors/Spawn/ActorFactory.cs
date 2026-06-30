@@ -1,8 +1,5 @@
 using BattleBase.Core;
-using BattleBase.Gameplay.Actors.AI;
-using BattleBase.Gameplay.Actors.DamageSystem;
 using System;
-using System.Collections.Generic;
 using VContainer;
 using VContainer.Unity;
 
@@ -12,24 +9,15 @@ namespace BattleBase.Gameplay.Actors.Spawn
     {
         private readonly IActorConfig _config;
         private readonly IObjectResolver _resolver;
-        private readonly IComponentFactoryRegistry _componentFactoryRegistry;
-        private readonly IActorBinderRegistry _actorBinderRegistry;
-        private readonly IStateMachineInitializer _stateMachineInitializer;
+        private readonly IActorCreator _actorCreator;
 
         private int _unitCounter;
 
-        public ActorFactory(
-            IActorConfig config,
-            IComponentFactoryRegistry componentFactoryRegistry,
-            IActorBinderRegistry actorBinderRegistry,
-            IObjectResolver resolver,
-            IStateMachineInitializer stateMachineInitializer)
+        public ActorFactory(IActorConfig config, IObjectResolver resolver, IActorCreator actorCreator)
         {
             _config = config ?? throw new ArgumentNullException(nameof(config));
             _resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
-            _componentFactoryRegistry = componentFactoryRegistry ?? throw new ArgumentNullException(nameof(componentFactoryRegistry));
-            _actorBinderRegistry = actorBinderRegistry ?? throw new ArgumentNullException(nameof(actorBinderRegistry));
-            _stateMachineInitializer = stateMachineInitializer ?? throw new ArgumentNullException(nameof(stateMachineInitializer));
+            _actorCreator = actorCreator ?? throw new ArgumentNullException(nameof(actorCreator));
 
             _unitCounter = 0;
         }
@@ -38,28 +26,10 @@ namespace BattleBase.Gameplay.Actors.Spawn
         {
             ActorView prefab = _config.Data.Prefab;
             ActorView view = _resolver.Instantiate(prefab);
-            view.Init();
+
             view.name = $"{prefab.name}_{++_unitCounter}";
 
-            ActorBuilder builder = new();
-            builder
-                .ActorView(view)
-                .ActorData(_config.Data);
-
-            IEnumerable<IComponentSource> componentSources = _config.GetComponentSources();
-
-            foreach (var componentSource in componentSources)
-            {
-                IActorComponent component = _componentFactoryRegistry.Create(componentSource);
-                builder.AddComponent(component);
-
-                if (component is IDestroyableEvents damagebleEvents)
-                    builder.DamagebleEvents(damagebleEvents);
-            }
-
-            Actor actor = builder.Build();
-            _stateMachineInitializer.Initialize(actor);
-            _actorBinderRegistry.Bind(actor, view);
+            Actor actor = _actorCreator.Create(view, _config);
 
             return actor;
         }

@@ -1,5 +1,3 @@
-using BattleBase.Gameplay.Actors.AI;
-using BattleBase.Utils;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,16 +21,9 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
             foreach (var config in _actorsConfigs)
             {
-                IComponentFactoryRegistry componentFactoryRegistry = resolver.Resolve<IComponentFactoryRegistry>();
-                IActorBinderRegistry actorBinderRegistry = resolver.Resolve<IActorBinderRegistry>();
-                IStateMachineInitializer stateMachineInitializer = resolver.Resolve<IStateMachineInitializer>();
+                IActorCreator actorCreator = resolver.Resolve<IActorCreator>();
 
-                ActorFactory factory = new(
-                    config,
-                    componentFactoryRegistry,
-                    actorBinderRegistry,
-                    resolver,
-                    stateMachineInitializer);
+                ActorFactory factory = new(config, resolver, actorCreator);
 
                 // todo: Constants.PoolMaximumSize it doesn't hurt anymore
                 // it may need to be moved to the config

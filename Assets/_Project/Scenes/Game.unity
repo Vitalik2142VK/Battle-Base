@@ -3498,7 +3498,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timeTick: 3
   _timeBeforeStart: 2
-  _isDisable: 1
+  _isDisable: 0
 --- !u!1001 &587338748
 PrefabInstance:
   m_ObjectHideFlags: 0
