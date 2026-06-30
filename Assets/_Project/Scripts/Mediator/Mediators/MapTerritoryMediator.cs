@@ -52,7 +52,7 @@ namespace BattleBase.Mediators
                 Territory territory = _territories[i];
                 territory.SetIndex(i);
                 TerritoryStatusIndicator indicator = _territoryStatusIndicatorFactory.Create();
-                indicator.SetTerritory(territory);
+                indicator.SetTerritory(territory);                
             }
         }
 

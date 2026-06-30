@@ -1,7 +1,5 @@
 using System;
-using BattleBase.Utils.Extensions;
 using UnityEngine;
-using UnityEngine.Audio;
 using UnityEngine.UI;
 
 namespace BattleBase.AudioService
@@ -9,30 +7,35 @@ namespace BattleBase.AudioService
     public sealed class VolumeSliderBinder : IDisposable
     {
         private readonly Slider _slider;
-        private readonly AudioMixer _mixer;
         private readonly AudioVolumeModel _volumeModel;
         private readonly Func<float> _getVolume;
         private readonly Action<float> _setVolume;
-        private readonly string _mixerGroupName;
+
+        private bool _enabled;
 
         public VolumeSliderBinder(
             Slider slider,
-            AudioMixer mixer,
             AudioVolumeModel volumeModel,
             Func<float> getVolume,
-            Action<float> setVolume,
-            string mixerGroupName)
+            Action<float> setVolume)
         {
             _slider = slider != null ? slider : throw new ArgumentNullException(nameof(slider));
-            _mixer = mixer != null ? mixer : throw new ArgumentNullException(nameof(mixer));
             _volumeModel = volumeModel ?? throw new ArgumentNullException(nameof(volumeModel));
             _getVolume = getVolume ?? throw new ArgumentNullException(nameof(getVolume));
             _setVolume = setVolume ?? throw new ArgumentNullException(nameof(setVolume));
-            _mixerGroupName = mixerGroupName ?? throw new ArgumentNullException(nameof(mixerGroupName));
+
+            Enable();
         }
+
+        public void Dispose() =>
+            Disable();
 
         public void Enable()
         {
+            if(_enabled)
+                return;
+
+            _enabled = true;
             _slider.onValueChanged.AddListener(OnSliderChanged);
             _volumeModel.Changed += OnModelChanged;
             OnModelChanged();
@@ -40,13 +43,12 @@ namespace BattleBase.AudioService
 
         public void Disable()
         {
+            if(_enabled == false)
+                return;
+
+            _enabled = false;
             _slider.onValueChanged.RemoveListener(OnSliderChanged);
             _volumeModel.Changed -= OnModelChanged;
-        }
-
-        public void Dispose()
-        {
-            Disable();
         }
 
         private void OnSliderChanged(float value)
@@ -63,9 +65,6 @@ namespace BattleBase.AudioService
 
             if (Mathf.Approximately(_slider.value, currentVolume) == false)
                 _slider.value = currentVolume;
-
-            float normalized = _slider.value.Remap(_slider.minValue, _slider.maxValue);
-            AudioVolumeSetter.SetNormalizedVolume(_mixer, _mixerGroupName, normalized);
         }
     }
 }
