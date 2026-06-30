@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
 using BattleBase.Commands;
-using BattleBase.Gameplay.Actors;
-using BattleBase.SaveService;
+using BattleBase.Gameplay.Map;
 using UnityEngine;
 using VContainer;
 
@@ -13,13 +12,13 @@ namespace BattleBase.Gameplay.Levels
         [SerializeField] private List<CommandBase> _finishCommands;
 
         private IWinStateController _winStateController;
-        private ITerritorySaver _territorySaver;
+        private TerritoriesModel _territoriesModel;
 
         [Inject]
-        public void Construct(IWinStateController winStateController, ITerritorySaver territorySaver)
+        public void Construct(IWinStateController winStateController, TerritoriesModel territoriesModel)
         {
             _winStateController = winStateController ?? throw new ArgumentNullException(nameof(winStateController));
-            _territorySaver = territorySaver ?? throw new ArgumentNullException(nameof(territorySaver));
+            _territoriesModel = territoriesModel ?? throw new ArgumentNullException(nameof(territoriesModel));
 
             _winStateController.Winned += OnFinishLevel;
         }
@@ -27,18 +26,7 @@ namespace BattleBase.Gameplay.Levels
         private void OnFinishLevel(bool isWin)
         {
             if (isWin)
-            {
-                ITerritoryData data = _territorySaver.TerritoryData;
-                List<int> conqueredTerritories = new(data.ConqueredTerritories);
-                int currentTerritoryIndex = data.SelectedTerrytory;
-
-                if (conqueredTerritories.Contains(currentTerritoryIndex) == false)
-                {
-                    conqueredTerritories.Add(currentTerritoryIndex);
-                    TerritoryData newData = new(conqueredTerritories, currentTerritoryIndex);
-                    _territorySaver.SetTerritoryData(newData);
-                }
-            }
+                _territoriesModel.AddConqueredTerritory(_territoriesModel.Selected);
 
             foreach (CommandBase command in _finishCommands)
                 command.Execute();

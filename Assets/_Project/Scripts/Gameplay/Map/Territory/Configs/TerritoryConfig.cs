@@ -11,6 +11,6 @@ namespace BattleBase.Gameplay.Map
     {
         [SerializeField] private LanguageTextsSet _territoryName;
 
-        public LanguageTextsSet TerritoryName => _territoryName;
+        public ILanguageTextsSet TerritoryName => _territoryName;
     }
 }

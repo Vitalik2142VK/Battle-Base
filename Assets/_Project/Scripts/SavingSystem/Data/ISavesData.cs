@@ -8,6 +8,6 @@ namespace BattleBase.SaveService
 
         public ITerritoryData TerritoryData { get; }
 
-        public ICreditsData CreditsData { get; }
+        public IShopData ShopData { get; }
     }
 }
