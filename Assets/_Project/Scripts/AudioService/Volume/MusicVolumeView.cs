@@ -1,8 +1,6 @@
 using System;
 using BattleBase.DI;
-using BattleBase.Utils.Constants;
 using UnityEngine;
-using UnityEngine.Audio;
 using UnityEngine.UI;
 using VContainer;
 
@@ -16,18 +14,15 @@ namespace BattleBase.AudioService
         private VolumeSliderBinder _binder;
 
         [Inject]
-        public void Construct(AudioMixer mixer, AudioVolumeModel volumeModel)
+        public void Construct(AudioVolumeModel volumeModel)
         {
             _slider = GetComponent<Slider>();
 
             _binder = new VolumeSliderBinder(
                 _slider,
-                mixer != null ? mixer : throw new ArgumentNullException(nameof(mixer)),
                 volumeModel ?? throw new ArgumentNullException(nameof(volumeModel)),
                 () => volumeModel.Music,
-                value => volumeModel.SetMusicVolume(value),
-                AudioMixerGroupNames.Music
-            );
+                value => volumeModel.SetMusicVolume(value));
         }
 
         private void OnEnable() =>

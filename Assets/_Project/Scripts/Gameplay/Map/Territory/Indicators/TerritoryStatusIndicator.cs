@@ -35,9 +35,6 @@ namespace BattleBase.Gameplay.Map
         {
             _territory = territory != null ? territory : throw new ArgumentNullException(nameof(territory));
 
-            if (_territory == territory)
-                return;
-
             Unsubscribe();
 
             Transform territoryTransform = territory.transform;
