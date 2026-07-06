@@ -76,8 +76,8 @@ namespace BattleBase.Gameplay.Actors.Spawn
             Spawned?.Invoke(actor);
 
             TeamType team = Teamable.TeamType;
-            actor.Enable();
             actor.SetTeam(team);
+            actor.Enable();
 
             _colorService.EstabilshColor(actor, actor.View);
             _currentActorData = null;

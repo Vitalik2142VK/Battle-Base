@@ -9,6 +9,7 @@ namespace BattleBase.Gameplay.Actors.Energy
         private readonly IAdvancedPowerRegistry _powerRegistry;
 
         private ITeamable _teamable;
+        private int _powerCount;
         private int _currentRank;
 
         public PowerGenerator(IEnumerable<IPowerByRank> addedPowerByRank, IAdvancedPowerRegistry powerRegistry)
@@ -18,10 +19,11 @@ namespace BattleBase.Gameplay.Actors.Energy
 
             _powerRegistry = powerRegistry ?? throw new ArgumentNullException(nameof(powerRegistry));
             _addedPowerByRank = new List<IPowerByRank>(addedPowerByRank);
+            _powerCount = 0;
             _currentRank = 0;
         }
 
-        public bool CanIncreasePower => _currentRank >= _addedPowerByRank.Count;
+        public bool CanIncreasePower => _currentRank < _addedPowerByRank.Count;
 
         public void Init(ITeamable teamable)
         {
@@ -35,6 +37,8 @@ namespace BattleBase.Gameplay.Actors.Energy
 
         public void Disable()
         {
+            _powerRegistry.ReduceCapacity(_teamable.TeamType, _powerCount);
+            _powerCount = 0;
             _currentRank = 0;
         }
 
@@ -45,6 +49,7 @@ namespace BattleBase.Gameplay.Actors.Energy
 
             IPowerByRank powerByRank = _addedPowerByRank[_currentRank++];
             _powerRegistry.AddCapacity(_teamable.TeamType, powerByRank.AddedPower);
+            _powerCount += powerByRank.AddedPower;
         }
     }
 }

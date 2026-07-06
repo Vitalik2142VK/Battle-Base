@@ -1,4 +1,5 @@
-﻿using BattleBase.Gameplay.Actors.Spawn;
+﻿using BattleBase.Gameplay.Actors.Energy;
+using BattleBase.Gameplay.Actors.Spawn;
 using System;
 
 namespace BattleBase.Gameplay.Actors.ImproveSystem
@@ -21,6 +22,13 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
                 SpawnerImprovement spawnerImprovement = new(spawner, improvement);
                 spawnerImprovement.Init(actor.Data);
                 actor.AddComponent(spawnerImprovement);
+            }
+
+            if (actor.TryGetComponent(out IPowerGenerator powerGenerator))
+            {
+                PowerGeneratorImprovement generatorImprovement = new(powerGenerator, improvement);
+                generatorImprovement.Init(actor.Data);
+                actor.AddComponent(generatorImprovement);
             }
         }
     }

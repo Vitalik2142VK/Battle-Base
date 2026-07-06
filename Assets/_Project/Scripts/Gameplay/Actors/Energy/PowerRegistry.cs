@@ -18,13 +18,21 @@ namespace BattleBase.Gameplay.Actors.Energy
         public void AddCapacity(TeamType team, int capacity) =>
             _powers[team].AddCapacity(capacity);
 
+        public void ReduceCapacity(TeamType team, int capacity) =>
+            _powers[team].ReduceCapacity(capacity);
+
         public bool TryReserve(TeamType team, int power) =>
             _powers[team].TryReserve(power);
 
-        public void Release(TeamType team, int capacity) =>
-            _powers[team].Release(capacity);
-
         public IPowerData GetPowerEvent(TeamType team) =>
             _powers[team];
+
+        public void Release(TeamType team, IActorData actorData)
+        {
+            if (actorData == null)
+                throw new System.ArgumentNullException(nameof(actorData));
+
+            _powers[team].Release(actorData.Power);
+        }
     }
 }

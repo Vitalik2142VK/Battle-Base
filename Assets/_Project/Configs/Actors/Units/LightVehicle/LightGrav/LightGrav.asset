@@ -32,6 +32,8 @@ MonoBehaviour:
         _text: Test
     _constructionTime: 9
     _price: 220
+    _power: 5
+    _isSummable: 1
   _components:
   - {fileID: 11400000, guid: 23e2b93ebd2b00149bfc93604c7a2608, type: 2}
   - {fileID: 11400000, guid: cc2332e03dcd24949b6ebf6d41c36aaf, type: 2}

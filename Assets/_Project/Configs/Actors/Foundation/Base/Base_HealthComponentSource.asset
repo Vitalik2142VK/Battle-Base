@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ca88fe826886274c9944eea0f41a9b9, type: 3}
-  m_Name: BaseHealth_ComponentSource
+  m_Name: Base_HealthComponentSource
   m_EditorClassIdentifier: 
   _healthConfig:
     _maxHealth: 2500

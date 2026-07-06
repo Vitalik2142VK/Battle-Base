@@ -30,5 +30,5 @@ MonoBehaviour:
         _text: 
       _tr:
         _text: 
-    _constructionTime: 5
+    _constructionTime: 1
     _returnedCoefficient: 0.5

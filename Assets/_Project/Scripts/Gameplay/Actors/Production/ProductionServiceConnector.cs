@@ -1,31 +1,58 @@
-﻿using BattleBase.Gameplay.Actors.ImproveSystem;
+﻿using BattleBase.Gameplay.Actors.Energy;
+using BattleBase.Gameplay.Actors.ImproveSystem;
 using BattleBase.Gameplay.Actors.Production.Factories;
 using BattleBase.Gameplay.Actors.Spawn;
 using System;
+using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.Production
 {
     public class ProductionServiceConnector : IActorComponentConnector
     {
+        private readonly List<IProductionOptionsFactory> _factories;
+
+        private IActor _actor;
+
+        public ProductionServiceConnector()
+        {
+            _factories = new List<IProductionOptionsFactory>();
+        }
+
         public void Connect(IActor actor)
         {
-            if (actor == null)
-                throw new ArgumentNullException(nameof(actor));
-
-            if (actor.TryGetComponent(out IActorSpawner spawner) == false)
-                return;
+            _actor = actor ?? throw new ArgumentNullException(nameof(actor));
 
             if (actor.TryGetComponent(out IProductionService productionService) == false)
                 return;
 
-            IProductionOptionsFactory factory;
+            AddActorSpawnOptionsFactory();
+            AddPowerGeneratorOptionsFactory();
 
-            if (actor.TryGetComponent(out ISpawnerImprovement spawnerImprovement))
-                factory = new ImproveActorSpawnOptionsFactory(spawner, spawnerImprovement);
+            foreach (var factory in _factories)
+                productionService.AddProductionFactory(factory);
+
+            _factories.Clear();
+            _actor = null;
+        }
+
+        private void AddActorSpawnOptionsFactory()
+        {
+            if (_actor.TryGetComponent(out IActorSpawner spawner) == false)
+                return;
+
+            if (_actor.TryGetComponent(out ISpawnerImprovement spawnerImprovement))
+                _factories.Add(new ImproveActorSpawnOptionsFactory(spawner, spawnerImprovement));
             else
-                factory = new ActorSpawnOptionsFactory(spawner);
+                _factories.Add(new ActorSpawnOptionsFactory(spawner));
+        }
 
-            productionService.AddProductionFactory(factory);
+        private void AddPowerGeneratorOptionsFactory()
+        {
+            if (_actor.TryGetComponent(out IPowerGenerator _) == false)
+                return;
+
+            if (_actor.TryGetComponent(out IPowerGeneratorImprovement powerGeneratorImprovement))
+                _factories.Add(new ImprovePowerGeneratorOptionsFactory(powerGeneratorImprovement));
         }
     }
 }

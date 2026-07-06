@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65d2e2c2420ac6b45b0d480f9633fd48, type: 3}
-  m_Name: HeavyTank
+  m_Name: PowerStation
   m_EditorClassIdentifier: 
   _data:
-    _prefab: {fileID: 5923623242493629742, guid: ae0ba1cc559ac7a41ae63cc43cb2e2ca,
+    _prefab: {fileID: 1961284443509400903, guid: b7b1d948fe977f5469f53b216abdd56b,
       type: 3}
-    _icon: {fileID: 21300000, guid: f438671dff8183a44a67b03689ec2a9a, type: 3}
+    _icon: {fileID: 21300000, guid: 87ad552ad25acee4d85a60d364c731ef, type: 3}
     _name:
       _ru:
         _text: "\u0422\u0435\u0441\u0442"
@@ -30,12 +30,13 @@ MonoBehaviour:
         _text: Test
       _tr:
         _text: Test
-    _constructionTime: 20
-    _price: 800
-    _power: 9
-    _isSummable: 1
+    _constructionTime: 2
+    _price: 250
+    _power: 0
+    _isSummable: 0
   _components:
-  - {fileID: 11400000, guid: 8e2b03bc014c35147a167ccd0fa2ee1b, type: 2}
-  - {fileID: 11400000, guid: 43f56c0a04e4137409425827c37d546d, type: 2}
-  - {fileID: 11400000, guid: 6c9ac064b32c3394cb712afafb2b3bf5, type: 2}
-  - {fileID: 11400000, guid: cde8283c56fb62440932dc302ef7a70d, type: 2}
+  - {fileID: 11400000, guid: a6605a7d7c2dada47a2eb6433d89a952, type: 2}
+  - {fileID: 11400000, guid: b8512275fc64e9f45a1890ad07e06d59, type: 2}
+  - {fileID: 11400000, guid: e629ce5a760c9a3438910ab681147319, type: 2}
+  - {fileID: 11400000, guid: f5c7534f5ed833048922450dceb78768, type: 2}
+  - {fileID: 11400000, guid: 48a15801c76ab6d499e7fee6c3b8fceb, type: 2}

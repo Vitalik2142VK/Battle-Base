@@ -23,8 +23,8 @@ namespace BattleBase.Gameplay.Actors.Building
 
             _actorsController.AddActor(actor);
 
-            actor.Enable();
             actor.SetTeam(team);
+            actor.Enable();
 
             _colorService.EstabilshColor(actor, view);
 

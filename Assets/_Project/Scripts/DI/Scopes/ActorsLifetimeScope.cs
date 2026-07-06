@@ -38,7 +38,8 @@ namespace BattleBase.DI
             _builder = builder ?? throw new System.ArgumentNullException(nameof(builder));
 
             _builder.RegisterComponent<IActorPoolsRegistrator>(_poolsRegistrator);
-            _builder.RegisterInstance<IActorsController>(_actorController);
+            _builder.RegisterComponent<IActorsController>(_actorController);
+
             _builder.RegisterInstance<IWaypointController>(_waypointController);
             _builder.RegisterInstance<IProjectileSpawner>(_projectileSpawner);
             _builder.RegisterInstance<ITrailParticleSpawner>(_trailParticleSpawner);
@@ -69,6 +70,7 @@ namespace BattleBase.DI
             _builder.Register<IComponentFactory, ActorStateMachineFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, ImprovementFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, DemolitionFactory>(Lifetime.Scoped);
+            _builder.Register<IComponentFactory, PowerGeneratorFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, ProductionServiceFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactoryRegistry, ComponentFactoryRegistry>(Lifetime.Scoped);
         }
@@ -82,6 +84,7 @@ namespace BattleBase.DI
             _builder.Register<IActorComponentBinder, ColoredActorBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, ImprovementBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, DemolitionBinder>(Lifetime.Scoped);
+            _builder.Register<IActorComponentBinder, PowerGeneratorBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, ProductionServiceBinder>(Lifetime.Scoped);
             _builder.Register<IActorBinderRegistry, ActorBinderRegistry>(Lifetime.Scoped);
         }

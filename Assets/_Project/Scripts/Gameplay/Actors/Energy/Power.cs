@@ -6,11 +6,15 @@ namespace BattleBase.Gameplay.Actors.Energy
     {
         private readonly IPowerConfig _powerConfig;
 
+        private int _currentCapacity;
+
         public event Action DataChanged;
 
         public Power(IPowerConfig powerConfig)
         {
             _powerConfig = powerConfig ?? throw new ArgumentNullException(nameof(powerConfig));
+            _currentCapacity = 0;
+
             UsedEnergy = 0;
         }
 
@@ -23,15 +27,33 @@ namespace BattleBase.Gameplay.Actors.Energy
             if (capacity <= 0)
                 throw new ArgumentOutOfRangeException(nameof(capacity));
 
+            _currentCapacity += capacity;
+
             if (CurrentCapacity == _powerConfig.MaxCapacity)
                 return;
 
-            CurrentCapacity = +capacity;
+            CurrentCapacity = _currentCapacity;
 
-            if (CurrentCapacity > _powerConfig.MaxCapacity)
+            if (_currentCapacity > _powerConfig.MaxCapacity)
                 CurrentCapacity = _powerConfig.MaxCapacity;
 
             DataChanged?.Invoke();
+        }
+
+        public void ReduceCapacity(int capacity)
+        {
+            if (capacity <= 0)
+                throw new ArgumentOutOfRangeException(nameof(capacity));
+
+            _currentCapacity -= capacity;
+
+            if (_currentCapacity < 0)
+                _currentCapacity = 0;
+
+            if (_currentCapacity < _powerConfig.MaxCapacity)
+                CurrentCapacity = _currentCapacity;
+            else
+                CurrentCapacity = _powerConfig.MaxCapacity;
         }
 
         public bool TryReserve(int power)
@@ -39,16 +61,17 @@ namespace BattleBase.Gameplay.Actors.Energy
             if (power < 0)
                 throw new ArgumentOutOfRangeException(nameof(power));
 
-            if (CurrentCapacity > UsedEnergy)
-            {
-                UsedEnergy += power;
+            int resultPower = UsedEnergy + power;
 
-                DataChanged?.Invoke();
+            if (CurrentCapacity < resultPower)
+                return false;
 
-                return true;
-            }
+            UsedEnergy += power;
 
-            return false;
+            DataChanged?.Invoke();
+
+            return true;
+
         }
 
         public void Release(int power)
