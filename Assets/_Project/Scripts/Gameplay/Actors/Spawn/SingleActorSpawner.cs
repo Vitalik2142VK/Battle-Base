@@ -17,9 +17,9 @@ namespace BattleBase.Gameplay.Actors.Spawn
         public override event Action<IActor> Spawned;
 
         public SingleActorSpawner(
-            IEnumerable<IActorData> actorsToCreate, 
+            IEnumerable<IActorData> actorsToCreate,
             IActorSpawnService actorSpawnService,
-            IActorColorService colorService) : base (actorsToCreate)
+            IActorColorService colorService) : base(actorsToCreate)
         {
             _spawnService = actorSpawnService ?? throw new ArgumentNullException(nameof(actorSpawnService));
             _colorService = colorService ?? throw new ArgumentNullException(nameof(colorService));
@@ -49,17 +49,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
                 return;
             }
 
-            if (_spawnService.TrySpawn(_currentActorData.Prefab.name, SpawnData, out Actor actor))
-            {
-                Spawned?.Invoke(actor);
-
-                TeamType team = Teamable.TeamType;
-                actor.Enable();
-                actor.SetTeam(team);
-
-                _colorService.EstabilshColor(actor, actor.View);
-                _currentActorData = null;
-            }
+            ProcessSpawn();
         }
 
         public override void SelectActorData(IActorData actorData)
@@ -77,6 +67,20 @@ namespace BattleBase.Gameplay.Actors.Spawn
             {
                 throw new InvalidOperationException($"{nameof(actorData)} not found");
             }
+        }
+
+        private void ProcessSpawn()
+        {
+            Actor actor = _spawnService.Spawn(_currentActorData.Prefab.name, SpawnData);
+
+            Spawned?.Invoke(actor);
+
+            TeamType team = Teamable.TeamType;
+            actor.Enable();
+            actor.SetTeam(team);
+
+            _colorService.EstabilshColor(actor, actor.View);
+            _currentActorData = null;
         }
     }
 }

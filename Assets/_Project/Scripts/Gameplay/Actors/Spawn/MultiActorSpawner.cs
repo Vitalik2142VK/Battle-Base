@@ -1,4 +1,5 @@
 using BattleBase.Gameplay.Actors.Colored;
+using BattleBase.Gameplay.Actors.Energy;
 using BattleBase.Utils;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
         private readonly Queue<IActorData> _actorsQueue;
         private readonly IActorSpawnService _spawnService;
         private readonly IActorColorService _colorService;
+        private readonly IPowerRegistry _powerRegistry;
         private readonly Timer _timer;
 
         private IActorData _currentActorData;
@@ -18,9 +20,10 @@ namespace BattleBase.Gameplay.Actors.Spawn
         public override event Action<IActor> Spawned;
 
         public MultiActorSpawner(
-            IEnumerable<IActorData> actorsToCreate, 
+            IEnumerable<IActorData> actorsToCreate,
             IActorSpawnService actorSpawnService,
-            IActorColorService colorService) : base (actorsToCreate)
+            IActorColorService colorService,
+            IPowerRegistry powerRegistry) : base(actorsToCreate)
         {
             if (actorsToCreate == null)
                 throw new ArgumentNullException(nameof(actorsToCreate));
@@ -29,6 +32,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
             _spawnService = actorSpawnService ?? throw new ArgumentNullException(nameof(actorSpawnService));
             _colorService = colorService ?? throw new ArgumentNullException(nameof(colorService));
+            _powerRegistry = powerRegistry?? throw new ArgumentNullException(nameof(powerRegistry));
             _timer = new();
         }
 
@@ -74,21 +78,23 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
         private void ProcessSpawn()
         {
-            if (_spawnService.TrySpawn(_currentActorData.Prefab.name, SpawnData, out Actor actor))
-            {
-                Spawned?.Invoke(actor);
+            if (_powerRegistry.TryReserve(Teamable.TeamType, _currentActorData.Power) == false)
+                return;
 
-                TeamType team = Teamable.TeamType;
-                actor.Enable();
-                actor.SetTeam(team);
+            Actor actor = _spawnService.Spawn(_currentActorData.Prefab.name, SpawnData);
 
-                _colorService.EstabilshColor(actor, actor.View);
+            Spawned?.Invoke(actor);
 
-                if (_actorsQueue.Count > 0)
-                    EstablisCurrentActorSpawn(_actorsQueue.Dequeue());
-                else
-                    _currentActorData = null;
-            }
+            TeamType team = Teamable.TeamType;
+            actor.Enable();
+            actor.SetTeam(team);
+
+            _colorService.EstabilshColor(actor, actor.View);
+
+            if (_actorsQueue.Count > 0)
+                EstablisCurrentActorSpawn(_actorsQueue.Dequeue());
+            else
+                _currentActorData = null;
         }
 
         private void EstablisCurrentActorSpawn(IActorData actorData)

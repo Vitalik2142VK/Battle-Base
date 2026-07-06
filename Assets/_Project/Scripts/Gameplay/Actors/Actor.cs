@@ -22,7 +22,7 @@ namespace BattleBase.Gameplay.Actors
         public Actor(
             Dictionary<Type, IActorComponent> components,
             IActorView view,
-            IProductionData actorData,
+            IActorData actorData,
             IDestroyComponent destroyComponent,
             IUpdateableController updateableController = null)
         {
@@ -43,7 +43,7 @@ namespace BattleBase.Gameplay.Actors
             IsStatic = _components.ContainsKey(typeof(IMover)) == false;
         }
 
-        public IProductionData Data { get; }
+        public IActorData Data { get; }
 
         public IActorView View { get; }
 

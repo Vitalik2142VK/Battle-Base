@@ -1,6 +1,7 @@
 using BattleBase.Commands;
 using BattleBase.Core;
 using BattleBase.Gameplay;
+using BattleBase.Gameplay.Actors.Energy;
 using BattleBase.Gameplay.Actors.Visual.Select;
 using BattleBase.Gameplay.CameraNavigation;
 using BattleBase.Gameplay.CameraNavigation.InputReader;
@@ -26,6 +27,7 @@ namespace BattleBase.DI
         [SerializeField] private ProductionItem _itemPrefab;
         [SerializeField] private ItemInfoPopUp _itemInfoPopUp;
         [SerializeField] private CommandBase _commandShowItemInfoPopUp;
+        [SerializeField] private PowerConfig _powerConfig;
 
         private IContainerBuilder _builder;
 
@@ -37,6 +39,7 @@ namespace BattleBase.DI
             RegisterCameraSystem();
             RegisterCameraInputReader();
             RegisterBuildingSiteSelector();
+            RegisterPowerRegistry();
         }
 
         private void RegisterBuildingSiteSelector()
@@ -101,6 +104,14 @@ namespace BattleBase.DI
                 _builder.Register<IDragHandler, TouchDragHandler>(Lifetime.Singleton);
                 _builder.Register<IZoomHandler, TouchPinchHandler>(Lifetime.Singleton);
             }
+        }
+
+        private void RegisterPowerRegistry()
+        {
+            _builder.RegisterInstance<IPowerConfig>(_powerConfig);
+            _builder.Register<PowerRegistry>(Lifetime.Singleton)
+                .As<IAdvancedPowerRegistry>()
+                .As<IPowerRegistry>();
         }
     }
 }

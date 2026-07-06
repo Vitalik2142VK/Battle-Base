@@ -19,7 +19,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
             _waypointController = waypointController ?? throw new ArgumentNullException(nameof(waypointController));
         }
 
-        public bool TrySpawn(string prefabName, ISpawnPoint spawnData, out Actor actor)
+        public Actor Spawn(string prefabName, ISpawnPoint spawnData)
         {
             if (string.IsNullOrEmpty(prefabName))
                 throw new ArgumentException($"{nameof(prefabName)} cannot be empty or null");
@@ -27,8 +27,8 @@ namespace BattleBase.Gameplay.Actors.Spawn
             if (spawnData == null)
                 throw new ArgumentNullException(nameof(spawnData));
 
-            if (_poolRegistry.TryGive(out actor, prefabName) == false)
-                return false;
+            if (_poolRegistry.TryGive(out Actor actor, prefabName) == false)
+                throw new InvalidOperationException($"{nameof(_poolRegistry)} has run out of space");
 
             actor.SetSpawnData(spawnData);
 
@@ -37,7 +37,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
             _actorsController.AddActor(actor);
 
-            return true;
+            return actor;
         }
     }
 }

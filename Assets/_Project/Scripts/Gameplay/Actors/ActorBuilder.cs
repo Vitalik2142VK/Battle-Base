@@ -1,7 +1,6 @@
 ﻿using BattleBase.Gameplay.Actors.DamageSystem;
 using System;
 using System.Collections.Generic;
-using BattleBase.Gameplay.Actors.Production;
 using BattleBase.Utils;
 
 namespace BattleBase.Gameplay.Actors
@@ -10,7 +9,7 @@ namespace BattleBase.Gameplay.Actors
     {
         private readonly Dictionary<Type, IActorComponent> _components;
         private IActorView _view;
-        private IProductionData _actorData;
+        private IActorData _actorData;
         private IDestroyComponent _destroyComponent;
 
         public ActorBuilder()
@@ -25,7 +24,7 @@ namespace BattleBase.Gameplay.Actors
             return this;
         }
 
-        public ActorBuilder ActorData(IProductionData actorData)
+        public ActorBuilder ActorData(IActorData actorData)
         {
             _actorData = actorData ?? throw new ArgumentNullException(nameof(actorData));
 
