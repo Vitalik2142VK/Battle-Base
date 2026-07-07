@@ -3,7 +3,7 @@ using BattleBase.Gameplay.Actors.DamageSystem;
 using BattleBase.Utils.Constants;
 using UnityEngine;
 
-namespace BattleBase.Gameplay.Actors.AttackSystem
+namespace BattleBase.Gameplay.Actors.AttackSystem.Weapons
 {
     [CreateAssetMenu(
     fileName = nameof(WeaponConfig),

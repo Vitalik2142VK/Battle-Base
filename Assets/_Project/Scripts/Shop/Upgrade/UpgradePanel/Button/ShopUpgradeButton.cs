@@ -27,7 +27,7 @@ namespace BattleBase.ShopSystem
         public void Construct(CreditsModel credits) =>
             _credits = credits ?? throw new ArgumentNullException(nameof(credits));
 
-        public void UpdateInfo(IUpgradeButtonInfo info)
+        public void UpdateInfo(IUpgradeInfo info)
         {
             _price.text = info.CurrentPrice.ToString();
 

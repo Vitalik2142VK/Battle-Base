@@ -21,7 +21,7 @@ namespace BattleBase.DI
         [SerializeField] private Updater _updater;
         [SerializeField] private SceneLoader _sceneLoader;
         [SerializeField] private AudioMixer _mixer;
-        [SerializeField] private UnitsUpgradeConfig _unitsUpgradeConfig;
+        [SerializeField] private ActorsUpgradeConfig _actorsUpgradeConfig;
         [SerializeField] private TeamColorSetConfig _teamColorSetConfig;
         [SerializeField] private List<TerritoryConfig> _territoryConfigs;
 
@@ -34,16 +34,19 @@ namespace BattleBase.DI
             builder.Register<CreditsModel>(Lifetime.Singleton);
             builder.Register<AudioVolumeModel>(Lifetime.Singleton);
             builder.Register<AudioVolumeService>(Lifetime.Singleton);
-            builder.Register<UnitsUpgradeModel>(Lifetime.Singleton);
             builder.Register<TeamColorModel>(Lifetime.Singleton);
             builder.Register<TerritoriesModel>(Lifetime.Singleton);
+
+            builder.Register<ActorsUpgradeModel>(Lifetime.Singleton)
+                .AsSelf()
+                .As<IActorsUpgradeModel>();
 
             builder.RegisterComponent<IMusic>(_music);
             builder.RegisterComponent<ISfx>(_sfx);
             builder.RegisterComponent<ISceneLoader>(_sceneLoader);
             builder.RegisterComponent<IUpdater>(_updater);
             builder.RegisterInstance(_mixer);
-            builder.RegisterInstance(_unitsUpgradeConfig);
+            builder.RegisterInstance(_actorsUpgradeConfig);
             builder.RegisterInstance(_teamColorSetConfig);
             builder.RegisterInstance(_territoryConfigs as IReadOnlyList<TerritoryConfig>);
 

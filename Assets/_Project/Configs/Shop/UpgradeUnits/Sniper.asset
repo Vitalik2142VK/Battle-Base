@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b960e3a53ccdc154d9abddb2d58ace5a, type: 3}
   m_Name: Sniper
   m_EditorClassIdentifier: 
-  _preview: {fileID: 21300000, guid: 3c72ca593f818184d94f80b528187526, type: 3}
-  _unitName: {fileID: 11400000, guid: e511bb9fcc980ce4691021f44ee5766a, type: 2}
+  _actorConfig: {fileID: 11400000, guid: 9f81944311ed51b439dcd449efc2e5fd, type: 2}
   _stats: {fileID: 11400000, guid: b286b8c8bead4e24f969f404df869030, type: 2}

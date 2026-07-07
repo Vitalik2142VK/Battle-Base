@@ -12,7 +12,7 @@ namespace BattleBase.Gameplay.Actors.Economy
         {
             _materialConfig = materialConfig ?? throw new ArgumentNullException(nameof(materialConfig));
 
-            CurrentMaterials = 0;
+            CurrentMaterials = _materialConfig.StartMaterialsCount;
         }
 
         public int CurrentMaterials { get; private set; }

@@ -1,4 +1,5 @@
 ﻿using BattleBase.Gameplay.Actors.AttackSystem.Ammo;
+using BattleBase.Gameplay.Actors.AttackSystem.Weapons;
 using BattleBase.Gameplay.Actors.DamageSystem;
 using System;
 using System.Collections.Generic;
@@ -74,6 +75,9 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             if (_targetController.HasTarget == false && _isAttacking)
                 AttackDeactivated?.Invoke();
         }
+
+        public void Upgrade(IWeaponConfigModificator modificator) =>
+            _weapon.Upgrade(modificator);
 
         public void SetAim(bool isAiming) =>
             _isAiming = isAiming;

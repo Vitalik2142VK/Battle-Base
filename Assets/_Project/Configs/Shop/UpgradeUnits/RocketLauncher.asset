@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b960e3a53ccdc154d9abddb2d58ace5a, type: 3}
   m_Name: RocketLauncher
   m_EditorClassIdentifier: 
-  _preview: {fileID: 21300000, guid: 6fdd35deca9a7e1488c5eccf94895a96, type: 3}
-  _unitName: {fileID: 11400000, guid: 5f1bb31d3d807934482bb7cbf78092d9, type: 2}
+  _actorConfig: {fileID: 11400000, guid: 7f096ad187a6e854baf852a777792c38, type: 2}
   _stats: {fileID: 11400000, guid: 0675b9182de787342bbc0bde3e30c7c0, type: 2}

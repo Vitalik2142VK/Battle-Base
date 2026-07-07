@@ -20,7 +20,7 @@ namespace BattleBase.Mediators
             ISaver saver,
             CreditsModel credits,
             AudioVolumeModel volumeModel,
-            UnitsUpgradeModel unitsUpgradeModel,
+            ActorsUpgradeModel unitsUpgradeModel,
             TeamColorModel teamColorModel,
             TerritoriesModel territoriesModel)
         {

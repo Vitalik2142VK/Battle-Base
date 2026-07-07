@@ -18,22 +18,22 @@ namespace BattleBase.ShopSystem
 
         public ShopUnitItemView CurrentItem { get; private set; }
 
-        private UnitsUpgradeModel _unitsUpgradeModel;
+        private ActorsUpgradeModel _unitsUpgradeModel;
 
         [Inject]
-        public void Construct(UnitsUpgradeModel unitsUpgradeModel)
+        public void Construct(ActorsUpgradeModel unitsUpgradeModel)
         {
             _unitsUpgradeModel = unitsUpgradeModel ?? throw new ArgumentNullException(nameof(unitsUpgradeModel));
 
             Init(unitsUpgradeModel.Infos);
         }
 
-        public void Init(IReadOnlyList<IShopUnitItemInfo> infos)
+        public void Init(IReadOnlyList<IShopActorItemConfig> infos)
         {
             _content.ClearChilds();
             _items.Clear();
 
-            foreach (IShopUnitItemInfo info in infos)
+            foreach (IShopActorItemConfig info in infos)
             {
                 ShopUnitItemView item = Instantiate(_prefab, _content);
                 item.SetInfo(info, Select);

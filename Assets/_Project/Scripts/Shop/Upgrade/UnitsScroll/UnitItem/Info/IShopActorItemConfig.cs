@@ -3,8 +3,10 @@ using UnityEngine;
 
 namespace BattleBase.ShopSystem
 {
-    public interface IShopUnitItemInfo
+    public interface IShopActorItemConfig
     {
+        public string Id { get; }
+
         public Sprite Preview { get; }
 
         public ILanguageTextsSet UnitName { get; }

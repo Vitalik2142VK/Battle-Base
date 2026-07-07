@@ -10,12 +10,12 @@ namespace BattleBase.ShopSystem
     {
         [SerializeField] private Image _preview;
 
-        private UnitsUpgradeModel _unitsUpgradeModel;
+        private ActorsUpgradeModel _unitsUpgradeModel;
 
         public IShopUpgradeStatsInfo Info { get; private set; }
 
         [Inject]
-        public void Construct(UnitsUpgradeModel unitsUpgradeModel) =>
+        public void Construct(ActorsUpgradeModel unitsUpgradeModel) =>
             _unitsUpgradeModel = unitsUpgradeModel ?? throw new ArgumentNullException(nameof(unitsUpgradeModel));
 
         private void OnEnable()

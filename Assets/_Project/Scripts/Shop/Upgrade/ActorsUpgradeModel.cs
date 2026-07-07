@@ -5,15 +5,15 @@ using BattleBase.SaveService;
 
 namespace BattleBase.ShopSystem
 {
-    public class UnitsUpgradeModel : ISaveable
+    public class ActorsUpgradeModel : IActorsUpgradeModel, ISaveable
     {
         private readonly IShopSaver _saver;
         private readonly List<ShopUnitItemInfo> _infos = new();
-        private readonly UnitsUpgradeConfig _config;
+        private readonly ActorsUpgradeConfig _config;
 
         private ShopUnitItemInfo _selected;
 
-        public UnitsUpgradeModel(IShopSaver saver, UnitsUpgradeConfig config)
+        public ActorsUpgradeModel(IShopSaver saver, ActorsUpgradeConfig config)
         {
             _saver = saver ?? throw new ArgumentNullException(nameof(saver));
             _config = config != null ? config : throw new ArgumentNullException(nameof(config));
@@ -27,9 +27,9 @@ namespace BattleBase.ShopSystem
         public event Action BuildTimeLevelChanged;
         public event Action UnitSelectionChanged;
 
-        public IReadOnlyList<IShopUnitItemInfo> Infos => _infos;
+        public IReadOnlyList<IShopActorItemConfig> Infos => _infos;
 
-        public IShopUnitItemInfo Selected => _selected;
+        public IShopActorItemConfig Selected => _selected;
 
         public IShopUpgradeStatsInfo PanelInfo => _selected.PanelInfo;
 
@@ -51,7 +51,7 @@ namespace BattleBase.ShopSystem
             BuildTimeLevelChanged?.Invoke();
         }
 
-        public void SelectUnit(IShopUnitItemInfo unit)
+        public void SelectUnit(IShopActorItemConfig unit)
         {
             _selected = unit as ShopUnitItemInfo ?? throw new ArgumentNullException(nameof(unit));
             UnitSelectionChanged?.Invoke();
@@ -65,7 +65,7 @@ namespace BattleBase.ShopSystem
 
             _infos.Clear();
 
-            foreach (IShopUnitItemInfo info in _config.Infos)
+            foreach (IShopActorItemConfig info in _config.Infos)
                 _infos.Add(new(info));
 
             for (int i = 0; i < _infos.Count; i++)
@@ -93,7 +93,7 @@ namespace BattleBase.ShopSystem
                 UnitUpgradeData unitData = new(
                     unitName, 
                     panel.DamageInfo.CurrentLevel, 
-                    panel.ArmorInfo.CurrentLevel,
+                    panel.HealthInfo.CurrentLevel,
                     panel.BuildTimeInfo.CurrentLevel);
 
                 newUnitData.Add(unitData);

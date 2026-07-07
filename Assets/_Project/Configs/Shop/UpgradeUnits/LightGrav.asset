@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b960e3a53ccdc154d9abddb2d58ace5a, type: 3}
   m_Name: LightGrav
   m_EditorClassIdentifier: 
-  _preview: {fileID: 21300000, guid: 7dfbbbcdf416f574984cd79a3b96e34f, type: 3}
-  _unitName: {fileID: 11400000, guid: 70941effdcc110b4bb75ebda231e13a6, type: 2}
+  _actorConfig: {fileID: 11400000, guid: 292c450663b84384f968d6d256496423, type: 2}
   _stats: {fileID: 11400000, guid: 8f470131837cc4a469ad2e96508f8a72, type: 2}

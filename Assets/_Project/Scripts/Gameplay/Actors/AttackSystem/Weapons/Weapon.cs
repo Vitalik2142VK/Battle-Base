@@ -3,26 +3,29 @@ using BattleBase.Gameplay.Actors.DamageSystem;
 using BattleBase.Utils;
 using System;
 
-namespace BattleBase.Gameplay.Actors.AttackSystem
+namespace BattleBase.Gameplay.Actors.AttackSystem.Weapons
 {
     public class Weapon : IWeapon
     {
         private readonly Timer _timer;
         private readonly Damage _damage;
+        private readonly ModifiedWeaponConfig _config;
 
         private IProjectileController _projectileController;
         private int _currentNumberShells;
 
         public Weapon(IWeaponConfig config)
         {
-            Config = config ?? throw new ArgumentNullException(nameof(config));
+            if (config == null) 
+                throw new ArgumentNullException(nameof(config));
 
-            _damage = new(Config.DamageConfig);
-            _timer = new Timer(Config.RateShooting);
+            _config = new ModifiedWeaponConfig(config);
+            _damage = new Damage(_config.DamageConfig);
+            _timer = new Timer(_config.RateShooting);
             _currentNumberShells = 0;
         }
 
-        public IWeaponConfig Config { get; }
+        public IWeaponConfig Config => _config;
 
         public bool CanAttack { get; private set; }
 
@@ -75,5 +78,8 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             _timer.SetWaitTime(Config.SpeedReload);
             _currentNumberShells = Config.NumberShells;
         }
+
+        public void Upgrade(IWeaponConfigModificator modificator) =>
+            _config.Modify(modificator);
     }
 }

@@ -11,12 +11,12 @@ namespace BattleBase.ShopSystem
         [SerializeField] private ShopUpgradeButton _upgradeButton;
 
         private CreditsModel _credits;
-        private UnitsUpgradeModel _unitsUpgradeModel;
+        private ActorsUpgradeModel _unitsUpgradeModel;
 
-        private IUpgradeButtonInfo Info => _unitsUpgradeModel.PanelInfo.DamageInfo;
+        private IUpgradeInfo Info => _unitsUpgradeModel.PanelInfo.DamageInfo;
 
         [Inject]
-        public void Construct(CreditsModel credits, UnitsUpgradeModel unitsUpgradeModel)
+        public void Construct(CreditsModel credits, ActorsUpgradeModel unitsUpgradeModel)
         {
             _credits = credits ?? throw new ArgumentNullException(nameof(credits));
             _unitsUpgradeModel = unitsUpgradeModel ?? throw new ArgumentNullException(nameof(unitsUpgradeModel));
@@ -44,7 +44,7 @@ namespace BattleBase.ShopSystem
 
         private void OnClick(ButtonClickHandler _)
         {
-            IUpgradeButtonInfo info = Info;
+            IUpgradeInfo info = Info;
             bool isFullStack = info.CurrentLevel >= info.MaximumLevel;
 
             if (isFullStack == false && _credits.TrySpend(info.CurrentPrice))

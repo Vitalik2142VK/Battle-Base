@@ -5,12 +5,12 @@ using UnityEngine;
 namespace BattleBase.ShopSystem
 {
     [Serializable]
-    public class UpgradeButtonInfo : IUpgradeButtonInfo
+    public class UpgradeButtonInfo : IUpgradeInfo
     {
         [SerializeField] private List<int> _prices = new();
         [SerializeField] private int _currentLevel;
 
-        public UpgradeButtonInfo(IUpgradeButtonInfo other)
+        public UpgradeButtonInfo(IUpgradeInfo other)
         {
             if (other == null)
                 throw new ArgumentNullException(nameof(other));

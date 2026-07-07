@@ -1,6 +1,4 @@
-﻿using BattleBase.Utils.Constants;
-using System;
-using UnityEngine;
+﻿using System;
 
 namespace BattleBase.Gameplay.Actors.DamageSystem
 {

@@ -5,6 +5,7 @@ using BattleBase.Gameplay.Actors.AttackSystem;
 using BattleBase.Gameplay.Actors.AttackSystem.Ammo;
 using BattleBase.Gameplay.Actors.Building;
 using BattleBase.Gameplay.Actors.Colored;
+using BattleBase.Gameplay.Actors.ComponentImprovement;
 using BattleBase.Gameplay.Actors.DamageSystem.Modifiers;
 using BattleBase.Gameplay.Actors.DamageSystem.Removal;
 using BattleBase.Gameplay.Actors.Economy;
@@ -31,6 +32,7 @@ namespace BattleBase.DI
         [SerializeField] private WaypointController _waypointController;
         [SerializeField] private ProjectileSpawner _projectileSpawner;
         [SerializeField] private TrailParticleSpawner _trailParticleSpawner;
+        [SerializeField] private UpgraderConfig _upgradeConfig;
 
         private IContainerBuilder _builder;
 
@@ -44,6 +46,7 @@ namespace BattleBase.DI
             _builder.RegisterInstance<IWaypointController>(_waypointController);
             _builder.RegisterInstance<IProjectileSpawner>(_projectileSpawner);
             _builder.RegisterInstance<ITrailParticleSpawner>(_trailParticleSpawner);
+            _builder.RegisterInstance<IUpgraderConfig>(_upgradeConfig);
 
             _builder.Register<IActorSpawnService, ActorSpawnService>(Lifetime.Scoped);
             _builder.Register<IActorColorService, ActorColorService>(Lifetime.Scoped);
@@ -58,6 +61,7 @@ namespace BattleBase.DI
             RegisterActorBinderRegistry();
             RegisterActorConnectorRegistry();
             RegisterStateMachineInitializer();
+            RegisterActorUpgraderRegistry();
             RegisterAI();
         }
 
@@ -104,6 +108,12 @@ namespace BattleBase.DI
             _builder.Register<IStateTransitionFactory, AttackStateTransitionFactory>(Lifetime.Scoped);
             _builder.Register<IStateTransitionFactory, AttackToMoveStateTransitionFactory>(Lifetime.Scoped);
             _builder.Register<IStateMachineInitializer, StateMachineInitializer>(Lifetime.Scoped);
+        }
+
+        private void RegisterActorUpgraderRegistry()
+        {
+            _builder.Register<IActorComponentUpgrader, DamageUpgrader>(Lifetime.Scoped);
+            _builder.Register<IActorUpgraderRegistry, ActorUpgraderRegistry>(Lifetime.Scoped);
         }
 
         private void RegisterAI()

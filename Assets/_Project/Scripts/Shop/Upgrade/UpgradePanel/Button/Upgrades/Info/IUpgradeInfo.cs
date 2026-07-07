@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace BattleBase.ShopSystem
 {
-    public interface IUpgradeButtonInfo
+    public interface IUpgradeInfo
     {
         public IReadOnlyList<int> Levels { get; }
 

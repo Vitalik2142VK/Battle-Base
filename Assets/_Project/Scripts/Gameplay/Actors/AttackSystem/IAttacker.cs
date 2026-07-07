@@ -1,4 +1,5 @@
 ﻿using BattleBase.Gameplay.Actors.AttackSystem.Ammo;
+using BattleBase.Gameplay.Actors.AttackSystem.Weapons;
 using BattleBase.Gameplay.Actors.DamageSystem;
 using System.Collections.Generic;
 
@@ -15,5 +16,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         public void SetAim(bool isAiming);
 
         public void SetAttacking(bool isAttacking);
+
+        public void Upgrade(IWeaponConfigModificator modificator);
     }
 }

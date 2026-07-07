@@ -1,4 +1,6 @@
-﻿namespace BattleBase.Gameplay.Actors.AttackSystem
+﻿using BattleBase.Gameplay.Actors.AttackSystem.Weapons;
+
+namespace BattleBase.Gameplay.Actors.AttackSystem
 {
     public interface IAttackComponentSource : IComponentSource
     {

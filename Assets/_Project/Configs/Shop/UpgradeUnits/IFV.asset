@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b960e3a53ccdc154d9abddb2d58ace5a, type: 3}
   m_Name: IFV
   m_EditorClassIdentifier: 
-  _preview: {fileID: 21300000, guid: 8c45c4ef45d325e47b59db0edc2c858a, type: 3}
-  _unitName: {fileID: 11400000, guid: 83cb6d71a8436c24c9c6441239dc9310, type: 2}
+  _actorConfig: {fileID: 11400000, guid: e5cdd49978f695d4ba531e6dbe34705c, type: 2}
   _stats: {fileID: 11400000, guid: eea34d62a2668b1459b34ac10dfc7311, type: 2}

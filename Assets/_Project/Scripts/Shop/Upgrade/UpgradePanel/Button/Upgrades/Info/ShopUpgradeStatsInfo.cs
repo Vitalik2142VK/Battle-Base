@@ -13,15 +13,15 @@ namespace BattleBase.ShopSystem
         public ShopUpgradeStatsInfo(IShopUpgradeStatsInfo other)
         {
             _damageInfo = new(other.DamageInfo);
-            _armorInfo = new(other.ArmorInfo);
+            _armorInfo = new(other.HealthInfo);
             _buildTimeInfo = new(other.BuildTimeInfo);
         }
 
-        public IUpgradeButtonInfo DamageInfo => _damageInfo;
+        public IUpgradeInfo DamageInfo => _damageInfo;
 
-        public IUpgradeButtonInfo ArmorInfo => _armorInfo;
+        public IUpgradeInfo HealthInfo => _armorInfo;
 
-        public IUpgradeButtonInfo BuildTimeInfo => _buildTimeInfo;
+        public IUpgradeInfo BuildTimeInfo => _buildTimeInfo;
 
         public void IncreaseDamageLevel() =>
             _damageInfo.Increase();

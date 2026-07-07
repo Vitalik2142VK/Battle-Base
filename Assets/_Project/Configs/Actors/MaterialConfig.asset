@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04efdd215732f9540b4f98bb354fd3c0, type: 3}
   m_Name: MaterialConfig
   m_EditorClassIdentifier: 
+  _startMaterialsCount: 1000
   _maxCapacity: 99900

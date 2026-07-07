@@ -15,6 +15,8 @@ namespace BattleBase.Gameplay.Actors
         [SerializeField][Range(0, 15)] private int _power = 0;
         [SerializeField] private bool _isSummable = true;
 
+        public string Id => _prefab.name;
+
         public ActorView Prefab => _prefab;
 
         public Sprite Icon => _icon;

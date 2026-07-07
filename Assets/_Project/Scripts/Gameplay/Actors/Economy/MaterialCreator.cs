@@ -36,6 +36,7 @@ namespace BattleBase.Gameplay.Actors.Economy
         public void Enable()
         {
             _timer.SetWaitTime(_config.AccrualTime);
+            _timer.RestartTimer();
 
             IncreaseProduction();
         }

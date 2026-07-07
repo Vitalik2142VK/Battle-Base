@@ -1,3 +1,4 @@
+using BattleBase.Gameplay.Actors.AttackSystem.Weapons;
 using BattleBase.Gameplay.Actors.DamageSystem;
 using BattleBase.Utils.Extensions;
 using System;

@@ -1,5 +1,5 @@
 {
-    "idSave": 17,
+    "idSave": 23,
     "SavesData": {
         "_volumeData": {
             "_generalVolume": 1.0,
@@ -15,52 +15,53 @@
                 0,
                 -1,
                 1,
-                4
+                4,
+                5
             ],
-            "_selectedTerritory": 5
+            "_selectedTerritory": 2
         },
         "_shopData": {
-            "_credits": 200,
+            "_credits": 400,
             "_unitUpgrades": [
                 {
-                    "_name": "Heavy Tank",
-                    "_damageLevel": 0,
-                    "_armorLevel": 3,
-                    "_buildTimeLevel": 0
-                },
-                {
-                    "_name": "IFV",
-                    "_damageLevel": 0,
+                    "_name": "Test",
+                    "_damageLevel": 3,
                     "_armorLevel": 0,
                     "_buildTimeLevel": 0
                 },
                 {
-                    "_name": "Light Grav",
-                    "_damageLevel": 0,
+                    "_name": "Test",
+                    "_damageLevel": 5,
                     "_armorLevel": 0,
                     "_buildTimeLevel": 0
                 },
                 {
-                    "_name": "Quad",
-                    "_damageLevel": 0,
+                    "_name": "Test",
+                    "_damageLevel": 1,
                     "_armorLevel": 0,
                     "_buildTimeLevel": 0
                 },
                 {
-                    "_name": "Rocket Launcher",
-                    "_damageLevel": 0,
+                    "_name": "Test",
+                    "_damageLevel": 5,
                     "_armorLevel": 0,
                     "_buildTimeLevel": 0
                 },
                 {
-                    "_name": "Shooter",
-                    "_damageLevel": 0,
+                    "_name": "Test",
+                    "_damageLevel": 5,
                     "_armorLevel": 0,
                     "_buildTimeLevel": 0
                 },
                 {
-                    "_name": "Sniper",
-                    "_damageLevel": 0,
+                    "_name": "Test",
+                    "_damageLevel": 2,
+                    "_armorLevel": 0,
+                    "_buildTimeLevel": 0
+                },
+                {
+                    "_name": "Test",
+                    "_damageLevel": 3,
                     "_armorLevel": 0,
                     "_buildTimeLevel": 0
                 }

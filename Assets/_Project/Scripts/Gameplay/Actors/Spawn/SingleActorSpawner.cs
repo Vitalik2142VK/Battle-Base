@@ -80,13 +80,10 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
         private void ProcessSpawn()
         {
-            Actor actor = _spawnService.Spawn(_currentActorData.Prefab.name, SpawnData);
-
-            Spawned?.Invoke(actor);
-
-            TeamType team = Teamable.TeamType;
-            actor.SetTeam(team);
+            Actor actor = _spawnService.Spawn(_currentActorData.Id, Teamable.TeamType, SpawnData);
             actor.Enable();
+
+            Spawned?.Invoke(actor); //todo check this event
 
             _colorService.EstabilshColor(actor, actor.View);
             _currentActorData = null;

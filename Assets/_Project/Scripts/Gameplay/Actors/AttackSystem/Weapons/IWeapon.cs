@@ -1,7 +1,7 @@
 ﻿using BattleBase.Gameplay.Actors.AttackSystem.Ammo;
 using BattleBase.Gameplay.Actors.DamageSystem;
 
-namespace BattleBase.Gameplay.Actors.AttackSystem
+namespace BattleBase.Gameplay.Actors.AttackSystem.Weapons
 {
     public interface IWeapon : IUpdateable
     {
@@ -14,5 +14,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         public void Enable();
 
         public void AttackTarget(ITarget target);
+
+        public void Upgrade(IWeaponConfigModificator modificator);
     }
 }

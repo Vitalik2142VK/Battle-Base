@@ -20,9 +20,9 @@ namespace BattleBase.ShopSystem
 
         public IShopUpgradeStatsInfo PanelInfo { get; private set; }
 
-        public IShopUnitItemInfo Info { get; private set; }
+        public IShopActorItemConfig Info { get; private set; }
 
-        public void SetInfo(IShopUnitItemInfo info, Action<ShopUnitItemView> clicked)
+        public void SetInfo(IShopActorItemConfig info, Action<ShopUnitItemView> clicked)
         {
             _preview.sprite = info.Preview;
             UnitName = info.UnitName;

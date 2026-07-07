@@ -12,10 +12,10 @@ namespace BattleBase.ShopSystem
         [SerializeField] public UpgradeButtonInfo _armorInfo;
         [SerializeField] public UpgradeButtonInfo _buildTimeInfo;
 
-        public IUpgradeButtonInfo DamageInfo => _damageInfo;
+        public IUpgradeInfo DamageInfo => _damageInfo;
 
-        public IUpgradeButtonInfo ArmorInfo => _armorInfo;
+        public IUpgradeInfo HealthInfo => _armorInfo;
 
-        public IUpgradeButtonInfo BuildTimeInfo => _buildTimeInfo;
+        public IUpgradeInfo BuildTimeInfo => _buildTimeInfo;
     }
 }

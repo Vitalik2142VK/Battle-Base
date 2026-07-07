@@ -1,7 +1,7 @@
 ﻿using BattleBase.Gameplay.Actors.AttackSystem.Ammo;
 using BattleBase.Gameplay.Actors.DamageSystem;
 
-namespace BattleBase.Gameplay.Actors.AttackSystem
+namespace BattleBase.Gameplay.Actors.AttackSystem.Weapons
 {
     public interface IWeaponConfig : IWeaponRange
     {

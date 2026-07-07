@@ -2,10 +2,10 @@ namespace BattleBase.ShopSystem
 {
     public interface IShopUpgradeStatsInfo
     {
-        public IUpgradeButtonInfo DamageInfo { get; }
+        public IUpgradeInfo DamageInfo { get; }
 
-        public IUpgradeButtonInfo ArmorInfo { get; }
+        public IUpgradeInfo HealthInfo { get; }
 
-        public IUpgradeButtonInfo BuildTimeInfo { get; }
+        public IUpgradeInfo BuildTimeInfo { get; }
     }
 }

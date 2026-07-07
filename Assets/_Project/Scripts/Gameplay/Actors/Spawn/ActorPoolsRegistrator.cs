@@ -25,12 +25,11 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
                 ActorFactory factory = new(config, resolver, actorCreator);
 
-                // todo: Constants.PoolMaximumSize it doesn't hurt anymore
-                // it may need to be moved to the config
+                // todo: Constants.PoolMaximumSize it doesn't hurt anymore, it may need to be moved to the config
                 int tempPoolSize = int.MaxValue;
                 ActorPool pool = new(factory, tempPoolSize);
 
-                Pools.Add(config.Data.Prefab.name, pool);
+                Pools.Add(config.Data.Id, pool);
             }
         }
     }

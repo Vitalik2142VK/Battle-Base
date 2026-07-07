@@ -86,16 +86,16 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
         private void ProcessSpawn()
         {
-            if (_powerRegistry.TryReserve(Teamable.TeamType, _currentActorData.Power) == false)
+            TeamType team = Teamable.TeamType;
+
+            if (_powerRegistry.TryReserve(team, _currentActorData.Power) == false)
                 return;
 
-            Actor actor = _spawnService.Spawn(_currentActorData.Prefab.name, SpawnData);
+            Actor actor = _spawnService.Spawn(_currentActorData.Id, team, SpawnData);
 
-            Spawned?.Invoke(actor);
-
-            TeamType team = Teamable.TeamType;
             actor.Enable();
-            actor.SetTeam(team);
+
+            Spawned?.Invoke(actor); //todo check this event
 
             _colorService.EstabilshColor(actor, actor.View);
 
