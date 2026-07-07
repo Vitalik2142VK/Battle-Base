@@ -4,6 +4,6 @@
     {
         public bool TryReserve(TeamType team, int power);
 
-        public IPowerData GetPowerEvent(TeamType team);
+        public IPowerData GetPowerData(TeamType team);
     }
 }

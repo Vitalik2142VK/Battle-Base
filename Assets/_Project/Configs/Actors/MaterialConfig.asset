@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44ed5eb5e4df85e4f8733a58700742d9, type: 3}
-  m_Name: PowerConfig
+  m_Script: {fileID: 11500000, guid: 04efdd215732f9540b4f98bb354fd3c0, type: 3}
+  m_Name: MaterialConfig
   m_EditorClassIdentifier: 
-  _maxCapacity: 100
+  _maxCapacity: 99900

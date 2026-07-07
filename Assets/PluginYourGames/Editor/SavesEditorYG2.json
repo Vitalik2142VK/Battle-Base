@@ -1,5 +1,5 @@
 {
-    "idSave": 15,
+    "idSave": 17,
     "SavesData": {
         "_volumeData": {
             "_generalVolume": 1.0,
@@ -17,15 +17,15 @@
                 1,
                 4
             ],
-            "_selectedTerritory": 1
+            "_selectedTerritory": 5
         },
         "_shopData": {
-            "_credits": 1000,
+            "_credits": 200,
             "_unitUpgrades": [
                 {
                     "_name": "Heavy Tank",
                     "_damageLevel": 0,
-                    "_armorLevel": 0,
+                    "_armorLevel": 3,
                     "_buildTimeLevel": 0
                 },
                 {

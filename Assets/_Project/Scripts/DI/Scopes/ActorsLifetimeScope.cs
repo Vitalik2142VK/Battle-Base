@@ -7,6 +7,7 @@ using BattleBase.Gameplay.Actors.Building;
 using BattleBase.Gameplay.Actors.Colored;
 using BattleBase.Gameplay.Actors.DamageSystem.Modifiers;
 using BattleBase.Gameplay.Actors.DamageSystem.Removal;
+using BattleBase.Gameplay.Actors.Economy;
 using BattleBase.Gameplay.Actors.Energy;
 using BattleBase.Gameplay.Actors.HealthSystem;
 using BattleBase.Gameplay.Actors.ImproveSystem;
@@ -71,6 +72,7 @@ namespace BattleBase.DI
             _builder.Register<IComponentFactory, ImprovementFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, DemolitionFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, PowerGeneratorFactory>(Lifetime.Scoped);
+            _builder.Register<IComponentFactory, MaterialCreatorFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, ProductionServiceFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactoryRegistry, ComponentFactoryRegistry>(Lifetime.Scoped);
         }
@@ -85,6 +87,7 @@ namespace BattleBase.DI
             _builder.Register<IActorComponentBinder, ImprovementBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, DemolitionBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, PowerGeneratorBinder>(Lifetime.Scoped);
+            _builder.Register<IActorComponentBinder, MaterialCreatorBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, ProductionServiceBinder>(Lifetime.Scoped);
             _builder.Register<IActorBinderRegistry, ActorBinderRegistry>(Lifetime.Scoped);
         }

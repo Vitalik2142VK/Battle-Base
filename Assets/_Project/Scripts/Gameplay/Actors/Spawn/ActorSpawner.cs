@@ -1,3 +1,4 @@
+using BattleBase.Gameplay.Actors.Economy;
 using System;
 using System.Collections.Generic;
 
@@ -6,14 +7,16 @@ namespace BattleBase.Gameplay.Actors.Spawn
     public abstract class ActorSpawner : IActorSpawner
     {
         private readonly List<IActorData> _actorDatas;
+        private readonly IMaterialRegistry _materialRegistry;
 
         public abstract event Action<IActor> Spawned;
 
-        public ActorSpawner(IEnumerable<IActorData> actorsToCreate)
+        public ActorSpawner(IEnumerable<IActorData> actorsToCreate, IMaterialRegistry materialRegistry)
         {
             if (actorsToCreate == null)
                 throw new ArgumentNullException(nameof(actorsToCreate));
 
+            _materialRegistry = materialRegistry ?? throw new ArgumentNullException(nameof(materialRegistry));
             _actorDatas = new List<IActorData>(actorsToCreate);
         }
 
@@ -22,6 +25,8 @@ namespace BattleBase.Gameplay.Actors.Spawn
         protected ITeamable Teamable { get; private set; }
 
         protected ISpawnPoint SpawnData { get; private set; }
+
+        protected bool IsInProcessSpawn { get; private set; }
 
         public void Init(ITeamable teamable, ISpawnPoint spawnData)
         {
@@ -39,5 +44,22 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
         protected bool ConstrainActorData(IActorData actorData) =>
             _actorDatas.Contains(actorData);
+
+        protected bool CanBeginSpawn(IActorData actorData)
+        {
+            if (_materialRegistry.TrySpend(Teamable.TeamType, actorData.Price))
+            {
+                IsInProcessSpawn = true;
+
+                return true;
+            }
+
+            return false;
+        }
+        
+        protected void FinishSpawn()
+        {
+            IsInProcessSpawn = false;
+        }
     }
 }

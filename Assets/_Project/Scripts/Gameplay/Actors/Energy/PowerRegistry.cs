@@ -24,7 +24,7 @@ namespace BattleBase.Gameplay.Actors.Energy
         public bool TryReserve(TeamType team, int power) =>
             _powers[team].TryReserve(power);
 
-        public IPowerData GetPowerEvent(TeamType team) =>
+        public IPowerData GetPowerData(TeamType team) =>
             _powers[team];
 
         public void Release(TeamType team, IActorData actorData)

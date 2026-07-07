@@ -1,4 +1,5 @@
 using BattleBase.Gameplay.Actors.Colored;
+using BattleBase.Gameplay.Actors.Economy;
 using BattleBase.Utils;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
     {
         private readonly IActorSpawnService _spawnService;
         private readonly IActorColorService _colorService;
+        
         private readonly Timer _timer;
 
         private IActorData _currentActorData;
@@ -19,7 +21,8 @@ namespace BattleBase.Gameplay.Actors.Spawn
         public SingleActorSpawner(
             IEnumerable<IActorData> actorsToCreate,
             IActorSpawnService actorSpawnService,
-            IActorColorService colorService) : base(actorsToCreate)
+            IActorColorService colorService,
+            IMaterialRegistry materialRegistry) : base(actorsToCreate, materialRegistry)
         {
             _spawnService = actorSpawnService ?? throw new ArgumentNullException(nameof(actorSpawnService));
             _colorService = colorService ?? throw new ArgumentNullException(nameof(colorService));
@@ -41,6 +44,12 @@ namespace BattleBase.Gameplay.Actors.Spawn
         {
             if (_currentActorData == null || _isDisable)
                 return;
+
+            if (IsInProcessSpawn == false)
+            {
+                if (CanBeginSpawn(_currentActorData) == false)
+                    return;
+            }
 
             if (_timer.IsTimeUp == false)
             {
@@ -81,6 +90,8 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
             _colorService.EstabilshColor(actor, actor.View);
             _currentActorData = null;
+
+            FinishSpawn();
         }
     }
 }

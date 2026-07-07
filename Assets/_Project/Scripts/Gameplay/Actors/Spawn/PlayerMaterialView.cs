@@ -1,16 +1,15 @@
-﻿using TMPro;
+using BattleBase.Gameplay.Actors.Economy;
+using TMPro;
 using UnityEngine;
 using VContainer;
 
-namespace BattleBase.Gameplay.Actors.Energy
+namespace BattleBase.Gameplay.Actors.Spawn
 {
-    public class PlayerPowerView : MonoBehaviour
+    public class PlayerMaterialView : MonoBehaviour
     {
-        private const string Format = "{0}/{1}";
-
         [SerializeField] private TMP_Text _countText;
 
-        private IPowerData _data;
+        private IMaterialData _data;
 
         private void OnEnable()
         {
@@ -29,12 +28,12 @@ namespace BattleBase.Gameplay.Actors.Energy
         }
 
         [Inject]
-        public void Construct(IPowerRegistry powerRegistry)
+        public void Construct(IMaterialRegistry materialRegistry)
         {
-            if (powerRegistry == null)
-                throw new System.ArgumentNullException(nameof(powerRegistry));
+            if (materialRegistry == null)
+                throw new System.ArgumentNullException(nameof(materialRegistry));
 
-            _data = powerRegistry.GetPowerData(TeamType.Player);
+            _data = materialRegistry.GetMaterialData(TeamType.Player);
 
             if (gameObject.activeSelf)
             {
@@ -44,7 +43,7 @@ namespace BattleBase.Gameplay.Actors.Energy
             }
         }
 
-        private void OnUpdateData() => 
-            _countText.text = string.Format(Format, _data.UsedEnergy, _data.CurrentCapacity);
+        private void OnUpdateData() =>
+            _countText.text = _data.CurrentMaterials.ToString();
     }
 }

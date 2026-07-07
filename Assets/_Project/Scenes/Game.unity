@@ -7428,6 +7428,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1127423322}
+  - component: {fileID: 1127423323}
   m_Layer: 5
   m_Name: Materials
   m_TagString: Untagged
@@ -7456,6 +7457,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1127423323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127423321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e01a013a5e88b1b41bcb61b4b0980bff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _countText: {fileID: 1682106924}
 --- !u!4 &1131239416 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1934111880513334086, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
@@ -9118,6 +9132,7 @@ MonoBehaviour:
   _itemInfoPopUp: {fileID: 1821928320}
   _commandShowItemInfoPopUp: {fileID: 407241253}
   _powerConfig: {fileID: 11400000, guid: fcd3a3c285b2cb441a52a7f91b139dc2, type: 2}
+  _materialConfig: {fileID: 11400000, guid: 5685666f6f06e4d4f8351ee3fa53778e, type: 2}
 --- !u!1 &1393786514
 GameObject:
   m_ObjectHideFlags: 0

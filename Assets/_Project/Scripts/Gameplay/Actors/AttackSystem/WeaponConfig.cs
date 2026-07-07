@@ -23,12 +23,12 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
         public IDamageConfig DamageConfig => _damageConfig;
 
+        public float Range => _firingRange;
+
         public float RateShooting => _rateShooting;
 
         public float SpeedReload => _speedReload;
 
         public int NumberShells => _numberShells;
-
-        public float Range => _firingRange;
     }
 }

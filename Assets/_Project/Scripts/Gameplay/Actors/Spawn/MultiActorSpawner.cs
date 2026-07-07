@@ -1,4 +1,5 @@
 using BattleBase.Gameplay.Actors.Colored;
+using BattleBase.Gameplay.Actors.Economy;
 using BattleBase.Gameplay.Actors.Energy;
 using BattleBase.Utils;
 using System;
@@ -23,7 +24,8 @@ namespace BattleBase.Gameplay.Actors.Spawn
             IEnumerable<IActorData> actorsToCreate,
             IActorSpawnService actorSpawnService,
             IActorColorService colorService,
-            IPowerRegistry powerRegistry) : base(actorsToCreate)
+            IMaterialRegistry materialRegistry,
+            IPowerRegistry powerRegistry) : base(actorsToCreate, materialRegistry)
         {
             if (actorsToCreate == null)
                 throw new ArgumentNullException(nameof(actorsToCreate));
@@ -32,7 +34,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
             _spawnService = actorSpawnService ?? throw new ArgumentNullException(nameof(actorSpawnService));
             _colorService = colorService ?? throw new ArgumentNullException(nameof(colorService));
-            _powerRegistry = powerRegistry?? throw new ArgumentNullException(nameof(powerRegistry));
+            _powerRegistry = powerRegistry ?? throw new ArgumentNullException(nameof(powerRegistry));
             _timer = new();
         }
 
@@ -51,6 +53,12 @@ namespace BattleBase.Gameplay.Actors.Spawn
         {
             if (_currentActorData == null || _isDisable)
                 return;
+
+            if (IsInProcessSpawn == false)
+            {
+                if (CanBeginSpawn(_currentActorData) == false)
+                    return;
+            }
 
             _timer.Tick(delta);
 
@@ -95,6 +103,8 @@ namespace BattleBase.Gameplay.Actors.Spawn
                 EstablisCurrentActorSpawn(_actorsQueue.Dequeue());
             else
                 _currentActorData = null;
+
+            FinishSpawn();
         }
 
         private void EstablisCurrentActorSpawn(IActorData actorData)

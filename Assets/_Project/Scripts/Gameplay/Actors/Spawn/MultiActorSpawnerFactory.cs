@@ -1,4 +1,5 @@
 using BattleBase.Gameplay.Actors.Colored;
+using BattleBase.Gameplay.Actors.Economy;
 using BattleBase.Gameplay.Actors.Energy;
 using System;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
         private IActorSpawnService _spawnService;
         private IActorColorService _colorService;
         private IPowerRegistry _powerRegistry;
+        private IMaterialRegistry _materialRegistry;
 
         public MultiActorSpawnerFactory(IObjectResolver resolver)
         {
@@ -30,10 +32,16 @@ namespace BattleBase.Gameplay.Actors.Spawn
             _spawnService ??= _resolver.Resolve<IActorSpawnService>();
             _colorService ??= _resolver.Resolve<IActorColorService>();
             _powerRegistry ??= _resolver.Resolve<IPowerRegistry>();
+            _materialRegistry ??= _resolver.Resolve<IMaterialRegistry>();
 
             var actorsToCreate = spawnComponentSource.ActorsConfigs.Select(a => a.Data);
 
-            return new MultiActorSpawner(actorsToCreate, _spawnService, _colorService, _powerRegistry);
+            return new MultiActorSpawner(
+                actorsToCreate, 
+                _spawnService, 
+                _colorService, 
+                _materialRegistry, 
+                _powerRegistry);
         }
     }
 }
