@@ -7,11 +7,14 @@ namespace BattleBase.Gameplay.Actors.Production
     {
         private readonly ICommand _command;
 
-        public ProductionOption(ICommand command, IProductionData productionData)
+        public ProductionOption(ICommand command, IProductionData productionData, TypeProduction type)
         {
             _command = command ?? throw new ArgumentNullException(nameof(command));
             ProductionData = productionData ?? throw new ArgumentNullException(nameof(productionData));
+            Type = type;
         }
+
+        public TypeProduction Type { get; }
 
         public IProductionData ProductionData { get; }
 

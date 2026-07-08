@@ -25,11 +25,6 @@ namespace BattleBase.Gameplay.AI
 
         private void Start()
         {
-#if UNITY_EDITOR
-            if (_isDisable)
-                return;
-#endif
-
             StartCoroutine(ActionAI());
         }
 
@@ -45,6 +40,14 @@ namespace BattleBase.Gameplay.AI
 
             while (gameObject.activeSelf)
             {
+#if UNITY_EDITOR
+                if (_isDisable)
+                {
+                    yield return _sleepTime;
+
+                    continue;
+                }
+#endif
                 if (_brain.TryGetCommand(out ICommand command))
                     command.Execute();
 

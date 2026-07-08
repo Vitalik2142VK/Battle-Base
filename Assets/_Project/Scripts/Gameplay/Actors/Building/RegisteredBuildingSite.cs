@@ -35,7 +35,7 @@ namespace BattleBase.Gameplay.Actors.Building
                 _destroyableEvents.Destroyed -= OnShowBuildingSite;
         }
 
-        public bool TryGetActorSpawner(out IProductionService productionService) =>
+        public bool TryGetProductionService(out IProductionService productionService) =>
             _currentActor.TryGetComponent(out productionService);
 
         private void OnSetActor(IActor actor)
