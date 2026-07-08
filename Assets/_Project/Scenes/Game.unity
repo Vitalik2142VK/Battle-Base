@@ -489,11 +489,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1190424824800861562, guid: 2a5c3eede0267bb4bb0b222817489885,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 117706252}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a5c3eede0267bb4bb0b222817489885, type: 3}
 --- !u!4 &117706249 stripped
 Transform:
@@ -511,24 +507,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d513c5066e5cc848bf72cbb1a922fa8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &117706251 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1190424824800861562, guid: 2a5c3eede0267bb4bb0b222817489885,
-    type: 3}
-  m_PrefabInstance: {fileID: 117706248}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &117706252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 117706251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d268ea234bdd94a83b78b8d5b6efce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &120401454
@@ -4408,6 +4386,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
+      propertyPath: _state
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
       propertyPath: _isPlayer
       value: 1
       objectReference: {fileID: 0}
@@ -6614,7 +6597,6 @@ MonoBehaviour:
   - {fileID: 1398720891}
   - {fileID: 1840300234}
   - {fileID: 870893053}
-  - {fileID: 0}
   - {fileID: 1063209183}
   - {fileID: 1531430613}
   - {fileID: 563600969}
@@ -6624,6 +6606,7 @@ MonoBehaviour:
   _projectileSpawner: {fileID: 1063209185}
   _trailParticleSpawner: {fileID: 1531430615}
   _upgradeConfig: {fileID: 11400000, guid: acc1ee7754cf0934a9c271407f23bf99, type: 2}
+  _brainConfing: {fileID: 11400000, guid: d1e9cac88a791b24bba272ba91239dfd, type: 2}
 --- !u!4 &939699205
 Transform:
   m_ObjectHideFlags: 0
@@ -10148,6 +10131,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}
+      propertyPath: _state
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
       propertyPath: _isPlayer
       value: 1
       objectReference: {fileID: 0}
@@ -12883,6 +12871,11 @@ PrefabInstance:
         type: 3}
       propertyPath: <Team>k__BackingField
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+        type: 3}
+      propertyPath: _state
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9193577746382557282, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
         type: 3}

@@ -4,6 +4,6 @@ namespace BattleBase.Gameplay.Actors.Building
 {
     public interface IRegisteredBuildingSite
     {
-        public bool TryGetActorSpawner(out IProductionService productionService);
+        public bool TryGetProductionService(out IProductionService productionService);
     }
 }

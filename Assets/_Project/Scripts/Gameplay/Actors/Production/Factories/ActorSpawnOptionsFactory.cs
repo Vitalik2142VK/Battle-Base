@@ -20,7 +20,7 @@ namespace BattleBase.Gameplay.Actors.Production.Factories
             foreach (var actorData in _spawner.ActorDatas)
             {
                 SpawnCommand spawnCommand = new(_spawner, actorData);
-                ProductionOption productionOption = new(spawnCommand, actorData);
+                ProductionOption productionOption = new(spawnCommand, actorData, TypeProduction.Spawn);
                 result.Add(productionOption);
             }
 

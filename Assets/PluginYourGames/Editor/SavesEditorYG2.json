@@ -25,19 +25,7 @@
             "_unitUpgrades": [
                 {
                     "_name": "Test",
-                    "_damageLevel": 3,
-                    "_armorLevel": 0,
-                    "_buildTimeLevel": 0
-                },
-                {
-                    "_name": "Test",
                     "_damageLevel": 5,
-                    "_armorLevel": 0,
-                    "_buildTimeLevel": 0
-                },
-                {
-                    "_name": "Test",
-                    "_damageLevel": 1,
                     "_armorLevel": 0,
                     "_buildTimeLevel": 0
                 },
@@ -55,13 +43,25 @@
                 },
                 {
                     "_name": "Test",
-                    "_damageLevel": 2,
+                    "_damageLevel": 5,
                     "_armorLevel": 0,
                     "_buildTimeLevel": 0
                 },
                 {
                     "_name": "Test",
-                    "_damageLevel": 3,
+                    "_damageLevel": 5,
+                    "_armorLevel": 0,
+                    "_buildTimeLevel": 0
+                },
+                {
+                    "_name": "Test",
+                    "_damageLevel": 5,
+                    "_armorLevel": 0,
+                    "_buildTimeLevel": 0
+                },
+                {
+                    "_name": "Test",
+                    "_damageLevel": 5,
                     "_armorLevel": 0,
                     "_buildTimeLevel": 0
                 }

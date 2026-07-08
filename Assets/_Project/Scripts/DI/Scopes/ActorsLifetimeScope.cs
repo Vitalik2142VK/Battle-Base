@@ -17,11 +17,11 @@ using BattleBase.Gameplay.Actors.Production;
 using BattleBase.Gameplay.Actors.Spawn;
 using BattleBase.Gameplay.Actors.Visual.Particle;
 using BattleBase.Gameplay.AI;
+using BattleBase.Gameplay.AI.TacticTypes;
 using BattleBase.Gameplay.Levels;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
-using static BattleBase.Gameplay.Actors.DamageSystem.Removal.DemolitionBinder;
 
 namespace BattleBase.DI
 {
@@ -33,6 +33,7 @@ namespace BattleBase.DI
         [SerializeField] private ProjectileSpawner _projectileSpawner;
         [SerializeField] private TrailParticleSpawner _trailParticleSpawner;
         [SerializeField] private UpgraderConfig _upgradeConfig;
+        [SerializeField] private BrainConfing _brainConfing;
 
         private IContainerBuilder _builder;
 
@@ -118,9 +119,10 @@ namespace BattleBase.DI
 
         private void RegisterAI()
         {
-            _builder.Register<IBrain, Brain>(Lifetime.Scoped);
+            _builder.RegisterInstance<IBrainConfing>(_brainConfing);
+
             _builder.Register<ITactic, RandomTactic>(Lifetime.Scoped);
-            _builder.Register<RandomTacticSetting>(Lifetime.Scoped).WithParameter(TeamType.Enemy);
+            _builder.Register<IBrain, Brain>(Lifetime.Scoped);
         }
     }
 }

@@ -4,7 +4,7 @@ using System;
 
 namespace BattleBase.Gameplay.Actors.DamageSystem.Removal
 {
-    public partial class DemolitionBinder : IActorComponentBinder
+    public class DemolitionBinder : IActorComponentBinder
     {
         public void Bind(IActor actor, IActorView view)
         {

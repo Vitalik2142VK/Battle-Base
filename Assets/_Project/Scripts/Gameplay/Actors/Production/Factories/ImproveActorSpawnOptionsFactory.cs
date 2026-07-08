@@ -24,14 +24,14 @@ namespace BattleBase.Gameplay.Actors.Production.Factories
             foreach (var actorData in _improvement.ActorDatas)
             {
                 SpawnCommand spawnCommand = new(_spawner, actorData);
-                ProductionOption productionOption = new(spawnCommand, actorData);
+                ProductionOption productionOption = new(spawnCommand, actorData, TypeProduction.Spawn);
                 productionOptions.Add(productionOption);
             }
 
             if (_improvement.CanImprove)
             {
                 DelegateCommand command = new(() => _improvement.Improve());
-                ProductionOption improveProductionOption = new(command, _improvement.Data);
+                ProductionOption improveProductionOption = new(command, _improvement.Data, TypeProduction.Improve);
                 productionOptions.Add(improveProductionOption);
             }
 
