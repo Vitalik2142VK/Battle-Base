@@ -17,6 +17,9 @@ MonoBehaviour:
   - _icon: {fileID: 2800000, guid: 104abdce05b0d5f4784f7cdffce90bb1, type: 3}
     _typeName: VContainer.Unity.LifetimeScope, VContainer, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  - _icon: {fileID: 2800000, guid: 50dc485d38b56e64e9bd670ca8eba13e, type: 3}
+    _typeName: BattleBase.Gameplay.Actors.Visual.UiLookToCamera, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   - _icon: {fileID: 2800000, guid: 6edd3a10d3b76374ab50472d561ee43a, type: 3}
     _typeName: BattleBase.DI.IInjectable, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
