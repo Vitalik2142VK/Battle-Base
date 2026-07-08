@@ -2,7 +2,7 @@
 
 namespace BattleBase.Gameplay.Actors.ImproveSystem
 {
-    public interface IImprovementData : IProductionData
+    public interface IImproverData : IProductionData
     {
         public float PriceCoefficient { get; }
     }

@@ -9,9 +9,9 @@ namespace BattleBase.Gameplay.Actors.Production.Factories
     public class ImproveActorSpawnOptionsFactory : IProductionOptionsFactory
     {
         private readonly IActorSpawner _spawner;
-        private readonly ISpawnerImprovement _improvement;
+        private readonly ISpawnerImprover _improvement;
 
-        public ImproveActorSpawnOptionsFactory(IActorSpawner spawner, ISpawnerImprovement improvement)
+        public ImproveActorSpawnOptionsFactory(IActorSpawner spawner, ISpawnerImprover improvement)
         {
             _spawner = spawner ?? throw new ArgumentNullException(nameof(spawner));
             _improvement = improvement ?? throw new ArgumentNullException(nameof(improvement));

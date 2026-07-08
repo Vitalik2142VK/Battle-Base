@@ -5,15 +5,15 @@ using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.ImproveSystem
 {
-    public class SpawnerImprovement : ISpawnerImprovement
+    public class SpawnerImprover : ISpawnerImprover
     {
         private readonly List<IActorData> _availableActorDatas;
         private readonly List<IActorData> _currentActorDatas;
-        private readonly IImprovement _improvement;
+        private readonly IImprover _improvement;
 
         private int _currentNumImprove;
 
-        public SpawnerImprovement(IActorDataStorage actorStorage, IImprovement improvement)
+        public SpawnerImprover(IActorDataStorage actorStorage, IImprover improvement)
         {
             if (actorStorage == null)
                 throw new ArgumentNullException(nameof(actorStorage));
@@ -26,7 +26,7 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
 
         public IEnumerable<IActorData> ActorDatas => _currentActorDatas;
 
-        public IImprovementData Data => _improvement.Data;
+        public IImproverData Data => _improvement.Data;
 
         public bool CanImprove => _currentNumImprove < _availableActorDatas.Count;
 

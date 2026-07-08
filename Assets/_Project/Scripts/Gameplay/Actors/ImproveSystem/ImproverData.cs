@@ -4,7 +4,7 @@ using UnityEngine;
 namespace BattleBase.Gameplay.Actors.ImproveSystem
 {
     [System.Serializable]
-    public class ImprovementData : IImprovementData
+    public class ImproverData : IImproverData
     {
         [SerializeField] private Sprite _icon;
         [SerializeField] private LanguageTextsSet _name;

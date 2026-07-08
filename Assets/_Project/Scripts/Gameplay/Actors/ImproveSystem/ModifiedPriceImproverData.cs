@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.ImproveSystem
 {
-    public class ModifiedPriceImprovementData : IImprovementData
+    public class ModifiedPriceImproverData : IImproverData
     {
-        private readonly IImprovementData _data;
+        private readonly IImproverData _data;
 
         private int _initialPrice;
 
-        public ModifiedPriceImprovementData(IImprovementData data)
+        public ModifiedPriceImproverData(IImproverData data)
         {
             _data = data ?? throw new ArgumentNullException(nameof(data));
         }

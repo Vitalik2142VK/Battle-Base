@@ -7,9 +7,9 @@ namespace BattleBase.Gameplay.Actors.Production.Factories
 {
     public class ImprovePowerGeneratorOptionsFactory : IProductionOptionsFactory
     {
-        private readonly IPowerGeneratorImprovement _improvement;
+        private readonly IPowerGeneratorImprover _improvement;
 
-        public ImprovePowerGeneratorOptionsFactory(IPowerGeneratorImprovement improvement)
+        public ImprovePowerGeneratorOptionsFactory(IPowerGeneratorImprover improvement)
         {
             _improvement = improvement ?? throw new ArgumentNullException(nameof(improvement));
         }

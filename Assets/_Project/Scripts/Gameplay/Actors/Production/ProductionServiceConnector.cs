@@ -40,7 +40,7 @@ namespace BattleBase.Gameplay.Actors.Production
             if (_actor.TryGetComponent(out IActorSpawner spawner) == false)
                 return;
 
-            if (_actor.TryGetComponent(out ISpawnerImprovement spawnerImprovement))
+            if (_actor.TryGetComponent(out ISpawnerImprover spawnerImprovement))
                 _factories.Add(new ImproveActorSpawnOptionsFactory(spawner, spawnerImprovement));
             else
                 _factories.Add(new ActorSpawnOptionsFactory(spawner));
@@ -51,7 +51,7 @@ namespace BattleBase.Gameplay.Actors.Production
             if (_actor.TryGetComponent(out IPowerGenerator _) == false)
                 return;
 
-            if (_actor.TryGetComponent(out IPowerGeneratorImprovement powerGeneratorImprovement))
+            if (_actor.TryGetComponent(out IPowerGeneratorImprover powerGeneratorImprovement))
                 _factories.Add(new ImprovePowerGeneratorOptionsFactory(powerGeneratorImprovement));
         }
     }

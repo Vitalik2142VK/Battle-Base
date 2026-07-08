@@ -2,5 +2,5 @@
 
 namespace BattleBase.Gameplay.Actors.ImproveSystem
 {
-    public interface ISpawnerImprovement : IImprovement, IActorDataStorage { }
+    public interface ISpawnerImprover : IImprover, IActorDataStorage { }
 }

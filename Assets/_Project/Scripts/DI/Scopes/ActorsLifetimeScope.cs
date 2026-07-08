@@ -74,7 +74,7 @@ namespace BattleBase.DI
             _builder.Register<IComponentFactory, SingleActorSpawnerFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, MultiActorSpawnerFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, ActorStateMachineFactory>(Lifetime.Scoped);
-            _builder.Register<IComponentFactory, ImprovementFactory>(Lifetime.Scoped);
+            _builder.Register<IComponentFactory, ImproverFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, DemolitionFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, PowerGeneratorFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, MaterialCreatorFactory>(Lifetime.Scoped);
@@ -89,7 +89,7 @@ namespace BattleBase.DI
             _builder.Register<IActorComponentBinder, MoverBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, ActorSpawnerBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, ColoredActorBinder>(Lifetime.Scoped);
-            _builder.Register<IActorComponentBinder, ImprovementBinder>(Lifetime.Scoped);
+            _builder.Register<IActorComponentBinder, ImproverBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, DemolitionBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, PowerGeneratorBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, MaterialCreatorBinder>(Lifetime.Scoped);

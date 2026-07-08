@@ -19,7 +19,7 @@ namespace BattleBase.Gameplay.Actors.DamageSystem.Removal
 
             IProductionData currentData;
 
-            if (actor.TryGetComponent(out IImprovement improvement))
+            if (actor.TryGetComponent(out IImprover improvement))
                 currentData = improvement.Data;
             else
                 currentData = actor.Data;

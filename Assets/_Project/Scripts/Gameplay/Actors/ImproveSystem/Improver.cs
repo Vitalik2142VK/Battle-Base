@@ -2,16 +2,16 @@
 
 namespace BattleBase.Gameplay.Actors.ImproveSystem
 {
-    public class Improvement : IImprovement
+    public class Improver : IImprover
     {
-        private readonly ModifiedPriceImprovementData _data;
+        private readonly ModifiedPriceImproverData _data;
 
-        public Improvement(IImprovementData data)
+        public Improver(IImproverData data)
         {
-            _data = new ModifiedPriceImprovementData(data);
+            _data = new ModifiedPriceImproverData(data);
         }
 
-        public IImprovementData Data => _data;
+        public IImproverData Data => _data;
 
         public bool CanImprove => true;
 

@@ -4,18 +4,18 @@ using System;
 
 namespace BattleBase.Gameplay.Actors.ImproveSystem
 {
-    public class PowerGeneratorImprovement : IPowerGeneratorImprovement
+    public class PowerGeneratorImprover : IPowerGeneratorImprover
     {
-        private readonly IImprovement _improvement;
+        private readonly IImprover _improvement;
         private readonly IPowerGenerator _powerGenerator;
 
-        public PowerGeneratorImprovement(IPowerGenerator powerGenerator, IImprovement improvement)
+        public PowerGeneratorImprover(IPowerGenerator powerGenerator, IImprover improvement)
         {
             _powerGenerator = powerGenerator ?? throw new ArgumentNullException(nameof(powerGenerator));
             _improvement = improvement ?? throw new ArgumentNullException(nameof(improvement));
         }
 
-        public IImprovementData Data => _improvement.Data;
+        public IImproverData Data => _improvement.Data;
 
         public bool CanImprove => _powerGenerator.CanIncreasePower;
 
