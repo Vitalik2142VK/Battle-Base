@@ -31,12 +31,12 @@ MonoBehaviour:
       _tr:
         _text: Test
     _constructionTime: 2
-    _price: 250
+    _price: 350
     _power: 0
     _isSummable: 0
   _components:
   - {fileID: 11400000, guid: a6605a7d7c2dada47a2eb6433d89a952, type: 2}
+  - {fileID: 11400000, guid: 0b3a21d06b6584e4ba247b20229b4904, type: 2}
   - {fileID: 11400000, guid: b8512275fc64e9f45a1890ad07e06d59, type: 2}
   - {fileID: 11400000, guid: e629ce5a760c9a3438910ab681147319, type: 2}
-  - {fileID: 11400000, guid: f5c7534f5ed833048922450dceb78768, type: 2}
   - {fileID: 11400000, guid: 48a15801c76ab6d499e7fee6c3b8fceb, type: 2}

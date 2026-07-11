@@ -19,13 +19,13 @@ namespace BattleBase.Gameplay.Actors.Spawn
             _resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
         }
 
-        public Type SourceType => typeof(SingleSpawnComponentSource);
+        public Type SourceType => typeof(SingleActorSpawnerSource);
 
         public IActorComponent Create(IComponentSource source)
         {
-            if (source is ISpawnComponentSource spawnComponentSource == false)
+            if (source is IActorSpawnerSource spawnComponentSource == false)
                 throw new ArgumentException(
-                    $"{nameof(source)} 'source' does not implement {nameof(ISpawnComponentSource)}");
+                    $"{nameof(source)} 'source' does not implement {nameof(IActorSpawnerSource)}");
 
             _spawnService ??= _resolver.Resolve<IActorSpawnService>();
             _colorService ??= _resolver.Resolve<IActorColorService>();

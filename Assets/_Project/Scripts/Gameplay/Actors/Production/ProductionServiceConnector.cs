@@ -1,4 +1,5 @@
-﻿using BattleBase.Gameplay.Actors.Energy;
+﻿using BattleBase.Gameplay.Actors.Economy;
+using BattleBase.Gameplay.Actors.Energy;
 using BattleBase.Gameplay.Actors.ImproveSystem;
 using BattleBase.Gameplay.Actors.Production.Factories;
 using BattleBase.Gameplay.Actors.Spawn;
@@ -27,6 +28,7 @@ namespace BattleBase.Gameplay.Actors.Production
 
             AddActorSpawnOptionsFactory();
             AddPowerGeneratorOptionsFactory();
+            AddMaterialCreatorOptionsFactory();
 
             foreach (var factory in _factories)
                 productionService.AddProductionFactory(factory);
@@ -40,8 +42,8 @@ namespace BattleBase.Gameplay.Actors.Production
             if (_actor.TryGetComponent(out IActorSpawner spawner) == false)
                 return;
 
-            if (_actor.TryGetComponent(out ISpawnerImprover spawnerImprovement))
-                _factories.Add(new ImproveActorSpawnOptionsFactory(spawner, spawnerImprovement));
+            if (_actor.TryGetComponent(out ISpawnerImprover improver))
+                _factories.Add(new ImproveActorSpawnOptionsFactory(spawner, improver));
             else
                 _factories.Add(new ActorSpawnOptionsFactory(spawner));
         }
@@ -51,8 +53,17 @@ namespace BattleBase.Gameplay.Actors.Production
             if (_actor.TryGetComponent(out IPowerGenerator _) == false)
                 return;
 
-            if (_actor.TryGetComponent(out IPowerGeneratorImprover powerGeneratorImprovement))
-                _factories.Add(new ImprovePowerGeneratorOptionsFactory(powerGeneratorImprovement));
+            if (_actor.TryGetComponent(out IPowerGeneratorImprover improver))
+                _factories.Add(new ImprovePowerGeneratorOptionsFactory(improver));
+        }
+
+        private void AddMaterialCreatorOptionsFactory()
+        {
+            if (_actor.TryGetComponent(out IMaterialCreator _) == false)
+                return;
+
+            if (_actor.TryGetComponent(out IMaterialCreatorImprover improver))
+                _factories.Add(new ImproveMaterialCreatorOptionsFactory(improver));
         }
     }
 }

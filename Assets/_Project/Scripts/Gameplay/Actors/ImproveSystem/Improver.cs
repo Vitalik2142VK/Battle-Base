@@ -1,38 +1,48 @@
 ﻿using BattleBase.Gameplay.Actors.Production;
+using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.ImproveSystem
 {
     public class Improver : IImprover
     {
-        private readonly ModifiedPriceImproverData _data;
+        private readonly List<int> _improvePrices;
+        private readonly ModifiedImproverData _data;
+
+        private int _currentPriceIndex;
 
         public Improver(IImproverData data)
         {
-            _data = new ModifiedPriceImproverData(data);
+            if (data == null)
+                throw new System.ArgumentNullException(nameof(data));
+
+            _improvePrices = new List<int>(data.ImprovePrices);
+            _data = new ModifiedImproverData(data);
+            _currentPriceIndex = 0;
         }
 
-        public IImproverData Data => _data;
+        public IProductionData Data => _data;
 
-        public bool CanImprove => true;
+        public bool CanImprove => _currentPriceIndex < _improvePrices.Count;
 
-        public void Init(IProductionData currentData)
+        public void Enable()
         {
-            if (currentData == null)
-                throw new System.ArgumentNullException(nameof(currentData));
+            _currentPriceIndex = 0;
 
-            _data.SetInitialPrice(currentData.Price);
-        }
-
-        public void Disable()
-        {
-            _data.Reset();
+            int price = _improvePrices[_currentPriceIndex];
+            _data.SetPrice(price);
         }
 
         public void Improve()
         {
-            _data.Modify();
+            _currentPriceIndex++;
+
+            if (CanImprove == false)
+                return;
+
+            int price = _improvePrices[_currentPriceIndex];
+            _data.SetPrice(price);
         }
 
-        public void Enable() { }
+        public void Disable() { }
     }
 }

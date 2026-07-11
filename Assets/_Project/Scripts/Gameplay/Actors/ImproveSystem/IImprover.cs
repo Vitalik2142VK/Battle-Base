@@ -4,11 +4,9 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
 {
     public interface IImprover : IActorComponent
     {
-        public IImproverData Data { get; }
+        public IProductionData Data { get; }
 
         public bool CanImprove { get; }
-
-        public void Init(IProductionData currentData);
 
         public void Improve();
     }

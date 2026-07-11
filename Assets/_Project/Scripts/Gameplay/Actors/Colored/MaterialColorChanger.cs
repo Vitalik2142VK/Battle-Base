@@ -9,13 +9,22 @@ namespace BattleBase.Gameplay.Actors.Colored
 
         [SerializeField] private Color _defaultColor = Color.white;
 
-        [SerializeField] private MeshRenderer[] _renderers;
+        [SerializeField] private List<MeshRenderer> _renderers;
         [SerializeField] private Material _targetMaterial;
 
         private List<RendererData> _datas;
         private MaterialPropertyBlock _propertyBlock;
 
         public Color CurrentColor { get; private set; }
+
+        public void OnValidate()
+        {
+            for (int i = 0; i < _renderers.Count; i++)
+            {
+                if (_renderers[i] == null)
+                    _renderers.RemoveAt(i--);
+            }
+        }
 
         private void Awake()
         {
