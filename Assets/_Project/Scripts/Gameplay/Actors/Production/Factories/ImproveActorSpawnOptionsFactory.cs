@@ -30,7 +30,7 @@ namespace BattleBase.Gameplay.Actors.Production.Factories
 
             if (_improver.CanImprove)
             {
-                DelegateCommand command = new(() => _improver.Improve());
+                DelegateCommand command = new(() => _improver.TryImprove());
                 ProductionOption improveProductionOption = new(command, _improver.Data, TypeProduction.Improve);
                 productionOptions.Add(improveProductionOption);
             }

@@ -11,16 +11,12 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
         private readonly List<IActorData> _availableActorDatas;
         private readonly List<IActorData> _currentActorDatas;
         private readonly IImprover _improver;
-        private readonly IMaterialRegistry _materialRegistry;
-        private readonly ITeamable _teamable;
 
         private int _currentNumImprove;
 
         public SpawnerImprover(
             IActorDataStorage actorStorage, 
-            IImprover improvement, 
-            IMaterialRegistry materialRegistry,
-            ITeamable teamable)
+            IImprover improvement)
         {
             if (actorStorage == null)
                 throw new ArgumentNullException(nameof(actorStorage));
@@ -28,8 +24,6 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
             _availableActorDatas = new List<IActorData>(actorStorage.ActorDatas);
             _currentActorDatas = new List<IActorData>();
             _improver = improvement ?? throw new ArgumentNullException(nameof(improvement));
-            _materialRegistry = materialRegistry ?? throw new ArgumentNullException(nameof(materialRegistry));
-            _teamable = teamable ?? throw new ArgumentNullException(nameof(teamable));
             _currentNumImprove = 0;
         }
 
@@ -52,16 +46,19 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
             _improver.Disable();
         }
 
-        public void Improve()
+        public bool TryImprove()
         {
             if (CanImprove == false)
-                return;
+                return false;
 
-            if (_materialRegistry.TrySpend(_teamable.TeamType, _improver.Data.Price) == false)
-                return;
+            if (_improver.TryImprove())
+            {
+                _currentActorDatas.Add(_availableActorDatas[_currentNumImprove++]);
 
-            _currentActorDatas.Add(_availableActorDatas[_currentNumImprove++]);
-            _improver.Improve();
+                return true;
+            }
+
+            return false;
         }
     }
 }

@@ -8,6 +8,6 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
 
         public bool CanImprove { get; }
 
-        public void Improve();
+        public bool TryImprove();
     }
 }

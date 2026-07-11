@@ -8,19 +8,13 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
     {
         private readonly IImprover _improver;
         private readonly IMaterialCreator _materialCreator;
-        private readonly IMaterialRegistry _materialRegistry;
-        private readonly ITeamable _teamable;
 
         public MaterialCreatorImprover(
             IMaterialCreator materialCreator, 
-            IImprover improvement,
-            IMaterialRegistry materialRegistry,
-            ITeamable teamable)
+            IImprover improvement)
         {
             _materialCreator = materialCreator ?? throw new ArgumentNullException(nameof(materialCreator));
             _improver = improvement ?? throw new ArgumentNullException(nameof(improvement));
-            _materialRegistry = materialRegistry ?? throw new ArgumentNullException(nameof(materialRegistry));
-            _teamable = teamable ?? throw new ArgumentNullException(nameof(teamable));
         }
 
         public IProductionData Data => _improver.Data;
@@ -33,16 +27,19 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
         public void Disable() =>
             _improver.Disable();
 
-        public void Improve()
+        public bool TryImprove()
         {
-            if (_materialCreator.CanIncreaseProduction == false)
-                return;
+            if (CanImprove == false)
+                return false;
 
-            if (_materialRegistry.TrySpend(_teamable.TeamType, _improver.Data.Price) == false)
-                return;
+            if (_improver.TryImprove())
+            {
+                _materialCreator.IncreaseProduction();
 
-            _materialCreator.IncreaseProduction();
-            _improver.Improve();
+                return true;
+            }
+
+            return false;
         }
     }
 }

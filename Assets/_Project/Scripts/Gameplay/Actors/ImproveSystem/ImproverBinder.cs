@@ -22,32 +22,26 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
             if (view == null)
                 throw new ArgumentNullException(nameof(view));
 
-            if (actor.TryGetComponent(out IImprover improvement) == false)
+            if (actor.TryGetComponent(out IImproverComponent improver) == false)
                 return;
+
+            improver.Init(actor);
 
             if (actor.TryGetComponent(out IActorSpawner spawner))
             {
-                SpawnerImprover spawnerImprovement = new(spawner, improvement, _materialRegistry, actor);
+                SpawnerImprover spawnerImprovement = new(spawner, improver);
                 actor.AddComponent(spawnerImprovement);
             }
 
             if (actor.TryGetComponent(out IPowerGenerator powerGenerator))
             {
-                PowerGeneratorImprover generatorImprovement = new(
-                    powerGenerator, 
-                    improvement, 
-                    _materialRegistry, 
-                    actor);
+                PowerGeneratorImprover generatorImprovement = new(powerGenerator, improver);
                 actor.AddComponent(generatorImprovement);
             }
 
             if (actor.TryGetComponent(out IMaterialCreator materialCreator)) 
             {
-                MaterialCreatorImprover materialCreatorImprovement = new(
-                    materialCreator, 
-                    improvement, 
-                    _materialRegistry, 
-                    actor);
+                MaterialCreatorImprover materialCreatorImprovement = new(materialCreator, improver);
                 actor.AddComponent(materialCreatorImprovement);
             }
         }
