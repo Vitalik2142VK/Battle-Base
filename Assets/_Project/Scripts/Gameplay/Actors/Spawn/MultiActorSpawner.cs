@@ -62,8 +62,11 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
             _timer.Tick(delta);
 
-            if (_timer.IsTimeUp)
-                ProcessSpawn();
+            if (_timer.IsTimeUp == false)
+                return;
+
+            if (_powerRegistry.TryReserve(Teamable.TeamType, _currentActorData.Power))
+                FinishSpawn();
         }
 
         public override void SelectActorData(IActorData actorData)
@@ -84,14 +87,9 @@ namespace BattleBase.Gameplay.Actors.Spawn
             }
         }
 
-        private void ProcessSpawn()
+        protected override void Spawn()
         {
-            TeamType team = Teamable.TeamType;
-
-            if (_powerRegistry.TryReserve(team, _currentActorData.Power) == false)
-                return;
-
-            Actor actor = _spawnService.Spawn(_currentActorData.Id, team, SpawnData);
+            Actor actor = _spawnService.Spawn(_currentActorData.Id, Teamable.TeamType, SpawnData);
 
             actor.Enable();
 
@@ -103,8 +101,6 @@ namespace BattleBase.Gameplay.Actors.Spawn
                 EstablisCurrentActorSpawn(_actorsQueue.Dequeue());
             else
                 _currentActorData = null;
-
-            FinishSpawn();
         }
 
         private void EstablisCurrentActorSpawn(IActorData actorData)

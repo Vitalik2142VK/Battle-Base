@@ -15,6 +15,12 @@ namespace BattleBase.Gameplay.Actors.Visual.Particle
         {
             if (_container == null)
                 _container = transform;
+
+            for (int i = 0; i < _factories.Count; i++)
+            {
+                if (_factories[i] == null)
+                    _factories.RemoveAt(i--);
+            }
         }
 
         private void Awake()

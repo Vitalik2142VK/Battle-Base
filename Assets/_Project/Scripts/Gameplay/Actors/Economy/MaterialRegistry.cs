@@ -23,5 +23,18 @@ namespace BattleBase.Gameplay.Actors.Economy
 
         public IMaterialData GetMaterialData(TeamType team) =>
             _materials[team];
+
+        public bool TryGetTransaction(TeamType team, int materials, out MatetialTransaction matetialTransaction)
+        {
+            matetialTransaction = null;
+            Material material = _materials[team];
+
+            if (material.TrySpend(materials) == false)
+                return false;
+
+            matetialTransaction = new MatetialTransaction(material, materials);
+
+            return true;
+        }
     }
 }

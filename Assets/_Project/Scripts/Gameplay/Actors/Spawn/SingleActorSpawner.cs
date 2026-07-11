@@ -58,7 +58,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
                 return;
             }
 
-            ProcessSpawn();
+            FinishSpawn();
         }
 
         public override void SelectActorData(IActorData actorData)
@@ -78,7 +78,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
             }
         }
 
-        private void ProcessSpawn()
+        protected override void Spawn()
         {
             Actor actor = _spawnService.Spawn(_currentActorData.Id, Teamable.TeamType, SpawnData);
             actor.Enable();
@@ -87,8 +87,6 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
             _colorService.EstabilshColor(actor, actor.View);
             _currentActorData = null;
-
-            FinishSpawn();
         }
     }
 }

@@ -9,6 +9,8 @@ namespace BattleBase.Gameplay.Actors.Spawn
         private readonly List<IActorData> _actorDatas;
         private readonly IMaterialRegistry _materialRegistry;
 
+        private MatetialTransaction _currentTransaction;
+
         public abstract event Action<IActor> Spawned;
 
         public ActorSpawner(IEnumerable<IActorData> actorsToCreate, IMaterialRegistry materialRegistry)
@@ -42,24 +44,32 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
         public abstract void SelectActorData(IActorData actorData);
 
+        protected abstract void Spawn();
+
         protected bool ConstrainActorData(IActorData actorData) =>
             _actorDatas.Contains(actorData);
 
+        protected void FinishSpawn()
+        {
+            _currentTransaction.Finish();
+
+            IsInProcessSpawn = false;
+        }
+
         protected bool CanBeginSpawn(IActorData actorData)
         {
-            if (_materialRegistry.TrySpend(Teamable.TeamType, actorData.Price))
+            if (_materialRegistry.TryGetTransaction(Teamable.TeamType, actorData.Price, out _currentTransaction))
             {
                 IsInProcessSpawn = true;
+
+                _currentTransaction.Init(() => Spawn());
 
                 return true;
             }
 
-            return false;
-        }
-        
-        protected void FinishSpawn()
-        {
             IsInProcessSpawn = false;
+
+            return false;
         }
     }
 }
