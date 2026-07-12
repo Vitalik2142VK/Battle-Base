@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8368aa947f2bba2478fc99c70d338400, type: 3}
-  m_Name: AutocannonTurrte_WeaponConfig
+  m_Name: AutocannonTurret_WeaponConfig
   m_EditorClassIdentifier: 
   _projectileConfig:
     _projectilePrefab: {fileID: 7550878289047074185, guid: 0e7462a956c1f3d43ba581feb1d144c8,
@@ -20,7 +20,7 @@ MonoBehaviour:
     _targetingProfile: {fileID: 11400000, guid: 869fcacf3269d224f85b0b7189df785e,
       type: 2}
     _damageMask: 0
-    _damage: 35
+    _damage: 25
   _firingRange: 40
   _rateShooting: 0.75
   _speedReload: 4

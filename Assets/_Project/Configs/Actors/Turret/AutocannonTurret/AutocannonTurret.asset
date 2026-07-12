@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65d2e2c2420ac6b45b0d480f9633fd48, type: 3}
-  m_Name: MaterialFactory
+  m_Name: AutocannonTurret
   m_EditorClassIdentifier: 
   _data:
-    _prefab: {fileID: 1961284443509400903, guid: 91d12e994042a7744a24a5c16113876b,
+    _prefab: {fileID: 6082468932349043140, guid: 978cd50cda4fc414a8f7cfa09e3bb7bb,
       type: 3}
-    _icon: {fileID: 21300000, guid: 3fbd82d4e6589e84f9c3c45f57efaf6a, type: 3}
+    _icon: {fileID: 21300000, guid: bbca53b8de8232944bfa348dfe9abefb, type: 3}
     _name:
       _ru:
         _text: "\u0422\u0435\u0441\u0442"
@@ -30,13 +30,10 @@ MonoBehaviour:
         _text: Test
       _tr:
         _text: Test
-    _constructionTime: 2
-    _price: 250
+    _constructionTime: 3
+    _price: 150
     _power: 0
     _isSummable: 0
   _components:
-  - {fileID: 11400000, guid: d05fd168f069dce4cbf1a47c801ae6d0, type: 2}
-  - {fileID: 11400000, guid: 05615749946b9a44e9a286dfbb1a30bd, type: 2}
-  - {fileID: 11400000, guid: b729d8b768857e641b7959af5cf42786, type: 2}
-  - {fileID: 11400000, guid: e629ce5a760c9a3438910ab681147319, type: 2}
-  - {fileID: 11400000, guid: 48a15801c76ab6d499e7fee6c3b8fceb, type: 2}
+  - {fileID: 11400000, guid: 3a2b253477cf0274598af07de37809f6, type: 2}
+  - {fileID: 11400000, guid: 4485fb472c2ad0440bb4d041bfcfb199, type: 2}

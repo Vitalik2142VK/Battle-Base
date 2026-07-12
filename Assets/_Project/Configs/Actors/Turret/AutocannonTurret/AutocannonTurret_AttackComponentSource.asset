@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dbf90ec803e3024c9dedafd5342557e, type: 3}
-  m_Name: WallTower_SpawnComponentSource
+  m_Script: {fileID: 11500000, guid: ccc320ceab8c46f4b890696a8dd87bf4, type: 3}
+  m_Name: AutocannonTurret_AttackComponentSource
   m_EditorClassIdentifier: 
-  _actorsConfigs:
-  - {fileID: 11400000, guid: 74e5c17f8ca8b844abacc1f7204ba21f, type: 2}
-  - {fileID: 11400000, guid: e587a36f43eff694bbf1c201fc3498c5, type: 2}
+  _weaponConfig: {fileID: 11400000, guid: 35665a920ed1a7042b1f3f05b7508150, type: 2}

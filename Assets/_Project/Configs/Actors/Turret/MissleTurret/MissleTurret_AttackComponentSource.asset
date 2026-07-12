@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd1bbd144f98c0a429d15fcf764e5306, type: 3}
-  m_Name: AutocannonTurrte_TargetingProfile
+  m_Script: {fileID: 11500000, guid: ccc320ceab8c46f4b890696a8dd87bf4, type: 3}
+  m_Name: MissleTurret_AttackComponentSource
   m_EditorClassIdentifier: 
-  _notAttacked: 1
-  _priorityActorTypes:
-  - _actorMask: 10
-    _damageCoefficient: 1.5
+  _weaponConfig: {fileID: 11400000, guid: 25958b46c4504574baed6b30a690943e, type: 2}

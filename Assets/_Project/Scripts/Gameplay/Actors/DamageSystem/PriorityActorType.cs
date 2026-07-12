@@ -6,7 +6,7 @@ namespace BattleBase.Gameplay.Actors.DamageSystem
     public class PriorityActorType : IPriorityActorType
     {
         [SerializeField] private ActorMask _actorMask;
-        [SerializeField][Range(1f, 4f)] private float _damageCoefficient = 1f;
+        [SerializeField][Range(1f, 10f)] private float _damageCoefficient = 1f;
 
         public ActorMask ActorMask => _actorMask;
 

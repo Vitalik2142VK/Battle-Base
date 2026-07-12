@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65d2e2c2420ac6b45b0d480f9633fd48, type: 3}
-  m_Name: AutocannonTurrte
+  m_Name: MissleTurret
   m_EditorClassIdentifier: 
   _data:
-    _prefab: {fileID: 6082468932349043140, guid: 978cd50cda4fc414a8f7cfa09e3bb7bb,
+    _prefab: {fileID: 6082468932349043140, guid: e858bfe18cd7d3942aed653ca644b327,
       type: 3}
-    _icon: {fileID: 21300000, guid: bbca53b8de8232944bfa348dfe9abefb, type: 3}
+    _icon: {fileID: 21300000, guid: 4dba437358b41e049b3d90956ddfe513, type: 3}
     _name:
       _ru:
         _text: "\u0422\u0435\u0441\u0442"
@@ -30,10 +30,10 @@ MonoBehaviour:
         _text: Test
       _tr:
         _text: Test
-    _constructionTime: 3
-    _price: 150
+    _constructionTime: 6
+    _price: 500
     _power: 0
     _isSummable: 0
   _components:
-  - {fileID: 11400000, guid: 3a2b253477cf0274598af07de37809f6, type: 2}
-  - {fileID: 11400000, guid: 4485fb472c2ad0440bb4d041bfcfb199, type: 2}
+  - {fileID: 11400000, guid: 6835f2a09b50f544d9df0c13171c0f54, type: 2}
+  - {fileID: 11400000, guid: 0af3ca71bd81c6144b27284b13af618d, type: 2}

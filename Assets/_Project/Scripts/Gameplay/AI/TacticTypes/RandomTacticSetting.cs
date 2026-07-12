@@ -4,7 +4,7 @@
     {
         public RandomTacticSetting()
         {
-            MaxNumSpawn = 5;
+            MaxNumSpawn = 3;
             MinNumSpawn = 1;
         }
 

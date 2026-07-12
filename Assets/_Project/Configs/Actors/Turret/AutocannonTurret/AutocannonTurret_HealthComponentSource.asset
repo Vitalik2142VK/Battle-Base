@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dbf90ec803e3024c9dedafd5342557e, type: 3}
-  m_Name: WallTower_SpawnComponentSource
+  m_Script: {fileID: 11500000, guid: 3ca88fe826886274c9944eea0f41a9b9, type: 3}
+  m_Name: AutocannonTurret_HealthComponentSource
   m_EditorClassIdentifier: 
-  _actorsConfigs:
-  - {fileID: 11400000, guid: 74e5c17f8ca8b844abacc1f7204ba21f, type: 2}
-  - {fileID: 11400000, guid: e587a36f43eff694bbf1c201fc3498c5, type: 2}
+  _healthConfig:
+    _maxHealth: 800
+    _armorCoefficient: 0.4
+  _type: 1

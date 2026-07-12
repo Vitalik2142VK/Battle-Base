@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44ed5eb5e4df85e4f8733a58700742d9, type: 3}
   m_Name: PowerConfig
   m_EditorClassIdentifier: 
-  _maxCapacity: 150
+  _maxCapacity: 100
