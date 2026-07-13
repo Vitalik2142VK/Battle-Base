@@ -14,7 +14,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         private bool _isAiming;
         private bool _isAttacking;
 
-        public event Action<ITarget> TargetSelected;
+        public event Action TargetSelected;
         public event Action Attacked;
         public event Action AttackActivated;
         public event Action AttackDeactivated;
@@ -27,6 +27,8 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         }
 
         public IWeaponConfig WeaponConfig => _weapon.Config;
+
+        public ITarget CurrentTarget => _targetController.CurrentTarget;
 
         public void Init(ITargetController targetController, IProjectileController projectileController)
         {
@@ -49,7 +51,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         {
             if (_targetController.TrySelectTarget(targets))
             {
-                TargetSelected?.Invoke(_targetController.CurrentTarget);
+                TargetSelected?.Invoke();
 
                 if (_isAttacking == false)
                     AttackActivated?.Invoke();

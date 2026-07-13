@@ -24,4 +24,4 @@ MonoBehaviour:
   _firingRange: 50
   _rateShooting: 0.25
   _speedReload: 6
-  _numberShells: 6
+  _numberShells: 12

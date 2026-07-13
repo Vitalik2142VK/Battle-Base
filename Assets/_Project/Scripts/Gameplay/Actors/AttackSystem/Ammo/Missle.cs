@@ -7,7 +7,9 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
     [RequireComponent(typeof(HomingMover))]
     public class Missle : Projectile
     {
-        private IProjectileMover _mover;
+        [SerializeField] private ActorMask _сapturedTypes;
+
+        private IAdvancedIProjectileMover _mover;
         private ITarget _target;
         private Vector3 _lastTargetPosition;
 
@@ -15,12 +17,12 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
 
         private void Awake()
         {
-            _mover = GetComponent<IProjectileMover>();
+            _mover = GetComponent<IAdvancedIProjectileMover>();
         }
 
         private void FixedUpdate()
         {
-            if (_target != null)
+            if (_target != null && _сapturedTypes.Contains(_target.ActorMask))
             {
                 _lastTargetPosition = _target.Position;
                 _mover.SetPointPosition(_lastTargetPosition);
@@ -40,14 +42,15 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
             OnTargetLost();
         }
 
-        public override void ShootTarget(Vector3 startPosition, ITarget target)
+        public override void ShootTarget(IShotPointTransform shotPointTransform, ITarget target)
         {
             if (_target != null)
                 return;
 
             _target = target ?? throw new ArgumentNullException(nameof(target));
             _lastTargetPosition = _target.Position;
-            _mover.SetStartPosition(startPosition);
+            _mover.SetStartPosition(shotPointTransform.Position);
+            _mover.SetStartRotation(shotPointTransform.Rotation);
             _mover.SetPointPosition(_lastTargetPosition);
             _mover.SetSpeed(Config.Speed);
 

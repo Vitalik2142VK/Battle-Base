@@ -8,14 +8,14 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
 
         private int _currentIndexPoint = 0;
 
-        public Vector3 Position => GetPosition();
+        public IShotPointTransform ShotPointTransform => GetShotPoint();
 
-        private Vector3 GetPosition()
+        private IShotPointTransform GetShotPoint()
         {
             if (_currentIndexPoint >= _shotPoints.Length)
                 _currentIndexPoint = 0;
 
-            return _shotPoints[_currentIndexPoint++].Position;
+            return _shotPoints[_currentIndexPoint++].ShotPointTransform;
         }
     }
 }

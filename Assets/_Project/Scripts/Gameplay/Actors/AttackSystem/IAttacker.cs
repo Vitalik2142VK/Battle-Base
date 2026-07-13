@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.AttackSystem
 {
-    public interface IAttacker : IActorComponent, IUpdateable, IAttackEvents
+    public interface IAttacker : IActorComponent, IUpdateable, IAttackNotifier
     {
         public IWeaponConfig WeaponConfig { get; }
 

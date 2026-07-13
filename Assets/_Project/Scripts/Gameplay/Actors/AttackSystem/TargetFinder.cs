@@ -65,6 +65,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
                 if (TryFindEnemies())
                     _presenter.SetTargets(_targets);
 
+
                 yield return _tick;
             }
         }

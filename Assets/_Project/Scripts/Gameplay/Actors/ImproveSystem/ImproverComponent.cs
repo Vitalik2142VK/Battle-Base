@@ -14,6 +14,8 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
         private ITeamable _teamable;
         private int _currentPriceIndex;
 
+        public event Action Improved;
+
         public ImproverComponent(IImproverData data, IMaterialRegistry materialRegistry)
         {
             if (data == null)
@@ -52,6 +54,8 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
 
             if (_materialRegistry.TrySpend(_teamable.TeamType, price))
             {
+                Improved?.Invoke();
+
                 ++_currentPriceIndex;
 
                 if (CanImprove)

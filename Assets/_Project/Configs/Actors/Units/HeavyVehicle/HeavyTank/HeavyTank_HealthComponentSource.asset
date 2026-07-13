@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: HeavyTank_HealthComponentSource
   m_EditorClassIdentifier: 
   _healthConfig:
-    _maxHealth: 800
+    _maxHealth: 1200
     _armorCoefficient: 0.75
   _type: 4

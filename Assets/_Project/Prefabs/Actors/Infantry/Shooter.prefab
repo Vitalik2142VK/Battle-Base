@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1118564471205550233}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.2, z: 0}
+  m_LocalPosition: {x: 0, y: 1.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _aimingPoint: {fileID: 76675062255935283}
-  _hitDistance: 0.4
+  _hitDistance: 0.7
   _isDebugEnable: 1
 --- !u!65 &3270969691848823979
 BoxCollider:

@@ -21,6 +21,6 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
         public virtual void SetDamage(IDamage damage) => 
             Damage = damage ?? throw new ArgumentNullException(nameof(damage));
 
-        public abstract void ShootTarget(Vector3 startPosition, ITarget target);
+        public abstract void ShootTarget(IShotPointTransform shotPointTransform, ITarget target);
     }
 }

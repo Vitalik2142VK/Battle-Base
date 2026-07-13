@@ -1,4 +1,5 @@
 using BattleBase.Gameplay.Actors.Types;
+using BattleBase.Utils;
 using System;
 using UnityEngine;
 using VContainer;
@@ -38,11 +39,15 @@ namespace BattleBase.Gameplay.Actors.Building
             InitEnemyBuildingSite(buildingSite, team);
         }
 
-        private void RegisterBuildingSite(Actor actor, BuildingSite buildingSite) => 
+        private void RegisterBuildingSite(Actor actor, BuildingSite buildingSite) =>
             _handler.Register(actor, buildingSite);
 
         private void InitEnemyBuildingSite(BuildingSite buildingSite, TeamType team)
         {
+#if UNITY_EDITOR
+            if (DebugSetting.IsAiDisbale) //todo remove on release
+                return;
+#endif
             if (team != TeamType.Enemy)
                 return;
 

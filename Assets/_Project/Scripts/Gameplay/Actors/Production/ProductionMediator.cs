@@ -1,8 +1,10 @@
 using BattleBase.DI;
+using BattleBase.Gameplay.Actors.Types;
 using BattleBase.Gameplay.Actors.Visual.Select;
 using BattleBase.Gameplay.CameraNavigation.InputReader;
 using BattleBase.UI;
 using BattleBase.UI.PopUps;
+using BattleBase.Utils;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -51,6 +53,16 @@ namespace BattleBase.Gameplay.Actors.Production
 
             if (collider.TryGetComponent(out _productionView))
             {
+#if UNITY_EDITOR
+                if (DebugSetting.IsAiDisbale) //todo remove on release
+                {
+                    collider.TryGetComponent(out _selectable);
+
+                    SelectViewSpawner();
+
+                    return;
+                }
+#endif
                 if (_productionView.TeamType == TeamType.Player)
                 {
                     collider.TryGetComponent(out _selectable);
