@@ -1,5 +1,4 @@
 ﻿using BattleBase.Gameplay.Actors.DamageSystem;
-using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
 {
@@ -9,6 +8,6 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
 
         public void SetDamage(IDamage damage);
 
-        public void ShootTarget(Vector3 startPosition, ITarget target);
+        public void ShootTarget(IShotPointTransform shotPointTransform, ITarget target);
     }
 }

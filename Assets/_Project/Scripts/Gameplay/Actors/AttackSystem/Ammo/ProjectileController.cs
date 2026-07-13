@@ -31,7 +31,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
             IProjectile projectile = _spawner.Spawn(_projectileConfig.MissleId);
             projectile.SetProjectileConfig(_projectileConfig);
             projectile.SetDamage(damage);
-            projectile.ShootTarget(_shotPoint.Position, target);
+            projectile.ShootTarget(_shotPoint.ShotPointTransform, target);
         }
     }
 }

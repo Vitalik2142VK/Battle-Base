@@ -186,7 +186,7 @@ Transform:
   m_GameObject: {fileID: 4977809115699020017}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.6, z: 0}
+  m_LocalPosition: {x: 0, y: 1.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -226,7 +226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _aimingPoint: {fileID: 4380992846264851137}
-  _hitDistance: 0.5
+  _hitDistance: 0.7
   _isDebugEnable: 1
 --- !u!1 &7084381187864296177
 GameObject:

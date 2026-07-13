@@ -28,13 +28,13 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
                 Deactivate();
         }
 
-        public override void ShootTarget(Vector3 startPosition, ITarget target)
+        public override void ShootTarget(IShotPointTransform shotPointTransform, ITarget target)
         {
             if (_target != null)
                 return;
 
             _target = target ?? throw new ArgumentNullException(nameof(target));
-            _mover.SetStartPosition(startPosition);
+            _mover.SetStartPosition(shotPointTransform.Position);
             _mover.SetPointPosition(_target.Position);
             _mover.SetSpeed(Config.Speed);
         }

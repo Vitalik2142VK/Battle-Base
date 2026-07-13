@@ -17,14 +17,11 @@ namespace BattleBase.Gameplay.Actors.DamageSystem.Removal
             if (actor.TryGetComponent(out IDemolition demolition) == false)
                 return;
 
-            IProductionData currentData;
+            actor.TryGetComponent(out IImproverComponent improver);
 
-            if (actor.TryGetComponent(out IImprover improvement))
-                currentData = improvement.Data;
-            else
-                currentData = actor.Data;
+            PriceCounterDemolition priceCounter = new(demolition.Data, actor.Data, improver);
 
-            demolition.Init(currentData);
+            demolition.Init(priceCounter, actor);
         }
     }
 }

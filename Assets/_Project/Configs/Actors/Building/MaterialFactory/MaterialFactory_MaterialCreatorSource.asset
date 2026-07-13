@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _config:
     _addedMaterialsByRank:
+    - _addedMaterials: 15
     - _addedMaterials: 25
-    - _addedMaterials: 35
     - _addedMaterials: 40
+    - _addedMaterials: 55
+    - _addedMaterials: 65
     _accrualTime: 5

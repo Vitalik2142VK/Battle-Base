@@ -1,9 +1,10 @@
-﻿using System;
+﻿using BattleBase.Utils.Extensions;
+using System;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
 {
-    public class HomingMover : MonoBehaviour, IProjectileMover
+    public class HomingMover : MonoBehaviour, IAdvancedIProjectileMover
     {
         [SerializeField]
         [Min(1f)]
@@ -38,10 +39,11 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
             _hasTargetPosition = false;
         }
 
-        public void SetStartPosition(Vector3 startPosition)
-        {
+        public void SetStartPosition(Vector3 startPosition) => 
             _transform.position = startPosition;
-        }
+
+        public void SetStartRotation(Quaternion startRotation) =>
+            _transform.rotation = startRotation;
 
         public void SetPointPosition(Vector3 point) =>
             _targetPosition = point;
@@ -60,7 +62,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
                 throw new ArgumentOutOfRangeException(nameof(delta));
 
             if (_hasTargetPosition == false)
-                _forward = (_targetPosition - _transform.position).normalized;
+                _forward = _transform.rotation * Vector3.forward;
 
             UpdateTargetVelocity(delta);
 
@@ -104,7 +106,9 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
             return _targetPosition + _targetVelocity * timeToTarget;
         }
 
-        private bool HasReachedTarget() => 
-            Vector3.Distance(_transform.position, _targetPosition) <= _finishDistance;
+        private bool HasReachedTarget()
+        {
+            return _targetPosition.IsWithinDistance(_transform.position, _finishDistance);
+        }
     }
 }

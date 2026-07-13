@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _notAttacked: 8
   _priorityActorTypes:
-  - _actorMask: 2
+  - _actorMask: 12
+    _damageCoefficient: 4
+  - _actorMask: 1
     _damageCoefficient: 2

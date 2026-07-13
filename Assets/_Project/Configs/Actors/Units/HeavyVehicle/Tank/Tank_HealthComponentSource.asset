@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Tank_HealthComponentSource
   m_EditorClassIdentifier: 
   _healthConfig:
-    _maxHealth: 550
+    _maxHealth: 650
     _armorCoefficient: 0.3
   _type: 4

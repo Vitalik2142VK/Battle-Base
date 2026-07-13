@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MaterialFactory_ImproverSource
   m_EditorClassIdentifier: 
   _improvementData:
-    _improvePrices: 5e010000f4010000
+    _improvePrices: 5e0100005802000046050000c4090000
     _icon: {fileID: -2109469079025414534, guid: f4bd5c14857777c448334cc301584a75,
       type: 3}
     _name:

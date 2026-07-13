@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: MaterialFactory_HealthComponentSource
   m_EditorClassIdentifier: 
   _healthConfig:
-    _maxHealth: 2000
+    _maxHealth: 1000
     _armorCoefficient: 0
   _type: 1
