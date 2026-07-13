@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _actorConfig: {fileID: 11400000, guid: e5cdd49978f695d4ba531e6dbe34705c, type: 2}
   _stats: {fileID: 11400000, guid: eea34d62a2668b1459b34ac10dfc7311, type: 2}
+  _cleanPrefab: {fileID: 425328684433241579, guid: 18965916de5b0ad40bf11624541017f0,
+    type: 3}
+  _unitNameConfig: {fileID: 11400000, guid: 83cb6d71a8436c24c9c6441239dc9310, type: 2}

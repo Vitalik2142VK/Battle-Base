@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b960e3a53ccdc154d9abddb2d58ace5a, type: 3}
+  m_Name: Trike
+  m_EditorClassIdentifier: 
+  _actorConfig: {fileID: 11400000, guid: e21039b04fa34f14097db1b34175f911, type: 2}
+  _stats: {fileID: 11400000, guid: 201901ccf9e81cb4cab8484a8ca4cd1c, type: 2}
+  _cleanPrefab: {fileID: 3075068652145623057, guid: b9ad478b2bdd7df42981f22f438e2207,
+    type: 3}
+  _unitNameConfig: {fileID: 11400000, guid: ad2cdc4870998b24db374e83c39ada42, type: 2}

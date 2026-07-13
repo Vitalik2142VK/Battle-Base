@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50f949de903913f46b7d9c8d3ef8b4d1, type: 3}
-  m_Name: LightGrav
+  m_Name: Shooter
   m_EditorClassIdentifier: 
   _unitName:
     _ru:
-      _text: Light Grav
+      _text: "\u0421\u0442\u0440\u0435\u043B\u043E\u043A"
     _en:
-      _text: Light Grav
+      _text: Shooter
     _tr:
-      _text: Light Grav
+      _text: Shooter

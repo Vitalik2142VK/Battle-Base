@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unitName:
     _ru:
-      _text: Sniper
+      _text: "\u0421\u043D\u0430\u0439\u043F\u0435\u0440"
     _en:
       _text: Sniper
     _tr:

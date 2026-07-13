@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50f949de903913f46b7d9c8d3ef8b4d1, type: 3}
-  m_Name: Shooter
+  m_Name: Trike
   m_EditorClassIdentifier: 
   _unitName:
     _ru:
-      _text: Shooter
+      _text: "\u041C\u043E\u0442\u043E\u0441\u0442\u0440\u0435\u043B\u043E\u043A"
     _en:
-      _text: Shooter
+      _text: Trike
     _tr:
-      _text: Shooter
+      _text: Trike

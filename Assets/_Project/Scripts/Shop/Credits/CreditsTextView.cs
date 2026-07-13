@@ -2,7 +2,6 @@ using System;
 using BattleBase.DI;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using VContainer;
 
 namespace BattleBase.ShopSystem
@@ -10,7 +9,7 @@ namespace BattleBase.ShopSystem
     [RequireComponent(typeof(TMP_Text))]
     public class CreditsTextView : MonoBehaviour, IInjectable
     {
-        [SerializeField] private RectTransform _toRebuildLayout;
+        private const string SpriteAsset = "<sprite name=\"coins\">";
 
         private TMP_Text _text;
         private CreditsModel _credits;
@@ -31,11 +30,7 @@ namespace BattleBase.ShopSystem
         private void OnDisable() =>
             _credits.Changed -= OnChanged;
 
-        private void OnChanged()
-        {
-            _text.text = _credits.Value.ToString();
-
-            LayoutRebuilder.ForceRebuildLayoutImmediate(_toRebuildLayout);
-        }
+        private void OnChanged() =>
+            _text.text = $"{SpriteAsset} {_credits.Value}";
     }
 }

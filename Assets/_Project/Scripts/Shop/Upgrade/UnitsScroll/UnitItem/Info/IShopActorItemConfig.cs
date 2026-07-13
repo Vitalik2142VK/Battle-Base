@@ -9,6 +9,8 @@ namespace BattleBase.ShopSystem
 
         public Sprite Preview { get; }
 
+        public GameObject CleanPrefab { get; }
+
         public ILanguageTextsSet UnitName { get; }
 
         public IShopUpgradeStatsInfo PanelInfo { get; }

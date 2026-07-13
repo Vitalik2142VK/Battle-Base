@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unitName:
     _ru:
-      _text: Rocket Launcher
+      _text: "\u0420\u0430\u043A\u0435\u0442\u0447\u0438\u043A"
     _en:
       _text: Rocket Launcher
     _tr:

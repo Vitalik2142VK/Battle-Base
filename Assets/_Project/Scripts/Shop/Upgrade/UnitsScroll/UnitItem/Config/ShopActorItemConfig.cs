@@ -12,13 +12,17 @@ namespace BattleBase.ShopSystem
     {
         [SerializeField] private ActorConfig _actorConfig;
         [SerializeField] private ShopUpgradeStatsConfig _stats;
+        [SerializeField] private UnitNameConfig _unitNameConfig;
+        [SerializeField] private GameObject _cleanPrefab;
 
         public string Id => _actorConfig.Data.Id;
 
         public Sprite Preview => _actorConfig.Data.Icon;
 
-        public ILanguageTextsSet UnitName => _actorConfig.Data.Name;
+        public ILanguageTextsSet UnitName => _unitNameConfig;
 
         public IShopUpgradeStatsInfo PanelInfo => _stats;
+
+        public GameObject CleanPrefab => _cleanPrefab;
     }
 }

@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50f949de903913f46b7d9c8d3ef8b4d1, type: 3}
-  m_Name: HeavyTank
+  m_Name: MissleTurret
   m_EditorClassIdentifier: 
   _unitName:
     _ru:
-      _text: Heavy Tank
+      _text: "\u0420\u0430\u043A\u0435\u0442\u043D\u0430\u044F \u0442\u0443\u0440\u0435\u043B\u044C"
     _en:
-      _text: Heavy Tank
+      _text: Missile Turret
     _tr:
-      _text: Heavy Tank
+      _text: Missile Turret

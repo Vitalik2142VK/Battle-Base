@@ -11,6 +11,7 @@ namespace BattleBase.ShopSystem
         [SerializeField] private Sprite _preview;
         [SerializeField] private LanguageTextsSet _unitName;
         [SerializeField] private ShopUpgradeStatsInfo _panelInfo;
+        [SerializeField] private GameObject _cleanPrefab;
 
         public ShopUnitItemInfo(IShopActorItemConfig other)
         {
@@ -18,6 +19,7 @@ namespace BattleBase.ShopSystem
             _preview = other.Preview;
             _unitName = new(other.UnitName);
             _panelInfo = new(other.PanelInfo);
+            _cleanPrefab = other.CleanPrefab;
         }
 
         public void IncreaseDamageLevel() =>
@@ -45,5 +47,7 @@ namespace BattleBase.ShopSystem
         public ILanguageTextsSet UnitName => _unitName;
 
         public IShopUpgradeStatsInfo PanelInfo => _panelInfo;
+
+        public GameObject CleanPrefab => _cleanPrefab;
     }
 }

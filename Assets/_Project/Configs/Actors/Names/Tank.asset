@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50f949de903913f46b7d9c8d3ef8b4d1, type: 3}
-  m_Name: Quad
+  m_Name: Tank
   m_EditorClassIdentifier: 
   _unitName:
     _ru:
-      _text: Quad
+      _text: "\u0421\u0440\u0435\u0434\u043D\u0438\u0439 \u0442\u0430\u043D\u043A"
     _en:
-      _text: Quad
+      _text: Middle tank
     _tr:
-      _text: Quad
+      _text: Middle tank
