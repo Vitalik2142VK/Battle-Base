@@ -10,7 +10,10 @@ namespace BattleBase.Gameplay.Map
     public class TerritoryConfig : ScriptableObject, ITerritoryInfo
     {
         [SerializeField] private LanguageTextsSet _territoryName;
+        [SerializeField][Min(0)] private int _creditsForFirstVictory;
 
         public ILanguageTextsSet TerritoryName => _territoryName;
+
+        public int CreditsForFirstVictory => _creditsForFirstVictory;
     }
 }

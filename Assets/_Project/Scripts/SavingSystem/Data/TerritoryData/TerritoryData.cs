@@ -48,13 +48,19 @@ namespace BattleBase.SaveService
             _selectedTerritory = index;
         }
 
-        public void AddConqueredTerritory(int index)
+        public bool TryAddConqueredTerritory(int index)
         {
             if (index < 0)
                 throw new ArgumentOutOfRangeException(nameof(index), index, "Value must be positive");
 
             if (_conqueredTerritories.Contains(index) == false)
+            {
                 _conqueredTerritories.Add(index);
+
+                return true;
+            }
+
+            return false;
         }
 
         public bool IsChangedFrom(ITerritoryData other)

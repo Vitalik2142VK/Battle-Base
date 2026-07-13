@@ -41,12 +41,21 @@ namespace BattleBase.Gameplay.Map
             return _territoryConfigs[index];
         }
 
-        public void AddConqueredTerritory(int index)
+        public bool TryAddConqueredTerritory(int index)
         {
             if (index < 0 || index >= _territoryConfigs.Count)
                 throw new ArgumentOutOfRangeException(nameof(index));
 
-            _territoryData.AddConqueredTerritory(index);
+            return _territoryData.TryAddConqueredTerritory(index);
+        }
+
+        public int GetCreditsForFirstVictory(int index)
+        {
+            if (index < 0 || index >= _territoryConfigs.Count)
+                throw new ArgumentOutOfRangeException(nameof(index));
+
+            return GetTerritoryInfo(index).CreditsForFirstVictory;
+
         }
 
         public void Load()
