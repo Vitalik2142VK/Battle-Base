@@ -9,7 +9,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
         private List<IAttackerViewComponent> _components;
 
-        public void Init(IAttackEvents attackEvents)
+        public void Init(IAttackNotifier attackEvents)
         {
             _components = new List<IAttackerViewComponent>();
 

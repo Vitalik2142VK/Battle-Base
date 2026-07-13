@@ -2,6 +2,6 @@
 {
     public interface IAttackerViewComponent : IActorViewComponent
     {
-        public void Init(IAttackEvents weaponEvents);
+        public void Init(IAttackNotifier attackNotifier);
     }
 }

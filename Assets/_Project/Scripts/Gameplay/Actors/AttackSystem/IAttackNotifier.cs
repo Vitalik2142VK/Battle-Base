@@ -3,10 +3,12 @@ using System;
 
 namespace BattleBase.Gameplay.Actors.AttackSystem
 {
-    public interface IAttackEvents : IAttackStateEvent
+    public interface IAttackNotifier : IAttackStateEvent
     {
-        public event Action<ITarget> TargetSelected;
+        public event Action TargetSelected;
 
         public event Action Attacked;
+
+        public ITarget CurrentTarget { get; }
     }
 }

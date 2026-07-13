@@ -12,7 +12,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         [SerializeField][Min(1f)] private float _speedRotate = 25f;
 
         private IAttackerPresenter _presenter;
-        private IAttackEvents _weaponEvents;
+        private IAttackNotifier _attackNotifier;
         private ITargetPoint _currentTarget;
         private Transform _transform;
         private Quaternion _startRotation;
@@ -26,12 +26,14 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
         private void OnEnable()
         {
-            if (_weaponEvents != null)
+            if (_attackNotifier != null)
             {
-                _weaponEvents.TargetSelected += OnTakeAim;
-                _weaponEvents.AttackDeactivated += OnRemoveTarget;
-            }
+                _attackNotifier.TargetSelected += OnTakeAim;
+                _attackNotifier.AttackDeactivated += OnRemoveTarget;
 
+                OnTakeAim();
+            }
+            
             _transform.localRotation = _startRotation;
         }
 
@@ -45,22 +47,22 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         {
             OnRemoveTarget();
 
-            if (_weaponEvents != null)
+            if (_attackNotifier != null)
             {
-                _weaponEvents.TargetSelected -= OnTakeAim;
-                _weaponEvents.AttackDeactivated -= OnRemoveTarget;
+                _attackNotifier.TargetSelected -= OnTakeAim;
+                _attackNotifier.AttackDeactivated -= OnRemoveTarget;
             }
         }
 
-        public void Init(IAttackerPresenter presenter, IAttackEvents weaponEvents)
+        public void Init(IAttackerPresenter presenter, IAttackNotifier weaponEvents)
         {
             _presenter = presenter ?? throw new ArgumentNullException(nameof(presenter));
-            _weaponEvents = weaponEvents ?? throw new ArgumentNullException(nameof(weaponEvents));
+            _attackNotifier = weaponEvents ?? throw new ArgumentNullException(nameof(weaponEvents));
 
             if (gameObject.activeSelf)
             {
-                _weaponEvents.TargetSelected += OnTakeAim;
-                _weaponEvents.AttackDeactivated += OnRemoveTarget;
+                _attackNotifier.TargetSelected += OnTakeAim;
+                _attackNotifier.AttackDeactivated += OnRemoveTarget;
             }
         }
 
@@ -92,9 +94,9 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             }
         }
 
-        private void OnTakeAim(ITargetPoint target)
+        private void OnTakeAim()
         {
-            _currentTarget = target ?? throw new ArgumentNullException(nameof(target));
+            _currentTarget = _attackNotifier.CurrentTarget;
             _isAimed = false;
         }
 
