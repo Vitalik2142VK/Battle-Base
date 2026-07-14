@@ -1,13 +1,16 @@
-using System;
 using System.Collections.Generic;
+
+#if UNITY_EDITOR
 using System.IO;
 using UnityEditor;
+#endif
 using UnityEngine;
 
 namespace BattleBase.Utils.Screenshot
 {
     public class ThumbnailGenerator : MonoBehaviour
     {
+#if UNITY_EDITOR
         [Header("Camera")]
         [SerializeField] private Camera _captureCamera;
 
@@ -95,5 +98,6 @@ namespace BattleBase.Utils.Screenshot
 
             Debug.Log($"Saved: {path}");
         }
+#endif
     }
 }
