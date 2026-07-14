@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: LightGrav_WeaponConfig
   m_EditorClassIdentifier: 
   _projectileConfig:
-    _projectilePrefab: {fileID: 7550878289047074185, guid: ed12269b9172a4a44bfe5966c7513ee1,
+    _projectilePrefab: {fileID: 355753026873336657, guid: 5cd2d94e0b23eed408b278a93e69caf2,
       type: 3}
-    _speed: 80
+    _speed: 1000
   _damageConfig:
     _targetingProfile: {fileID: 11400000, guid: 3dd59c44c6a643d439058d6285cad224,
       type: 2}
     _damageMask: 0
-    _damage: 10
+    _damage: 8
   _firingRange: 35
-  _rateShooting: 0.2
+  _rateShooting: 0.1
   _speedReload: 2.5
-  _numberShells: 20
+  _numberShells: 30

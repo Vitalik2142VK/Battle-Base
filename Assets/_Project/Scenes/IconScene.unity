@@ -235,12 +235,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e858bfe18cd7d3942aed653ca644b327, type: 3}
---- !u!1 &1359061 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7927907826797576134, guid: e858bfe18cd7d3942aed653ca644b327,
-    type: 3}
-  m_PrefabInstance: {fileID: 1359060}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1359062 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1530847751015698925, guid: e858bfe18cd7d3942aed653ca644b327,
@@ -824,7 +818,7 @@ MonoBehaviour:
   _height: 512
   _outputFolder: Assets/_Project/Art/Sprites/Actors
   _captures:
-  - {fileID: 1359061}
+  - {fileID: 2033887978}
 --- !u!1 &459478713
 GameObject:
   m_ObjectHideFlags: 0
@@ -2242,6 +2236,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ae615741784df34c8b7ac78e0eb7393, type: 3}
+--- !u!1 &2033887978 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2640142135244227979, guid: 1ae615741784df34c8b7ac78e0eb7393,
+    type: 3}
+  m_PrefabInstance: {fileID: 2033887977}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2033887979 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6569319841201662918, guid: 1ae615741784df34c8b7ac78e0eb7393,

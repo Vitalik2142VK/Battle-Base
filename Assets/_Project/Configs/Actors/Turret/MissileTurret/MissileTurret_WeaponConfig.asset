@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8368aa947f2bba2478fc99c70d338400, type: 3}
-  m_Name: MissleTurret_WeaponConfig
+  m_Name: MissileTurret_WeaponConfig
   m_EditorClassIdentifier: 
   _projectileConfig:
     _projectilePrefab: {fileID: 1069512764962686299, guid: 322ffe0642e93444f84e0ff9da8f742e,
