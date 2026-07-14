@@ -14,6 +14,7 @@ namespace BattleBase.ShopSystem
         [SerializeField] private ShopUpgradeStatsConfig _stats;
         [SerializeField] private UnitNameConfig _unitNameConfig;
         [SerializeField] private GameObject _cleanPrefab;
+        [SerializeField] private float _previewScreenScale = 1;
 
         public string Id => _actorConfig.Data.Id;
 
@@ -24,5 +25,7 @@ namespace BattleBase.ShopSystem
         public IShopUpgradeStatsInfo PanelInfo => _stats;
 
         public GameObject CleanPrefab => _cleanPrefab;
+
+        public float PreviewScreenScale => _previewScreenScale;
     }
 }

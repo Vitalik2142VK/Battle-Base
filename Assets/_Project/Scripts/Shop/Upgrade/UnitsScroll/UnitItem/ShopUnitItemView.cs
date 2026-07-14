@@ -22,9 +22,9 @@ namespace BattleBase.ShopSystem
 
         public IShopActorItemConfig Info { get; private set; }
 
-        public void SetInfo(IShopActorItemConfig info, Action<ShopUnitItemView> clicked)
+        public void SetInfo(IShopActorItemConfig info, Sprite preview, Action<ShopUnitItemView> clicked)
         {
-            _preview.sprite = info.Preview;
+            _preview.sprite = preview;
             UnitName = info.UnitName;
             _unitName.SetTexts(UnitName);
             _clicked = clicked;

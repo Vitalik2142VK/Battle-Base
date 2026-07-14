@@ -8,19 +8,29 @@ namespace BattleBase.ShopSystem
     public class ShopUnitItemInfo : IShopActorItemConfig
     {
         [SerializeField] private string _id;
-        [SerializeField] private Sprite _preview;
         [SerializeField] private LanguageTextsSet _unitName;
         [SerializeField] private ShopUpgradeStatsInfo _panelInfo;
         [SerializeField] private GameObject _cleanPrefab;
+        [SerializeField] private float _previewScreenScale;
 
         public ShopUnitItemInfo(IShopActorItemConfig other)
         {
             _id = other.Id;
-            _preview = other.Preview;
             _unitName = new(other.UnitName);
             _panelInfo = new(other.PanelInfo);
             _cleanPrefab = other.CleanPrefab;
+            _previewScreenScale = other.PreviewScreenScale;
         }
+
+        public string Id => _id;
+
+        public ILanguageTextsSet UnitName => _unitName;
+
+        public IShopUpgradeStatsInfo PanelInfo => _panelInfo;
+
+        public GameObject CleanPrefab => _cleanPrefab;
+
+        public float PreviewScreenScale => _previewScreenScale;
 
         public void IncreaseDamageLevel() =>
             _panelInfo.IncreaseDamageLevel();
@@ -39,15 +49,5 @@ namespace BattleBase.ShopSystem
 
         public void SetBuildTimeLevel(int level) =>
             _panelInfo.SetBuildTimeLevel(level);
-
-        public string Id => _id;
-
-        public Sprite Preview => _preview;
-
-        public ILanguageTextsSet UnitName => _unitName;
-
-        public IShopUpgradeStatsInfo PanelInfo => _panelInfo;
-
-        public GameObject CleanPrefab => _cleanPrefab;
     }
 }

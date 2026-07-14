@@ -4,7 +4,7 @@ namespace BattleBase.ShopSystem
 {
     public class ModelRotator : MonoBehaviour
     {
-        [SerializeField] private Transform _rotationTransform;        
+        [SerializeField] private Transform _rotationTransform;
         [SerializeField] private Vector3 _direction;
         [SerializeField] private float _speed;
 
@@ -20,8 +20,11 @@ namespace BattleBase.ShopSystem
         public void Show() =>
             gameObject.SetActive(true);
 
-        public void Hide() => 
-            gameObject.SetActive(false);
+        public void Hide()
+        {
+            if (this != null && gameObject != null)
+                gameObject.SetActive(false);
+        }
 
         public void Rotate(Vector3 direction, float speed) =>
             _rotationTransform.eulerAngles += direction * speed;
