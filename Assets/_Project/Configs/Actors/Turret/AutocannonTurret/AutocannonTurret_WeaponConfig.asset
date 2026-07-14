@@ -22,6 +22,6 @@ MonoBehaviour:
     _damageMask: 0
     _damage: 15
   _firingRange: 40
-  _rateShooting: 0.4
+  _rateShooting: 0.3
   _speedReload: 4
   _numberShells: 16

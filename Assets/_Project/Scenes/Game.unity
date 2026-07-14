@@ -606,6 +606,52 @@ MonoBehaviour:
   - {fileID: 410766733}
   - {fileID: 414270343}
   - {fileID: 407241253}
+--- !u!1 &140337393
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 140337394}
+  - component: {fileID: 140337395}
+  m_Layer: 0
+  m_Name: LaserFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &140337394
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140337393}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1063209184}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &140337395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140337393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9e688735f0f6ec4787c864e1460e961, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _projectilePrefab: {fileID: 355753026873336657, guid: 5cd2d94e0b23eed408b278a93e69caf2,
+    type: 3}
 --- !u!1 &154875161
 GameObject:
   m_ObjectHideFlags: 0
@@ -8551,6 +8597,7 @@ Transform:
   - {fileID: 232845518}
   - {fileID: 549900560}
   - {fileID: 517882885}
+  - {fileID: 140337394}
   m_Father: {fileID: 849014627}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1063209185
@@ -8570,6 +8617,7 @@ MonoBehaviour:
   - {fileID: 232845519}
   - {fileID: 549900561}
   - {fileID: 517882886}
+  - {fileID: 140337395}
   _container: {fileID: 1697783764}
 --- !u!1 &1063886126 stripped
 GameObject:
