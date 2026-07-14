@@ -4704,6 +4704,7 @@ GameObject:
   - component: {fileID: 1762211826}
   - component: {fileID: 1762211825}
   - component: {fileID: 1762211827}
+  - component: {fileID: 1762211828}
   m_Layer: 5
   m_Name: RawImage
   m_TagString: Untagged
@@ -4778,6 +4779,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _renderingModelInstaller: {fileID: 575533241}
+--- !u!114 &1762211828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762211823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f49a87695575214e88e1b830c28b96e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _modelRotator: {fileID: 575533240}
+  _dragSensitivity: 0.2
 --- !u!1001 &1804985858
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6123,7 +6138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0.654232, b: 1, a: 0.30588236}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -6153,7 +6168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.7801549, g: 1, b: 0.5566037, a: 0.30588236}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -6411,7 +6426,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0.6738252, b: 0, a: 0.30588236}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

@@ -9,6 +9,21 @@ namespace BattleBase.ShopSystem
         [SerializeField] private float _speed;
 
         private void Update() =>
-            _rotationTransform.eulerAngles += _speed * Time.deltaTime * _direction;
+            Rotate(_direction, _speed * Time.deltaTime);
+
+        public void Enable() =>
+            enabled = true;
+
+        public void Disable() =>
+            enabled = false;
+
+        public void Show() =>
+            gameObject.SetActive(true);
+
+        public void Hide() => 
+            gameObject.SetActive(false);
+
+        public void Rotate(Vector3 direction, float speed) =>
+            _rotationTransform.eulerAngles += direction * speed;
     }
 }
