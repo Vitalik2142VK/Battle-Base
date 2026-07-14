@@ -15,6 +15,8 @@ namespace BattleBase.Gameplay.Actors.Economy
         private int _materialsPerTick;
         private int _currentRank;
 
+        public event Action<int> MaterialsCreated;
+
         public MaterialCreator(IMaterialCreatorConfig config, IAdvancedMaterialRegistry materialRegistry)
         {
             _config = config ?? throw new ArgumentNullException(nameof(config));
@@ -56,6 +58,8 @@ namespace BattleBase.Gameplay.Actors.Economy
 
             _materialRegistry.AddMaterials(_teamable.TeamType, _materialsPerTick);
             _timer.RestartTimer();
+
+            MaterialsCreated?.Invoke(_materialsPerTick);
         }
 
         public void IncreaseProduction()

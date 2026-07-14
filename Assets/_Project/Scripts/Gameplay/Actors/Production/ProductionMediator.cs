@@ -1,5 +1,4 @@
 using BattleBase.DI;
-using BattleBase.Gameplay.Actors.Types;
 using BattleBase.Gameplay.Actors.Visual.Select;
 using BattleBase.Gameplay.CameraNavigation.InputReader;
 using BattleBase.UI;
