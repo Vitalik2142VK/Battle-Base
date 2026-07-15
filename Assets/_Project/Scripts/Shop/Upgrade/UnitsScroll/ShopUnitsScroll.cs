@@ -21,15 +21,15 @@ namespace BattleBase.ShopSystem
         private readonly List<ShopUnitItemView> _items = new();
 
         private ActorsUpgradeModel _unitsUpgradeModel;
-        private TeamColorModel _teamColorModel;
+        private PreviewCreator _previewCreator;
 
         public ShopUnitItemView CurrentItem { get; private set; }
 
         [Inject]
-        public void Construct(ActorsUpgradeModel unitsUpgradeModel, TeamColorModel teamColorModel)
+        public void Construct(ActorsUpgradeModel unitsUpgradeModel, TeamColorModel teamColorModel, PreviewCreator previewCreator)
         {
             _unitsUpgradeModel = unitsUpgradeModel ?? throw new ArgumentNullException(nameof(unitsUpgradeModel));
-            _teamColorModel = teamColorModel ?? throw new ArgumentNullException(nameof(teamColorModel));
+            _previewCreator = previewCreator ?? throw new ArgumentNullException(nameof(previewCreator));
 
             Init(unitsUpgradeModel.Infos);
         }
@@ -45,21 +45,10 @@ namespace BattleBase.ShopSystem
 
             foreach (IShopActorItemConfig info in infos)
             {
-                GameObject actor = Instantiate(info.CleanPrefab);
-                actor.transform.localScale = actor.transform.localScale * info.PreviewScreenScale;
-
-                if (actor.TryGetComponent(out MaterialColorChanger colorChanger))
-                    colorChanger.Change(_teamColorModel.PlayerColor);
-
-                Texture2D texture = _screenshoter.CaptureObject(actor, squareTextureSize, squareTextureSize);
-
-                Sprite preview = Sprite.Create(
-                    texture,
-                    rect,
-                    centerPivot);
-
-                actor.SetActive(false);
-                Destroy(actor);
+                Sprite preview = _previewCreator.Create(
+                    info.CleanPrefab, 
+                    info.PreviewScreenScale, 
+                    squareTextureSize);
 
                 ShopUnitItemView item = Instantiate(_prefab, _content);
                 item.SetInfo(info, preview, Select);

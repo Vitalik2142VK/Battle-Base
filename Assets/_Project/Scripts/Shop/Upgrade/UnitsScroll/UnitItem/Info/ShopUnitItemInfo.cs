@@ -9,6 +9,7 @@ namespace BattleBase.ShopSystem
     {
         [SerializeField] private string _id;
         [SerializeField] private LanguageTextsSet _unitName;
+        [SerializeField] private LanguageTextsSet _unitDescription;
         [SerializeField] private ShopUpgradeStatsInfo _panelInfo;
         [SerializeField] private GameObject _cleanPrefab;
         [SerializeField] private float _previewScreenScale;
@@ -17,6 +18,7 @@ namespace BattleBase.ShopSystem
         {
             _id = other.Id;
             _unitName = new(other.UnitName);
+            _unitDescription = new(other.Description);
             _panelInfo = new(other.PanelInfo);
             _cleanPrefab = other.CleanPrefab;
             _previewScreenScale = other.PreviewScreenScale;
@@ -26,11 +28,14 @@ namespace BattleBase.ShopSystem
 
         public ILanguageTextsSet UnitName => _unitName;
 
+        public ILanguageTextsSet Description => _unitDescription;
+
         public IShopUpgradeStatsInfo PanelInfo => _panelInfo;
 
         public GameObject CleanPrefab => _cleanPrefab;
 
         public float PreviewScreenScale => _previewScreenScale;
+
 
         public void IncreaseDamageLevel() =>
             _panelInfo.IncreaseDamageLevel();

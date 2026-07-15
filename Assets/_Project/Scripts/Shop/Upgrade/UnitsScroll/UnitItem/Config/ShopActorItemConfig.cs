@@ -13,6 +13,7 @@ namespace BattleBase.ShopSystem
         [SerializeField] private ActorConfig _actorConfig;
         [SerializeField] private ShopUpgradeStatsConfig _stats;
         [SerializeField] private UnitNameConfig _unitNameConfig;
+        [SerializeField] private UnitDescriptionConfig _unitDescriptionConfig;
         [SerializeField] private GameObject _cleanPrefab;
         [SerializeField] private float _previewScreenScale = 1;
 
@@ -21,6 +22,8 @@ namespace BattleBase.ShopSystem
         public Sprite Preview => _actorConfig.Data.Icon;
 
         public ILanguageTextsSet UnitName => _unitNameConfig;
+
+        public ILanguageTextsSet Description => _unitDescriptionConfig;
 
         public IShopUpgradeStatsInfo PanelInfo => _stats;
 

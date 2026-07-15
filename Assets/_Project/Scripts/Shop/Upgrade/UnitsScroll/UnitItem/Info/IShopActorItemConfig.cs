@@ -11,6 +11,8 @@ namespace BattleBase.ShopSystem
 
         public ILanguageTextsSet UnitName { get; }
 
+        public ILanguageTextsSet Description { get; }
+
         public IShopUpgradeStatsInfo PanelInfo { get; }
 
         public float PreviewScreenScale { get; }

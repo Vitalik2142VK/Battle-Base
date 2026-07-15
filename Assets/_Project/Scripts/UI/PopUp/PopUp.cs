@@ -14,7 +14,7 @@ namespace BattleBase.UI.PopUps
         private Sequence _currentSequence;
         private bool _isActive;
 
-        public void Init()
+        public virtual void Init()
         {
             _popUpAnimators = GetComponents<PopUpAnimatorBase>().ToList();
 

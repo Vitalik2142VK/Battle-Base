@@ -15,6 +15,8 @@ MonoBehaviour:
   _actorConfig: {fileID: 11400000, guid: e587a36f43eff694bbf1c201fc3498c5, type: 2}
   _stats: {fileID: 11400000, guid: 661c9bd0683bed940b9b1d2662147953, type: 2}
   _unitNameConfig: {fileID: 11400000, guid: e18d2683bae8998498e69812c312fa2f, type: 2}
+  _unitDescriptionConfig: {fileID: 11400000, guid: 26a769dd50d604749b3d8dd1dc1a2524,
+    type: 2}
   _cleanPrefab: {fileID: 7002220106344778511, guid: 5be2626cf3805f94993a60293887d5cd,
     type: 3}
   _previewScreenScale: 0.9

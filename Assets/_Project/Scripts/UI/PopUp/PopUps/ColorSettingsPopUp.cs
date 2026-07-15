@@ -18,8 +18,10 @@ namespace BattleBase.UI.PopUps
         public void Construct(TeamColorModel colorModel) =>
             _colorModel = colorModel ?? throw new ArgumentNullException(nameof(colorModel));
 
-        private void Awake()
+        public override void Init()
         {
+            base.Init();
+
             IReadOnlyList<Color> colors = _colorModel.Colors;
 
             _enemyColorSet.Init(colors);

@@ -57,7 +57,6 @@ namespace BattleBase.ShopSystem
             UnitSelectionChanged?.Invoke();
         }
 
-
         public void Load()
         {
             IReadOnlyList<IUnitUpgradeData> datas = _saver.ShopData.UnitsUpgrades;

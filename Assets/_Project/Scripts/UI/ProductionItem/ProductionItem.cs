@@ -62,7 +62,11 @@ namespace BattleBase.UI
         private void OnItemButton(ButtonClickHandler handler) =>
             ItemClicked?.Invoke(_productionOption);
 
-        private void OnMoreInfoClicked(ButtonClickHandler handler) =>
-            _popUp.SetInfo(Info);
+        private void OnMoreInfoClicked(ButtonClickHandler handler)
+        {
+            IProductionData info = Info;
+            ItemPopUpInfo adaptInfo = new(info.Icon, info.Name, Info.Description);
+            _popUp.SetInfo(adaptInfo);
+        }
     }
 }
