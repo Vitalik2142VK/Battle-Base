@@ -16,6 +16,9 @@ namespace BattleBase.Gameplay.Actors.Energy
                 return;
 
             powerGenerator.Init(actor);
+
+            if (view.TryGetViewComponent(out IPowerGeneratorView powerGeneratorView))
+                powerGeneratorView.Init(powerGenerator);
         }
     }
 }

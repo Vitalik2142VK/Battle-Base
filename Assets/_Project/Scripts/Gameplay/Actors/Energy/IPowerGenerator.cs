@@ -1,6 +1,6 @@
 ﻿namespace BattleBase.Gameplay.Actors.Energy
 {
-    public interface IPowerGenerator : IActorComponent
+    public interface IPowerGenerator : IActorComponent, IPowerGeneratorNotifier
     {
         public bool CanIncreasePower { get; }
 

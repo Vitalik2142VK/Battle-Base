@@ -16,6 +16,9 @@ namespace BattleBase.Gameplay.Actors.Economy
                 return;
 
             materialCreator.Init(actor);
+
+            if (view.TryGetViewComponent(out IMaterialCreatorView materialCreatorView))
+                materialCreatorView.Init(materialCreator);
         }
     }
 }

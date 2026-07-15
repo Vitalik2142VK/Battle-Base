@@ -1,6 +1,6 @@
 namespace BattleBase.Gameplay.Actors.Economy
 {
-    public interface IMaterialCreator : IActorComponent, IUpdateable
+    public interface IMaterialCreator : IActorComponent, IUpdateable, IMaterialCreatorEvents
     {
         public bool CanIncreaseProduction { get; }
 
