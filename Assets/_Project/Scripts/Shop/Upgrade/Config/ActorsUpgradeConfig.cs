@@ -10,7 +10,10 @@ namespace BattleBase.ShopSystem
     public class ActorsUpgradeConfig : ScriptableObject
     {
         [SerializeField] private List<ShopActorItemConfig> _infos;
+        [SerializeField] private PreviewCreateConfig _previewCreateConfig;        
 
         public IReadOnlyList<IShopActorItemConfig> Infos => _infos;
+
+        public PreviewCreateConfig PreviewCreateConfig => _previewCreateConfig;
     }
 }

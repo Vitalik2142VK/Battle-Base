@@ -14,12 +14,12 @@ namespace BattleBase.ShopSystem
         [SerializeField] private ShopUpgradeStatsConfig _stats;
         [SerializeField] private UnitNameConfig _unitNameConfig;
         [SerializeField] private UnitDescriptionConfig _unitDescriptionConfig;
+
+        [Header("ScreenshotParams")]
         [SerializeField] private GameObject _cleanPrefab;
-        [SerializeField] private float _previewScreenScale = 1;
+        [SerializeField] private float _previewScreenScale = 1;        
 
         public string Id => _actorConfig.Data.Id;
-
-        public Sprite Preview => _actorConfig.Data.Icon;
 
         public ILanguageTextsSet UnitName => _unitNameConfig;
 

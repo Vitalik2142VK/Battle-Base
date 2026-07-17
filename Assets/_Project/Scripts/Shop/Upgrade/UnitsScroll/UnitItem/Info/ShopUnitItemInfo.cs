@@ -36,7 +36,6 @@ namespace BattleBase.ShopSystem
 
         public float PreviewScreenScale => _previewScreenScale;
 
-
         public void IncreaseDamageLevel() =>
             _panelInfo.IncreaseDamageLevel();
 

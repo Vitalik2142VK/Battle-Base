@@ -1,4 +1,5 @@
 using System;
+using BattleBase.PreviewCreatingSystem;
 using BattleBase.UI.Buttons;
 using BattleBase.UI.PopUps;
 using UnityEngine;
@@ -12,10 +13,10 @@ namespace BattleBase.ShopSystem
         [SerializeField] private ButtonClickHandler _itemInfoOpenerButton;
 
         private ActorsUpgradeModel _unitsUpgradeModel;
-        private PreviewCreator _previewCreator;
+        private IPreviewCreator _previewCreator;
 
         [Inject]
-        public void Construct(ActorsUpgradeModel unitsUpgradeModel, PreviewCreator previewCreator)
+        public void Construct(ActorsUpgradeModel unitsUpgradeModel, IPreviewCreator previewCreator)
         {
             _unitsUpgradeModel = unitsUpgradeModel ?? throw new ArgumentNullException(nameof(unitsUpgradeModel));
             _previewCreator = previewCreator ?? throw new ArgumentNullException(nameof(previewCreator));
@@ -31,8 +32,16 @@ namespace BattleBase.ShopSystem
         {
             IShopActorItemConfig selected = _unitsUpgradeModel.Selected;
 
-            int squareTextureSize = 512;
-            Sprite preview = _previewCreator.Create(selected.CleanPrefab, selected.PreviewScreenScale, squareTextureSize);
+            PreviewCreateConfig previewConfig = _unitsUpgradeModel.PreviewCreateConfig;
+
+            Sprite preview = _previewCreator.Create(
+                selected.CleanPrefab, 
+                selected.PreviewScreenScale,
+                previewConfig.BigTextureSize,
+                previewConfig.CameraOffset,
+                previewConfig.ModelRotation,
+                previewConfig.DepthBits,
+                previewConfig.AntiAliasingLevel);
 
             ItemPopUpInfo info = new(
                 preview, 

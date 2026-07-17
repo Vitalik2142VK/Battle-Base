@@ -2,9 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using BattleBase.Commands;
-using BattleBase.Gameplay.Actors.Colored;
-using BattleBase.Gameplay.Map;
-using BattleBase.ScreenshotSystem;
 using BattleBase.Utils.Extensions;
 using UnityEngine;
 using VContainer;
@@ -16,42 +13,30 @@ namespace BattleBase.ShopSystem
         [SerializeField] private CommandRebuildLayout _commandRebuildLayout;
         [SerializeField] private Transform _content;
         [SerializeField] private ShopUnitItemView _prefab;
-        [SerializeField] private Screenshoter _screenshoter;
 
         private readonly List<ShopUnitItemView> _items = new();
 
         private ActorsUpgradeModel _unitsUpgradeModel;
-        private PreviewCreator _previewCreator;
 
         public ShopUnitItemView CurrentItem { get; private set; }
 
         [Inject]
-        public void Construct(ActorsUpgradeModel unitsUpgradeModel, TeamColorModel teamColorModel, PreviewCreator previewCreator)
+        public void Construct(ActorsUpgradeModel unitsUpgradeModel)
         {
             _unitsUpgradeModel = unitsUpgradeModel ?? throw new ArgumentNullException(nameof(unitsUpgradeModel));
-            _previewCreator = previewCreator ?? throw new ArgumentNullException(nameof(previewCreator));
-
-            Init(unitsUpgradeModel.Infos);
         }
 
-        public void Init(IReadOnlyList<IShopActorItemConfig> infos)
+        public void Init(IReadOnlyList<IShopActorItemConfig> infos, List<Sprite> previews)
         {
             _content.ClearChilds();
             _items.Clear();
 
-            Vector2 centerPivot = new(0.5f, 0.5f);
-            int squareTextureSize = 256;
-            Rect rect = new(0, 0, squareTextureSize, squareTextureSize);
-
-            foreach (IShopActorItemConfig info in infos)
+            for (int i = 0; i < infos.Count; i++)
             {
-                Sprite preview = _previewCreator.Create(
-                    info.CleanPrefab, 
-                    info.PreviewScreenScale, 
-                    squareTextureSize);
+                IShopActorItemConfig info = infos[i];
 
                 ShopUnitItemView item = Instantiate(_prefab, _content);
-                item.SetInfo(info, preview, Select);
+                item.SetInfo(info, previews[i], Select);
                 item.Unselect();
                 _items.Add(item);
             }
@@ -66,7 +51,6 @@ namespace BattleBase.ShopSystem
             CurrentItem = item;
 
             _unitsUpgradeModel.SelectUnit(item.Info);
-
             _commandRebuildLayout.Execute();
         }
 

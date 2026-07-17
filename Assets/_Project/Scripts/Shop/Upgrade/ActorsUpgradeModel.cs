@@ -33,6 +33,8 @@ namespace BattleBase.ShopSystem
 
         public IShopUpgradeStatsInfo PanelInfo => _selected.PanelInfo;
 
+        public PreviewCreateConfig PreviewCreateConfig => _config.PreviewCreateConfig;
+
         public void IncreaseDamageLevel()
         {
             _selected.IncreaseDamageLevel();
