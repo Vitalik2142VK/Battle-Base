@@ -13,7 +13,27 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
                 throw new ArgumentException(
                     $"{nameof(source)} 'source' does not implement {nameof(IAttackComponentSource)}");
 
-            Weapon weapon = new(attackSource.Config);
+            MultyAttacker multyAttacker = null;
+
+            foreach (var config in attackSource.Configs)
+            {
+                Attacker attacker = CreateAttacker(config);
+
+                if (attackSource.IsSingle)
+                    return attacker;
+                
+                if (multyAttacker == null)
+                    multyAttacker = new MultyAttacker(attacker);
+                else
+                    multyAttacker.AddAttacker(attacker);
+            }
+
+            return multyAttacker;
+        }
+
+        private Attacker CreateAttacker(IWeaponConfig weaponConfig)
+        {
+            Weapon weapon = new(weaponConfig);
 
             return new Attacker(weapon);
         }

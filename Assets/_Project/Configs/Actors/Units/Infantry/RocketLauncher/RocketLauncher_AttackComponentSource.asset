@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc320ceab8c46f4b890696a8dd87bf4, type: 3}
   m_Name: RocketLauncher_AttackComponentSource
   m_EditorClassIdentifier: 
-  _weaponConfig: {fileID: 11400000, guid: eb9e000f164a13745a7a3755d3be9466, type: 2}
+  _weaponConfig:
+  - {fileID: 11400000, guid: eb9e000f164a13745a7a3755d3be9466, type: 2}

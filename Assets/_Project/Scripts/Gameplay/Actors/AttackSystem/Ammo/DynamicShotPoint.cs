@@ -2,7 +2,7 @@
 
 namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
 {
-    public class MultiShotPoint : MonoBehaviour, IShotPoint
+    public class DynamicShotPoint : MonoBehaviour, IShotPoint
     {
         [SerializeField] private ShotPoint[] _shotPoints;
 

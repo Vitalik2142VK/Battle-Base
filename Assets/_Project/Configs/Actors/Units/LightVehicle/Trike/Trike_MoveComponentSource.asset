@@ -15,5 +15,5 @@ MonoBehaviour:
   _healthConfig:
     _speed: 10
     _angularSpeed: 180
-    _acceleration: 10
-    _stoppingDistance: 1
+    _acceleration: 15
+    _stoppingDistance: 2

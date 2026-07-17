@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc320ceab8c46f4b890696a8dd87bf4, type: 3}
   m_Name: Tank_AttackComponentSource
   m_EditorClassIdentifier: 
-  _weaponConfig: {fileID: 11400000, guid: 74ea13d5054c2544981bd7c5abf1059c, type: 2}
+  _weaponConfig:
+  - {fileID: 11400000, guid: 74ea13d5054c2544981bd7c5abf1059c, type: 2}

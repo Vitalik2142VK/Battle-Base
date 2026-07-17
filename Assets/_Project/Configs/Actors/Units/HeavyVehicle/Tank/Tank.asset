@@ -31,7 +31,7 @@ MonoBehaviour:
       _tr:
         _text: Test
     _constructionTime: 15
-    _price: 325
+    _price: 410
     _power: 4
     _isSummable: 1
   _components:
