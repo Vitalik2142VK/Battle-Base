@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd1bbd144f98c0a429d15fcf764e5306, type: 3}
   m_Name: Trike_TargetingProfile
   m_EditorClassIdentifier: 
-  _notAttacked: 8
+  _notAttacked: 0
   _priorityActorTypes:
   - _actorMask: 12
     _damageCoefficient: 4

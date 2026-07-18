@@ -1,18 +1,15 @@
 ﻿using BattleBase.Gameplay.Actors.AttackSystem.Ammo;
-using BattleBase.Gameplay.Actors.AttackSystem.Weapons;
-using BattleBase.Gameplay.Actors.DamageSystem;
-using BattleBase.Gameplay.Actors.Spawn;
 using System;
 
 namespace BattleBase.Gameplay.Actors.AttackSystem
 {
     public class AttackerBinder : IActorComponentBinder
     {
-        private readonly IProjectileSpawner _projectileSpawner;
+        private readonly AttackerInitializer _attackerInitializer;
 
-        public AttackerBinder(IProjectileSpawner projectileSpawner)
+        public AttackerBinder(AttackerInitializer attackerInitializer)
         {
-            _projectileSpawner = projectileSpawner ?? throw new ArgumentNullException(nameof(projectileSpawner));
+            _attackerInitializer = attackerInitializer ?? throw new ArgumentNullException(nameof(attackerInitializer));
         }
 
         public void Bind(IActor actor, IActorView view)
@@ -29,13 +26,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             if (view.TryGetViewComponent(out IShotPoint shotPoint) == false)
                 throw new InvalidOperationException($"'{nameof(view)}' don't contain module '{nameof(IShotPoint)}'");
 
-            IWeaponConfig weaponConfig = attacker.WeaponConfig;
-            ITargetingProfile targetingProfile = weaponConfig.DamageConfig.TargetingProfile;
-            IProjectileConfig projectileConfig = weaponConfig.ProjectileConfig;
-            TargetController targetController = new(view, attacker.WeaponConfig, targetingProfile);
-            ProjectileController projectileController = new(_projectileSpawner, shotPoint, projectileConfig);
-
-            attacker.Init(targetController, projectileController);
+            _attackerInitializer.Init(attacker, shotPoint, view);
 
             if (view.TryGetViewComponent(out IAttackerViewComponent weaponView))
                 weaponView.Init(attacker);

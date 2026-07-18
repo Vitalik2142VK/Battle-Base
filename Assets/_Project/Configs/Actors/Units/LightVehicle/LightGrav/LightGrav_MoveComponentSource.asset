@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthConfig:
     _speed: 8
-    _angularSpeed: 180
-    _acceleration: 10
-    _stoppingDistance: 1
+    _angularSpeed: 150
+    _acceleration: 8
+    _stoppingDistance: 3

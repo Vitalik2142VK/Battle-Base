@@ -32,7 +32,7 @@ MonoBehaviour:
         _text: Test
     _constructionTime: 6
     _price: 500
-    _power: 3
+    _power: 0
     _isSummable: 0
   _components:
   - {fileID: 11400000, guid: 6835f2a09b50f544d9df0c13171c0f54, type: 2}

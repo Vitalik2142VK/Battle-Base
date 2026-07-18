@@ -17,4 +17,4 @@ MonoBehaviour:
   - _actorMask: 8
     _damageCoefficient: 6
   - _actorMask: 4
-    _damageCoefficient: 3.5
+    _damageCoefficient: 4

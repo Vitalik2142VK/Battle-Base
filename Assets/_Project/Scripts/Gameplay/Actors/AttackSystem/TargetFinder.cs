@@ -50,9 +50,9 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
         public void Init(IAttackerPresenter presenter, IWeaponRange weaponRange, ITeamable teamable)
         {
-            _presenter = presenter ?? throw new ArgumentNullException(nameof(presenter));
-            _weaponRange = weaponRange ?? throw new ArgumentNullException(nameof(weaponRange));
-            _teamable = teamable ?? throw new ArgumentNullException(nameof(teamable));
+            _presenter ??= presenter ?? throw new ArgumentNullException(nameof(presenter));
+            _weaponRange ??= weaponRange ?? throw new ArgumentNullException(nameof(weaponRange));
+            _teamable ??= teamable ?? throw new ArgumentNullException(nameof(teamable));
         }
 
         private IEnumerator Activate()

@@ -133,6 +133,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7335119211846598187}
+  - {fileID: 8453346108761518030}
   m_Father: {fileID: 5458215064793872278}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4258445017578806683
@@ -472,6 +473,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ca3946f632af1540b0cb6c31d5e77e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &7154788733804118963
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8453346108761518030}
+  - component: {fileID: 9095903302296787857}
+  m_Layer: 0
+  m_Name: DynamicShotPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8453346108761518030
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7154788733804118963}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6520610182593990771}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9095903302296787857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7154788733804118963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 539baccfc87a2984cb77b0171e1b3a78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shotPoints:
+  - {fileID: 4027933444438365166}
+  - {fileID: 4694556255306444420}
 --- !u!1 &7255907248028114622
 GameObject:
   m_ObjectHideFlags: 0
@@ -572,7 +620,6 @@ GameObject:
   - component: {fileID: 6537239437968506316}
   - component: {fileID: 1383697401324455294}
   - component: {fileID: 7135602550130683394}
-  - component: {fileID: 2269430543705866175}
   m_Layer: 6
   m_Name: MissileTurret
   m_TagString: Untagged
@@ -613,6 +660,7 @@ MonoBehaviour:
   _viewComponents:
   - {fileID: 1111274950978299982}
   - {fileID: 4426447066821534083}
+  - {fileID: 7154788733804118963}
 --- !u!114 &1306297043415999413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -700,21 +748,6 @@ MonoBehaviour:
   _renderers:
   - {fileID: 6663949126697813336}
   _targetMaterial: {fileID: 2100000, guid: 2182440ddf123974fb0dbf1a13fb7786, type: 2}
---- !u!114 &2269430543705866175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7927907826797576134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 539baccfc87a2984cb77b0171e1b3a78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shotPoints:
-  - {fileID: 4027933444438365166}
-  - {fileID: 4694556255306444420}
 --- !u!1001 &6087520695016791290
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Quad_MoveComponentSource
   m_EditorClassIdentifier: 
   _healthConfig:
-    _speed: 7
-    _angularSpeed: 180
+    _speed: 8
+    _angularSpeed: 160
     _acceleration: 10
-    _stoppingDistance: 1
+    _stoppingDistance: 2

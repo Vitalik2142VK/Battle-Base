@@ -3,6 +3,7 @@ using BattleBase.Gameplay.Actors.AI;
 using BattleBase.Gameplay.Actors.AI.Transition;
 using BattleBase.Gameplay.Actors.AttackSystem;
 using BattleBase.Gameplay.Actors.AttackSystem.Ammo;
+using BattleBase.Gameplay.Actors.AttackSystem.Multiple;
 using BattleBase.Gameplay.Actors.Building;
 using BattleBase.Gameplay.Actors.Colored;
 using BattleBase.Gameplay.Actors.ComponentImprovement;
@@ -84,8 +85,10 @@ namespace BattleBase.DI
 
         private void RegisterActorBinderRegistry()
         {
+            _builder.Register<AttackerInitializer>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, HealthBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, AttackerBinder>(Lifetime.Scoped);
+            _builder.Register<IActorComponentBinder, MultyAttackerBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, MoverBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, ActorSpawnerBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, ColoredActorBinder>(Lifetime.Scoped);
