@@ -4,7 +4,7 @@ using BattleBase.Gameplay.Actors.DamageSystem;
 using System;
 using System.Collections.Generic;
 
-namespace BattleBase.Gameplay.Actors.AttackSystem
+namespace BattleBase.Gameplay.Actors.AttackSystem.Multiple
 {
     public class MultyAttacker : IMultyAttacker
     {
@@ -19,7 +19,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         public MultyAttacker(IAttacker mainAttacker)
         {
             _mainAttacker = mainAttacker ?? throw new ArgumentNullException(nameof(mainAttacker));
-            _attackers = new List<IAttacker>() { mainAttacker };
+            _attackers = new List<IAttacker>();
         }
 
         public IEnumerable<IAttacker> AdditionalAttackers => _attackers;
@@ -28,11 +28,13 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
         public ITarget CurrentTarget => _mainAttacker.CurrentTarget;
 
-        public void Init(ITargetController targetController, IProjectileController projectileController) =>
+        public void Init(ITargetController targetController, IProjectileController projectileController) => 
             _mainAttacker.Init(targetController, projectileController);
 
         public void Enable()
         {
+            _mainAttacker.Enable();
+
             foreach (var attacker in _attackers)
                 attacker.Enable();
 
@@ -49,8 +51,10 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             _mainAttacker.AttackActivated -= AttackActivated;
             _mainAttacker.AttackDeactivated -= AttackDeactivated;
 
+            _mainAttacker.Disable();
+
             foreach (var attacker in _attackers)
-                attacker.Enable();
+                attacker.Disable();
         }
 
         public void AddAttacker(IAttacker attacker)
@@ -63,18 +67,24 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
         public void SetTargets(IEnumerable<ITarget> targets)
         {
+            _mainAttacker.SetTargets(targets);
+
             foreach (var attacker in _attackers)
                 attacker.SetTargets(targets);
         }
 
         public void Update(float delta)
         {
+            _mainAttacker.Update(delta);
+
             foreach (var attacker in _attackers)
                 attacker.Update(delta);
         }
 
         public void Upgrade(IWeaponConfigModificator modificator)
         {
+            _mainAttacker.Upgrade(modificator);
+
             foreach (var attacker in _attackers)
                 attacker.Upgrade(modificator);
         }

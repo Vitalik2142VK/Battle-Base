@@ -1,4 +1,6 @@
-﻿namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
+﻿using BattleBase.Gameplay.Actors.AttackSystem.Ammo;
+
+namespace BattleBase.Gameplay.Actors.AttackSystem.Multiple
 {
     public interface IMultyShotPoint : IActorViewComponent
     {

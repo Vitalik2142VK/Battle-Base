@@ -1,4 +1,5 @@
-﻿using BattleBase.Gameplay.Actors.AttackSystem.Weapons;
+﻿using BattleBase.Gameplay.Actors.AttackSystem.Multiple;
+using BattleBase.Gameplay.Actors.AttackSystem.Weapons;
 using System;
 
 namespace BattleBase.Gameplay.Actors.AttackSystem

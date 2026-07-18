@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BattleBase.Gameplay.Actors.AttackSystem
+namespace BattleBase.Gameplay.Actors.AttackSystem.Multiple
 {
     public interface IMultyAttackerViewComponent : IActorViewComponent
     {

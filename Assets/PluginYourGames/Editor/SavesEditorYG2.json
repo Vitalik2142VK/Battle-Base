@@ -1,5 +1,5 @@
 {
-    "idSave": 29,
+    "idSave": 30,
     "SavesData": {
         "_volumeData": {
             "_generalVolume": 1.0,
@@ -22,7 +22,7 @@
             "_selectedTerritory": 2
         },
         "_shopData": {
-            "_credits": 1322,
+            "_credits": 2629,
             "_unitUpgrades": [
                 {
                     "_name": "Shooter",

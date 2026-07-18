@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using BattleBase.Gameplay.Actors.AttackSystem.Ammo;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
+namespace BattleBase.Gameplay.Actors.AttackSystem.Multiple
 {
     public class MultyShotPoint : MonoBehaviour, IMultyShotPoint
     {
@@ -12,6 +13,8 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
 
         private void Awake()
         {
+            _shotPoints = new List<IShotPoint>();
+
             foreach (var gameObject in _gameObjectShotPoits)
             {
                 IShotPoint shotPoint = gameObject.GetComponent<IShotPoint>();

@@ -3,6 +3,7 @@ using BattleBase.Gameplay.Actors.AI;
 using BattleBase.Gameplay.Actors.AI.Transition;
 using BattleBase.Gameplay.Actors.AttackSystem;
 using BattleBase.Gameplay.Actors.AttackSystem.Ammo;
+using BattleBase.Gameplay.Actors.AttackSystem.Multiple;
 using BattleBase.Gameplay.Actors.Building;
 using BattleBase.Gameplay.Actors.Colored;
 using BattleBase.Gameplay.Actors.ComponentImprovement;
