@@ -4,6 +4,6 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 {
     public interface IMultyAttacker : IAttacker
     {
-        public IEnumerable<IAttacker> Attackers { get; }
+        public IEnumerable<IAttacker> AdditionalAttackers { get; }
     }
 }

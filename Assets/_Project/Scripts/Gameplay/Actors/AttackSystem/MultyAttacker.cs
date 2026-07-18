@@ -22,7 +22,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             _attackers = new List<IAttacker>() { mainAttacker };
         }
 
-        public IEnumerable<IAttacker> Attackers => _attackers;
+        public IEnumerable<IAttacker> AdditionalAttackers => _attackers;
 
         public IWeaponConfig WeaponConfig => _mainAttacker.WeaponConfig;
 

@@ -84,8 +84,10 @@ namespace BattleBase.DI
 
         private void RegisterActorBinderRegistry()
         {
+            _builder.Register<AttackerInitializer>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, HealthBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, AttackerBinder>(Lifetime.Scoped);
+            _builder.Register<IActorComponentBinder, MultyAttackerBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, MoverBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, ActorSpawnerBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, ColoredActorBinder>(Lifetime.Scoped);
