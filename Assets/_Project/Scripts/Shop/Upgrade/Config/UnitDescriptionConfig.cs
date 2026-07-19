@@ -4,9 +4,6 @@ using UnityEngine;
 
 namespace BattleBase.ShopSystem
 {
-    [CreateAssetMenu(
-        fileName = nameof(UnitDescriptionConfig),
-        menuName = AssetMenuPaths.ScriptableObjects + nameof(UnitDescriptionConfig))]
     public class UnitDescriptionConfig : ScriptableObject, ILanguageTextsSet
     {
         [SerializeField] private LanguageTextsSet _textSet;
