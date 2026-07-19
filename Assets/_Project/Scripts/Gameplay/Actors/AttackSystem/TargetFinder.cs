@@ -45,7 +45,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
                 return;
 
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, _weaponRange.Range);
+            Gizmos.DrawWireSphere(transform.position, _weaponRange.MaxRange);
         }
 
         public void Init(IAttackerPresenter presenter, IWeaponRange weaponRange, ITeamable teamable)
@@ -76,7 +76,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
             int count = Physics.OverlapSphereNonAlloc(
                 _transform.position,
-                _weaponRange.Range,
+                _weaponRange.MaxRange,
                 _foundUnits,
                 _findedLayerMask,
                 QueryTriggerInteraction.Ignore);

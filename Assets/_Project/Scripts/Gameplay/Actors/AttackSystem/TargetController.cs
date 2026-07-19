@@ -52,7 +52,10 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             if (_currentTarget == null)
                 return;
 
-            if (_actorPosition.Position.IsWithinDistance(_currentTarget.Position, _weaponRange.Range) == false)
+            if (_actorPosition.Position.IsInRangeDistance(
+                _currentTarget.Position, 
+                _weaponRange.MinRange,
+                _weaponRange.MaxRange) == false)
             {
                 LoseTarget();
             }
@@ -73,6 +76,9 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             {
                 foreach (var target in targets)
                 {
+                    if (_actorPosition.Position.IsWithinDistance(target.Position, _weaponRange.MinRange))
+                        break;
+
                     if (priorityActorType.ActorMask.Contains(target.ActorMask))
                     {
                         newTarget = target;
@@ -84,6 +90,9 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
             foreach (var target in targets)
             {
+                if (_actorPosition.Position.IsWithinDistance(target.Position, _weaponRange.MinRange))
+                    break;
+
                 if (target.ActorMask.ContainsAny(_targetingProfile.NotAttacked) == false)
                 {
                     newTarget = target;

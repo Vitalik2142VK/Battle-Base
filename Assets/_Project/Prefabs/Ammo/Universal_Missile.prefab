@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4103263803844325991}
   - component: {fileID: 5835098188176184700}
   m_Layer: 0
-  m_Name: Universal_Missle
+  m_Name: Universal_Missile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -5,7 +5,7 @@ using UnityEngine;
 namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
 {
     [RequireComponent(typeof(HomingMover))]
-    public class Missle : Projectile
+    public class Missile : Projectile
     {
         [SerializeField] private ActorMask _сapturedTypes;
 
@@ -44,6 +44,9 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
 
         public override void ShootTarget(IShotPointTransform shotPointTransform, ITarget target)
         {
+            if (shotPointTransform == null)
+                throw new ArgumentNullException(nameof(shotPointTransform));
+
             if (_target != null)
                 return;
 

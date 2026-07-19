@@ -30,6 +30,9 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
 
         public override void ShootTarget(IShotPointTransform shotPointTransform, ITarget target)
         {
+            if (shotPointTransform == null)
+                throw new ArgumentNullException(nameof(shotPointTransform));
+
             if (_target != null)
                 return;
 

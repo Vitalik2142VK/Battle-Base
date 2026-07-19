@@ -27,7 +27,9 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Weapons
 
         public int NumberShells => _defaultConfig.NumberShells;
 
-        public float Range => _defaultConfig.Range;
+        public float MaxRange => _defaultConfig.MaxRange;
+
+        public float MinRange => _defaultConfig.MinRange;
 
         public void Modify(IWeaponConfigModificator modificator)
         {
