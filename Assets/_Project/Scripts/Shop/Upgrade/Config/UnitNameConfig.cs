@@ -7,14 +7,13 @@ namespace BattleBase.ShopSystem
     [CreateAssetMenu(
         fileName = nameof(UnitNameConfig),
         menuName = AssetMenuPaths.ScriptableObjects + nameof(UnitNameConfig))]
-    public class UnitNameConfig : ScriptableObject, ILanguageTextsSet
+    public class UnitNameConfig : ScriptableObject
     {
         [SerializeField] private LanguageTextsSet _unitName;
+        [SerializeField] private LanguageTextsSet _description;
 
-        public ITextLangParams Ru => _unitName.Ru;
+        public ILanguageTextsSet Name => _unitName;
 
-        public ITextLangParams En => _unitName.En;
-
-        public ITextLangParams Tr => _unitName.Tr;
+        public ILanguageTextsSet Description => _description;
     }
 }

@@ -17,8 +17,8 @@ MonoBehaviour:
   _minimumOrthoSize: 36
   _maximumOrthoSize: 89
   _minimumFOV: 70
-  _maximumFOV: 199
-  _landscapeFovFactor: 1.65
+  _maximumFOV: 187.8
+  _landscapeFovFactor: 1.55
   _inertiaDamping: 2
   _inertiaExtraDampingFactor: 100
   _inertiaVelocityEpsilon: 0.01

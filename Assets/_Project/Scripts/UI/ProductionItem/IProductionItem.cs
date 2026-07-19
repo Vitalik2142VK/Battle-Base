@@ -8,6 +8,8 @@ namespace BattleBase.UI
     {
         public event Action<ProductionOption> ItemClicked;
 
+        public event Action<ProductionOption> DecrementClicked;
+
         public IProductionData Info { get; }
 
         public void SetParent(Transform parent);
@@ -15,5 +17,9 @@ namespace BattleBase.UI
         public void ResetParent();
 
         public void SetInfo(ProductionOption productionOption);
+
+        public void SetProgress01(float progress);
+
+        public void SetQuantity(int value);
     }
 }
