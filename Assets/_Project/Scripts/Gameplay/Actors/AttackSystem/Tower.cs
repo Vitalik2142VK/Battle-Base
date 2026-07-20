@@ -6,7 +6,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
     public class Tower : MonoBehaviour, IAimComponent
     {
         [SerializeField][Min(1f)] private float _speedRotate = 25f;
-        [SerializeField][Range(-1f, 1f)] private float _dotAim = 0.99f;
+        [SerializeField][Range(0.5f, 1f)] private float _dotAim = 0.99f;
 
         private Transform _transform;
         private Quaternion _startRotation;

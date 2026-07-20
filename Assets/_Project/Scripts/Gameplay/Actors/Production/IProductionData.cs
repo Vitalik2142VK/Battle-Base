@@ -7,9 +7,9 @@ namespace BattleBase.Gameplay.Actors.Production
     {
         public Sprite Icon { get; }
 
-        public LanguageTextsSet Name { get; }
+        public ILanguageTextsSet Name { get; }
 
-        public LanguageTextsSet Description { get; }
+        public ILanguageTextsSet Description { get; }
 
         public float ConstructionTime { get; }
 

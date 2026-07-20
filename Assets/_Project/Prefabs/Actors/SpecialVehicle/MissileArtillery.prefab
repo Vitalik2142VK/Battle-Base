@@ -410,8 +410,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parrent: {fileID: 107109985057329230}
-  _speedRotate: 25
-  _dotAim: 0.95
   _trajectory:
     serializedVersion: 2
     m_Curve:
@@ -445,6 +443,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _speedRotate: 25
+  _angleTolerance: 5
   _minDistance: 2
   _maxDistance: 30
 --- !u!1 &4135215617297474887
@@ -545,7 +545,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speedRotate: 25
-  _dotAim: 0.9
+  _dotAim: 0.97
 --- !u!1 &4743845286436045997
 GameObject:
   m_ObjectHideFlags: 0

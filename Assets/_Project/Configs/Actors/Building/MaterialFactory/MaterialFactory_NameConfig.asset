@@ -9,9 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccc320ceab8c46f4b890696a8dd87bf4, type: 3}
-  m_Name: Quad_AttackComponentSource
+  m_Script: {fileID: 11500000, guid: 9729ec155b5966642a4fd1a45198e702, type: 3}
+  m_Name: MaterialFactory_NameConfig
   m_EditorClassIdentifier: 
-  _weaponConfig:
-  - {fileID: 11400000, guid: b1c899cd63e615c41b26382dafec4bdb, type: 2}
-  - {fileID: 11400000, guid: 0a1c0e20a1bfa0d4c957643985807930, type: 2}
+  _unitName:
+    _ru:
+      _text: 
+    _en:
+      _text: 
+    _tr:
+      _text: 
+  _description:
+    _ru:
+      _text: 
+    _en:
+      _text: 
+    _tr:
+      _text: 

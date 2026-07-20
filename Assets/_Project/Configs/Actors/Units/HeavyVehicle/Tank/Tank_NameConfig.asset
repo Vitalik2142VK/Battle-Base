@@ -9,20 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f949de903913f46b7d9c8d3ef8b4d1, type: 3}
-  m_Name: Quad
+  m_Script: {fileID: 11500000, guid: 9729ec155b5966642a4fd1a45198e702, type: 3}
+  m_Name: Tank_NameConfig
   m_EditorClassIdentifier: 
   _unitName:
     _ru:
-      _text: "\u041A\u0432\u0430\u0434"
+      _text: "\u0422\u0430\u043D\u043A"
     _en:
-      _text: Quad
+      _text: 
     _tr:
-      _text: Quad
+      _text: 
   _description:
     _ru:
-      _text: "\u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435"
+      _text: "_\u0422\u0430\u043D\u043A"
     _en:
-      _text: description
+      _text: 
     _tr:
-      _text: description
+      _text: 

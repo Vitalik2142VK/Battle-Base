@@ -16,9 +16,9 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
 
         public Sprite Icon => _data.Icon;
 
-        public LanguageTextsSet Name => _data.Name;
+        public ILanguageTextsSet Name => _data.Name;
 
-        public LanguageTextsSet Description => _data.Description;
+        public ILanguageTextsSet Description => _data.Description;
 
         public float ConstructionTime => _data.ConstructionTime;
 

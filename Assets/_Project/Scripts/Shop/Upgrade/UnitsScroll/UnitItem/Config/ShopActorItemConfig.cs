@@ -12,7 +12,7 @@ namespace BattleBase.ShopSystem
     {
         [SerializeField] private ActorConfig _actorConfig;
         [SerializeField] private ShopUpgradeStatsConfig _stats;
-        [SerializeField] private UnitNameConfig _unitNameConfig;
+        [SerializeField] private ActorNameConfig _unitNameConfig;
 
         [Header("ScreenshotParams")]
         [SerializeField] private GameObject _cleanPrefab;

@@ -14,9 +14,9 @@ namespace BattleBase.Gameplay.Actors.DamageSystem.Removal
 
         public Sprite Icon => _icon;
 
-        public LanguageTextsSet Name => _name;
+        public ILanguageTextsSet Name => _name;
 
-        public LanguageTextsSet Description => _description;
+        public ILanguageTextsSet Description => _description;
 
         public float ConstructionTime => _constructionTime;
 
