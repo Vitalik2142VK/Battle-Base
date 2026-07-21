@@ -14,14 +14,17 @@ namespace BattleBase.Gameplay.Actors.Production.Factories
             _improvement = improvement ?? throw new ArgumentNullException(nameof(improvement));
         }
 
-        public IEnumerable<ProductionOption> Create()
+        public IEnumerable<IProductionOption> Create()
         {
-            List<ProductionOption> productionOptions = new();
+            List<IProductionOption> productionOptions = new();
 
             if (_improvement.CanImprove)
             {
                 DelegateCommand command = new(() => _improvement.TryImprove());
-                ProductionOption improveProductionOption = new(command, _improvement.Data, TypeProduction.Improve);
+                IProductionOption improveProductionOption = new ProductionOption
+                    (command, 
+                    _improvement.Data, 
+                    TypeProduction.Improve);
                 productionOptions.Add(improveProductionOption);
             }
 

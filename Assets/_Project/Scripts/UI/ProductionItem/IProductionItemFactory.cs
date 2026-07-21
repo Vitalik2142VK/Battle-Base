@@ -5,6 +5,6 @@ namespace BattleBase.UI
 {
     public interface IProductionItemFactory
     {
-        public List<IProductionItem> Create(IEnumerable<ProductionOption> productionOptions);
+        public List<IProductionItem> Create(IEnumerable<IProductionOption> productionOptions);
     }
 }

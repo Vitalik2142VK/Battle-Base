@@ -10,12 +10,12 @@ namespace BattleBase.Gameplay.AI.TacticTypes
     public partial class RandomTactic : ITactic
     {
         private readonly List<IRegisteredBuildingSite> _buildingSites;
-        private readonly List<ProductionOption> _productionOptions;
+        private readonly List<IProductionOption> _productionOptions;
         private readonly IBuildingSitesController _controller;
         private readonly Random _random;
         private readonly RandomTacticSetting _setting;
 
-        private ProductionOption _currentProductionOption;
+        private IProductionOption _currentProductionOption;
         private TeamType _teamType;
 
         public RandomTactic(IBuildingSitesController controller)
@@ -24,7 +24,7 @@ namespace BattleBase.Gameplay.AI.TacticTypes
             _setting = new RandomTacticSetting();
 
             _buildingSites = new List<IRegisteredBuildingSite>();
-            _productionOptions = new List<ProductionOption>();
+            _productionOptions = new List<IProductionOption>();
             _random = new Random();
         }
 
@@ -54,7 +54,7 @@ namespace BattleBase.Gameplay.AI.TacticTypes
                     throw new InvalidOperationException("Tactics cannot be used");
             }
 
-            ProductionOption productionOption = _currentProductionOption;
+            IProductionOption productionOption = _currentProductionOption;
             int count = _random.Next(_setting.MinNumSpawn, _setting.MaxNumSpawn);
 
             _currentProductionOption = null;
@@ -72,7 +72,7 @@ namespace BattleBase.Gameplay.AI.TacticTypes
 
                 if (_buildingSites[index].TryGetProductionService(out IProductionService productionService))
                 {
-                    ProductionOption selected = GetRandomProductionOption(productionService);
+                    IProductionOption selected = GetRandomProductionOption(productionService);
 
                     if (selected.Type == TypeProduction.Removal)
                         continue;
@@ -89,7 +89,7 @@ namespace BattleBase.Gameplay.AI.TacticTypes
             return false;
         }
 
-        private ProductionOption GetRandomProductionOption(IProductionStorage productionStorage)
+        private IProductionOption GetRandomProductionOption(IProductionStorage productionStorage)
         {
             _productionOptions.Clear();
             _productionOptions.AddRange(productionStorage.GetProductionOptions());

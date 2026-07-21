@@ -4,6 +4,6 @@ namespace BattleBase.Gameplay.Actors.Production
 {
     public interface IProductionStorage
     {
-        public IEnumerable<ProductionOption> GetProductionOptions();
+        public IEnumerable<IProductionOption> GetProductionOptions();
     }
 }

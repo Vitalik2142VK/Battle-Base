@@ -6,10 +6,10 @@ namespace BattleBase.Gameplay.AI
 {
     public class MultiActionCommand : ICommand
     {
-        private readonly ProductionOption _productionOption;
+        private readonly IProductionOption _productionOption;
         private readonly int _count;
 
-        public MultiActionCommand(ProductionOption productionOption, int count)
+        public MultiActionCommand(IProductionOption productionOption, int count)
         {
             if (count <= 0)
                 throw new ArgumentOutOfRangeException(nameof(count));

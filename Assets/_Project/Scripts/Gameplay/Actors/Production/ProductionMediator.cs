@@ -102,12 +102,9 @@ namespace BattleBase.Gameplay.Actors.Production
             _items.Clear();
         }
 
-        private void OnSelectItem(ProductionOption productionOption)
+        private void OnSelectItem(IProductionData data)
         {
-            productionOption.Execute();
-            IProductionData info = productionOption.ProductionData;
-
-            if (_selectable != null && info.IsSummable == false)
+            if (_selectable != null && data.IsSummable == false)
             {
                 HandleUnselectEntity();
                 _selectable = null;

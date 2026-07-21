@@ -17,7 +17,7 @@ namespace BattleBase.UI
             _resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
         }
 
-        public List<IProductionItem> Create(IEnumerable<ProductionOption> productionOptions)
+        public List<IProductionItem> Create(IEnumerable<IProductionOption> productionOptions)
         {
             if (productionOptions == null)
                 return new();

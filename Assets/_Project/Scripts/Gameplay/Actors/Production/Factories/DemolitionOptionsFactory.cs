@@ -14,13 +14,13 @@ namespace BattleBase.Gameplay.Actors.Production.Factories
             _demolition = demolition ?? throw new ArgumentNullException(nameof(demolition));
         }
 
-        public IEnumerable<ProductionOption> Create()
+        public IEnumerable<IProductionOption> Create()
         {
             DelegateCommand command = new(() => _demolition.Demolish());
 
-            return new ProductionOption[]
+            return new IProductionOption[]
             { 
-                new(command, _demolition.Data, TypeProduction.Removal) 
+                new ProductionOption(command, _demolition.Data, TypeProduction.Removal) 
             };
         }
     }
