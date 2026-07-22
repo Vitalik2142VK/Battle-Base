@@ -58,7 +58,8 @@ namespace BattleBase.UI
 
         public void SetInfo(IProductionOption productionOption)
         {
-            _productionOption = productionOption;
+            _productionOption = productionOption ?? throw new ArgumentNullException(nameof(productionOption));
+            _info = _productionOption.Data;
 
             _icon.sprite = _info.Icon;
             _price.text = _info.Price.ToString();
