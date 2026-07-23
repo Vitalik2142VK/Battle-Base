@@ -24,7 +24,9 @@ namespace BattleBase.DI
         [SerializeField] private MouseInputConfig _mouseMapCameraConfig;
         [SerializeField] private TouchInputConfig _touchMapCameraConfig;
         [SerializeField] private IconMapObject _iconMapObjectPrefab;
-        [SerializeField] private ProductionItem _itemPrefab;
+        [SerializeField] private ActorSpawnProductionItem _actorSpawnProductionItemPrefab;
+        [SerializeField] private UpgradeProductionItem _upgradeProductionItemPrefab;
+        [SerializeField] private DemolitionBuildingProductionItem _demolitionBuildingProductionItemPrefab;
         [SerializeField] private ItemInfoPopUp _itemInfoPopUp;
         [SerializeField] private CommandBase _commandShowItemInfoPopUp;
         [SerializeField] private PowerConfig _powerConfig;
@@ -47,7 +49,9 @@ namespace BattleBase.DI
         {
             _builder.Register<ISelector, Selector>(Lifetime.Singleton);
             _builder.Register<IProductionItemFactory, ProductionItemFactory>(Lifetime.Singleton);
-            _builder.RegisterInstance(_itemPrefab);
+            _builder.RegisterInstance(_actorSpawnProductionItemPrefab);
+            _builder.RegisterInstance(_upgradeProductionItemPrefab);
+            _builder.RegisterInstance(_demolitionBuildingProductionItemPrefab);
 
             _builder.RegisterComponent(_itemInfoPopUp);
             _builder.RegisterInstance(_commandShowItemInfoPopUp).Keyed(VContainerKeys.CommandShowItemInfoPopUp);
