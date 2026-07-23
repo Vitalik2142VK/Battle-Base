@@ -8,8 +8,6 @@ namespace BattleBase.UI
     {
         public event Action<IProductionData> ItemClicked;
 
-        public void SetInfo(IProductionOption productionOption);
-
         public void SetParent(Transform parent);
 
         public void ResetParent();

@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using BattleBase.Gameplay.Actors.Production.Spawn;
+using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.Spawn
 {
     public interface IActorDataStorage
     {
-        public IEnumerable<IActorData> ActorDatas { get; }
+        public IEnumerable<ISpawnProductionData> SpawnDatas { get; }
     }
 }

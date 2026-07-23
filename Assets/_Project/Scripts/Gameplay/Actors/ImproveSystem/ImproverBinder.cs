@@ -7,13 +7,6 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
 {
     public class ImproverBinder : IActorComponentBinder
     {
-        private readonly IMaterialRegistry _materialRegistry;
-
-        public ImproverBinder(IMaterialRegistry materialRegistry)
-        {
-            _materialRegistry = materialRegistry ?? throw new ArgumentNullException(nameof(materialRegistry));
-        }
-
         public void Bind(IActor actor, IActorView view)
         {
             if (actor == null)

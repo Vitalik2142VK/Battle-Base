@@ -1,4 +1,5 @@
 using BattleBase.Gameplay.Actors.Production;
+using BattleBase.Gameplay.Actors.Production.Spawn;
 using System;
 using System.Collections.Generic;
 using VContainer;
@@ -34,8 +35,12 @@ namespace BattleBase.UI
 
             foreach (var productionOption in productionOptions)
             {
-                IProductionItem item = _resolver.Instantiate(_actorSpanwProductionItemPrefab);
-                item.SetInfo(productionOption);
+                if (productionOption is ISpawnProductionOption spawnOption == false)
+                    continue;
+
+                ActorSpawnProductionItem item = _resolver.Instantiate(_actorSpanwProductionItemPrefab);
+                ProductionOptionPresenter presenter = new(spawnOption);
+                item.Init(presenter, spawnOption.SpawnData, spawnOption.Data);
                 items.Add(item);
             }
 

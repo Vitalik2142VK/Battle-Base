@@ -2,6 +2,7 @@ using System;
 using BattleBase.Commands;
 using BattleBase.DI;
 using BattleBase.Gameplay.Actors.Production;
+using BattleBase.Gameplay.Actors.Production.Spawn;
 using BattleBase.UI.Buttons;
 using BattleBase.UI.PopUps;
 using BattleBase.Utils.Constants;
@@ -22,15 +23,18 @@ namespace BattleBase.UI
         [SerializeField] private TMP_Text _price;
         [SerializeField] private TMP_Text _quantity;
 
-        private ItemInfoPopUp _popUp;
-        private IProductionOption _productionOption;
+        private IProductionOptionPresenter _presenter;
+        private ISpawnProductionData _spawnData;
         private IProductionData _info;
+        private ItemInfoPopUp _popUp;
 
         public event Action<IProductionData> ItemClicked;
         public event Action<IProductionData> DecrementClicked;
 
         [Inject]
-        public void Construct(ItemInfoPopUp popUp, [Key(VContainerKeys.CommandShowItemInfoPopUp)] CommandBase commandShowItemInfoPopUp)
+        public void Construct(
+            ItemInfoPopUp popUp, 
+            [Key(VContainerKeys.CommandShowItemInfoPopUp)] CommandBase commandShowItemInfoPopUp)
         {
             _popUp = popUp != null ? popUp : throw new ArgumentNullException(nameof(popUp));
             _moreInfoButton.AddCommand(commandShowItemInfoPopUp);
@@ -41,6 +45,12 @@ namespace BattleBase.UI
             _itemButton.Clicked += OnItemButton;
             _moreInfoButton.Clicked += OnMoreInfoClicked;
             _decrementButton.Clicked += OnDecrementClicked;
+
+            if (_spawnData != null)
+            {
+                _spawnData.DataChanged += OnUpdateData;
+                OnUpdateData();
+            }
         }
 
         private void OnDisable()
@@ -48,6 +58,9 @@ namespace BattleBase.UI
             _itemButton.Clicked -= OnItemButton;
             _moreInfoButton.Clicked -= OnMoreInfoClicked;
             _decrementButton.Clicked -= OnDecrementClicked;
+
+            if (_spawnData != null)
+                _spawnData.DataChanged -= OnUpdateData;
         }
 
         public void SetParent(Transform parent) =>
@@ -56,39 +69,56 @@ namespace BattleBase.UI
         public void ResetParent() =>
             transform.SetParent(null, false);
 
-        public void SetInfo(IProductionOption productionOption)
+        public void Init(
+            IProductionOptionPresenter presenter, 
+            ISpawnProductionData spawnData, 
+            IProductionData productionData)
         {
-            _productionOption = productionOption ?? throw new ArgumentNullException(nameof(productionOption));
-            _info = _productionOption.Data;
+            _presenter = presenter ?? throw new ArgumentNullException(nameof(presenter));
+            _spawnData = spawnData ?? throw new ArgumentNullException(nameof(spawnData));
+            _info = productionData ?? throw new ArgumentNullException(nameof(productionData));
 
             _icon.sprite = _info.Icon;
             _price.text = _info.Price.ToString();
+
+            if (gameObject.activeSelf)
+            {
+                _spawnData.DataChanged += OnUpdateData;
+                OnUpdateData();
+            }
         }
 
-        public void SetProgress01(float progress)
-        {
-            progress = Mathf.Clamp01(progress);
-            _fill.fillAmount = 1 - progress;
-        }
+        private void SetProgress01() => 
+            _fill.fillAmount = _spawnData.ConstructionProgress;
 
-        public void SetQuantity(int value)
+        private void SetQuantity()
         {
-            if (value < 0)
-                throw new IndexOutOfRangeException(nameof(value));
-
-            if (value == 0)
+            if (_spawnData.Count == 0)
                 _decrementButton.Hide();
             else
                 _decrementButton.Show();
 
-            _quantity.text = value.ToString();
+            _quantity.text = _spawnData.Count.ToString();
+        }
+
+        private void OnUpdateData() //todo check subscriptions
+        {
+            SetProgress01();
+            SetQuantity();
         }
 
         private void OnItemButton(ButtonClickHandler handler)
         {
-            _productionOption.Execute();
+            _presenter.HandleSelectButton();
 
-            ItemClicked?.Invoke(_productionOption.Data);
+            ItemClicked?.Invoke(_info);
+        }
+
+        private void OnDecrementClicked(ButtonClickHandler handler)
+        {
+            _presenter.HandleDecrementButton();
+
+            DecrementClicked?.Invoke(_info);
         }
 
         private void OnMoreInfoClicked(ButtonClickHandler handler)
@@ -97,8 +127,5 @@ namespace BattleBase.UI
             ItemPopUpInfo adaptInfo = new(info.Icon, info.Name, _info.Description);
             _popUp.SetInfo(adaptInfo);
         }
-
-        private void OnDecrementClicked(ButtonClickHandler handler) =>
-            DecrementClicked?.Invoke(_info);
     }
 }

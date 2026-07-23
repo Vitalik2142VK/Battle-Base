@@ -1,5 +1,6 @@
 ﻿using BattleBase.Core;
 using BattleBase.Gameplay.Actors.ImproveSystem;
+using BattleBase.Gameplay.Actors.Production.Spawn;
 using BattleBase.Gameplay.Actors.Spawn;
 using System;
 using System.Collections.Generic;
@@ -21,24 +22,26 @@ namespace BattleBase.Gameplay.Actors.Production.Factories
         {
             List<IProductionOption> productionOptions = new();
 
-            foreach (var actorData in _improver.ActorDatas)
+            foreach (var spawnData in _improver.SpawnDatas)
             {
+                IActorData actorData = spawnData.ActorData;
                 SpawnCommand spawnCommand = new(_spawner, actorData);
-                IProductionOption productionOption = new ProductionOption(
-                    spawnCommand, 
-                    actorData, 
-                    TypeProduction.Spawn);
+                CancelSpawnCommand cancelSpawnCommand = new(_spawner, actorData);
+                IProductionOption productionOption = new SpawnProductionOption(
+                    spawnCommand,
+                    cancelSpawnCommand,
+                    spawnData);
                 productionOptions.Add(productionOption);
             }
 
             if (_improver.CanImprove)
             {
-                DelegateCommand command = new(() => _improver.TryImprove());
-                IProductionOption improveProductionOption = new ProductionOption(
-                    command, 
-                    _improver.Data, 
-                    TypeProduction.Improve);
-                productionOptions.Add(improveProductionOption);
+                //DelegateCommand command = new(() => _improver.TryImprove());
+                //IProductionOption improveProductionOption = new SpawnProductionOption(
+                //    command, 
+                //    _improver.Data, 
+                //    TypeProduction.Improve);
+                //productionOptions.Add(improveProductionOption);
             }
 
             return productionOptions;

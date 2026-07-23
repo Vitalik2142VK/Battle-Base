@@ -1,4 +1,5 @@
-﻿using BattleBase.Gameplay.Actors.Spawn;
+﻿using BattleBase.Gameplay.Actors.Production.Spawn;
+using BattleBase.Gameplay.Actors.Spawn;
 using System;
 using System.Collections.Generic;
 
@@ -17,13 +18,15 @@ namespace BattleBase.Gameplay.Actors.Production.Factories
         {
             List<IProductionOption> result = new();
 
-            foreach (var actorData in _spawner.ActorDatas)
+            foreach (var spawnData in _spawner.SpawnDatas)
             {
+                IActorData actorData = spawnData.ActorData;
                 SpawnCommand spawnCommand = new(_spawner, actorData);
-                IProductionOption productionOption = new ProductionOption(
-                    spawnCommand, 
-                    actorData, 
-                    TypeProduction.Spawn);
+                CancelSpawnCommand cancelSpawnCommand = new(_spawner, actorData);
+                IProductionOption productionOption = new SpawnProductionOption(
+                    spawnCommand,
+                    cancelSpawnCommand,
+                    spawnData);
                 result.Add(productionOption);
             }
 

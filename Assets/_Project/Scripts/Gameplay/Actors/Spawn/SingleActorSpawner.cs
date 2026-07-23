@@ -51,9 +51,11 @@ namespace BattleBase.Gameplay.Actors.Spawn
                     return;
             }
 
+            _timer.Tick(delta);
+
             if (_timer.IsTimeUp == false)
             {
-                _timer.Tick(delta);
+                CalcualteProcessSpawn(delta);
 
                 return;
             }
@@ -71,11 +73,22 @@ namespace BattleBase.Gameplay.Actors.Spawn
                 _currentActorData = actorData;
                 _timer.SetWaitTime(_currentActorData.ConstructionTime);
                 _timer.RestartTimer();
+
+                AddActorToSpawnData(actorData);
             }
             else
             {
                 throw new InvalidOperationException($"{nameof(actorData)} not found");
             }
+        }
+
+        public override void CancelSpawnActor(IActorData actorData)
+        {
+            if (actorData == null)
+                throw new ArgumentNullException(nameof(actorData));
+
+            if (_currentActorData == actorData)
+                CancelSpawn();
         }
 
         protected override void Spawn()

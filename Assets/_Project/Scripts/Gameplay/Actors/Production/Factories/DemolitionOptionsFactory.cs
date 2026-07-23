@@ -1,5 +1,6 @@
 ﻿using BattleBase.Core;
 using BattleBase.Gameplay.Actors.DamageSystem.Removal;
+using BattleBase.Gameplay.Actors.Production.Spawn;
 using System;
 using System.Collections.Generic;
 
@@ -20,7 +21,7 @@ namespace BattleBase.Gameplay.Actors.Production.Factories
 
             return new IProductionOption[]
             { 
-                new ProductionOption(command, _demolition.Data, TypeProduction.Removal) 
+                //new SpawnProductionOption(command, _demolition.Data, TypeProduction.Removal) 
             };
         }
     }

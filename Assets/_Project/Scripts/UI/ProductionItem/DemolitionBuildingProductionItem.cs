@@ -51,7 +51,7 @@ namespace BattleBase.UI
         public void ResetParent() =>
             transform.SetParent(null, false);
 
-        public void SetInfo(IProductionOption productionOption)
+        public void Init(IProductionOption productionOption)
         {
             _productionOption = productionOption;
 
