@@ -8,12 +8,20 @@ namespace BattleBase.UI
 {
     public class ProductionItemFactory : IProductionItemFactory
     {
-        private readonly ActorSpawnProductionItem _itemPrefab;
+        private readonly ActorSpawnProductionItem _actorSpanwProductionItemPrefab;
+        private readonly UpgradeProductionItem _upgradeProductionItemPrefab;
+        private readonly DemolitionBuildingProductionItem _demolitionBuildingProductionItemPrefab;
         private readonly IObjectResolver _resolver;
 
-        public ProductionItemFactory(ActorSpawnProductionItem itemPrefab, IObjectResolver resolver)
+        public ProductionItemFactory(
+            ActorSpawnProductionItem actorSpanwProductionItemPrefab,
+            UpgradeProductionItem upgradeProductionItemPrefab,
+            DemolitionBuildingProductionItem demolitionBuildingProductionItemPrefab,
+            IObjectResolver resolver)
         {
-            _itemPrefab = itemPrefab != null ? itemPrefab : throw new ArgumentNullException(nameof(itemPrefab));
+            _actorSpanwProductionItemPrefab = actorSpanwProductionItemPrefab != null ? actorSpanwProductionItemPrefab : throw new ArgumentNullException(nameof(actorSpanwProductionItemPrefab));
+            _upgradeProductionItemPrefab = upgradeProductionItemPrefab != null ? upgradeProductionItemPrefab : throw new ArgumentNullException(nameof(upgradeProductionItemPrefab));
+            _demolitionBuildingProductionItemPrefab = demolitionBuildingProductionItemPrefab != null ? demolitionBuildingProductionItemPrefab : throw new ArgumentNullException(nameof(demolitionBuildingProductionItemPrefab));
             _resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
         }
 
@@ -26,7 +34,7 @@ namespace BattleBase.UI
 
             foreach (var productionOption in productionOptions)
             {
-                IProductionItem item = _resolver.Instantiate(_itemPrefab);
+                IProductionItem item = _resolver.Instantiate(_actorSpanwProductionItemPrefab);
                 item.SetInfo(productionOption);
                 items.Add(item);
             }

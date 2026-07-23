@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1282499772254991492}
   - component: {fileID: 2533783169331429871}
   - component: {fileID: 8329200190924196395}
-  - component: {fileID: -4237562032788085373}
   - component: {fileID: 8225141511970059404}
   m_Layer: 5
   m_Name: DemolitionBuildingProductionItem
@@ -93,22 +92,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 257250977000058964}
   m_CullTransparentMesh: 1
---- !u!114 &-4237562032788085373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 257250977000058964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4010f071947a81349868895dd66f6e46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _icon: {fileID: 6776597240418995198}
-  _itemButton: {fileID: 5628718214111123866}
-  _moreInfoButton: {fileID: 929033351811558536}
-  _price: {fileID: 3062427556180935693}
 --- !u!114 &8225141511970059404
 MonoBehaviour:
   m_ObjectHideFlags: 0

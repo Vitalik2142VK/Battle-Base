@@ -12,7 +12,7 @@ using VContainer;
 
 namespace BattleBase.UI
 {
-    public class DemolitionBuildingProductionItem : MonoBehaviour, IProductionItem, IInjectable
+    public class DemolitionBuildingProductionItem : ProductionItemBase, IProductionItem, IInjectable
     {
         [SerializeField] private Image _icon;
         [SerializeField] private ButtonClickHandler _itemButton;
@@ -20,11 +20,11 @@ namespace BattleBase.UI
         [SerializeField] private TMP_Text _price;
 
         private ItemInfoPopUp _popUp;
-        private ProductionOption _productionOption;
+        private IProductionOption _productionOption;
 
-        public event Action<ProductionOption> ItemClicked;
+        public event Action<IProductionData> ItemClicked;
 
-        public IProductionData Info => _productionOption.ProductionData;
+        public IProductionData Info => _productionOption.Data;
 
         [Inject]
         public void Construct(ItemInfoPopUp popUp, [Key(VContainerKeys.CommandShowItemInfoPopUp)] CommandBase commandShowItemInfoPopUp)
@@ -51,7 +51,7 @@ namespace BattleBase.UI
         public void ResetParent() =>
             transform.SetParent(null, false);
 
-        public void SetInfo(ProductionOption productionOption)
+        public void SetInfo(IProductionOption productionOption)
         {
             _productionOption = productionOption;
 
@@ -60,7 +60,7 @@ namespace BattleBase.UI
         }
 
         private void OnItemButton(ButtonClickHandler handler) =>
-            ItemClicked?.Invoke(_productionOption);
+            ItemClicked?.Invoke(Info);
 
         private void OnMoreInfoClicked(ButtonClickHandler handler)
         {

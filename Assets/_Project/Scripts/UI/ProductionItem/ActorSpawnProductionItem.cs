@@ -12,7 +12,7 @@ using VContainer;
 
 namespace BattleBase.UI
 {
-    public class ActorSpawnProductionItem : MonoBehaviour, IProductionItem, IInjectable
+    public class ActorSpawnProductionItem : ProductionItemBase, IProductionItem, IInjectable
     {
         [SerializeField] private Image _icon;
         [SerializeField] private Image _fill;
@@ -99,6 +99,6 @@ namespace BattleBase.UI
         }
 
         private void OnDecrementClicked(ButtonClickHandler handler) =>
-            DecrementClicked?.Invoke(_productionOption.Data);
+            DecrementClicked?.Invoke(_info);
     }
 }
