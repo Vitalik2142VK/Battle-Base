@@ -28,7 +28,7 @@ namespace BattleBase.Gameplay.Actors.AI.Transition
 
         private void OnSetAttackState()
         {
-            StateChanged.Invoke(_attackState);
+            StateChanged?.Invoke(_attackState);
         }
     }
 }

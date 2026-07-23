@@ -10,7 +10,7 @@ namespace BattleBase.Gameplay.Actors.Production
         private IProductionPresenter _presenter;
         private ITeamable _teamable;
 
-        public IEnumerable<ProductionOption> ProductionOptions => _presenter.ProductionOptions;
+        public IEnumerable<IProductionOption> ProductionOptions => _presenter.ProductionOptions;
 
         public TeamType TeamType => _teamable.TeamType;
 

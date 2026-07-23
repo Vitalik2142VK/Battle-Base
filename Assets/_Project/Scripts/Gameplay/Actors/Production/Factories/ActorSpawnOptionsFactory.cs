@@ -13,14 +13,17 @@ namespace BattleBase.Gameplay.Actors.Production.Factories
             _spawner = spawner ?? throw new ArgumentNullException(nameof(spawner));
         }
 
-        public IEnumerable<ProductionOption> Create()
+        public IEnumerable<IProductionOption> Create()
         {
-            List<ProductionOption> result = new();
+            List<IProductionOption> result = new();
 
             foreach (var actorData in _spawner.ActorDatas)
             {
                 SpawnCommand spawnCommand = new(_spawner, actorData);
-                ProductionOption productionOption = new(spawnCommand, actorData, TypeProduction.Spawn);
+                IProductionOption productionOption = new ProductionOption(
+                    spawnCommand, 
+                    actorData, 
+                    TypeProduction.Spawn);
                 result.Add(productionOption);
             }
 

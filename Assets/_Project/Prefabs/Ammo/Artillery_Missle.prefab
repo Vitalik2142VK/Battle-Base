@@ -62,8 +62,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 171b06ddb6514df4db610b74aed742a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _launchAngle: 45
-  _maxHeight: 15
+  _launchAngle: 75
+  _maxHeight: 20
   _speed: 25
   _heightDistanceFactor: 0.25
 --- !u!114 &5835098188176184700
@@ -108,7 +108,7 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 64
-  _maxDamageRadius: 2.5
+  _maxDamageRadius: 4
   _radius: 10
   _namberDamagedActors: 16
 --- !u!1001 &6245350872259853756

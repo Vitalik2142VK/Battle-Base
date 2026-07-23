@@ -52,13 +52,8 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             if (_currentTarget == null)
                 return;
 
-            if (_actorPosition.Position.IsInRangeDistance(
-                _currentTarget.Position, 
-                _weaponRange.MinRange,
-                _weaponRange.MaxRange) == false)
-            {
+            if (IsTargetInNoRangeDistance(_currentTarget))
                 LoseTarget();
-            }
         }
 
         public void LoseTarget()
@@ -76,8 +71,8 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             {
                 foreach (var target in targets)
                 {
-                    if (_actorPosition.Position.IsWithinDistance(target.Position, _weaponRange.MinRange))
-                        break;
+                    if (IsTargetInNoRangeDistance(target))
+                        continue;
 
                     if (priorityActorType.ActorMask.Contains(target.ActorMask))
                     {
@@ -90,8 +85,8 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
             foreach (var target in targets)
             {
-                if (_actorPosition.Position.IsWithinDistance(target.Position, _weaponRange.MinRange))
-                    break;
+                if (IsTargetInNoRangeDistance(target))
+                    continue;
 
                 if (target.ActorMask.ContainsAny(_targetingProfile.NotAttacked) == false)
                 {
@@ -105,6 +100,12 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
             return false;
         }
+
+        public bool IsTargetInNoRangeDistance(ITarget target) =>
+            _actorPosition.Position.IsInRangeDistance(
+                target.Position, 
+                _weaponRange.MinRange, 
+                _weaponRange.MaxRange) == false;
 
         private void OnLoseTarget() =>
             LoseTarget();

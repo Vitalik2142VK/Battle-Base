@@ -1,5 +1,5 @@
 {
-    "idSave": 33,
+    "idSave": 35,
     "SavesData": {
         "_volumeData": {
             "_generalVolume": 1.0,
@@ -22,70 +22,70 @@
             "_selectedTerritory": 2
         },
         "_shopData": {
-            "_credits": 6463,
+            "_credits": 7819,
             "_unitUpgrades": [
                 {
-                    "_name": "Shooter",
+                    "_name": "",
                     "_damageLevel": 0,
                     "_armorLevel": 1,
                     "_buildTimeLevel": 0
                 },
                 {
-                    "_name": "Rocket Launcher",
+                    "_name": "",
                     "_damageLevel": 0,
                     "_armorLevel": 0,
                     "_buildTimeLevel": 0
                 },
                 {
-                    "_name": "Sniper",
+                    "_name": "",
                     "_damageLevel": 0,
                     "_armorLevel": 0,
                     "_buildTimeLevel": 0
                 },
                 {
-                    "_name": "Trike",
+                    "_name": "",
                     "_damageLevel": 0,
                     "_armorLevel": 0,
                     "_buildTimeLevel": 0
                 },
                 {
-                    "_name": "Quad",
+                    "_name": "",
                     "_damageLevel": 0,
                     "_armorLevel": 0,
                     "_buildTimeLevel": 0
                 },
                 {
-                    "_name": "Light Grav",
+                    "_name": "",
                     "_damageLevel": 0,
                     "_armorLevel": 0,
                     "_buildTimeLevel": 0
                 },
                 {
-                    "_name": "IFV",
+                    "_name": "",
                     "_damageLevel": 0,
                     "_armorLevel": 0,
                     "_buildTimeLevel": 0
                 },
                 {
-                    "_name": "Middle tank",
+                    "_name": "",
                     "_damageLevel": 0,
                     "_armorLevel": 0,
                     "_buildTimeLevel": 0
                 },
                 {
-                    "_name": "Heavy Tank",
+                    "_name": "",
                     "_damageLevel": 0,
                     "_armorLevel": 0,
                     "_buildTimeLevel": 0
                 },
                 {
-                    "_name": "Automatic turret",
+                    "_name": "",
                     "_damageLevel": 0,
                     "_armorLevel": 0,
                     "_buildTimeLevel": 0
                 },
                 {
-                    "_name": "Missile Turret",
+                    "_name": "",
                     "_damageLevel": 0,
                     "_armorLevel": 0,
                     "_buildTimeLevel": 0

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: MissileArtillery_HealthComponentSource
   m_EditorClassIdentifier: 
   _healthConfig:
-    _maxHealth: 650
-    _armorCoefficient: 0.3
+    _maxHealth: 400
+    _armorCoefficient: 0.25
   _type: 4

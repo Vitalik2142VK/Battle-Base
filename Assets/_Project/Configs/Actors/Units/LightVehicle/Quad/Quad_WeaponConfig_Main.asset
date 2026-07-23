@@ -10,18 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8368aa947f2bba2478fc99c70d338400, type: 3}
-  m_Name: Quad_WeaponConfig
+  m_Name: Quad_WeaponConfig_Main
   m_EditorClassIdentifier: 
   _projectileConfig:
-    _projectilePrefab: {fileID: 7550878289047074185, guid: ed12269b9172a4a44bfe5966c7513ee1,
+    _projectilePrefab: {fileID: 7158556640630369272, guid: 4395ca75f5b9e0b4f97f64e6af5d0e62,
       type: 3}
-    _speed: 80
+    _speed: 30
   _damageConfig:
-    _targetingProfile: {fileID: 11400000, guid: 4b1e27b633cc6034c894cee5b7d846aa,
+    _targetingProfile: {fileID: 11400000, guid: 0b9f4eb96a86f0846911eafc408ec4c8,
       type: 2}
     _damageMask: 0
-    _damage: 4
-  _firingRange: 30
-  _rateShooting: 0.3
-  _speedReload: 3.5
-  _numberShells: 20
+    _damage: 40
+  _firingRange: 50
+  _minFiringRange: 15
+  _rateShooting: 4
+  _speedReload: 4
+  _numberShells: 1

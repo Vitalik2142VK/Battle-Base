@@ -76,7 +76,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
             float randomX = GetRandomOffset(targetPosition.x);
             float randomZ = GetRandomOffset(targetPosition.z);
 
-            return new Vector3(randomX, targetPosition.y, randomZ);
+            return new Vector3(randomX, 0, randomZ);
         }
 
         private float GetRandomOffset(float target) =>

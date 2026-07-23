@@ -7,9 +7,9 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
     public class BallisticMuzzle : MonoBehaviour, IAimComponent
     {
         [SerializeField] private Transform _parrent;
+        [SerializeField] private AnimationCurve _trajectory = AnimationCurve.Linear(0f, 75f, 1f, 35f);
         [SerializeField][Min(1f)] private float _speedRotate = 25f;
         [SerializeField][Min(0.1f)] private float _angleTolerance = 5f;
-        [SerializeField] private AnimationCurve _trajectory = AnimationCurve.Linear(0f, 75f, 1f, 35f);
         [SerializeField][Min(0.1f)] private float _minDistance = 2f;
         [SerializeField][Min(0.1f)] private float _maxDistance = 30f;
 

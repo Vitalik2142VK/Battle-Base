@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Quad_AttackComponentSource
   m_EditorClassIdentifier: 
   _weaponConfig:
+  - {fileID: 11400000, guid: b1c899cd63e615c41b26382dafec4bdb, type: 2}
   - {fileID: 11400000, guid: 0a1c0e20a1bfa0d4c957643985807930, type: 2}

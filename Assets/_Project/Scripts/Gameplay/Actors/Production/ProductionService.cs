@@ -22,9 +22,9 @@ namespace BattleBase.Gameplay.Actors.Production
             _factories.Add(factory);
         }
 
-        public IEnumerable<ProductionOption> GetProductionOptions()
+        public IEnumerable<IProductionOption> GetProductionOptions()
         {
-            List<ProductionOption> productionOptions = new();
+            List<IProductionOption> productionOptions = new();
 
             foreach (var factory in _factories)
                 productionOptions.AddRange(factory.Create());

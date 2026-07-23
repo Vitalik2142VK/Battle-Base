@@ -23,12 +23,11 @@ namespace BattleBase.UI
         [SerializeField] private TMP_Text _quantity;
 
         private ItemInfoPopUp _popUp;
-        private ProductionOption _productionOption;
+        private IProductionOption _productionOption;
+        private IProductionData _info;
 
-        public event Action<ProductionOption> ItemClicked;
-        public event Action<ProductionOption> DecrementClicked;
-
-        public IProductionData Info => _productionOption.ProductionData;
+        public event Action<IProductionData> ItemClicked;
+        public event Action<IProductionData> DecrementClicked;
 
         [Inject]
         public void Construct(ItemInfoPopUp popUp, [Key(VContainerKeys.CommandShowItemInfoPopUp)] CommandBase commandShowItemInfoPopUp)
@@ -57,12 +56,13 @@ namespace BattleBase.UI
         public void ResetParent() =>
             transform.SetParent(null, false);
 
-        public void SetInfo(ProductionOption productionOption)
+        public void SetInfo(IProductionOption productionOption)
         {
-            _productionOption = productionOption;
+            _productionOption = productionOption ?? throw new ArgumentNullException(nameof(productionOption));
+            _info = _productionOption.Data;
 
-            _icon.sprite = Info.Icon;
-            _price.text = Info.Price.ToString();
+            _icon.sprite = _info.Icon;
+            _price.text = _info.Price.ToString();
         }
 
         public void SetProgress01(float progress)
@@ -84,17 +84,21 @@ namespace BattleBase.UI
             _quantity.text = value.ToString();
         }
 
-        private void OnItemButton(ButtonClickHandler handler) =>
-            ItemClicked?.Invoke(_productionOption);
+        private void OnItemButton(ButtonClickHandler handler)
+        {
+            _productionOption.Execute();
+
+            ItemClicked?.Invoke(_productionOption.Data);
+        }
 
         private void OnMoreInfoClicked(ButtonClickHandler handler)
         {
-            IProductionData info = Info;
-            ItemPopUpInfo adaptInfo = new(info.Icon, info.Name, Info.Description);
+            IProductionData info = _info;
+            ItemPopUpInfo adaptInfo = new(info.Icon, info.Name, _info.Description);
             _popUp.SetInfo(adaptInfo);
         }
 
         private void OnDecrementClicked(ButtonClickHandler handler) =>
-            DecrementClicked?.Invoke(_productionOption);
+            DecrementClicked?.Invoke(_productionOption.Data);
     }
 }

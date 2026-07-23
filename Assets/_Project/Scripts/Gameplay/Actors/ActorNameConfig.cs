@@ -2,12 +2,12 @@ using BattleBase.Localization;
 using BattleBase.Utils.Constants;
 using UnityEngine;
 
-namespace BattleBase.ShopSystem
+namespace BattleBase.Gameplay.Actors
 {
     [CreateAssetMenu(
-        fileName = nameof(UnitNameConfig),
-        menuName = AssetMenuPaths.ScriptableObjects + nameof(UnitNameConfig))]
-    public class UnitNameConfig : ScriptableObject
+        fileName = nameof(ActorNameConfig),
+        menuName = AssetMenuPaths.ScriptableObjects + nameof(ActorNameConfig))]
+    public class ActorNameConfig : ScriptableObject
     {
         [SerializeField] private LanguageTextsSet _unitName;
         [SerializeField] private LanguageTextsSet _description;

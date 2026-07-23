@@ -17,21 +17,27 @@ namespace BattleBase.Gameplay.Actors.Production.Factories
             _improver = improvement ?? throw new ArgumentNullException(nameof(improvement));
         }
 
-        public IEnumerable<ProductionOption> Create()
+        public IEnumerable<IProductionOption> Create()
         {
-            List<ProductionOption> productionOptions = new();
+            List<IProductionOption> productionOptions = new();
 
             foreach (var actorData in _improver.ActorDatas)
             {
                 SpawnCommand spawnCommand = new(_spawner, actorData);
-                ProductionOption productionOption = new(spawnCommand, actorData, TypeProduction.Spawn);
+                IProductionOption productionOption = new ProductionOption(
+                    spawnCommand, 
+                    actorData, 
+                    TypeProduction.Spawn);
                 productionOptions.Add(productionOption);
             }
 
             if (_improver.CanImprove)
             {
                 DelegateCommand command = new(() => _improver.TryImprove());
-                ProductionOption improveProductionOption = new(command, _improver.Data, TypeProduction.Improve);
+                IProductionOption improveProductionOption = new ProductionOption(
+                    command, 
+                    _improver.Data, 
+                    TypeProduction.Improve);
                 productionOptions.Add(improveProductionOption);
             }
 

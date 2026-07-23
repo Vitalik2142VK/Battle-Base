@@ -8,8 +8,7 @@ namespace BattleBase.Gameplay.Actors
     {
         [SerializeField] private ActorView _prefab;
         [SerializeField] private Sprite _icon;
-        [SerializeField] private LanguageTextsSet _name;
-        [SerializeField] private LanguageTextsSet _description; 
+        [SerializeField] private ActorNameConfig _nameConfig;
         [SerializeField][Min(0.5f)] private float _constructionTime = 5f;
         [SerializeField][Min(1)] private int _price = 20;
         [SerializeField][Range(0, 15)] private int _power = 0;
@@ -21,9 +20,9 @@ namespace BattleBase.Gameplay.Actors
 
         public Sprite Icon => _icon;
 
-        public LanguageTextsSet Name => _name;
+        public ILanguageTextsSet Name => _nameConfig.Name;
 
-        public LanguageTextsSet Description => _description;
+        public ILanguageTextsSet Description => _nameConfig.Description;
 
         public float ConstructionTime => _constructionTime;
 
