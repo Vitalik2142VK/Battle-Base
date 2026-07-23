@@ -13,7 +13,7 @@ namespace BattleBase.Gameplay.Actors.Production.Spawn
         public SpawnProductionData(IActorData data)
         {
             _data = data ?? throw new ArgumentNullException(nameof(data));
-            _timeSpent = _data.ConstructionTime;
+            _timeSpent = 0;
             Count = 0;
         }
 
@@ -22,6 +22,8 @@ namespace BattleBase.Gameplay.Actors.Production.Spawn
         public float ConstructionProgress { get; private set; }
 
         public int Count { get; private set; }
+
+        public bool IsInProcessSpawn => _timeSpent != 0;
 
         public void IncreaseCount() =>
             Count++;

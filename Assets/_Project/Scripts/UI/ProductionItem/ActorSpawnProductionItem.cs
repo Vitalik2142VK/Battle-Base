@@ -94,17 +94,24 @@ namespace BattleBase.UI
         private void SetQuantity()
         {
             if (_spawnData.Count == 0)
-                _decrementButton.Hide();
+                _quantity.text = "";
             else
-                _decrementButton.Show();
+                _quantity.text = _spawnData.Count.ToString();
+        }
 
-            _quantity.text = _spawnData.Count.ToString();
+        private void SetCancelButton()
+        {
+            if (_spawnData.IsInProcessSpawn || _spawnData.Count != 0)
+                _decrementButton.Show();
+            else
+                _decrementButton.Hide();
         }
 
         private void OnUpdateData() //todo check subscriptions
         {
             SetProgress01();
             SetQuantity();
+            SetCancelButton();
         }
 
         private void OnItemButton(ButtonClickHandler handler)

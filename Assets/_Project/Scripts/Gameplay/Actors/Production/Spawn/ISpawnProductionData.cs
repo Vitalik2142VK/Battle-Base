@@ -11,5 +11,7 @@ namespace BattleBase.Gameplay.Actors.Production.Spawn
         public float ConstructionProgress { get; }
 
         public int Count { get; }
+
+        public bool IsInProcessSpawn { get; }
     }
 }
