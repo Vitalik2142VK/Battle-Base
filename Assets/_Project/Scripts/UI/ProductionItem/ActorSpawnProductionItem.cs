@@ -12,7 +12,7 @@ using VContainer;
 
 namespace BattleBase.UI
 {
-    public class ProductionItem : MonoBehaviour, IProductionItem, IInjectable
+    public class ActorSpawnProductionItem : MonoBehaviour, IProductionItem, IInjectable
     {
         [SerializeField] private Image _icon;
         [SerializeField] private Image _fill;

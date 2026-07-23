@@ -8,10 +8,10 @@ namespace BattleBase.UI
 {
     public class ProductionItemFactory : IProductionItemFactory
     {
-        private readonly ProductionItem _itemPrefab;
+        private readonly ActorSpawnProductionItem _itemPrefab;
         private readonly IObjectResolver _resolver;
 
-        public ProductionItemFactory(ProductionItem itemPrefab, IObjectResolver resolver)
+        public ProductionItemFactory(ActorSpawnProductionItem itemPrefab, IObjectResolver resolver)
         {
             _itemPrefab = itemPrefab != null ? itemPrefab : throw new ArgumentNullException(nameof(itemPrefab));
             _resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));

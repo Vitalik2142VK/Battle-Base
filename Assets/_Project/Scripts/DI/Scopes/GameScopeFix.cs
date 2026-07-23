@@ -24,7 +24,7 @@ namespace BattleBase.DI
         [SerializeField] private MouseInputConfig _mouseMapCameraConfig;
         [SerializeField] private TouchInputConfig _touchMapCameraConfig;
         [SerializeField] private IconMapObject _iconMapObjectPrefab;
-        [SerializeField] private ProductionItem _itemPrefab;
+        [SerializeField] private ActorSpawnProductionItem _itemPrefab;
         [SerializeField] private ItemInfoPopUp _itemInfoPopUp;
         [SerializeField] private CommandBase _commandShowItemInfoPopUp;
         [SerializeField] private PowerConfig _powerConfig;
