@@ -5,7 +5,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
     [RequireComponent(typeof(ParticleSystem))]
     public class ShootEffect : MonoBehaviour, IAttackerViewComponent
     {
-        private IAttackEvents _weaponEvents;
+        private IAttackNotifier _attackNotifier;
         private ParticleSystem _particle;
 
         private void Awake()
@@ -15,22 +15,22 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
         private void OnEnable()
         {
-            if (_weaponEvents != null)
-                _weaponEvents.Attacked += OnPlayShot;
+            if (_attackNotifier != null)
+                _attackNotifier.Attacked += OnPlayShot;
         }
 
         private void OnDestroy()
         {
-            if (_weaponEvents != null)
-                _weaponEvents.Attacked -= OnPlayShot;
+            if (_attackNotifier != null)
+                _attackNotifier.Attacked -= OnPlayShot;
         }
 
-        public void Init(IAttackEvents weaponEvents)
+        public void Init(IAttackNotifier attackNotifier)
         {
-            _weaponEvents = weaponEvents ?? throw new System.ArgumentNullException(nameof(weaponEvents));
+            _attackNotifier = attackNotifier ?? throw new System.ArgumentNullException(nameof(attackNotifier));
 
             if (gameObject.activeSelf)
-                _weaponEvents.Attacked += OnPlayShot;
+                _attackNotifier.Attacked += OnPlayShot;
         }
 
         private void OnPlayShot() => _particle.Play();

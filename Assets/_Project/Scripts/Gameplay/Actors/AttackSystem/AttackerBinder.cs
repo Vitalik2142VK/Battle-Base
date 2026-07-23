@@ -1,17 +1,15 @@
-﻿using BattleBase.Gameplay.Actors.AttackSystem.Missiles;
-using BattleBase.Gameplay.Actors.DamageSystem;
-using BattleBase.Gameplay.Actors.Spawn;
+﻿using BattleBase.Gameplay.Actors.AttackSystem.Ammo;
 using System;
 
 namespace BattleBase.Gameplay.Actors.AttackSystem
 {
     public class AttackerBinder : IActorComponentBinder
     {
-        private readonly IMissileSpawner _missileSpawner;
+        private readonly AttackerInitializer _attackerInitializer;
 
-        public AttackerBinder(IMissileSpawner missileSpawner)
+        public AttackerBinder(AttackerInitializer attackerInitializer)
         {
-            _missileSpawner = missileSpawner ?? throw new ArgumentNullException(nameof(missileSpawner));
+            _attackerInitializer = attackerInitializer ?? throw new ArgumentNullException(nameof(attackerInitializer));
         }
 
         public void Bind(IActor actor, IActorView view)
@@ -22,36 +20,24 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             if (view == null)
                 throw new ArgumentNullException(nameof(view));
 
-            if (actor.TryGetComponent(out IAttacker attacker) &&
-                view.TryGetViewComponent(out IAttackerViewComponent weaponView))
-            {
-                if (view.TryGetViewComponent(out IShotPoint shotPoint) == false)
-                    throw new InvalidOperationException($"'{nameof(view)}' don't contain module '{nameof(IShotPoint)}'");
-
-                IDamageConfig damageConfig = attacker.WeaponConfig.DamageConfig;
-                TargetController targetController = new(view, attacker.WeaponConfig);
-                MissileController missileController = new(_missileSpawner, shotPoint, damageConfig);
-
-                attacker.Init(targetController, missileController);
-                weaponView.Init(attacker);
-            }
-            else
-            {
+            if (actor.TryGetComponent(out IAttacker attacker) == false)
                 return;
-            }
+
+            if (view.TryGetViewComponent(out IShotPoint shotPoint) == false)
+                throw new InvalidOperationException($"'{nameof(view)}' don't contain module '{nameof(IShotPoint)}'");
+
+            _attackerInitializer.Init(attacker, shotPoint, view);
+
+            if (view.TryGetViewComponent(out IAttackerViewComponent weaponView))
+                weaponView.Init(attacker);
 
             AttackerPresenter presenter = new(attacker);
 
-
             if (view.TryGetViewComponent(out IAim aim))
-            {
                 aim.Init(presenter, attacker);
-            }
 
             if (view.TryGetViewComponent(out ITargetFinder targetFinder))
-            {
                 targetFinder.Init(presenter, attacker.WeaponConfig, actor);
-            }
         }
     }
 }

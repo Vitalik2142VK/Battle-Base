@@ -1,6 +1,8 @@
-﻿using BattleBase.Gameplay.Actors.AttackSystem.Missiles;
+﻿using BattleBase.Gameplay.Actors.AttackSystem.Ammo;
+using BattleBase.Gameplay.Actors.AttackSystem.Weapons;
 using BattleBase.Gameplay.Actors.DamageSystem;
 using System;
+using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.AttackSystem
 {
@@ -12,7 +14,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         private bool _isAiming;
         private bool _isAttacking;
 
-        public event Action<ITarget> TargetSelected;
+        public event Action TargetSelected;
         public event Action Attacked;
         public event Action AttackActivated;
         public event Action AttackDeactivated;
@@ -26,11 +28,13 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
         public IWeaponConfig WeaponConfig => _weapon.Config;
 
-        public void Init(ITargetController targetController, IMissileController missileController)
+        public ITarget CurrentTarget => _targetController.CurrentTarget;
+
+        public void Init(ITargetController targetController, IProjectileController projectileController)
         {
             _targetController ??= targetController ?? throw new ArgumentNullException(nameof(targetController));
 
-            _weapon.Init(missileController);
+            _weapon.Init(projectileController);
         }
 
         public void Enable()
@@ -43,11 +47,11 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             _targetController.LoseTarget();
         }
 
-        public void SetTarget(ITarget target)
+        public void SetTargets(IEnumerable<ITarget> targets)
         {
-            if (_targetController.TryChangeTarget(target))
+            if (_targetController.TrySelectTarget(targets))
             {
-                TargetSelected?.Invoke(_targetController.CurrentTarget);
+                TargetSelected?.Invoke();
 
                 if (_isAttacking == false)
                     AttackActivated?.Invoke();
@@ -73,6 +77,9 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             if (_targetController.HasTarget == false && _isAttacking)
                 AttackDeactivated?.Invoke();
         }
+
+        public void Upgrade(IWeaponConfigModificator modificator) =>
+            _weapon.Upgrade(modificator);
 
         public void SetAim(bool isAiming) =>
             _isAiming = isAiming;

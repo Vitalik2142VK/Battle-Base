@@ -2,8 +2,8 @@
 {
     public interface IDamageConfig
     {
-        public string MissleId { get; }
-
+        public ITargetingProfile TargetingProfile { get; }
+        
         public DamageMask DamageMask { get; }
 
         public float Damage { get; }

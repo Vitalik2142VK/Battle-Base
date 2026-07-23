@@ -13,21 +13,23 @@ namespace BattleBase.Gameplay.Actors.HealthSystem
             if (view == null)
                 throw new ArgumentNullException(nameof(view));
 
-            if (actor.TryGetComponent(out IHealth health) &&
-                view.TryGetViewComponent(out IHealthViewComponent healthView))
-            {
-                healthView.Init(health);
-            }
-            else
-            {
+            if (actor.TryGetComponent(out IHealth health) == false)
                 return;
-            }
 
-            HealthPresenter presenter = new(health);
+            if (view.TryGetViewComponent(out IHealthViewComponent healthView))
+                healthView.Init(health);
+
+            IDestroyableEvent destroyableEvent;
+
+            if (actor.TryGetComponent(out IDestroyComponent destroyComponent))
+                destroyableEvent = destroyComponent;
+            else
+                destroyableEvent = health;
 
             if (view.TryGetViewComponent(out ITarget target))
             {
-                target.Init(presenter, health, actor);
+                HealthPresenter presenter = new(health);
+                target.Init(presenter, destroyableEvent, actor, health.ActorMask);
             }
         }
     }

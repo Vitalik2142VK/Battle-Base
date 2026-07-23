@@ -1,4 +1,4 @@
-using BattleBase.Gameplay.Actors;
+using BattleBase.Gameplay.Actors.Production;
 using System;
 using UnityEngine;
 
@@ -6,14 +6,20 @@ namespace BattleBase.UI
 {
     public interface IProductionItem
     {
-        public event Action<IProductionItem> ItemClicked;
+        public event Action<ProductionOption> ItemClicked;
 
-        public IActorData Info { get; }
+        public event Action<ProductionOption> DecrementClicked;
+
+        public IProductionData Info { get; }
 
         public void SetParent(Transform parent);
 
         public void ResetParent();
 
-        public void SetInfo(IActorData info);
+        public void SetInfo(ProductionOption productionOption);
+
+        public void SetProgress01(float progress);
+
+        public void SetQuantity(int value);
     }
 }

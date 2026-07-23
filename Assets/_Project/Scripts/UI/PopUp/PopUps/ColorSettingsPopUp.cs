@@ -1,29 +1,39 @@
 using System;
+using System.Collections.Generic;
+using BattleBase.DI;
 using BattleBase.Gameplay.Map;
-using BattleBase.SaveService;
 using UnityEngine;
+using VContainer;
 
 namespace BattleBase.UI.PopUps
 {
-    public class ColorSettingsPopUp : PopUp
+    public class ColorSettingsPopUp : PopUp, IInjectable
     {
-        [SerializeField] private ColorSet _playerColorSet; 
-        [SerializeField] private ColorSet _enemyColorSet;
+        [SerializeField] private TeamColorPanel _playerColorSet;
+        [SerializeField] private TeamColorPanel _enemyColorSet;
 
-        public event Action Changed;
+        private TeamColorModel _colorModel;
 
-        public Color PlayerColor => _playerColorSet.CurrentColor;
+        [Inject]
+        public void Construct(TeamColorModel colorModel) =>
+            _colorModel = colorModel ?? throw new ArgumentNullException(nameof(colorModel));
 
-        public Color EnemyColor => _enemyColorSet.CurrentColor;
+        public override void Init()
+        {
+            base.Init();
 
-        public int PlayerColorIndex => _playerColorSet.CurrentColorIndex;
+            IReadOnlyList<Color> colors = _colorModel.Colors;
 
-        public int EnemyColorIndex => _enemyColorSet.CurrentColorIndex;
+            _enemyColorSet.Init(colors);
+            _playerColorSet.Init(colors);
+            UpdateInfo();
+        }
 
         private void OnEnable()
         {
             _playerColorSet.Clicked += OnClickPlayerColor;
             _enemyColorSet.Clicked += OnClickEnemyColor;
+            UpdateInfo();
         }
 
         private void OnDisable()
@@ -32,35 +42,30 @@ namespace BattleBase.UI.PopUps
             _enemyColorSet.Clicked -= OnClickEnemyColor;
         }
 
-        public void InitColors(IColorData colorData)
-        {
-            int enemyColorIndex = colorData.EnemyColorIndex;
-            int playerColorIndex = colorData.PlayerColorIndex;
-
-            _enemyColorSet.Init(enemyColorIndex);
-            _playerColorSet.Init(playerColorIndex);
-
-            _enemyColorSet.EnableInteractableAll();
-            _enemyColorSet.DisableInteractable(playerColorIndex);
-
-            _playerColorSet.EnableInteractableAll();
-            _playerColorSet.DisableInteractable(enemyColorIndex);
-        }
-
         private void OnClickPlayerColor(int index)
         {
-            _enemyColorSet.EnableInteractableAll();
-            _enemyColorSet.DisableInteractable(index);
-
-            Changed?.Invoke();
+            _colorModel.SetPlayerColorIndex(index);
+            UpdateInfo();
         }
 
         private void OnClickEnemyColor(int index)
         {
-            _playerColorSet.EnableInteractableAll();
-            _playerColorSet.DisableInteractable(index);
+            _colorModel.SetEnemyColorIndex(index);
+            UpdateInfo();
+        }
 
-            Changed?.Invoke();
+        private void UpdateInfo()
+        {
+            int playerColorIndex = _colorModel.PlayerColorIndex;
+            int enemyColorIndex = _colorModel.EnemyColorIndex;
+
+            _enemyColorSet.EnableInteractableAll();
+            _enemyColorSet.DisableInteractable(playerColorIndex);
+            _enemyColorSet.SelectOnly(enemyColorIndex);
+
+            _playerColorSet.EnableInteractableAll();
+            _playerColorSet.DisableInteractable(enemyColorIndex);
+            _playerColorSet.SelectOnly(playerColorIndex);
         }
     }
 }

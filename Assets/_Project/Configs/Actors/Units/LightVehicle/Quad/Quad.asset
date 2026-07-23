@@ -15,7 +15,7 @@ MonoBehaviour:
   _data:
     _prefab: {fileID: 3856440751237957287, guid: 7107cdaa6832da748847ce24e3a866a8,
       type: 3}
-    _icon: {fileID: 0}
+    _icon: {fileID: 21300000, guid: 3a1226ca9cd49054f9c1ef810535955a, type: 3}
     _name:
       _ru:
         _text: "\u0422\u0435\u0441\u0442"
@@ -31,7 +31,9 @@ MonoBehaviour:
       _tr:
         _text: Test
     _constructionTime: 7
-    _price: 120
+    _price: 200
+    _power: 3
+    _isSummable: 1
   _components:
   - {fileID: 11400000, guid: 11f75994c93bae147af71f73b8a1597c, type: 2}
   - {fileID: 11400000, guid: 161c46142d358ee4d9bd7df9f6eb0758, type: 2}

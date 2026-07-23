@@ -1,5 +1,3 @@
-using BattleBase.Gameplay.Actors.AI;
-using BattleBase.Utils;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +7,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
 {
     public class ActorPoolsRegistrator : MonoBehaviour, IActorPoolsRegistrator
     {
-        [SerializeField] private ActorConfig[] _actorsConfigs;
+        [SerializeField] private ActorSpawnerSource[] _spawnerSources;
 
         public IDictionary<string, ActorPool> Pools { get; private set; }
 
@@ -21,25 +19,23 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
             Pools = new Dictionary<string, ActorPool>();
 
-            foreach (var config in _actorsConfigs)
+            IActorCreator actorCreator = resolver.Resolve<IActorCreator>();
+
+            foreach (var spawnerSource in _spawnerSources)
+                RegisryPools(spawnerSource.ActorsConfigs, resolver, actorCreator);
+        }
+
+        private void RegisryPools(IEnumerable<IActorConfig> actorsConfigs, IObjectResolver resolver, IActorCreator actorCreator)
+        {
+            foreach (var config in actorsConfigs)
             {
-                IComponentFactoryRegistry componentFactoryRegistry = resolver.Resolve<IComponentFactoryRegistry>();
-                IActorBinderRegistry actorBinderRegistry = resolver.Resolve<IActorBinderRegistry>();
-                IStateMachineInitializer stateMachineInitializer = resolver.Resolve<IStateMachineInitializer>();
+                ActorFactory factory = new(config, resolver, actorCreator);
 
-                ActorFactory factory = new(
-                    config,
-                    componentFactoryRegistry,
-                    actorBinderRegistry,
-                    resolver,
-                    stateMachineInitializer);
-
-                // todo: Constants.PoolMaximumSize it doesn't hurt anymore
-                // it may need to be moved to the config
+                // todo: Constants.PoolMaximumSize it doesn't hurt anymore, it may need to be moved to the config
                 int tempPoolSize = int.MaxValue;
                 ActorPool pool = new(factory, tempPoolSize);
 
-                Pools.Add(config.Data.Prefab.name, pool);
+                Pools.Add(config.Data.Id, pool);
             }
         }
     }

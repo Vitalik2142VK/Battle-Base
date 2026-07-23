@@ -8,6 +8,6 @@ namespace BattleBase.Gameplay.Actors
 
         public void SetActive(bool isActive);
 
-        public void SetSpawnData(ISpawnData spawnData);
+        public void SetSpawnData(ISpawnPoint spawnData);
     }
 }

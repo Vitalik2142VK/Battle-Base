@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8368aa947f2bba2478fc99c70d338400, type: 3}
+  m_Name: LightGrav_WeaponConfig
+  m_EditorClassIdentifier: 
+  _projectileConfig:
+    _projectilePrefab: {fileID: 355753026873336657, guid: 5cd2d94e0b23eed408b278a93e69caf2,
+      type: 3}
+    _speed: 1000
+  _damageConfig:
+    _targetingProfile: {fileID: 11400000, guid: 3dd59c44c6a643d439058d6285cad224,
+      type: 2}
+    _damageMask: 0
+    _damage: 8
+  _firingRange: 35
+  _rateShooting: 0.1
+  _speedReload: 2.5
+  _numberShells: 30

@@ -19,7 +19,6 @@ namespace BattleBase.Commands
 
         public override void Execute()
         {
-            _savingMediator.DisableSaving();
             _saver.ResetProgress();
         }
     }

@@ -1,7 +1,7 @@
 ﻿using BattleBase.Gameplay.Actors.DamageSystem;
-using BattleBase.Gameplay.Actors.AI;
 using System;
 using System.Collections.Generic;
+using BattleBase.Utils;
 
 namespace BattleBase.Gameplay.Actors
 {
@@ -10,8 +10,7 @@ namespace BattleBase.Gameplay.Actors
         private readonly Dictionary<Type, IActorComponent> _components;
         private IActorView _view;
         private IActorData _actorData;
-        private IActorStateMachine _stateMachine;
-        private IDestroyableEvents _destroyableEvents;
+        private IDestroyComponent _destroyComponent;
 
         public ActorBuilder()
         {
@@ -32,26 +31,31 @@ namespace BattleBase.Gameplay.Actors
             return this;
         }
 
-        public ActorBuilder StateMachine(IActorStateMachine stateMachine)
+        public ActorBuilder AddDestroyableEvent(IDestroyableEvent damagebleEvent)
         {
-            _stateMachine = stateMachine ?? throw new ArgumentNullException(nameof(stateMachine));
+            if (_destroyComponent == null)
+            {
+                _destroyComponent = new DestroyComponent(damagebleEvent);
 
-            return this;
-        }
-
-        public ActorBuilder DamagebleEvents(IDestroyableEvents damagebleEvent)
-        {
-            _destroyableEvents = damagebleEvent ?? throw new ArgumentNullException(nameof(damagebleEvent));
+                AddComponent(_destroyComponent);
+            }
+            else
+            {
+                _destroyComponent.AddDestroyableEvent(damagebleEvent);
+            }
 
             return this;
         }
 
         public ActorBuilder AddComponent<T>(T component) where T : class, IActorComponent
         {
+            if (component == null) 
+                throw new ArgumentNullException(nameof(component));
+
             if (typeof(T).IsInterface == false)
                 throw new InvalidOperationException($"Use interface type instead of {typeof(T)}");
 
-            Type heir = FindHeir(component);
+            Type heir = TypeTools.FindDerivedInterface<IActorComponent>(component);
 
             _components[heir] = component;
 
@@ -60,34 +64,18 @@ namespace BattleBase.Gameplay.Actors
 
         public Actor Build()
         {
-            if (_destroyableEvents == null)
+            if (_destroyComponent == null)
                 AddOnTimeDamageble();
 
-            return new Actor(_components, _view, _actorData, _destroyableEvents, _stateMachine);
+            return new Actor(_components, _view, _actorData, _destroyComponent);
         }
 
         private void AddOnTimeDamageble()
         {
             IOnTimeDestroyable onTimeDamageble = new OnTimeDestroyable();
-            _destroyableEvents = onTimeDamageble;
 
             AddComponent(onTimeDamageble);
-        }
-
-        private Type FindHeir(IActorComponent component)
-        {
-            var interfaces = component.GetType().GetInterfaces();
-
-            foreach (var interfaceType in interfaces)
-            {
-                if (interfaceType == typeof(IActorComponent))
-                    continue;
-
-                if (typeof(IActorComponent).IsAssignableFrom(interfaceType))
-                    return interfaceType;
-            }
-
-            return typeof(IActorComponent);
+            AddDestroyableEvent(onTimeDamageble);
         }
     }
 }

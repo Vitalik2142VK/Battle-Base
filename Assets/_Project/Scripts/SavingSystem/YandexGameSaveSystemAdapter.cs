@@ -1,3 +1,4 @@
+using System;
 using YG;
 
 namespace BattleBase.SaveService
@@ -6,11 +7,15 @@ namespace BattleBase.SaveService
     {
         private bool _isDirty;
 
+        public event Action ProgressReseted;
+
         public IVolumeData VolumeData => Data.VolumeData;
 
         public IColorData ColorData => Data.ColorData;
 
         public ITerritoryData TerritoryData => Data.TerritoryData;
+
+        public IShopData ShopData => Data.ShopData;
 
         private SavesData Data => YG2.saves.SavesData;
 
@@ -28,6 +33,8 @@ namespace BattleBase.SaveService
             YG2.SetDefaultSaves();
             _isDirty = true;
             SaveProgress();
+
+            ProgressReseted?.Invoke();
         }
 
         public void SetVolumeData(IVolumeData data)
@@ -53,6 +60,15 @@ namespace BattleBase.SaveService
             if (Data.TerritoryData.IsChangedFrom(data))
             {
                 Data.SetTerritoryData(data);
+                _isDirty = true;
+            }
+        }
+
+        public void SetShopData(IShopData data)
+        {
+            if (Data.ShopData.IsChangedFrom(data))
+            {
+                Data.SetShopData(data);
                 _isDirty = true;
             }
         }

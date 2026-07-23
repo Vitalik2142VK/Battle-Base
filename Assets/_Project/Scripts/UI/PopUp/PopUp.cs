@@ -8,13 +8,13 @@ namespace BattleBase.UI.PopUps
 {
     public class PopUp : MonoBehaviour
     {
-        private readonly List<Tweener> _currentTweens = new(); //todo может обойтись одим _currentSequence
+        private readonly List<Tweener> _currentTweens = new(); //todo может обойтись одим _currentSequence?
 
         private List<PopUpAnimatorBase> _popUpAnimators;
         private Sequence _currentSequence;
         private bool _isActive;
 
-        public void Init()
+        public virtual void Init()
         {
             _popUpAnimators = GetComponents<PopUpAnimatorBase>().ToList();
 

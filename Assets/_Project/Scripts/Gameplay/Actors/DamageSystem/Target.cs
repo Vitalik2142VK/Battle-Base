@@ -14,7 +14,7 @@ namespace BattleBase.Gameplay.Actors.DamageSystem
         [SerializeField] private bool _isDebugEnable = false;
 
         private IHealthPresenter _healthPresenter;
-        private IDestroyableEvents _damagebleEvents;
+        private IDestroyableEvent _damagebleEvents;
         private ITeamable _teamable;
 
         public event Action Destroyed;
@@ -46,17 +46,24 @@ namespace BattleBase.Gameplay.Actors.DamageSystem
             Gizmos.DrawWireSphere(_aimingPoint.position, _hitDistance);
         }
 
-        public void Init(IHealthPresenter healthPresenter, IDestroyableEvents damagebleEvents, ITeamable teamable)
+        public void Init(
+            IHealthPresenter healthPresenter, 
+            IDestroyableEvent damagebleEvents, 
+            ITeamable teamable, 
+            ActorMask actorMask)
         {
             _healthPresenter = healthPresenter ?? throw new ArgumentNullException(nameof(healthPresenter));
             _damagebleEvents = damagebleEvents ?? throw new ArgumentNullException(nameof(damagebleEvents));
             _teamable = teamable ?? throw new ArgumentNullException(nameof(teamable));
+            ActorMask = actorMask;
 
             if (gameObject.activeSelf)
                 _damagebleEvents.Destroyed += OnDied;
         }
 
         public TeamType TeamType => _teamable.TeamType;
+
+        public ActorMask ActorMask { get; private set; }
 
         public Vector3 Position => _aimingPoint.position;
 
@@ -67,14 +74,10 @@ namespace BattleBase.Gameplay.Actors.DamageSystem
             return sqrDistance < _hitDistance * _hitDistance;
         }
 
-        public void TakeDamage(IDamage damage)
-        {
+        public void TakeDamage(IDamage damage) => 
             _healthPresenter.SendDamage(damage);
-        }
 
-        public void OnDied()
-        {
+        private void OnDied() => 
             Destroyed?.Invoke();
-        }
     }
 }

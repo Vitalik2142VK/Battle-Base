@@ -12,18 +12,16 @@ namespace BattleBase.Gameplay.Actors.Spawn
             if (view == null)
                 throw new ArgumentNullException(nameof(view));
 
-            if (actor.TryGetComponent(out IActorSpawner spawner) &&
-                view.TryGetViewComponent(out IActorViewSpawner spawnerView))
-            {
-                ActorSpawnerPresenter presenter = new(spawner);
-
-                spawner.Init(actor, spawnerView);
-                spawnerView.Init(presenter, spawner);
-            }
-            else
-            {
+            if (actor.TryGetComponent(out IActorSpawner spawner) == false)
                 return;
-            }
+
+            if (view.TryGetViewComponent(out ISpawnPoint spawnPoint) == false)
+                throw new InvalidOperationException($"'{nameof(view)}' don't contain module '{nameof(ISpawnPoint)}'");
+
+            spawner.Init(actor, spawnPoint);
+
+            if (view.TryGetViewComponent(out IActorSpawnerView spawnerView))
+                spawnerView.Init(spawner);
         }
     }
 }

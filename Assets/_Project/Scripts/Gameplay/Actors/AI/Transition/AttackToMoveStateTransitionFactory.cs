@@ -2,6 +2,7 @@
 using BattleBase.Gameplay.Actors.Movement;
 using BattleBase.Gameplay.Actors.AttackSystem;
 using System;
+using BattleBase.Gameplay.Actors.AttackSystem.Weapons;
 
 namespace BattleBase.Gameplay.Actors.AI.Transition
 {

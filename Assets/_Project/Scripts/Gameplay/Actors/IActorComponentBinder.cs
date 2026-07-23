@@ -2,6 +2,6 @@
 {
     public interface IActorComponentBinder
     {
-        void Bind(IActor actor, IActorView view);
+        public void Bind(IActor actor, IActorView view);
     }
 }

@@ -4,6 +4,8 @@ namespace BattleBase.Gameplay.Map
 {
     public interface ITerritoryInfo
     {
-        public LanguageTextsSet TerritoryName { get; }
+        public ILanguageTextsSet TerritoryName { get; }
+
+        public int CreditsForFirstVictory { get; }
     }
 }

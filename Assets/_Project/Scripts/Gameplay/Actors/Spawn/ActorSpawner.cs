@@ -1,89 +1,75 @@
-using BattleBase.Utils;
+using BattleBase.Gameplay.Actors.Economy;
 using System;
 using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.Spawn
 {
-    public class ActorSpawner : IActorSpawner
+    public abstract class ActorSpawner : IActorSpawner
     {
-        private readonly List<IActorData> _actorsToCreate;
-        private readonly IActorSpawnService _spawnService;
-        private readonly Timer _timer;
+        private readonly List<IActorData> _actorDatas;
+        private readonly IMaterialRegistry _materialRegistry;
 
-        private ITeamable _teamable;
-        private ISpawnData _spawnData;
-        private IActorData _currentActorData;
-        private bool _isDisable;
+        private MatetialTransaction _currentTransaction;
 
-        public event Action<Actor> Spawned;
+        public abstract event Action<IActor> Spawned;
 
-        public ActorSpawner(IEnumerable<IActorData> actorsToCreate, IActorSpawnService actorSpawnService)
+        public ActorSpawner(IEnumerable<IActorData> actorsToCreate, IMaterialRegistry materialRegistry)
         {
             if (actorsToCreate == null)
                 throw new ArgumentNullException(nameof(actorsToCreate));
 
-            _actorsToCreate = new List<IActorData>(actorsToCreate);
-            _spawnService = actorSpawnService ?? throw new ArgumentNullException(nameof(actorSpawnService));
-            _timer = new();
+            _materialRegistry = materialRegistry ?? throw new ArgumentNullException(nameof(materialRegistry));
+            _actorDatas = new List<IActorData>(actorsToCreate);
         }
 
-        public IEnumerable<IActorData> ActorsData => _actorsToCreate.ToArray();
+        public IEnumerable<IActorData> ActorDatas => _actorDatas;
 
-        public void Init(ITeamable teamable, ISpawnData spawnData)
+        protected ITeamable Teamable { get; private set; }
+
+        protected ISpawnPoint SpawnData { get; private set; }
+
+        protected bool IsInProcessSpawn { get; private set; }
+
+        public void Init(ITeamable teamable, ISpawnPoint spawnData)
         {
-            _teamable = teamable ?? throw new ArgumentNullException(nameof(teamable));
-            _spawnData = spawnData ?? throw new ArgumentNullException(nameof(spawnData));
+            Teamable ??= teamable ?? throw new ArgumentNullException(nameof(teamable));
+            SpawnData ??= spawnData ?? throw new ArgumentNullException(nameof(spawnData));
         }
 
-        public void Enable()
+        public abstract void Enable();
+
+        public abstract void Disable();
+
+        public abstract void Update(float delta);
+
+        public abstract void SelectActorData(IActorData actorData);
+
+        protected abstract void Spawn();
+
+        protected bool ConstrainActorData(IActorData actorData) =>
+            _actorDatas.Contains(actorData);
+
+        protected void FinishSpawn()
         {
-            _isDisable = false;
+            _currentTransaction.Finish();
+
+            IsInProcessSpawn = false;
         }
 
-        public void Disable()
+        protected bool CanBeginSpawn(IActorData actorData)
         {
-            _isDisable = true;
-            _currentActorData = null;
-        }
-
-        public void Update(float delta)
-        {
-            if (_currentActorData == null || _isDisable)
-                return;
-
-            if (_timer.IsTimeUp == false)
+            if (_materialRegistry.TryGetTransaction(Teamable.TeamType, actorData.Price, out _currentTransaction))
             {
-                _timer.Tick(delta);
+                IsInProcessSpawn = true;
 
-                return;
+                _currentTransaction.Init(() => Spawn());
+
+                return true;
             }
 
-            if (_spawnService.TrySpawn(_currentActorData.Prefab.name, _spawnData, out Actor actor))
-            {
-                Spawned?.Invoke(actor);
+            IsInProcessSpawn = false;
 
-                actor.Enable();
-                actor.SetTeam(_teamable.TeamType);
-
-                _currentActorData = null;
-            }
-        }
-
-        public void SelectActorData(IActorData actorData)
-        {
-            if (actorData == null)
-                throw new ArgumentNullException(nameof(actorData));
-
-            if (_actorsToCreate.Contains(actorData))
-            {
-                _currentActorData = actorData;
-                _timer.SetWaitTime(_currentActorData.ConstructionTime);
-                _timer.RestartTimer();
-            }
-            else
-            {
-                throw new InvalidOperationException($"{nameof(actorData)} not found");
-            }
+            return false;
         }
     }
 }

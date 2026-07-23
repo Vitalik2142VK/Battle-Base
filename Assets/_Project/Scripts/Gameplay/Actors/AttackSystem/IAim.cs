@@ -2,6 +2,6 @@
 {
     public interface IAim : IActorViewComponent
     {
-        public void Init(IAttackerPresenter presenter, IAttackEvents attackEvents);
+        public void Init(IAttackerPresenter presenter, IAttackNotifier attackNotifier);
     }
 }

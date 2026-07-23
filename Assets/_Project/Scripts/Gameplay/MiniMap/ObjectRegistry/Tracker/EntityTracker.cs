@@ -5,24 +5,24 @@ namespace BattleBase.Gameplay.MiniMap
 {
     public class EntityTracker : IEntityTracker, IDisposable
     {
-        private readonly ITrackable _entity;
+        private readonly ITrackable _trackable;
         private readonly IEntitySizeTracker _sizeTracker;
         private readonly IEntityPositionTracker _positionTracker;
         private readonly IEntityRotationTracker _rotationTracker;
 
         public EntityTracker(
-            ITrackable entity, 
+            ITrackable trackable, 
             IEntitySizeTracker sizeTracker,
             IEntityPositionTracker positionTracker,
             IEntityRotationTracker rotationTracker)
         {
-            _entity = entity ?? throw new ArgumentNullException(nameof(entity));
+            _trackable = trackable ?? throw new ArgumentNullException(nameof(trackable));
             _sizeTracker = sizeTracker ?? throw new ArgumentNullException(nameof(sizeTracker));
             _positionTracker = positionTracker ?? throw new ArgumentNullException(nameof(positionTracker));
             _rotationTracker = rotationTracker ?? throw new ArgumentNullException(nameof(rotationTracker));
 
-            _entity.Deactivated += OnDeactivated;
-            _entity.ColorChanged += OnColorChanged;
+            _trackable.Deactivated += OnDeactivated;
+            _trackable.ColorChanged += OnColorChanged;
             _sizeTracker.Changed += OnSizeChanged;
             _positionTracker.Changed += OnPositionChanged;
             _rotationTracker.Changed += OnRotationChanged;
@@ -34,7 +34,7 @@ namespace BattleBase.Gameplay.MiniMap
         public event Action<IEntityTracker> PositionChanged;
         public event Action<IEntityTracker> RotationChanged;
 
-        public Color Color => _entity.Color;
+        public Color Color => _trackable.Color;
 
         public Vector2 WorldSize => _sizeTracker.WorldSize;
 
@@ -44,8 +44,8 @@ namespace BattleBase.Gameplay.MiniMap
 
         public void Dispose()
         {
-            _entity.Deactivated -= OnDeactivated;
-            _entity.ColorChanged -= OnColorChanged;
+            _trackable.Deactivated -= OnDeactivated;
+            _trackable.ColorChanged -= OnColorChanged;
             _sizeTracker.Changed -= OnSizeChanged;
             _positionTracker.Changed -= OnPositionChanged;
             _rotationTracker.Changed -= OnRotationChanged;

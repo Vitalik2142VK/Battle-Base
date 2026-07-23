@@ -19,13 +19,20 @@ namespace BattleBase.Gameplay.Map
         [SerializeField] private LanguageTextsSet _playerOwnership;
         [SerializeField] private LanguageTextsSet _enemyOwnership;
         [SerializeField] private LanguageTextsSet _contestedOwnership;
+        [SerializeField] private Canvas _canvas;
 
         private Transform _target;
 
         public event Action<TerritorySelectPopUp> Deactivated;
 
+        public Canvas Canvas => _canvas;
+
+        public int CommandCount => _battleButton.CommandCount;
+
         [Inject]
-        public void Construct(CommandLoadGameScene commandLoadGameScene, CommandRebuildLayout commandRebuildLayout)
+        public void Construct(
+            CommandLoadGameScene commandLoadGameScene,
+            CommandRebuildLayout commandRebuildLayout)
         {
             if (commandLoadGameScene == null)
                 throw new ArgumentNullException(nameof(commandLoadGameScene));

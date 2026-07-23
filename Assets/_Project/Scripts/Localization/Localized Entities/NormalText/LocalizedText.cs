@@ -26,14 +26,17 @@ namespace BattleBase.Localization
         private void OnDisable() =>
             YandexGameLanguageSystemAdapter.Changed -= UpdateInfo;
 
-        public void SetTexts(LanguageTextsSet texts)
+        public void SetTexts(ILanguageTextsSet texts)
         {
-            _texts = texts ?? throw new ArgumentNullException(nameof(texts));
+            _texts = new(texts);
             UpdateInfo();
         }
 
         private void UpdateInfo()
         {
+            if (_text == null)
+                Awake();
+
             TextLangParams langParams =
                 _texts.GetByLanguage(YandexGameLanguageSystemAdapter.CurrentLanguage)
                 ?? throw new ArgumentNullException($"{nameof(LocalizedText)} on {name} has no params for current language");

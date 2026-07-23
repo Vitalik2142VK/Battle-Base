@@ -1,5 +1,6 @@
 ﻿using BattleBase.Gameplay.Actors.AI.State;
 using BattleBase.Gameplay.Actors.AttackSystem;
+using BattleBase.Gameplay.Actors.AttackSystem.Weapons;
 using System;
 
 namespace BattleBase.Gameplay.Actors.AI.Transition

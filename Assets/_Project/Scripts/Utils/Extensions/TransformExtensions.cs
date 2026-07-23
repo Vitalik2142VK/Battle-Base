@@ -23,5 +23,14 @@ namespace BattleBase.Utils.Extensions
 
             return "/" + string.Join("/", parts);
         }
+
+        public static void ClearChilds(this Transform transform)
+        {
+            for (int i = transform.childCount - 1; i >= 0; i--)
+            {
+                Transform child = transform.GetChild(i);
+                Object.Destroy(child.gameObject);
+            }
+        }
     }
 }

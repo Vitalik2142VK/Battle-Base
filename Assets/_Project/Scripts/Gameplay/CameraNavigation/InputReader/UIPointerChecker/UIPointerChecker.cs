@@ -26,6 +26,15 @@ namespace BattleBase.Gameplay.CameraNavigation.InputReader
             }
         }
 
+        public void RemoveCanvas(Canvas canvas)
+        {
+            if (canvas == null)
+                return;
+
+            if (canvas.TryGetComponent(out GraphicRaycaster raycaster))
+                _raycasters.Remove(raycaster);
+        }
+
         public bool IsPointerOverUI(Vector2 screenPosition)
         {
             int currentFrame = Time.frameCount;

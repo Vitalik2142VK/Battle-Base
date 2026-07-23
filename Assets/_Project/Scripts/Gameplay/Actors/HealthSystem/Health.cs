@@ -7,17 +7,21 @@ namespace BattleBase.Gameplay.Actors.HealthSystem
     {
         private readonly IHealthConfig _config;
         private readonly IDamageModifier _damageModifier;
+        private readonly ActorMask _type;
 
         private float _currentHealth;
 
         public event Action<float, float> HealthChanged;
         public event Action Destroyed;
 
-        public Health(IHealthConfig config, IDamageModifier damageModifier)
+        public Health(IHealthConfig config, IDamageModifier damageModifier, ActorMask type)
         {
             _config = config ?? throw new ArgumentNullException(nameof(config));
             _damageModifier = damageModifier ?? throw new ArgumentNullException(nameof(damageModifier));
+            _type = type;
         }
+
+        public ActorMask ActorMask => _type;
 
         public bool IsAlive => _currentHealth > 0;
 

@@ -1,21 +1,15 @@
-using BattleBase.Gameplay.Actors.AttackSystem.Missiles;
-using BattleBase.Gameplay.Actors.DamageSystem;
-using BattleBase.Utils.Constants;
 using UnityEngine;
 
-namespace BattleBase.Gameplay.Actors
+namespace BattleBase.Gameplay.Actors.DamageSystem
 {
-    [CreateAssetMenu(
-    fileName = nameof(DamageConfig),
-    menuName = AssetMenuPaths.ScriptableObjects + nameof(ActorConfig) + "/" + nameof(DamageConfig))]
-    public class DamageConfig : ScriptableObject, IDamageConfig
+    [System.Serializable]
+    public class DamageConfig : IDamageConfig
     {
-        [SerializeField] private Missile _missilePrefab;
-
+        [SerializeField] private TargetingProfile _targetingProfile;
         [SerializeField] private DamageMask _damageMask;
         [SerializeField][Min(1f)] private float _damage = 20f;
 
-        public string MissleId => _missilePrefab.name;
+        public ITargetingProfile TargetingProfile => _targetingProfile;
 
         public DamageMask DamageMask => _damageMask;
 

@@ -3,66 +3,77 @@ using System.Collections.Generic;
 using BattleBase.DI;
 using BattleBase.Gameplay.CameraNavigation.InputReader;
 using BattleBase.Gameplay.Map;
-using BattleBase.SaveService;
 using UnityEngine;
 using VContainer;
 
 namespace BattleBase.Mediators
 {
-    public class MapTerritoryMediator : MediatorBase, ISaveable, IInjectable
+    public class MapTerritoryMediator : MediatorBase, IInjectable
     {
         [SerializeField] private List<Territory> _territories;
-        [SerializeField] private List<TerritoryConfig> _territoryConfigs;
-        [SerializeField] private TerritoryStatusIndicator _territoryStatusIndicatorPrefab;
 
-        private ITerritorySaver _saver;
         private IClickDetector _clickDetector;
         private ITerritorySelector _territorySelector;
-
-        public event Action Changed;
+        private TerritoryStatusIndicatorFactory _territoryStatusIndicatorFactory;
+        private TerritoriesModel _territoriesModel;
 
         public IReadOnlyList<Territory> Territories => _territories;
 
         [Inject]
         public void Construct(
-            ITerritorySaver saver,
             IClickDetector clickDetector,
-            ITerritorySelector territorySelector)
+            ITerritorySelector territorySelector,
+            TerritoryStatusIndicatorFactory territoryStatusIndicatorFactory,
+            TerritoriesModel territoriesModel)
         {
-            _saver = saver ?? throw new ArgumentNullException(nameof(saver));
             _clickDetector = clickDetector ?? throw new ArgumentNullException(nameof(clickDetector));
             _territorySelector = territorySelector ?? throw new ArgumentNullException(nameof(territorySelector));
+            _territoryStatusIndicatorFactory = territoryStatusIndicatorFactory ?? throw new ArgumentNullException(nameof(territoryStatusIndicatorFactory));
+            _territoriesModel = territoriesModel ?? throw new ArgumentNullException(nameof(territoriesModel));
         }
 
-        private void OnEnable() =>
+        private void OnEnable()
+        {
             _clickDetector.Clicked += OnClick;
+            _territoriesModel.Changed += OnTerritoriesModelsChanged;
+            OnTerritoriesModelsChanged();
+        }
 
-        private void OnDisable() =>
+        private void OnDisable()
+        {
             _clickDetector.Clicked -= OnClick;
+            _territoriesModel.Changed -= OnTerritoriesModelsChanged;
+        }
 
         public override void Init()
         {
-            if (_territories == null)
-                throw new NullReferenceException(nameof(_territories));
-           
-            if (_territoryConfigs == null)
-                throw new NullReferenceException(nameof(_territoryConfigs));
-
-            if (_territories.Count != _territoryConfigs.Count)
-                throw new InvalidOperationException("Discrepancy between the number of territories and the number of configs was found");
-
             for (int i = 0; i < _territories.Count; i++)
             {
                 Territory territory = _territories[i];
-                territory.SetConfig(_territoryConfigs[i]);
-                TerritoryStatusIndicator indicator = Instantiate(_territoryStatusIndicatorPrefab);
-                indicator.SetTerritory(territory);
+                territory.SetIndex(i);
+                TerritoryStatusIndicator indicator = _territoryStatusIndicatorFactory.Create();
+                indicator.SetTerritory(territory);                
             }
         }
 
-        public void Load()
+        private void OnClick(Collider collider)
         {
-            HashSet<int> conqueredSet = new(_saver.TerritoryData.ConqueredTerritories);
+            if (collider == null)
+            {
+                _territorySelector.Unselect();
+
+                return;
+            }
+
+            if (collider.TryGetComponent(out Territory territory))
+                _territorySelector.Select(territory);
+            else
+                _territorySelector.Unselect();
+        }
+
+        private void OnTerritoriesModelsChanged()
+        {
+            HashSet<int> conqueredSet = new(_territoriesModel.ConqueredTerritories);
 
             for (int i = 0; i < _territories.Count; i++)
             {
@@ -84,36 +95,6 @@ namespace BattleBase.Mediators
                         adjacent.SetOwner(TerritoryOwnerType.Contested);
                 }
             }
-
-            Changed?.Invoke();
-        }
-
-        public void Save()
-        {
-            List<int> conqueredTerritories = new();
-
-            for (int i = 0; i < _territories.Count; i++)
-            {
-                if (_territories[i].Owner == TerritoryOwnerType.Player)
-                    conqueredTerritories.Add(i);
-            }
-
-            _saver.SetTerritoryData(new TerritoryData(conqueredTerritories));
-        }
-
-        private void OnClick(Collider collider)
-        {
-            if (collider == null)
-            {
-                _territorySelector.Unselect();
-
-                return;
-            }
-
-            if (collider.TryGetComponent(out Territory territory))
-                _territorySelector.Select(territory);
-            else
-                _territorySelector.Unselect();
         }
     }
 }

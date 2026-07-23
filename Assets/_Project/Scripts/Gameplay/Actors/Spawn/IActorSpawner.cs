@@ -1,13 +1,9 @@
-using System.Collections.Generic;
-
 namespace BattleBase.Gameplay.Actors.Spawn
 {
-    public interface IActorSpawner : IActorComponent, IUpdateable, IActorSpawnerEvents
+    public interface IActorSpawner : IActorComponent, IActorDataStorage, IUpdateable, IActorSpawnerEvents
     {
-        public IEnumerable<IActorData> ActorsData { get; }
+        public void Init(ITeamable teamable, ISpawnPoint spawnData);
 
         public void SelectActorData(IActorData actorData);
-
-        public void Init(ITeamable teamable, ISpawnData spawnData);
     }
 }

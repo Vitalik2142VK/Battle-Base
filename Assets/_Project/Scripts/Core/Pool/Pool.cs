@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,18 +8,20 @@ namespace BattleBase.Core
         where T : MonoBehaviour, IPoolable<T>
     {
         private readonly IFactory<T> _factory;
-        private readonly Stack<T> _elements = new();
-        private int _size = int.MaxValue;
+        private readonly Stack<T> _elements;
+        private readonly Transform _container;
+        private readonly int _size;
 
         private int _count;
 
-        public Pool(IFactory<T> factory)
+        public Pool(IFactory<T> factory, Transform container = null, int size = int.MaxValue)
         {
-            _factory = factory ?? throw new ArgumentNullException(nameof(factory));
-        }
+            _elements = new Stack<T>();
 
-        public void SetSize(int size) =>
+            _factory = factory ?? throw new ArgumentNullException(nameof(factory));
+            _container = container;
             _size = size;
+        }
 
         public bool TryGive(out T element)
         {
@@ -40,7 +42,7 @@ namespace BattleBase.Core
                 return;
 
             element.Deactivated -= Return;
-            element.transform.SetParent(null);
+            element.transform.SetParent(_container);
             element.gameObject.SetActive(false);
             _elements.Push(element);
         }

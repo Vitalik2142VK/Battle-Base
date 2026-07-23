@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b960e3a53ccdc154d9abddb2d58ace5a, type: 3}
+  m_Name: Quad
+  m_EditorClassIdentifier: 
+  _actorConfig: {fileID: 11400000, guid: 2069bf6504a12de4ab3c8e86cca4cef6, type: 2}
+  _stats: {fileID: 11400000, guid: 0f75ebb09250756489b33454a5f84fd7, type: 2}
+  _unitNameConfig: {fileID: 11400000, guid: b2227ea8b77ed2f4db969ddbd0321da7, type: 2}
+  _unitDescriptionConfig: {fileID: 11400000, guid: 1b6a875e1a6f7f045972cac607c2d590,
+    type: 2}
+  _cleanPrefab: {fileID: 1138844973891585030, guid: 73204a9e1a7bd424baec8238a00dacd2,
+    type: 3}
+  _previewScreenScale: 1.5

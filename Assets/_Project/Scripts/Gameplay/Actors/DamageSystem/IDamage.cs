@@ -5,5 +5,7 @@
         public DamageMask DamageMask { get; }
 
         public float Value { get; }
+
+        public bool HasPriority(ActorMask actorMask, out float damageCoefficient);
     }
 }

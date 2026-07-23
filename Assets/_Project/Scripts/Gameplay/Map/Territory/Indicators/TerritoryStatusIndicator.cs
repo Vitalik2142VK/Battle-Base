@@ -1,9 +1,11 @@
 using System;
+using BattleBase.DI;
 using UnityEngine;
+using VContainer;
 
 namespace BattleBase.Gameplay.Map
 {
-    public class TerritoryStatusIndicator : MonoBehaviour
+    public class TerritoryStatusIndicator : MonoBehaviour, IInjectable
     {
         [SerializeField] private SpriteRenderer _renderer;
         [SerializeField] private Sprite _base;
@@ -11,21 +13,30 @@ namespace BattleBase.Gameplay.Map
         [SerializeField] private float _ownerColorBlackoutFactor = 0.2f;
 
         private Territory _territory;
+        private TeamColorModel _colorModel;
 
-        private void OnEnable() =>
+        [Inject]
+        public void Construct(TeamColorModel colorModel) =>
+            _colorModel = colorModel ?? throw new ArgumentNullException(nameof(colorModel));
+
+        private void OnEnable()
+        {
+            _colorModel.Changed += OnColorChanged;
             Subscribe();
+        }
 
-        private void OnDisable() =>
+        private void OnDisable()
+        {
+            _colorModel.Changed -= OnColorChanged;
             Unsubscribe();
+        }
 
         public void SetTerritory(Territory territory)
         {
-            if (_territory == territory)
-                return;
+            _territory = territory != null ? territory : throw new ArgumentNullException(nameof(territory));
 
             Unsubscribe();
 
-            _territory = territory != null ? territory : throw new ArgumentNullException(nameof(territory));
             Transform territoryTransform = territory.transform;
             transform.SetParent(territoryTransform);
             transform.position = territoryTransform.position;
@@ -41,7 +52,6 @@ namespace BattleBase.Gameplay.Map
             Unsubscribe();
 
             _territory.OwnerChanged += OnOwnerChanged;
-            _territory.ColorChanged += OnColorChanged;
             OnOwnerChanged();
         }
 
@@ -51,7 +61,6 @@ namespace BattleBase.Gameplay.Map
                 return;
 
             _territory.OwnerChanged -= OnOwnerChanged;
-            _territory.ColorChanged -= OnColorChanged;
         }
 
         private void OnOwnerChanged()
@@ -78,15 +87,14 @@ namespace BattleBase.Gameplay.Map
 
         private void OnColorChanged()
         {
-            if (_territory.Color.HasValue == false)
-                return;
+            TerritoryOwnerType owner = _territory.Owner;
 
-            _renderer.color = _territory.Owner switch
+            _renderer.color = owner switch
             {
-                TerritoryOwnerType.Enemy => ModifyColor(_territory.Color.Value),
-                TerritoryOwnerType.Player => ModifyColor(_territory.Color.Value),
+                TerritoryOwnerType.Enemy => ModifyColor(_colorModel.EnemyColor),
+                TerritoryOwnerType.Player => ModifyColor(_colorModel.PlayerColor),
                 TerritoryOwnerType.Contested => Color.white,
-                _ => throw new ArgumentOutOfRangeException(nameof(_territory.Owner), _territory.Owner, $"Type is not registered"),
+                _ => throw new ArgumentOutOfRangeException(nameof(owner), owner, $"Type is not registered"),
             };
         }
 

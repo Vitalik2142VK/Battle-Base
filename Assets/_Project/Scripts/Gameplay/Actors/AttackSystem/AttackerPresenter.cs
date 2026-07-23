@@ -1,4 +1,5 @@
 ﻿using BattleBase.Gameplay.Actors.DamageSystem;
+using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.AttackSystem
 {
@@ -11,8 +12,8 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             _model = model ?? throw new System.ArgumentNullException(nameof(model));
         }
 
-        public void SpecifyTarget(ITarget target) => 
-            _model.SetTarget(target);
+        public void SetTargets(IEnumerable<ITarget> targets) => 
+            _model.SetTargets(targets);
 
         public void EstablishAimState(bool isAimed) =>
             _model.SetAim(isAimed);

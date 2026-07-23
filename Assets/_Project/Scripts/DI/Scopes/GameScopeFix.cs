@@ -1,6 +1,8 @@
 using BattleBase.Commands;
 using BattleBase.Core;
-using BattleBase.Gameplay;
+using BattleBase.Gameplay.Actors.Economy;
+using BattleBase.Gameplay.Actors.Energy;
+using BattleBase.Gameplay.Actors.Visual.Select;
 using BattleBase.Gameplay.CameraNavigation;
 using BattleBase.Gameplay.CameraNavigation.InputReader;
 using BattleBase.Gameplay.MiniMap;
@@ -25,6 +27,8 @@ namespace BattleBase.DI
         [SerializeField] private ProductionItem _itemPrefab;
         [SerializeField] private ItemInfoPopUp _itemInfoPopUp;
         [SerializeField] private CommandBase _commandShowItemInfoPopUp;
+        [SerializeField] private PowerConfig _powerConfig;
+        [SerializeField] private MaterialConfig _materialConfig;
 
         private IContainerBuilder _builder;
 
@@ -36,13 +40,13 @@ namespace BattleBase.DI
             RegisterCameraSystem();
             RegisterCameraInputReader();
             RegisterBuildingSiteSelector();
+            RegisterResources();
         }
 
         private void RegisterBuildingSiteSelector()
         {
-            _builder.Register<IBuildingSiteSelector, BuildingSiteSelector>(Lifetime.Scoped);
-            _builder.Register<IProductionItemFactory, ProductionItemFactory>(Lifetime.Scoped);
-            _builder.Register<IEntityFactory, EntityFactory>(Lifetime.Scoped);
+            _builder.Register<ISelector, Selector>(Lifetime.Singleton);
+            _builder.Register<IProductionItemFactory, ProductionItemFactory>(Lifetime.Singleton);
             _builder.RegisterInstance(_itemPrefab);
 
             _builder.RegisterComponent(_itemInfoPopUp);
@@ -51,11 +55,11 @@ namespace BattleBase.DI
 
         private void RegisterMiniMapSystem()
         {
-            _builder.Register<IEntityTrackersRegistry, EntityTrackersRegistry>(Lifetime.Scoped);
-            _builder.Register<IPool<IconMapObject>, Pool<IconMapObject>>(Lifetime.Scoped);
+            _builder.Register<IEntityTrackersRegistry, EntityTrackersRegistry>(Lifetime.Singleton);
+            _builder.Register<IPool<IconMapObject>, StaticPool<IconMapObject>>(Lifetime.Singleton);
             _builder.Register<IEntitySizeCalculator, WorldBoundsSizeCalculator>(Lifetime.Transient);
-            _builder.Register<IEntityTrackerFactory, EntityTrackerFactory>(Lifetime.Scoped);
-            _builder.Register<IFactory<IconMapObject>, IconMapObjectFactory>(Lifetime.Scoped);
+            _builder.Register<IEntityTrackerFactory, EntityTrackerFactory>(Lifetime.Singleton);
+            _builder.Register<IFactory<IconMapObject>, IconMapObjectFactory>(Lifetime.Singleton);
             _builder.RegisterInstance(_iconMapObjectPrefab);
         }
 
@@ -66,41 +70,54 @@ namespace BattleBase.DI
             _builder.RegisterComponent<ICameraArea>(_cameraArea);
             _builder.RegisterComponent(_cameraArea.Config).AsImplementedInterfaces();
 
-            _builder.Register<ICameraHandle, CameraHandle>(Lifetime.Scoped);
-            _builder.Register<IFrustumProjectionService, FrustumProjectionService>(Lifetime.Scoped);
-            _builder.Register<ICameraSnapBack, CameraSnapBack>(Lifetime.Scoped);
-            _builder.Register<IUIPointerChecker, UIPointerChecker>(Lifetime.Scoped);
-            _builder.Register<IVerticalFactorCalculator, VerticalFactorCalculator>(Lifetime.Scoped);
-            _builder.Register<ICameraOrientationAdapter, GameSceneCameraOrientationAdapter>(Lifetime.Scoped);
-            _builder.Register<IScreenSizeTracker, ScreenSizeTracker>(Lifetime.Scoped);
-            _builder.Register<IScreenOrientationTracker, ScreenOrientationTracker>(Lifetime.Scoped);
-            _builder.Register<ICameraZoom, CameraZoom>(Lifetime.Scoped);
-            _builder.Register<ICameraDragger, CameraDragger>(Lifetime.Scoped);
-            _builder.Register<IResistanceCalculator, ResistanceCalculator>(Lifetime.Scoped);
-            _builder.Register<IDragApplier, DragApplier>(Lifetime.Scoped);
-            _builder.Register<IInertiaSnapbackApplier, InertiaSnapbackApplier>(Lifetime.Scoped);
+            _builder.Register<ICameraHandle, CameraHandle>(Lifetime.Singleton);
+            _builder.Register<IFrustumProjectionService, FrustumProjectionService>(Lifetime.Singleton);
+            _builder.Register<ICameraSnapBack, CameraSnapBack>(Lifetime.Singleton);
+            _builder.Register<IUIPointerChecker, UIPointerChecker>(Lifetime.Singleton);
+            _builder.Register<IVerticalFactorCalculator, VerticalFactorCalculator>(Lifetime.Singleton);
+            _builder.Register<ICameraOrientationAdapter, GameSceneCameraOrientationAdapter>(Lifetime.Singleton);
+            _builder.Register<IScreenSizeTracker, ScreenSizeTracker>(Lifetime.Singleton);
+            _builder.Register<IScreenOrientationTracker, ScreenOrientationTracker>(Lifetime.Singleton);
+            _builder.Register<ICameraZoom, CameraZoom>(Lifetime.Singleton);
+            _builder.Register<ICameraDragger, CameraDragger>(Lifetime.Singleton);
+            _builder.Register<IResistanceCalculator, ResistanceCalculator>(Lifetime.Singleton);
+            _builder.Register<IDragApplier, DragApplier>(Lifetime.Singleton);
+            _builder.Register<IInertiaSnapbackApplier, InertiaSnapbackApplier>(Lifetime.Singleton);
         }
 
         private void RegisterCameraInputReader()
         {
-            _builder.Register<ICameraInputReader, CameraInputReader>(Lifetime.Scoped);
+            _builder.Register<ICameraInputReader, CameraInputReader>(Lifetime.Singleton);
 
             if (YG2.envir.isDesktop)
             {
                 _builder.RegisterComponent(_mouseMapCameraConfig).AsImplementedInterfaces();
-                _builder.Register<IClickDetector, MouseClickDetector>(Lifetime.Scoped);
-                _builder.Register<IMouseDragHandler, MouseDragHandler>(Lifetime.Scoped);
-                _builder.Register<IDragHandler, CompositeMouseDragHandler>(Lifetime.Scoped);
-                _builder.Register<IKeyboardDragHandler, KeyboardDragHandler>(Lifetime.Scoped);
-                _builder.Register<IZoomHandler, MouseZoomHandler>(Lifetime.Scoped);
+                _builder.Register<IClickDetector, MouseClickDetector>(Lifetime.Singleton);
+                _builder.Register<IMouseDragHandler, MouseDragHandler>(Lifetime.Singleton);
+                _builder.Register<IDragHandler, CompositeMouseDragHandler>(Lifetime.Singleton);
+                _builder.Register<IKeyboardDragHandler, KeyboardDragHandler>(Lifetime.Singleton);
+                _builder.Register<IZoomHandler, MouseZoomHandler>(Lifetime.Singleton);
             }
             else
             {
                 _builder.RegisterComponent(_touchMapCameraConfig).AsImplementedInterfaces();
-                _builder.Register<IClickDetector, TouchClickDetector>(Lifetime.Scoped);
-                _builder.Register<IDragHandler, TouchDragHandler>(Lifetime.Scoped);
-                _builder.Register<IZoomHandler, TouchPinchHandler>(Lifetime.Scoped);
+                _builder.Register<IClickDetector, TouchClickDetector>(Lifetime.Singleton);
+                _builder.Register<IDragHandler, TouchDragHandler>(Lifetime.Singleton);
+                _builder.Register<IZoomHandler, TouchPinchHandler>(Lifetime.Singleton);
             }
+        }
+
+        private void RegisterResources()
+        {
+            _builder.RegisterInstance<IPowerConfig>(_powerConfig);
+            _builder.Register<PowerRegistry>(Lifetime.Singleton)
+                .As<IAdvancedPowerRegistry>()
+                .As<IPowerRegistry>();
+
+            _builder.RegisterInstance<IMaterialConfig>(_materialConfig);
+            _builder.Register<MaterialRegistry>(Lifetime.Singleton)
+                .As<IAdvancedMaterialRegistry>()
+                .As<IMaterialRegistry>();
         }
     }
 }
