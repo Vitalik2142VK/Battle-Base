@@ -20,5 +20,17 @@ namespace BattleBase.Utils.Extensions
 
             return sqrMagnitude <= distance * distance;
         }
+
+        public static bool IsInRangeDistance(this Vector3 start, Vector3 end, float minDistance, float maxDistance)
+        {
+            if (minDistance > maxDistance)
+                throw new System.ArgumentOutOfRangeException(nameof(minDistance));
+
+            float sqrMagnitude = (start - end).sqrMagnitude;
+            float sqrMinDistance = minDistance * minDistance;
+            float sqrMaxDistance = maxDistance * maxDistance;
+
+            return sqrMinDistance <= sqrMagnitude && sqrMagnitude <= sqrMaxDistance;
+        }
     }
 }

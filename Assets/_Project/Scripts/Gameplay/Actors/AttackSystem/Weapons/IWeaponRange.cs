@@ -2,6 +2,8 @@
 {
     public interface IWeaponRange
     {
-        public float Range { get; }
+        public float MaxRange { get; }
+
+        public float MinRange { get; }
     }
 }

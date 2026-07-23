@@ -28,7 +28,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
             if (damage == null)
                 throw new ArgumentNullException(nameof(damage));
 
-            IProjectile projectile = _spawner.Spawn(_projectileConfig.MissleId);
+            IProjectile projectile = _spawner.Spawn(_projectileConfig.ProjectileId);
             projectile.SetProjectileConfig(_projectileConfig);
             projectile.SetDamage(damage);
             projectile.ShootTarget(_shotPoint.ShotPointTransform, target);

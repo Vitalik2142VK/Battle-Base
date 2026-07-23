@@ -1,22 +1,17 @@
-﻿using BattleBase.Gameplay.Actors.DamageSystem;
-using System;
+﻿using BattleBase.Utils.Constants;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.AttackSystem
 {
-    public class Tower : MonoBehaviour, IAim
+    public class Tower : MonoBehaviour, IAimComponent
     {
-        private const float DotAim = 0.99f;
-
-        [SerializeField] private Muzzle _muzzle;
         [SerializeField][Min(1f)] private float _speedRotate = 25f;
+        [SerializeField][Range(-1f, 1f)] private float _dotAim = 0.99f;
 
-        private IAttackerPresenter _presenter;
-        private IAttackNotifier _attackNotifier;
-        private ITargetPoint _currentTarget;
         private Transform _transform;
         private Quaternion _startRotation;
-        private bool _isAimed;
+
+        public bool IsAimed { get; private set; }
 
         private void Awake()
         {
@@ -26,52 +21,23 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
         private void OnEnable()
         {
-            if (_attackNotifier != null)
-            {
-                _attackNotifier.TargetSelected += OnTakeAim;
-                _attackNotifier.AttackDeactivated += OnRemoveTarget;
-
-                OnTakeAim();
-            }
-            
             _transform.localRotation = _startRotation;
         }
 
-        private void Update()
+        public void LookAtTarget(Vector3 targetPosition, float delta)
         {
-            if (_currentTarget != null)
-                LookAtTarget();
-        }
+            if (delta < 0f)
+                throw new System.ArgumentOutOfRangeException(nameof(delta));
 
-        private void OnDisable()
-        {
-            OnRemoveTarget();
-
-            if (_attackNotifier != null)
-            {
-                _attackNotifier.TargetSelected -= OnTakeAim;
-                _attackNotifier.AttackDeactivated -= OnRemoveTarget;
-            }
-        }
-
-        public void Init(IAttackerPresenter presenter, IAttackNotifier weaponEvents)
-        {
-            _presenter = presenter ?? throw new ArgumentNullException(nameof(presenter));
-            _attackNotifier = weaponEvents ?? throw new ArgumentNullException(nameof(weaponEvents));
-
-            if (gameObject.activeSelf)
-            {
-                _attackNotifier.TargetSelected += OnTakeAim;
-                _attackNotifier.AttackDeactivated += OnRemoveTarget;
-            }
-        }
-
-        private void LookAtTarget()
-        {
-            Vector3 direction = _currentTarget.Position - _transform.position;
+            Vector3 direction = targetPosition - _transform.position;
             direction.y = 0f;
 
-            if (direction.sqrMagnitude < Muzzle.MinDistance)
+            CheckAimed(direction);
+
+            if (IsAimed)
+                return;
+
+            if (direction.sqrMagnitude < Values.MinDistance)
                 return;
 
             Quaternion targetRotation = Quaternion.LookRotation(direction);
@@ -79,32 +45,15 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             _transform.rotation = Quaternion.RotateTowards(
                 _transform.rotation,
                 targetRotation,
-                _speedRotate * Time.deltaTime
+                _speedRotate * delta
             );
+        }
 
-            Vector3 localTargetPosition = _transform.InverseTransformPoint(_currentTarget.Position);
-            _muzzle.LookAtTarget(localTargetPosition);
-
+        private void CheckAimed(Vector3 direction)
+        {
             float dot = Vector3.Dot(_transform.forward, direction.normalized);
 
-            if (_isAimed != dot > DotAim)
-            {
-                _isAimed = dot > DotAim;
-                _presenter.EstablishAimState(_isAimed);
-            }
-        }
-
-        private void OnTakeAim()
-        {
-            _currentTarget = _attackNotifier.CurrentTarget;
-            _isAimed = false;
-        }
-
-        private void OnRemoveTarget()
-        {
-            _currentTarget = null;
-            _isAimed = false;
-            _presenter.EstablishAimState(_isAimed);
+            IsAimed = dot > _dotAim;
         }
     }
 }

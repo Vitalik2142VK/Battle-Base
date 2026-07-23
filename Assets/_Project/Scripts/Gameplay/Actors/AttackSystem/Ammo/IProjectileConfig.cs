@@ -2,7 +2,7 @@
 {
     public interface IProjectileConfig
     {
-        public string MissleId { get; }
+        public string ProjectileId { get; }
 
         public float Speed { get; }
     }

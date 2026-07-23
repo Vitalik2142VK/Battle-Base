@@ -1928,6 +1928,52 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 328837390}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &331028858
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 331028859}
+  - component: {fileID: 331028860}
+  m_Layer: 0
+  m_Name: ArtilleryMissleFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &331028859
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331028858}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1063209184}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &331028860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331028858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9e688735f0f6ec4787c864e1460e961, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _projectilePrefab: {fileID: 7158556640630369272, guid: f8faa5e7528c6d240a04a086b25f45aa,
+    type: 3}
 --- !u!1 &331683186
 GameObject:
   m_ObjectHideFlags: 0
@@ -8074,6 +8120,7 @@ Transform:
   - {fileID: 549900560}
   - {fileID: 517882885}
   - {fileID: 140337394}
+  - {fileID: 331028859}
   m_Father: {fileID: 849014627}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1063209185
@@ -8094,6 +8141,7 @@ MonoBehaviour:
   - {fileID: 549900561}
   - {fileID: 517882886}
   - {fileID: 140337395}
+  - {fileID: 331028860}
   _container: {fileID: 1697783764}
 --- !u!1 &1063886126 stripped
 GameObject:
@@ -8330,7 +8378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16be98fa256f74a42901163870c85a42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isAiDisbale: 0
+  _isAiDisbale: 1
 --- !u!4 &1145405096
 Transform:
   m_ObjectHideFlags: 0
@@ -8484,12 +8532,12 @@ PrefabInstance:
     - target: {fileID: 4658381091665335571, guid: 266cbcce9e7138c4991c063825df54fd,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 217.31
       objectReference: {fileID: 0}
     - target: {fileID: 4658381091665335571, guid: 266cbcce9e7138c4991c063825df54fd,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 65.16
       objectReference: {fileID: 0}
     - target: {fileID: 4658381091665335571, guid: 266cbcce9e7138c4991c063825df54fd,
         type: 3}
@@ -8574,7 +8622,7 @@ PrefabInstance:
     - target: {fileID: 5824143777861574492, guid: 266cbcce9e7138c4991c063825df54fd,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 45.16
       objectReference: {fileID: 0}
     - target: {fileID: 5824143777861574492, guid: 266cbcce9e7138c4991c063825df54fd,
         type: 3}
@@ -13398,12 +13446,12 @@ PrefabInstance:
     - target: {fileID: 4658381091665335571, guid: 266cbcce9e7138c4991c063825df54fd,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 344.55
       objectReference: {fileID: 0}
     - target: {fileID: 4658381091665335571, guid: 266cbcce9e7138c4991c063825df54fd,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 65.16
       objectReference: {fileID: 0}
     - target: {fileID: 4658381091665335571, guid: 266cbcce9e7138c4991c063825df54fd,
         type: 3}
@@ -13488,7 +13536,7 @@ PrefabInstance:
     - target: {fileID: 5824143777861574492, guid: 266cbcce9e7138c4991c063825df54fd,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 45.16
       objectReference: {fileID: 0}
     - target: {fileID: 5824143777861574492, guid: 266cbcce9e7138c4991c063825df54fd,
         type: 3}
@@ -15069,7 +15117,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1001 &930312276671751857
 PrefabInstance:
   m_ObjectHideFlags: 0
