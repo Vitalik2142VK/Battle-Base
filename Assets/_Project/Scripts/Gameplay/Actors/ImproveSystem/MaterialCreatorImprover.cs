@@ -17,6 +17,8 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
             _improver = improvement ?? throw new ArgumentNullException(nameof(improvement));
         }
 
+        public Type KeyType => typeof(IMaterialCreatorImprover);
+
         public IImproveProductionData Data => _improver.Data;
 
         public bool CanImprove => _materialCreator.CanIncreaseProduction && _improver.CanImprove;

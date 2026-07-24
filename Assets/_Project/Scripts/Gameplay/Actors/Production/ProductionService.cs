@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.Production
@@ -10,6 +11,8 @@ namespace BattleBase.Gameplay.Actors.Production
         {
             _factories = new List<IProductionOptionsFactory>();
         }
+
+        public Type KeyType => typeof(IProductionService);
 
         public void AddProductionFactory(IProductionOptionsFactory factory)
         {

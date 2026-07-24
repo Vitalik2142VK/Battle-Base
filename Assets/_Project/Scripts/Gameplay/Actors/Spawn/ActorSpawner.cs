@@ -27,6 +27,8 @@ namespace BattleBase.Gameplay.Actors.Spawn
                 _spawnDatas.Add(actor.Id, new SpawnProductionData(actor));
         }
 
+        public Type KeyType => typeof(IActorSpawner);
+
         public IEnumerable<ISpawnProductionData> SpawnDatas => _spawnDatas.Values;
 
         protected bool IsInProcessSpawn => _currnetSpawnData != null;

@@ -25,6 +25,8 @@ namespace BattleBase.Gameplay.Actors.Energy
             _currentRank = 0;
         }
 
+        public Type KeyType => typeof(IPowerGenerator);
+
         public bool CanIncreasePower => _currentRank < _addedPowerByRank.Count;
 
         public int PowerCount => _powerCount;

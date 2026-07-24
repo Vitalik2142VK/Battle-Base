@@ -28,6 +28,8 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
             _currentPriceIndex = 0;
         }
 
+        public Type KeyType => typeof(IImproverComponent);
+
         public IImproveProductionData Data => _data;
 
         public bool CanImprove => _currentPriceIndex < _improvePrices.Count;

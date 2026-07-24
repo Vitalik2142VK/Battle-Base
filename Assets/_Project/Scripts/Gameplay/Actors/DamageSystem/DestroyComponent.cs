@@ -24,6 +24,8 @@ namespace BattleBase.Gameplay.Actors.DamageSystem
             _isActive = false;
         }
 
+        public Type KeyType => typeof(IDestroyComponent);
+
         public void Enable()
         {
             _isActive = true;

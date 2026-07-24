@@ -20,7 +20,7 @@ namespace BattleBase.Gameplay.Actors.Production.Factories
 
             return new IProductionOption[]
             { 
-                //new SpawnProductionOption(command, _demolition.Data, TypeProduction.Removal) 
+                new ProductionOption(command, _demolition.Data, TypeProduction.Removal) 
             };
         }
     }

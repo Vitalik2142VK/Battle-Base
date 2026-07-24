@@ -22,6 +22,8 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Multiple
             _attackers = new List<IAttacker>();
         }
 
+        public Type KeyType => typeof(IMultyAttacker);
+
         public IEnumerable<IAttacker> AdditionalAttackers => _attackers;
 
         public IWeaponConfig WeaponConfig => _mainAttacker.WeaponConfig;

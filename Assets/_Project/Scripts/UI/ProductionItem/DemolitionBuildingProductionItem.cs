@@ -20,11 +20,10 @@ namespace BattleBase.UI
         [SerializeField] private TMP_Text _price;
 
         private ItemInfoPopUp _popUp;
-        private IProductionOption _productionOption;
+        private IProductionOptionPresenter _presenter;
+        private IProductionData _data;
 
         public event Action<IProductionData> ItemClicked;
-
-        public IProductionData Info => _productionOption.Data;
 
         [Inject]
         public void Construct(ItemInfoPopUp popUp, [Key(VContainerKeys.CommandShowItemInfoPopUp)] CommandBase commandShowItemInfoPopUp)
@@ -51,21 +50,26 @@ namespace BattleBase.UI
         public void ResetParent() =>
             transform.SetParent(null, false);
 
-        public void Init(IProductionOption productionOption)
+        public void Init(IProductionOptionPresenter presenter, IProductionData data)
         {
-            _productionOption = productionOption;
+            _presenter = presenter ?? throw new ArgumentNullException(nameof(presenter));
+            _data = data ?? throw new ArgumentNullException(nameof(data));
 
-            _icon.sprite = Info.Icon;
-            _price.text = $"+{Info.Price}";
+            _icon.sprite = _data.Icon;
+            _price.text = $"+{_data.Price}";
         }
 
-        private void OnItemButton(ButtonClickHandler handler) =>
-            ItemClicked?.Invoke(Info);
+        private void OnItemButton(ButtonClickHandler handler)
+        {
+            _presenter.HandleSelectButton();
+
+            ItemClicked?.Invoke(_data);
+        }
 
         private void OnMoreInfoClicked(ButtonClickHandler handler)
         {
-            IProductionData info = Info;
-            ItemPopUpInfo adaptInfo = new(info.Icon, info.Name, Info.Description);
+            IProductionData info = _data;
+            ItemPopUpInfo adaptInfo = new(info.Icon, info.Name, _data.Description);
             _popUp.SetInfo(adaptInfo);
         }
     }

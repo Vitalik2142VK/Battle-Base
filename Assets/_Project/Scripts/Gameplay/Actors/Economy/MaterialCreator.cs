@@ -28,6 +28,8 @@ namespace BattleBase.Gameplay.Actors.Economy
             _currentRank = 0;
         }
 
+        public Type KeyType => typeof(IMaterialCreator);
+
         public bool CanIncreaseProduction => _currentRank < _addedMaterialsByRank.Count;
 
         public void Init(ITeamable teamable)

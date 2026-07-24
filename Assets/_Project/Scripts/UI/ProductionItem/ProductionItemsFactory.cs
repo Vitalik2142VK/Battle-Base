@@ -8,14 +8,9 @@ namespace BattleBase.UI
     {
         private readonly IEnumerable<IProductionItemFactory> _factories;
 
-        private readonly DemolitionBuildingProductionItem _demolitionBuildingProductionItemPrefab;
-
-        public ProductionItemsFactory(IEnumerable<IProductionItemFactory> factories,
-            DemolitionBuildingProductionItem demolitionBuildingProductionItemPrefab)
+        public ProductionItemsFactory(IEnumerable<IProductionItemFactory> factories)
         {
             _factories = factories ?? throw new ArgumentNullException(nameof(factories));
-
-            _demolitionBuildingProductionItemPrefab = demolitionBuildingProductionItemPrefab != null ? demolitionBuildingProductionItemPrefab : throw new ArgumentNullException(nameof(demolitionBuildingProductionItemPrefab));
         }
 
         public List<IProductionItem> Create(IEnumerable<IProductionOption> productionOptions)

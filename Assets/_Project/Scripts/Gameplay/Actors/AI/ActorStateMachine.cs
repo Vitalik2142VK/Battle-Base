@@ -17,6 +17,8 @@ namespace BattleBase.Gameplay.Actors.AI
             TransitionTypes = transitionTypes ?? throw new ArgumentNullException(nameof(transitionTypes));
         }
 
+        public Type KeyType => typeof(IActorStateMachine);
+
         public IEnumerable<StateTransitionType> TransitionTypes { get; }
 
         public void Init(IActorState defaultState)

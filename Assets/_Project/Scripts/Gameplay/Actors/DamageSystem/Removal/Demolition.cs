@@ -1,5 +1,4 @@
 ﻿using BattleBase.Gameplay.Actors.Economy;
-using BattleBase.Gameplay.Actors.Production;
 using System;
 
 namespace BattleBase.Gameplay.Actors.DamageSystem.Removal
@@ -21,6 +20,8 @@ namespace BattleBase.Gameplay.Actors.DamageSystem.Removal
 
             Data = _data;
         }
+
+        public Type KeyType => typeof(IDemolition);
 
         public IDemolitionData Data { get; private set; }
 

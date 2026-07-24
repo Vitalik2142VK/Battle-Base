@@ -55,9 +55,7 @@ namespace BattleBase.Gameplay.Actors
             if (typeof(T).IsInterface == false)
                 throw new InvalidOperationException($"Use interface type instead of {typeof(T)}");
 
-            Type heir = TypeTools.FindDerivedInterface<IActorComponent>(component);
-
-            _components[heir] = component;
+            _components[component.KeyType] = component;
 
             return this;
         }

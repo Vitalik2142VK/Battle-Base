@@ -13,6 +13,8 @@ namespace BattleBase.Gameplay.Actors.DamageSystem
             _isEnamble = false;
         }
 
+        public Type KeyType => typeof(IOnTimeDestroyable);
+
         public void Enable()
         {
             _isEnamble = true;

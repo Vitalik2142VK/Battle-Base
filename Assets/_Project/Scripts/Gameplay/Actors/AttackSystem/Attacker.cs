@@ -26,6 +26,8 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             _isAttacking = false;
         }
 
+        public Type KeyType => typeof(IAttacker);
+
         public IWeaponConfig WeaponConfig => _weapon.Config;
 
         public ITarget CurrentTarget => _targetController.CurrentTarget;

@@ -21,6 +21,8 @@ namespace BattleBase.Gameplay.Actors.HealthSystem
             _type = type;
         }
 
+        public Type KeyType => typeof(IHealth);
+
         public ActorMask ActorMask => _type;
 
         public bool IsAlive => _currentHealth > 0;

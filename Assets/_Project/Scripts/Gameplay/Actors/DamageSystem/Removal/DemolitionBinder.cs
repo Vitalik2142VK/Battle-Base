@@ -1,5 +1,4 @@
 ﻿using BattleBase.Gameplay.Actors.ImproveSystem;
-using BattleBase.Gameplay.Actors.Production;
 using System;
 
 namespace BattleBase.Gameplay.Actors.DamageSystem.Removal

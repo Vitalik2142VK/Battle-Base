@@ -50,6 +50,7 @@ namespace BattleBase.DI
             _builder.Register<ISelector, Selector>(Lifetime.Singleton);
             _builder.Register<IProductionItemFactory, ActorSpawnProductionItemFactory>(Lifetime.Singleton);
             _builder.Register<IProductionItemFactory, ImproveProductionItemFactory>(Lifetime.Singleton);
+            _builder.Register<IProductionItemFactory, DemolitionBuildingProductionItemFactory>(Lifetime.Singleton);
             _builder.Register<IProductionItemsFactory, ProductionItemsFactory>(Lifetime.Singleton);
             _builder.RegisterInstance(_actorSpawnProductionItemPrefab);
             _builder.RegisterInstance(_upgradeProductionItemPrefab);

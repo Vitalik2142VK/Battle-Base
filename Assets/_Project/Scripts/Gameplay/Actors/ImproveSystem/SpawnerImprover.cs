@@ -1,5 +1,4 @@
-﻿using BattleBase.Gameplay.Actors.Production;
-using BattleBase.Gameplay.Actors.Production.Improve;
+﻿using BattleBase.Gameplay.Actors.Production.Improve;
 using BattleBase.Gameplay.Actors.Production.Spawn;
 using BattleBase.Gameplay.Actors.Spawn;
 using System;
@@ -25,6 +24,8 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
             _improver = improvement ?? throw new ArgumentNullException(nameof(improvement));
             _currentNumImprove = 0;
         }
+
+        public Type KeyType => typeof(ISpawnerImprover);
 
         public IEnumerable<ISpawnProductionData> SpawnDatas => _currentActorDatas;
 

@@ -20,6 +20,8 @@ namespace BattleBase.Gameplay.Actors.Movement
             _waypoints = new Queue<IWaypoint>();
         }
 
+        public Type KeyType => typeof(IMover);
+
         public IMoveConfig Config { get; }
 
         public bool CanMove => _currentWaypoint != null;
