@@ -20,6 +20,9 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
 
             improver.Init(actor);
 
+            if (view.TryGetViewComponent(out IImproverViewComponent viewComponent))
+                viewComponent.Init(improver);
+
             if (actor.TryGetComponent(out IActorSpawner spawner))
             {
                 SpawnerImprover spawnerImprovement = new(spawner, improver);

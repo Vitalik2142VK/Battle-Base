@@ -32,6 +32,8 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
 
         public IImproveProductionData Data => _data;
 
+        public int CurrentTier => _currentPriceIndex + 1;
+
         public bool CanImprove => _currentPriceIndex < _improvePrices.Count;
 
         public void Init(ITeamable teamable)
