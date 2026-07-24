@@ -23,7 +23,7 @@ namespace BattleBase.UI
         [SerializeField] private TMP_Text _price;
         [SerializeField] private TMP_Text _quantity;
 
-        private IProductionOptionPresenter _presenter;
+        private ISpawnProductionOptionPresenter _presenter;
         private ISpawnProductionData _spawnData;
         private IProductionData _info;
         private ItemInfoPopUp _popUp;
@@ -70,7 +70,7 @@ namespace BattleBase.UI
             transform.SetParent(null, false);
 
         public void Init(
-            IProductionOptionPresenter presenter, 
+            ISpawnProductionOptionPresenter presenter, 
             ISpawnProductionData spawnData, 
             IProductionData productionData)
         {

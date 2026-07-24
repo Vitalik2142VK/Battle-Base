@@ -1,6 +1,5 @@
-﻿using BattleBase.Gameplay.Actors.Economy;
-using BattleBase.Gameplay.Actors.Energy;
-using BattleBase.Gameplay.Actors.Production;
+﻿using BattleBase.Gameplay.Actors.Energy;
+using BattleBase.Gameplay.Actors.Production.Improve;
 using System;
 
 namespace BattleBase.Gameplay.Actors.ImproveSystem
@@ -18,7 +17,7 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
             _improver = improvement ?? throw new ArgumentNullException(nameof(improvement));
         }
 
-        public IProductionData Data => _improver.Data;
+        public IImproveProductionData Data => _improver.Data;
 
         public bool CanImprove => _powerGenerator.CanIncreasePower && _improver.CanImprove;
 

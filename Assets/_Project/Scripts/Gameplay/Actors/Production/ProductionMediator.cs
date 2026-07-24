@@ -20,7 +20,7 @@ namespace BattleBase.Gameplay.Actors.Production
         private IProductionView _productionView;
         private IClickDetector _clickDetector;
         private ISelector _selector;
-        private IProductionItemFactory _productionItemFactory;
+        private IProductionItemsFactory _productionItemFactory;
 
         private ISelectable _selectable;
 
@@ -28,7 +28,7 @@ namespace BattleBase.Gameplay.Actors.Production
         public void Construct(
             IClickDetector clickDetector,
             ISelector selector,
-            IProductionItemFactory productionItemFactory)
+            IProductionItemsFactory productionItemFactory)
         {
             _clickDetector = clickDetector ?? throw new ArgumentNullException(nameof(clickDetector));
             _selector = selector ?? throw new ArgumentNullException(nameof(selector));

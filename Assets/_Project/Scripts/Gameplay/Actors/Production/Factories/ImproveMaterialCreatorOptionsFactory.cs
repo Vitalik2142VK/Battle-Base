@@ -1,6 +1,6 @@
 ﻿using BattleBase.Core;
 using BattleBase.Gameplay.Actors.ImproveSystem;
-using BattleBase.Gameplay.Actors.Production.Spawn;
+using BattleBase.Gameplay.Actors.Production.Improve;
 using System;
 using System.Collections.Generic;
 
@@ -8,25 +8,27 @@ namespace BattleBase.Gameplay.Actors.Production.Factories
 {
     public class ImproveMaterialCreatorOptionsFactory : IProductionOptionsFactory
     {
-        private readonly IMaterialCreatorImprover _improvement;
+        private readonly IMaterialCreatorImprover _improver;
 
-        public ImproveMaterialCreatorOptionsFactory(IMaterialCreatorImprover improvement)
+        public ImproveMaterialCreatorOptionsFactory(IMaterialCreatorImprover improver)
         {
-            _improvement = improvement ?? throw new ArgumentNullException(nameof(improvement));
+            _improver = improver ?? throw new ArgumentNullException(nameof(improver));
         }
 
         public IEnumerable<IProductionOption> Create()
         {
             List<IProductionOption> productionOptions = new();
 
-            if (_improvement.CanImprove)
+            if (_improver.CanImprove)
             {
-                //DelegateCommand command = new(() => _improvement.TryImprove());
-                //IProductionOption improveProductionOption = new SpawnProductionOption
-                //    (command, 
-                //    _improvement.Data, 
-                //    TypeProduction.Improve);
-                //productionOptions.Add(improveProductionOption);
+                DelegateCommand command = new(() => _improver.TryImprove());
+                ProductionOption productionOption = new(command, _improver.Data, TypeProduction.Improve);
+                IImproveProductionData data = _improver.Data;
+                ImproveProductionOption improveProductionOption = new(
+                    productionOption,
+                    data.MaterialData,
+                    data);
+                productionOptions.Add(improveProductionOption);
             }
 
             return productionOptions;

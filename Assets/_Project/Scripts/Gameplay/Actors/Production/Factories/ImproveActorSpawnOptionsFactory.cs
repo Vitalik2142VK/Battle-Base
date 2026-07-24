@@ -1,5 +1,6 @@
 ﻿using BattleBase.Core;
 using BattleBase.Gameplay.Actors.ImproveSystem;
+using BattleBase.Gameplay.Actors.Production.Improve;
 using BattleBase.Gameplay.Actors.Production.Spawn;
 using BattleBase.Gameplay.Actors.Spawn;
 using System;
@@ -36,12 +37,14 @@ namespace BattleBase.Gameplay.Actors.Production.Factories
 
             if (_improver.CanImprove)
             {
-                //DelegateCommand command = new(() => _improver.TryImprove());
-                //IProductionOption improveProductionOption = new SpawnProductionOption(
-                //    command, 
-                //    _improver.Data, 
-                //    TypeProduction.Improve);
-                //productionOptions.Add(improveProductionOption);
+                DelegateCommand command = new(() => _improver.TryImprove());
+                ProductionOption productionOption = new(command, _improver.Data, TypeProduction.Improve);
+                IImproveProductionData data = _improver.Data;
+                ImproveProductionOption improveProductionOption = new(
+                    productionOption,
+                    data.MaterialData,
+                    data);
+                productionOptions.Add(improveProductionOption);
             }
 
             return productionOptions;

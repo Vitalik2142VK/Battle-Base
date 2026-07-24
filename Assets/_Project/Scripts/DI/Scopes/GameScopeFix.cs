@@ -25,7 +25,7 @@ namespace BattleBase.DI
         [SerializeField] private TouchInputConfig _touchMapCameraConfig;
         [SerializeField] private IconMapObject _iconMapObjectPrefab;
         [SerializeField] private ActorSpawnProductionItem _actorSpawnProductionItemPrefab;
-        [SerializeField] private UpgradeProductionItem _upgradeProductionItemPrefab;
+        [SerializeField] private ImproveProductionItem _upgradeProductionItemPrefab;
         [SerializeField] private DemolitionBuildingProductionItem _demolitionBuildingProductionItemPrefab;
         [SerializeField] private ItemInfoPopUp _itemInfoPopUp;
         [SerializeField] private CommandBase _commandShowItemInfoPopUp;
@@ -48,7 +48,9 @@ namespace BattleBase.DI
         private void RegisterBuildingSiteSelector()
         {
             _builder.Register<ISelector, Selector>(Lifetime.Singleton);
-            _builder.Register<IProductionItemFactory, ProductionItemFactory>(Lifetime.Singleton);
+            _builder.Register<IProductionItemFactory, ActorSpawnProductionItemFactory>(Lifetime.Singleton);
+            _builder.Register<IProductionItemFactory, ImproveProductionItemFactory>(Lifetime.Singleton);
+            _builder.Register<IProductionItemsFactory, ProductionItemsFactory>(Lifetime.Singleton);
             _builder.RegisterInstance(_actorSpawnProductionItemPrefab);
             _builder.RegisterInstance(_upgradeProductionItemPrefab);
             _builder.RegisterInstance(_demolitionBuildingProductionItemPrefab);

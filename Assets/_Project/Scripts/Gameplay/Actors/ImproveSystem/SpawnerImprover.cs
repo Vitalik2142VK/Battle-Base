@@ -1,4 +1,5 @@
 ﻿using BattleBase.Gameplay.Actors.Production;
+using BattleBase.Gameplay.Actors.Production.Improve;
 using BattleBase.Gameplay.Actors.Production.Spawn;
 using BattleBase.Gameplay.Actors.Spawn;
 using System;
@@ -27,7 +28,7 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
 
         public IEnumerable<ISpawnProductionData> SpawnDatas => _currentActorDatas;
 
-        public IProductionData Data => _improver.Data;
+        public IImproveProductionData Data => _improver.Data;
 
         public bool CanImprove => _currentNumImprove < _availableActorDatas.Count && _improver.CanImprove;
 

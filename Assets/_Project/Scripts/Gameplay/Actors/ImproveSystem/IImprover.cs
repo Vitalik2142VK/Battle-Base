@@ -1,10 +1,10 @@
-﻿using BattleBase.Gameplay.Actors.Production;
+﻿using BattleBase.Gameplay.Actors.Production.Improve;
 
 namespace BattleBase.Gameplay.Actors.ImproveSystem
 {
     public interface IImprover : IActorComponent
     {
-        public IProductionData Data { get; }
+        public IImproveProductionData Data { get; }
 
         public bool CanImprove { get; }
 

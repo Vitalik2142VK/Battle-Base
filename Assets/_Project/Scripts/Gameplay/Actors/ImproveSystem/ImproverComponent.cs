@@ -1,5 +1,5 @@
 ﻿using BattleBase.Gameplay.Actors.Economy;
-using BattleBase.Gameplay.Actors.Production;
+using BattleBase.Gameplay.Actors.Production.Improve;
 using System;
 using System.Collections.Generic;
 
@@ -9,7 +9,7 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
     {
         private readonly List<int> _improvePrices;
         private readonly IMaterialRegistry _materialRegistry;
-        private readonly ModifiedImproverData _data;
+        private readonly ImproveProductionData _data;
 
         private ITeamable _teamable;
         private int _currentPriceIndex;
@@ -24,17 +24,18 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
             _materialRegistry = materialRegistry ?? throw new ArgumentNullException(nameof(materialRegistry));
 
             _improvePrices = new List<int>(data.ImprovePrices);
-            _data = new ModifiedImproverData(data);
+            _data = new ImproveProductionData(data, materialRegistry);
             _currentPriceIndex = 0;
         }
 
-        public IProductionData Data => _data;
+        public IImproveProductionData Data => _data;
 
         public bool CanImprove => _currentPriceIndex < _improvePrices.Count;
 
         public void Init(ITeamable teamable)
         {
             _teamable ??= teamable ?? throw new ArgumentNullException(nameof(teamable));
+            _data.Init(_teamable);
         }
 
         public void Enable()

@@ -1,9 +1,7 @@
-﻿namespace BattleBase.Gameplay.Actors.Production.Spawn
+﻿namespace BattleBase.Gameplay.Actors.Production
 {
     public interface IProductionOptionPresenter
     {
         public void HandleSelectButton();
-
-        public void HandleDecrementButton();
     }
 }

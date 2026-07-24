@@ -1,10 +1,10 @@
 ﻿namespace BattleBase.Gameplay.Actors.Production.Spawn
 {
-    public class ProductionOptionPresenter : IProductionOptionPresenter
+    public class SpawnProductionOptionPresenter : ISpawnProductionOptionPresenter
     {
         private readonly ISpawnProductionOption _model;
 
-        public ProductionOptionPresenter(ISpawnProductionOption model)
+        public SpawnProductionOptionPresenter(ISpawnProductionOption model)
         {
             _model = model ?? throw new System.ArgumentNullException(nameof(model));
         }
