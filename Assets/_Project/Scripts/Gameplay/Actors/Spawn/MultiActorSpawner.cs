@@ -116,7 +116,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
             actor.Enable();
 
-            Spawned?.Invoke(actor); //todo check this event
+            Spawned?.Invoke(actor);
 
             _colorService.EstabilshColor(actor, actor.View);
 

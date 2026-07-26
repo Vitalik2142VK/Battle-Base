@@ -9,10 +9,12 @@ namespace BattleBase.Gameplay.Actors.Building
     {
         private readonly IActor _buildingSiteActor;
         private readonly IBuildingSite _buildingSite;
-        private readonly IActorSpawnerEvents _events;
+        private readonly IActorSpawnerNotifier _notifier;
 
         private IActor _currentActor;
         private IDestroyableEvent _destroyableEvents;
+
+        public event Action ActorMissing;
 
         public RegisteredBuildingSite(IActor buildingSiteActor, IBuildingSite buildingSite)
         {
@@ -23,20 +25,37 @@ namespace BattleBase.Gameplay.Actors.Building
             if (_buildingSiteActor.TryGetComponent(out IActorSpawner actorSpawner) == false)
                 throw new InvalidOperationException($"{nameof(buildingSiteActor)} don't constrain component {nameof(IActorSpawner)}");
 
-            _events = actorSpawner;
-            _events.Spawned += OnSetActor;
+            _notifier = actorSpawner;
+            _notifier.Spawned += OnSetActor;
         }
+
+        public int NumberLine => _buildingSite.NumberLine;
+
+        public bool HasBuilding => _destroyableEvents != null;
+
+        public bool IsUnderConstruction => _notifier.IsInProcessSpawn;
 
         public void Disable()
         {
-            _events.Spawned -= OnSetActor;
+            _notifier.Spawned -= OnSetActor;
 
             if (_destroyableEvents != null)
                 _destroyableEvents.Destroyed -= OnShowBuildingSite;
         }
 
-        public bool TryGetProductionService(out IProductionService productionService) =>
-            _currentActor.TryGetComponent(out productionService);
+        public bool TryGetProductionStorage(out IProductionStorage productionStorage)
+        {
+            if (_currentActor.TryGetComponent(out IProductionService productionService))
+            {
+                productionStorage = productionService;
+
+                return true;
+            }
+
+            productionStorage = null;
+
+            return false;
+        }
 
         private void OnSetActor(IActor actor)
         {
@@ -58,6 +77,8 @@ namespace BattleBase.Gameplay.Actors.Building
             _buildingSite.Show();
             _destroyableEvents.Destroyed -= OnShowBuildingSite;
             _destroyableEvents = null;
+
+            ActorMissing?.Invoke();
         }
     }
 }

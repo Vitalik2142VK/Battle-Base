@@ -96,7 +96,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
             Actor actor = _spawnService.Spawn(_currentActorData.Id, Teamable.TeamType, SpawnData);
             actor.Enable();
 
-            Spawned?.Invoke(actor); //todo check this event
+            Spawned?.Invoke(actor);
 
             _colorService.EstabilshColor(actor, actor.View);
             _currentActorData = null;

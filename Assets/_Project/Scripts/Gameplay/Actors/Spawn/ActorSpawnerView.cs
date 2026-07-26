@@ -9,7 +9,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
         private List<IActorSpawnerView> _components;
 
-        public void Init(IActorSpawnerEvents events)
+        public void Init(IActorSpawnerNotifier events)
         {
             _components = new List<IActorSpawnerView>();
 

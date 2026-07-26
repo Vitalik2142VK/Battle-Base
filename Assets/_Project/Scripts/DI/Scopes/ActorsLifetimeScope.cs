@@ -18,6 +18,7 @@ using BattleBase.Gameplay.Actors.Production;
 using BattleBase.Gameplay.Actors.Spawn;
 using BattleBase.Gameplay.Actors.Visual.Particle;
 using BattleBase.Gameplay.AI;
+using BattleBase.Gameplay.AI.Factories;
 using BattleBase.Gameplay.AI.TacticTypes;
 using BattleBase.Gameplay.Levels;
 using UnityEngine;
@@ -124,7 +125,9 @@ namespace BattleBase.DI
         {
             _builder.RegisterInstance<IBrainConfing>(_brainConfing);
 
-            _builder.Register<ITactic, RandomTactic>(Lifetime.Scoped);
+            _builder.Register<ITacticFactory, RandomTacticFactory>(Lifetime.Scoped);
+            _builder.Register<ITacticsFactory, TacticsFactory>(Lifetime.Scoped);
+
             _builder.Register<IBrain, Brain>(Lifetime.Scoped);
         }
     }

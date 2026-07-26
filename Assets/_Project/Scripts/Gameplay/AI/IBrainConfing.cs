@@ -7,6 +7,6 @@ namespace BattleBase.Gameplay.AI
     {
         public TeamType TeamType { get; }
 
-        public IEnumerable<TacticType> UsedTacticTypes { get; }
+        public IEnumerable<ITacticSetting> TacticSetting { get; }
     }
 }

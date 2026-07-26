@@ -1,5 +1,4 @@
 ﻿using BattleBase.Core;
-using BattleBase.Gameplay.Actors;
 
 namespace BattleBase.Gameplay.AI
 {
@@ -8,8 +7,6 @@ namespace BattleBase.Gameplay.AI
         public TacticType Type { get; }
 
         public bool CanAction();
-
-        public void SetTeamm(TeamType teamType);
 
         public ICommand GetCommand();
     }

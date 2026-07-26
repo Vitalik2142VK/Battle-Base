@@ -7,14 +7,32 @@ namespace BattleBase.Gameplay.AI
 {
     [CreateAssetMenu(
     fileName = nameof(BrainConfing),
-    menuName = AssetMenuPaths.ScriptableObjects + nameof(BrainConfing))]
+    menuName = AssetMenuPaths.ScriptableObjects + nameof(BrainConfing) + "/" + nameof(BrainConfing))]
     public class BrainConfing : ScriptableObject, IBrainConfing
     {
-        [SerializeField] private TacticType[] _usedTactics;
+        [SerializeField] private TacticSetting[] _settings;
         [SerializeField] private TeamType _teamType;
 
-        public IEnumerable<TacticType> UsedTacticTypes => _usedTactics;
+        private List<ITacticSetting> _tacticSettings;
+
+        public IEnumerable<ITacticSetting> TacticSetting => GetTacticSetting();
 
         public TeamType TeamType => _teamType;
+
+        private IEnumerable<ITacticSetting> GetTacticSetting()
+        {
+            if (_tacticSettings != null)
+                return _tacticSettings;
+
+            _tacticSettings = new List<ITacticSetting>();
+
+            foreach (var settings in _settings)
+            {
+                if (settings is ITacticSetting tacticSetting)
+                    _tacticSettings.Add(tacticSetting);
+            }
+
+            return _tacticSettings;
+        }
     }
 }

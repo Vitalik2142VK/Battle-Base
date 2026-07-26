@@ -21,7 +21,7 @@ namespace BattleBase.Gameplay.AI
 
         private void Start()
         {
-            StartCoroutine(ActionAI());
+            StartCoroutine(ActionAi());
         }
 
         [Inject]
@@ -30,7 +30,7 @@ namespace BattleBase.Gameplay.AI
             _brain = brain ?? throw new System.ArgumentNullException(nameof(brain));
         }
 
-        private IEnumerator ActionAI()
+        private IEnumerator ActionAi()
         {
             yield return new WaitForSeconds(_timeBeforeStart);
 

@@ -13,15 +13,16 @@ namespace BattleBase.Gameplay.AI.TacticTypes
         private readonly List<IProductionOption> _productionOptions;
         private readonly IBuildingSitesController _controller;
         private readonly Random _random;
-        private readonly RandomTacticSetting _setting;
+        private readonly IRandomTacticSetting _setting;
+        private readonly TeamType _teamType;
 
         private IProductionOption _currentProductionOption;
-        private TeamType _teamType;
 
-        public RandomTactic(IBuildingSitesController controller)
+        public RandomTactic(IBuildingSitesController controller, IRandomTacticSetting setting, TeamType teamType)
         {
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
-            _setting = new RandomTacticSetting();
+            _setting = setting ?? throw new ArgumentNullException(nameof(setting));
+            _teamType = teamType;
 
             _buildingSites = new List<IRegisteredBuildingSite>();
             _productionOptions = new List<IProductionOption>();
@@ -39,11 +40,6 @@ namespace BattleBase.Gameplay.AI.TacticTypes
             }
 
             return TryGetRandomProductions();
-        }
-
-        public void SetTeamm(TeamType teamType)
-        {
-            _teamType = teamType;
         }
 
         public ICommand GetCommand()
@@ -70,9 +66,9 @@ namespace BattleBase.Gameplay.AI.TacticTypes
             {
                 index = _random.Next(_buildingSites.Count);
 
-                if (_buildingSites[index].TryGetProductionService(out IProductionService productionService))
+                if (_buildingSites[index].TryGetProductionStorage(out IProductionStorage productionStorage))
                 {
-                    IProductionOption selected = GetRandomProductionOption(productionService);
+                    IProductionOption selected = GetRandomProductionOption(productionStorage);
 
                     if (selected.Type == TypeProduction.Removal)
                         continue;

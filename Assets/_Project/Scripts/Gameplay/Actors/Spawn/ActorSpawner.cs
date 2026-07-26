@@ -31,7 +31,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
         public IEnumerable<ISpawnProductionData> SpawnDatas => _spawnDatas.Values;
 
-        protected bool IsInProcessSpawn => _currnetSpawnData != null;
+        public bool IsInProcessSpawn => _currnetSpawnData != null;
 
         protected ITeamable Teamable { get; private set; }
 

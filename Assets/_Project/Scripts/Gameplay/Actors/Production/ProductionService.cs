@@ -17,7 +17,7 @@ namespace BattleBase.Gameplay.Actors.Production
         public void AddProductionFactory(IProductionOptionsFactory factory)
         {
             if (factory == null)
-                throw new System.ArgumentNullException(nameof(factory));
+                throw new ArgumentNullException(nameof(factory));
 
             if (_factories.Contains(factory))
                 return;

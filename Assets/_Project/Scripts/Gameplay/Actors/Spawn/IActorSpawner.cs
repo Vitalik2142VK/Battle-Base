@@ -1,6 +1,6 @@
 namespace BattleBase.Gameplay.Actors.Spawn
 {
-    public interface IActorSpawner : IActorComponent, IActorDataStorage, IUpdateable, IActorSpawnerEvents
+    public interface IActorSpawner : IActorComponent, IActorDataStorage, IUpdateable, IActorSpawnerNotifier
     {
         public void Init(ITeamable teamable, ISpawnPoint spawnData);
 

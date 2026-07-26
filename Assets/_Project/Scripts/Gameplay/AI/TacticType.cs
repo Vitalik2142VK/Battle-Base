@@ -3,6 +3,6 @@
     public enum TacticType
     {
         Random,
-        TankTest
+        Economy
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BattleBase.Gameplay.Actors.Building
 {
@@ -37,6 +38,16 @@ namespace BattleBase.Gameplay.Actors.Building
                 throw new InvalidOperationException($"{nameof(_sites)} don't constrain key {team}");
 
             return _sites[team];
+        }
+
+        public IRegisteredBuildingSite[] GetFreeRegisteredBuildingSites(TeamType team, int lineNumber)
+        {
+            if (lineNumber <= 0)
+                throw new ArgumentOutOfRangeException(nameof(lineNumber));
+
+            return _sites[team]
+                .Where(r => r.NumberLine == lineNumber && r.HasBuilding == false)
+                .ToArray();
         }
     }
 }
