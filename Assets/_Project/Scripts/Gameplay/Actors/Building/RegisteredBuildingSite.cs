@@ -14,6 +14,7 @@ namespace BattleBase.Gameplay.Actors.Building
         private IActor _currentActor;
         private IDestroyableEvent _destroyableEvents;
 
+        public event Action<RegisteredBuildingSite> ActorAdded;
         public event Action ActorMissing;
 
         public RegisteredBuildingSite(IActor buildingSiteActor, IBuildingSite buildingSite)
@@ -29,11 +30,13 @@ namespace BattleBase.Gameplay.Actors.Building
             _notifier.Spawned += OnSetActor;
         }
 
+        public string CurrentId => _currentActor.Data.Id;
+
         public int NumberLine => _buildingSite.NumberLine;
 
         public bool HasBuilding => _destroyableEvents != null;
 
-        public bool IsUnderConstruction => _notifier.IsInProcessSpawn;
+        public bool IsConstruction => _notifier.IsInProcessSpawn;
 
         public void Disable()
         {
@@ -68,6 +71,8 @@ namespace BattleBase.Gameplay.Actors.Building
                 _destroyableEvents = component;
                 _destroyableEvents.Destroyed += OnShowBuildingSite;
                 _buildingSite.Hide();
+
+                ActorAdded?.Invoke(this);
             }
         }
 

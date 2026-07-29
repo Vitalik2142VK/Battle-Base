@@ -339,6 +339,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MaterialCreatorView
       objectReference: {fileID: 0}
+    - target: {fileID: 4777427799868815561, guid: 0fa5dbd7bede5744f8ec40c91919845c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8269517326117079570, guid: 0fa5dbd7bede5744f8ec40c91919845c,
         type: 3}
       propertyPath: m_Pivot.x
@@ -729,6 +734,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2652367607003060763, guid: 185bab7d43860614b8007b1d0913b99a,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2652367607003060763, guid: 185bab7d43860614b8007b1d0913b99a,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4624699749945141834, guid: 185bab7d43860614b8007b1d0913b99a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -778,6 +793,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PowerCounterView
+      objectReference: {fileID: 0}
+    - target: {fileID: 1581425119255259281, guid: c7083123f5a87324db1266a2e4c237db,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5305650741819494614, guid: c7083123f5a87324db1266a2e4c237db,
         type: 3}

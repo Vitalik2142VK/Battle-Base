@@ -14,6 +14,7 @@ namespace BattleBase.Gameplay.AI.TacticTypes
         [SerializeField][Range(2, 6)] private int _minFactories = 3;
         [SerializeField][Min(1000)] private int _materialsForStop = 3000;
         [SerializeField][Range(1, 5)] private int _numberActionsRow = 3;
+        [SerializeField][Range(2, 5)] private int _maxNumberFactories = 3;
 
         public TacticType Type => TacticType.Economy;
 
@@ -26,5 +27,7 @@ namespace BattleBase.Gameplay.AI.TacticTypes
         public int MaterialsForStop => _materialsForStop;
 
         public int NumberActionsRow => _numberActionsRow;
+
+        public int MaxNumberFactories => _maxNumberFactories;
     }
 }

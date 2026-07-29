@@ -34,6 +34,8 @@ namespace BattleBase.Gameplay.AI
         {
             yield return new WaitForSeconds(_timeBeforeStart);
 
+            _brain.Init();
+
             while (gameObject.activeSelf)
             {
 #if UNITY_EDITOR

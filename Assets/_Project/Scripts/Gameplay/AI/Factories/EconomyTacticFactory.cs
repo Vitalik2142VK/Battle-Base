@@ -8,14 +8,14 @@ namespace BattleBase.Gameplay.AI.Factories
 {
     public class EconomyTacticFactory : ITacticFactory
     {
-        private readonly IBuildingSitesController _buildingSitesController;
+        private readonly IBuildingSitesStorage _buildingSitesStorage;
         private readonly IMaterialRegistry _materialRegistry;
 
         public EconomyTacticFactory(
-            IBuildingSitesController buildingSitesController, 
+            IBuildingSitesStorage buildingSitesController, 
             IMaterialRegistry materialRegistry)
         {
-            _buildingSitesController = buildingSitesController ?? throw new ArgumentNullException(nameof(buildingSitesController));
+            _buildingSitesStorage = buildingSitesController ?? throw new ArgumentNullException(nameof(buildingSitesController));
             _materialRegistry = materialRegistry ?? throw new ArgumentNullException(nameof(materialRegistry));
         }
 
@@ -29,8 +29,9 @@ namespace BattleBase.Gameplay.AI.Factories
             if (setting.Type != TacticType.Economy || setting is IEconomyTacticSetting economyTacticSetting == false)
                 return false;
 
+            IBuildingSitesController controller = _buildingSitesStorage.GetBuildingSitesController(team);
             IMaterialData materialData = _materialRegistry.GetMaterialData(team);
-            tactic = new EconomyTactic(_buildingSitesController, economyTacticSetting, materialData, team);
+            tactic = new EconomyTactic(controller, economyTacticSetting, materialData);
 
             return true;
         }

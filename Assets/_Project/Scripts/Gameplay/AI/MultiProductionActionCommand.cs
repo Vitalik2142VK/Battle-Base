@@ -4,12 +4,12 @@ using System;
 
 namespace BattleBase.Gameplay.AI
 {
-    public class MultiActionCommand : ICommand
+    public class MultiProductionActionCommand : ICommand
     {
         private readonly IProductionOption _productionOption;
         private readonly int _count;
 
-        public MultiActionCommand(IProductionOption productionOption, int count)
+        public MultiProductionActionCommand(IProductionOption productionOption, int count)
         {
             if (count <= 0)
                 throw new ArgumentOutOfRangeException(nameof(count));

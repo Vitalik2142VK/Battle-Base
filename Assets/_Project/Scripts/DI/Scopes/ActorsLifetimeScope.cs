@@ -57,7 +57,7 @@ namespace BattleBase.DI
             _builder.Register<IActorComposer, ActorComposer>(Lifetime.Scoped);
             _builder.Register<IDamageModifierFactory, DamageModifierFactory>(Lifetime.Scoped);
             _builder.Register<IWinStateController, WinStateController>(Lifetime.Scoped);
-            _builder.Register<IBuildingSitesController, BuildingSitesController>(Lifetime.Scoped);
+            _builder.Register<IBuildingSitesStorage, BuildingSitesStorage>(Lifetime.Scoped);
             _builder.Register<IActorCreator, ActorCreator>(Lifetime.Scoped);
 
             RegisterComponentFactoryRegistry();
@@ -126,6 +126,7 @@ namespace BattleBase.DI
             _builder.RegisterInstance<IBrainConfing>(_brainConfing);
 
             _builder.Register<ITacticFactory, RandomTacticFactory>(Lifetime.Scoped);
+            _builder.Register<ITacticFactory, EconomyTacticFactory>(Lifetime.Scoped);
             _builder.Register<ITacticsFactory, TacticsFactory>(Lifetime.Scoped);
 
             _builder.Register<IBrain, Brain>(Lifetime.Scoped);

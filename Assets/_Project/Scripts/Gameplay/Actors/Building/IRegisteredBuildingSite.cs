@@ -7,11 +7,13 @@ namespace BattleBase.Gameplay.Actors.Building
     {
         public event Action ActorMissing;
 
+        public string CurrentId { get; }
+
         public int NumberLine { get; }
 
         public bool HasBuilding { get; }
 
-        public bool IsUnderConstruction { get; }
+        public bool IsConstruction { get; }
 
         public bool TryGetProductionStorage(out IProductionStorage productionService);
     }

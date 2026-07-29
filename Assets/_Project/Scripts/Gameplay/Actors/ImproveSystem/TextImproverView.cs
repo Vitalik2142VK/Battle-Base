@@ -5,6 +5,8 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
 {
     public class TextImproverView : MonoBehaviour, IImproverViewComponent
     {
+        private const string Format = "T-{0}";
+
         [SerializeField] private TMP_Text _text;
 
         private IImproverINotifier _improverNotifier;
@@ -39,7 +41,7 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
 
         private void OnUpdateData()
         {
-            _text.text = _improverNotifier.CurrentTier.ToString();
+            _text.text = string.Format(Format, _improverNotifier.CurrentTier);
         }
     }
 }

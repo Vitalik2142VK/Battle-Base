@@ -7,11 +7,11 @@ namespace BattleBase.Gameplay.AI.Factories
 {
     public class RandomTacticFactory : ITacticFactory
     {
-        private readonly IBuildingSitesController _buildingSitesController;
+        private readonly IBuildingSitesStorage _buildingSitesStorage;
 
-        public RandomTacticFactory(IBuildingSitesController buildingSitesController)
+        public RandomTacticFactory(IBuildingSitesStorage buildingSitesController)
         {
-            _buildingSitesController = buildingSitesController ?? throw new ArgumentNullException(nameof(buildingSitesController));
+            _buildingSitesStorage = buildingSitesController ?? throw new ArgumentNullException(nameof(buildingSitesController));
         }
 
         public bool TryCreate(ITacticSetting setting, TeamType team, out ITactic tactic)
@@ -24,7 +24,8 @@ namespace BattleBase.Gameplay.AI.Factories
             if (setting.Type != TacticType.Random || setting is IRandomTacticSetting randomTacticSetting == false)
                 return false;
 
-            tactic = new RandomTactic(_buildingSitesController, randomTacticSetting, team);
+            IBuildingSitesController controller = _buildingSitesStorage.GetBuildingSitesController(team);
+            tactic = new RandomTactic(controller, randomTacticSetting);
 
             return true;
         }

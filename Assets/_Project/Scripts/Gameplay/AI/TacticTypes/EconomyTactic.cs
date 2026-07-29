@@ -14,8 +14,6 @@ namespace BattleBase.Gameplay.AI.TacticTypes
         private readonly IBuildingSitesController _controller;
         private readonly IEconomyTacticSetting _setting;
         private readonly IMaterialData _materialData;
-        private readonly TeamType _teamType;
-        private readonly Random _random;
 
         private IProductionOption _currentProductionOption;
         private int _currentNumberAction;
@@ -23,17 +21,16 @@ namespace BattleBase.Gameplay.AI.TacticTypes
         public EconomyTactic(
             IBuildingSitesController controller,
             IEconomyTacticSetting setting,
-            IMaterialData materialData,
-            TeamType teamType)
+            IMaterialData materialData)
         {
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
             _setting = setting ?? throw new ArgumentNullException(nameof(setting));
             _materialData = materialData ?? throw new ArgumentNullException(nameof(setting));
-            _teamType = teamType;
 
             _factories = new List<IRegisteredBuildingSite>();
-            _random = new Random();
             _currentNumberAction = 0;
+
+            _controller.SiteChanged += OnBuildedFactory;
         }
 
         public TacticType Type => TacticType.Economy;
@@ -50,44 +47,86 @@ namespace BattleBase.Gameplay.AI.TacticTypes
 
             if (_factories.Count < _setting.MaxFactories)
             {
+                if (TryImproveFactory())
+                    return true;
+
                 if (TryCreateFactory())
                     return true;
             }
-
 
             return false;
         }
 
         public ICommand GetCommand()
         {
-            throw new NotImplementedException();
+            if (_currentProductionOption == null)
+            {
+                if (CanAction() == false)
+                    throw new InvalidOperationException("Tactics cannot be used");
+            }
+
+            _currentNumberAction++;
+            IProductionOption productionOption = _currentProductionOption;
+            _currentProductionOption = null;
+
+            return new DelegateCommand(() => productionOption.Execute());
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _controller.SiteChanged -= OnBuildedFactory;
+
+            foreach (var factory in _factories)
+                factory.ActorMissing -= OnRemoveFactory;
+        }
+
+        private bool TryImproveFactory()
+        {
+            if (_factories.Count == 0)
+                return false;
+
+            foreach (var factory in _factories)
+            {
+                if (factory.TryGetProductionStorage(out IProductionStorage productionStorage))
+                {
+                    if (CanImprove(productionStorage))
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
+        private bool CanImprove(IProductionStorage productionStorage)
+        {
+            foreach (var productionOption in productionStorage.GetProductionOptions())
+            {
+                if (productionOption.Type != TypeProduction.Improve)
+                    continue;
+
+                if (_materialData.CanSpend(productionOption.Data.Price))
+                {
+                    _currentProductionOption = productionOption;
+
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private bool TryCreateFactory()
         {
-            IRegisteredBuildingSite freeBuildingSite = null;
+            if (_factories.Count >= _setting.MaxNumberFactories)
+                return false;
 
             foreach (var lineNumber in _setting.LineNumbersForBuild)
             {
-                IRegisteredBuildingSite[] freeBuildingSites =
-                    _controller.GetFreeRegisteredBuildingSites(_teamType, lineNumber);
-
-                if (freeBuildingSites.Length == 0)
-                    continue;
-
-                int randomBuildingSite = _random.Next(0, freeBuildingSites.Length);
-                freeBuildingSite = freeBuildingSites[randomBuildingSite];
-            }
-
-            if (freeBuildingSite != null)
-            {
-                if (TryFindProductionOption(freeBuildingSite))
-                    return true;
+                if (_controller.TryGetRandomFreeSiteInLine(lineNumber, out IRegisteredBuildingSite site))
+                {
+                    if (TryFindProductionOption(site))
+                        return true;
+                }
             }
 
             return false;
@@ -134,8 +173,19 @@ namespace BattleBase.Gameplay.AI.TacticTypes
                     _factories.RemoveAt(i);
                     i--;
                 }
-
             }
+        }
+
+        private void OnBuildedFactory(IRegisteredBuildingSite buildingSite)
+        {
+            if (buildingSite == null)
+                throw new ArgumentNullException(nameof(buildingSite));
+
+            if (buildingSite.CurrentId != _setting.MaterialFactoryId)
+                return;
+
+            _factories.Add(buildingSite);
+            buildingSite.ActorMissing += OnRemoveFactory;
         }
     }
 }

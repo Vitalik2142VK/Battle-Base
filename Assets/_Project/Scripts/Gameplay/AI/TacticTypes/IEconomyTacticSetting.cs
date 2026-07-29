@@ -11,5 +11,7 @@
         public int MaterialsForStop { get; }
 
         public int NumberActionsRow { get; }
+
+        public int MaxNumberFactories { get; }
     }
 }

@@ -16,4 +16,6 @@ MonoBehaviour:
     type: 2}
   _lineNumbersForBuild: 0300000002000000
   _minFactories: 3
-  _minMaterialsForStart: 1500
+  _materialsForStop: 3000
+  _numberActionsRow: 3
+  _maxNumberFactories: 4

@@ -47,5 +47,14 @@ namespace BattleBase.Gameplay.Actors.Economy
 
             return true;
         }
+
+        public bool CanSpend(int materials)
+        {
+            if (materials < 0)
+                throw new ArgumentOutOfRangeException(nameof(materials));
+
+            return CurrentMaterials >= materials;
+        }
+
     }
 }

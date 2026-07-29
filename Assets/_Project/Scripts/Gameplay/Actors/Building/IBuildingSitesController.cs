@@ -1,13 +1,16 @@
+﻿using System;
 using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.Building
 {
     public interface IBuildingSitesController
     {
-        public void Register(IActor buildingSiteActor, IBuildingSite buildingSite);
+        public event Action<IRegisteredBuildingSite> SiteChanged;
 
-        public IEnumerable<IRegisteredBuildingSite> GetRegisteredBuildingSites(TeamType team);
+        public IEnumerable<IRegisteredBuildingSite> RegisteredBuildingSites { get; }
 
-        public IRegisteredBuildingSite[] GetFreeRegisteredBuildingSites(TeamType team, int lineNumber);
+        public IRegisteredBuildingSite[] GetFreeSitesInLine(int lineNumber);
+
+        public bool TryGetRandomFreeSiteInLine(int lineNumber, out IRegisteredBuildingSite buildingSite);
     }
 }

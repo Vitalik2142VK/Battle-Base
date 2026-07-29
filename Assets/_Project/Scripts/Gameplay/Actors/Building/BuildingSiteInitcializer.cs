@@ -12,13 +12,13 @@ namespace BattleBase.Gameplay.Actors.Building
         [SerializeField] private BuildingSite[] _buildingSites;
 
         private IActorComposer _composer;
-        private IBuildingSitesController _handler;
+        private IBuildingSitesStorage _storage;
 
         [Inject]
-        public void Construct(IActorComposer composer, IBuildingSitesController handler)
+        public void Construct(IActorComposer composer, IBuildingSitesStorage storage)
         {
             _composer = composer ?? throw new ArgumentNullException(nameof(composer));
-            _handler = handler ?? throw new ArgumentNullException(nameof(handler));
+            _storage = storage ?? throw new ArgumentNullException(nameof(storage));
         }
 
         private void Start()
@@ -40,7 +40,7 @@ namespace BattleBase.Gameplay.Actors.Building
         }
 
         private void RegisterBuildingSite(Actor actor, BuildingSite buildingSite) =>
-            _handler.Register(actor, buildingSite);
+            _storage.Register(actor, buildingSite);
 
         private void InitEnemyBuildingSite(BuildingSite buildingSite, TeamType team)
         {

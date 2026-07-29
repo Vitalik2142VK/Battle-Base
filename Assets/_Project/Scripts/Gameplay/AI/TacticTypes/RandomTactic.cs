@@ -14,15 +14,13 @@ namespace BattleBase.Gameplay.AI.TacticTypes
         private readonly IBuildingSitesController _controller;
         private readonly Random _random;
         private readonly IRandomTacticSetting _setting;
-        private readonly TeamType _teamType;
 
         private IProductionOption _currentProductionOption;
 
-        public RandomTactic(IBuildingSitesController controller, IRandomTacticSetting setting, TeamType teamType)
+        public RandomTactic(IBuildingSitesController controller, IRandomTacticSetting setting)
         {
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
             _setting = setting ?? throw new ArgumentNullException(nameof(setting));
-            _teamType = teamType;
 
             _buildingSites = new List<IRegisteredBuildingSite>();
             _productionOptions = new List<IProductionOption>();
@@ -35,7 +33,7 @@ namespace BattleBase.Gameplay.AI.TacticTypes
         {
             if (_buildingSites.Count == 0)
             {
-                var buildingSites = _controller.GetRegisteredBuildingSites(_teamType);
+                var buildingSites = _controller.RegisteredBuildingSites;
                 _buildingSites.AddRange(buildingSites);
             }
 
@@ -55,7 +53,7 @@ namespace BattleBase.Gameplay.AI.TacticTypes
 
             _currentProductionOption = null;
 
-            return new MultiActionCommand(productionOption, count);
+            return new MultiProductionActionCommand(productionOption, count);
         }
 
         private bool TryGetRandomProductions()
