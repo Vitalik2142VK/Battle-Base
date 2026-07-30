@@ -4,9 +4,13 @@ namespace BattleBase.Gameplay.AI
 {
     public interface ITactic
     {
-        public TacticType Type { get; }
+        public TacticCategory Category { get; }
 
-        public bool CanAction();
+        public int Score { get; }
+
+        public bool CanAction { get; }
+
+        public void CalculateScore();
 
         public ICommand GetCommand();
     }

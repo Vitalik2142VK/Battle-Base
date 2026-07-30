@@ -9,7 +9,7 @@ namespace BattleBase.Gameplay.Actors.Types
     {
         private Selectable _selectable;
 
-        [field: SerializeField][Range(1, 10)] private int _numberLine = 1;
+        [field: SerializeField][Range(0, 10)] private int _numberLine = 1;
 
         [field: SerializeField] public TeamType Team { get; private set; }
 

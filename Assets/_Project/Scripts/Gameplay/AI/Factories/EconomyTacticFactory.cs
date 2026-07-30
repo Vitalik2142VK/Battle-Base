@@ -26,7 +26,7 @@ namespace BattleBase.Gameplay.AI.Factories
 
             tactic = null;
 
-            if (setting.Type != TacticType.Economy || setting is IEconomyTacticSetting economyTacticSetting == false)
+            if (setting is IEconomyTacticSetting economyTacticSetting == false)
                 return false;
 
             IBuildingSitesController controller = _buildingSitesStorage.GetBuildingSitesController(team);

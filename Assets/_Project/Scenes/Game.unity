@@ -310,6 +310,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6167790791083087650, guid: 5777c9dad92fe254984036f5f58bcca5,
         type: 3}
+      propertyPath: _numberLine
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6167790791083087650, guid: 5777c9dad92fe254984036f5f58bcca5,
+        type: 3}
       propertyPath: <Team>k__BackingField
       value: 2
       objectReference: {fileID: 0}
@@ -1880,6 +1885,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WallTower_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6167790791083087650, guid: 5777c9dad92fe254984036f5f58bcca5,
+        type: 3}
+      propertyPath: _numberLine
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6167790791083087650, guid: 5777c9dad92fe254984036f5f58bcca5,
         type: 3}
@@ -4381,6 +4391,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6167790791083087650, guid: 5777c9dad92fe254984036f5f58bcca5,
         type: 3}
+      propertyPath: _numberLine
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6167790791083087650, guid: 5777c9dad92fe254984036f5f58bcca5,
+        type: 3}
       propertyPath: <Team>k__BackingField
       value: 1
       objectReference: {fileID: 0}
@@ -5373,6 +5388,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WallTower_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6167790791083087650, guid: 5777c9dad92fe254984036f5f58bcca5,
+        type: 3}
+      propertyPath: _numberLine
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6167790791083087650, guid: 5777c9dad92fe254984036f5f58bcca5,
         type: 3}
@@ -9783,6 +9803,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6167790791083087650, guid: 5777c9dad92fe254984036f5f58bcca5,
         type: 3}
+      propertyPath: _numberLine
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6167790791083087650, guid: 5777c9dad92fe254984036f5f58bcca5,
+        type: 3}
       propertyPath: <Team>k__BackingField
       value: 1
       objectReference: {fileID: 0}
@@ -10132,6 +10157,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WallTower_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6167790791083087650, guid: 5777c9dad92fe254984036f5f58bcca5,
+        type: 3}
+      propertyPath: _numberLine
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6167790791083087650, guid: 5777c9dad92fe254984036f5f58bcca5,
         type: 3}
@@ -12015,6 +12045,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WallTower_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6167790791083087650, guid: 5777c9dad92fe254984036f5f58bcca5,
+        type: 3}
+      propertyPath: _numberLine
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6167790791083087650, guid: 5777c9dad92fe254984036f5f58bcca5,
         type: 3}
@@ -15473,6 +15508,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WallTower_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6167790791083087650, guid: 5777c9dad92fe254984036f5f58bcca5,
+        type: 3}
+      propertyPath: _numberLine
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6167790791083087650, guid: 5777c9dad92fe254984036f5f58bcca5,
         type: 3}

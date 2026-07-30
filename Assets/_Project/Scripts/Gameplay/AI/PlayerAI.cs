@@ -8,15 +8,17 @@ namespace BattleBase.Gameplay.AI
 {
     public class PlayerAI : MonoBehaviour
     {
-        [SerializeField][Range(1f, 30f)] private float _timeTick = 2f;
+        [SerializeField][Range(1f, 30f)] private float _defaultTimeTick = 2f;
         [SerializeField][Range(2f, 20f)] private float _timeBeforeStart = 2f;
 
         private IBrain _brain;
         private WaitForSeconds _sleepTime;
+        private float _timeTick;
 
         private void Awake()
         {
-            _sleepTime = new WaitForSeconds(_timeTick);
+            _timeTick = _defaultTimeTick;
+            _sleepTime = new WaitForSeconds(_defaultTimeTick);
         }
 
         private void Start()
@@ -45,7 +47,28 @@ namespace BattleBase.Gameplay.AI
 
                     continue;
                 }
+
+                float timeElapsed = 0;
 #endif
+                while (_brain.ThinkCompleted == false)
+                {
+                    _brain.ThinkDuringTick();
+
+                    yield return null;
+
+                    timeElapsed += Time.deltaTime;
+                }
+
+                if (_timeTick != _defaultTimeTick - timeElapsed)
+                {
+                    _timeTick = _defaultTimeTick - timeElapsed;
+
+                    if (_timeTick <= 0)
+                        _timeTick = _defaultTimeTick;
+
+                    _sleepTime = new WaitForSeconds(_timeTick);
+                }
+
                 if (_brain.TryGetCommand(out ICommand command))
                     command.Execute();
 

@@ -6,12 +6,10 @@
 
         public int[] LineNumbersForBuild { get; }
 
-        public int MaxFactories { get; }
+        public int ScoreForAction { get; }
 
         public int MaterialsForStop { get; }
 
-        public int NumberActionsRow { get; }
-
-        public int MaxNumberFactories { get; }
+        public int MaxFactories { get; }
     }
 }

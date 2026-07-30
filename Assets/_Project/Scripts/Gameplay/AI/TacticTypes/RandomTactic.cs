@@ -16,6 +16,7 @@ namespace BattleBase.Gameplay.AI.TacticTypes
         private readonly IRandomTacticSetting _setting;
 
         private IProductionOption _currentProductionOption;
+        private int _score;
 
         public RandomTactic(IBuildingSitesController controller, IRandomTacticSetting setting)
         {
@@ -25,11 +26,16 @@ namespace BattleBase.Gameplay.AI.TacticTypes
             _buildingSites = new List<IRegisteredBuildingSite>();
             _productionOptions = new List<IProductionOption>();
             _random = new Random();
+            _score = _setting.Score;
         }
 
-        public TacticType Type => TacticType.Random;
+        public TacticCategory Category => _setting.Category;
 
-        public bool CanAction()
+        public int Score => _score;
+
+        public bool CanAction => _score > 0;
+
+        public void CalculateScore()
         {
             if (_buildingSites.Count == 0)
             {
@@ -37,16 +43,18 @@ namespace BattleBase.Gameplay.AI.TacticTypes
                 _buildingSites.AddRange(buildingSites);
             }
 
-            return TryGetRandomProductions();
+            if (TryGetRandomProductions())
+                _score = _setting.Score;
+            else
+                _score = 0;
+
+            UnityEngine.Debug.Log($"RandomTactic.CalculateScore == {_score}");
         }
 
         public ICommand GetCommand()
         {
             if (_currentProductionOption == null)
-            {
-                if (CanAction() == false)
-                    throw new InvalidOperationException("Tactics cannot be used");
-            }
+                throw new InvalidOperationException("Tactics cannot be used");
 
             IProductionOption productionOption = _currentProductionOption;
             int count = _random.Next(_setting.MinNumSpawn, _setting.MaxNumSpawn);

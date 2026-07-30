@@ -17,7 +17,7 @@ namespace BattleBase.Gameplay.AI.TacticTypes
                 _minNumSpawn = _maxNumSpawn - 1;
         }
 
-        public TacticType Type => TacticType.Random;
+        public TacticCategory Category => TacticCategory.No;
 
         public int MaxNumSpawn => _maxNumSpawn;
 

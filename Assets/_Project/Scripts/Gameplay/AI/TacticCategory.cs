@@ -1,8 +1,8 @@
 ﻿namespace BattleBase.Gameplay.AI
 {
-    public enum TacticType
+    public enum TacticCategory
     {
-        Random,
+        No,
         Economy
     }
 }

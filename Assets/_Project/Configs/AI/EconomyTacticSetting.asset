@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2edd39c80b5ca89468c2c036c53ba74e, type: 3}
   m_Name: EconomyTacticSetting
   m_EditorClassIdentifier: 
+  _defaultScore: 50
+  _scoreForAction: 15
   _materialFactoryConfig: {fileID: 11400000, guid: d29b556504be6944588fab13baad2f83,
     type: 2}
   _lineNumbersForBuild: 0300000002000000
   _minFactories: 3
   _materialsForStop: 3000
-  _numberActionsRow: 3
   _maxNumberFactories: 4

@@ -2,6 +2,8 @@
 {
     public interface ITacticSetting
     {
-        public TacticType Type { get; }
+        public TacticCategory Category { get; }
+
+        public int Score { get; }
     }
 }

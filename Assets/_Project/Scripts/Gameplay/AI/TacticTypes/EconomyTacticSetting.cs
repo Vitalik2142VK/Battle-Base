@@ -9,25 +9,22 @@ namespace BattleBase.Gameplay.AI.TacticTypes
         menuName = AssetMenuPaths.ScriptableObjects + nameof(BrainConfing) + "/" + nameof(EconomyTacticSetting))]
     public class EconomyTacticSetting : TacticSetting, IEconomyTacticSetting
     {
+        [SerializeField][Range(1, 30)] private int _scoreForAction = 5;
         [SerializeField] private ActorConfig _materialFactoryConfig;
         [SerializeField][Range(1, 3)] private int[] _lineNumbersForBuild = new[] { 2 };
-        [SerializeField][Range(2, 6)] private int _minFactories = 3;
         [SerializeField][Min(1000)] private int _materialsForStop = 3000;
-        [SerializeField][Range(1, 5)] private int _numberActionsRow = 3;
         [SerializeField][Range(2, 5)] private int _maxNumberFactories = 3;
 
-        public TacticType Type => TacticType.Economy;
+        public TacticCategory Category => TacticCategory.Economy;
 
         public string MaterialFactoryId => _materialFactoryConfig.Data.Id;
 
         public int[] LineNumbersForBuild => _lineNumbersForBuild;
 
-        public int MaxFactories => _minFactories;
+        public int ScoreForAction => _scoreForAction;
 
         public int MaterialsForStop => _materialsForStop;
 
-        public int NumberActionsRow => _numberActionsRow;
-
-        public int MaxNumberFactories => _maxNumberFactories;
+        public int MaxFactories => _maxNumberFactories;
     }
 }

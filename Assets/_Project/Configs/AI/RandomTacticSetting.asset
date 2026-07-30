@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb4c60a8faf80e48a867daa238fe5c4, type: 3}
   m_Name: RandomTacticSetting
   m_EditorClassIdentifier: 
+  _defaultScore: 10
   _maxNumSpawn: 3
   _minNumSpawn: 1

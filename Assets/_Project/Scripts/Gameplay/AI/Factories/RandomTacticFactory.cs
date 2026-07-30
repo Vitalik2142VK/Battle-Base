@@ -21,7 +21,7 @@ namespace BattleBase.Gameplay.AI.Factories
 
             tactic = null;
 
-            if (setting.Type != TacticType.Random || setting is IRandomTacticSetting randomTacticSetting == false)
+            if (setting is IRandomTacticSetting randomTacticSetting == false)
                 return false;
 
             IBuildingSitesController controller = _buildingSitesStorage.GetBuildingSitesController(team);

@@ -16,7 +16,8 @@ namespace BattleBase.Gameplay.AI.TacticTypes
         private readonly IMaterialData _materialData;
 
         private IProductionOption _currentProductionOption;
-        private int _currentNumberAction;
+        private int _score;
+        private bool _canAction;
 
         public EconomyTactic(
             IBuildingSitesController controller,
@@ -28,46 +29,51 @@ namespace BattleBase.Gameplay.AI.TacticTypes
             _materialData = materialData ?? throw new ArgumentNullException(nameof(setting));
 
             _factories = new List<IRegisteredBuildingSite>();
-            _currentNumberAction = 0;
+            _score = _setting.Score;
+            _canAction = false;
 
             _controller.SiteChanged += OnBuildedFactory;
         }
 
-        public TacticType Type => TacticType.Economy;
+        public TacticCategory Category => _setting.Category;
 
-        public bool CanAction()
+        public int Score => _score;
+
+        public bool CanAction => _canAction;
+
+        public void CalculateScore()
         {
-            if (_materialData.CurrentMaterials > _setting.MaterialsForStop ||
-                _currentNumberAction >= _setting.NumberActionsRow)
+            if (_materialData.CurrentMaterials > _setting.MaterialsForStop)
             {
-                _currentNumberAction = 0;
+                _score = 0;
 
-                return false;
+                return;
             }
 
-            if (_factories.Count < _setting.MaxFactories)
+            if (TryImproveFactory() || TryCreateFactory())
             {
-                if (TryImproveFactory())
-                    return true;
+                _canAction = true;
+            }
+            else
+            {
+                _score += _setting.ScoreForAction;
 
-                if (TryCreateFactory())
-                    return true;
+                _canAction = false;
             }
 
-            return false;
+            UnityEngine.Debug.Log($"EconomyTactic.CalculateScore == {_score} || CanAction == {CanAction}");
         }
 
         public ICommand GetCommand()
         {
             if (_currentProductionOption == null)
-            {
-                if (CanAction() == false)
-                    throw new InvalidOperationException("Tactics cannot be used");
-            }
+                throw new InvalidOperationException("Tactics cannot be used");
 
-            _currentNumberAction++;
+            _score -= _setting.ScoreForAction;
             IProductionOption productionOption = _currentProductionOption;
             _currentProductionOption = null;
+
+            UnityEngine.Debug.Log($"EconomyTactic.GetCommand");
 
             return new DelegateCommand(() => productionOption.Execute());
         }
@@ -117,7 +123,7 @@ namespace BattleBase.Gameplay.AI.TacticTypes
 
         private bool TryCreateFactory()
         {
-            if (_factories.Count >= _setting.MaxNumberFactories)
+            if (_factories.Count >= _setting.MaxFactories)
                 return false;
 
             foreach (var lineNumber in _setting.LineNumbersForBuild)
