@@ -25,6 +25,12 @@ namespace BattleBase.Gameplay.Actors.Production.Spawn
 
         public bool IsInProcessSpawn => _timeSpent != 0;
 
+        public void Disable()
+        {
+            Count = 0;
+            ResetTimeSpent();
+        }
+
         public void IncreaseCount() =>
             Count++;
 

@@ -59,8 +59,6 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
 
             if (_materialRegistry.TrySpend(_teamable.TeamType, price))
             {
-                Improved?.Invoke();
-
                 ++_currentPriceIndex;
 
                 if (CanImprove)
@@ -68,6 +66,8 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
                     price = _improvePrices[_currentPriceIndex];
                     _data.SetPrice(price);
                 }
+
+                Improved?.Invoke();
 
                 return true;
             }

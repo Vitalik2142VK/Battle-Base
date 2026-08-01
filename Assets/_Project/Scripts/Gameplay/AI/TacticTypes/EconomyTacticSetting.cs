@@ -21,7 +21,7 @@ namespace BattleBase.Gameplay.AI.TacticTypes
 
         public int[] LineNumbersForBuild => _lineNumbersForBuild;
 
-        public int ScoreForAction => _scoreForAction;
+        public int ScoreForBuildFactory => _scoreForAction;
 
         public int MaterialsForStop => _materialsForStop;
 

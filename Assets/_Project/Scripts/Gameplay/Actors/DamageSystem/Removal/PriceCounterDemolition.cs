@@ -9,6 +9,7 @@ namespace BattleBase.Gameplay.Actors.DamageSystem.Removal
     public class PriceCounterDemolition : IPriceCounterDemolition
     {
         private readonly IDemolitionData _data;
+        private readonly IProductionData _currentData;
         private readonly IImproverComponent _improverComponent;
 
         private int _salePrice;
@@ -22,6 +23,7 @@ namespace BattleBase.Gameplay.Actors.DamageSystem.Removal
                 throw new ArgumentNullException(nameof(currentData));
 
             _data = data ?? throw new ArgumentNullException(nameof(data));
+            _currentData = currentData ?? throw new ArgumentNullException(nameof(currentData));
             _improverComponent = improverComponent;
 
             _salePrice = (int)(currentData.Price * data.ReturnedCoefficient);
@@ -45,6 +47,8 @@ namespace BattleBase.Gameplay.Actors.DamageSystem.Removal
         {
             if (_improverComponent != null)
                 _improverComponent.Improved += OnCaldulatedPrice;
+
+            _salePrice = (int)(_currentData.Price * _data.ReturnedCoefficient);
         }
 
         public void Disable()

@@ -19,7 +19,6 @@ using BattleBase.Gameplay.Actors.Spawn;
 using BattleBase.Gameplay.Actors.Visual.Particle;
 using BattleBase.Gameplay.AI;
 using BattleBase.Gameplay.AI.Factories;
-using BattleBase.Gameplay.AI.TacticTypes;
 using BattleBase.Gameplay.Levels;
 using UnityEngine;
 using VContainer;

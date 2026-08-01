@@ -43,10 +43,6 @@ namespace BattleBase.Gameplay.Actors.Spawn
             SpawnData ??= spawnData ?? throw new ArgumentNullException(nameof(spawnData));
         }
 
-        public abstract void Enable();
-
-        public abstract void Disable();
-
         public abstract void Update(float delta);
 
         public abstract void SelectActorData(IActorData actorData);
@@ -54,6 +50,17 @@ namespace BattleBase.Gameplay.Actors.Spawn
         public abstract void CancelSpawnActor(IActorData actorData);
 
         protected abstract void Spawn();
+
+        public virtual void Enable()
+        {
+            _currentTransaction = null;
+        }
+
+        public virtual void Disable()
+        {
+            foreach (var spawnData in _spawnDatas.Values)
+                spawnData.Disable();
+        }
 
         protected bool ConstrainActorData(IActorData actorData) =>
             _spawnDatas.ContainsKey(actorData.Id);
@@ -115,7 +122,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
             return false;
         }
 
-        private void Reset() 
+        private void Reset()
         {
             _currnetSpawnData.ResetTimeSpent();
             _currnetSpawnData.UpdateData();

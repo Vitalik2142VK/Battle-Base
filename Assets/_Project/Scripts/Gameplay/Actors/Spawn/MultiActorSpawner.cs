@@ -40,11 +40,15 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
         public override void Enable()
         {
+            base.Enable();
+
             _isDisable = false;
         }
 
         public override void Disable()
         {
+            base.Disable();
+
             _isDisable = true;
             _currentActorData = null;
         }

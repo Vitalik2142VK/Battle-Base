@@ -47,8 +47,6 @@ namespace BattleBase.Gameplay.AI.TacticTypes
                 _score = _setting.Score;
             else
                 _score = 0;
-
-            UnityEngine.Debug.Log($"RandomTactic.CalculateScore == {_score}");
         }
 
         public ICommand GetCommand()

@@ -51,17 +51,11 @@ namespace BattleBase.Gameplay.AI.TacticTypes
             }
 
             if (TryImproveFactory() || TryCreateFactory())
-            {
                 _canAction = true;
-            }
             else
-            {
-                _score += _setting.ScoreForAction;
-
                 _canAction = false;
-            }
 
-            UnityEngine.Debug.Log($"EconomyTactic.CalculateScore == {_score} || CanAction == {CanAction}");
+            UnityEngine.Debug.Log($"EconomyTactic.CalculateScore | Score == {_score} || CanAction == {CanAction}");
         }
 
         public ICommand GetCommand()
@@ -69,11 +63,8 @@ namespace BattleBase.Gameplay.AI.TacticTypes
             if (_currentProductionOption == null)
                 throw new InvalidOperationException("Tactics cannot be used");
 
-            _score -= _setting.ScoreForAction;
             IProductionOption productionOption = _currentProductionOption;
             _currentProductionOption = null;
-
-            UnityEngine.Debug.Log($"EconomyTactic.GetCommand");
 
             return new DelegateCommand(() => productionOption.Execute());
         }
@@ -178,6 +169,11 @@ namespace BattleBase.Gameplay.AI.TacticTypes
                     _factories[i].ActorMissing -= OnRemoveFactory;
                     _factories.RemoveAt(i);
                     i--;
+
+                    _score += _setting.ScoreForBuildFactory;
+
+                    if (_score > _setting.Score)
+                        _score = _setting.Score;
                 }
             }
         }
@@ -189,6 +185,11 @@ namespace BattleBase.Gameplay.AI.TacticTypes
 
             if (buildingSite.CurrentId != _setting.MaterialFactoryId)
                 return;
+
+            _score -= _setting.ScoreForBuildFactory;
+
+            if (_score < 0)
+                _score = 0;
 
             _factories.Add(buildingSite);
             buildingSite.ActorMissing += OnRemoveFactory;

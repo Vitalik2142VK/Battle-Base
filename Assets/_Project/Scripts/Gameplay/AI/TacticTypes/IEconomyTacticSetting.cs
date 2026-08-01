@@ -6,7 +6,7 @@
 
         public int[] LineNumbersForBuild { get; }
 
-        public int ScoreForAction { get; }
+        public int ScoreForBuildFactory { get; }
 
         public int MaterialsForStop { get; }
 
