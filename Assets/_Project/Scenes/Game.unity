@@ -3599,7 +3599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33d3970e2237aa04ca0419681349da46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultTimeTick: 2
+  _defaultTimeTick: 3
   _timeBeforeStart: 2
 --- !u!1001 &587338748
 PrefabInstance:

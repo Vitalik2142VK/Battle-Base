@@ -1,4 +1,5 @@
 ﻿using BattleBase.Core;
+using BattleBase.Gameplay.AI.Modifiers;
 using System;
 using System.Collections.Generic;
 
@@ -8,14 +9,17 @@ namespace BattleBase.Gameplay.AI
     {
         private readonly List<ITactic> _tactics;
         private readonly IBrainConfing _confing;
-        private readonly ITacticsFactory _factory;
+        private readonly ITacticsFactory _tacticsFactory;
+        private readonly IScoreModifiersFactory _modifiersFactory;
 
+        private ScoreModifierController _modifierController;
         private int _currentIndexTactic;
 
-        public Brain(IBrainConfing confing, ITacticsFactory factory)
+        public Brain(IBrainConfing confing, ITacticsFactory tacticsFactory, IScoreModifiersFactory modifiersFactory)
         {
             _confing = confing ?? throw new ArgumentNullException(nameof(confing));
-            _factory = factory ?? throw new ArgumentNullException(nameof(factory));
+            _tacticsFactory = tacticsFactory ?? throw new ArgumentNullException(nameof(tacticsFactory));
+            _modifiersFactory = modifiersFactory ?? throw new ArgumentNullException(nameof(modifiersFactory));
 
             _tactics = new List<ITactic>();
             _currentIndexTactic = 0;
@@ -25,10 +29,12 @@ namespace BattleBase.Gameplay.AI
 
         public void Init()
         {
-            IEnumerable<ITactic> tactics = _factory.Create(_confing);
+            IEnumerable<ITactic> tactics = _tacticsFactory.Create(_confing);
 
             foreach (var tactic in tactics)
                 _tactics.Add(tactic);
+
+            _modifierController = new ScoreModifierController(_modifiersFactory, _confing);
         }
 
         public void ThinkDuringTick()
@@ -42,7 +48,9 @@ namespace BattleBase.Gameplay.AI
         public bool TryGetCommand(out ICommand command)
         {
             _currentIndexTactic = 0;
+            IScoreModifier modifier = _modifierController.GetPriorityModifier();
             ITactic selectedTactic = null;
+            int currentTacticScore = 0;
             command = null;
 
             foreach (var tactic in _tactics)
@@ -53,12 +61,18 @@ namespace BattleBase.Gameplay.AI
                 if (selectedTactic == null)
                 {
                     selectedTactic = tactic;
+                    currentTacticScore = modifier.Modify(tactic.Category, tactic.Score);
 
                     continue;
                 }
 
-                if (selectedTactic.Score < tactic.Score)
+                int tacticScore = modifier.Modify(tactic.Category, tactic.Score);
+
+                if (currentTacticScore < tacticScore)
+                {
                     selectedTactic = tactic;
+                    currentTacticScore = tacticScore;
+                }
             }
 
             if (selectedTactic != null && selectedTactic.CanAction)

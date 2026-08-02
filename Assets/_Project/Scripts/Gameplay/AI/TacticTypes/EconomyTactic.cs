@@ -54,8 +54,6 @@ namespace BattleBase.Gameplay.AI.TacticTypes
                 _canAction = true;
             else
                 _canAction = false;
-
-            UnityEngine.Debug.Log($"EconomyTactic.CalculateScore | Score == {_score} || CanAction == {CanAction}");
         }
 
         public ICommand GetCommand()

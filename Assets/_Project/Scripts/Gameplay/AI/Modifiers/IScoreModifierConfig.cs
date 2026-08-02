@@ -4,6 +4,8 @@ namespace BattleBase.Gameplay.AI.Modifiers
 {
     public interface IScoreModifierConfig
     {
-        public IEnumerable<IModifier> Modifiers { get; } 
+        public IEnumerable<IModifier> Modifiers { get; }
+
+        public ModifierType Type { get; }
     }
 }

@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d30dca322e74ac418409b2906cba2a1, type: 3}
   m_Name: BrainConfing
   m_EditorClassIdentifier: 
-  _settings:
+  _tacticSettings:
   - {fileID: 11400000, guid: 8da59e4f11125484fa97e46aed383250, type: 2}
   - {fileID: 11400000, guid: d02bd7bee8aee0843a3a5faaa13ec60f, type: 2}
+  _modifierConfigs:
+  - {fileID: 11400000, guid: 756faf40547cd234d93e8e382a0d8cf2, type: 2}
+  - {fileID: 11400000, guid: c282768c6cb60fe4180d6ed709e0e523, type: 2}
   _teamType: 2

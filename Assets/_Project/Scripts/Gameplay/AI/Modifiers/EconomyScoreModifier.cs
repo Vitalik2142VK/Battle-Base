@@ -1,22 +1,26 @@
-﻿using System.Collections.Generic;
+﻿using BattleBase.Gameplay.Actors.Economy;
+using System;
 
 namespace BattleBase.Gameplay.AI.Modifiers
 {
-    public class EconomyScoreModifier : IScoreModifier
+    public class EconomyScoreModifier : IAdvancedScoreModifier
     {
-        private readonly Dictionary<TacticCategory, IModifier> _modifier;
+        private readonly IEconomyModifierConfig _config;
+        private readonly IMaterialData _materialData;
+        private readonly ScoreModifier _scoreModifier;
 
-        public EconomyScoreModifier(IScoreModifierConfig config)
+        public EconomyScoreModifier(IEconomyModifierConfig config, IMaterialData materialData)
         {
-            
+            _config = config ?? throw new ArgumentException(nameof(config));
+            _materialData = materialData ?? throw new ArgumentException(nameof(materialData));
+
+            _scoreModifier = new ScoreModifier(config.Modifiers);
         }
 
-        public int Modify(TacticCategory category, int score)
-        {
-            if (score <= 0)
-                return 0;
+        public bool IsActivationNecessary() =>
+            _materialData.CurrentMaterials < _config.MinMaterialsForActivation;
 
-            throw new System.Exception();
-        }
+        public int Modify(TacticCategory category, int score) =>
+            _scoreModifier.Modify(category, score);
     }
 }

@@ -128,6 +128,9 @@ namespace BattleBase.DI
             _builder.Register<ITacticFactory, EconomyTacticFactory>(Lifetime.Scoped);
             _builder.Register<ITacticsFactory, TacticsFactory>(Lifetime.Scoped);
 
+            _builder.Register<IScoreModifierFactory, EconomyModifierFactory> (Lifetime.Scoped);
+            _builder.Register<IScoreModifiersFactory, ScoreModifiersFactory>(Lifetime.Scoped);
+
             _builder.Register<IBrain, Brain>(Lifetime.Scoped);
         }
     }

@@ -4,6 +4,6 @@
     {
         public TacticCategory Category { get; }
 
-        public int Multiplier { get; }
+        public float Multiplier { get; }
     }
 }
