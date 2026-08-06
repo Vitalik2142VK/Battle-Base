@@ -15,7 +15,7 @@ namespace BattleBase.Gameplay.Actors.Building
         private IDestroyableEvent _destroyableEvents;
 
         public event Action<RegisteredBuildingSite> ActorAdded;
-        public event Action ActorMissing;
+        public event Action<IRegisteredBuildingSite> ActorMissing;
 
         public RegisteredBuildingSite(IActor buildingSiteActor, IBuildingSite buildingSite)
         {
@@ -83,7 +83,7 @@ namespace BattleBase.Gameplay.Actors.Building
             _destroyableEvents.Destroyed -= OnShowBuildingSite;
             _destroyableEvents = null;
 
-            ActorMissing?.Invoke();
+            ActorMissing?.Invoke(this);
         }
     }
 }

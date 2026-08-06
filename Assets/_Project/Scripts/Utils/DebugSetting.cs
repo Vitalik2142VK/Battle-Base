@@ -8,8 +8,11 @@ namespace BattleBase.Utils
         private static DebugSetting Single;
 
         [SerializeField] private bool _isAiDisbale = false;
+        [SerializeField] private bool _isBrainDebugEnable = false;
 
         public static bool IsAiDisbale => Single._isAiDisbale;
+
+        public static bool IsBrainDebugEnable => Single._isBrainDebugEnable;
 
         private void Awake()
         {

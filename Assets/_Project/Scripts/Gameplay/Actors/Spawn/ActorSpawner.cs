@@ -89,14 +89,16 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
         protected void CancelSpawn()
         {
-            _currentTransaction.Cancle();
+            if (_currentTransaction != null)
+                _currentTransaction.Cancle();
 
             Reset();
         }
 
         protected void FinishSpawn()
         {
-            _currentTransaction.Finish();
+            if (_currentTransaction != null)
+                _currentTransaction.Finish();
 
             Reset();
         }

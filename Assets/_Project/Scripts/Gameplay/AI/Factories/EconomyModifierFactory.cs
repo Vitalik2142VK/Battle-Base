@@ -1,6 +1,7 @@
 ﻿using BattleBase.Gameplay.Actors;
 using BattleBase.Gameplay.Actors.Economy;
 using BattleBase.Gameplay.AI.Modifiers;
+using BattleBase.Gameplay.AI.Modifiers.Economy;
 using System;
 
 namespace BattleBase.Gameplay.AI.Factories

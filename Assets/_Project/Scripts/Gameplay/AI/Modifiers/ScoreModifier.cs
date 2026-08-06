@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using BattleBase.Gameplay.AI.Tactics;
+using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.AI.Modifiers
 {

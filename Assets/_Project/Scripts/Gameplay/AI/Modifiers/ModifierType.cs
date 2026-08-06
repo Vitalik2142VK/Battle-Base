@@ -2,6 +2,10 @@
 {
     public enum ModifierType
     {
-        Economy
+        Economy,
+        Power,
+        Defense,
+        Attack,
+        BuildFactory
     }
 }

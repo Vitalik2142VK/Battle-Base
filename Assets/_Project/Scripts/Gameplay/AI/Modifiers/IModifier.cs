@@ -1,4 +1,6 @@
-﻿namespace BattleBase.Gameplay.AI.Modifiers
+﻿using BattleBase.Gameplay.AI.Tactics;
+
+namespace BattleBase.Gameplay.AI.Modifiers
 {
     public interface IModifier
     {

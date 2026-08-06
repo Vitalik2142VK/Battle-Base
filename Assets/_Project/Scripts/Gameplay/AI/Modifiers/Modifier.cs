@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using BattleBase.Gameplay.AI.Tactics;
+using UnityEngine;
 
 namespace BattleBase.Gameplay.AI.Modifiers
 {

@@ -19,6 +19,8 @@ using BattleBase.Gameplay.Actors.Spawn;
 using BattleBase.Gameplay.Actors.Visual.Particle;
 using BattleBase.Gameplay.AI;
 using BattleBase.Gameplay.AI.Factories;
+using BattleBase.Gameplay.AI.Modifiers;
+using BattleBase.Gameplay.AI.Tactics;
 using BattleBase.Gameplay.Levels;
 using UnityEngine;
 using VContainer;
@@ -126,11 +128,14 @@ namespace BattleBase.DI
 
             _builder.Register<ITacticFactory, RandomTacticFactory>(Lifetime.Scoped);
             _builder.Register<ITacticFactory, EconomyTacticFactory>(Lifetime.Scoped);
+            _builder.Register<ITacticFactory, PowerTacticFactory>(Lifetime.Scoped);
             _builder.Register<ITacticsFactory, TacticsFactory>(Lifetime.Scoped);
 
             _builder.Register<IScoreModifierFactory, EconomyModifierFactory> (Lifetime.Scoped);
+            _builder.Register<IScoreModifierFactory, PowerModifierFactory> (Lifetime.Scoped);
             _builder.Register<IScoreModifiersFactory, ScoreModifiersFactory>(Lifetime.Scoped);
 
+            _builder.Register<TacticTool>(Lifetime.Transient);
             _builder.Register<IBrain, Brain>(Lifetime.Scoped);
         }
     }

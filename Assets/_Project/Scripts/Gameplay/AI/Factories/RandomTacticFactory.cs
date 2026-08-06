@@ -1,6 +1,6 @@
 using BattleBase.Gameplay.Actors;
 using BattleBase.Gameplay.Actors.Building;
-using BattleBase.Gameplay.AI.TacticTypes;
+using BattleBase.Gameplay.AI.Tactics;
 using System;
 
 namespace BattleBase.Gameplay.AI.Factories

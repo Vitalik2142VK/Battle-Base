@@ -9,5 +9,9 @@ namespace BattleBase.Gameplay.Actors.Energy
         public int CurrentCapacity { get; }
 
         public int UsedEnergy { get; }
+
+        public int FreeEnergy { get; }
+
+        public bool HasMaxCapacity { get; }
     }
 }

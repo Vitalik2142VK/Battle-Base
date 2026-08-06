@@ -1,5 +1,6 @@
 ﻿using BattleBase.Gameplay.Actors;
 using BattleBase.Gameplay.AI.Modifiers;
+using BattleBase.Gameplay.AI.Tactics;
 using BattleBase.Utils.Constants;
 using System.Collections.Generic;
 using UnityEngine;

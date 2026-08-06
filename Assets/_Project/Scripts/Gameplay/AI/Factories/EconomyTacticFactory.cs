@@ -1,7 +1,8 @@
 using BattleBase.Gameplay.Actors;
 using BattleBase.Gameplay.Actors.Building;
 using BattleBase.Gameplay.Actors.Economy;
-using BattleBase.Gameplay.AI.TacticTypes;
+using BattleBase.Gameplay.AI.Tactics;
+using BattleBase.Gameplay.AI.Tactics.Economy;
 using System;
 
 namespace BattleBase.Gameplay.AI.Factories
@@ -10,13 +11,16 @@ namespace BattleBase.Gameplay.AI.Factories
     {
         private readonly IBuildingSitesStorage _buildingSitesStorage;
         private readonly IMaterialRegistry _materialRegistry;
+        private readonly TacticTool _tool;
 
         public EconomyTacticFactory(
             IBuildingSitesStorage buildingSitesController, 
-            IMaterialRegistry materialRegistry)
+            IMaterialRegistry materialRegistry,
+            TacticTool tool)
         {
             _buildingSitesStorage = buildingSitesController ?? throw new ArgumentNullException(nameof(buildingSitesController));
             _materialRegistry = materialRegistry ?? throw new ArgumentNullException(nameof(materialRegistry));
+            _tool = tool ?? throw new ArgumentNullException(nameof(tool));
         }
 
         public bool TryCreate(ITacticSetting setting, TeamType team, out ITactic tactic)
@@ -29,9 +33,10 @@ namespace BattleBase.Gameplay.AI.Factories
             if (setting is IEconomyTacticSetting economyTacticSetting == false)
                 return false;
 
+            _tool.Init(team);
             IBuildingSitesController controller = _buildingSitesStorage.GetBuildingSitesController(team);
             IMaterialData materialData = _materialRegistry.GetMaterialData(team);
-            tactic = new EconomyTactic(controller, economyTacticSetting, materialData);
+            tactic = new EconomyTactic(_tool, controller, economyTacticSetting, materialData);
 
             return true;
         }

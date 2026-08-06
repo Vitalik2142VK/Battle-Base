@@ -15,4 +15,8 @@ MonoBehaviour:
   _modifiers:
   - _category: 1
     _multiplier: 2
-  _minMaterialsForActivation: 1000
+  - _category: 2
+    _multiplier: 0.1
+  - _category: 0
+    _multiplier: 0.1
+  _minMaterialsForActivation: 750

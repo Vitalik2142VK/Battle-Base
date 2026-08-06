@@ -44,10 +44,13 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
 
         public void Enable()
         {
-            _currentPriceIndex = 0;
-
             int price = _improvePrices[_currentPriceIndex];
             _data.SetPrice(price);
+        }
+
+        public void Disable()
+        {
+            _currentPriceIndex = 0;
         }
 
         public bool TryImprove()
@@ -74,7 +77,5 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
 
             return false;
         }
-
-        public void Disable() { }
     }
 }

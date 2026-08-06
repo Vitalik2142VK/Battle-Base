@@ -22,6 +22,10 @@ namespace BattleBase.Gameplay.Actors.Energy
 
         public int UsedEnergy { get; private set; }
 
+        public int FreeEnergy => CurrentCapacity - UsedEnergy;
+
+        public bool HasMaxCapacity => _powerConfig.MaxCapacity == CurrentCapacity;
+
         public void AddCapacity(int capacity)
         {
             if (capacity <= 0)

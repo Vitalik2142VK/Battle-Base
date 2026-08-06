@@ -1,5 +1,6 @@
 ﻿using BattleBase.Gameplay.Actors;
 using BattleBase.Gameplay.AI.Modifiers;
+using BattleBase.Gameplay.AI.Tactics;
 using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.AI

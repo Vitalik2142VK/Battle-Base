@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PowerStation_PowerGeneratorSource
   m_EditorClassIdentifier: 
   _addedPowerByRank:
+  - _addedPower: 15
+  - _addedPower: 15
   - _addedPower: 10
-  - _addedPower: 10
-  - _addedPower: 5

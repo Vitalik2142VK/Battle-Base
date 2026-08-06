@@ -1,5 +1,7 @@
 ﻿using BattleBase.Core;
 using BattleBase.Gameplay.AI.Modifiers;
+using BattleBase.Gameplay.AI.Tactics;
+using BattleBase.Utils;
 using System;
 using System.Collections.Generic;
 
@@ -74,6 +76,18 @@ namespace BattleBase.Gameplay.AI
                     currentTacticScore = tacticScore;
                 }
             }
+
+#if UNITY_EDITOR // remove
+            if (DebugSetting.IsBrainDebugEnable)
+            {
+                string debug = $"selectedTactic != null - {selectedTactic != null}";
+
+                if (selectedTactic != null)
+                    debug = $"SelectedTacticCategory == {selectedTactic.Category} || CanAction == {selectedTactic.CanAction} || TacticScore = {currentTacticScore}"; //todo remove
+
+                UnityEngine.Debug.Log(debug);
+            }
+#endif
 
             if (selectedTactic != null && selectedTactic.CanAction)
             {

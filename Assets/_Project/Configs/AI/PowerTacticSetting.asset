@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22e5865ba2b535e4b83c2432d7ebdc00, type: 3}
+  m_Name: PowerTacticSetting
+  m_EditorClassIdentifier: 
+  _maxScore: 35
+  _minScore: 5
+  _powerStationConfig: {fileID: 11400000, guid: e9596a5366d5742409c8ab3e3decc8a5,
+    type: 2}
+  _lineNumbersForBuild: 02000000
+  _scoreForBuild: 10
+  _maxNumberStations: 3
