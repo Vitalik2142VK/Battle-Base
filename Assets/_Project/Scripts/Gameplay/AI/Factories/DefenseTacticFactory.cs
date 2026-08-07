@@ -1,25 +1,21 @@
 using BattleBase.Gameplay.Actors;
 using BattleBase.Gameplay.Actors.Building;
-using BattleBase.Gameplay.Actors.Economy;
 using BattleBase.Gameplay.AI.Tactics;
-using BattleBase.Gameplay.AI.Tactics.Economy;
+using BattleBase.Gameplay.AI.Tactics.Defense;
 using System;
 
 namespace BattleBase.Gameplay.AI.Factories
 {
-    public class EconomyTacticFactory : ITacticFactory
+    public class DefenseTacticFactory : ITacticFactory
     {
         private readonly IBuildingSitesStorage _buildingSitesStorage;
-        private readonly IMaterialRegistry _materialRegistry;
         private readonly TacticTool _tool;
 
-        public EconomyTacticFactory(
-            IBuildingSitesStorage buildingSitesController,
-            IMaterialRegistry materialRegistry,
+        public DefenseTacticFactory(
+            IBuildingSitesStorage buildingSitesStorage,
             TacticTool tool)
         {
-            _buildingSitesStorage = buildingSitesController ?? throw new ArgumentNullException(nameof(buildingSitesController));
-            _materialRegistry = materialRegistry ?? throw new ArgumentNullException(nameof(materialRegistry));
+            _buildingSitesStorage = buildingSitesStorage ?? throw new ArgumentNullException(nameof(buildingSitesStorage));
             _tool = tool ?? throw new ArgumentNullException(nameof(tool));
         }
 
@@ -30,13 +26,14 @@ namespace BattleBase.Gameplay.AI.Factories
 
             tactic = null;
 
-            if (setting is IEconomyTacticSetting economyTacticSetting == false)
+            if (setting is IDefenseTacticSetting defenseSetting == false)
                 return false;
 
             _tool.Init(team);
+
             IBuildingSitesController controller = _buildingSitesStorage.GetBuildingSitesController(team);
-            IMaterialData materialData = _materialRegistry.GetMaterialData(team);
-            tactic = new EconomyTactic(_tool, controller, economyTacticSetting, materialData);
+
+            tactic = new DefenseTactic(_tool, controller, defenseSetting);
 
             return true;
         }

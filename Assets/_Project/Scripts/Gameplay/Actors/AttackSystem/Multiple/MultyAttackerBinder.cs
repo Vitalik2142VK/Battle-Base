@@ -37,7 +37,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Multiple
                 if (multyShotPoint.TryGetNextShotPoint(out IShotPoint shotPoint) == false)
                     throw new InvalidOperationException($"Number {nameof(shotPoint)}'s cannot be less than {_attackers.Count}");
 
-                _attackerInitializer.Init(attacker, shotPoint, view);
+                _attackerInitializer.Init(attacker, shotPoint, actor.Position);
             }
 
             if (view.TryGetViewComponent(out IMultyAttackerViewComponent multyAttackerView))

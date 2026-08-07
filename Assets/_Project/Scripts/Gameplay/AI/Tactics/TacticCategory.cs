@@ -4,6 +4,7 @@
     {
         No,
         Economy,
-        Power
+        Power,
+        Defense
     }
 }

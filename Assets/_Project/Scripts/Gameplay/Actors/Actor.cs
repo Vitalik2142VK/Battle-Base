@@ -46,6 +46,8 @@ namespace BattleBase.Gameplay.Actors
 
         public IActorView View { get; }
 
+        public IActorPosition Position => View;
+
         public TeamType TeamType { get; private set; }
 
         public bool IsEnabled { get; private set; }

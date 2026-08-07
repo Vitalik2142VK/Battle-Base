@@ -1,12 +1,13 @@
 ﻿using BattleBase.Gameplay.Actors.DamageSystem;
 using BattleBase.Gameplay.Actors.Energy;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using VContainer;
 
 namespace BattleBase.Gameplay.Actors
 {
-    public class ActorsController : MonoBehaviour, IActorsController
+    public class ActorsController : MonoBehaviour, IActorsController, IActorsStorage
     {
         private List<IActor> _activeActors;
         private IAdvancedPowerRegistry _powerRegistry;
@@ -19,7 +20,7 @@ namespace BattleBase.Gameplay.Actors
         [Inject]
         public void Construct(IAdvancedPowerRegistry powerRegistry)
         {
-            _powerRegistry = powerRegistry ?? throw new System.ArgumentNullException(nameof(powerRegistry));
+            _powerRegistry = powerRegistry ?? throw new ArgumentNullException(nameof(powerRegistry));
         }
 
         private void OnDisable()
@@ -44,7 +45,11 @@ namespace BattleBase.Gameplay.Actors
                 else
                 {
                     _powerRegistry.Release(actor.TeamType, actor.Data);
-                    _activeActors.RemoveAt(i--);
+
+                    int lastIndex = _activeActors.Count - 1;
+                    _activeActors[i] = _activeActors[lastIndex];
+                    _activeActors.RemoveAt(lastIndex);
+                    i--;
                 }
             }
         }
@@ -52,9 +57,39 @@ namespace BattleBase.Gameplay.Actors
         public void AddActor(IActor actor)
         {
             if (actor == null)
-                throw new System.ArgumentNullException(nameof(actor));
+                throw new ArgumentNullException(nameof(actor));
 
             _activeActors.Add(actor);
+        }
+
+        public int GetActorPositionsOtherTeam(IActorPosition[] positions, TeamType team)
+        {
+            if (positions == null)
+                throw new ArgumentNullException(nameof(positions));
+
+            if (positions.Length == 0)
+                return 0;
+
+            int index = 0;
+
+            foreach (var actor in _activeActors)
+            {
+                if (actor.TeamType != team)
+                    positions[index++] = actor.Position;
+
+                if (index >= positions.Length)
+                    break;
+            }
+
+            if (index < positions.Length)
+            {
+                for (int i = index; i < positions.Length; i++)
+                {
+                    positions[i] = null;
+                }
+            }
+
+            return index;
         }
     }
 }

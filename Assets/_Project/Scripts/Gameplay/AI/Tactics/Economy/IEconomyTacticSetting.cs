@@ -1,10 +1,12 @@
-﻿namespace BattleBase.Gameplay.AI.Tactics.Economy
+﻿using System.Collections.Generic;
+
+namespace BattleBase.Gameplay.AI.Tactics.Economy
 {
     public interface IEconomyTacticSetting : ITacticSetting
     {
         public string MaterialFactoryId { get; }
 
-        public int[] LineNumbersForBuild { get; }
+        public IEnumerable<int> LineNumbersForBuild { get; }
 
         public int ScoreForBuildFactory { get; }
 

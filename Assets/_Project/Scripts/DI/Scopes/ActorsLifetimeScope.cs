@@ -35,6 +35,7 @@ namespace BattleBase.DI
         [SerializeField] private WaypointController _waypointController;
         [SerializeField] private ProjectileSpawner _projectileSpawner;
         [SerializeField] private TrailParticleSpawner _trailParticleSpawner;
+        [SerializeField] private AreaDefenseAI _areaDefenseAI;
         [SerializeField] private UpgraderConfig _upgradeConfig;
         [SerializeField] private BrainConfing _brainConfing;
 
@@ -45,7 +46,9 @@ namespace BattleBase.DI
             _builder = builder ?? throw new System.ArgumentNullException(nameof(builder));
 
             _builder.RegisterComponent<IActorPoolsRegistrator>(_poolsRegistrator);
-            _builder.RegisterComponent<IActorsController>(_actorController);
+            _builder.RegisterComponent(_actorController)
+                .As<IActorsController>()
+                .As<IActorsStorage>();
 
             _builder.RegisterInstance<IWaypointController>(_waypointController);
             _builder.RegisterInstance<IProjectileSpawner>(_projectileSpawner);
@@ -125,6 +128,8 @@ namespace BattleBase.DI
         private void RegisterAI()
         {
             _builder.RegisterInstance<IBrainConfing>(_brainConfing);
+
+            _builder.RegisterComponent<IAreaDefenseAI>(_areaDefenseAI);
 
             _builder.Register<ITacticFactory, RandomTacticFactory>(Lifetime.Scoped);
             _builder.Register<ITacticFactory, EconomyTacticFactory>(Lifetime.Scoped);

@@ -26,7 +26,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             if (view.TryGetViewComponent(out IShotPoint shotPoint) == false)
                 throw new InvalidOperationException($"'{nameof(view)}' don't contain module '{nameof(IShotPoint)}'");
 
-            _attackerInitializer.Init(attacker, shotPoint, view);
+            _attackerInitializer.Init(attacker, shotPoint, actor.Position);
 
             if (view.TryGetViewComponent(out IAttackerViewComponent weaponView))
                 weaponView.Init(attacker);

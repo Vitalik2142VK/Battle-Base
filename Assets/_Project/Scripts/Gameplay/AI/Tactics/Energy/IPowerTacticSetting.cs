@@ -1,10 +1,12 @@
-﻿namespace BattleBase.Gameplay.AI.Tactics.Energy
+﻿using System.Collections.Generic;
+
+namespace BattleBase.Gameplay.AI.Tactics.Energy
 {
     public interface IPowerTacticSetting : ITacticSetting
     {
         public string PowerStationId { get; }
 
-        public int[] LineNumbersForBuild { get; }
+        public IEnumerable<int> LineNumbersForBuild { get; }
 
         public int ScoreForBuildStation { get; }
 

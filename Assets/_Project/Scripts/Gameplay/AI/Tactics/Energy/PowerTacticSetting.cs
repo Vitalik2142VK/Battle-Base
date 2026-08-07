@@ -1,6 +1,7 @@
 ﻿using BattleBase.Gameplay.Actors;
 using BattleBase.Utils.Constants;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.AI.Tactics.Energy
@@ -20,7 +21,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Energy
 
         public string PowerStationId => _powerStationConfig.Data.Id;
 
-        public int[] LineNumbersForBuild => _lineNumbersForBuild;
+        public IEnumerable<int> LineNumbersForBuild => _lineNumbersForBuild;
 
         public int ScoreForBuildStation => _scoreForBuild;
 

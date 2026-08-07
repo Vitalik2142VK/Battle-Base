@@ -16,6 +16,6 @@ MonoBehaviour:
   _minScore: 5
   _powerStationConfig: {fileID: 11400000, guid: e9596a5366d5742409c8ab3e3decc8a5,
     type: 2}
-  _lineNumbersForBuild: 02000000
+  _lineNumbersForBuild: 0200000003000000
   _scoreForBuild: 10
   _maxNumberStations: 3

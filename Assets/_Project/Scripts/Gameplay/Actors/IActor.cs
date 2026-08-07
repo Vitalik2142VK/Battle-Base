@@ -6,6 +6,8 @@ namespace BattleBase.Gameplay.Actors
     {
         public IActorData Data { get; }
 
+        public IActorPosition Position { get; }
+
         public bool IsEnabled { get; }
 
         public bool IsStatic { get; }
