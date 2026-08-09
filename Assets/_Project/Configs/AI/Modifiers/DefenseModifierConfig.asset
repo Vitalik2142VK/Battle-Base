@@ -12,4 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e3c4dde2d311a44f9e3752acb8a264c, type: 3}
   m_Name: DefenseModifierConfig
   m_EditorClassIdentifier: 
-  _modifiers: []
+  _modifiers:
+  - _category: 3
+    _multiplier: 1.5
+  - _category: 1
+    _multiplier: 1.2
+  - _category: 0
+    _multiplier: 0.8
+  - _category: 2
+    _multiplier: 0.4
+  _scoreCoefficientForActor: 0.2
+  _maxCoefficient: 3
+  _minActorsForAction: 2

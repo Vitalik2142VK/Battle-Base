@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fd6db3e12956a84f937266f33d7a7df, type: 3}
   m_Name: DefenseTacticSetting
   m_EditorClassIdentifier: 
-  _maxScore: 50
+  _maxScore: 30
   _minScore: 0
-  _defenseBuildingConfigs: []
+  _defenseBuildingConfigs:
+  - {fileID: 11400000, guid: 74e5c17f8ca8b844abacc1f7204ba21f, type: 2}
+  - {fileID: 11400000, guid: e587a36f43eff694bbf1c201fc3498c5, type: 2}
   _lineNumbersForBuild: 00000000
   _scoreForBuild: 5

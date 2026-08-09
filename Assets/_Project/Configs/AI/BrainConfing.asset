@@ -15,9 +15,10 @@ MonoBehaviour:
   _tacticSettings:
   - {fileID: 11400000, guid: 8da59e4f11125484fa97e46aed383250, type: 2}
   - {fileID: 11400000, guid: 9cb24734f836eb747aab9d46ab78b292, type: 2}
-  - {fileID: 11400000, guid: d4399dda533dddd44aa71cd36415d630, type: 2}
   - {fileID: 11400000, guid: d02bd7bee8aee0843a3a5faaa13ec60f, type: 2}
+  - {fileID: 11400000, guid: d4399dda533dddd44aa71cd36415d630, type: 2}
   _modifierConfigs:
+  - {fileID: 11400000, guid: 1f429b9dfe3aad549b1f28b1f74d1a7a, type: 2}
   - {fileID: 11400000, guid: 756faf40547cd234d93e8e382a0d8cf2, type: 2}
   - {fileID: 11400000, guid: c282768c6cb60fe4180d6ed709e0e523, type: 2}
   - {fileID: 11400000, guid: 0b31645c6c044074284db11ff1649750, type: 2}

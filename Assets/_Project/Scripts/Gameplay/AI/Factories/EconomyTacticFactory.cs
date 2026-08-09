@@ -23,6 +23,8 @@ namespace BattleBase.Gameplay.AI.Factories
             _tool = tool ?? throw new ArgumentNullException(nameof(tool));
         }
 
+        public TacticCategory Category => TacticCategory.Economy;
+
         public bool TryCreate(ITacticSetting setting, TeamType team, out ITactic tactic)
         {
             if (setting == null)

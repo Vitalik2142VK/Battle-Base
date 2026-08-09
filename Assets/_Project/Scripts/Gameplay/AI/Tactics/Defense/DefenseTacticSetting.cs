@@ -27,9 +27,9 @@ namespace BattleBase.Gameplay.AI.Tactics.Defense
 
         public int ScoreForBuild => _scoreForBuild;
 
-        private string[] GetDefenseBuildingIds()
+        private IEnumerable<string> GetDefenseBuildingIds()
         {
-            if (_defenseBuildingIds != null)
+            if (_defenseBuildingIds != null && _defenseBuildingIds.Length > 0)
                 return _defenseBuildingIds;
 
             _defenseBuildingIds = _defenseBuildingConfigs

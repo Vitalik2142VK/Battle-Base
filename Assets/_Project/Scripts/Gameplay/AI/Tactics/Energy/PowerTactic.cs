@@ -36,7 +36,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Energy
             _numberUnderConstruction = 0;
             _canAction = false;
 
-            _controller.SiteChanged += OnBuildedFactory;
+            _controller.SitesBuildCompleted += OnBuildedFactory;
         }
 
         public TacticCategory Category => _setting.Category;
@@ -50,6 +50,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Energy
             if (_powerData.HasMaxCapacity)
             {
                 _score = 0;
+                _canAction = false;
 
                 return;
             }
@@ -76,7 +77,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Energy
 
         public void Dispose()
         {
-            _controller.SiteChanged -= OnBuildedFactory;
+            _controller.SitesBuildCompleted -= OnBuildedFactory;
 
             foreach (var factory in _stations)
                 factory.ActorMissing -= OnRemoveFactory;

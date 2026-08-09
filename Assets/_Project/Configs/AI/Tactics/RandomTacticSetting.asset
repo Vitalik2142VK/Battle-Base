@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxScore: 15
   _minScore: 0
+  _forbiddenActorConfigs:
+  - {fileID: 11400000, guid: d29b556504be6944588fab13baad2f83, type: 2}
+  - {fileID: 11400000, guid: e9596a5366d5742409c8ab3e3decc8a5, type: 2}
   _maxNumSpawn: 3
   _minNumSpawn: 1

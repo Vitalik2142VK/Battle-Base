@@ -134,10 +134,12 @@ namespace BattleBase.DI
             _builder.Register<ITacticFactory, RandomTacticFactory>(Lifetime.Scoped);
             _builder.Register<ITacticFactory, EconomyTacticFactory>(Lifetime.Scoped);
             _builder.Register<ITacticFactory, PowerTacticFactory>(Lifetime.Scoped);
+            _builder.Register<ITacticFactory, DefenseTacticFactory>(Lifetime.Scoped);
             _builder.Register<ITacticsFactory, TacticsFactory>(Lifetime.Scoped);
 
             _builder.Register<IScoreModifierFactory, EconomyModifierFactory> (Lifetime.Scoped);
             _builder.Register<IScoreModifierFactory, PowerModifierFactory> (Lifetime.Scoped);
+            _builder.Register<IScoreModifierFactory, DefenseModifierFactory> (Lifetime.Scoped);
             _builder.Register<IScoreModifiersFactory, ScoreModifiersFactory>(Lifetime.Scoped);
 
             _builder.Register<TacticTool>(Lifetime.Transient);

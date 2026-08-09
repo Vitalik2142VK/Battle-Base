@@ -11,6 +11,8 @@ namespace BattleBase.Gameplay.Actors.Types
 
         [field: SerializeField][Range(0, 10)] private int _numberLine = 1;
 
+        [field: SerializeField] public SiteType Type { get; private set; }
+
         [field: SerializeField] public TeamType Team { get; private set; }
 
         public int NumberLine => _numberLine;

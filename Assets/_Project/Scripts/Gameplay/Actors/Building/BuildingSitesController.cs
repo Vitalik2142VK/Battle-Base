@@ -10,23 +10,29 @@ namespace BattleBase.Gameplay.Actors.Building
         private readonly List<RegisteredBuildingSite> _sites;
         private readonly Random _random;
 
-        public event Action<IRegisteredBuildingSite> SiteChanged;
+        public event Action<IRegisteredBuildingSite> SitesBuildCompleted;
 
-        public BuildingSitesController()
+        public BuildingSitesController(Random random)
         {
+            _random = random ?? new Random();
+
             _sitesByLine = new Dictionary<int, List<RegisteredBuildingSite>>();
             _sites = new List<RegisteredBuildingSite>();
-            _random = new Random();
         }
 
         public IEnumerable<IRegisteredBuildingSite> RegisteredBuildingSites => _sites;
+
+        public int NumberSites => _sites.Count;
+
+        public bool HasFreeSites { get; private set; }
 
         public void Register(IActor buildingSiteActor, IBuildingSite buildingSite)
         {
             RegisteredBuildingSite registeredBuildingSite = new(buildingSiteActor, buildingSite);
             int numerLine = registeredBuildingSite.NumberLine;
 
-            registeredBuildingSite.ActorAdded += OnChangeSite;
+            registeredBuildingSite.ActorAdded += OnFinishBuild;
+            registeredBuildingSite.StateChanged += OnCheckFreeSide;
             _sites.Add(registeredBuildingSite);
 
 
@@ -34,13 +40,15 @@ namespace BattleBase.Gameplay.Actors.Building
                 _sitesByLine.Add(numerLine, new List<RegisteredBuildingSite>());
 
             _sitesByLine[numerLine].Add(registeredBuildingSite);
+            HasFreeSites = true;
         }
 
         public void Disable()
         {
             foreach (var site in _sites)
             {
-                site.ActorAdded -= OnChangeSite;
+                site.ActorAdded -= OnFinishBuild;
+                site.StateChanged -= OnCheckFreeSide;
                 site.Disable();
             }
         }
@@ -70,7 +78,22 @@ namespace BattleBase.Gameplay.Actors.Building
             return true;
         }
 
-        private void OnChangeSite(RegisteredBuildingSite buildingSite) =>
-            SiteChanged?.Invoke(buildingSite);
+        private void OnFinishBuild(RegisteredBuildingSite buildingSite) =>
+            SitesBuildCompleted?.Invoke(buildingSite);
+
+        private void OnCheckFreeSide()
+        {
+            foreach (var site in _sites)
+            {
+                if (site.HasBuilding == false)
+                {
+                    HasFreeSites = true;
+
+                    return;
+                }
+            }
+
+            HasFreeSites = false;
+        }
     }
 }

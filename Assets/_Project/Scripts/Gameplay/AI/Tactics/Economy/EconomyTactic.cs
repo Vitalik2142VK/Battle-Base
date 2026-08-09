@@ -36,7 +36,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Economy
             _numberUnderConstruction = 0;
             _canAction = false;
 
-            _controller.SiteChanged += OnBuildedFactory;
+            _controller.SitesBuildCompleted += OnBuildedFactory;
         }
 
         public TacticCategory Category => _setting.Category;
@@ -50,6 +50,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Economy
             if (_materialData.CurrentMaterials > _setting.MaterialsForStop)
             {
                 _score = 0;
+                _canAction = false;
 
                 return;
             }
@@ -76,7 +77,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Economy
 
         public void Dispose()
         {
-            _controller.SiteChanged -= OnBuildedFactory;
+            _controller.SitesBuildCompleted -= OnBuildedFactory;
 
             foreach (var factory in _factories)
                 factory.ActorMissing -= OnRemoveFactory;

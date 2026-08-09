@@ -1,6 +1,7 @@
 using BattleBase.Gameplay.Actors;
 using BattleBase.Gameplay.Actors.Building;
 using BattleBase.Gameplay.AI.Tactics;
+using BattleBase.Gameplay.AI.Tactics.No;
 using System;
 
 namespace BattleBase.Gameplay.AI.Factories
@@ -13,6 +14,8 @@ namespace BattleBase.Gameplay.AI.Factories
         {
             _buildingSitesStorage = buildingSitesController ?? throw new ArgumentNullException(nameof(buildingSitesController));
         }
+
+        public TacticCategory Category => TacticCategory.No;
 
         public bool TryCreate(ITacticSetting setting, TeamType team, out ITactic tactic)
         {

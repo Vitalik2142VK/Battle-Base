@@ -318,6 +318,11 @@ PrefabInstance:
       propertyPath: <Team>k__BackingField
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6167790791083087650, guid: 5777c9dad92fe254984036f5f58bcca5,
+        type: 3}
+      propertyPath: <Type>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1908,6 +1913,11 @@ PrefabInstance:
     - target: {fileID: 6167790791083087650, guid: 5777c9dad92fe254984036f5f58bcca5,
         type: 3}
       propertyPath: <Team>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6167790791083087650, guid: 5777c9dad92fe254984036f5f58bcca5,
+        type: 3}
+      propertyPath: <Type>k__BackingField
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -4427,6 +4437,11 @@ PrefabInstance:
       propertyPath: <Team>k__BackingField
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6167790791083087650, guid: 5777c9dad92fe254984036f5f58bcca5,
+        type: 3}
+      propertyPath: <Type>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5426,6 +5441,11 @@ PrefabInstance:
         type: 3}
       propertyPath: <Team>k__BackingField
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6167790791083087650, guid: 5777c9dad92fe254984036f5f58bcca5,
+        type: 3}
+      propertyPath: <Type>k__BackingField
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9898,6 +9918,11 @@ PrefabInstance:
       propertyPath: <Team>k__BackingField
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6167790791083087650, guid: 5777c9dad92fe254984036f5f58bcca5,
+        type: 3}
+      propertyPath: <Type>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10317,6 +10342,11 @@ PrefabInstance:
         type: 3}
       propertyPath: <Team>k__BackingField
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6167790791083087650, guid: 5777c9dad92fe254984036f5f58bcca5,
+        type: 3}
+      propertyPath: <Type>k__BackingField
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12232,6 +12262,11 @@ PrefabInstance:
     - target: {fileID: 6167790791083087650, guid: 5777c9dad92fe254984036f5f58bcca5,
         type: 3}
       propertyPath: <Team>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6167790791083087650, guid: 5777c9dad92fe254984036f5f58bcca5,
+        type: 3}
+      propertyPath: <Type>k__BackingField
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -15724,6 +15759,11 @@ PrefabInstance:
         type: 3}
       propertyPath: <Team>k__BackingField
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6167790791083087650, guid: 5777c9dad92fe254984036f5f58bcca5,
+        type: 3}
+      propertyPath: <Type>k__BackingField
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -19,6 +19,8 @@ namespace BattleBase.Gameplay.AI.Factories
             _tool = tool ?? throw new ArgumentNullException(nameof(tool));
         }
 
+        public TacticCategory Category => TacticCategory.Defense;
+
         public bool TryCreate(ITacticSetting setting, TeamType team, out ITactic tactic)
         {
             if (setting == null)
@@ -31,7 +33,7 @@ namespace BattleBase.Gameplay.AI.Factories
 
             _tool.Init(team);
 
-            IBuildingSitesController controller = _buildingSitesStorage.GetBuildingSitesController(team);
+            IBuildingSitesController controller = _buildingSitesStorage.GetBuildingSitesController(team, SiteType.Defense);
 
             tactic = new DefenseTactic(_tool, controller, defenseSetting);
 

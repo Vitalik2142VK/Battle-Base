@@ -5,35 +5,40 @@ namespace BattleBase.Gameplay.Actors.Building
 {
     public class BuildingSitesStorage : IBuildingSitesStorage, IDisposable
     {
-        private readonly Dictionary<TeamType, BuildingSitesController> _controllers;
+        private readonly Dictionary<SiteType, SitesStorageByType> _storages;
+        private readonly Random _random;
 
         public BuildingSitesStorage()
         {
-            _controllers = new Dictionary<TeamType, BuildingSitesController>();
+            _storages = new Dictionary<SiteType, SitesStorageByType>();
+            _random = new Random();
         }
 
         public void Dispose()
         {
-            foreach (var controller in _controllers.Values)
-                controller.Disable();
+            foreach (var storage in _storages.Values)
+                storage.Disable();
         }
 
         public void Register(IActor buildingSiteActor, IBuildingSite buildingSite)
         {
-            TeamType team = buildingSiteActor.TeamType;
+            if (buildingSite == null)
+                throw new ArgumentNullException(nameof(buildingSite));
 
-            if (_controllers.ContainsKey(team) == false)
-                _controllers.Add(team, new BuildingSitesController());
+            SiteType siteType = buildingSite.Type;
 
-            _controllers[team].Register(buildingSiteActor, buildingSite);
+            if (_storages.ContainsKey(siteType) == false)
+                _storages.Add(siteType, new SitesStorageByType(_random));
+
+            _storages[siteType].Register(buildingSiteActor, buildingSite);
         }
 
-        public IBuildingSitesController GetBuildingSitesController(TeamType team)
+        public IBuildingSitesController GetBuildingSitesController(TeamType team, SiteType siteType = SiteType.Default)
         {
-            if (_controllers.ContainsKey(team) == false)
-                throw new InvalidOperationException($"{nameof(_controllers)} don't constrain key {team}");
+            if (_storages.ContainsKey(siteType) == false)
+                throw new InvalidOperationException($"{nameof(_storages)} don't constrain key {siteType}");
 
-            return _controllers[team];
+            return _storages[siteType].GetBuildingSitesController(team);
         }
     }
 }
