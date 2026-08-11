@@ -3,8 +3,10 @@ using BattleBase.AdvService;
 using BattleBase.AudioService;
 using BattleBase.Gameplay.Map;
 using BattleBase.PauseService;
+using BattleBase.PreviewCreatingSystem;
 using BattleBase.SaveService;
 using BattleBase.SceneLoadingService;
+using BattleBase.ScreenshotSystem;
 using BattleBase.ShopSystem;
 using BattleBase.UpdateService;
 using UnityEngine;
@@ -24,9 +26,14 @@ namespace BattleBase.DI
         [SerializeField] private ActorsUpgradeConfig _actorsUpgradeConfig;
         [SerializeField] private TeamColorSetConfig _teamColorSetConfig;
         [SerializeField] private List<TerritoryConfig> _territoryConfigs;
+        [SerializeField] private CaptrureCamera _captureCamera;
+
+        private IContainerBuilder _builder;
 
         protected override void Configure(IContainerBuilder builder)
         {
+            _builder = builder;
+
             builder.Register<IPauseSwitcher, PauseSwitcher>(Lifetime.Singleton);
             builder.Register<YandexGameSaveSystemAdapter>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<IAdvertisingService, YandexGameAdvertisingAdapter>(Lifetime.Singleton);
@@ -54,6 +61,19 @@ namespace BattleBase.DI
             {
                 container.Resolve<AudioVolumeService>();
             });
+
+            RegisterScreenshotSystem();
+        }
+
+        private void RegisterScreenshotSystem()
+        {
+            _builder.Register<IPreviewCreator, PreviewCreator>(Lifetime.Singleton);
+            _builder.Register<IScreenshoter, Screenshoter>(Lifetime.Singleton);
+            _builder.Register<IScreenshotCaptureCoordinator, ScreenshotCaptureCoordinator>(Lifetime.Singleton);
+            _builder.Register<IRendererCapturer, RendererCapturer>(Lifetime.Singleton);
+            _builder.Register<IRenderTextureFactory, RenderTextureFactory>(Lifetime.Singleton);
+            _builder.Register<IModelCenterCalculator, ModelCenterCalculator>(Lifetime.Singleton);
+            _builder.RegisterComponent(_captureCamera).As<ICaptureCamera>();
         }
     }
 }
