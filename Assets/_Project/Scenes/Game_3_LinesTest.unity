@@ -513,7 +513,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 100, y: 0.01, z: 370}
+  m_Size: {x: 120, y: 0.01, z: 370}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &187861142 stripped
 Transform:
@@ -2452,7 +2452,7 @@ Transform:
   m_GameObject: {fileID: 480206861}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: 187.8, z: 0}
+  m_LocalPosition: {x: 0, y: 220, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12856,7 +12856,7 @@ MonoBehaviour:
   _resistance: 1
   _area: {fileID: 1804282934}
   _overshoot: {fileID: 154875163}
-  <Config>k__BackingField: {fileID: 11400000, guid: 4349dcb7853171b4e862073638d35ea7,
+  <Config>k__BackingField: {fileID: 11400000, guid: 05ab12c96cc7dfa4c8b71b173b710ba1,
     type: 2}
   <CameraRig>k__BackingField: {fileID: 1665362400}
 --- !u!65 &1804282934
