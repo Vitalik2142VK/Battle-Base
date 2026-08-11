@@ -35,6 +35,7 @@ namespace BattleBase.PreviewCreatingSystem
             actorTransform.eulerAngles = modelRotation;
 
             ICaptureCamera screenshotCamera = _screenshoter.ScreenshotCamera;
+            screenshotCamera.Show();
             actor.SetLayerRecursively(screenshotCamera.Layer);
             screenshotCamera.SetCameraPosition(actor.transform.position + cameraOffset);
             screenshotCamera.CameraLookAt(_centerCalculator.GetCenter(actor));
@@ -57,6 +58,7 @@ namespace BattleBase.PreviewCreatingSystem
 
             actor.SetActive(false);
             UnityEngine.Object.Destroy(actor);
+            screenshotCamera.Hide();
 
             return preview;
         }
