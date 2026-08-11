@@ -29,8 +29,6 @@ namespace BattleBase.Gameplay.AI.Tactics.Defense
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
             _setting = setting ?? throw new ArgumentNullException(nameof(setting));
 
-            UnityEngine.Debug.Log($"DefenseTactic");
-
             _turrets = new List<IRegisteredBuildingSite>();
             _turretIds = new List<string>();
             _random = new Random();
