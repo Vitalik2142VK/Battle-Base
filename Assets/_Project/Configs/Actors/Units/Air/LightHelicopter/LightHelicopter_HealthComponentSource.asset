@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: LightHelicopter_HealthComponentSource
   m_EditorClassIdentifier: 
   _healthConfig:
-    _maxHealth: 200
-    _armorCoefficient: 0.15
+    _maxHealth: 180
+    _armorCoefficient: 0.1
   _type: 8

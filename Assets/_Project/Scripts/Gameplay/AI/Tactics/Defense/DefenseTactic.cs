@@ -36,7 +36,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Defense
             _numberUnderConstruction = 0;
             _canAction = false;
 
-            foreach (var id in setting.DefenseBuildingIds)
+            foreach (var id in setting.GetDefenseBuildingIds())
                 _turretIds.Add(id);
 
             _controller.SitesBuildCompleted += OnBuildedTurret;
@@ -144,7 +144,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Defense
 
             bool isbuildingSiteValid = false;
 
-            foreach (var id in _setting.DefenseBuildingIds)
+            foreach (var id in _turretIds)
             {
                 if (buildingSite.CurrentId == id)
                 {

@@ -16,6 +16,8 @@ MonoBehaviour:
   _minScore: 0
   _defenseBuildingConfigs:
   - {fileID: 11400000, guid: 74e5c17f8ca8b844abacc1f7204ba21f, type: 2}
+  - {fileID: 11400000, guid: 8740b58b78f8fdf46b3c08ec0603ada1, type: 2}
+  - {fileID: 11400000, guid: 4c34700e5c731f14184361f670a61084, type: 2}
   - {fileID: 11400000, guid: e587a36f43eff694bbf1c201fc3498c5, type: 2}
   _lineNumbersForBuild: 00000000
   _scoreForBuild: 4
