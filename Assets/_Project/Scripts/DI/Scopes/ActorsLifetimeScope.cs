@@ -77,6 +77,7 @@ namespace BattleBase.DI
             _builder.Register<IComponentFactory, HealthFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, AttackerFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, MoverFactory>(Lifetime.Scoped);
+            _builder.Register<IComponentFactory, AirMoverFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, SingleActorSpawnerFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, MultiActorSpawnerFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, ActorStateMachineFactory>(Lifetime.Scoped);

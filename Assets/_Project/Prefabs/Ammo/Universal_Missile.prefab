@@ -62,7 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _turnRate: 180
   _speed: 40
-  _maxRange: 40
+  _maxRange: 60
   _finishDistance: 0.6
 --- !u!114 &5835098188176184700
 MonoBehaviour:

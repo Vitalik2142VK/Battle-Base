@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65d2e2c2420ac6b45b0d480f9633fd48, type: 3}
+  m_Name: SpecialFactory
+  m_EditorClassIdentifier: 
+  _data:
+    _prefab: {fileID: 6814068887016453725, guid: 25efa4f5545b17d47a221807259c6c01,
+      type: 3}
+    _icon: {fileID: 21300000, guid: 990dd11a7ccb5df42aef1faf83c4305a, type: 3}
+    _nameConfig: {fileID: 11400000, guid: 9672edcca5c6b064fa93790d3e426629, type: 2}
+    _constructionTime: 2
+    _price: 650
+    _power: 0
+    _isSummable: 0
+  _components:
+  - {fileID: 11400000, guid: 31f0714dd1c0b5e42bdecff0a754cf64, type: 2}
+  - {fileID: 11400000, guid: 9ecfc6a0d6cf13b4395e2af2976a98db, type: 2}
+  - {fileID: 11400000, guid: e629ce5a760c9a3438910ab681147319, type: 2}
+  - {fileID: 11400000, guid: 48a15801c76ab6d499e7fee6c3b8fceb, type: 2}
+  - {fileID: 11400000, guid: 1208cdd597bc5854ba5c14e4a56ec5ea, type: 2}

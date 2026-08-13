@@ -29,10 +29,7 @@ namespace BattleBase.Gameplay.Actors.Movement
         public void Enable()
         {
             if (_waypoints.Count > 0)
-            {
                 EstablishNextPoint();
-                Move();
-            }
         }
 
         public void Disable()
@@ -66,14 +63,10 @@ namespace BattleBase.Gameplay.Actors.Movement
             WaypointChanged?.Invoke(_currentWaypoint);
         }
 
-        public void Move()
-        {
+        public void Move() => 
             Moved?.Invoke();
-        }
 
-        public void Stop()
-        {
+        public void Stop() => 
             Stoped?.Invoke();
-        }
     }
 }

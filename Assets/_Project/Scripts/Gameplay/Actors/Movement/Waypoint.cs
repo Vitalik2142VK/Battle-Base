@@ -9,6 +9,6 @@ namespace BattleBase.Gameplay.Actors.Movement
             Position = transform.position;
         }
 
-        public Vector3 Position { get; private set; }
+        public Vector3 Position {  get; private set; }
     }
 }

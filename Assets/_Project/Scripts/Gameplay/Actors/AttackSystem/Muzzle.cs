@@ -6,7 +6,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
     public class Muzzle : MonoBehaviour, IAimComponent
     {
         [SerializeField] private Transform _parrent;
-        [SerializeField][Min(1f)] private float _speedRotate = 25f;
+        [SerializeField][Range(1f, 720f)] private float _speedRotate = 25f;
         [SerializeField][Range(-1f, 1f)] private float _dotAim = 0.95f;
 
         private Transform _transform;
@@ -17,7 +17,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         private void Awake()
         {
             _transform = transform;
-            _startRotation = _transform.rotation;
+            _startRotation = _transform.localRotation;
         }
 
         private void OnEnable()

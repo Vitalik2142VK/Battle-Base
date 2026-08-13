@@ -70,10 +70,10 @@ namespace BattleBase.Gameplay.Actors
             _destroyComponent.Destroyed -= OnDestroy;
             IsEnabled = false;
 
-            View.SetActive(false);
-
             foreach (var component in _components.Values)
                 component.Disable();
+
+            View.SetActive(false);
         }
 
         public bool TryGetComponent<T>(out T component) where T : class, IActorComponent

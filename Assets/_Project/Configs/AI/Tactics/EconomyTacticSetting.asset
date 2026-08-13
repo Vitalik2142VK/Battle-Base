@@ -16,7 +16,7 @@ MonoBehaviour:
   _minScore: 5
   _materialFactoryConfig: {fileID: 11400000, guid: d29b556504be6944588fab13baad2f83,
     type: 2}
-  _lineNumbersForBuild: 0300000002000000
+  _lineNumbersForBuild: 0200000001000000
   _scoreForBuild: 15
   _maxNumberFactories: 4
   _materialsForStop: 3000
