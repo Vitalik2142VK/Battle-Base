@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
 using YG;
-using YG.EditorScr;
 using YG.Utils.Pay;
 
 namespace BattleBase.UI.PopUps
@@ -31,7 +30,7 @@ namespace BattleBase.UI.PopUps
             {
 #if UNITY_EDITOR
                 if (data.imageURI == InfoYG.DEMO_IMAGE)
-                    _purchaseImageLoad.Load(ServerInfo.saveInfo.purchaseImage);
+                    _purchaseImageLoad.Load(YG.EditorScr.ServerInfo.saveInfo.purchaseImage);
                 else
                     _purchaseImageLoad.Load(data.imageURI);
 #else

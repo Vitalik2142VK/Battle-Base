@@ -47,9 +47,9 @@ namespace BattleBase.Gameplay.AI
 
                     continue;
                 }
-
-                float timeElapsed = 0;
 #endif
+                float timeElapsed = 0;
+
                 while (_brain.ThinkCompleted == false)
                 {
                     _brain.ThinkDuringTick();
