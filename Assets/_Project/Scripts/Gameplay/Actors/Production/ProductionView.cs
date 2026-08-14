@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.Production
@@ -10,9 +9,9 @@ namespace BattleBase.Gameplay.Actors.Production
         private IProductionPresenter _presenter;
         private ITeamable _teamable;
 
-        public IEnumerable<IProductionOption> ProductionOptions => _presenter.ProductionOptions;
-
         public TeamType TeamType => _teamable.TeamType;
+
+        public int BuildingSiteId => _presenter.BuildingSiteId;
 
         public void Init(IProductionPresenter presenter, ITeamable teamable)
         {

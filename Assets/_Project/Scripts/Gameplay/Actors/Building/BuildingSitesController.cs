@@ -26,21 +26,22 @@ namespace BattleBase.Gameplay.Actors.Building
 
         public bool HasFreeSites { get; private set; }
 
-        public void Register(IActor buildingSiteActor, IBuildingSite buildingSite)
+        public IRegisteredBuildingSite Register(IActor buildingSiteActor, IBuildingSite buildingSite)
         {
             RegisteredBuildingSite registeredBuildingSite = new(buildingSiteActor, buildingSite);
             int numerLine = registeredBuildingSite.NumberLine;
-
-            registeredBuildingSite.ActorAdded += OnFinishBuild;
-            registeredBuildingSite.StateChanged += OnCheckFreeSide;
             _sites.Add(registeredBuildingSite);
-
 
             if (_sitesByLine.ContainsKey(numerLine) == false)
                 _sitesByLine.Add(numerLine, new List<RegisteredBuildingSite>());
 
             _sitesByLine[numerLine].Add(registeredBuildingSite);
             HasFreeSites = true;
+
+            registeredBuildingSite.ActorAdded += OnFinishBuild;
+            registeredBuildingSite.StateChanged += OnCheckFreeSide;
+
+            return registeredBuildingSite;
         }
 
         public void Disable()

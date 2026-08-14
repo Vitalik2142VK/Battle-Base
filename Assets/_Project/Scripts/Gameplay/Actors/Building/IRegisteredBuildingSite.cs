@@ -6,8 +6,11 @@ namespace BattleBase.Gameplay.Actors.Building
     public interface IRegisteredBuildingSite
     {
         public event Action<IRegisteredBuildingSite> ActorMissing;
+        public event Action StateChanged;
 
-        public string CurrentId { get; }
+        public string CurrentActorId { get; }
+
+        public int BuildingSiteId { get; }
 
         public int NumberLine { get; }
 

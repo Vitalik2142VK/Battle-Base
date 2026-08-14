@@ -7,5 +7,9 @@ namespace BattleBase.Gameplay.Actors.Building
         public IBuildingSitesController GetBuildingSitesController(
             TeamType team, 
             SiteType siteType = SiteType.Default);
+
+        public IRegisteredBuildingSite GetSiteById(TeamType team, int id);
+
+        public IRegisteredBuildingSite GetSiteById(int id);
     }
 }

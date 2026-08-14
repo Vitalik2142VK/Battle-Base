@@ -25,6 +25,6 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
 
         public int Price => _improvePrices[0];
 
-        public bool IsSummable => false;
+        public bool IsHidden => false;
     }
 }

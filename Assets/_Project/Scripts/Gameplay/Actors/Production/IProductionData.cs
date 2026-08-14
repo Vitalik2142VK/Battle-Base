@@ -15,6 +15,6 @@ namespace BattleBase.Gameplay.Actors.Production
 
         public int Price { get; }
 
-        public bool IsSummable { get; }
+        public bool IsHidden { get; }
     }
 }

@@ -146,7 +146,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Defense
 
             foreach (var id in _turretIds)
             {
-                if (buildingSite.CurrentId == id)
+                if (buildingSite.CurrentActorId == id)
                 {
                     isbuildingSiteValid = true;
 

@@ -30,6 +30,6 @@ namespace BattleBase.Gameplay.Actors
 
         public int Power => _power;
 
-        public bool IsSummable => _isSummable;
+        public bool IsHidden => _isSummable;
     }
 }

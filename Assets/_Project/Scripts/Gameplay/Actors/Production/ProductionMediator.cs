@@ -1,4 +1,5 @@
 using BattleBase.DI;
+using BattleBase.Gameplay.Actors.Building;
 using BattleBase.Gameplay.Actors.Visual.Select;
 using BattleBase.Gameplay.CameraNavigation.InputReader;
 using BattleBase.UI;
@@ -17,29 +18,39 @@ namespace BattleBase.Gameplay.Actors.Production
 
         private List<IProductionItem> _items = new();
 
-        private IProductionView _productionView;
         private IClickDetector _clickDetector;
         private ISelector _selector;
-        private IProductionItemsFactory _productionItemFactory;
-
         private ISelectable _selectable;
+        private ProductionController _productionController;
 
         [Inject]
         public void Construct(
             IClickDetector clickDetector,
             ISelector selector,
-            IProductionItemsFactory productionItemFactory)
+            IProductionItemsFactory productionItemFactory,
+            IBuildingSitesStorage buildingSitesStorage)
         {
             _clickDetector = clickDetector ?? throw new ArgumentNullException(nameof(clickDetector));
             _selector = selector ?? throw new ArgumentNullException(nameof(selector));
-            _productionItemFactory = productionItemFactory ?? throw new ArgumentNullException(nameof(productionItemFactory));
+            _productionController = new ProductionController(
+                productionItemFactory,
+                buildingSitesStorage,
+                TeamType.Player);
         }
 
-        private void OnEnable() =>
+        private void OnEnable()
+        {
             _clickDetector.Clicked += OnClickDetected;
 
-        private void OnDisable() =>
+            if (_productionController != null)
+                _productionController.ProductionsChanged += OnSelectViewSpawner;
+        }
+
+        private void OnDisable()
+        {
             _clickDetector.Clicked -= OnClickDetected;
+            _productionController.ProductionsChanged -= OnSelectViewSpawner;
+        }
 
         private void OnClickDetected(Collider collider)
         {
@@ -50,38 +61,50 @@ namespace BattleBase.Gameplay.Actors.Production
                 return;
             }
 
-            if (collider.TryGetComponent(out _productionView))
+            if (collider.TryGetComponent(out IProductionView productionView))
             {
 #if UNITY_EDITOR
                 if (DebugSetting.IsAiDisbale) //todo remove on release
                 {
                     collider.TryGetComponent(out _selectable);
+                    _productionController.HandleProductionView(productionView);
 
-                    SelectViewSpawner();
+                    OnSelectViewSpawner();
 
                     return;
                 }
 #endif
-                if (_productionView.TeamType == TeamType.Player)
+                if (productionView.TeamType == TeamType.Player)
                 {
                     collider.TryGetComponent(out _selectable);
+                    _productionController.HandleProductionView(productionView);
 
-                    SelectViewSpawner();
+                    OnSelectViewSpawner();
 
                     return;
                 }
             }
 
             HandleUnselectEntity();
+
+            _productionController.Clear();
         }
 
-        private void SelectViewSpawner()
+        private void HandleUnselectEntity()
+        {
+            _selector.Unselect();
+            _productionPanel.Hide();
+            _items.Clear();
+        }
+
+        private void OnSelectViewSpawner()
         {
             if (_selector.TrySelect(_selectable) == false)
                 _selector.Unselect();
 
             _productionPanel.ClearContext();
-            _items = _productionItemFactory.Create(_productionView.ProductionOptions);
+            _items.Clear();
+            _items.AddRange(_productionController.GetProductionItems());
 
             if (_items.Count == 0)
                 _productionPanel.Hide();
@@ -95,19 +118,13 @@ namespace BattleBase.Gameplay.Actors.Production
             }
         }
 
-        private void HandleUnselectEntity()
-        {
-            _selector.Unselect();
-            _productionPanel.Hide();
-            _items.Clear();
-        }
-
         private void OnSelectItem(IProductionData data)
         {
-            if (_selectable != null && data.IsSummable == false)
+            if (_selectable != null && data.IsHidden == false)
             {
                 HandleUnselectEntity();
                 _selectable = null;
+                _productionController.Clear();
             }
         }
     }

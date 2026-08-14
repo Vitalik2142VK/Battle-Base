@@ -30,7 +30,7 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
 
         public float ConstructionTime => _data.ConstructionTime;
 
-        public bool IsSummable => _data.IsSummable;
+        public bool IsHidden => _data.IsHidden;
 
         public int Price { get; private set; }
 
