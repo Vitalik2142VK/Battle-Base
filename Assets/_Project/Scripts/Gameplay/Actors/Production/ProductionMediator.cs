@@ -56,7 +56,7 @@ namespace BattleBase.Gameplay.Actors.Production
         {
             if (collider == null)
             {
-                HandleUnselectEntity();
+                HandleUnselect();
 
                 return;
             }
@@ -85,13 +85,12 @@ namespace BattleBase.Gameplay.Actors.Production
                 }
             }
 
-            HandleUnselectEntity();
-
-            _productionController.Clear();
+            HandleUnselect();
         }
 
-        private void HandleUnselectEntity()
+        private void HandleUnselect()
         {
+            _productionController.Clear();
             _selector.Unselect();
             _productionPanel.Hide();
             _items.Clear();
@@ -122,9 +121,8 @@ namespace BattleBase.Gameplay.Actors.Production
         {
             if (_selectable != null && data.IsHidden == false)
             {
-                HandleUnselectEntity();
+                HandleUnselect();
                 _selectable = null;
-                _productionController.Clear();
             }
         }
     }

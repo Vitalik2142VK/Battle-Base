@@ -19,5 +19,9 @@ namespace BattleBase.Gameplay.Actors.Building
         public bool IsConstruction { get; }
 
         public bool TryGetProductionStorage(out IProductionStorage productionService);
+
+        public void Select();
+
+        public void Unselect();
     }
 }

@@ -44,12 +44,16 @@ namespace BattleBase.Gameplay.Actors.Production
                 throw new ArgumentNullException(nameof(productionView));
 
             if (_selectedBuildingSite != null)
+            {
+                _selectedBuildingSite.Unselect();
                 _selectedBuildingSite.StateChanged -= ProductionsChanged;
+            }
 
 #if UNITY_EDITOR
             if (DebugSetting.IsAiDisbale) //todo remove on release
             {
                 _selectedBuildingSite = _buildingSitesStorage.GetSiteById(productionView.BuildingSiteId);
+                _selectedBuildingSite.Select();
                 _selectedBuildingSite.StateChanged += ProductionsChanged;
 
                 return;
@@ -64,6 +68,7 @@ namespace BattleBase.Gameplay.Actors.Production
             if (_selectedBuildingSite == null)
                 return;
 
+            _selectedBuildingSite.Unselect();
             _selectedBuildingSite.StateChanged -= ProductionsChanged;
             _selectedBuildingSite = null;
         }

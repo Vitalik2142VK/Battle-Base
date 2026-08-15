@@ -67,6 +67,12 @@ namespace BattleBase.Gameplay.Actors.Building
             return false;
         }
 
+        public void Select() =>
+            _buildingSite.Select();
+
+        public void Unselect() =>
+            _buildingSite.Unselect();
+
         private void OnSetActor(IActor actor)
         {
             if (actor == null) 
@@ -80,7 +86,7 @@ namespace BattleBase.Gameplay.Actors.Building
                 _currentActor = actor;
                 _destroyableEvents = component;
                 _destroyableEvents.Destroyed += OnShowBuildingSite;
-                _buildingSite.Hide();
+                _buildingSite.Unselect();
 
                 ActorAdded?.Invoke(this);
                 StateChanged?.Invoke();
@@ -90,7 +96,7 @@ namespace BattleBase.Gameplay.Actors.Building
         private void OnShowBuildingSite()
         {
             _currentActor = _buildingSiteActor;
-            _buildingSite.Show();
+            _buildingSite.Select();
             _destroyableEvents.Destroyed -= OnShowBuildingSite;
             _destroyableEvents = null;
 

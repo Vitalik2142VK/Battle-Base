@@ -35,15 +35,11 @@ namespace BattleBase.Gameplay.Actors.Types
                 _id = idCreator.Create();
         }
 
-        public void Show()
-        {
-            //gameObject.SetActive(true);
-        }
+        public void Select() => 
+            _selectable.TrySelect();
 
-        public void Hide()
-        {
-            //gameObject.SetActive(false);
-        }
+        public void Unselect() => 
+            _selectable.Unselect();
 
         public void EstablishInactiveState() => 
             _selectable.SetInactiveState();

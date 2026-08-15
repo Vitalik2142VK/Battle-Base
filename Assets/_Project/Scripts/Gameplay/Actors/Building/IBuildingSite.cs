@@ -8,8 +8,8 @@ namespace BattleBase.Gameplay.Actors.Building
 
         public int NumberLine { get; }
 
-        public void Show();
+        public void Select();
 
-        public void Hide();
+        public void Unselect();
     }
 }
