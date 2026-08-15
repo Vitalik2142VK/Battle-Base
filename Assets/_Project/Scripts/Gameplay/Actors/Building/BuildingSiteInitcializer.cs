@@ -13,12 +13,14 @@ namespace BattleBase.Gameplay.Actors.Building
 
         private IActorComposer _composer;
         private IBuildingSitesStorage _storage;
+        private IBuildingSiteIdCreator _idCreator;
 
         [Inject]
-        public void Construct(IActorComposer composer, IBuildingSitesStorage storage)
+        public void Construct(IActorComposer composer, IBuildingSitesStorage storage, IBuildingSiteIdCreator idCreator)
         {
             _composer = composer ?? throw new ArgumentNullException(nameof(composer));
             _storage = storage ?? throw new ArgumentNullException(nameof(storage));
+            _idCreator = idCreator ?? throw new ArgumentNullException(nameof(idCreator));
         }
 
         private void Start()
@@ -35,6 +37,7 @@ namespace BattleBase.Gameplay.Actors.Building
             TeamType team = buildingSite.Team;
             Actor actor = _composer.Compose(view, _config, team);
 
+            buildingSite.Init(_idCreator);
             RegisterBuildingSite(actor, buildingSite);
             InitEnemyBuildingSite(buildingSite, team);
         }

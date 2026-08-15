@@ -4,7 +4,13 @@ namespace BattleBase.Gameplay.Actors.Building
     {
         public SiteType Type { get; }
 
+        public int Id { get; }
+
         public int NumberLine { get; }
+
+        public void Select();
+
+        public void Unselect();
 
         public void Show();
 

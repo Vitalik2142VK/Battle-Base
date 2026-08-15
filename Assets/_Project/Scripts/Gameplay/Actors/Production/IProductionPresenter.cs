@@ -4,6 +4,6 @@ namespace BattleBase.Gameplay.Actors.Production
 {
     public interface IProductionPresenter
     {
-        public IEnumerable<IProductionOption> ProductionOptions { get; }
+        public int BuildingSiteId { get; }
     }
 }

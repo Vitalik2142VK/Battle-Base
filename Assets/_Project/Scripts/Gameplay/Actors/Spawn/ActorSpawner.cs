@@ -90,17 +90,21 @@ namespace BattleBase.Gameplay.Actors.Spawn
         protected void CancelSpawn()
         {
             if (_currentTransaction != null)
+            {
                 _currentTransaction.Cancle();
 
-            Reset();
+                Reset();
+            }
         }
 
         protected void FinishSpawn()
         {
             if (_currentTransaction != null)
+            {
                 _currentTransaction.Finish();
 
-            Reset();
+                Reset();
+            }
         }
 
         protected bool CanBeginSpawn(IActorData actorData)

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace BattleBase.Gameplay.Actors.Production
+﻿namespace BattleBase.Gameplay.Actors.Production
 {
     public class ProductionPresenter : IProductionPresenter
     {
@@ -11,6 +9,6 @@ namespace BattleBase.Gameplay.Actors.Production
             _model = model ?? throw new System.ArgumentNullException(nameof(model));
         }
 
-        public IEnumerable<IProductionOption> ProductionOptions => _model.GetProductionOptions();
+        public int BuildingSiteId => _model.BuildingSiteId;
     }
 }

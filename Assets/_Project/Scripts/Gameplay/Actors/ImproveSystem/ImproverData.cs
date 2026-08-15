@@ -24,7 +24,5 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
         public float ConstructionTime => _constructionTime;
 
         public int Price => _improvePrices[0];
-
-        public bool IsSummable => false;
     }
 }

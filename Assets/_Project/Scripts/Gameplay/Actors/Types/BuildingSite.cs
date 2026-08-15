@@ -8,6 +8,9 @@ namespace BattleBase.Gameplay.Actors.Types
     public class BuildingSite : ActorView, IBuildingSite
     {
         private Selectable _selectable;
+        private int _id;
+
+        [SerializeField] private GameObject[] _hidedObjects;
 
         [field: SerializeField][Range(0, 10)] private int _numberLine = 1;
 
@@ -17,18 +20,42 @@ namespace BattleBase.Gameplay.Actors.Types
 
         public int NumberLine => _numberLine;
 
+        public int Id => _id;
+
         private void Awake()
         {
             _selectable = GetComponent<Selectable>();
+            _id = -1;
         }
 
-        public void Show() =>
-            gameObject.SetActive(true);
+        public void Init(IBuildingSiteIdCreator idCreator)
+        {
+            if (idCreator == null)
+                throw new System.ArgumentNullException(nameof(idCreator));
 
-        public void Hide() =>
-            gameObject.SetActive(false);
+            if (_id < 0)
+                _id = idCreator.Create();
+        }
+
+        public void Select() => 
+            _selectable.TrySelect();
+
+        public void Unselect() => 
+            _selectable.Unselect();
 
         public void EstablishInactiveState() => 
             _selectable.SetInactiveState();
+
+        public void Show()
+        {
+            foreach (var gameObject in _hidedObjects)
+                gameObject.SetActive(true);
+        }
+
+        public void Hide()
+        {
+            foreach (var gameObject in _hidedObjects)
+                gameObject.SetActive(false);
+        }
     }
 }

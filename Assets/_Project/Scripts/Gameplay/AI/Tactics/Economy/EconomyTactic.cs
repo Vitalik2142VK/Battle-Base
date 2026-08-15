@@ -156,7 +156,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Economy
             if (buildingSite == null)
                 throw new ArgumentNullException(nameof(buildingSite));
 
-            if (buildingSite.CurrentId != _setting.MaterialFactoryId)
+            if (buildingSite.CurrentActorId != _setting.MaterialFactoryId)
                 return;
 
             _score -= _setting.ScoreForBuildFactory;

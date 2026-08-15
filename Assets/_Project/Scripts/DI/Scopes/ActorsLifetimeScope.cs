@@ -61,7 +61,7 @@ namespace BattleBase.DI
             _builder.Register<IActorComposer, ActorComposer>(Lifetime.Scoped);
             _builder.Register<IDamageModifierFactory, DamageModifierFactory>(Lifetime.Scoped);
             _builder.Register<IWinStateController, WinStateController>(Lifetime.Scoped);
-            _builder.Register<IBuildingSitesStorage, BuildingSitesStorage>(Lifetime.Scoped);
+            _builder.Register<IBuildingSiteIdCreator, BuildingSiteIdCreator>(Lifetime.Scoped);
             _builder.Register<IActorCreator, ActorCreator>(Lifetime.Scoped);
 
             RegisterComponentFactoryRegistry();

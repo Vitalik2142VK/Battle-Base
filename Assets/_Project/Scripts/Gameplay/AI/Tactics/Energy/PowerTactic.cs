@@ -156,7 +156,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Energy
             if (buildingSite == null)
                 throw new ArgumentNullException(nameof(buildingSite));
 
-            if (buildingSite.CurrentId != _setting.PowerStationId)
+            if (buildingSite.CurrentActorId != _setting.PowerStationId)
                 return;
 
             _score -= _setting.ScoreForBuildStation;

@@ -30,8 +30,6 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
 
         public float ConstructionTime => _data.ConstructionTime;
 
-        public bool IsSummable => _data.IsSummable;
-
         public int Price { get; private set; }
 
         public bool CanBuy => CanBayImprove();
