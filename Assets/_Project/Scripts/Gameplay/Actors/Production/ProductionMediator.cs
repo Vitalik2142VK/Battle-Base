@@ -117,15 +117,7 @@ namespace BattleBase.Gameplay.Actors.Production
             }
         }
 
-        private void OnSelectItem(IProductionData data)
-        {
+        private void OnSelectItem(IProductionData data) => 
             OnSelectViewSpawner();
-
-            if (_selectable != null && data.IsHidden == false)
-            {
-                //HandleUnselect();
-                //_selectable = null;
-            }
-        }
     }
 }

@@ -14,7 +14,5 @@ namespace BattleBase.Gameplay.Actors.Production
         public float ConstructionTime { get; }
 
         public int Price { get; }
-
-        public bool IsHidden { get; }
     }
 }

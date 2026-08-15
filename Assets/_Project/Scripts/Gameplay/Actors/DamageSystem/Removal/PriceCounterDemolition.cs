@@ -39,8 +39,6 @@ namespace BattleBase.Gameplay.Actors.DamageSystem.Removal
 
         public float ReturnedCoefficient => _data.ReturnedCoefficient;
 
-        public bool IsHidden => _data.IsHidden;
-
         public int Price => _salePrice;
 
         public void Enable()

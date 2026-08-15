@@ -177,6 +177,7 @@ GameObject:
   - component: {fileID: 5708417131109932906}
   - component: {fileID: 1226418856270716226}
   - component: {fileID: 4330146257033767283}
+  - component: {fileID: 6132715388603174778}
   m_Layer: 0
   m_Name: BuildingSite
   m_TagString: Untagged
@@ -323,6 +324,27 @@ MonoBehaviour:
   _renderers:
   - {fileID: 2192699150703341767}
   _targetMaterial: {fileID: 2100000, guid: 237f62aa41095d34c97012076fbcbdce, type: 2}
+--- !u!95 &6132715388603174778
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927838053464246575}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: abbe312ca98a6cf4da3d96d1879df7a9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2364562024828959828
 GameObject:
   m_ObjectHideFlags: 0
