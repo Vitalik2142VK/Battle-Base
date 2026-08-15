@@ -17,26 +17,15 @@ namespace BattleBase.Gameplay.AI.Tactics.Defense
         [SerializeField][Range(0, 3)] private int[] _lineNumbersForBuild = new[] { 0 };
         [SerializeField][Range(1, 30)] private int _scoreForBuild = 5;
 
-        private string[] _defenseBuildingIds;
-
         public TacticCategory Category => TacticCategory.Defense;
-
-        public IEnumerable<string> DefenseBuildingIds => GetDefenseBuildingIds();
 
         public IEnumerable<int> LineNumbersForBuild => _lineNumbersForBuild;
 
         public int ScoreForBuild => _scoreForBuild;
 
-        private IEnumerable<string> GetDefenseBuildingIds()
-        {
-            if (_defenseBuildingIds != null && _defenseBuildingIds.Length > 0)
-                return _defenseBuildingIds;
-
-            _defenseBuildingIds = _defenseBuildingConfigs
+        public IEnumerable<string> GetDefenseBuildingIds() =>
+            _defenseBuildingConfigs
                 .Select(c => c.Data.Id)
-                .ToArray();
-
-            return _defenseBuildingIds;
-        }
+                .ToList();
     }
 }

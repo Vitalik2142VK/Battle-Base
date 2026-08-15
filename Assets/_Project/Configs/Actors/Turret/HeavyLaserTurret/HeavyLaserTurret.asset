@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65d2e2c2420ac6b45b0d480f9633fd48, type: 3}
+  m_Name: HeavyLaserTurret
+  m_EditorClassIdentifier: 
+  _data:
+    _prefab: {fileID: 6082468932349043140, guid: 484abcec67e29bb428146b89b2501308,
+      type: 3}
+    _icon: {fileID: 21300000, guid: 7d26e837c1c55ff479680409f6b83ae9, type: 3}
+    _nameConfig: {fileID: 11400000, guid: a36728ea9e23d5945be02a82f4a2d766, type: 2}
+    _constructionTime: 5
+    _price: 650
+    _power: 0
+    _isSummable: 0
+  _components:
+  - {fileID: 11400000, guid: 9ed84ce303e687c40b28b50a6c73d535, type: 2}
+  - {fileID: 11400000, guid: 43727e563f9d49e4cb4d5836ff393605, type: 2}

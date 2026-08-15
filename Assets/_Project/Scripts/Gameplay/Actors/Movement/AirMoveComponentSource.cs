@@ -1,0 +1,18 @@
+using BattleBase.Utils.Constants;
+using UnityEngine;
+
+namespace BattleBase.Gameplay.Actors.Movement
+{
+    [CreateAssetMenu(
+    fileName = nameof(AirMoveComponentSource),
+    menuName = AssetMenuPaths.ScriptableObjects + nameof(ActorConfig) + "/" + nameof(AirMoveComponentSource))]
+    public class AirMoveComponentSource : ActorComponentSource, IAirMoveComponentSource
+    {
+        [SerializeField] private MoveConfig _healthConfig;
+        [SerializeField][Min(1f)] private float _height = 20f;
+
+        public IMoveConfig Config => _healthConfig;
+
+        public float Height => _height;
+    }
+}

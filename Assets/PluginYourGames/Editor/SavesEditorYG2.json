@@ -1,5 +1,5 @@
 {
-    "idSave": 46,
+    "idSave": 49,
     "SavesData": {
         "_volumeData": {
             "_generalVolume": 1.0,
@@ -7,7 +7,7 @@
             "_sfxVolume": 0.800000011920929
         },
         "_colorData": {
-            "_playerColorIndex": 3,
+            "_playerColorIndex": 0,
             "_enemyColorIndex": 5
         },
         "_territoryData": {
@@ -19,10 +19,10 @@
                 5,
                 2
             ],
-            "_selectedTerritory": 1
+            "_selectedTerritory": 0
         },
         "_shopData": {
-            "_credits": 13863,
+            "_credits": 15648,
             "_unitUpgrades": [
                 {
                     "_name": "",

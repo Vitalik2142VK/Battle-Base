@@ -91,6 +91,7 @@ namespace BattleBase.Gameplay.Actors.Movement
             _agent.SetDestination(_waypoint.Position);
         }
 
-        private void OnStop() => _agent.isStopped = true;
+        private void OnStop() => 
+            _agent.isStopped = true;
     }
 }

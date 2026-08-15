@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LightFactory
   m_EditorClassIdentifier: 
   _data:
-    _prefab: {fileID: 6814068887016453725, guid: 25efa4f5545b17d47a221807259c6c01,
+    _prefab: {fileID: 6814068887016453725, guid: 7805f410c5596d847988ba4d50bc18f3,
       type: 3}
     _icon: {fileID: 21300000, guid: fd16e1a26e19df94aba6d94a81855bb7, type: 3}
     _nameConfig: {fileID: 11400000, guid: 94f181ef406f695448f8bf3e30f87340, type: 2}
