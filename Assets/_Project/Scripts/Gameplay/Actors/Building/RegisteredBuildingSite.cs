@@ -50,7 +50,7 @@ namespace BattleBase.Gameplay.Actors.Building
             _notifier.Spawned -= OnSetActor;
 
             if (_destroyableEvents != null)
-                _destroyableEvents.Destroyed -= OnShowBuildingSite;
+                _destroyableEvents.Destroyed -= OnActivateBuildingSite;
         }
 
         public bool TryGetProductionStorage(out IProductionStorage productionStorage)
@@ -85,19 +85,19 @@ namespace BattleBase.Gameplay.Actors.Building
             {
                 _currentActor = actor;
                 _destroyableEvents = component;
-                _destroyableEvents.Destroyed += OnShowBuildingSite;
-                _buildingSite.Unselect();
+                _destroyableEvents.Destroyed += OnActivateBuildingSite;
+                _buildingSite.Hide();
 
                 ActorAdded?.Invoke(this);
                 StateChanged?.Invoke();
             }
         }
 
-        private void OnShowBuildingSite()
+        private void OnActivateBuildingSite()
         {
             _currentActor = _buildingSiteActor;
-            _buildingSite.Select();
-            _destroyableEvents.Destroyed -= OnShowBuildingSite;
+            _buildingSite.Show();
+            _destroyableEvents.Destroyed -= OnActivateBuildingSite;
             _destroyableEvents = null;
 
             ActorMissing?.Invoke(this);

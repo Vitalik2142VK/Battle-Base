@@ -10,6 +10,8 @@ namespace BattleBase.Gameplay.Actors.Types
         private Selectable _selectable;
         private int _id;
 
+        [SerializeField] private GameObject[] _hidedObjects;
+
         [field: SerializeField][Range(0, 10)] private int _numberLine = 1;
 
         [field: SerializeField] public SiteType Type { get; private set; }
@@ -43,5 +45,17 @@ namespace BattleBase.Gameplay.Actors.Types
 
         public void EstablishInactiveState() => 
             _selectable.SetInactiveState();
+
+        public void Show()
+        {
+            foreach (var gameObject in _hidedObjects)
+                gameObject.SetActive(true);
+        }
+
+        public void Hide()
+        {
+            foreach (var gameObject in _hidedObjects)
+                gameObject.SetActive(false);
+        }
     }
 }

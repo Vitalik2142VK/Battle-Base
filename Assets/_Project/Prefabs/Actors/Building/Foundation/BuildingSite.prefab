@@ -235,6 +235,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _viewComponents: []
+  _hidedObjects:
+  - {fileID: 1184572026871751672}
   _numberLine: 1
   <Type>k__BackingField: 0
   <Team>k__BackingField: 0

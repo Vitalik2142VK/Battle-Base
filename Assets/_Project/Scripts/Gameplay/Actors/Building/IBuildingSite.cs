@@ -11,5 +11,9 @@ namespace BattleBase.Gameplay.Actors.Building
         public void Select();
 
         public void Unselect();
+
+        public void Show();
+
+        public void Hide();
     }
 }

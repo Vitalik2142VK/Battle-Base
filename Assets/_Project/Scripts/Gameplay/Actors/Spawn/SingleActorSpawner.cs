@@ -92,7 +92,11 @@ namespace BattleBase.Gameplay.Actors.Spawn
                 throw new ArgumentNullException(nameof(actorData));
 
             if (_currentActorData == actorData)
+            {
                 CancelSpawn();
+                RemoveActorToSpawnData(_currentActorData);
+                _currentActorData = null;
+            }
         }
 
         protected override void Spawn()

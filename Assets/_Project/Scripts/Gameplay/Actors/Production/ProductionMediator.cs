@@ -21,7 +21,7 @@ namespace BattleBase.Gameplay.Actors.Production
         private IClickDetector _clickDetector;
         private ISelector _selector;
         private ISelectable _selectable;
-        private ProductionController _productionController;
+        private ProductionContext _productionContext;
 
         [Inject]
         public void Construct(
@@ -32,7 +32,7 @@ namespace BattleBase.Gameplay.Actors.Production
         {
             _clickDetector = clickDetector ?? throw new ArgumentNullException(nameof(clickDetector));
             _selector = selector ?? throw new ArgumentNullException(nameof(selector));
-            _productionController = new ProductionController(
+            _productionContext = new ProductionContext(
                 productionItemFactory,
                 buildingSitesStorage,
                 TeamType.Player);
@@ -42,14 +42,14 @@ namespace BattleBase.Gameplay.Actors.Production
         {
             _clickDetector.Clicked += OnClickDetected;
 
-            if (_productionController != null)
-                _productionController.ProductionsChanged += OnSelectViewSpawner;
+            if (_productionContext != null)
+                _productionContext.ProductionsChanged += OnSelectViewSpawner;
         }
 
         private void OnDisable()
         {
             _clickDetector.Clicked -= OnClickDetected;
-            _productionController.ProductionsChanged -= OnSelectViewSpawner;
+            _productionContext.ProductionsChanged -= OnSelectViewSpawner;
         }
 
         private void OnClickDetected(Collider collider)
@@ -67,7 +67,7 @@ namespace BattleBase.Gameplay.Actors.Production
                 if (DebugSetting.IsAiDisbale) //todo remove on release
                 {
                     collider.TryGetComponent(out _selectable);
-                    _productionController.HandleProductionView(productionView);
+                    _productionContext.HandleProductionView(productionView);
 
                     OnSelectViewSpawner();
 
@@ -77,7 +77,7 @@ namespace BattleBase.Gameplay.Actors.Production
                 if (productionView.TeamType == TeamType.Player)
                 {
                     collider.TryGetComponent(out _selectable);
-                    _productionController.HandleProductionView(productionView);
+                    _productionContext.HandleProductionView(productionView);
 
                     OnSelectViewSpawner();
 
@@ -90,7 +90,7 @@ namespace BattleBase.Gameplay.Actors.Production
 
         private void HandleUnselect()
         {
-            _productionController.Clear();
+            _productionContext.Clear();
             _selector.Unselect();
             _productionPanel.Hide();
             _items.Clear();
@@ -103,7 +103,7 @@ namespace BattleBase.Gameplay.Actors.Production
 
             _productionPanel.ClearContext();
             _items.Clear();
-            _items.AddRange(_productionController.GetProductionItems());
+            _items.AddRange(_productionContext.GetAvailableItems());
 
             if (_items.Count == 0)
                 _productionPanel.Hide();
@@ -119,10 +119,12 @@ namespace BattleBase.Gameplay.Actors.Production
 
         private void OnSelectItem(IProductionData data)
         {
+            OnSelectViewSpawner();
+
             if (_selectable != null && data.IsHidden == false)
             {
-                HandleUnselect();
-                _selectable = null;
+                //HandleUnselect();
+                //_selectable = null;
             }
         }
     }

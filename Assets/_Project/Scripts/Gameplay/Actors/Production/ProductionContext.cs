@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.Production
 {
-    public class ProductionController
+    public class ProductionContext
     {
         private readonly IProductionItemsFactory _productionItemFactory;
         private readonly IBuildingSitesStorage _buildingSitesStorage;
@@ -16,7 +16,7 @@ namespace BattleBase.Gameplay.Actors.Production
 
         public event Action ProductionsChanged;
 
-        public ProductionController(
+        public ProductionContext(
             IProductionItemsFactory productionItemFactory,
             IBuildingSitesStorage buildingSitesStorage,
             TeamType teamType)
@@ -26,7 +26,7 @@ namespace BattleBase.Gameplay.Actors.Production
             _teamType = teamType;
         }
 
-        public IEnumerable<IProductionItem> GetProductionItems()
+        public IEnumerable<IProductionItem> GetAvailableItems()
         {
             IEnumerable<IProductionOption> productionOptions;
 
