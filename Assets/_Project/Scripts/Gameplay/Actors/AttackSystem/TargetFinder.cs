@@ -18,7 +18,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
         private List<ITarget> _targets;
         private IAttackerPresenter _presenter;
-        private IWeaponRange _weaponRange;
+        private ITargetFinderConfig _targetConfig;
         private ITeamable _teamable;
         private Transform _transform;
         private Collider[] _foundUnits;
@@ -41,17 +41,17 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
         private void OnDrawGizmosSelected()
         {
-            if (_isDebugEnable == false || gameObject.activeSelf == false || _weaponRange == null)
+            if (_isDebugEnable == false || gameObject.activeSelf == false || _targetConfig == null)
                 return;
 
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, _weaponRange.MaxRange);
+            Gizmos.DrawWireSphere(transform.position, _targetConfig.SearchRadius);
         }
 
-        public void Init(IAttackerPresenter presenter, IWeaponRange weaponRange, ITeamable teamable)
+        public void Init(IAttackerPresenter presenter, ITargetFinderConfig targetConfig, ITeamable teamable)
         {
             _presenter ??= presenter ?? throw new ArgumentNullException(nameof(presenter));
-            _weaponRange ??= weaponRange ?? throw new ArgumentNullException(nameof(weaponRange));
+            _targetConfig ??= targetConfig ?? throw new ArgumentNullException(nameof(targetConfig));
             _teamable ??= teamable ?? throw new ArgumentNullException(nameof(teamable));
         }
 
@@ -59,7 +59,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         {
             while (gameObject.activeSelf)
             {
-                if (_weaponRange == null)
+                if (_targetConfig == null)
                     yield return null;
 
                 if (TryFindEnemies())
@@ -76,7 +76,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
             int count = Physics.OverlapSphereNonAlloc(
                 _transform.position,
-                _weaponRange.MaxRange,
+                _targetConfig.SearchRadius,
                 _foundUnits,
                 _findedLayerMask,
                 QueryTriggerInteraction.Ignore);

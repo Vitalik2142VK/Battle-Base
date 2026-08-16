@@ -15,3 +15,4 @@ MonoBehaviour:
   _weaponConfig:
   - {fileID: 11400000, guid: f6dc1bde7ea7c5b4cb87063e14f9fb95, type: 2}
   - {fileID: 11400000, guid: a03ccd95f9ebda841a478b8d286596ed, type: 2}
+  _searchRadius: 45

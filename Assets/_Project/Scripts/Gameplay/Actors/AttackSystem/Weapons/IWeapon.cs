@@ -9,6 +9,8 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Weapons
 
         public bool CanAttack { get; }
 
+        public bool IsReloaded { get; }
+
         public void Init(IProjectileController projectileController);
 
         public void Enable();

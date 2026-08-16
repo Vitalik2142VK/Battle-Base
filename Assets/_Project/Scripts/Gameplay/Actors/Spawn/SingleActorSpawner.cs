@@ -72,8 +72,14 @@ namespace BattleBase.Gameplay.Actors.Spawn
             if (actorData == null)
                 throw new ArgumentNullException(nameof(actorData));
 
+            if (_currentActorData == actorData)
+                return;
+
             if (ConstrainActorData(actorData))
             {
+                if (_currentActorData != null)
+                    CancelSpawnActor(_currentActorData);
+
                 _currentActorData = actorData;
                 _timer.SetWaitTime(_currentActorData.ConstructionTime);
                 _timer.RestartTimer();

@@ -11,6 +11,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
     public class AttackComponentSource : ActorComponentSource, IAttackComponentSource
     {
         [SerializeField] private List<WeaponConfig> _weaponConfig;
+        [SerializeField][Min(5f)] private float _searchRadius = 30f;
 
         private void OnValidate()
         {
@@ -19,9 +20,17 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
                 if (_weaponConfig[i] == null)
                     _weaponConfig.RemoveAt(i--);
             }
+
+            foreach (var weaponConfig in _weaponConfig)
+            {
+                if (_searchRadius < weaponConfig.MaxRange)
+                    _searchRadius = weaponConfig.MaxRange;
+            }
         }
 
         public IEnumerable<IWeaponConfig> Configs => _weaponConfig;
+
+        public float SearchRadius => _searchRadius;
 
         public bool IsSingle => _weaponConfig.Count == 1;
     }

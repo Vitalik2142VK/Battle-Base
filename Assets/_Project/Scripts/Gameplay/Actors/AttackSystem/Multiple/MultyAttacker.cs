@@ -30,6 +30,8 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Multiple
 
         public ITarget CurrentTarget => _mainAttacker.CurrentTarget;
 
+        public ITargetFinderConfig TargetFinderConfig => _mainAttacker.TargetFinderConfig;
+
         public void Init(ITargetController targetController, IProjectileController projectileController) => 
             _mainAttacker.Init(targetController, projectileController);
 
