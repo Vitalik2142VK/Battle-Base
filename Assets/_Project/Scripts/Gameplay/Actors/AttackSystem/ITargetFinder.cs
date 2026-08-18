@@ -1,9 +1,7 @@
-﻿using BattleBase.Gameplay.Actors.AttackSystem.Weapons;
-
-namespace BattleBase.Gameplay.Actors.AttackSystem
+﻿namespace BattleBase.Gameplay.Actors.AttackSystem
 {
     public interface ITargetFinder : IActorViewComponent
     {
-        public void Init(IAttackerPresenter presenter, IWeaponRange weaponRange, ITeamable teamable);
+        public void Init(IAttackerPresenter presenter, ITargetFinderConfig targetConfig, ITeamable teamable);
     }
 }

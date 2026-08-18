@@ -18,7 +18,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
             foreach (var config in attackSource.Configs)
             {
-                Attacker attacker = CreateAttacker(config);
+                Attacker attacker = CreateAttacker(config, attackSource);
 
                 if (attackSource.IsSingle)
                     return attacker;
@@ -32,11 +32,11 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             return multyAttacker;
         }
 
-        private Attacker CreateAttacker(IWeaponConfig weaponConfig)
+        private Attacker CreateAttacker(IWeaponConfig weaponConfig, ITargetFinderConfig targetConfig)
         {
             Weapon weapon = new(weaponConfig);
 
-            return new Attacker(weapon);
+            return new Attacker(weapon, targetConfig);
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.AttackSystem
 {
-    public interface IAttackComponentSource : IComponentSource
+    public interface IAttackComponentSource : IComponentSource, ITargetFinderConfig
     {
         public IEnumerable<IWeaponConfig> Configs { get; }
 

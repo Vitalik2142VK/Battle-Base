@@ -29,6 +29,8 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Weapons
 
         public bool CanAttack { get; private set; }
 
+        public bool IsReloaded { get; private set; }
+
         public void Init(IProjectileController projectileController)
         {
             _projectileController ??= projectileController ?? throw new ArgumentNullException(nameof(projectileController));
@@ -37,6 +39,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Weapons
         public void Enable()
         {
             CanAttack = true;
+            IsReloaded = false;
 
             Reload();
         }
@@ -44,6 +47,9 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Weapons
         public void Update(float delta)
         {
             _timer.Tick(delta);
+
+            if (IsReloaded && _timer.IsTimeUp)
+                Reload();
 
             if (_timer.IsTimeUp)
                 CanAttack = true;
@@ -62,21 +68,23 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Weapons
             _projectileController.ShootMissile(target, _damage);
 
             if (--_currentNumberShells > 0)
-            {
                 _timer.SetWaitTime(Config.RateShooting);
-            }
             else
-            {
-                Reload();
-            }
+                BeginReaload();
 
             _timer.RestartTimer();
         }
 
-        private void Reload()
+        private void BeginReaload()
         {
             _timer.SetWaitTime(Config.SpeedReload);
+            IsReloaded = true;
+        }
+
+        private void Reload()
+        {
             _currentNumberShells = Config.NumberShells;
+            IsReloaded = false;
         }
 
         public void Upgrade(IWeaponConfigModificator modificator) =>

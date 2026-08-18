@@ -13,6 +13,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         private readonly ITargetingProfile _targetingProfile;
 
         private ITarget _currentTarget;
+        private bool _hasPriorityTarget;
 
         public TargetController(
             IActorPosition actorPosition,
@@ -22,6 +23,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             _actorPosition = actorPosition ?? throw new ArgumentNullException(nameof(actorPosition));
             _weaponRange = weaponRange ?? throw new ArgumentNullException(nameof(weaponRange));
             _targetingProfile = targetingProfile ?? throw new ArgumentNullException(nameof(targetingProfile));
+            _hasPriorityTarget = false;
         }
 
         public ITarget CurrentTarget => _currentTarget;
@@ -37,6 +39,19 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             {
                 if (TryFindTarget(targets, out ITarget newTarget))
                 {
+                    _currentTarget = newTarget;
+                    _currentTarget.Destroyed += OnLoseTarget;
+
+                    return true;
+                }
+            }
+
+            if (_hasPriorityTarget == false)
+            {
+                if (TryFindPriorityTarget(targets, out ITarget newTarget))
+                {
+                    LoseTarget();
+
                     _currentTarget = newTarget;
                     _currentTarget.Destroyed += OnLoseTarget;
 
@@ -67,21 +82,8 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
         private bool TryFindTarget(IEnumerable<ITarget> targets, out ITarget newTarget)
         {
-            foreach (var priorityActorType in _targetingProfile.PriorityActorTypes)
-            {
-                foreach (var target in targets)
-                {
-                    if (IsTargetInNoRangeDistance(target))
-                        continue;
-
-                    if (priorityActorType.ActorMask.Contains(target.ActorMask))
-                    {
-                        newTarget = target;
-
-                        return true;
-                    }
-                }
-            }
+            if (TryFindPriorityTarget(targets, out newTarget))
+                return true;
 
             foreach (var target in targets)
             {
@@ -91,6 +93,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
                 if (target.ActorMask.ContainsAny(_targetingProfile.NotAttacked) == false)
                 {
                     newTarget = target;
+                    _hasPriorityTarget = false;
 
                     return true;
                 }
@@ -101,13 +104,40 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             return false;
         }
 
-        public bool IsTargetInNoRangeDistance(ITarget target) =>
+        private bool TryFindPriorityTarget(IEnumerable<ITarget> targets, out ITarget newTarget)
+        {
+            foreach (var priorityActorType in _targetingProfile.PriorityActorTypes)
+            {
+                foreach (var target in targets)
+                {
+                    if (IsTargetInNoRangeDistance(target))
+                        continue;
+
+                    if (priorityActorType.ActorMask.Contains(target.ActorMask))
+                    {
+                        newTarget = target;
+                        _hasPriorityTarget = true;
+
+                        return true;
+                    }
+                }
+            }
+
+            newTarget = null;
+
+            return false;
+        }
+
+        private bool IsTargetInNoRangeDistance(ITarget target) =>
             _actorPosition.Position.IsInRangeDistance(
                 target.Position, 
                 _weaponRange.MinRange, 
                 _weaponRange.MaxRange) == false;
 
-        private void OnLoseTarget() =>
+        private void OnLoseTarget()
+        {
             LoseTarget();
+            _hasPriorityTarget = false;
+        }
     }
 }

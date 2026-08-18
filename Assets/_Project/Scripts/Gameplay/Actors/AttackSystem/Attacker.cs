@@ -19,9 +19,11 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         public event Action AttackActivated;
         public event Action AttackDeactivated;
 
-        public Attacker(IWeapon weapon)
+        public Attacker(IWeapon weapon, ITargetFinderConfig targetFinderConfig)
         {
             _weapon = weapon ?? throw new ArgumentNullException(nameof(weapon));
+            TargetFinderConfig = targetFinderConfig ?? throw new ArgumentNullException(nameof(targetFinderConfig));
+
             _isAiming = false;
             _isAttacking = false;
         }
@@ -31,6 +33,8 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         public IWeaponConfig WeaponConfig => _weapon.Config;
 
         public ITarget CurrentTarget => _targetController.CurrentTarget;
+
+        public ITargetFinderConfig TargetFinderConfig { get; }
 
         public void Init(ITargetController targetController, IProjectileController projectileController)
         {
@@ -74,6 +78,11 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
                     Attacked?.Invoke();
                 }
+            }
+            else
+            {
+                if (_weapon.IsReloaded)
+                    _weapon.Update(delta);
             }
 
             if (_targetController.HasTarget == false && _isAttacking)
