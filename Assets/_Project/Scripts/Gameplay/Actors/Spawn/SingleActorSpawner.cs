@@ -17,6 +17,9 @@ namespace BattleBase.Gameplay.Actors.Spawn
         private bool _isDisable;
 
         public override event Action<IActor> Spawned;
+        public override event Action SpawnStarted;
+        public override event Action SpawnCancled;
+        public override event Action SpawnFinished;
 
         public SingleActorSpawner(
             IEnumerable<IActorData> actorsToCreate,
@@ -65,6 +68,8 @@ namespace BattleBase.Gameplay.Actors.Spawn
             }
 
             FinishSpawn();
+
+            SpawnFinished?.Invoke();
         }
 
         public override void SelectActorData(IActorData actorData)
@@ -84,6 +89,8 @@ namespace BattleBase.Gameplay.Actors.Spawn
                 _timer.SetWaitTime(_currentActorData.ConstructionTime);
                 _timer.RestartTimer();
 
+                SpawnStarted?.Invoke();
+
                 AddActorToSpawnData(actorData);
             }
             else
@@ -102,6 +109,8 @@ namespace BattleBase.Gameplay.Actors.Spawn
                 CancelSpawn();
                 RemoveActorToSpawnData(_currentActorData);
                 _currentActorData = null;
+
+                SpawnCancled?.Invoke();
             }
         }
 

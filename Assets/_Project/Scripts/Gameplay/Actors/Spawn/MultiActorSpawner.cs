@@ -19,6 +19,9 @@ namespace BattleBase.Gameplay.Actors.Spawn
         private bool _isDisable;
 
         public override event Action<IActor> Spawned;
+        public override event Action SpawnStarted;
+        public override event Action SpawnCancled;
+        public override event Action SpawnFinished;
 
         public MultiActorSpawner(
             IEnumerable<IActorData> actorsToCreate,
@@ -74,7 +77,11 @@ namespace BattleBase.Gameplay.Actors.Spawn
             }
 
             if (_powerRegistry.TryReserve(Teamable.TeamType, _currentActorData.Power))
+            {
                 FinishSpawn();
+
+                SpawnFinished?.Invoke();
+            }
         }
 
         public override void SelectActorData(IActorData actorData)
@@ -106,6 +113,8 @@ namespace BattleBase.Gameplay.Actors.Spawn
             {
                 CancelSpawn();
                 _currentActorData = null;
+
+                SpawnCancled?.Invoke();
             }
             else
             {
@@ -140,6 +149,8 @@ namespace BattleBase.Gameplay.Actors.Spawn
             _currentActorData = actorData;
             _timer.SetWaitTime(_currentActorData.ConstructionTime);
             _timer.RestartTimer();
+
+            SpawnStarted?.Invoke();
         }
 
         private IActorData GetNextActorData()

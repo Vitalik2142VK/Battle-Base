@@ -410,7 +410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26659cf0bc49fc9419ea986a0d9df264, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _parrent: {fileID: 107109985057329230}
+  _parent: {fileID: 107109985057329230}
   _trajectory:
     serializedVersion: 2
     m_Curve:

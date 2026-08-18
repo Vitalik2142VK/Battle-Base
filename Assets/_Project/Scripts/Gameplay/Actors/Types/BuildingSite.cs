@@ -1,5 +1,6 @@
 using BattleBase.Gameplay.Actors.Building;
 using BattleBase.Gameplay.Actors.Visual.Select;
+using System;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.Types
@@ -7,10 +8,12 @@ namespace BattleBase.Gameplay.Actors.Types
     [RequireComponent(typeof(Selectable))]
     public class BuildingSite : ActorView, IBuildingSite
     {
+        [SerializeField] private GameObject[] _hidedObjects;
+
         private Selectable _selectable;
         private int _id;
 
-        [SerializeField] private GameObject[] _hidedObjects;
+        public event Action Showed;
 
         [field: SerializeField][Range(0, 10)] private int _numberLine = 1;
 
@@ -31,7 +34,7 @@ namespace BattleBase.Gameplay.Actors.Types
         public void Init(IBuildingSiteIdCreator idCreator)
         {
             if (idCreator == null)
-                throw new System.ArgumentNullException(nameof(idCreator));
+                throw new ArgumentNullException(nameof(idCreator));
 
             if (_id < 0)
                 _id = idCreator.Create();
@@ -50,6 +53,8 @@ namespace BattleBase.Gameplay.Actors.Types
         {
             foreach (var gameObject in _hidedObjects)
                 gameObject.SetActive(true);
+
+            Showed?.Invoke();
         }
 
         public void Hide()

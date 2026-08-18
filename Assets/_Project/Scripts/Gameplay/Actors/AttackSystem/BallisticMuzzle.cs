@@ -6,7 +6,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 {
     public class BallisticMuzzle : MonoBehaviour, IAimComponent
     {
-        [SerializeField] private Transform _parrent;
+        [SerializeField] private Transform _parent;
         [SerializeField] private AnimationCurve _trajectory = AnimationCurve.Linear(0f, 75f, 1f, 35f);
         [SerializeField][Min(1f)] private float _speedRotate = 25f;
         [SerializeField][Min(0.1f)] private float _angleTolerance = 5f;
@@ -34,7 +34,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             if (delta < 0f)
                 throw new System.ArgumentOutOfRangeException(nameof(delta));
 
-            Vector3 localTarget = _parrent.InverseTransformPoint(targetPosition);
+            Vector3 localTarget = _parent.InverseTransformPoint(targetPosition);
 
             float horizontalDistance = Mathf.Abs(localTarget.z);
 

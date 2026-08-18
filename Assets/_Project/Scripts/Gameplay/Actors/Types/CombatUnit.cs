@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.Types
 {
-    public class CombatUnitView : ActorView
+    public class CombatUnit : ActorView
     {
         private void Reset()
         {

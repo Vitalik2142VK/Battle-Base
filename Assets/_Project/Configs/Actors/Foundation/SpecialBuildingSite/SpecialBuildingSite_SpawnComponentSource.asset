@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: SpecialBuildingSite_SpawnComponentSource
   m_EditorClassIdentifier: 
   _actorsConfigs:
+  - {fileID: 11400000, guid: 1f46563fef4f1a74596c038054377828, type: 2}
   - {fileID: 11400000, guid: 8447eaf3ba3c32d4a84099ea8db27f47, type: 2}
