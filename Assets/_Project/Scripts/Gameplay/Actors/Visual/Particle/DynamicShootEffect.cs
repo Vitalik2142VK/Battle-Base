@@ -1,17 +1,14 @@
-﻿using UnityEngine;
+﻿using BattleBase.Gameplay.Actors.AttackSystem;
+using UnityEngine;
 
-namespace BattleBase.Gameplay.Actors.AttackSystem
+namespace BattleBase.Gameplay.Actors.Visual.Particle
 {
-    [RequireComponent(typeof(ParticleSystem))]
-    public class ShootEffect : MonoBehaviour, IAttackerViewComponent
+    public class DynamicShootEffect : MonoBehaviour, IAttackerViewComponent
     {
-        private IAttackNotifier _attackNotifier;
-        private ParticleSystem _particle;
+        [SerializeField] private ParticleSystem[] _shotEffects;
 
-        private void Awake()
-        {
-            _particle = GetComponent<ParticleSystem>();
-        }
+        private IAttackNotifier _attackNotifier;
+        private int _currentIndexPoint = 0;
 
         private void OnEnable()
         {
@@ -33,6 +30,12 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
                 _attackNotifier.Attacked += OnPlayShot;
         }
 
-        private void OnPlayShot() => _particle.Play();
+        private void OnPlayShot()
+        {
+            if (_currentIndexPoint >= _shotEffects.Length)
+                _currentIndexPoint = 0;
+
+            _shotEffects[_currentIndexPoint++].Play();
+        }
     }
 }

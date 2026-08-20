@@ -8,10 +8,10 @@ namespace BattleBase.Gameplay.Actors.Movement
     menuName = AssetMenuPaths.ScriptableObjects + nameof(ActorConfig) + "/" + nameof(AirMoveComponentSource))]
     public class AirMoveComponentSource : ActorComponentSource, IAirMoveComponentSource
     {
-        [SerializeField] private MoveConfig _healthConfig;
+        [SerializeField] private MoveConfig _moveConfig;
         [SerializeField][Min(1f)] private float _height = 20f;
 
-        public IMoveConfig Config => _healthConfig;
+        public IMoveConfig Config => _moveConfig;
 
         public float Height => _height;
     }

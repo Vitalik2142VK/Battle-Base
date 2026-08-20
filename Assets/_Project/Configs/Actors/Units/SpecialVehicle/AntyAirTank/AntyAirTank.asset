@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65d2e2c2420ac6b45b0d480f9633fd48, type: 3}
+  m_Name: AntyAirTank
+  m_EditorClassIdentifier: 
+  _data:
+    _prefab: {fileID: 5923623242493629742, guid: f422ba28b9d1dbe45be22d390a24c2a2,
+      type: 3}
+    _icon: {fileID: 0}
+    _nameConfig: {fileID: 11400000, guid: 31fdcea79f43f6b4dbfcd05fc280a472, type: 2}
+    _constructionTime: 6
+    _price: 280
+    _power: 4
+  _components:
+  - {fileID: 11400000, guid: bd20d72badc0f0447be75efeaec61a28, type: 2}
+  - {fileID: 11400000, guid: 38e2fd7e3b9e9e74a90a5c055281a926, type: 2}
+  - {fileID: 11400000, guid: dcff3aa5b3f07a44e9cf05ff75b30f09, type: 2}
+  - {fileID: 11400000, guid: ccf4003198e1a5b4e87047c45e0a7f1d, type: 2}

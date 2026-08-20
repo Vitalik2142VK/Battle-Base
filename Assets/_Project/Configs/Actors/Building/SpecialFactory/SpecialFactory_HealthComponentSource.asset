@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SpecialFactory_HealthComponentSource
   m_EditorClassIdentifier: 
   _healthConfig:
-    _maxHealth: 1300
+    _maxHealth: 1500
     _armorCoefficient: 0
   _type: 1

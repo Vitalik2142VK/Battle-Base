@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f313ef8d35747d148ae218f3540aac47, type: 3}
   m_Name: LightHelicopter_AirMoveComponentSource
   m_EditorClassIdentifier: 
-  _healthConfig:
+  _moveConfig:
     _speed: 12
     _angularSpeed: 270
-    _acceleration: 20
+    _acceleration: 10
     _stoppingDistance: 5
   _height: 20
