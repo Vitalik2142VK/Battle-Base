@@ -14,6 +14,8 @@ using BattleBase.Gameplay.Actors.Energy;
 using BattleBase.Gameplay.Actors.HealthSystem;
 using BattleBase.Gameplay.Actors.ImproveSystem;
 using BattleBase.Gameplay.Actors.Movement;
+using BattleBase.Gameplay.Actors.Movement.Air;
+using BattleBase.Gameplay.Actors.Movement.Jet;
 using BattleBase.Gameplay.Actors.Production;
 using BattleBase.Gameplay.Actors.Spawn;
 using BattleBase.Gameplay.Actors.Visual.Particle;
@@ -78,6 +80,7 @@ namespace BattleBase.DI
             _builder.Register<IComponentFactory, AttackerFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, MoverFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, AirMoverFactory>(Lifetime.Scoped);
+            _builder.Register<IComponentFactory, JetMoverFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, SingleActorSpawnerFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, MultiActorSpawnerFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, ActorStateMachineFactory>(Lifetime.Scoped);

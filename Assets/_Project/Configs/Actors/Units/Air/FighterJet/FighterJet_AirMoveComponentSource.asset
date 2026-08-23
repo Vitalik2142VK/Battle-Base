@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveConfig:
     _speed: 20
-    _angularSpeed: 270
+    _angularSpeed: 60
     _acceleration: 10
     _stoppingDistance: 5
   _height: 23

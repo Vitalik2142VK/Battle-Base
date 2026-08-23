@@ -1,4 +1,4 @@
-namespace BattleBase.Gameplay.Actors.Movement
+namespace BattleBase.Gameplay.Actors.Movement.Air
 {
     public interface IAirMoveComponentSource : IMoveComponentSource
     {

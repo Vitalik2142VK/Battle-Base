@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BattleBase.Gameplay.Actors.Movement
+namespace BattleBase.Gameplay.Actors.Movement.Air
 {
     public class AirMover : IMover
     {

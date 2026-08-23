@@ -1,11 +1,12 @@
 using BattleBase.Utils.Constants;
 using UnityEngine;
 
-namespace BattleBase.Gameplay.Actors.Movement
+namespace BattleBase.Gameplay.Actors.Movement.Air
 {
     [CreateAssetMenu(
-    fileName = nameof(AirMoveComponentSource),
-    menuName = AssetMenuPaths.ScriptableObjects + nameof(ActorConfig) + "/" + nameof(AirMoveComponentSource))]
+        fileName = nameof(AirMoveComponentSource),
+        menuName = AssetMenuPaths.ScriptableObjects + nameof(ActorConfig) + AssetMenuPaths.Movement
+        + nameof(AirMoveComponentSource))]
     public class AirMoveComponentSource : ActorComponentSource, IAirMoveComponentSource
     {
         [SerializeField] private MoveConfig _moveConfig;

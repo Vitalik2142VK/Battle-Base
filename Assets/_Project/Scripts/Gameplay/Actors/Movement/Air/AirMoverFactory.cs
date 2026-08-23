@@ -1,6 +1,6 @@
 using System;
 
-namespace BattleBase.Gameplay.Actors.Movement
+namespace BattleBase.Gameplay.Actors.Movement.Air
 {
     public class AirMoverFactory : IComponentFactory
     {

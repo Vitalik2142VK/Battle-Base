@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.AI;
+using BattleBase.Utils.Extensions;
 
 namespace BattleBase.Gameplay.Actors.Movement
 {
@@ -37,9 +38,11 @@ namespace BattleBase.Gameplay.Actors.Movement
             if (_waypoint == null)
                 return;
 
-            if (Vector3.Distance(_waypoint.Position, _transform.position) < _distanceFinish + _agent.stoppingDistance
+            if (_transform.position.IsWithinDistance(_waypoint.Position, _distanceFinish + _agent.stoppingDistance)
                 && _agent.isStopped == false)
-                ReachPoint();
+            {
+                _presenter.ReachPoint();
+            }
         }
 
         private void OnDisable()
@@ -71,11 +74,6 @@ namespace BattleBase.Gameplay.Actors.Movement
                 _moverEvents.Moved += OnMove;
                 _moverEvents.Stoped += OnStop;
             }
-        }
-
-        private void ReachPoint()
-        {
-            _presenter.ReachPoint();
         }
 
         private void OnSetWaypoint(IWaypoint waypoint)

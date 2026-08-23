@@ -195,8 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _aimComponents:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 6494127815680341901}
 --- !u!1 &4561847660728282683
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,6 +257,7 @@ GameObject:
   - component: {fileID: 7184598050098246381}
   - component: {fileID: 9115728070258317877}
   - component: {fileID: 4830241397895366054}
+  - component: {fileID: 5134353605159655497}
   m_Layer: 6
   m_Name: FighterJet
   m_TagString: Untagged
@@ -403,6 +403,19 @@ MonoBehaviour:
   _renderers:
   - {fileID: 5523926223570775190}
   _targetMaterial: {fileID: 2100000, guid: 2182440ddf123974fb0dbf1a13fb7786, type: 2}
+--- !u!114 &5134353605159655497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4835168311171162677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1c26908f28af864d922f77977b9026b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _distanceFinish: 0.5
 --- !u!1 &6494127815680341901
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,6 +427,7 @@ GameObject:
   - component: {fileID: 3176839686762565234}
   - component: {fileID: 7742649278948473019}
   - component: {fileID: 348018631416378839}
+  - component: {fileID: 4545009989901011107}
   m_Layer: 0
   m_Name: DynamicShotPoint
   m_TagString: Untagged
@@ -470,6 +484,21 @@ MonoBehaviour:
   _shotEffects:
   - {fileID: 1928802207393833810}
   - {fileID: 1124767185915454853}
+--- !u!114 &4545009989901011107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6494127815680341901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a1f5c6c5a368364e858c600beedff77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _parrent: {fileID: 6693406220486268921}
+  _speedRotate: 30
+  _dotAim: 0.95
 --- !u!1 &6629263762114348279
 GameObject:
   m_ObjectHideFlags: 0
