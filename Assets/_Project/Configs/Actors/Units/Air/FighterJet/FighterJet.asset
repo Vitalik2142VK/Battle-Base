@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65d2e2c2420ac6b45b0d480f9633fd48, type: 3}
+  m_Name: FighterJet
+  m_EditorClassIdentifier: 
+  _data:
+    _prefab: {fileID: 3856440751237957287, guid: 47e0f4681e84ac2489d0edfe32f57e95,
+      type: 3}
+    _icon: {fileID: 0}
+    _nameConfig: {fileID: 11400000, guid: 6b1803cbf1651344a8e28344ea701a31, type: 2}
+    _constructionTime: 9
+    _price: 535
+    _power: 6
+  _components:
+  - {fileID: 11400000, guid: ce9259ec9a4f94d4580401c2332cf973, type: 2}
+  - {fileID: 11400000, guid: 05f86fc29b8a2c24d8059bc2ecbb2949, type: 2}
+  - {fileID: 11400000, guid: ef372c7f7a5ace04bbf8636f6da7bc5f, type: 2}
+  - {fileID: 11400000, guid: f592145dde895d94eb5b85fb70e901ef, type: 2}

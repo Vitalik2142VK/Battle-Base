@@ -84,9 +84,7 @@ namespace BattleBase.Gameplay.Actors
             if (index < positions.Length)
             {
                 for (int i = index; i < positions.Length; i++)
-                {
                     positions[i] = null;
-                }
             }
 
             return index;
