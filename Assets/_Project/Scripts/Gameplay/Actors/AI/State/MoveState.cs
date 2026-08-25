@@ -20,11 +20,5 @@ namespace BattleBase.Gameplay.Actors.AI.State
         {
             _mover.Stop();
         }
-
-        public void Update(float _)
-        {
-            if (_mover.CanMove == false)
-                _mover.Stop();
-        }
     }
 }

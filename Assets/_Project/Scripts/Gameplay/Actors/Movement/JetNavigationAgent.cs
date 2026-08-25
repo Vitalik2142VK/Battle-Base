@@ -1,8 +1,9 @@
 using System;
 using UnityEngine;
 
-namespace BattleBase.Gameplay.Actors.Movement.Jet
+namespace BattleBase.Gameplay.Actors.Movement
 {
+    [RequireComponent(typeof(OffsetUnwrapper))]
     public class JetNavigationAgent : MonoBehaviour, INavigationAgent
     {
         [SerializeField][Min(0.1f)] private float _distanceFinish = 0.5f;
@@ -12,12 +13,14 @@ namespace BattleBase.Gameplay.Actors.Movement.Jet
         private IWaypoint _waypoint;
         private IMoveConfig _config;
         private Transform _transform;
+        private OffsetUnwrapper _unwrapper;
 
         private bool _isMoving;
 
         private void Awake()
         {
             _transform = transform;
+            _unwrapper = GetComponent<OffsetUnwrapper>();
         }
 
         private void OnEnable()
@@ -92,13 +95,26 @@ namespace BattleBase.Gameplay.Actors.Movement.Jet
 
         private void ReachPoint()
         {
+            if (_unwrapper.TryWithdraw(out IWaypoint waypoint))
+            {
+                _waypoint = waypoint;
+
+                return;
+            }
+
             _isMoving = false;
             _presenter.ReachPoint();
         }
 
         private void OnSetWaypoint(IWaypoint waypoint)
         {
-            _waypoint = waypoint ?? throw new ArgumentNullException(nameof(waypoint));
+            if (waypoint == null)
+                throw new ArgumentNullException(nameof(waypoint));
+
+            if (_unwrapper.TryPerformUturn(waypoint, out IWaypoint uturnWaipoint))
+                _waypoint = uturnWaipoint;
+            else
+                _waypoint = waypoint;
         }
 
         private void OnMove()

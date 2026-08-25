@@ -18,5 +18,5 @@ MonoBehaviour:
     type: 2}
   _lineNumbersForBuild: 0200000001000000
   _scoreForBuild: 15
-  _maxNumberFactories: 4
+  _maxNumberFactories: 5
   _materialsForStop: 3000

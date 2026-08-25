@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameObjectShotPoits:
-  - {fileID: 2443533640608195945}
+  - {fileID: 6494127815680341901}
 --- !u!114 &2331523898306016540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,10 +87,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8541698219777643801}
   - component: {fileID: 38362983105308667}
-  - component: {fileID: 5822128968226726949}
-  - component: {fileID: 3627614702879691733}
+  - component: {fileID: 7141800041590502483}
   m_Layer: 6
-  m_Name: MissileAttackerView
+  m_Name: MinigunAttackerView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,8 +122,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdfabfe18de510342a61a15cff326d13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _viewComponents: []
---- !u!114 &5822128968226726949
+  _viewComponents:
+  - {fileID: 6494127815680341901}
+--- !u!114 &7141800041590502483
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,23 +133,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2443533640608195945}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 539baccfc87a2984cb77b0171e1b3a78, type: 3}
+  m_Script: {fileID: 11500000, guid: ab82fcfbce7cd0341a665e2c109f9cc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shotPoints:
-  - {fileID: 6514285119052108307}
---- !u!114 &3627614702879691733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2443533640608195945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29a3e65002a15144da9116b2462dbd6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _aimComponents:
+  - {fileID: 6494127815680341901}
 --- !u!1 &4006259256434897194
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,9 +147,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 400949325774333716}
-  - component: {fileID: 7505003883050466931}
+  - component: {fileID: 8660489657817948050}
   m_Layer: 6
-  m_Name: CombinedAim
+  m_Name: RadarAim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -182,7 +170,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6778746087554220236}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7505003883050466931
+--- !u!114 &8660489657817948050
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -191,11 +179,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4006259256434897194}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab82fcfbce7cd0341a665e2c109f9cc6, type: 3}
+  m_Script: {fileID: 11500000, guid: 29a3e65002a15144da9116b2462dbd6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _aimComponents:
-  - {fileID: 6494127815680341901}
 --- !u!1 &4561847660728282683
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,6 +244,7 @@ GameObject:
   - component: {fileID: 9115728070258317877}
   - component: {fileID: 4830241397895366054}
   - component: {fileID: 5134353605159655497}
+  - component: {fileID: 4418239685133842861}
   m_Layer: 6
   m_Name: FighterJet
   m_TagString: Untagged
@@ -299,7 +286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _viewComponents:
   - {fileID: 4006259256434897194}
-  - {fileID: 6494127815680341901}
+  - {fileID: 4561847660728282683}
   - {fileID: 6680967508696787711}
   - {fileID: 2330518927832070536}
 --- !u!114 &6415519688715548931
@@ -328,8 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdfabfe18de510342a61a15cff326d13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _viewComponents:
-  - {fileID: 6494127815680341901}
+  _viewComponents: []
 --- !u!114 &3120013878423982684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,10 +398,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 4835168311171162677}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1c26908f28af864d922f77977b9026b, type: 3}
+  m_Script: {fileID: 11500000, guid: 6868b753592be4e489f0623140346877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _distanceFinish: 0.5
+--- !u!114 &4418239685133842861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4835168311171162677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0cf6945b87eae04fbaaa684b8b462f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _offsetUturn: 15
+  _angleForUturn: 45
 --- !u!1 &6494127815680341901
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,9 +427,9 @@ GameObject:
   - component: {fileID: 3176839686762565234}
   - component: {fileID: 7742649278948473019}
   - component: {fileID: 348018631416378839}
-  - component: {fileID: 4545009989901011107}
+  - component: {fileID: 5902702831006306639}
   m_Layer: 0
-  m_Name: DynamicShotPoint
+  m_Name: MinigunDynamicShotPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -484,7 +484,7 @@ MonoBehaviour:
   _shotEffects:
   - {fileID: 1928802207393833810}
   - {fileID: 1124767185915454853}
---- !u!114 &4545009989901011107
+--- !u!114 &5902702831006306639
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -493,12 +493,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6494127815680341901}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a1f5c6c5a368364e858c600beedff77, type: 3}
+  m_Script: {fileID: 11500000, guid: 4490010dd6668014cb2fa78a99619650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _parrent: {fileID: 6693406220486268921}
-  _speedRotate: 30
-  _dotAim: 0.95
+  _dotAim: 0.8
 --- !u!1 &6629263762114348279
 GameObject:
   m_ObjectHideFlags: 0

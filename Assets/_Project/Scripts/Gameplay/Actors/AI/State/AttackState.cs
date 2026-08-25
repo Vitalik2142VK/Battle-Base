@@ -20,10 +20,5 @@ namespace BattleBase.Gameplay.Actors.AI.State
         {
             _attacker.SetAttacking(false);
         }
-
-        public void Update(float delta)
-        {
-            _attacker.Update(delta);
-        }
     }
 }

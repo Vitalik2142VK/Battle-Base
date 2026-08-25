@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f313ef8d35747d148ae218f3540aac47, type: 3}
   m_Name: FighterJet_AirMoveComponentSource
   m_EditorClassIdentifier: 
-  _moveConfig:
-    _speed: 20
-    _angularSpeed: 60
+  _healthConfig:
+    _speed: 22
+    _angularSpeed: 150
     _acceleration: 10
     _stoppingDistance: 5
   _height: 23

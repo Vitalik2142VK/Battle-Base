@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8368aa947f2bba2478fc99c70d338400, type: 3}
-  m_Name: FighterJet_WeaponConfig_Main
+  m_Name: FighterJet_WeaponConfig_Minigun
   m_EditorClassIdentifier: 
   _projectileConfig:
     _projectilePrefab: {fileID: 7550878289047074185, guid: ed12269b9172a4a44bfe5966c7513ee1,
@@ -21,8 +21,8 @@ MonoBehaviour:
       type: 2}
     _damageMask: 0
     _damage: 4
-  _firingRange: 40
+  _firingRange: 45
   _minFiringRange: 0
-  _rateShooting: 0.15
+  _rateShooting: 0.1
   _speedReload: 3.5
   _numberShells: 50

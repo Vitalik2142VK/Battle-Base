@@ -10,7 +10,7 @@ namespace BattleBase.Gameplay.Actors.Movement.Air
         {
             if (source is IAirMoveComponentSource moveSource == false)
                 throw new ArgumentException(
-                    $"{nameof(source)} 'source' does not implement {nameof(IMoveComponentSource)}");
+                    $"{nameof(source)} 'source' does not implement {nameof(IAirMoveComponentSource)}");
 
             Mover mover = new(moveSource.Config);
 

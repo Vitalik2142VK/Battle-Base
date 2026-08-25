@@ -1,6 +1,5 @@
 ﻿using BattleBase.Gameplay.Actors.AI.State;
 using BattleBase.Gameplay.Actors.AttackSystem;
-using BattleBase.Gameplay.Actors.AttackSystem.Weapons;
 using System;
 
 namespace BattleBase.Gameplay.Actors.AI.Transition
@@ -14,11 +13,11 @@ namespace BattleBase.Gameplay.Actors.AI.Transition
             if (actor == null)
                 throw new ArgumentNullException(nameof(actor));
 
-            if (actor.TryGetComponent(out IAttacker attacker) == false)
-                throw new InvalidOperationException($"{nameof(actor)} don't constrain component {nameof(IWeapon)}");
-
             if (actorStateMachine == null)
                 throw new ArgumentNullException(nameof(actorStateMachine));
+
+            if (actor.TryGetComponent(out IAttacker attacker) == false)
+                throw new InvalidOperationException($"{nameof(actor)} don't constrain component {nameof(IAttacker)}");
 
             AttackState attackState = new(attacker);
             AttackStateTransition transition = new(attackState, attacker);

@@ -1,5 +1,6 @@
 ﻿using BattleBase.Gameplay.Actors.DamageSystem;
 using BattleBase.Gameplay.Actors.Energy;
+using BattleBase.Utils;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,11 @@ namespace BattleBase.Gameplay.Actors
     {
         private List<IActor> _activeActors;
         private IAdvancedPowerRegistry _powerRegistry;
+
+#if UNITY_EDITOR
+        private int _countActorBeforInit; //todo remove on release 
+        private bool _isFirsFrame = false;
+#endif
 
         private void Awake()
         {
@@ -52,6 +58,21 @@ namespace BattleBase.Gameplay.Actors
                     i--;
                 }
             }
+
+        }
+
+        private void LateUpdate()
+        {
+#if UNITY_EDITOR //todo remove on release 
+            if (_isFirsFrame == false)
+            {
+                _isFirsFrame = true;
+                _countActorBeforInit = _activeActors.Count;
+            }
+
+            if (DebugSetting.IsShowCountActor) 
+                Debug.Log($"Count active Actors = {_activeActors.Count - _countActorBeforInit}");
+#endif
         }
 
         public void AddActor(IActor actor)

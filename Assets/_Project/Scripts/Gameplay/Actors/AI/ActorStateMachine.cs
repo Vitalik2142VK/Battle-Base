@@ -8,6 +8,7 @@ namespace BattleBase.Gameplay.Actors.AI
     {
         private readonly List<IStateTransition> _transitions;
 
+        private IActorState _defaultState;
         private IActorState _currentState;
 
         public ActorStateMachine(IEnumerable<StateTransitionType> transitionTypes)
@@ -23,7 +24,11 @@ namespace BattleBase.Gameplay.Actors.AI
 
         public void Init(IActorState defaultState)
         {
-            _currentState ??= defaultState ?? throw new ArgumentNullException(nameof(defaultState));
+            if (_defaultState != null)
+                return;
+
+            _defaultState = defaultState ?? throw new ArgumentNullException(nameof(defaultState));
+            _currentState = defaultState;
         }
 
         public void Enable()
@@ -34,6 +39,7 @@ namespace BattleBase.Gameplay.Actors.AI
                 transition.Enable();
             }
 
+            _currentState = _defaultState;
             _currentState.Enter();
         }
 
@@ -46,11 +52,6 @@ namespace BattleBase.Gameplay.Actors.AI
             }
 
             _currentState.Exit();
-        }
-
-        public void Update(float delta)
-        {
-            _currentState.Update(delta);
         }
 
         public void AddStateTransition(IStateTransition transition)

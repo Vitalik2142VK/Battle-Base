@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.AI
 {
-    public interface IActorStateMachine : IActorComponent, IUpdateable
+    public interface IActorStateMachine : IActorComponent
     {
         public IEnumerable<StateTransitionType> TransitionTypes { get; }
 

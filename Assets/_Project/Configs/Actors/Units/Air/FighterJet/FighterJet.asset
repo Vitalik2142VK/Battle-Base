@@ -22,6 +22,6 @@ MonoBehaviour:
     _power: 6
   _components:
   - {fileID: 11400000, guid: ce9259ec9a4f94d4580401c2332cf973, type: 2}
-  - {fileID: 11400000, guid: 05f86fc29b8a2c24d8059bc2ecbb2949, type: 2}
+  - {fileID: 11400000, guid: 483706bd23a8857479c75eecacf0a1c5, type: 2}
   - {fileID: 11400000, guid: 5d4174011ce255b43840c5a9f52e23d1, type: 2}
   - {fileID: 11400000, guid: f592145dde895d94eb5b85fb70e901ef, type: 2}

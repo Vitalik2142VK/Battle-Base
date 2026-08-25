@@ -3,6 +3,7 @@
     public enum StateTransitionType
     {
         Attack,
-        AttackToMove
+        AttackToMove,
+        Hunter
     }
 }

@@ -55,6 +55,8 @@ namespace BattleBase.Gameplay.Actors.Movement
             {
                 _currentWaypoint = null;
 
+                Stop();
+
                 return;
             }
 

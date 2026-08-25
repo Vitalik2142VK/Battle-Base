@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Base_PowerGeneratorSource
   m_EditorClassIdentifier: 
   _addedPowerByRank:
-  - _addedPower: 25
+  - _addedPower: 30
