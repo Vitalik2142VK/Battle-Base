@@ -11,14 +11,10 @@ namespace BattleBase.Gameplay.Actors.AI.State
             _attacker = attacker ?? throw new System.ArgumentNullException(nameof(attacker));
         }
 
-        public void Enter()
-        {
+        public void Enter() => 
             _attacker.SetAttacking(true);
-        }
 
-        public void Exit()
-        {
+        public void Exit() => 
             _attacker.SetAttacking(false);
-        }
     }
 }

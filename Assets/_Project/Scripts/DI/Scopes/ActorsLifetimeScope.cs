@@ -9,6 +9,7 @@ using BattleBase.Gameplay.Actors.Colored;
 using BattleBase.Gameplay.Actors.ComponentImprovement;
 using BattleBase.Gameplay.Actors.DamageSystem.Modifiers;
 using BattleBase.Gameplay.Actors.DamageSystem.Removal;
+using BattleBase.Gameplay.Actors.DeploymentSystem;
 using BattleBase.Gameplay.Actors.Economy;
 using BattleBase.Gameplay.Actors.Energy;
 using BattleBase.Gameplay.Actors.HealthSystem;
@@ -89,6 +90,7 @@ namespace BattleBase.DI
             _builder.Register<IComponentFactory, PowerGeneratorFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, MaterialCreatorFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, ProductionServiceFactory>(Lifetime.Scoped);
+            _builder.Register<IComponentFactory, DeploymentFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactoryRegistry, ComponentFactoryRegistry>(Lifetime.Scoped);
         }
 
@@ -107,6 +109,7 @@ namespace BattleBase.DI
             _builder.Register<IActorComponentBinder, PowerGeneratorBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, MaterialCreatorBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, ProductionServiceBinder>(Lifetime.Scoped);
+            _builder.Register<IActorComponentBinder, DeploymentBinder>(Lifetime.Scoped);
             _builder.Register<IActorBinderRegistry, ActorBinderRegistry>(Lifetime.Scoped);
         }
 
@@ -119,6 +122,7 @@ namespace BattleBase.DI
 
         private void RegisterStateMachineInitializer()
         {
+            _builder.Register<IStateTransitionFactory, DeployToMoveStateTransitionFactory>(Lifetime.Scoped);
             _builder.Register<IStateTransitionFactory, AttackStateTransitionFactory>(Lifetime.Scoped);
             _builder.Register<IStateTransitionFactory, AttackToMoveStateTransitionFactory>(Lifetime.Scoped);
             _builder.Register<IStateTransitionFactory, HunterStateTransitionFactory>(Lifetime.Scoped);

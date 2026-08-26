@@ -13,6 +13,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         private ITargetController _targetController;
         private bool _isAiming;
         private bool _isAttacking;
+        private bool _isEnabled;
 
         public event Action TargetSelected;
         public event Action Attacked;
@@ -46,11 +47,13 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         public void Enable()
         {
             _weapon.Enable();
+            _isEnabled = true;
         }
 
         public void Disable()
         {
             _targetController.LoseTarget();
+            _isEnabled = false;
         }
 
         public void SetTargets(IEnumerable<ITarget> targets)
@@ -66,6 +69,9 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
         public void Update(float delta)
         {
+            if (_isEnabled == false)
+                return;
+
             _targetController.Update(delta);
 
             if (_targetController.HasTarget && _isAiming)

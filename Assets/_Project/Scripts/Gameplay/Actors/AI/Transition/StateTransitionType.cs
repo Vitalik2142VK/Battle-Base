@@ -2,6 +2,7 @@
 {
     public enum StateTransitionType
     {
+        DepoyToMove,
         Attack,
         AttackToMove,
         Hunter
