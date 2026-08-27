@@ -78,8 +78,8 @@ namespace BattleBase.Gameplay.Actors.Movement.Hunt
             WaypointChanged?.Invoke(_currentWaypoint);
         }
 
-        public void AddWaypoints(IEnumerable<IWaypoint> waypoints) =>
-            _mover.AddWaypoints(waypoints);
+        public void EstablishWaypoints(IEnumerable<IWaypoint> waypoints) =>
+            _mover.EstablishWaypoints(waypoints);
 
         public void EstablishNextPoint()
         {

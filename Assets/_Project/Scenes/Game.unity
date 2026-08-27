@@ -399,8 +399,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b488b38120704bb4bbd29f5de675f94c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _center: {x: 0, y: 0, z: 0}
-  _size: {x: 24, y: 6, z: 40}
+  _center: {x: 0, y: 12, z: 0}
+  _size: {x: 24, y: 30, z: 40}
   _isDebugEnable: 0
 --- !u!1 &26614937
 GameObject:
@@ -2797,8 +2797,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b488b38120704bb4bbd29f5de675f94c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _center: {x: 0, y: 0, z: 0}
-  _size: {x: 24, y: 6, z: 40}
+  _center: {x: 0, y: 12, z: 0}
+  _size: {x: 24, y: 30, z: 40}
   _isDebugEnable: 0
 --- !u!114 &334402368
 MonoBehaviour:
@@ -6243,8 +6243,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b488b38120704bb4bbd29f5de675f94c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _center: {x: 0, y: 0, z: 0}
-  _size: {x: 24, y: 6, z: 40}
+  _center: {x: 0, y: 12, z: 0}
+  _size: {x: 24, y: 30, z: 40}
   _isDebugEnable: 0
 --- !u!114 &790034318
 MonoBehaviour:
@@ -10725,8 +10725,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b488b38120704bb4bbd29f5de675f94c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _center: {x: 0, y: 0, z: 0}
-  _size: {x: 24, y: 6, z: 40}
+  _center: {x: 0, y: 12, z: 0}
+  _size: {x: 24, y: 30, z: 40}
   _isDebugEnable: 0
 --- !u!114 &1444393834
 MonoBehaviour:
@@ -12030,8 +12030,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b488b38120704bb4bbd29f5de675f94c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _center: {x: 0, y: 0, z: 0}
-  _size: {x: 24, y: 6, z: 40}
+  _center: {x: 0, y: 12, z: 0}
+  _size: {x: 24, y: 30, z: 40}
   _isDebugEnable: 0
 --- !u!114 &1614515356
 MonoBehaviour:
@@ -15457,8 +15457,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b488b38120704bb4bbd29f5de675f94c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _center: {x: 0, y: 0, z: 0}
-  _size: {x: 24, y: 6, z: 40}
+  _center: {x: 0, y: 12, z: 0}
+  _size: {x: 24, y: 30, z: 40}
   _isDebugEnable: 0
 --- !u!114 &2022278831
 MonoBehaviour:

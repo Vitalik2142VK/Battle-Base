@@ -40,7 +40,7 @@ namespace BattleBase.Gameplay.Actors.Movement
             _currentWaypoint = null;
         }
 
-        public void AddWaypoints(IEnumerable<IWaypoint> waypoints)
+        public void EstablishWaypoints(IEnumerable<IWaypoint> waypoints)
         {
             if (waypoints == null)
                 throw new ArgumentNullException(nameof(waypoints));

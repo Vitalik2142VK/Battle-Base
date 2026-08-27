@@ -46,7 +46,7 @@ namespace BattleBase.Gameplay.Actors.Movement.Air
             _mover.Disable();
         }
 
-        public void AddWaypoints(IEnumerable<IWaypoint> waypoints)
+        public void EstablishWaypoints(IEnumerable<IWaypoint> waypoints)
         {
             if (waypoints == null)
                 throw new ArgumentNullException(nameof(waypoints));
@@ -60,7 +60,7 @@ namespace BattleBase.Gameplay.Actors.Movement.Air
                 changedWaypoints.Add(updatedWaipoint);
             }
 
-            _mover.AddWaypoints(changedWaypoints);
+            _mover.EstablishWaypoints(changedWaypoints);
         }
 
         public void EstablishNextPoint() =>
