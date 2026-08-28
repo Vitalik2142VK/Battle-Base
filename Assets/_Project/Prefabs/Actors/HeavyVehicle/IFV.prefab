@@ -411,7 +411,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.5, y: 2.4, z: 3.5}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: -0, z: 0}
 --- !u!114 &767281454560261500
 MonoBehaviour:
@@ -427,7 +427,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _aimingPoint: {fileID: 1515168311811637013}
   _hitDistance: 1.2
-  _isDebugEnable: 1
+  _isDebugEnable: 0
 --- !u!1 &6846467243499233891
 GameObject:
   m_ObjectHideFlags: 0

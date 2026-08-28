@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _aimingPoint: {fileID: 8020356204336118781}
   _hitDistance: 2
-  _isDebugEnable: 1
+  _isDebugEnable: 0
 --- !u!65 &22404216065743203
 BoxCollider:
   m_ObjectHideFlags: 0

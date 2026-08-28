@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65d2e2c2420ac6b45b0d480f9633fd48, type: 3}
+  m_Name: HeavyGrav
+  m_EditorClassIdentifier: 
+  _data:
+    _prefab: {fileID: 7507686706299500832, guid: c80e08025f185b14981d1893a80eface,
+      type: 3}
+    _icon: {fileID: 0}
+    _nameConfig: {fileID: 11400000, guid: 648d938295353cc49946cf73cfe8856b, type: 2}
+    _constructionTime: 14
+    _price: 775
+    _power: 7
+  _components:
+  - {fileID: 11400000, guid: 714d5d9d369166c48882d5bf4c1822bc, type: 2}
+  - {fileID: 11400000, guid: 85ad633fd2141314fa69376f8f52994e, type: 2}
+  - {fileID: 11400000, guid: bb03e15bd7a4f4148873ea507bf3ac00, type: 2}
+  - {fileID: 11400000, guid: db6315f7bf8b3b646aefa128f01a8d09, type: 2}
+  - {fileID: 11400000, guid: b75b62cd374d83944b2d0efd1c82eee2, type: 2}
