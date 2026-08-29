@@ -1,5 +1,4 @@
-﻿using BattleBase.Gameplay.Actors.DamageSystem;
-using System;
+﻿using System;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.AttackSystem

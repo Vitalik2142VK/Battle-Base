@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AntyAirTank_WeaponConfig_Main
   m_EditorClassIdentifier: 
   _projectileConfig:
-    _projectilePrefab: {fileID: 7550878289047074185, guid: ed12269b9172a4a44bfe5966c7513ee1,
+    _projectilePrefab: {fileID: 7550878289047074185, guid: 529697c526042a64aad972d3dc10bce2,
       type: 3}
     _speed: 135
   _damageConfig:

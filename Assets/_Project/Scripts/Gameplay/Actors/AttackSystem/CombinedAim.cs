@@ -14,6 +14,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         private IAttackNotifier _attackNotifier;
         private ITargetPoint _currentTarget;
         private bool _isAimed;
+        private bool _isReturning;
 
         private void OnEnable()
         {
@@ -28,17 +29,15 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
         private void Update()
         {
-            if (_currentTarget == null)
-                return;
-
-            foreach (var aim in _components)
-                aim.LookAtTarget(_currentTarget.Position, Time.deltaTime);
-
-            if (_isAimed != IsAimed())
+            if (_currentTarget != null)
             {
-                _isAimed = !_isAimed;
-                _presenter.EstablishAimState(_isAimed);
+                AimAtTarget(Time.deltaTime);
+
+                return;
             }
+
+            if (_isReturning)
+                ReturnToStart(Time.deltaTime);
         }
 
         private void OnDisable()
@@ -72,16 +71,42 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             }
         }
 
+        private void AimAtTarget(float delta)
+        {
+            foreach (var aim in _components)
+                aim.LookAtTarget(_currentTarget.Position, delta);
+
+            bool isAimed = IsAimed();
+
+            if (_isAimed == isAimed)
+                return;
+
+            _isAimed = isAimed;
+            _presenter.EstablishAimState(_isAimed);
+        }
+
+        private void ReturnToStart(float delta)
+        {
+            foreach (var aim in _components)
+                aim.ReturnToStart(delta);
+
+            if (AreAllRestored())
+                _isReturning = false;
+        }
+
         private void OnTakeAim()
         {
             _currentTarget = _attackNotifier.CurrentTarget;
             _isAimed = false;
+            _isReturning = false;
         }
 
         private void OnRemoveTarget()
         {
             _currentTarget = null;
             _isAimed = false;
+            _isReturning = AreAllRestored() == false;
+
             _presenter.EstablishAimState(_isAimed);
         }
 
@@ -90,6 +115,17 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             foreach (var aim in _components)
             {
                 if (aim.IsAimed == false)
+                    return false;
+            }
+
+            return true;
+        }
+
+        private bool AreAllRestored()
+        {
+            foreach (var aim in _components)
+            {
+                if (aim.IsRestored == false)
                     return false;
             }
 

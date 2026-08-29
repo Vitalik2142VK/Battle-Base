@@ -10,20 +10,26 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
         public bool IsAimed { get; private set; }
 
+        public bool IsRestored { get; private set; }
+
         private void Awake()
         {
             _transform = transform;
         }
 
-        public void LookAtTarget(Vector3 targetPosition, float delta)
+        public void LookAtTarget(Vector3 targetPosition, float _)
         {
-            if (delta < 0f)
-                throw new System.ArgumentOutOfRangeException(nameof(delta));
+            IsRestored = false;
 
             Vector3 direction = targetPosition - _transform.position;
             float dot = Vector3.Dot(_transform.forward, direction.normalized);
 
             IsAimed = dot > _dotAim;
+        }
+
+        public void ReturnToStart(float _)
+        {
+            IsRestored = true;
         }
     }
 }

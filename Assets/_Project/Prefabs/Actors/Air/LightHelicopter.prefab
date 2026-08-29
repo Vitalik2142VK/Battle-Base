@@ -252,6 +252,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2848579430181135003}
   - component: {fileID: 3617194199537613571}
+  - component: {fileID: 4250493290282126434}
   m_Layer: 6
   m_Name: Animation
   m_TagString: Untagged
@@ -284,6 +285,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c83734ba7a15eb4c9638a6cdbb47bbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 2145980752576113809}
+--- !u!114 &4250493290282126434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4188580403626042717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a79eaa79f446754ca292c5afe2a229f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 2145980752576113809}
@@ -459,7 +473,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8585f2eb5ef9f214cb95a3ee84f5897f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _viewComponents: []
+  _viewComponents:
+  - {fileID: 4188580403626042717}
 --- !u!114 &4191168835333007653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1080,6 +1095,7 @@ MonoBehaviour:
   _parrent: {fileID: 3461405553902384907}
   _speedRotate: 50
   _dotAim: 0.95
+  _returnAngle: 0.1
 --- !u!23 &2324507080112049252 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: eadf56a36f07ae34b84f947a67d5d19b,
@@ -1118,6 +1134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speedRotate: 180
   _dotAim: 0.99
+  _returnAngle: 0.1
 --- !u!95 &2145980752576113809
 Animator:
   serializedVersion: 5

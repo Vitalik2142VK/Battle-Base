@@ -12,11 +12,14 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         [SerializeField][Min(0.1f)] private float _angleTolerance = 5f;
         [SerializeField][Min(0.1f)] private float _minDistance = 2f;
         [SerializeField][Min(0.1f)] private float _maxDistance = 30f;
+        [SerializeField][Range(0.01f, 1f)] private float _returnAngle = 0.1f;
 
         private Transform _transform;
         private Quaternion _startRotation;
 
         public bool IsAimed { get; private set; }
+
+        public bool IsRestored => Quaternion.Angle(_transform.localRotation, _startRotation) < _returnAngle;
 
         private void Awake()
         {
@@ -55,6 +58,19 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             _transform.localRotation = Quaternion.RotateTowards(
                 _transform.localRotation,
                 targetRotation,
+                _speedRotate * delta);
+        }
+
+        public void ReturnToStart(float delta)
+        {
+            if (delta < 0f)
+                throw new System.ArgumentOutOfRangeException(nameof(delta));
+
+            IsAimed = false;
+
+            _transform.localRotation = Quaternion.RotateTowards(
+                _transform.localRotation,
+                _startRotation,
                 _speedRotate * delta);
         }
 

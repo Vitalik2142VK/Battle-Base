@@ -53,27 +53,35 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
             _mover.SetPointPosition(target.Position);
             _mover.SetSpeed(Config.Speed);
 
-            FindTargetsOnWay(shotPointTransform.Position, target.Position);
+            FindTargetsOnWay(shotPointTransform.Position, target.Position, target.TeamType);
         }
 
-        private void FindTargetsOnWay(Vector3 origin, Vector3 endPosition)
+        private void FindTargetsOnWay(Vector3 origin, Vector3 endPosition, TeamType teamEnemy)
         {
             _targets.Clear();
 
-            Vector3 direction = (origin - endPosition).normalized;
+            Vector3 direction = endPosition - origin;
+            float distance = _distance;
+
+            if (distance * distance < direction.sqrMagnitude)
+                distance = direction.magnitude;
+
             int count = Physics.SphereCastNonAlloc(
-                origin, 
+                origin,
                 _damageRadiusOnWay,
-                direction,
+                direction.normalized,
                 _hits,
-                _distance,
-                _layerMask, 
+                distance,
+                _layerMask,
                 QueryTriggerInteraction.Ignore);
 
             for (int i = 0; i < count; i++)
             {
                 if (_hits[i].collider.TryGetComponent(out ITarget target))
-                    _targets.Add(target);
+                {
+                    if (target.TeamType == teamEnemy)
+                        _targets.Add(target);
+                }
             }
         }
 

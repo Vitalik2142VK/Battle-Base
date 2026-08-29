@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2961025265337623857}
   - component: {fileID: 1076118238535561621}
   - component: {fileID: 5224371199151147391}
+  - component: {fileID: 6807496535558389595}
   m_Layer: 0
   m_Name: RailProjectile
   m_TagString: Untagged
@@ -47,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damageRadiusOnWay: 2.5
+  _distance: 60
   _maxTargets: 16
   _layerMask:
     serializedVersion: 2
@@ -65,6 +67,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _finishDistance: 0.1
   _speed: 80
+--- !u!114 &6807496535558389595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4831685795835175593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f992a3bb8afda534ba8c23ef18ff3ccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefabTrailParticle: {fileID: 4419126056485620672, guid: 18b533590ecf0564aa2114b1877879bb,
+    type: 3}
 --- !u!1001 &1725789140751168159
 PrefabInstance:
   m_ObjectHideFlags: 0

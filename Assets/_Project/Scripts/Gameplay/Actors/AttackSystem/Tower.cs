@@ -7,11 +7,14 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
     {
         [SerializeField][Range(1f, 720f)] private float _speedRotate = 25f;
         [SerializeField][Range(0.5f, 1f)] private float _dotAim = 0.99f;
+        [SerializeField][Range(0.01f, 1f)] private float _returnAngle = 0.1f;
 
         private Transform _transform;
         private Quaternion _startRotation;
 
         public bool IsAimed { get; private set; }
+
+        public bool IsRestored => Quaternion.Angle(_transform.localRotation, _startRotation) < _returnAngle;
 
         private void Awake()
         {
@@ -37,9 +40,6 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             if (IsAimed)
                 return;
 
-            if (direction.sqrMagnitude < Values.MinDistance)
-                return;
-
             Quaternion targetRotation = Quaternion.LookRotation(direction);
 
             _transform.rotation = Quaternion.RotateTowards(
@@ -49,8 +49,28 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             );
         }
 
+        public void ReturnToStart(float delta)
+        {
+            if (delta < 0f)
+                throw new System.ArgumentOutOfRangeException(nameof(delta));
+
+            IsAimed = false;
+
+            _transform.localRotation = Quaternion.RotateTowards(
+                _transform.localRotation,
+                _startRotation,
+                _speedRotate * delta);
+        }
+
         private void CheckAimed(Vector3 direction)
         {
+            if (direction.sqrMagnitude < Values.MinDistance)
+            {
+                IsAimed = true;
+
+                return;
+            }
+
             float dot = Vector3.Dot(_transform.forward, direction.normalized);
 
             IsAimed = dot > _dotAim;

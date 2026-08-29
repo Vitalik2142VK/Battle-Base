@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11660599fd4721148becd9a85f80782a, type: 3}
   m_Name: SpecialVehicle_DeploymentComponentSource
   m_EditorClassIdentifier: 
-  _deployTime: 1.5
+  _deployTime: 1.4

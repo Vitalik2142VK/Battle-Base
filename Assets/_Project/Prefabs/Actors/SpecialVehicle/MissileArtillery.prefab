@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 3062743081247684893}
   - component: {fileID: 8740120243747767730}
   - component: {fileID: -3406431523814767431}
+  - component: {fileID: 3330931879127828230}
   - component: {fileID: 4838387945937251042}
   - component: {fileID: 6434173168626843904}
   - component: {fileID: 6195250518401247650}
@@ -159,6 +160,7 @@ Transform:
   - {fileID: 1588982817837791937}
   - {fileID: 1355418494986355219}
   - {fileID: 8020356204336118781}
+  - {fileID: 8274612136925078927}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &2618342628847587262
@@ -239,6 +241,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _viewComponents: []
+--- !u!114 &3330931879127828230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773150437430855918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee8c4920a0eac254f8a8c21a1ba3b143, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _viewComponents:
+  - {fileID: 2561075401863804743}
 --- !u!114 &4838387945937251042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,6 +464,52 @@ MonoBehaviour:
   _angleTolerance: 5
   _minDistance: 2
   _maxDistance: 30
+  _returnAngle: 0.1
+--- !u!1 &2561075401863804743
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8274612136925078927}
+  - component: {fileID: 2798219334769500474}
+  m_Layer: 0
+  m_Name: Animation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &8274612136925078927
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2561075401863804743}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1716943721804621877}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2798219334769500474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2561075401863804743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c83734ba7a15eb4c9638a6cdbb47bbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 6188139653174911206}
 --- !u!1 &4135215617297474887
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,6 +609,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speedRotate: 25
   _dotAim: 0.97
+  _returnAngle: 0.1
 --- !u!1 &4743845286436045997
 GameObject:
   m_ObjectHideFlags: 0
@@ -584,7 +647,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 4}
+  m_AnchoredPosition: {x: 0, y: 4.6}
   m_SizeDelta: {x: 2, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &8548197128159224426
@@ -717,6 +780,7 @@ GameObject:
   - component: {fileID: 1588982817837791937}
   - component: {fileID: 7753006954698176730}
   - component: {fileID: 7574347733526187870}
+  - component: {fileID: 6188139653174911206}
   m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
@@ -791,6 +855,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!95 &6188139653174911206
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6968292187923521692}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4b3dc2bc00663414382d806dba2ed177, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &4699882360421078674
 PrefabInstance:
   m_ObjectHideFlags: 0
