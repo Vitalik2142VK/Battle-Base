@@ -2,7 +2,7 @@
 using BattleBase.Utils.Extensions;
 using UnityEngine;
 
-namespace BattleBase.Gameplay.Actors.AttackSystem
+namespace BattleBase.Gameplay.Actors.AttackSystem.Aim
 {
     public class BallisticMuzzle : MonoBehaviour, IAimComponent
     {
@@ -12,7 +12,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         [SerializeField][Min(0.1f)] private float _angleTolerance = 5f;
         [SerializeField][Min(0.1f)] private float _minDistance = 2f;
         [SerializeField][Min(0.1f)] private float _maxDistance = 30f;
-        [SerializeField][Range(0.01f, 1f)] private float _returnAngle = 0.1f;
+        [SerializeField][Range(0.01f, 30f)] private float _returnAngle = 0.1f;
 
         private Transform _transform;
         private Quaternion _startRotation;

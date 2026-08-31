@@ -1,13 +1,13 @@
 ﻿using BattleBase.Utils.Constants;
 using UnityEngine;
 
-namespace BattleBase.Gameplay.Actors.AttackSystem
+namespace BattleBase.Gameplay.Actors.AttackSystem.Aim
 {
     public class Tower : MonoBehaviour, IAimComponent
     {
         [SerializeField][Range(1f, 720f)] private float _speedRotate = 25f;
         [SerializeField][Range(0.5f, 1f)] private float _dotAim = 0.99f;
-        [SerializeField][Range(0.01f, 1f)] private float _returnAngle = 0.1f;
+        [SerializeField][Range(0.01f, 30f)] private float _returnAngle = 0.1f;
 
         private Transform _transform;
         private Quaternion _startRotation;

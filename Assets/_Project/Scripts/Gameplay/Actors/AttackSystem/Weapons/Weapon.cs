@@ -65,7 +65,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Weapons
 
             CanAttack = false;
 
-            _projectileController.ShootMissile(target, _damage);
+            _projectileController.Shot(target, _damage);
 
             if (--_currentNumberShells > 0)
                 _timer.SetWaitTime(Config.RateShooting);

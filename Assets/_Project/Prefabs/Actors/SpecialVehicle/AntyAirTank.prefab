@@ -55,7 +55,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8397282724314144570}
   - component: {fileID: 695393455199236131}
-  - component: {fileID: 318215676466233758}
+  - component: {fileID: 7052167377998907726}
   m_Layer: 6
   m_Name: DynamicShotPoint
   m_TagString: Untagged
@@ -93,7 +93,7 @@ MonoBehaviour:
   _shotPoints:
   - {fileID: 9140433848002363443}
   - {fileID: 8376627834054075964}
---- !u!114 &318215676466233758
+--- !u!114 &7052167377998907726
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

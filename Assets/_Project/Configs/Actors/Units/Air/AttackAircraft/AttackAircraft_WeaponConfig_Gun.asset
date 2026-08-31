@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8368aa947f2bba2478fc99c70d338400, type: 3}
-  m_Name: AntyAirTank_WeaponConfig_Main
+  m_Name: AttackAircraft_WeaponConfig_Gun
   m_EditorClassIdentifier: 
   _projectileConfig:
-    _projectilePrefab: {fileID: 7550878289047074185, guid: 529697c526042a64aad972d3dc10bce2,
+    _projectilePrefab: {fileID: 7550878289047074185, guid: 036d32f08aec6874096c47cf30691723,
       type: 3}
-    _speed: 135
+    _speed: 120
   _damageConfig:
-    _targetingProfile: {fileID: 11400000, guid: e590eed33f385a240bc19d36a80d95da,
+    _targetingProfile: {fileID: 11400000, guid: 0aeefed5336c48f458500d4893695417,
       type: 2}
     _damageMask: 0
-    _damage: 5
+    _damage: 10
   _firingRange: 40
-  _minFiringRange: 15
-  _rateShooting: 0.15
-  _speedReload: 3.5
-  _numberShells: 20
+  _minFiringRange: 0
+  _rateShooting: 0.2
+  _speedReload: 5
+  _numberShells: 15

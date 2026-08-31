@@ -1,4 +1,5 @@
-﻿using BattleBase.Gameplay.Actors.AttackSystem.Ammo;
+﻿using BattleBase.Gameplay.Actors.AttackSystem.Aim;
+using BattleBase.Gameplay.Actors.AttackSystem.Ammo;
 using System;
 
 namespace BattleBase.Gameplay.Actors.AttackSystem

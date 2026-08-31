@@ -13230,7 +13230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isShowCountActor: 0
-  _isAiDisbale: 0
+  _isAiDisbale: 1
   _isBrainDebugEnable: 0
 --- !u!4 &1754843466
 Transform:

@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04efdd215732f9540b4f98bb354fd3c0, type: 3}
-  m_Name: MaterialConfig
+  m_Script: {fileID: 11500000, guid: fd1bbd144f98c0a429d15fcf764e5306, type: 3}
+  m_Name: AttackAircraft_TargetingProfile_Gun
   m_EditorClassIdentifier: 
-  _startMaterialsCount: 10000
-  _maxCapacity: 99900
+  _notAttacked: 0
+  _priorityActorTypes: []

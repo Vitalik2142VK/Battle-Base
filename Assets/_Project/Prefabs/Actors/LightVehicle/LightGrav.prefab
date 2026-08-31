@@ -960,7 +960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b83f6a9374eccf44a807c7882dda061e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speedRotate: 55
+  _speedRotate: 80
   _dotAim: 0.99
   _returnAngle: 0.1
 --- !u!1 &3582321430636783808 stripped
@@ -982,9 +982,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parrent: {fileID: 5422545049133869938}
-  _speedRotate: 55
-  _dotAim: 0.95
-  _returnAngle: 0.1
+  _speedRotate: 80
+  _dotAim: 0.99
+  _returnAngle: 10
 --- !u!4 &4075558605292439177 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6190216087002795717, guid: 043e050c0fb15754ca6ca93d1102604d,

@@ -1,14 +1,14 @@
 ﻿using BattleBase.Utils.Constants;
 using UnityEngine;
 
-namespace BattleBase.Gameplay.Actors.AttackSystem
+namespace BattleBase.Gameplay.Actors.AttackSystem.Aim
 {
     public class Muzzle : MonoBehaviour, IAimComponent
     {
         [SerializeField] private Transform _parrent;
         [SerializeField][Range(1f, 720f)] private float _speedRotate = 25f;
         [SerializeField][Range(-1f, 1f)] private float _dotAim = 0.95f;
-        [SerializeField][Range(0.01f, 1f)] private float _returnAngle = 0.1f;
+        [SerializeField][Range(0.01f, 30f)] private float _returnAngle = 0.1f;
 
         private Transform _transform;
         private Quaternion _startRotation;

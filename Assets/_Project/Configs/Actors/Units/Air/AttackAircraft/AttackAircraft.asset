@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65d2e2c2420ac6b45b0d480f9633fd48, type: 3}
+  m_Name: AttackAircraft
+  m_EditorClassIdentifier: 
+  _data:
+    _prefab: {fileID: 3856440751237957287, guid: 3847ca2988d950742beb92a93583421b,
+      type: 3}
+    _icon: {fileID: 0}
+    _nameConfig: {fileID: 11400000, guid: 379bc24aeaae3cf40aa74cb78071469c, type: 2}
+    _constructionTime: 15
+    _price: 950
+    _power: 9
+  _components:
+  - {fileID: 11400000, guid: b88e587aba8bba04d963c4704c47898f, type: 2}
+  - {fileID: 11400000, guid: 6fb42082db6dfc8458023a821f64fb35, type: 2}
+  - {fileID: 11400000, guid: 856de28578f3fce4186d3a7294ed21a6, type: 2}
+  - {fileID: 11400000, guid: ae7baa1e05753ab459ffc09f5c94ed90, type: 2}
+  - {fileID: 11400000, guid: f096960853b7d75429c61b097a0b0061, type: 2}

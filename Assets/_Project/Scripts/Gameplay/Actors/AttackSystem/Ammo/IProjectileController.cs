@@ -4,6 +4,6 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
 {
     public interface IProjectileController
     {
-        public void ShootMissile(ITarget target, IDamage damage);
+        public void Shot(ITarget target, IDamage damage);
     }
 }

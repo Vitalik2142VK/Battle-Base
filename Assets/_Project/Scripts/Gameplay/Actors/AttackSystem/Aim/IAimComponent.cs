@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace BattleBase.Gameplay.Actors.AttackSystem
+namespace BattleBase.Gameplay.Actors.AttackSystem.Aim
 {
     public interface IAimComponent
     {
