@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8368aa947f2bba2478fc99c70d338400, type: 3}
+  m_Name: HeavyArtillery_WeaponConfig
+  m_EditorClassIdentifier: 
+  _projectileConfig:
+    _projectilePrefab: {fileID: 7158556640630369272, guid: 6e1a244d3ce6b7a44944782c92df08ce,
+      type: 3}
+    _speed: 25
+  _damageConfig:
+    _targetingProfile: {fileID: 11400000, guid: 527515774fa9dfc4e8532b8a22c0e5fb,
+      type: 2}
+    _damageMask: 0
+    _damage: 250
+  _firingRange: 75
+  _minFiringRange: 35
+  _rateShooting: 0.5
+  _speedReload: 8
+  _numberShells: 1

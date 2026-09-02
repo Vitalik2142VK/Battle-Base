@@ -13,6 +13,4 @@ MonoBehaviour:
   m_Name: AntyAirTank_TargetingProfile_Missile
   m_EditorClassIdentifier: 
   _notAttacked: 7
-  _priorityActorTypes:
-  - _actorMask: 8
-    _damageCoefficient: 3
+  _priorityActorTypes: []

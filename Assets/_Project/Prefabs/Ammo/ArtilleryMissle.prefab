@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2643969993252031348}
   - component: {fileID: -7947478622037943918}
   m_Layer: 0
-  m_Name: Artillery_Missle
+  m_Name: ArtilleryMissle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

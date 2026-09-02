@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65d2e2c2420ac6b45b0d480f9633fd48, type: 3}
+  m_Name: HeavyArtillery
+  m_EditorClassIdentifier: 
+  _data:
+    _prefab: {fileID: 6568237595620025500, guid: 42107a1ad0ca0494d8dcca460475deb9,
+      type: 3}
+    _icon: {fileID: 21300000, guid: 7081d801c43e870488d6cbdfd4481638, type: 3}
+    _nameConfig: {fileID: 11400000, guid: 369a806104f41b244bca85a61d0fdc3e, type: 2}
+    _constructionTime: 20
+    _price: 1700
+    _power: 12
+  _components:
+  - {fileID: 11400000, guid: 6260acb91ff5f3a4c9bea7204786e978, type: 2}
+  - {fileID: 11400000, guid: 1e80ec0d58a1bfe43a52782d6f2a1b46, type: 2}
+  - {fileID: 11400000, guid: faebf7b0061a16340a14eb611be3f4ac, type: 2}
+  - {fileID: 11400000, guid: 884b29b915db56240a9694b8b6d24b0d, type: 2}
+  - {fileID: 11400000, guid: 61779d1c7b4086c428aa6d550fb31cc2, type: 2}
