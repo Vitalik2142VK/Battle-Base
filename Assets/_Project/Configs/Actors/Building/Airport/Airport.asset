@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65d2e2c2420ac6b45b0d480f9633fd48, type: 3}
+  m_Name: Airport
+  m_EditorClassIdentifier: 
+  _data:
+    _prefab: {fileID: 6119224985714596638, guid: 0902f5c5c90c4c54da8ffb50eea571d3,
+      type: 3}
+    _icon: {fileID: 0}
+    _nameConfig: {fileID: 11400000, guid: 557b3c3f2b0f1984e92029e494b4a59c, type: 2}
+    _constructionTime: 5
+    _price: 3400
+    _power: 0
+  _components:
+  - {fileID: 11400000, guid: e629ce5a760c9a3438910ab681147319, type: 2}
+  - {fileID: 11400000, guid: 48a15801c76ab6d499e7fee6c3b8fceb, type: 2}
+  - {fileID: 11400000, guid: d13629cc18702f5408743bd8e516436b, type: 2}
+  - {fileID: 11400000, guid: 46e1b82b831e70a4fa32cb8f7d09a695, type: 2}
+  - {fileID: 11400000, guid: 61492b512260b1f459a117ed9cfbf06f, type: 2}

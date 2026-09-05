@@ -55,7 +55,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
 
         private void Deactivate()
         {
-            _explosion.Explode(Damage, _mover.CurrentPosition);
+            _explosion.Explode(Damage, _mover.CurrentPosition, _target.TeamType);
 
             OnTargetLost();
 

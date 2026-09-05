@@ -5,6 +5,6 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
 {
     public interface IExplosion
     {
-        public void Explode(IDamage damage, Vector3 positionExposion);
+        public void Explode(IDamage damage, Vector3 positionExposion, TeamType teamEnemy);
     }
 }

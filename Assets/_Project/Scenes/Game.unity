@@ -5400,6 +5400,7 @@ Transform:
   - {fileID: 1545883299}
   - {fileID: 715601847}
   - {fileID: 457872910}
+  - {fileID: 1423291284}
   m_Father: {fileID: 1446567723}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &641618709
@@ -5427,6 +5428,7 @@ MonoBehaviour:
   - {fileID: 1545883300}
   - {fileID: 715601848}
   - {fileID: 457872911}
+  - {fileID: 1423291285}
   _container: {fileID: 270713682}
 --- !u!1 &647494681
 GameObject:
@@ -10738,6 +10740,53 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1208cdd597bc5854ba5c14e4a56ec5ea, type: 2}
   - {fileID: 11400000, guid: 49565c0a15c5b0a4cb7ad6d00f13cb4d, type: 2}
   - {fileID: 11400000, guid: 2aee48ab61a43304da3d7da1ae96f1b3, type: 2}
+  - {fileID: 11400000, guid: 61492b512260b1f459a117ed9cfbf06f, type: 2}
+--- !u!1 &1423291283
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1423291284}
+  - component: {fileID: 1423291285}
+  m_Layer: 0
+  m_Name: BombFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &1423291284
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423291283}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 641618708}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1423291285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423291283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9e688735f0f6ec4787c864e1460e961, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _projectilePrefab: {fileID: 7051018569695771730, guid: f06a3deeb0699e04480fd411ccd1c129,
+    type: 3}
 --- !u!1 &1430892569
 GameObject:
   m_ObjectHideFlags: 0

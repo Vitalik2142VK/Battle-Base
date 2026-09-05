@@ -22,7 +22,7 @@ MonoBehaviour:
     _power: 2
   _components:
   - {fileID: 11400000, guid: 7ee1120f8424e3a41b75462526699479, type: 2}
-  - {fileID: 11400000, guid: 1a24f57b25bf5dd4db7e39b0fc6c7455, type: 2}
+  - {fileID: 11400000, guid: c2e57c12437cb6041831afc5c26b55ea, type: 2}
   - {fileID: 11400000, guid: 839aad3fe8ee67d428a741feabafb63c, type: 2}
   - {fileID: 11400000, guid: 95d40162a86ad494cb5c0cec539012c5, type: 2}
   - {fileID: 11400000, guid: e502eac3ccc7e004cb5392b5ce9ea1b7, type: 2}

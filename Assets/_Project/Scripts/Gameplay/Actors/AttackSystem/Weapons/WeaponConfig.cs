@@ -17,7 +17,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Weapons
         [SerializeField][Min(5f)] private float _firingRange = 20f;
         [SerializeField][Min(0f)] private float _minFiringRange = 0f;
         [SerializeField][Min(0.02f)] private float _rateShooting = 0.5f;
-        [SerializeField][Min(1f)] private float _speedReload = 2f;
+        [SerializeField][Min(0.1f)] private float _speedReload = 2f;
         [SerializeField][Min(1)] private int _numberShells = 1;
 
         private void OnValidate()

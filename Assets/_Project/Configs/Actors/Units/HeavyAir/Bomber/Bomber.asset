@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65d2e2c2420ac6b45b0d480f9633fd48, type: 3}
+  m_Name: Bomber
+  m_EditorClassIdentifier: 
+  _data:
+    _prefab: {fileID: 3856440751237957287, guid: ecbebacfb4cb1b64d99792110c86b961,
+      type: 3}
+    _icon: {fileID: 0}
+    _nameConfig: {fileID: 11400000, guid: fa008890ebda31146bca0d17818d979c, type: 2}
+    _constructionTime: 2.4
+    _price: 1500
+    _power: 11
+  _components:
+  - {fileID: 11400000, guid: de80b5bbe8e3885408ecdc03b174eb14, type: 2}
+  - {fileID: 11400000, guid: 62ebf8cd19a03804d9f2d62824c9591f, type: 2}
+  - {fileID: 11400000, guid: dfaf4a5b1ddc4ec49a9789cccf772942, type: 2}
+  - {fileID: 11400000, guid: 0be72c1bf01c511438523c03b2113187, type: 2}
+  - {fileID: 11400000, guid: 06e431e608f6cc2438ed74265b4a1bc7, type: 2}
