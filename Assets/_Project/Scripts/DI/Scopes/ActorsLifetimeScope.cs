@@ -117,6 +117,7 @@ namespace BattleBase.DI
         {
             _builder.Register<IActorComponentConnector, ProductionServiceConnector>(Lifetime.Scoped);
             _builder.Register<IActorComponentConnector, DemolitionServiceConnector>(Lifetime.Scoped);
+            _builder.Register<IActorComponentConnector, PowerCleanerConnector>(Lifetime.Scoped);
             _builder.Register<IActorConnectorRegistry, ActorConnectorRegistry>(Lifetime.Scoped);
         }
 

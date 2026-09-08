@@ -15,9 +15,9 @@ MonoBehaviour:
   _data:
     _prefab: {fileID: 3856440751237957287, guid: ecbebacfb4cb1b64d99792110c86b961,
       type: 3}
-    _icon: {fileID: 0}
+    _icon: {fileID: 21300000, guid: ebf8c3acd1143824e81f797b6904b933, type: 3}
     _nameConfig: {fileID: 11400000, guid: fa008890ebda31146bca0d17818d979c, type: 2}
-    _constructionTime: 2.4
+    _constructionTime: 24
     _price: 1500
     _power: 11
   _components:

@@ -10,7 +10,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
         private Transform _transform;
         private IProjectileMover _mover;
         private IExplosion _explosion;
-        private ITarget _target;
+        private TeamType _enemyTeam;
 
         public override event Action<Projectile> Deactivated;
 
@@ -27,8 +27,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
 
             if (_mover.IsFinished)
             {
-                _explosion.Explode(Damage, _mover.CurrentPosition, _target.TeamType);
-                _target = null;
+                _explosion.Explode(Damage, _mover.CurrentPosition, _enemyTeam);
 
                 Deactivated?.Invoke(this);
             }
@@ -39,7 +38,10 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
             if (shotPointTransform == null)
                 throw new ArgumentNullException(nameof(shotPointTransform));
 
-            _target = target ?? throw new ArgumentNullException(nameof(target));
+            if (target == null) 
+                throw new ArgumentNullException(nameof(target));
+
+            _enemyTeam = target.TeamType;
 
             Vector3 shotPosition = shotPointTransform.Position;
             Vector3 finishPosition = shotPointTransform.Position;

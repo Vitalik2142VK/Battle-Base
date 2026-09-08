@@ -1348,7 +1348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00eba08ca2523bc4092c6a2f0b028c8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _actorView: {fileID: 0}
+  _actorView: {fileID: 5923623242493629742}
   _dotAim: 0.9
   _speedRotate: 80
 --- !u!1 &2642973109373929167 stripped
