@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b62adaca64cf4e419274f6b0c405de1, type: 3}
-  m_Name: Airport_MultiSpawnComponentSource
+  m_Script: {fileID: 11500000, guid: f313ef8d35747d148ae218f3540aac47, type: 3}
+  m_Name: AirFortress_AirMoveComponentSource
   m_EditorClassIdentifier: 
-  _actorsConfigs:
-  - {fileID: 11400000, guid: a8f44dab0bad254438248d7a98f1c894, type: 2}
-  - {fileID: 11400000, guid: c16f77ca282b90a4fae9dd2f9a5122e0, type: 2}
+  _healthConfig:
+    _speed: 15
+    _angularSpeed: 75
+    _acceleration: 15
+    _stoppingDistance: 3
+  _height: 23
