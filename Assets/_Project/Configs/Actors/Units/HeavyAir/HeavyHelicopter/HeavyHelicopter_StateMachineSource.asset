@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd1bbd144f98c0a429d15fcf764e5306, type: 3}
-  m_Name: AirFortress_TargetingProfile_AA
+  m_Script: {fileID: 11500000, guid: 1003899c85cc3274991922a6a5080f80, type: 3}
+  m_Name: HeavyHelicopter_StateMachineSource
   m_EditorClassIdentifier: 
-  _notAttacked: 7
-  _priorityActorTypes: []
+  _types: 000000000100000002000000
