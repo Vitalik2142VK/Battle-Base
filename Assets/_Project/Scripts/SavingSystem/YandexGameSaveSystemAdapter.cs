@@ -9,15 +9,15 @@ namespace BattleBase.SaveService
 
         public event Action ProgressReseted;
 
-        public IVolumeData VolumeData => Data.VolumeData;
+        public IVolumeData VolumeData => JsonData.VolumeData;
 
-        public IColorData ColorData => Data.ColorData;
+        public IColorData ColorData => JsonData.ColorData;
 
-        public ITerritoryData TerritoryData => Data.TerritoryData;
+        public ITerritoryData TerritoryData => JsonData.TerritoryData;
 
-        public IShopData ShopData => Data.ShopData;
+        public IShopData ShopData => JsonData.ShopData;
 
-        private SavesData Data => YG2.saves.SavesData;
+        private JsonSavesData JsonData => YG2.saves.SavesData;
 
         public void SaveProgress()
         {
@@ -39,38 +39,44 @@ namespace BattleBase.SaveService
 
         public void SetVolumeData(IVolumeData data)
         {
-            if (Data.VolumeData.IsChangedFrom(data))
+            if (JsonData.VolumeData.IsChangedFrom(data))
             {
-                Data.SetVolumeData(data);
+                JsonData.SetVolumeData(data);
                 _isDirty = true;
             }
         }
 
         public void SetColorData(IColorData data)
         {
-            if (Data.ColorData.IsChangedFrom(data))
+            if (JsonData.ColorData.IsChangedFrom(data))
             {
-                Data.SetColorData(data);
+                JsonData.SetColorData(data);
                 _isDirty = true;
             }
         }
 
         public void SetTerritoryData(ITerritoryData data)
         {
-            if (Data.TerritoryData.IsChangedFrom(data))
+            if (JsonData.TerritoryData.IsChangedFrom(data))
             {
-                Data.SetTerritoryData(data);
+                JsonData.SetTerritoryData(data);
                 _isDirty = true;
             }
         }
 
         public void SetShopData(IShopData data)
         {
-            if (Data.ShopData.IsChangedFrom(data))
+            if (JsonData.ShopData.IsChangedFrom(data))
             {
-                Data.SetShopData(data);
+                JsonData.SetShopData(data);
                 _isDirty = true;
             }
         }
+
+        public int GetState(string key) =>
+            YG2.GetState(key);
+
+        public void SetState(string key, int value) =>
+            YG2.SetState(key, value);
     }
 }

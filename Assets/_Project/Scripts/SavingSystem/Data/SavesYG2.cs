@@ -6,6 +6,6 @@ namespace YG
     [Serializable]
     public partial class SavesYG
     {
-        public SavesData SavesData = new();
+        public JsonSavesData SavesData = new();
     }
 }
