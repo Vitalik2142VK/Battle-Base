@@ -35,5 +35,6 @@ namespace BattleBase.Gameplay.Actors.Energy
             // === DEBUG END ===
 
             _powerRegistry.Release(_teamable.TeamType, _data);
+        }
     }
 }
