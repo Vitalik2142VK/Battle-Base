@@ -138,7 +138,7 @@ namespace BattleBase.DI
 
         private void RegisterAI()
         {
-            _builder.RegisterInstance<IBrainConfing>(_brainConfing);
+            _builder.RegisterInstance<IBrainConfig>(_brainConfing);
 
             _builder.RegisterComponent<IAreaDefenseAI>(_areaDefenseAI);
 

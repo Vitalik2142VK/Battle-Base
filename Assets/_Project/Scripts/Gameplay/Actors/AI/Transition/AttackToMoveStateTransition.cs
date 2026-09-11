@@ -1,4 +1,4 @@
-﻿using BattleBase.Gameplay.Actors.AI.State;
+using BattleBase.Gameplay.Actors.AI.State;
 using BattleBase.Gameplay.Actors.AttackSystem;
 using System;
 
@@ -29,7 +29,7 @@ namespace BattleBase.Gameplay.Actors.AI.Transition
 
         private void OnSetMoveState()
         {
-            StateChanged.Invoke(_moveState);
+            StateChanged?.Invoke(_moveState);
         }
     }
 }

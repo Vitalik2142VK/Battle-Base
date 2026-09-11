@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.AI.Modifiers
@@ -18,7 +18,7 @@ namespace BattleBase.Gameplay.AI.Modifiers
                 _factories.Add(factory.Type, factory);
         }
 
-        public IEnumerable<IAdvancedScoreModifier> Create(IBrainConfing cofing)
+        public IEnumerable<IAdvancedScoreModifier> Create(IBrainConfig cofing)
         {
             List<IAdvancedScoreModifier> scoreModifiers = new();
 

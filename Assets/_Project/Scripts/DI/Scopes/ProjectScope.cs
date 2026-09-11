@@ -27,7 +27,7 @@ namespace BattleBase.DI
         [SerializeField] private ActorsUpgradeConfig _actorsUpgradeConfig;
         [SerializeField] private TeamColorSetConfig _teamColorSetConfig;
         [SerializeField] private List<TerritoryConfig> _territoryConfigs;
-        [SerializeField] private CaptrureCamera _captureCamera;
+        [SerializeField] private CaptureCamera _captureCamera;
 
         private IContainerBuilder _builder;
 

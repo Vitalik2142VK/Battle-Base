@@ -1,4 +1,4 @@
-﻿using BattleBase.Core;
+using BattleBase.Core;
 using BattleBase.Gameplay.AI.Modifiers;
 using BattleBase.Gameplay.AI.Tactics;
 using BattleBase.Utils;
@@ -10,14 +10,14 @@ namespace BattleBase.Gameplay.AI
     public class Brain : IBrain
     {
         private readonly List<ITactic> _tactics;
-        private readonly IBrainConfing _confing;
+        private readonly IBrainConfig _confing;
         private readonly ITacticsFactory _tacticsFactory;
         private readonly IScoreModifiersFactory _modifiersFactory;
 
         private ScoreModifierController _modifierController;
         private int _currentIndexTactic;
 
-        public Brain(IBrainConfing confing, ITacticsFactory tacticsFactory, IScoreModifiersFactory modifiersFactory)
+        public Brain(IBrainConfig confing, ITacticsFactory tacticsFactory, IScoreModifiersFactory modifiersFactory)
         {
             _confing = confing ?? throw new ArgumentNullException(nameof(confing));
             _tacticsFactory = tacticsFactory ?? throw new ArgumentNullException(nameof(tacticsFactory));

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace BattleBase.ScreenshotSystem
 {
-    public class CaptrureCamera : MonoBehaviour, ICaptureCamera
+    public class CaptureCamera : MonoBehaviour, ICaptureCamera
     {
         [SerializeField] private Camera _camera;
 

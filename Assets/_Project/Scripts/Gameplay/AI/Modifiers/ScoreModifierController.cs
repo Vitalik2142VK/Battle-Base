@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.AI.Modifiers
@@ -8,7 +8,7 @@ namespace BattleBase.Gameplay.AI.Modifiers
         private readonly List<IAdvancedScoreModifier> _modifiers;
         private readonly DefaultScoreModifier _defaultModifier;
 
-        public ScoreModifierController(IScoreModifiersFactory factory, IBrainConfing brainConfing)
+        public ScoreModifierController(IScoreModifiersFactory factory, IBrainConfig brainConfing)
         {
             if (factory == null)
                 throw new ArgumentNullException(nameof(factory));
