@@ -84,9 +84,9 @@ namespace BattleBase.Gameplay.Actors.Energy
                 throw new ArgumentOutOfRangeException(nameof(power));
 
             if (UsedEnergy < power)
-                UsedEnergy = 0;
-            else
-                UsedEnergy -= power;
+                throw new InvalidOperationException($"Trying to release {power} power, but only {UsedEnergy} is reserved.");
+
+            UsedEnergy -= power;
 
             DataChanged?.Invoke();
         }
