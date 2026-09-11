@@ -1,4 +1,4 @@
-﻿using BattleBase.Core;
+using BattleBase.Core;
 using BattleBase.Gameplay.Actors.DamageSystem;
 using BattleBase.Gameplay.Actors.Movement;
 using BattleBase.Gameplay.Actors.Spawn;
@@ -67,6 +67,12 @@ namespace BattleBase.Gameplay.Actors
 
         public void Disable()
         {
+            //todo
+            // === DEBUG START ===
+            if (IsEnabled == false)
+                FiXiK.CustomLogger.XLogger.LogWarning($"[Actor] Disable() called on already disabled actor. Team={TeamType}, Id={Data?.Id}", FiXiK.CustomLogger.TagType.FIXIK);
+            // === DEBUG END ===
+
             IsEnabled = false;
 
             foreach (var component in _components.Values)
@@ -123,7 +129,16 @@ namespace BattleBase.Gameplay.Actors
         public void SetSpawnData(ISpawnPoint spawnData) =>
             View.SetSpawnData(spawnData);
 
-        private void OnDestroy() => 
+        private void OnDestroy()
+        {
+            //todo
+            // === DEBUG START ===
+            // Логируем только если актор с Power > 0 и уже был отключён (подозрительно)
+            if (Data != null && Data.Power > 0 && IsEnabled == false)
+                FiXiK.CustomLogger.XLogger.LogWarning($"[Actor] OnDestroy (Deactivated) on already disabled power-consumer. Team={TeamType}, Id={Data.Id}, Power={Data.Power}");
+            // === DEBUG END ===
+
             Deactivated?.Invoke(this);
+        }
     }
 }

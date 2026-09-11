@@ -26,7 +26,7 @@ namespace BattleBase.Gameplay.AI.Tactics
             }
         }
 
-        public IEnumerable<ITactic> Create(IBrainConfing cofing)
+        public IEnumerable<ITactic> Create(IBrainConfig cofing)
         {
             if (cofing == null)
                 throw new ArgumentNullException(nameof(cofing));

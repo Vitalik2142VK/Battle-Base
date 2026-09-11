@@ -6,8 +6,8 @@ namespace BattleBase.AudioService
 {
     public static class AudioVolumeSetter
     {
-        private const float MinimumLevel = -80;
-        private const float MaximumLevel = 20;
+        private const float MinimumLevel = -80f;
+        private const float MaximumLevel = 20f;
 
         public static void SetNormalizedVolume(AudioMixer mixer, string group, float normalized)
         {
@@ -22,7 +22,14 @@ namespace BattleBase.AudioService
             mixer.SetFloat(group, level);
         }
 
-        private static float ConvertNormalizedToLevel(float normalized) =>
-            normalized <= 0 ? MinimumLevel : Mathf.Log10(normalized) * MaximumLevel;
+        private static float ConvertNormalizedToLevel(float normalized)
+        {
+            if (normalized <= 0f)
+                return MinimumLevel;
+
+            float level = Mathf.Log10(normalized) * MaximumLevel;
+
+            return Mathf.Clamp(level, MinimumLevel, 0f);
+        }
     }
 }

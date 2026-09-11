@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace BattleBase.Gameplay.Actors.Energy
 {
@@ -26,7 +26,14 @@ namespace BattleBase.Gameplay.Actors.Energy
         public void Enable() =>
             _powerRegistry.Reserve(_teamable.TeamType, _data);
 
-        public void Disable() => 
+        public void Disable()
+        {
+            //todo
+            // === DEBUG START ===
+            if (_teamable.TeamType == TeamType.None)
+                FiXiK.CustomLogger.XLogger.LogWarning($"[PowerCleaner] Disable() with TeamType.None (Power={_data.Power}). Release skipped to avoid KeyNotFoundException.");
+            // === DEBUG END ===
+
             _powerRegistry.Release(_teamable.TeamType, _data);
     }
 }

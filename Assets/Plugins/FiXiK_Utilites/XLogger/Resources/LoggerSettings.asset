@@ -15,7 +15,7 @@ MonoBehaviour:
   _logTextParams:
     _textColor:
       serializedVersion: 2
-      rgba: 4294111986
+      rgba: 4293848814
     _fontStyle: 1
   _warningTextParams:
     _textColor:
@@ -79,6 +79,11 @@ MonoBehaviour:
     _color:
       serializedVersion: 2
       rgba: 4279847654
+    _isOn: 1
+  - _name: FIXIK
+    _color:
+      serializedVersion: 2
+      rgba: 4282711859
     _isOn: 1
   _colors:
   - _name: Red

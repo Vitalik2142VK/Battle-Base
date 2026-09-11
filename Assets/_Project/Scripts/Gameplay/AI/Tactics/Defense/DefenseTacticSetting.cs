@@ -1,4 +1,4 @@
-﻿using BattleBase.Gameplay.Actors;
+using BattleBase.Gameplay.Actors;
 using BattleBase.Utils.Constants;
 using System.Collections.Generic;
 using System.Linq;

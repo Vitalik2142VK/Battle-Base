@@ -40,8 +40,27 @@ namespace BattleBase.Gameplay.Actors.Spawn
             if (actor == null)
                 return;
 
+            //todo
+            // === DEBUG START ===
+            bool wasEnabled = actor.IsEnabled;
+            TeamType teamBefore = actor.TeamType;
+            // === DEBUG END ===
+
             actor.Deactivated -= OnReturn;
             actor.Disable();
+
+            //todo
+            // === DEBUG START ===
+            if (wasEnabled == false)
+                FiXiK.CustomLogger.XLogger.LogWarning($"[ActorPool] OnReturn on already disabled actor. Team={teamBefore}, Id={actor.Data?.Id}");
+
+            if (actor.IsEnabled)
+                FiXiK.CustomLogger.XLogger.LogWarning($"[ActorPool] Actor still IsEnabled=true after Disable() in OnReturn. Team={teamBefore}, Id={actor.Data?.Id}");
+
+            if (teamBefore == TeamType.None)
+                FiXiK.CustomLogger.XLogger.LogWarning($"[ActorPool] OnReturn with TeamType.None. Id={actor.Data?.Id}");
+            // === DEBUG END ===
+
             _actors.Push(actor);
         }
 

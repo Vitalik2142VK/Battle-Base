@@ -26,15 +26,15 @@
                 2,
                 46
             ],
-            "_selectedTerritory": 1
+            "_selectedTerritory": 10
         },
         "_shopData": {
-            "_credits": 23157,
+            "_credits": 24928,
             "_unitUpgrades": [
                 {
                     "_name": "",
                     "_damageLevel": 0,
-                    "_armorLevel": 1,
+                    "_armorLevel": 0,
                     "_buildTimeLevel": 0
                 },
                 {

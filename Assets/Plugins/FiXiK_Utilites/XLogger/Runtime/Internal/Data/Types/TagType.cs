@@ -12,5 +12,6 @@ namespace FiXiK.CustomLogger
         ANIMATION,
         EDITOR,
         ANALYTICS,
+        FIXIK,
     }
 }
