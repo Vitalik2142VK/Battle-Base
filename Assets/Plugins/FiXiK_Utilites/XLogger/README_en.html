@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XLogger — Documentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            padding: 2rem;
+            background-color: #f0f2f5;
+            color: #1a1a2e;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 20px 35px -10px rgba(0,0,0,0.1);
+            padding: 2rem 2rem 3rem;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            border-bottom: 2px solid #d0d5dd;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            color: #0f172a;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #2563eb;
+            padding-left: 1rem;
+            color: #0f172a;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #1e293b;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+
+        ul, ol {
+            margin: 0.5rem 0 1rem 1.8rem;
+            color: #1e293b;
+        }
+
+        li {
+            margin: 0.3rem 0;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+            background-color: #eef2ff;
+            padding: 0.2rem 0.4rem;
+            border-radius: 8px;
+            font-size: 0.9em;
+            border: 1px solid #cbd5e1;
+            color: #1e1e2f;
+        }
+
+        pre {
+            background-color: #f8fafc;
+            padding: 1rem;
+            border-radius: 16px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border: 1px solid #e2e8f0;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            border: none;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #0f172a;
+        }
+
+        blockquote {
+            border-left: 4px solid #2563eb;
+            background-color: #f1f5f9;
+            padding: 0.75rem 1rem;
+            margin: 1rem 0;
+            border-radius: 12px;
+            color: #1e293b;
+        }
+
+        hr {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, #e2e8f0, transparent);
+            margin: 2rem 0;
+        }
+
+        .question {
+            font-weight: 700;
+            margin-top: 1.2rem;
+            color: #0f172a;
+        }
+
+        .answer {
+            margin-bottom: 0.8rem;
+            color: #1e293b;
+        }
+
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #475569;
+        }
+
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            font-size: 0.8rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            margin-left: 0.5rem;
+        }
+
+        @media (max-width: 700px) {
+            body {
+                padding: 1rem;
+            }
+            .container {
+                padding: 1.2rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>XLogger</h1>
+    <p><strong>Version 1.0.1</strong> | Author: FiXiK | September 6, 2026</p>
+    <p>
+        <span class="badge">Editor & Runtime</span>
+        <span class="badge">Conditional Logging</span>
+        <span class="badge">Tag System</span>
+        <span class="badge">Custom Colors</span>
+    </p>
+    <p>
+        <strong>XLogger</strong> is a flexible logging system for Unity that allows you to:
+        <ul>
+            <li>Output logs with tags, colors, and font styles.</li>
+            <li>Customize the appearance of messages (Log, Warning, Error) through the editor.</li>
+            <li>Automatically generate the <code>TagType</code> enum and <code>LogColor</code> structure based on settings.</li>
+            <li>Use conditional logging (<code>condition</code>) and strip logs from release builds.</li>
+            <li>Support multi-line messages while preserving formatting.</li>
+            <li>Fully localized settings interface (English / Russian).</li>
+        </ul>
+    </p>
+
+    <h2>Features</h2>
+    <ul>
+        <li><strong>Flexible builder</strong> – method chaining with <code>.WithColor()</code>, <code>.WithTag()</code>, <code>.WithLogType()</code>, etc.</li>
+        <li><strong>Tag system</strong> – each tag has its own color and name that can be edited.</li>
+        <li><strong>Code generation</strong> – saving settings automatically creates <code>TagType.cs</code> and <code>LogColor.cs</code>.</li>
+        <li><strong>Conditional compilation</strong> – all logging methods are stripped from release builds.</li>
+        <li><strong>Console clearing</strong> – <code>XLogger.ClearConsole()</code> works only in the Editor.</li>
+        <li><strong>ScriptableObject settings</strong> – all parameters are stored in <code>LoggerSettings.asset</code>, accessible via <code>Tools/XLogger/Settings</code>.</li>
+        <li><strong>Localization</strong> – switch the settings UI language.</li>
+        <li><strong>Correct double-click</strong> – clicking a log in the Console always opens the calling code.</li>
+    </ul>
+
+    <h2>Installation</h2>
+    <h3>Via .unitypackage (recommended)</h3>
+    <ol>
+        <li>Download the latest release.</li>
+        <li>Import the <code>.unitypackage</code> via <code>Assets → Import Package → Custom Package</code>.</li>
+        <li>Done! The plugin will automatically create the settings file and show the welcome window.</li>
+    </ol>
+    <h3>Manual installation</h3>
+    <ol>
+        <li>Copy the <code>XLogger</code> folder anywhere inside <code>Assets</code>.</li>
+        <li>Reload Unity (or press <code>Ctrl+R</code>).</li>
+        <li>Open the settings window via <code>Tools → XLogger → Settings</code>.</li>
+    </ol>
+
+    <h2>Quick Start</h2>
+    <ol>
+        <li><strong>Open the settings window</strong><br><code>Tools → XLogger → Settings</code></li>
+        <li><strong>Configure tags</strong><br>In the <em>Tag Settings</em> section add/remove tags and set their colors.</li>
+        <li><strong>Configure message colors</strong><br>In the <em>Message Settings</em> section choose color and style for Log, Warning, and Error.</li>
+        <li><strong>Add custom colors</strong><br>In the <em>Color Settings</em> section define your named colors (they will be available as <code>LogColor.YourColor</code>).</li>
+        <li><strong>Save</strong><br>Click <strong>Save Settings</strong> – <code>TagType.cs</code> and <code>LogColor.cs</code> will be generated.</li>
+        <li><strong>Use in code</strong><br>
+            <pre><code>// Simple logs
+XLogger.Log("Hello");
+XLogger.LogWarning("Warning");
+XLogger.LogError("Error");
+
+// Flexible variant
+XLogger.Message("Multi-line\nmessage")
+    .WithColor(LogColor.Cyan)
+    .WithFontStyle(FontStyle.Bold)
+    .WithTag(TagType.INPUT)
+    .WithLogType(XLogType.LogWarning)
+    .Log();
+
+// Conditional log
+XLogger.Log("This will only appear if condition == true", condition);</code></pre>
+        </li>
+    </ol>
+
+    <h2>Editor Settings</h2>
+    <p>All settings are stored in the <code>LoggerSettings.asset</code> file, which is automatically created in the <code>Resources</code> folder next to the plugin.</p>
+    <p>You can edit it manually via the Unity Inspector or through the settings window.</p>
+    <h3>Settings sections</h3>
+    <ul>
+        <li><strong>Tag Settings</strong> – enable/disable tag display, default tag, list of custom tags.</li>
+        <li><strong>Message Settings</strong> – colors and styles for <code>Log</code>, <code>LogWarning</code>, <code>LogError</code>.</li>
+        <li><strong>Color Settings</strong> – list of named colors (name → color) that will be available in the <code>LogColor</code> structure.</li>
+    </ul>
+
+    <h2>API (for developers)</h2>
+    <h3>Main <code>XLogger</code> methods</h3>
+    <pre><code>// Simple methods
+public static void Log(object message, bool condition = true);
+public static void LogWarning(object message, bool condition = true);
+public static void LogError(object message, bool condition = true);
+
+// Extended methods (with context, color, style, tag)
+public static void Log(object message, Object context, bool condition = true);
+public static void Log(object message, Color32 color, bool condition = true);
+public static void Log(object message, TagType tag, bool condition = true);
+// ... and other combinations
+
+// Builder for flexible configuration
+public static MessageInfo Message(object message);</code></pre>
+
+    <h3><code>MessageInfo</code> builder</h3>
+    <pre><code>XLogger.Message("text")
+    .WithColor(Color32 color)                 // sets the color
+    .WithFontStyle(FontStyle style)           // Normal/Bold/Italic/BoldAndItalic
+    .WithTag(TagType tag)                     // sets the tag
+    .WithLogType(XLogType type)               // Log / LogWarning / LogError
+    .WithContext(Object context)              // context for highlighting in the Editor
+    .WithCondition(bool condition)            // conditional output
+    .Log();                                   // sends the message</code></pre>
+
+    <h3>Code generation</h3>
+    <p>When you save the settings, the following files are automatically generated:</p>
+    <ul>
+        <li><code>TagType.cs</code> – enum of all tags (the first element is always <code>LOGGER = 0</code>).</li>
+        <li><code>LogColor.cs</code> – structure with static <code>Color32</code> properties for each color.</li>
+    </ul>
+
+    <h2>Build Behavior</h2>
+    <ul>
+        <li><strong>All <code>XLogger.Log*</code> methods and <code>Message(...).Log()</code></strong> are stripped from <strong>release</strong> builds (without <code>DEVELOPMENT_BUILD</code>). They work in the Editor and Development builds.</li>
+        <li><strong><code>XLogger.ClearConsole()</code></strong> works only in the Editor.</li>
+    </ul>
+    <blockquote>
+        <p><strong>Important:</strong> Logging is completely disabled in release builds. This is intentional for performance reasons.</p>
+    </blockquote>
+
+    <h2>Requirements</h2>
+    <ul>
+        <li><strong>Unity 2020.3</strong> or newer (tested on 2021.3 LTS, 2022.3, 2023.2).</li>
+        <li>Platform: any platform that supports the Unity Editor (Windows, macOS, Linux).</li>
+        <li>Dependencies: none.</li>
+    </ul>
+
+    <h2>Frequently Asked Questions</h2>
+    <div class="question">Q: Why don’t my logs appear in the build?</div>
+    <div class="answer"><strong>A:</strong> All logging methods are stripped by conditional compilation in release builds. This is done for performance.</div>
+
+    <div class="question">Q: How do I add a new tag?</div>
+    <div class="answer"><strong>A:</strong> Open the settings window (<code>Tools/XLogger/Settings</code>), go to the <em>Tag Settings</em> section, click <code>+</code> in the <code>Tags</code> field, enter a name and choose a color. Click <strong>Save Settings</strong> – the tag will appear in the <code>TagType</code> enum.</div>
+
+    <div class="question">Q: How do I add a custom color to <code>LogColor</code>?</div>
+    <div class="answer"><strong>A:</strong> In the settings window, go to the <em>Color Settings</em> section, add a new entry, set the name and color. After saving, a static property with that name will appear in <code>LogColor</code>.</div>
+
+    <div class="question">Q: Why doesn’t the tag appear in the message?</div>
+    <div class="answer"><strong>A:</strong> Check that the <strong>Show Tag</strong> option is enabled in the settings (Tag Settings section). Also make sure you passed the tag via <code>.WithTag()</code>.</div>
+
+    <div class="question">Q: Can I use <code>LogColor</code> outside the logger?</div>
+    <div class="answer"><strong>A:</strong> Yes, <code>LogColor</code> is a regular structure with colors and can be used anywhere in your code.</div>
+
+    <div class="question">Q: How do I switch the interface language?</div>
+    <div class="answer"><strong>A:</strong> At the top of the settings window there is a dropdown – select <em>English</em> or <em>Русский</em>. The choice is saved in <code>EditorPrefs</code>.</div>
+
+    <div class="question">Q: Is there a conflict with <code>UnityEngine.Logger</code>?</div>
+    <div class="answer"><strong>A:</strong> No, <code>XLogger</code> is a unique name and does not conflict with Unity’s built-in logger.</div>
+
+    <div class="question">Q: Why does double-clicking a log open the wrong file?</div>
+    <div class="answer"><strong>A:</strong> This issue was fixed in version 1.0.1. Make sure you are using the latest release. It is also recommended to enable <strong>Strip logging callstack</strong> in the Console window (⋮ → Strip logging callstack).</div>
+
+    <h2>License</h2>
+    <p>MIT License. You are free to use, modify, and distribute the plugin with attribution.</p>
+
+    <h2>Author & Contacts</h2>
+    <p><strong>FiXiK</strong><br>
+    Telegram: <a href="https://t.me/VL_dogs" target="_blank">@VL_dogs</a></p>
+    <p>Found a bug or have suggestions? Feel free to write!</p>
+
+    <h2>Changelog</h2>
+    <h3>1.0.1 (September 6, 2026)</h3>
+    <ul>
+        <li>Fixed double-click behavior in the Console (now always opens the calling code).</li>
+        <li>Renamed the final builder method: <code>.Push()</code> → <code>.Log()</code>.</li>
+        <li>Renamed enum <code>LogType</code> → <code>XLogType</code> (to avoid conflict with Unity).</li>
+        <li>Added <code>[HideInCallstack]</code> to all logging methods.</li>
+        <li>Generation file paths are now dynamic (the plugin no longer depends on folder location).</li>
+        <li>Improved safety of <code>ConsoleStripHelper</code>.</li>
+        <li>Minor fixes and code cleanup.</li>
+    </ul>
+
+    <h3>1.0.0 (September 4, 2026)</h3>
+    <ul>
+        <li><strong>Initial release.</strong></li>
+        <li>Basic <code>Log</code>, <code>LogWarning</code>, <code>LogError</code> methods.</li>
+        <li>Flexible <code>MessageInfo</code> builder.</li>
+        <li>Generation of <code>TagType</code> and <code>LogColor</code>.</li>
+        <li>Settings window with localization (EN/RU).</li>
+        <li>Conditional compilation (<code>UNITY_EDITOR</code>, <code>DEVELOPMENT_BUILD</code>).</li>
+        <li>Multi-line message support.</li>
+        <li>Welcome dialog and About dialog.</li>
+    </ul>
+
+    <hr>
+    <footer>
+        &copy; 2026 FiXiK | XLogger Plugin Documentation
+    </footer>
+</div>
+</body>
+</html>

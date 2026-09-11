@@ -1,6 +1,6 @@
 namespace BattleBase.SaveService
 {
-    public interface ISavesData
+    public interface IJsonSavesData
     {
         public IVolumeData VolumeData { get; }
 

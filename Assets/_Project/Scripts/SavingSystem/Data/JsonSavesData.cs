@@ -4,7 +4,7 @@ using UnityEngine;
 namespace BattleBase.SaveService
 {
     [Serializable]
-    public class SavesData : ISavesData
+    public class JsonSavesData : IJsonSavesData
     {
         [SerializeField] private VolumeData _volumeData = new();
         [SerializeField] private ColorData _colorData = new();

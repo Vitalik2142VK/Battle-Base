@@ -2,7 +2,7 @@ using System;
 
 namespace BattleBase.SaveService
 {
-    public interface ISaver : IAudioVolumeSaver, IColorSaver, ITerritorySaver, IShopSaver
+    public interface ISaver : IAudioVolumeSaver, IColorSaver, ITerritorySaver, IShopSaver, IPurchasesSaver
     {
         public event Action ProgressReseted;
 
