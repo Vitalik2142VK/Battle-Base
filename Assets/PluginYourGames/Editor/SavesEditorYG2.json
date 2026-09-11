@@ -1,5 +1,11 @@
 {
-    "idSave": 66,
+    "stringKeys": [],
+    "stringValues": [],
+    "floatKeys": [],
+    "floatValues": [],
+    "intKeys": [],
+    "intValues": [],
+    "idSave": 67,
     "SavesData": {
         "_volumeData": {
             "_generalVolume": 1.0,
@@ -20,7 +26,7 @@
                 2,
                 46
             ],
-            "_selectedTerritory": 0
+            "_selectedTerritory": 1
         },
         "_shopData": {
             "_credits": 22650,
