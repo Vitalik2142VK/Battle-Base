@@ -5,6 +5,7 @@ namespace BattleBase.AdvService
     public interface IAdvertisingService
     {
         public event Action<string> RewardAdvShown;
+        public event Action<string> PurchaseSuccess;
 
         public void ShowInterstitialAdv();
 

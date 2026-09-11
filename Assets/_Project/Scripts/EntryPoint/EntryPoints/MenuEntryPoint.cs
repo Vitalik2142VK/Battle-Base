@@ -1,10 +1,11 @@
 using System;
+using BattleBase.AdvService;
+using BattleBase.AuthService;
 using BattleBase.SaveService;
 using BattleBase.UI.Buttons;
 using BattleBase.Utils.Constants;
 using UnityEngine;
 using VContainer;
-using YG;
 
 namespace BattleBase.EntryPoints
 {
@@ -14,53 +15,54 @@ namespace BattleBase.EntryPoints
         [SerializeField] private ButtonClickHandler _noAdsButton;
 
         private IPurchasesSaver _purchasesSaver;
+        private IAdvertisingService _advertisingService;
+        private IAuthorizationService _authorizationService;
 
         [Inject]
-        public void Construct(IPurchasesSaver purchasesSaver)
+        public void Construct(
+            IPurchasesSaver purchasesSaver,
+            IAdvertisingService advertisingService,
+            IAuthorizationService authorizationService)
         {
             _purchasesSaver = purchasesSaver ?? throw new ArgumentNullException(nameof(purchasesSaver));
+            _advertisingService = advertisingService ?? throw new ArgumentNullException(nameof(advertisingService));
+            _authorizationService = authorizationService ?? throw new ArgumentNullException(nameof(authorizationService));
         }
 
         protected override void Start()
         {
             base.Start();
 
+            _authorizationService.SDKDataReceived += OnGetSDKData;
+            _advertisingService.PurchaseSuccess += OnPurchaseSuccess;
             OnGetSDKData();
-
-            if (_purchasesSaver.GetState(PurchasesKeys.NoAdsKey) == 1)
-                ProcessDisabledAds();
-
-            YG2.onGetSDKData += OnGetSDKData;
-            YG2.onPurchaseSuccess += OnPurchaseSuccess;
+            ProcessVisibleAds();
         }
 
         private void OnDestroy()
         {
-            YG2.onGetSDKData -= OnGetSDKData;
-            YG2.onPurchaseSuccess -= OnPurchaseSuccess;
+            _authorizationService.SDKDataReceived -= OnGetSDKData;
+            _advertisingService.PurchaseSuccess -= OnPurchaseSuccess;
         }
 
-        private void OnGetSDKData()
-        {
-            if (YG2.player.auth)
-                _authButton.Hide();
-            else
-                _authButton.Show();
-        }
+        private void OnGetSDKData() =>
+            _authButton.SetActive(_authorizationService.IsAuth == false);
 
         private void OnPurchaseSuccess(string id)
         {
             if (string.Equals(id, PurchasesIds.NoAds))
-            {
-                _purchasesSaver.SetState(PurchasesKeys.NoAdsKey, 1);
-                ProcessDisabledAds();
-            }
+                _purchasesSaver.SetNoAdsState(true);
+
+            ProcessVisibleAds();
         }
 
-        private void ProcessDisabledAds()
+        private void ProcessVisibleAds()
         {
-            YG2.StickyAdActivity(false);
-            _noAdsButton.Hide();
+            if (_purchasesSaver.IsNoAds)
+            {
+                _advertisingService.SetActivityStickyAd(false);
+                _noAdsButton.Hide();
+            }
         }
     }
 }

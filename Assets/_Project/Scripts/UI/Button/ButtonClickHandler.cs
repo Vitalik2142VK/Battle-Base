@@ -43,6 +43,9 @@ namespace BattleBase.UI.Buttons
             _commands.Add(command);
         }
 
+        public void SetActive(bool isActive) =>
+            gameObject.SetActive(isActive);
+
         public void Hide() =>
             gameObject.SetActive(false);
 

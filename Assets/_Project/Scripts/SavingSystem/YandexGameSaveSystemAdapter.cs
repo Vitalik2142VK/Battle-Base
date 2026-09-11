@@ -1,4 +1,5 @@
 using System;
+using BattleBase.Utils.Constants;
 using YG;
 
 namespace BattleBase.SaveService
@@ -18,6 +19,8 @@ namespace BattleBase.SaveService
         public IShopData ShopData => JsonData.ShopData;
 
         private JsonSavesData JsonData => YG2.saves.SavesData;
+
+        public bool IsNoAds => YG2.GetState(PurchasesKeys.NoAdsKey) == 1;
 
         public void SaveProgress()
         {
@@ -73,10 +76,7 @@ namespace BattleBase.SaveService
             }
         }
 
-        public int GetState(string key) =>
-            YG2.GetState(key);
-
-        public void SetState(string key, int value) =>
-            YG2.SetState(key, value);
+        public void SetNoAdsState(bool isOn) =>
+            YG2.SetState(PurchasesKeys.NoAdsKey, isOn ? 1 : 0);
     }
 }

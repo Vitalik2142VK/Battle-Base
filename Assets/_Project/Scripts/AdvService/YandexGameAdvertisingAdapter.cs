@@ -5,15 +5,20 @@ namespace BattleBase.AdvService
 {
     public class YandexGameAdvertisingAdapter : IAdvertisingService, IDisposable
     {
-        public YandexGameAdvertisingAdapter() 
+        public YandexGameAdvertisingAdapter()
         {
             YG2.onRewardAdv += OnReward;
+            YG2.onPurchaseSuccess += OnPurchaseSuccess;
         }
 
         public event Action<string> RewardAdvShown;
+        public event Action<string> PurchaseSuccess;
 
-        public void Dispose() =>
-            YG2.onRewardAdv -= OnReward;        
+        public void Dispose()
+        {
+            YG2.onRewardAdv -= OnReward;
+            YG2.onPurchaseSuccess -= OnPurchaseSuccess;
+        }
 
         public void ShowInterstitialAdv() =>
             YG2.InterstitialAdvShow();
@@ -29,5 +34,8 @@ namespace BattleBase.AdvService
 
         private void OnReward(string id) =>
             RewardAdvShown?.Invoke(id);
+
+        private void OnPurchaseSuccess(string id) =>
+            PurchaseSuccess?.Invoke(id);
     }
 }

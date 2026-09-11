@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using BattleBase.AdvService;
 using BattleBase.AudioService;
+using BattleBase.AuthService;
 using BattleBase.Gameplay.Map;
 using BattleBase.PauseService;
 using BattleBase.PreviewCreatingSystem;
@@ -37,6 +38,7 @@ namespace BattleBase.DI
             builder.Register<IPauseSwitcher, PauseSwitcher>(Lifetime.Singleton);
             builder.Register<YandexGameSaveSystemAdapter>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<IAdvertisingService, YandexGameAdvertisingAdapter>(Lifetime.Singleton);
+            builder.Register<IAuthorizationService, YandexGameAuthAdapter>(Lifetime.Singleton);
 
             builder.Register<CreditsModel>(Lifetime.Singleton);
             builder.Register<AudioVolumeModel>(Lifetime.Singleton);
