@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace BattleBase.Gameplay.Actors.Energy
 {
@@ -84,9 +84,18 @@ namespace BattleBase.Gameplay.Actors.Energy
                 throw new ArgumentOutOfRangeException(nameof(power));
 
             if (UsedEnergy < power)
+            {
+                //todo
+                // === DEBUG START ===
+                FiXiK.CustomLogger.XLogger.LogWarning($"[Power] Release anomaly: UsedEnergy={UsedEnergy} < power={power}. Clamping to 0. Possible double Disable/OnReturn or previous under-release.");
+                // === DEBUG END ===
+
                 UsedEnergy = 0;
+            }
             else
+            {
                 UsedEnergy -= power;
+            }
 
             DataChanged?.Invoke();
         }
