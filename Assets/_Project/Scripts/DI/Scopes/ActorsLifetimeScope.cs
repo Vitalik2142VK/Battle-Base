@@ -38,6 +38,7 @@ namespace BattleBase.DI
         [SerializeField] private WaypointController _waypointController;
         [SerializeField] private ProjectileSpawner _projectileSpawner;
         [SerializeField] private TrailParticleSpawner _trailParticleSpawner;
+        [SerializeField] private ParticleSpawner _particleSpawner;
         [SerializeField] private AreaDefenseAI _areaDefenseAI;
         [SerializeField] private UpgraderConfig _upgradeConfig;
         [SerializeField] private BrainConfing _brainConfing;
@@ -56,6 +57,7 @@ namespace BattleBase.DI
             _builder.RegisterInstance<IWaypointController>(_waypointController);
             _builder.RegisterInstance<IProjectileSpawner>(_projectileSpawner);
             _builder.RegisterInstance<ITrailParticleSpawner>(_trailParticleSpawner);
+            _builder.RegisterInstance<IParticleSpawner>(_particleSpawner);
             _builder.RegisterInstance<IUpgraderConfig>(_upgradeConfig);
 
             _builder.Register<IActorSpawnService, ActorSpawnService>(Lifetime.Scoped);

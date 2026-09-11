@@ -60,21 +60,24 @@ namespace BattleBase.Gameplay.Actors.Energy
                 CurrentCapacity = _powerConfig.MaxCapacity;
         }
 
-        public bool TryReserve(int power)
+        public bool CanReserve(int power)
         {
             if (power < 0)
                 throw new ArgumentOutOfRangeException(nameof(power));
 
             int resultPower = UsedEnergy + power;
 
-            if (CurrentCapacity < resultPower)
-                return false;
+            return CurrentCapacity >= resultPower;
+        }
+
+        public void Reserve(int power)
+        {
+            if (power < 0)
+                throw new ArgumentOutOfRangeException(nameof(power));
 
             UsedEnergy += power;
 
             DataChanged?.Invoke();
-
-            return true;
 
         }
 
@@ -84,18 +87,9 @@ namespace BattleBase.Gameplay.Actors.Energy
                 throw new ArgumentOutOfRangeException(nameof(power));
 
             if (UsedEnergy < power)
-            {
-                //todo
-                // === DEBUG START ===
-                FiXiK.CustomLogger.XLogger.LogWarning($"[Power] Release anomaly: UsedEnergy={UsedEnergy} < power={power}. Clamping to 0. Possible double Disable/OnReturn or previous under-release.");
-                // === DEBUG END ===
+                throw new InvalidOperationException($"Trying to release {power} power, but only {UsedEnergy} is reserved.");
 
-                UsedEnergy = 0;
-            }
-            else
-            {
-                UsedEnergy -= power;
-            }
+            UsedEnergy -= power;
 
             DataChanged?.Invoke();
         }

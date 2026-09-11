@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.Energy
 {
@@ -21,16 +22,24 @@ namespace BattleBase.Gameplay.Actors.Energy
         public void ReduceCapacity(TeamType team, int capacity) =>
             _powers[team].ReduceCapacity(capacity);
 
-        public bool TryReserve(TeamType team, int power) =>
-            _powers[team].TryReserve(power);
+        public bool CanReserve(TeamType team, int power) =>
+            _powers[team].CanReserve(power);
 
         public IPowerData GetPowerData(TeamType team) =>
             _powers[team];
 
+        public void Reserve(TeamType team, IActorData actorData)
+        {
+            if (actorData == null)
+                throw new ArgumentNullException(nameof(actorData));
+
+            _powers[team].Reserve(actorData.Power);
+        }
+
         public void Release(TeamType team, IActorData actorData)
         {
             if (actorData == null)
-                throw new System.ArgumentNullException(nameof(actorData));
+                throw new ArgumentNullException(nameof(actorData));
 
             _powers[team].Release(actorData.Power);
         }

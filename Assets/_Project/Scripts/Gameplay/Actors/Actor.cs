@@ -131,8 +131,6 @@ namespace BattleBase.Gameplay.Actors
 
         private void OnDestroy()
         {
-            FiXiK.CustomLogger.XLogger.LogWarning($"[Actor] OnDestroy (Deactivated) on already disabled power-consumer. Team={TeamType}, Id={Data.Id}, Power={Data.Power}");
-
             //todo
             // === DEBUG START ===
             // Логируем только если актор с Power > 0 и уже был отключён (подозрительно)

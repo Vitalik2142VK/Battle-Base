@@ -4,30 +4,30 @@ namespace BattleBase.Gameplay.Actors.DamageSystem
 {
     public class OnTimeDestroyable : IOnTimeDestroyable
     {
-        private bool _isEnamble;
+        private bool _isEnable;
 
         public event Action Destroyed;
 
         public OnTimeDestroyable()
         {
-            _isEnamble = false;
+            _isEnable = false;
         }
 
         public Type KeyType => typeof(IOnTimeDestroyable);
 
         public void Enable()
         {
-            _isEnamble = true;
+            _isEnable = true;
         }
 
         public void Disable()
         {
-            _isEnamble = false;
+            _isEnable = false;
         }
 
         public void Destroy()
         {
-            if (_isEnamble == false)
+            if (_isEnable == false)
                 Destroyed?.Invoke();
         }
     }
