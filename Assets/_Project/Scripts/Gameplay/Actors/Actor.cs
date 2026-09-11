@@ -123,9 +123,7 @@ namespace BattleBase.Gameplay.Actors
         public void SetSpawnData(ISpawnPoint spawnData) =>
             View.SetSpawnData(spawnData);
 
-        private void OnDestroy()
-        {
+        private void OnDestroy() => 
             Deactivated?.Invoke(this);
-        }
     }
 }
