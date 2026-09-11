@@ -96,7 +96,7 @@ MonoBehaviour:
     m_Bits: 64
   _maxDamageRadius: 2.5
   _radius: 7
-  _namberDamagedActors: 8
+  _numberDamagedActors: 8
 --- !u!1001 &3288456361454964786
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -15,13 +15,14 @@ MonoBehaviour:
   _projectileConfig:
     _projectilePrefab: {fileID: 7550878289047074185, guid: ed12269b9172a4a44bfe5966c7513ee1,
       type: 3}
-    _speed: 180
+    _speed: 200
   _damageConfig:
     _targetingProfile: {fileID: 11400000, guid: 158e60f634597554a98a9b8d9813fcb9,
       type: 2}
     _damageMask: -1
     _damage: 35
   _firingRange: 50
+  _minFiringRange: 0
   _rateShooting: 3
   _speedReload: 3
   _numberShells: 1

@@ -1,6 +1,6 @@
 namespace BattleBase.Gameplay.Actors.Building
 {
-    public interface IBuildingSite : IActorViewComponent
+    public interface IBuildingSite : IActorViewComponent, IBuildingSiteEvents
     {
         public SiteType Type { get; }
 

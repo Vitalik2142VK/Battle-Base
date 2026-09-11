@@ -9,11 +9,14 @@ using BattleBase.Gameplay.Actors.Colored;
 using BattleBase.Gameplay.Actors.ComponentImprovement;
 using BattleBase.Gameplay.Actors.DamageSystem.Modifiers;
 using BattleBase.Gameplay.Actors.DamageSystem.Removal;
+using BattleBase.Gameplay.Actors.DeploymentSystem;
 using BattleBase.Gameplay.Actors.Economy;
 using BattleBase.Gameplay.Actors.Energy;
 using BattleBase.Gameplay.Actors.HealthSystem;
 using BattleBase.Gameplay.Actors.ImproveSystem;
 using BattleBase.Gameplay.Actors.Movement;
+using BattleBase.Gameplay.Actors.Movement.Air;
+using BattleBase.Gameplay.Actors.Movement.Hunt;
 using BattleBase.Gameplay.Actors.Production;
 using BattleBase.Gameplay.Actors.Spawn;
 using BattleBase.Gameplay.Actors.Visual.Particle;
@@ -78,6 +81,7 @@ namespace BattleBase.DI
             _builder.Register<IComponentFactory, AttackerFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, MoverFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, AirMoverFactory>(Lifetime.Scoped);
+            _builder.Register<IComponentFactory, HuntMoverFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, SingleActorSpawnerFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, MultiActorSpawnerFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, ActorStateMachineFactory>(Lifetime.Scoped);
@@ -86,6 +90,7 @@ namespace BattleBase.DI
             _builder.Register<IComponentFactory, PowerGeneratorFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, MaterialCreatorFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactory, ProductionServiceFactory>(Lifetime.Scoped);
+            _builder.Register<IComponentFactory, DeploymentFactory>(Lifetime.Scoped);
             _builder.Register<IComponentFactoryRegistry, ComponentFactoryRegistry>(Lifetime.Scoped);
         }
 
@@ -96,6 +101,7 @@ namespace BattleBase.DI
             _builder.Register<IActorComponentBinder, AttackerBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, MultyAttackerBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, MoverBinder>(Lifetime.Scoped);
+            _builder.Register<IActorComponentBinder, HuntMoverBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, ActorSpawnerBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, ColoredActorBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, ImproverBinder>(Lifetime.Scoped);
@@ -103,6 +109,7 @@ namespace BattleBase.DI
             _builder.Register<IActorComponentBinder, PowerGeneratorBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, MaterialCreatorBinder>(Lifetime.Scoped);
             _builder.Register<IActorComponentBinder, ProductionServiceBinder>(Lifetime.Scoped);
+            _builder.Register<IActorComponentBinder, DeploymentBinder>(Lifetime.Scoped);
             _builder.Register<IActorBinderRegistry, ActorBinderRegistry>(Lifetime.Scoped);
         }
 
@@ -110,13 +117,16 @@ namespace BattleBase.DI
         {
             _builder.Register<IActorComponentConnector, ProductionServiceConnector>(Lifetime.Scoped);
             _builder.Register<IActorComponentConnector, DemolitionServiceConnector>(Lifetime.Scoped);
+            _builder.Register<IActorComponentConnector, PowerCleanerConnector>(Lifetime.Scoped);
             _builder.Register<IActorConnectorRegistry, ActorConnectorRegistry>(Lifetime.Scoped);
         }
 
         private void RegisterStateMachineInitializer()
         {
+            _builder.Register<IStateTransitionFactory, DeployToMoveStateTransitionFactory>(Lifetime.Scoped);
             _builder.Register<IStateTransitionFactory, AttackStateTransitionFactory>(Lifetime.Scoped);
             _builder.Register<IStateTransitionFactory, AttackToMoveStateTransitionFactory>(Lifetime.Scoped);
+            _builder.Register<IStateTransitionFactory, HunterStateTransitionFactory>(Lifetime.Scoped);
             _builder.Register<IStateMachineInitializer, StateMachineInitializer>(Lifetime.Scoped);
         }
 

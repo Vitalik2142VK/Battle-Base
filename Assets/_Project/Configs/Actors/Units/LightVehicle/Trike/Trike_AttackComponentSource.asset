@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weaponConfig:
   - {fileID: 11400000, guid: dfe0f10195c22cc47b6482e2935b836d, type: 2}
+  _searchRadius: 40

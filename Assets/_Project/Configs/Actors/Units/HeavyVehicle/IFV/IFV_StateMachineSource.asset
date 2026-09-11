@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1003899c85cc3274991922a6a5080f80, type: 3}
   m_Name: IFV_StateMachineSource
   m_EditorClassIdentifier: 
-  _types: 0000000001000000
+  _types: 000000000100000002000000

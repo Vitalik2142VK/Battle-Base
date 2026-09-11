@@ -7,7 +7,7 @@ namespace BattleBase.Gameplay.Actors.Movement
     [RequireComponent(typeof(BoxArea))]
     public class RouteStartArea : MonoBehaviour
     {
-        [SerializeField] private List<Waypoint> _route;
+        [SerializeField] private List<StaticWaypoint> _route;
 
         [Header("Debug")]
         [SerializeField][Min(0.5f)] private float _radiusWaypoint = 1f;

@@ -20,7 +20,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
             _projectileConfig = projectileConfig ?? throw new ArgumentNullException(nameof(projectileConfig));
         }
 
-        public void ShootMissile(ITarget target, IDamage damage)
+        public void Shot(ITarget target, IDamage damage)
         {
             if (target == null)
                 throw new ArgumentNullException(nameof(target));

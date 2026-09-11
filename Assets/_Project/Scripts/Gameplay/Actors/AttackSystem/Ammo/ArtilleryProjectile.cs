@@ -12,6 +12,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
         private IProjectileMover _mover;
         private ITarget _target;
         private IExplosion _explosion;
+        private TeamType _enemyTeam;
 
         public override event Action<Projectile> Deactivated;
 
@@ -43,6 +44,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
                 return;
 
             _target = target ?? throw new ArgumentNullException(nameof(target));
+            _enemyTeam = target.TeamType;
 
             Vector3 randomPosition = GetRandomPosition(target.Position);
 
@@ -55,7 +57,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
 
         private void Deactivate()
         {
-            _explosion.Explode(Damage, _mover.CurrentPosition);
+            _explosion.Explode(Damage, _mover.CurrentPosition, _enemyTeam);
 
             OnTargetLost();
 

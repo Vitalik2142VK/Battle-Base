@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sniper_MoveComponentSource
   m_EditorClassIdentifier: 
   _healthConfig:
-    _speed: 3
+    _speed: 4
     _angularSpeed: 120
     _acceleration: 10
     _stoppingDistance: 1

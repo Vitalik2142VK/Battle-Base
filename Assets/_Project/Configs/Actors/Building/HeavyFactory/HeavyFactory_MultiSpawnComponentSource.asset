@@ -15,3 +15,4 @@ MonoBehaviour:
   _actorsConfigs:
   - {fileID: 11400000, guid: e5cdd49978f695d4ba531e6dbe34705c, type: 2}
   - {fileID: 11400000, guid: a01aceef08e36ba478d1e585dd4a12f7, type: 2}
+  - {fileID: 11400000, guid: 02fa36878b40eea4a9291d54966cc15e, type: 2}

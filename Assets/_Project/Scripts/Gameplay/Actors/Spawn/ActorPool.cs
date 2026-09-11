@@ -30,17 +30,17 @@ namespace BattleBase.Gameplay.Actors.Spawn
                 return false;
 
             actor = _actors.Count > 0 ? _actors.Pop() : Create();
-            actor.Deactivated += Return;
+            actor.Deactivated += OnReturn;
 
             return true;
         }
 
-        private void Return(Actor actor)
+        private void OnReturn(Actor actor)
         {
             if (actor == null)
                 return;
 
-            actor.Deactivated -= Return;
+            actor.Deactivated -= OnReturn;
             actor.Disable();
             _actors.Push(actor);
         }

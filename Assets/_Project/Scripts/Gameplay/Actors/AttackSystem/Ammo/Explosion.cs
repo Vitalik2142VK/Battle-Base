@@ -7,9 +7,10 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
     public class Explosion : MonoBehaviour, IExplosion
     {
         [SerializeField] private LayerMask _layerMask;
+        [SerializeField][Range(0, 1f)] private float _allyDamageCoefficient = 0.5f;
         [SerializeField][Min(0.1f)] private float _maxDamageRadius = 2.5f;
         [SerializeField][Min(1f)] private float _radius = 10f;
-        [SerializeField][Range(4, 32)] private int _namberDamagedActors = 16;
+        [SerializeField][Range(4, 32)] private int _numberDamagedActors = 16;
 
         private Collider[] _colliders;
 
@@ -21,10 +22,10 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
 
         private void Awake()
         {
-            _colliders = new Collider[_namberDamagedActors];
+            _colliders = new Collider[_numberDamagedActors];
         }
 
-        public void Explode(IDamage damage, Vector3 positionExposion)
+        public void Explode(IDamage damage, Vector3 positionExposion, TeamType enemyTeam)
         {
             if (damage == null)
                 throw new ArgumentNullException(nameof(damage));
@@ -40,19 +41,25 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
                 return;
 
             RadiusDamage radiusDamage = new(damage, _maxDamageRadius, _radius);
+            RadiusDamage radiusAllyDamage = new(damage, _maxDamageRadius, _radius, _allyDamageCoefficient);
 
             for (int i = 0; i < numberColliders; i++)
             {
                 if (_colliders[i].TryGetComponent(out ITarget target))
-                    HandleDamage(radiusDamage, target, positionExposion);
+                {
+                    if (target.TeamType == enemyTeam)
+                        HandleDamage(radiusDamage, target, positionExposion);
+                    else
+                        HandleDamage(radiusAllyDamage, target, positionExposion);
+                }
             }
         }
 
-        private void HandleDamage(RadiusDamage radiusDamage, ITarget target, Vector3 positionExposion)
+        private void HandleDamage(RadiusDamage damage, ITarget target, Vector3 positionExposion)
         {
             float distance = (positionExposion - target.Position).magnitude;
-            radiusDamage.CalculateDamage(distance);
-            target.TakeDamage(radiusDamage);
+            damage.CalculateDamage(distance);
+            target.TakeDamage(damage);
         }
     }
 }

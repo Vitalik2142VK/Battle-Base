@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _actorsConfigs:
   - {fileID: 11400000, guid: aa64e7bd2396d084fb38961449adedcc, type: 2}
+  - {fileID: 11400000, guid: 808b65cf08ef71b44b2ecf0eaf8ad63d, type: 2}
+  - {fileID: 11400000, guid: 1f370d3efda39c944af5597aa43541b1, type: 2}

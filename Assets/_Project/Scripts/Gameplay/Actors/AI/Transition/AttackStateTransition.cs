@@ -1,16 +1,17 @@
-﻿using BattleBase.Gameplay.Actors.AttackSystem;
+﻿using BattleBase.Gameplay.Actors.AI.State;
+using BattleBase.Gameplay.Actors.AttackSystem;
 using System;
 
 namespace BattleBase.Gameplay.Actors.AI.Transition
 {
     public class AttackStateTransition : IStateTransition
     {
-        private readonly IActorState _attackState;
+        private readonly AttackState _attackState;
         private readonly IAttackStateEvent _attackEvent;
 
         public event Action<IActorState> StateChanged;
 
-        public AttackStateTransition(IActorState attackState, IAttackStateEvent attackEvent)
+        public AttackStateTransition(AttackState attackState, IAttackStateEvent attackEvent)
         {
             _attackState = attackState ?? throw new ArgumentNullException(nameof(attackState));
             _attackEvent = attackEvent ?? throw new ArgumentNullException(nameof(attackEvent));

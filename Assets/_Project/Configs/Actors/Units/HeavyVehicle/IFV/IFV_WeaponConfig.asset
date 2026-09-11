@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: IFV_WeaponConfig
   m_EditorClassIdentifier: 
   _projectileConfig:
-    _projectilePrefab: {fileID: 7550878289047074185, guid: 0e7462a956c1f3d43ba581feb1d144c8,
+    _projectilePrefab: {fileID: 7550878289047074185, guid: 036d32f08aec6874096c47cf30691723,
       type: 3}
     _speed: 80
   _damageConfig:
@@ -22,6 +22,7 @@ MonoBehaviour:
     _damageMask: 0
     _damage: 15
   _firingRange: 35
-  _rateShooting: 0.6
+  _minFiringRange: 0
+  _rateShooting: 0.5
   _speedReload: 4
   _numberShells: 6

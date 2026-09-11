@@ -9,7 +9,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
         private List<IActorSpawnerView> _components;
 
-        public void Init(IActorSpawnerNotifier events)
+        public void Init(IActorSpawnerNotifier notifier)
         {
             _components = new List<IActorSpawnerView>();
 
@@ -18,7 +18,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
                 var components = gameObject.GetComponents<IActorSpawnerView>();
 
                 foreach (var component in components)
-                    component.Init(events);
+                    component.Init(notifier);
 
                 _components.AddRange(components);
             }

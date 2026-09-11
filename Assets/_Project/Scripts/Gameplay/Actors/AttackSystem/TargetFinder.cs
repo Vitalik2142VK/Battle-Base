@@ -1,5 +1,4 @@
-﻿using BattleBase.Gameplay.Actors.AttackSystem.Weapons;
-using BattleBase.Gameplay.Actors.DamageSystem;
+﻿using BattleBase.Gameplay.Actors.DamageSystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;

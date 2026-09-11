@@ -5,7 +5,5 @@ namespace BattleBase.Gameplay.Actors.AI
         public void Enter();
 
         public void Exit();
-
-        public void Update(float delta);
     }
 }

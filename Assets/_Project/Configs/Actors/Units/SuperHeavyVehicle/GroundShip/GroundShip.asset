@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65d2e2c2420ac6b45b0d480f9633fd48, type: 3}
+  m_Name: GroundShip
+  m_EditorClassIdentifier: 
+  _data:
+    _prefab: {fileID: 5923623242493629742, guid: c313bed1755ffed4e85e4ae9ca2c6f04,
+      type: 3}
+    _icon: {fileID: 21300000, guid: b8859215f80c89c498158b3e56490eca, type: 3}
+    _nameConfig: {fileID: 11400000, guid: 48708bfbe08b3c440be64185dce23476, type: 2}
+    _constructionTime: 28
+    _price: 2400
+    _power: 15
+  _components:
+  - {fileID: 11400000, guid: 29b02cec2eaf0474fae0ad5bd62a062c, type: 2}
+  - {fileID: 11400000, guid: 94831abfd97bf234d9807e8d285cdda9, type: 2}
+  - {fileID: 11400000, guid: 4aa5c567aed12c149a44a53f72885205, type: 2}
+  - {fileID: 11400000, guid: 32541b4a4e3b89a4d82cb5953fdb1dc0, type: 2}
+  - {fileID: 11400000, guid: 61779d1c7b4086c428aa6d550fb31cc2, type: 2}

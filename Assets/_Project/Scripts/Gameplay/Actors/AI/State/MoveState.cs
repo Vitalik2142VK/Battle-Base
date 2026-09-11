@@ -11,20 +11,10 @@ namespace BattleBase.Gameplay.Actors.AI.State
             _mover = mover ?? throw new System.ArgumentNullException(nameof(mover));
         }
 
-        public void Enter()
-        {
+        public void Enter() => 
             _mover.Move();
-        }
 
-        public void Exit()
-        {
+        public void Exit() => 
             _mover.Stop();
-        }
-
-        public void Update(float _)
-        {
-            if (_mover.CanMove == false)
-                _mover.Stop();
-        }
     }
 }

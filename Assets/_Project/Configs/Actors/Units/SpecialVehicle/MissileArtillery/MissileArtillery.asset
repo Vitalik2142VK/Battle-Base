@@ -20,9 +20,9 @@ MonoBehaviour:
     _constructionTime: 18
     _price: 950
     _power: 8
-    _isSummable: 1
   _components:
   - {fileID: 11400000, guid: 273850bd00e2e8e4d8a4d3a9a4529a75, type: 2}
   - {fileID: 11400000, guid: 338ec00b5bdbeca4e8ba532dd521855a, type: 2}
   - {fileID: 11400000, guid: bac8244fe8076e343b061b1ac6ccfadc, type: 2}
   - {fileID: 11400000, guid: 13d1e38315320254eb7927d71580eec0, type: 2}
+  - {fileID: 11400000, guid: b75b62cd374d83944b2d0efd1c82eee2, type: 2}

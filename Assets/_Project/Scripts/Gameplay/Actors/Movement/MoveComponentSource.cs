@@ -5,7 +5,8 @@ namespace BattleBase.Gameplay.Actors.Movement
 {
     [CreateAssetMenu(
         fileName = nameof(MoveComponentSource),
-        menuName = AssetMenuPaths.ScriptableObjects + nameof(ActorConfig) + "/" + nameof(MoveComponentSource))]
+        menuName = AssetMenuPaths.ScriptableObjects + nameof(ActorConfig) + AssetMenuPaths.Movement
+        + nameof(MoveComponentSource))]
     public class MoveComponentSource : ActorComponentSource, IMoveComponentSource
     {
         [SerializeField] private MoveConfig _healthConfig;

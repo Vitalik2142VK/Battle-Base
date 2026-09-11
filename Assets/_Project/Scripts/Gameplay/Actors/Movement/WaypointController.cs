@@ -18,7 +18,7 @@ namespace BattleBase.Gameplay.Actors.Movement
                 throw new ArgumentNullException(nameof(spawnData));
 
             var waipoints = GetWaipointsByPosition(spawnData.SpawnPosition);
-            mover.AddWaypoints(waipoints);
+            mover.EstablishWaypoints(waipoints);
         }
 
         private IEnumerable<IWaypoint> GetWaipointsByPosition(Vector3 position)
