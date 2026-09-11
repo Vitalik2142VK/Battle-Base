@@ -76,7 +76,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
                 return;
             }
 
-            if (_powerRegistry.TryReserve(Teamable.TeamType, _currentActorData.Power))
+            if (_powerRegistry.CanReserve(Teamable.TeamType, _currentActorData.Power))
             {
                 FinishSpawn();
 

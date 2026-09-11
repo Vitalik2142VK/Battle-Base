@@ -6,6 +6,8 @@
 
         public void ReduceCapacity(TeamType team, int capacity);
 
+        public void Reserve(TeamType team, IActorData actorData);
+
         public void Release(TeamType team, IActorData actorData);
     }
 }

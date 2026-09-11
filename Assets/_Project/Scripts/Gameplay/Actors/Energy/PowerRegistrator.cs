@@ -2,13 +2,13 @@
 
 namespace BattleBase.Gameplay.Actors.Energy
 {
-    public class PowerCleaner : IActorComponent
+    public class PowerRegistrator : IActorComponent
     {
         private readonly IAdvancedPowerRegistry _powerRegistry;
         private readonly IActorData _data;
         private readonly ITeamable _teamable;
 
-        public PowerCleaner(IAdvancedPowerRegistry powerRegistry, IActorData data, ITeamable teamable)
+        public PowerRegistrator(IAdvancedPowerRegistry powerRegistry, IActorData data, ITeamable teamable)
         {
             if (data == null)
                 throw new ArgumentNullException(nameof(data));
@@ -21,11 +21,12 @@ namespace BattleBase.Gameplay.Actors.Energy
             _teamable = teamable ?? throw new ArgumentNullException(nameof(teamable));
         }
 
-        public Type KeyType => typeof(PowerCleaner);
+        public Type KeyType => typeof(PowerRegistrator);
+
+        public void Enable() =>
+            _powerRegistry.Reserve(_teamable.TeamType, _data);
 
         public void Disable() => 
             _powerRegistry.Release(_teamable.TeamType, _data);
-
-        public void Enable() { }
     }
 }

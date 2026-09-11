@@ -19,7 +19,7 @@ namespace BattleBase.Gameplay.Actors.Energy
             if (actor.Data.Power <= 0)
                 return;
 
-            PowerCleaner cleaner = new(_powerRegistry, actor.Data, actor);
+            PowerRegistrator cleaner = new(_powerRegistry, actor.Data, actor);
             actor.AddComponent(cleaner);
         }
     }

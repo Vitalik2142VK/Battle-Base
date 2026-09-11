@@ -60,21 +60,24 @@ namespace BattleBase.Gameplay.Actors.Energy
                 CurrentCapacity = _powerConfig.MaxCapacity;
         }
 
-        public bool TryReserve(int power)
+        public bool CanReserve(int power)
         {
             if (power < 0)
                 throw new ArgumentOutOfRangeException(nameof(power));
 
             int resultPower = UsedEnergy + power;
 
-            if (CurrentCapacity < resultPower)
-                return false;
+            return CurrentCapacity >= resultPower;
+        }
+
+        public void Reserve(int power)
+        {
+            if (power < 0)
+                throw new ArgumentOutOfRangeException(nameof(power));
 
             UsedEnergy += power;
 
             DataChanged?.Invoke();
-
-            return true;
 
         }
 
