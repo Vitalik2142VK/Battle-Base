@@ -15,9 +15,9 @@ MonoBehaviour:
   _snapBackSpeed: 60
   _referenceValuePortraitOrientation: {x: 1080, y: 1920}
   _minimumOrthoSize: 36
-  _maximumOrthoSize: 89
+  _maximumOrthoSize: 150
   _minimumFOV: 70
-  _maximumFOV: 187.8
+  _maximumFOV: 189
   _landscapeFovFactor: 1.55
   _inertiaDamping: 2
   _inertiaExtraDampingFactor: 100
