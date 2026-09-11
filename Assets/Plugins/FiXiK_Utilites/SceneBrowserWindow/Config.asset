@@ -18,12 +18,16 @@ MonoBehaviour:
     updated rotation.unity
   - Assets/PluginYourGames/Modules/EnvirData/Example/Scenes/Envir.unity
   - Assets/PluginYourGames/Example/Scenes/ExampleYG2.unity
+  - Assets/_Project/Scenes/Game_5_LinesTest.unity
   - Assets/PluginYourGames/Modules/InterstitialAdv/Example/Scenes/InterstitialAdv.unity
   - Assets/PluginYourGames/Modules/Localization/Example/Scenes/Localization.unity
   - Assets/Canopus-III_Low-Poly_Sci-Fi_Desert_Units_Set_1/scenes_yup/Low-Poly_Sci-Fi_Desert_Units_Set
     updated rotation.unity
   - Assets/Canopus-III_Low-Poly_Sci-Fi_Desert_Units_Set_2/scenes_yup/Low-Poly_Sci-Fi_Desert_Units_Set_2
     updated rotation.unity
+  - Assets/PluginYourGames/Modules/Payments/Example/Scenes/Payments.unity
+  - Assets/PluginYourGames/Modules/PlayerStats/Example/Scenes/PlayerStats.unity
   - Assets/_Project/Scenes/PrefabsScene.unity
   - Assets/_Project/Scenes/TestLevel.unity
+  - Assets/Tree_Packs/URP_Tree_Pack/Scene/URP_Tree_Model_Sample.unity
   - Assets/Violet Theme Ui/Scenes/Violet UI.unity
