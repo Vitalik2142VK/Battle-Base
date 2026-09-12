@@ -825,9 +825,7 @@ MonoBehaviour:
   - {fileID: 1561963262}
   - {fileID: 26614937}
   - {fileID: 128479094}
-  - {fileID: 641618707}
-  - {fileID: 472526453}
-  - {fileID: 1978955114}
+  - {fileID: 1446567722}
   _poolsRegistrator: {fileID: 1422327763}
   _actorController: {fileID: 462372483}
   _waypointController: {fileID: 1813657851}
@@ -8278,8 +8276,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1051639484}
+  - component: {fileID: 1051639485}
   m_Layer: 0
-  m_Name: SmallExplosion_1_Factory
+  m_Name: SmallExplosion_2_Factory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8300,6 +8299,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1715484039}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1051639485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051639483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa1cf28767a15984fb61cd7399fe0418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 3184129764603639351, guid: 7121459e75af56445a67816fc447df73, type: 3}
 --- !u!1 &1058739208
 GameObject:
   m_ObjectHideFlags: 0
@@ -13127,7 +13139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0df72c82ec829924687690db642480d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _factories: []
+  _factories:
+  - {fileID: 1051639485}
   _container: {fileID: 1992518003}
 --- !u!1 &1721078165
 GameObject:
@@ -13454,7 +13467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isShowCountActor: 0
-  _isAiDisbale: 0
+  _isAiDisbale: 1
   _isBrainDebugEnable: 0
 --- !u!4 &1754843466
 Transform:
