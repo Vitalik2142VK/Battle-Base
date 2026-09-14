@@ -432,6 +432,67 @@ MonoBehaviour:
   _aimComponents:
   - {fileID: 2483218942021879344}
   - {fileID: 5124652858490850941}
+--- !u!1 &5992331728403871224
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8781221402575805717}
+  - component: {fileID: 2408120763755152307}
+  - component: {fileID: 8881471259573032773}
+  m_Layer: 0
+  m_Name: Particles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8781221402575805717
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5992331728403871224}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8997348724420660181}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2408120763755152307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5992331728403871224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 573cd4ea63799844783e52d44657a332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: -1948032296076170709, guid: 12aadf6d647978a48aa87785f30c0cc4,
+    type: 3}
+  _spawnPoint: {fileID: 5983823417980017187}
+  _size: 3
+--- !u!114 &8881471259573032773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5992331728403871224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cc9d17a509666f4ab0823201d75fe73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6003299713631733429
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,6 +745,7 @@ Transform:
   - {fileID: 5983823417980017187}
   - {fileID: 7390620606128853092}
   - {fileID: 7449946479101638974}
+  - {fileID: 8781221402575805717}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &1476992745631654606
@@ -739,6 +801,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _viewComponents:
   - {fileID: 6785134270090383644}
+  - {fileID: 5992331728403871224}
 --- !u!114 &216075954067795835
 MonoBehaviour:
   m_ObjectHideFlags: 0

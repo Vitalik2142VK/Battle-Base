@@ -5,7 +5,7 @@ using UnityEngine;
 namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
 {
     [RequireComponent(typeof(LineMover), typeof(Exception))]
-    public class Bomb : Projectile
+    public class Bomb : Projectile, IProjectileHitEvent
     {
         private Transform _transform;
         private IProjectileMover _mover;
@@ -13,6 +13,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
         private TeamType _enemyTeam;
 
         public override event Action<Projectile> Deactivated;
+        public event Action Hited;
 
         private void Awake()
         {
@@ -29,6 +30,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
             {
                 _explosion.Explode(Damage, _mover.CurrentPosition, _enemyTeam);
 
+                Hited?.Invoke();
                 Deactivated?.Invoke(this);
             }
         }

@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 8644223926715327933}
   - component: {fileID: 7051018569695771730}
   - component: {fileID: 694870130054976421}
+  - component: {fileID: 8928645168580321877}
+  - component: {fileID: 6673230658653710390}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Untagged
@@ -76,9 +78,39 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 64
+  _allyDamageCoefficient: 0.5
   _maxDamageRadius: 8
   _radius: 16
   _numberDamagedActors: 24
+--- !u!114 &8928645168580321877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4375667950031451469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 573cd4ea63799844783e52d44657a332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: -7466821957586489087, guid: 87eb69e683ab2e6429ba61109d1fcc30,
+    type: 3}
+  _spawnPoint: {fileID: 3582688973536972222}
+  _size: 4
+--- !u!114 &6673230658653710390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4375667950031451469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56f0abe369b3d154a980bb403e854532, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleProjectile: {fileID: 8928645168580321877}
 --- !u!1001 &7077072014766493925
 PrefabInstance:
   m_ObjectHideFlags: 0

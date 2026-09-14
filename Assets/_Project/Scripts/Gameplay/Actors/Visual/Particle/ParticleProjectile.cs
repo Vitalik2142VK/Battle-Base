@@ -1,9 +1,9 @@
-using UnityEngine;
+﻿using UnityEngine;
 using VContainer;
 
 namespace BattleBase.Gameplay.Actors.Visual.Particle
 {
-    public class DestroyParticle : MonoBehaviour
+    public class ParticleProjectile : MonoBehaviour
     {
         [SerializeField] private ParticleView _prefab;
         [SerializeField] private Transform _spawnPoint;
@@ -23,7 +23,7 @@ namespace BattleBase.Gameplay.Actors.Visual.Particle
             _particleId = _prefab.Id;
         }
 
-        private void OnDisable()
+        public void Play()
         {
             IParticle particle = _spawner.Spawn(_particleId);
             particle.SetPosition(_spawnPoint.position);

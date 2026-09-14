@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 2961025265337623857}
   - component: {fileID: 7550878289047074185}
   - component: {fileID: 5224371199151147391}
+  - component: {fileID: 3785615475206004774}
+  - component: {fileID: 6998092089781545337}
   m_Layer: 0
   m_Name: ExplosiveBullet
   m_TagString: Untagged
@@ -60,6 +62,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _finishDistance: 0.1
   _speed: 80
+--- !u!114 &3785615475206004774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4831685795835175593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 573cd4ea63799844783e52d44657a332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: -5032983527851087243, guid: d6e19332514049942aa8c55aee0bdb3d,
+    type: 3}
+  _spawnPoint: {fileID: 2961025265337623857}
+  _size: 1
+--- !u!114 &6998092089781545337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4831685795835175593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56f0abe369b3d154a980bb403e854532, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleProjectile: {fileID: 3785615475206004774}
 --- !u!1001 &1725789140751168159
 PrefabInstance:
   m_ObjectHideFlags: 0

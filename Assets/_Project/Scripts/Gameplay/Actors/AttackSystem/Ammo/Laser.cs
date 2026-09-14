@@ -6,7 +6,7 @@ using UnityEngine;
 namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
 {
     [RequireComponent(typeof(LaserView), typeof(InstantMover))]
-    public class Laser : Projectile
+    public class Laser : Projectile, IProjectileHitEvent
     {
         [SerializeField][Range(0, 1f)] private float _lifeTime = 0.2f;
 
@@ -16,6 +16,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
         private ITarget _target;
 
         public override event Action<Projectile> Deactivated;
+        public event Action Hited;
 
         private void Awake()
         {
@@ -44,8 +45,12 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
 
         private void TryHit()
         {
-            if (_target.HasHit(_mover.CurrentPosition))
-                _target.TakeDamage(Damage);
+            if (_target.HasHit(_mover.CurrentPosition) == false)
+                return;
+
+            Hited?.Invoke();
+
+            _target.TakeDamage(Damage);
         }
 
         public IEnumerator WaitDeactivate()
@@ -59,6 +64,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
         {
             _target = null;
 
+            Hited?.Invoke();
             Deactivated?.Invoke(this);
         }
     }

@@ -44,7 +44,9 @@ namespace BattleBase.DI
             builder.Register<AudioVolumeModel>(Lifetime.Singleton);
             builder.Register<AudioVolumeService>(Lifetime.Singleton);
             builder.Register<TeamColorModel>(Lifetime.Singleton);
-            builder.Register<TerritoriesModel>(Lifetime.Singleton);
+            builder.Register<TerritoriesModel>(Lifetime.Singleton)
+                .AsSelf()
+                .As<ISelectedTerritory>();
 
             builder.Register<ActorsUpgradeModel>(Lifetime.Singleton)
                 .AsSelf()
