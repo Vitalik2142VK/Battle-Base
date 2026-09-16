@@ -15,8 +15,10 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Weapons
 
         public void Enable();
 
+        public void Disable();
+
         public void AttackTarget(ITarget target);
 
-        public void Upgrade(IWeaponConfigModificator modificator);
+        public void Upgrade(WeaponConfigModificator modificator);
     }
 }

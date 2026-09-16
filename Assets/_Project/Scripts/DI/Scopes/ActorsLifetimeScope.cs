@@ -135,6 +135,7 @@ namespace BattleBase.DI
         private void RegisterActorUpgraderRegistry()
         {
             _builder.Register<IActorComponentUpgrader, DamageUpgrader>(Lifetime.Scoped);
+            _builder.Register<IActorComponentUpgrader, HealthUpgrader>(Lifetime.Scoped);
             _builder.Register<IActorUpgraderRegistry, ActorUpgraderRegistry>(Lifetime.Scoped);
         }
 
