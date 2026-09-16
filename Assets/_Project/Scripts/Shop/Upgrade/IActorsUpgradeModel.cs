@@ -4,6 +4,6 @@ namespace BattleBase.ShopSystem
 {
     public interface IActorsUpgradeModel
     {
-        public IReadOnlyList<IShopActorItemConfig> Infos { get; }
+        public IReadOnlyList<IActorItemConfig> Infos { get; }
     }
 }

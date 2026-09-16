@@ -1,3 +1,4 @@
+using BattleBase.Gameplay.Actors.Availability;
 using BattleBase.Gameplay.Actors.ComponentImprovement;
 using BattleBase.Gameplay.Actors.Movement;
 using System;
@@ -10,17 +11,20 @@ namespace BattleBase.Gameplay.Actors.Spawn
         private readonly IActorsController _actorsController;
         private readonly IWaypointController _waypointController;
         private readonly IActorUpgraderRegistry _actorComponentUpgrader;
+        private readonly IAvailabilityActorsRegistry _availabilityActors;
 
         public ActorSpawnService(
             IActorPoolRegistry poolRegistry,
             IActorsController actorsController,
             IWaypointController waypointController,
-            IActorUpgraderRegistry actorComponentUpgrader)
+            IActorUpgraderRegistry actorComponentUpgrader,
+            IAvailabilityActorsRegistry availabilityActors)
         {
             _poolRegistry = poolRegistry ?? throw new ArgumentNullException(nameof(poolRegistry));
             _actorsController = actorsController ?? throw new ArgumentNullException(nameof(actorsController));
             _waypointController = waypointController ?? throw new ArgumentNullException(nameof(waypointController));
             _actorComponentUpgrader = actorComponentUpgrader ?? throw new ArgumentNullException(nameof(actorComponentUpgrader));
+            _availabilityActors = availabilityActors ?? throw new ArgumentNullException(nameof(availabilityActors));
         }
 
         public Actor Spawn(string id, TeamType teamType, ISpawnPoint spawnData)
@@ -39,6 +43,9 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
             if (actor.TryGetComponent(out IMover mover))
                 _waypointController.SpecifyActorRoute(mover, spawnData);
+
+            if (actor.TryGetComponent(out IActorSpawner spawner))
+                _availabilityActors.EstablishActors(teamType, spawner);
 
             _actorComponentUpgrader.UpgradeActorComponents(teamType, actor);
             _actorsController.AddActor(actor);

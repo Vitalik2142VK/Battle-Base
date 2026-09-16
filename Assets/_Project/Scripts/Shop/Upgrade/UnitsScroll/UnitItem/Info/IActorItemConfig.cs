@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace BattleBase.ShopSystem
 {
-    public interface IShopActorItemConfig
+    public interface IActorItemConfig
     {
         public string Id { get; }
 
@@ -16,5 +16,7 @@ namespace BattleBase.ShopSystem
         public IShopUpgradeStatsInfo PanelInfo { get; }
 
         public float PreviewScreenScale { get; }
+
+        public bool IsAvailable { get; }
     }
 }

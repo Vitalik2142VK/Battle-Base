@@ -30,7 +30,7 @@ namespace BattleBase.UI.PopUps
             List<Sprite> previews = new();
             PreviewCreateConfig previewConfig = _unitsUpgradeModel.PreviewCreateConfig;
 
-            foreach (IShopActorItemConfig info in _unitsUpgradeModel.Infos)
+            foreach (IActorItemConfig info in _unitsUpgradeModel.Infos)
             {
                 Sprite preview = _previewCreator.Create(
                     info.CleanPrefab,

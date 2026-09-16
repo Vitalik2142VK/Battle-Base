@@ -89,7 +89,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
             if (actorData == null)
                 throw new ArgumentNullException(nameof(actorData));
 
-            if (ConstrainActorData(actorData))
+            if (DataController.ConstrainActorData(actorData))
             {
                 if (_currentActorData == null)
                     EstablisCurrentActorSpawn(actorData);

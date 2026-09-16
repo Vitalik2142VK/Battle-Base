@@ -7,7 +7,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
 {
     public abstract class ActorSpawner : IActorSpawner
     {
-        private readonly Dictionary<string, SpawnProductionData> _spawnDatas;
+        private readonly SpawnerDataController _dataController;
         private readonly IMaterialRegistry _materialRegistry;
 
         private MatetialTransaction _currentTransaction;
@@ -20,25 +20,23 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
         public ActorSpawner(IEnumerable<IActorData> actorsToCreate, IMaterialRegistry materialRegistry)
         {
-            if (actorsToCreate == null)
-                throw new ArgumentNullException(nameof(actorsToCreate));
-
             _materialRegistry = materialRegistry ?? throw new ArgumentNullException(nameof(materialRegistry));
-            _spawnDatas = new Dictionary<string, SpawnProductionData>();
 
-            foreach (var actor in actorsToCreate)
-                _spawnDatas.Add(actor.Id, new SpawnProductionData(actor));
+            _dataController = new SpawnerDataController(actorsToCreate);
         }
 
         public Type KeyType => typeof(IActorSpawner);
 
-        public IEnumerable<ISpawnProductionData> SpawnDatas => _spawnDatas.Values;
+        public IEnumerable<ISpawnProductionData> SpawnDatas => _dataController.SpawnDatas;
+
+        public ISpawnerDataController DataController => _dataController;
 
         public bool IsInProcessSpawn => _currnetSpawnData != null;
 
         protected ITeamable Teamable { get; private set; }
 
         protected ISpawnPoint SpawnData { get; private set; }
+
 
         public void Init(ITeamable teamable, ISpawnPoint spawnData)
         {
@@ -54,34 +52,22 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
         protected abstract void Spawn();
 
-        public virtual void Enable()
-        {
+        public virtual void Enable() => 
             _currentTransaction = null;
-        }
 
-        public virtual void Disable()
-        {
-            foreach (var spawnData in _spawnDatas.Values)
-                spawnData.Disable();
-        }
-
-        protected bool ConstrainActorData(IActorData actorData) =>
-            _spawnDatas.ContainsKey(actorData.Id);
+        public virtual void Disable() => 
+            _dataController.Disable();
 
         protected void AddActorToSpawnData(IActorData actorData)
         {
-            if (_spawnDatas.TryGetValue(actorData.Id, out SpawnProductionData data) == false)
-                throw new InvalidOperationException($"{nameof(IActor)} with id - {nameof(actorData.Id)} not found");
-
+            SpawnProductionData data = _dataController.GetSpawnProductionData(actorData);
             data.IncreaseCount();
             data.UpdateData();
         }
 
         protected void RemoveActorToSpawnData(IActorData actorData)
         {
-            if (_spawnDatas.TryGetValue(actorData.Id, out SpawnProductionData data) == false)
-                throw new InvalidOperationException($"{nameof(IActor)} with id - {nameof(actorData.Id)} not found");
-
+            SpawnProductionData data = _dataController.GetSpawnProductionData(actorData);
             data.ReduceCount();
             data.ResetTimeSpent();
             data.UpdateData();
@@ -112,8 +98,10 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
         protected bool CanBeginSpawn(IActorData actorData)
         {
-            if (_spawnDatas.TryGetValue(actorData.Id, out SpawnProductionData data) == false)
-                throw new InvalidOperationException($"{nameof(IActor)} with id - {nameof(actorData.Id)} not found");
+            if (actorData == null)
+                throw new ArgumentNullException(nameof(actorData));
+
+            SpawnProductionData data = _dataController.GetSpawnProductionData(actorData);
 
             if (_materialRegistry.TryGetTransaction(Teamable.TeamType, actorData.Price, out _currentTransaction))
             {

@@ -5,7 +5,7 @@ using UnityEngine;
 namespace BattleBase.ShopSystem
 {
     [Serializable]
-    public class ShopUnitItemInfo : IShopActorItemConfig
+    public class ActorItemInfo : IActorItemConfig
     {
         [SerializeField] private string _id;
         [SerializeField] private LanguageTextsSet _unitName;
@@ -13,8 +13,9 @@ namespace BattleBase.ShopSystem
         [SerializeField] private ShopUpgradeStatsInfo _panelInfo;
         [SerializeField] private GameObject _cleanPrefab;
         [SerializeField] private float _previewScreenScale;
+        [SerializeField] private bool _isAvailable;
 
-        public ShopUnitItemInfo(IShopActorItemConfig other)
+        public ActorItemInfo(IActorItemConfig other)
         {
             _id = other.Id;
             _unitName = new(other.UnitName);
@@ -22,6 +23,7 @@ namespace BattleBase.ShopSystem
             _panelInfo = new(other.PanelInfo);
             _cleanPrefab = other.CleanPrefab;
             _previewScreenScale = other.PreviewScreenScale;
+            _isAvailable = other.IsAvailable;
         }
 
         public string Id => _id;
@@ -35,6 +37,8 @@ namespace BattleBase.ShopSystem
         public GameObject CleanPrefab => _cleanPrefab;
 
         public float PreviewScreenScale => _previewScreenScale;
+
+        public bool IsAvailable => _isAvailable;
 
         public void IncreaseDamageLevel() =>
             _panelInfo.IncreaseDamageLevel();

@@ -26,14 +26,14 @@ namespace BattleBase.ShopSystem
             _unitsUpgradeModel = unitsUpgradeModel ?? throw new ArgumentNullException(nameof(unitsUpgradeModel));
         }
 
-        public void Init(IReadOnlyList<IShopActorItemConfig> infos, List<Sprite> previews)
+        public void Init(IReadOnlyList<IActorItemConfig> infos, List<Sprite> previews)
         {
             _content.ClearChilds();
             _items.Clear();
 
             for (int i = 0; i < infos.Count; i++)
             {
-                IShopActorItemConfig info = infos[i];
+                IActorItemConfig info = infos[i];
 
                 ShopUnitItemView item = Instantiate(_prefab, _content);
                 item.SetInfo(info, previews[i], Select);
@@ -50,7 +50,7 @@ namespace BattleBase.ShopSystem
             item.Select();
             CurrentItem = item;
 
-            _unitsUpgradeModel.SelectUnit(item.Info);
+            _unitsUpgradeModel.SelectActor(item.Info);
             _commandRebuildLayout.Execute();
         }
 

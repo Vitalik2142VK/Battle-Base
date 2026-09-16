@@ -80,7 +80,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
             if (_currentActorData == actorData)
                 return;
 
-            if (ConstrainActorData(actorData))
+            if (DataController.ConstrainActorData(actorData))
             {
                 if (_currentActorData != null)
                     CancelSpawnActor(_currentActorData);

@@ -6,12 +6,12 @@ using UnityEngine;
 namespace BattleBase.ShopSystem
 {
     [CreateAssetMenu(
-        fileName = nameof(ShopActorItemConfig),
-        menuName = AssetMenuPaths.ScriptableObjects + nameof(ShopActorItemConfig))]
-    public class ShopActorItemConfig : ScriptableObject, IShopActorItemConfig
+        fileName = nameof(ActorItemConfig),
+        menuName = AssetMenuPaths.ScriptableObjects + nameof(ActorItemConfig))]
+    public class ActorItemConfig : ScriptableObject, IActorItemConfig
     {
         [SerializeField] private ActorConfig _actorConfig;
-        [SerializeField] private ShopUpgradeStatsConfig _stats;
+        [SerializeField] private UpgradeStatsConfig _stats;
         [SerializeField] private ActorNameConfig _unitNameConfig;
 
         [Header("ScreenshotParams")]
@@ -29,5 +29,7 @@ namespace BattleBase.ShopSystem
         public GameObject CleanPrefab => _cleanPrefab;
 
         public float PreviewScreenScale => _previewScreenScale;
+
+        public bool IsAvailable => _actorConfig.Data.IsAvailable;
     }
 }
