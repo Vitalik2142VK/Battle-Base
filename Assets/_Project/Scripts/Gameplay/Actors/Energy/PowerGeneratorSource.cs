@@ -1,4 +1,4 @@
-﻿using BattleBase.Utils.Constants;
+using BattleBase.Utils.Constants;
 using System.Collections.Generic;
 using UnityEngine;
 

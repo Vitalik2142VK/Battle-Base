@@ -1,4 +1,4 @@
-﻿using BattleBase.Gameplay.Actors.AttackSystem.Ammo;
+using BattleBase.Gameplay.Actors.AttackSystem.Ammo;
 using BattleBase.Gameplay.Actors.DamageSystem;
 using BattleBase.Utils.Constants;
 using UnityEngine;

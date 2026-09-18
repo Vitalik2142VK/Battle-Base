@@ -1,7 +1,10 @@
 using System;
+using System.Linq;
 using BattleBase.AdvService;
 using BattleBase.AuthService;
+using BattleBase.Gameplay.Actors;
 using BattleBase.SaveService;
+using BattleBase.ShopSystem;
 using BattleBase.UI.Buttons;
 using BattleBase.Utils.Constants;
 using UnityEngine;
@@ -17,16 +20,19 @@ namespace BattleBase.EntryPoints
         private IPurchasesSaver _purchasesSaver;
         private IAdvertisingService _advertisingService;
         private IAuthorizationService _authorizationService;
+        private AvailableActorConfigProvider _configSource;
 
         [Inject]
         public void Construct(
             IPurchasesSaver purchasesSaver,
             IAdvertisingService advertisingService,
-            IAuthorizationService authorizationService)
+            IAuthorizationService authorizationService,
+            AvailableActorConfigProvider configSource)
         {
             _purchasesSaver = purchasesSaver ?? throw new ArgumentNullException(nameof(purchasesSaver));
             _advertisingService = advertisingService ?? throw new ArgumentNullException(nameof(advertisingService));
             _authorizationService = authorizationService ?? throw new ArgumentNullException(nameof(authorizationService));
+            _configSource = configSource ?? throw new ArgumentNullException(nameof(configSource));
         }
 
         protected override void Start()
@@ -37,6 +43,12 @@ namespace BattleBase.EntryPoints
             _advertisingService.PurchaseSuccess += OnPurchaseSuccess;
             OnGetSDKData();
             ProcessVisibleAds();
+
+            Debug.Log("Доступные униты игрока:");
+            Debug.Log($"_configSource.ActualPlayerConfigs = {_configSource.ActualPlayerConfigs.ToList().Count}");
+
+            foreach (IActorConfig config in _configSource.ActualPlayerConfigs)
+                Debug.Log(config.Data.Id);
         }
 
         private void OnDestroy()

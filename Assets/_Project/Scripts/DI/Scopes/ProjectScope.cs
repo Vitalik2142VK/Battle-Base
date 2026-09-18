@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using BattleBase.AdvService;
 using BattleBase.AudioService;
 using BattleBase.AuthService;
+using BattleBase.Gameplay.Actors;
 using BattleBase.Gameplay.Map;
 using BattleBase.PauseService;
 using BattleBase.PreviewCreatingSystem;
@@ -28,6 +29,7 @@ namespace BattleBase.DI
         [SerializeField] private TeamColorSetConfig _teamColorSetConfig;
         [SerializeField] private List<TerritoryConfig> _territoryConfigs;
         [SerializeField] private CaptureCamera _captureCamera;
+        [SerializeField] private ActorConfig[] _actorConfigs;
 
         private IContainerBuilder _builder;
 
@@ -60,6 +62,8 @@ namespace BattleBase.DI
             builder.RegisterInstance(_actorsUpgradeConfig);
             builder.RegisterInstance(_teamColorSetConfig);
             builder.RegisterInstance(_territoryConfigs as IReadOnlyList<TerritoryConfig>);
+            builder.RegisterInstance(_actorConfigs as IEnumerable<IActorConfig>);
+            builder.Register<AvailableActorConfigProvider>(Lifetime.Singleton);
 
             builder.RegisterBuildCallback(container =>
             {
