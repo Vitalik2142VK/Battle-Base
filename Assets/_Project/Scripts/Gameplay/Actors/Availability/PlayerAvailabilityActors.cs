@@ -9,11 +9,8 @@ namespace BattleBase.Gameplay.Actors.Availability
     {
         private readonly HashSet<string> _availabilityActorIds;
 
-        public PlayerAvailabilityActors(AllActorConfigs configs, IActorsUpgradeModel actorsUpgradeModel)
+        public PlayerAvailabilityActors(IActorsUpgradeModel actorsUpgradeModel)
         {
-            if (configs == null)
-                throw new ArgumentNullException(nameof(configs));
-
             if (actorsUpgradeModel == null)
                 throw new ArgumentNullException(nameof(actorsUpgradeModel));
 

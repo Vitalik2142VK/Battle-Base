@@ -2,7 +2,7 @@
 
 namespace BattleBase.Gameplay.Actors.Production.Spawn
 {
-    public class SpawnProductionData : ISpawnProductionData
+    public class SpawnProductionData : ISpawnProductionDataByTier
     {
         private readonly IActorData _data;
 
@@ -10,14 +10,21 @@ namespace BattleBase.Gameplay.Actors.Production.Spawn
 
         public event Action DataChanged;
 
-        public SpawnProductionData(IActorData data)
+        public SpawnProductionData(IActorData data, int tier)
         {
+            if (tier < 0)
+                throw new ArgumentOutOfRangeException(nameof(tier));
+
             _data = data ?? throw new ArgumentNullException(nameof(data));
             _timeSpent = 0;
+
+            Tier = tier;
             Count = 0;
         }
 
         public IActorData ActorData => _data;
+
+        public int Tier { get; }
 
         public float ConstructionProgress { get; private set; }
 
@@ -61,7 +68,7 @@ namespace BattleBase.Gameplay.Actors.Production.Spawn
         {
             _timeSpent = 0;
             ConstructionProgress = 0;
-        }       
+        }
 
         public void UpdateData() =>
             DataChanged?.Invoke();

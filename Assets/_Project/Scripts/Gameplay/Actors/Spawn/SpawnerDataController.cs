@@ -7,23 +7,25 @@ namespace BattleBase.Gameplay.Actors.Spawn
     public class SpawnerDataController : ISpawnerDataController
     {
         private readonly Dictionary<string, SpawnProductionData> _spawnDatas;
-        private readonly HashSet<string> _actorsId;
+        private readonly Dictionary<string, int> _actorsIdWithTier;
 
         public SpawnerDataController(IEnumerable<IActorData> actorsToCreate)
         {
             AvailabilityActorDatas = actorsToCreate ?? throw new ArgumentNullException(nameof(actorsToCreate));
 
             _spawnDatas = new Dictionary<string, SpawnProductionData>();
-            _actorsId = new HashSet<string>();
+            _actorsIdWithTier = new Dictionary<string, int>();
+            int tier = 0;
 
             foreach (var actor in actorsToCreate)
             {
-                _spawnDatas.Add(actor.Id, new SpawnProductionData(actor));
-                _actorsId.Add(actor.Id);
+                tier++;
+                _spawnDatas.Add(actor.Id, new SpawnProductionData(actor, tier));
+                _actorsIdWithTier.Add(actor.Id, tier);
             }
         }
 
-        public IEnumerable<ISpawnProductionData> SpawnDatas => _spawnDatas.Values;
+        public IEnumerable<ISpawnProductionDataByTier> SpawnProductionDatas => _spawnDatas.Values;
 
         public IEnumerable<IActorData> AvailabilityActorDatas { get; }
 
@@ -42,11 +44,14 @@ namespace BattleBase.Gameplay.Actors.Spawn
                 throw new ArgumentNullException(nameof(actorDatas));
 
             _spawnDatas.Clear();
+            string id;
 
             foreach (var actorData in actorDatas)
             {
-                if (_actorsId.Contains(actorData.Id))
-                    _spawnDatas.Add(actorData.Id, new SpawnProductionData(actorData));
+                id = actorData.Id;
+
+                if (_actorsIdWithTier.ContainsKey(id))
+                    _spawnDatas.Add(actorData.Id, new SpawnProductionData(actorData, _actorsIdWithTier[id]));
             }
         }
 

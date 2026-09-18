@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors
 {
+    //todo remove if not used
     public class AllActorConfigs : MonoBehaviour
     {
         [SerializeField] private ActorConfig[] _allActorConfigs;

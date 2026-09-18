@@ -1,3 +1,5 @@
+using BattleBase.Gameplay.Actors.Availability;
+using BattleBase.Gameplay.Actors.Spawn;
 using BattleBase.Gameplay.Actors.Types;
 using BattleBase.Utils;
 using System;
@@ -14,13 +16,19 @@ namespace BattleBase.Gameplay.Actors.Building
         private IActorComposer _composer;
         private IBuildingSitesStorage _storage;
         private IBuildingSiteIdCreator _idCreator;
+        private IAvailabilityActorsRegistry _availabilityActors;
 
         [Inject]
-        public void Construct(IActorComposer composer, IBuildingSitesStorage storage, IBuildingSiteIdCreator idCreator)
+        public void Construct(
+            IActorComposer composer, 
+            IBuildingSitesStorage storage, 
+            IBuildingSiteIdCreator idCreator,
+            IAvailabilityActorsRegistry availabilityActors)
         {
             _composer = composer ?? throw new ArgumentNullException(nameof(composer));
             _storage = storage ?? throw new ArgumentNullException(nameof(storage));
             _idCreator = idCreator ?? throw new ArgumentNullException(nameof(idCreator));
+            _availabilityActors = availabilityActors ?? throw new ArgumentNullException(nameof(availabilityActors));
         }
 
         private void Start()
@@ -35,10 +43,14 @@ namespace BattleBase.Gameplay.Actors.Building
                 throw new InvalidOperationException($"{nameof(buildingSite)} don't constrain component {nameof(ActorView)}");
 
             TeamType team = buildingSite.Team;
-            Actor actor = _composer.Compose(view, _config, team);
+            Actor siteActor = _composer.Compose(view, _config, team);
 
+            if (siteActor.TryGetComponent(out IActorSpawner spawner) == false)
+                throw new InvalidOperationException($"{siteActor} don't constrain component {nameof(IActorSpawner)}");
+
+            //_availabilityActors.EstablishActors(team, spawner); //todo
             buildingSite.Init(_idCreator);
-            RegisterBuildingSite(actor, buildingSite);
+            RegisterBuildingSite(siteActor, buildingSite);
             InitEnemyBuildingSite(buildingSite, team);
         }
 
