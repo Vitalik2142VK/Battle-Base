@@ -5,7 +5,7 @@ namespace BattleBase.Gameplay.Actors.HealthSystem
 {
     public class Health : IHealth
     {
-        private readonly IHealthConfig _config;
+        private readonly ModifiedHealthConfig _config;
         private readonly IDamageModifier _damageModifier;
         private readonly ActorMask _type;
 
@@ -16,9 +16,10 @@ namespace BattleBase.Gameplay.Actors.HealthSystem
 
         public Health(IHealthConfig config, IDamageModifier damageModifier, ActorMask type)
         {
-            _config = config ?? throw new ArgumentNullException(nameof(config));
             _damageModifier = damageModifier ?? throw new ArgumentNullException(nameof(damageModifier));
             _type = type;
+
+            _config = new ModifiedHealthConfig(config);
         }
 
         public Type KeyType => typeof(IHealth);
@@ -36,6 +37,7 @@ namespace BattleBase.Gameplay.Actors.HealthSystem
 
         public void Disable()
         {
+            _config.Reset();
             _currentHealth = 0;
         }
 
@@ -62,5 +64,8 @@ namespace BattleBase.Gameplay.Actors.HealthSystem
                 Destroyed?.Invoke();
             }
         }
+
+        public void Upgrade(HealthConfigModificator modificator) =>
+            _config.Modify(modificator);
     }
 }

@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 7078293437725690936}
   - component: {fileID: 5835098188176184700}
   - component: {fileID: -7947478622037943918}
+  - component: {fileID: -6484319445582894870}
+  - component: {fileID: -3487734520819801749}
   m_Layer: 0
   m_Name: ArtilleryProjectile
   m_TagString: Untagged
@@ -94,9 +96,39 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 64
+  _allyDamageCoefficient: 0.5
   _maxDamageRadius: 2.5
   _radius: 7
   _numberDamagedActors: 8
+--- !u!114 &-6484319445582894870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4831685795835175593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 573cd4ea63799844783e52d44657a332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: -7466821957586489087, guid: 87eb69e683ab2e6429ba61109d1fcc30,
+    type: 3}
+  _spawnPoint: {fileID: 2961025265337623857}
+  _size: 1.5
+--- !u!114 &-3487734520819801749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4831685795835175593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56f0abe369b3d154a980bb403e854532, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleProjectile: {fileID: -6484319445582894870}
 --- !u!1001 &3288456361454964786
 PrefabInstance:
   m_ObjectHideFlags: 0

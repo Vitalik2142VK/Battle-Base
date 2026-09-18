@@ -53,6 +53,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         public void Disable()
         {
             _targetController.LoseTarget();
+            _weapon.Disable();
             _isEnabled = false;
         }
 
@@ -95,7 +96,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
                 AttackDeactivated?.Invoke();
         }
 
-        public void Upgrade(IWeaponConfigModificator modificator) =>
+        public void Upgrade(WeaponConfigModificator modificator) =>
             _weapon.Upgrade(modificator);
 
         public void SetAim(bool isAiming) =>

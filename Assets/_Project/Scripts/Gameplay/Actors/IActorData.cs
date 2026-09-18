@@ -9,5 +9,7 @@ namespace BattleBase.Gameplay.Actors
         public ActorView Prefab { get; }
 
         public int Power { get; }
+
+        public bool IsAvailable { get; }
     }
 }

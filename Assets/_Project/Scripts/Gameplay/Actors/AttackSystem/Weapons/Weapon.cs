@@ -44,6 +44,9 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Weapons
             Reload();
         }
 
+        public void Disable() => 
+            _config.Reset();
+
         public void Update(float delta)
         {
             _timer.Tick(delta);
@@ -87,7 +90,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Weapons
             IsReloaded = false;
         }
 
-        public void Upgrade(IWeaponConfigModificator modificator) =>
+        public void Upgrade(WeaponConfigModificator modificator) =>
             _config.Modify(modificator);
     }
 }

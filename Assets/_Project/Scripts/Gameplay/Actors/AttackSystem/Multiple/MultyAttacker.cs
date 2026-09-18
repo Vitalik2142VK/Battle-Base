@@ -85,7 +85,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Multiple
                 attacker.Update(delta);
         }
 
-        public void Upgrade(IWeaponConfigModificator modificator)
+        public void Upgrade(WeaponConfigModificator modificator)
         {
             _mainAttacker.Upgrade(modificator);
 

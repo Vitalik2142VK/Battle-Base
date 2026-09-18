@@ -8,10 +8,10 @@ namespace BattleBase.ShopSystem
     public class ActorsUpgradeModel : IActorsUpgradeModel, ISaveable
     {
         private readonly IShopSaver _saver;
-        private readonly List<ShopUnitItemInfo> _infos = new();
+        private readonly List<ActorItemInfo> _infos = new();
         private readonly ActorsUpgradeConfig _config;
 
-        private ShopUnitItemInfo _selected;
+        private ActorItemInfo _selected;
 
         public ActorsUpgradeModel(IShopSaver saver, ActorsUpgradeConfig config)
         {
@@ -19,7 +19,7 @@ namespace BattleBase.ShopSystem
             _config = config != null ? config : throw new ArgumentNullException(nameof(config));
 
             Load();
-            SelectUnit(_infos.First());
+            SelectActor(_infos.First());
         }
 
         public event Action DamageLevelChanged;
@@ -27,9 +27,9 @@ namespace BattleBase.ShopSystem
         public event Action BuildTimeLevelChanged;
         public event Action UnitSelectionChanged;
 
-        public IReadOnlyList<IShopActorItemConfig> Infos => _infos;
+        public IReadOnlyList<IActorItemConfig> Infos => _infos;
 
-        public IShopActorItemConfig Selected => _selected;
+        public IActorItemConfig Selected => _selected;
 
         public IShopUpgradeStatsInfo PanelInfo => _selected.PanelInfo;
 
@@ -53,9 +53,9 @@ namespace BattleBase.ShopSystem
             BuildTimeLevelChanged?.Invoke();
         }
 
-        public void SelectUnit(IShopActorItemConfig unit)
+        public void SelectActor(IActorItemConfig unit)
         {
-            _selected = unit as ShopUnitItemInfo ?? throw new ArgumentNullException(nameof(unit));
+            _selected = unit as ActorItemInfo ?? throw new ArgumentNullException(nameof(unit));
             UnitSelectionChanged?.Invoke();
         }
 
@@ -66,14 +66,14 @@ namespace BattleBase.ShopSystem
 
             _infos.Clear();
 
-            foreach (IShopActorItemConfig info in _config.Infos)
+            foreach (IActorItemConfig info in _config.Infos)
                 _infos.Add(new(info));
 
             for (int i = 0; i < _infos.Count; i++)
             {
                 if (i <  dataCount)
                 {
-                    ShopUnitItemInfo info = _infos[i];
+                    ActorItemInfo info = _infos[i];
 
                     info.SetDamageLevel(datas[i].DamageLevel);
                     info.SetArmorLevel(datas[i].ArmorLevel);
@@ -86,7 +86,7 @@ namespace BattleBase.ShopSystem
         {
             List<UnitUpgradeData> newUnitData = new(_infos.Count);
 
-            foreach (ShopUnitItemInfo info in _infos)
+            foreach (ActorItemInfo info in _infos)
             {
                 string unitName = info.UnitName.En.Text;
                 IShopUpgradeStatsInfo panel = info.PanelInfo;

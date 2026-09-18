@@ -19,6 +19,6 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
         public void SetAttacking(bool isAttacking);
 
-        public void Upgrade(IWeaponConfigModificator modificator);
+        public void Upgrade(WeaponConfigModificator modificator);
     }
 }

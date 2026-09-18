@@ -9,10 +9,10 @@ namespace BattleBase.ShopSystem
         menuName = AssetMenuPaths.ScriptableObjects + nameof(ActorsUpgradeConfig))]
     public class ActorsUpgradeConfig : ScriptableObject
     {
-        [SerializeField] private List<ShopActorItemConfig> _infos;
+        [SerializeField] private List<ActorItemConfig> _infos;
         [SerializeField] private PreviewCreateConfig _previewCreateConfig;        
 
-        public IReadOnlyList<IShopActorItemConfig> Infos => _infos;
+        public IReadOnlyList<IActorItemConfig> Infos => _infos;
 
         public PreviewCreateConfig PreviewCreateConfig => _previewCreateConfig;
     }

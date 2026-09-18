@@ -13,8 +13,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Weapons
         {
             _defaultConfig = defaultConfig ?? throw new ArgumentNullException(nameof(defaultConfig));
             _damageConfig = new ModifiedDamageConfig(_defaultConfig.DamageConfig);
-
-            Reset();
+            _damageConfig.Reset();
         }
 
         public IProjectileConfig ProjectileConfig => _defaultConfig.ProjectileConfig;
@@ -31,7 +30,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Weapons
 
         public float MinRange => _defaultConfig.MinRange;
 
-        public void Modify(IWeaponConfigModificator modificator)
+        public void Modify(WeaponConfigModificator modificator)
         {
             if (modificator == null)
                 throw new ArgumentNullException(nameof(modificator));
@@ -39,9 +38,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Weapons
             _damageConfig.Modify(modificator.DamageCoefficient);
         }
 
-        public void Reset()
-        {
+        public void Reset() => 
             _damageConfig.Reset();
-        }
     }
 }

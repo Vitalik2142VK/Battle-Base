@@ -10,6 +10,8 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Weapons
         public ModifiedDamageConfig(IDamageConfig defaultConfig)
         {
             _defaultConfig = defaultConfig ?? throw new ArgumentNullException(nameof(defaultConfig));
+
+            Reset();
         }
 
         public ITargetingProfile TargetingProfile => _defaultConfig.TargetingProfile;
@@ -26,9 +28,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Weapons
             Damage = _defaultConfig.Damage * damageCoefficient;
         }
 
-        public void Reset()
-        {
+        public void Reset() => 
             Damage = _defaultConfig.Damage;
-        }
     }
 }

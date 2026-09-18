@@ -4,9 +4,9 @@ using UnityEngine;
 namespace BattleBase.ShopSystem
 {
     [CreateAssetMenu(
-        fileName = nameof(ShopUpgradeStatsConfig),
-        menuName = AssetMenuPaths.ScriptableObjects + nameof(ShopUpgradeStatsConfig))]
-    public class ShopUpgradeStatsConfig : ScriptableObject, IShopUpgradeStatsInfo
+        fileName = nameof(UpgradeStatsConfig),
+        menuName = AssetMenuPaths.ScriptableObjects + nameof(UpgradeStatsConfig))]
+    public class UpgradeStatsConfig : ScriptableObject, IShopUpgradeStatsInfo
     {
         [SerializeField] public UpgradeButtonInfo _damageInfo;
         [SerializeField] public UpgradeButtonInfo _armorInfo;

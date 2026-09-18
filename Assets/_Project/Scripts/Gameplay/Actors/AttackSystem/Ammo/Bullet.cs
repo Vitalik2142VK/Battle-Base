@@ -5,12 +5,14 @@ using UnityEngine;
 namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
 {
     [RequireComponent(typeof(LineMover))]
-    public class Bullet : Projectile
+    public class Bullet : Projectile, IProjectileHitEvent, IProjectileMissEvent
     {
         private IProjectileMover _mover;
         private ITarget _target;
 
         public override event Action<Projectile> Deactivated;
+        public event Action Hited;
+        public event Action Missed;
 
         private void Awake()
         {
@@ -25,7 +27,11 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
                 return;
 
             if (_mover.IsFinished)
+            {
+                Missed?.Invoke();
+
                 Deactivate();
+            }
         }
 
         public override void ShootTarget(IShotPointTransform shotPointTransform, ITarget target)
@@ -47,6 +53,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
             if (_target.HasHit(_mover.CurrentPosition) == false)
                 return false;
 
+            Hited?.Invoke();
             _target.TakeDamage(Damage);
 
             Deactivate();

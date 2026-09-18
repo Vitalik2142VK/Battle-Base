@@ -5,7 +5,7 @@ using UnityEngine;
 namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
 {
     [RequireComponent(typeof(HomingMover))]
-    public class Missile : Projectile
+    public class Missile : Projectile, IProjectileHitEvent, IProjectileMissEvent
     {
         [SerializeField] private ActorMask _сapturedTypes;
 
@@ -14,6 +14,8 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
         private Vector3 _lastTargetPosition;
 
         public override event Action<Projectile> Deactivated;
+        public event Action Hited;
+        public event Action Missed;
 
         private void Awake()
         {
@@ -34,7 +36,11 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
                 return;
 
             if (_mover.IsFinished)
+            {
+                Missed?.Invoke();
+
                 Deactivate();
+            }
         }
 
         private void OnDisable()
@@ -64,6 +70,8 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
         {
             if (_target == null || _target.HasHit(_mover.CurrentPosition) == false)
                 return false;
+
+            Hited?.Invoke();
 
             _target.TakeDamage(Damage);
 

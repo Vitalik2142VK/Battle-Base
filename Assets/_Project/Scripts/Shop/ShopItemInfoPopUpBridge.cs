@@ -30,7 +30,7 @@ namespace BattleBase.ShopSystem
 
         private void OnClick(ButtonClickHandler _)
         {
-            IShopActorItemConfig selected = _unitsUpgradeModel.Selected;
+            IActorItemConfig selected = _unitsUpgradeModel.Selected;
 
             PreviewCreateConfig previewConfig = _unitsUpgradeModel.PreviewCreateConfig;
 

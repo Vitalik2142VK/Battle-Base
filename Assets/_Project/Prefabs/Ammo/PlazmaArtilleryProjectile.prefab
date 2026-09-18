@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 7078293437725690936}
   - component: {fileID: 5835098188176184700}
   - component: {fileID: -7947478622037943918}
+  - component: {fileID: -3628523952144210278}
+  - component: {fileID: -7472333129665879931}
   m_Layer: 0
   m_Name: PlazmaArtilleryProjectile
   m_TagString: Untagged
@@ -61,7 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 171b06ddb6514df4db610b74aed742a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _launchAngle: 60
+  _launchAngle: 89
   _maxHeight: 20
   _speed: 25
   _heightDistanceFactor: 0.25
@@ -98,6 +100,35 @@ MonoBehaviour:
   _maxDamageRadius: 8
   _radius: 20
   _numberDamagedActors: 32
+--- !u!114 &-3628523952144210278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4831685795835175593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 573cd4ea63799844783e52d44657a332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: -7466821957586489087, guid: 375d1646f256c6e4abf8f7852b296cc2,
+    type: 3}
+  _spawnPoint: {fileID: 2961025265337623857}
+  _size: 6
+--- !u!114 &-7472333129665879931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4831685795835175593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56f0abe369b3d154a980bb403e854532, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleProjectile: {fileID: -3628523952144210278}
 --- !u!1001 &3288456361454964786
 PrefabInstance:
   m_ObjectHideFlags: 0

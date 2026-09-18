@@ -8,20 +8,20 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
 {
     public class SpawnerImprover : ISpawnerImprover
     {
+        private readonly ISpawnerDataController _spawnerData;
         private readonly List<ISpawnProductionData> _availableActorDatas;
         private readonly List<ISpawnProductionData> _currentActorDatas;
         private readonly IImprover _improver;
 
         private int _currentNumImprove;
 
-        public SpawnerImprover(IActorDataStorage actorStorage, IImprover improvement)
+        public SpawnerImprover(ISpawnerDataController spawnerData, IImprover improvement)
         {
-            if (actorStorage == null)
-                throw new ArgumentNullException(nameof(actorStorage));
-
-            _availableActorDatas = new List<ISpawnProductionData>(actorStorage.SpawnDatas);
-            _currentActorDatas = new List<ISpawnProductionData>();
+            _spawnerData = spawnerData ?? throw new ArgumentNullException(nameof(spawnerData));
             _improver = improvement ?? throw new ArgumentNullException(nameof(improvement));
+
+            _availableActorDatas = new List<ISpawnProductionData>();
+            _currentActorDatas = new List<ISpawnProductionData>();
             _currentNumImprove = 0;
         }
 
@@ -36,12 +36,18 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
         public void Enable()
         {
             _currentNumImprove = 0;
+            _availableActorDatas.AddRange(_spawnerData.SpawnDatas);
+
+            if (_availableActorDatas.Count == 0)
+                return;
+
             _currentActorDatas.Add(_availableActorDatas[_currentNumImprove++]);
             _improver.Enable();
         }
 
         public void Disable()
         {
+            _availableActorDatas.Clear();
             _currentActorDatas.Clear();
             _improver.Disable();
         }

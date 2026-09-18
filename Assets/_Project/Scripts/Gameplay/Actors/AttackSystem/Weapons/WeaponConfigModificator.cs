@@ -4,7 +4,7 @@ using System;
 
 namespace BattleBase.Gameplay.Actors.AttackSystem.Weapons
 {
-    public class WeaponConfigModificator : IWeaponConfigModificator
+    public class WeaponConfigModificator
     {
         private readonly IUpgraderConfig _config;
         private readonly IUpgradeInfo _upgradeInfo;

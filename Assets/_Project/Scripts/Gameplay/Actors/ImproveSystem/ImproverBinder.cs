@@ -25,7 +25,7 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
 
             if (actor.TryGetComponent(out IActorSpawner spawner))
             {
-                SpawnerImprover spawnerImprovement = new(spawner, improver);
+                SpawnerImprover spawnerImprovement = new(spawner.DataController, improver);
                 actor.AddComponent(spawnerImprovement);
             }
 

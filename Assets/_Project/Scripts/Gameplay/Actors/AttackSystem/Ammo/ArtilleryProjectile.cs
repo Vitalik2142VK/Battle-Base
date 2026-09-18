@@ -5,7 +5,7 @@ using UnityEngine;
 namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
 {
     [RequireComponent(typeof(ParabolaMover), typeof(Explosion))]
-    public class ArtilleryProjectile : Projectile
+    public class ArtilleryProjectile : Projectile, IProjectileHitEvent
     {
         [SerializeField][Range(0f, 10f)] private float _randomOffset = 5f;
 
@@ -15,6 +15,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
         private TeamType _enemyTeam;
 
         public override event Action<Projectile> Deactivated;
+        public event Action Hited;
 
         private void Awake()
         {
@@ -61,6 +62,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
 
             OnTargetLost();
 
+            Hited?.Invoke();
             Deactivated?.Invoke(this);
         }
 

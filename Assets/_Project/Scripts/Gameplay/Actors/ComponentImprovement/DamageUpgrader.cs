@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.ComponentImprovement
 {
-    public partial class DamageUpgrader : IActorComponentUpgrader
+    public class DamageUpgrader : IActorComponentUpgrader
     {
         private readonly Dictionary<string, IUpgradeInfo> _infos;
         private readonly IUpgraderConfig _config;

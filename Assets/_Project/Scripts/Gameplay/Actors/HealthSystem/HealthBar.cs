@@ -49,12 +49,6 @@ namespace BattleBase.Gameplay.Actors.HealthSystem
 
         private void OnUpdateDataHealth(float maxHealth, float currentHealth)
         {
-            if (maxHealth <= 0)
-                throw new ArgumentOutOfRangeException(nameof(maxHealth));
-
-            if (currentHealth > maxHealth || currentHealth < 0)
-                throw new ArgumentOutOfRangeException(nameof(currentHealth));
-
             bool isHealthFull = Mathf.Approximately(currentHealth, maxHealth);
 
             if (isHealthFull)

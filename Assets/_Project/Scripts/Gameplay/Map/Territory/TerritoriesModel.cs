@@ -1,10 +1,10 @@
+using BattleBase.SaveService;
 using System;
 using System.Collections.Generic;
-using BattleBase.SaveService;
 
 namespace BattleBase.Gameplay.Map
 {
-    public class TerritoriesModel : ISaveable
+    public class TerritoriesModel : ISaveable, ISelectedTerritory
     {
         private readonly ITerritorySaver _saver;
         private readonly IReadOnlyList<TerritoryConfig> _territoryConfigs;
@@ -20,6 +20,8 @@ namespace BattleBase.Gameplay.Map
         }
 
         public event Action Changed;
+
+        public ITerritoryInfo SelectedInfo => GetTerritoryInfo(Selected);
 
         public int Selected => _territoryData.SelectedTerritory;
 
