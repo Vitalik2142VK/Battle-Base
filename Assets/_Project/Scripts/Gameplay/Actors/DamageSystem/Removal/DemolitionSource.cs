@@ -1,4 +1,4 @@
-﻿using BattleBase.Utils.Constants;
+using BattleBase.Utils.Constants;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.DamageSystem.Removal

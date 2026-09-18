@@ -1,3 +1,4 @@
+using BattleBase.Gameplay.Actors;
 using BattleBase.Localization;
 
 namespace BattleBase.Gameplay.Map
@@ -7,5 +8,7 @@ namespace BattleBase.Gameplay.Map
         public ILanguageTextsSet TerritoryName { get; }
 
         public int CreditsForFirstVictory { get; }
+
+        public IActorConfig[] ActorsToOpen { get; }
     }
 }

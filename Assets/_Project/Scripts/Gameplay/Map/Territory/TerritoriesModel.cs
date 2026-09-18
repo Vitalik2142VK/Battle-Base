@@ -38,7 +38,7 @@ namespace BattleBase.Gameplay.Map
         public ITerritoryInfo GetTerritoryInfo(int index)
         {
             if (index < 0 || index >= _territoryConfigs.Count)
-                throw new ArgumentOutOfRangeException(nameof(index));
+                throw new ArgumentOutOfRangeException(nameof(index), index, $"Index is out of range. Max index = {_territoryConfigs.Count}");
 
             return _territoryConfigs[index];
         }

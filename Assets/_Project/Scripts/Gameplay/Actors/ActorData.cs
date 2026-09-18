@@ -1,4 +1,4 @@
-﻿using BattleBase.Localization;
+using BattleBase.Localization;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors
@@ -31,5 +31,7 @@ namespace BattleBase.Gameplay.Actors
         public int Power => _power;
 
         public bool IsAvailable => _isDefaultAvailability;
+
+        public ActorNameConfig ActorNameConfig => _nameConfig;
     }
 }
