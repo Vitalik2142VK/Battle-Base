@@ -12,9 +12,8 @@ namespace BattleBase.Gameplay.Actors
             Power = data.Power;
             IsAvailable = data.IsAvailable;
             Icon = data.Icon;
-            //todo пока конфиги незаполнены, выбивают ошибку, поэтому закомментил. Когда конфиги будут заполнены, раскомментировать
-            //Name = data.Name;
-            //Description = data.Description;
+            Name = data.Name;
+            Description = data.Description;
             ConstructionTime = data.ConstructionTime;
             Price = data.Price;
         }

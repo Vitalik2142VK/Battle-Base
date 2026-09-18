@@ -63,7 +63,7 @@ namespace BattleBase.DI
             builder.RegisterInstance(_teamColorSetConfig);
             builder.RegisterInstance(_territoryConfigs as IReadOnlyList<TerritoryConfig>);
             builder.RegisterInstance(_actorConfigs as IEnumerable<IActorConfig>);
-            builder.Register<ActorConfigSource>(Lifetime.Singleton);
+            builder.Register<AvailableActorConfigProvider>(Lifetime.Singleton);
 
             builder.RegisterBuildCallback(container =>
             {

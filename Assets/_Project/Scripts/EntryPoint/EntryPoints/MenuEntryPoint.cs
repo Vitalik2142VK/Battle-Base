@@ -20,14 +20,14 @@ namespace BattleBase.EntryPoints
         private IPurchasesSaver _purchasesSaver;
         private IAdvertisingService _advertisingService;
         private IAuthorizationService _authorizationService;
-        private ActorConfigSource _configSource;
+        private AvailableActorConfigProvider _configSource;
 
         [Inject]
         public void Construct(
             IPurchasesSaver purchasesSaver,
             IAdvertisingService advertisingService,
             IAuthorizationService authorizationService,
-            ActorConfigSource configSource)
+            AvailableActorConfigProvider configSource)
         {
             _purchasesSaver = purchasesSaver ?? throw new ArgumentNullException(nameof(purchasesSaver));
             _advertisingService = advertisingService ?? throw new ArgumentNullException(nameof(advertisingService));

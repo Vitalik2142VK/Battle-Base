@@ -4,9 +4,9 @@ using System.Linq;
 using BattleBase.Gameplay.Actors;
 using BattleBase.Gameplay.Map;
 
-namespace BattleBase.ShopSystem
+namespace BattleBase
 {
-    public class ActorConfigSource : IDisposable
+    public class AvailableActorConfigProvider : IDisposable
     {
         private readonly IEnumerable<IActorConfig> _allCoonfigsInProject;
         private readonly TerritoriesModel _territoriesModel;
@@ -14,7 +14,7 @@ namespace BattleBase.ShopSystem
         private List<MutationActorConfig> _awailablePlayerConfigs;
         private List<MutationActorConfig> _awailableEnemyConfigs;
 
-        public ActorConfigSource(IEnumerable<IActorConfig> allCoonfigsInProject, TerritoriesModel territoriesModel)
+        public AvailableActorConfigProvider(IEnumerable<IActorConfig> allCoonfigsInProject, TerritoriesModel territoriesModel)
         {
             _allCoonfigsInProject = allCoonfigsInProject ?? throw new ArgumentNullException(nameof(allCoonfigsInProject));
             _territoriesModel = territoriesModel ?? throw new ArgumentNullException(nameof(territoriesModel));
