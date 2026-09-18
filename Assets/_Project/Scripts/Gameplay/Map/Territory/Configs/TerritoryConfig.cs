@@ -1,3 +1,4 @@
+using BattleBase.Gameplay.Actors;
 using BattleBase.Localization;
 using BattleBase.Utils.Constants;
 using UnityEngine;
@@ -11,9 +12,12 @@ namespace BattleBase.Gameplay.Map
     {
         [SerializeField] private LanguageTextsSet _territoryName;
         [SerializeField][Min(0)] private int _creditsForFirstVictory;
+        [SerializeField] private ActorConfig[] _actorToOpen;
 
         public ILanguageTextsSet TerritoryName => _territoryName;
 
         public int CreditsForFirstVictory => _creditsForFirstVictory;
+
+        public IActorConfig[] ActorToOpen => _actorToOpen;
     }
 }

@@ -20,3 +20,5 @@ MonoBehaviour:
     _tr:
       _text: "Batakl\u0131k \xE7ay\u0131rlar"
   _creditsForFirstVictory: 2500
+  _actorToOpen:
+  - {fileID: 11400000, guid: 723fc8065fedc85469fc9acd6ba62f5f, type: 2}
