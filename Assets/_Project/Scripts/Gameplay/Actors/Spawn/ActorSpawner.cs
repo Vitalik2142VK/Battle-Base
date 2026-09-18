@@ -27,7 +27,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
         public Type KeyType => typeof(IActorSpawner);
 
-        public IEnumerable<ISpawnProductionData> SpawnDatas => _dataController.SpawnDatas;
+        public IEnumerable<ISpawnProductionData> SpawnDatas => _dataController.SpawnProductionDatas;
 
         public ISpawnerDataController DataController => _dataController;
 

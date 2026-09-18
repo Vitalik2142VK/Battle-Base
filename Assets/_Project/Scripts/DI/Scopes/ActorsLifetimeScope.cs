@@ -146,6 +146,7 @@ namespace BattleBase.DI
         private void RegisterAvailabilityActors()
         {
             _builder.Register<IAvailabilityActors, PlayerAvailabilityActors>(Lifetime.Scoped);
+            _builder.Register<IAvailabilityActors, EnemyAvailabilityActors>(Lifetime.Scoped);
             _builder.Register<IAvailabilityActorsRegistry, AvailabilityActorsRegistry>(Lifetime.Scoped);
         }
 
