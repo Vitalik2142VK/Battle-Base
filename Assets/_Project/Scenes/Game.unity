@@ -3578,12 +3578,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 91044693}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &387986527 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1804989979826210520, guid: 2a5c3eede0267bb4bb0b222817489885,
-    type: 3}
-  m_PrefabInstance: {fileID: 1148764212}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &409231142
 GameObject:
   m_ObjectHideFlags: 0
@@ -9875,6 +9869,12 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1210339157}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1214046485 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5069265203345021167, guid: 2a5c3eede0267bb4bb0b222817489885,
+    type: 3}
+  m_PrefabInstance: {fileID: 2045457108}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1238906456
 GameObject:
   m_ObjectHideFlags: 0
@@ -10372,7 +10372,7 @@ GameObject:
   - component: {fileID: 1301359108}
   - component: {fileID: 1301359109}
   m_Layer: 0
-  m_Name: Explosion_1_Factory
+  m_Name: MiddleExplosion_1_Factory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10405,7 +10405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa1cf28767a15984fb61cd7399fe0418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: -1948032296076170709, guid: 12aadf6d647978a48aa87785f30c0cc4,
+  _prefab: {fileID: -1948032296076170709, guid: 9ae64f5db323ad441b3b24bf64f02595,
     type: 3}
 --- !u!1 &1312128418
 GameObject:
@@ -16512,7 +16512,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _viewComponents.Array.data[1]
       value: 
-      objectReference: {fileID: 387986527}
+      objectReference: {fileID: 1214046485}
     - target: {fileID: 8223823493478408507, guid: 2a5c3eede0267bb4bb0b222817489885,
         type: 3}
       propertyPath: m_Name
