@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using BattleBase.Gameplay.Actors;
 
-namespace BattleBase
+namespace BattleBase.Gameplay.Actors.Availability
 {
     public interface IAvailableActorConfigProvider
     {

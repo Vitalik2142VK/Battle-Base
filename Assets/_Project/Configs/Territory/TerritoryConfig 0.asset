@@ -21,6 +21,4 @@ MonoBehaviour:
       _text: "Direni\u015F Vadisi"
   _creditsForFirstVictory: 1000
   _actorsToOpen:
-  - {fileID: 11400000, guid: fff000a41cc816645b915be5714638b3, type: 2}
-  - {fileID: 11400000, guid: 8740b58b78f8fdf46b3c08ec0603ada1, type: 2}
-  - {fileID: 11400000, guid: 94758822d26abeb4eaf4b85dfd960720, type: 2}
+  - {fileID: 11400000, guid: 7f096ad187a6e854baf852a777792c38, type: 2}

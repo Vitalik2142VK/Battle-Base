@@ -1,5 +1,5 @@
 using BattleBase.Gameplay.Actors.Spawn;
-using BattleBase.ShopSystem;
+using BattleBase.Utils;
 using System;
 using System.Collections.Generic;
 
@@ -9,17 +9,19 @@ namespace BattleBase.Gameplay.Actors.Availability
     {
         private readonly HashSet<string> _availabilityActorIds;
 
-        public PlayerAvailabilityActors(IActorsUpgradeModel actorsUpgradeModel)
+        public PlayerAvailabilityActors(IAvailableActorConfigProvider provider)
         {
-            if (actorsUpgradeModel == null)
-                throw new ArgumentNullException(nameof(actorsUpgradeModel));
+            if (provider == null)
+                throw new ArgumentNullException(nameof(provider));
 
             _availabilityActorIds = new HashSet<string>();
 
-            foreach (var info in actorsUpgradeModel.Infos)
+            foreach (var config in provider.ActualPlayerConfigs)
             {
-                if (info.IsAvailable)
-                    _availabilityActorIds.Add(info.Id);
+                IActorData data = config.Data;
+
+                if (data.IsAvailable)
+                    _availabilityActorIds.Add(data.Id);
             }
         }
 
@@ -30,6 +32,14 @@ namespace BattleBase.Gameplay.Actors.Availability
             if (spawner == null)
                 throw new ArgumentNullException(nameof(spawner));
 
+#if UNITY_EDITOR // todo remove
+            if (DebugSetting.IsOpenAllUnit)
+            {
+                spawner.DataController.EstablishActors(spawner.DataController.AvailabilityActorDatas);
+
+                return;
+            }
+#endif
             ISpawnerDataController dataController = spawner.DataController;
             List<IActorData> actorDatas = new(dataController.AvailabilityActorDatas);
 

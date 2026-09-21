@@ -1,14 +1,13 @@
-using System;
 using System.Collections.Generic;
 
-namespace BattleBase.Gameplay.Actors
+namespace BattleBase.Gameplay.Actors.Availability
 {
-    public class MutationActorConfig : IActorConfig
+    public class AvailableActorConfigModificator : IActorConfig
     {
-        private readonly MutationActorData _data;
+        private readonly AvailableActorDataModificator _data;
         private readonly IEnumerable<IComponentSource> _components;
 
-        public MutationActorConfig(IActorConfig config)
+        public AvailableActorConfigModificator(IActorConfig config)
         {
             _data = new(config.Data);
             _components = config.GetComponentSources();

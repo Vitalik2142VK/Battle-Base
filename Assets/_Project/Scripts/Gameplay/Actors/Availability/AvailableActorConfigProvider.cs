@@ -1,18 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using BattleBase.Gameplay.Actors;
 using BattleBase.Gameplay.Map;
 
-namespace BattleBase
+namespace BattleBase.Gameplay.Actors.Availability
 {
-    public class AvailableActorConfigProvider : IDisposable
+    public class AvailableActorConfigProvider : IAvailableActorConfigProvider, IDisposable
     {
         private readonly IEnumerable<IActorConfig> _allCoonfigsInProject;
         private readonly TerritoriesModel _territoriesModel;
 
-        private List<MutationActorConfig> _awailablePlayerConfigs;
-        private List<MutationActorConfig> _awailableEnemyConfigs;
+        private List<AvailableActorConfigModificator> _awailablePlayerConfigs;
+        private List<AvailableActorConfigModificator> _awailableEnemyConfigs;
 
         public AvailableActorConfigProvider(IEnumerable<IActorConfig> allCoonfigsInProject, TerritoriesModel territoriesModel)
         {
@@ -34,9 +33,9 @@ namespace BattleBase
         {
             _awailablePlayerConfigs = new();
 
-            foreach (IActorConfig config in _allCoonfigsInProject)
+            foreach (var config in _allCoonfigsInProject)
             {
-                MutationActorConfig newConfig = new(config);
+                AvailableActorConfigModificator newConfig = new(config);
                 _awailablePlayerConfigs.Add(newConfig);
             }
 
@@ -50,7 +49,7 @@ namespace BattleBase
                 ITerritoryInfo info = _territoriesModel.GetTerritoryInfo(territoryIndex);
                 actorsToOpen.AddRange(info.ActorsToOpen);
 
-                foreach (IActorConfig config in info.ActorsToOpen)
+                foreach (var config in info.ActorsToOpen)
                     SetAwailableIfContains(config, _awailablePlayerConfigs);
             }
 
@@ -59,9 +58,9 @@ namespace BattleBase
                 .ToList();
         }
 
-        private void SetAwailableIfContains(IActorConfig config, List<MutationActorConfig> configs)
+        private void SetAwailableIfContains(IActorConfig config, List<AvailableActorConfigModificator> configs)
         {
-            foreach (MutationActorConfig playerConfig in configs)
+            foreach (var playerConfig in configs)
             {
                 if (playerConfig.Data.Id == config.Data.Id)
                     playerConfig.SetAvailable(true);

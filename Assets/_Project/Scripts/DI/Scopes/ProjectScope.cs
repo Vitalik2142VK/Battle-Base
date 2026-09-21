@@ -3,6 +3,7 @@ using BattleBase.AdvService;
 using BattleBase.AudioService;
 using BattleBase.AuthService;
 using BattleBase.Gameplay.Actors;
+using BattleBase.Gameplay.Actors.Availability;
 using BattleBase.Gameplay.Map;
 using BattleBase.PauseService;
 using BattleBase.PreviewCreatingSystem;
@@ -63,7 +64,7 @@ namespace BattleBase.DI
             builder.RegisterInstance(_teamColorSetConfig);
             builder.RegisterInstance(_territoryConfigs as IReadOnlyList<TerritoryConfig>);
             builder.RegisterInstance(_actorConfigs as IEnumerable<IActorConfig>);
-            builder.Register<AvailableActorConfigProvider>(Lifetime.Singleton);
+            builder.Register<IAvailableActorConfigProvider, AvailableActorConfigProvider>(Lifetime.Singleton);
 
             builder.RegisterBuildCallback(container =>
             {

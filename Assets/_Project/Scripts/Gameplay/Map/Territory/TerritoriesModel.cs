@@ -48,7 +48,14 @@ namespace BattleBase.Gameplay.Map
             if (index < 0 || index >= _territoryConfigs.Count)
                 throw new ArgumentOutOfRangeException(nameof(index));
 
-            return _territoryData.TryAddConqueredTerritory(index);
+            if (_territoryData.TryAddConqueredTerritory(index))
+            {
+                Changed?.Invoke();
+
+                return true;
+            }
+
+            return false;
         }
 
         public int GetCreditsForFirstVictory(int index)

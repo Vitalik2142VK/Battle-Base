@@ -7,9 +7,12 @@ namespace BattleBase.Utils
     {
         private static DebugSetting Single;
 
+        [SerializeField] private bool _isOpenAllUnit = false;
         [SerializeField] private bool _isShowCountActor = false;
         [SerializeField] private bool _isAiDisbale = false;
         [SerializeField] private bool _isBrainDebugEnable = false;
+
+        public static bool IsOpenAllUnit => Single._isOpenAllUnit;
 
         public static bool IsBrainDebugEnable => Single._isBrainDebugEnable;
 

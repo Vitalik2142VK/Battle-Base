@@ -48,7 +48,7 @@ namespace BattleBase.Gameplay.Actors.Building
             if (siteActor.TryGetComponent(out IActorSpawner spawner) == false)
                 throw new InvalidOperationException($"{siteActor} don't constrain component {nameof(IActorSpawner)}");
 
-            //_availabilityActors.EstablishActors(team, spawner); //todo
+            _availabilityActors.EstablishActors(team, spawner);
             buildingSite.Init(_idCreator);
             RegisterBuildingSite(siteActor, buildingSite);
             InitEnemyBuildingSite(buildingSite, team);
