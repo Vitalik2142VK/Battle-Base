@@ -20,3 +20,6 @@ MonoBehaviour:
     _tr:
       _text: "G\xFCney noktas\u0131"
   _creditsForFirstVictory: 2000
+  _actorsToOpen:
+  - {fileID: 11400000, guid: eacfd7c0f370f984ab0e4855bf213890, type: 2}
+  - {fileID: 11400000, guid: e5cdd49978f695d4ba531e6dbe34705c, type: 2}

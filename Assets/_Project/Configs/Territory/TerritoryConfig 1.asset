@@ -20,4 +20,5 @@ MonoBehaviour:
     _tr:
       _text: "K\u0131y\u0131 topraklar\u0131"
   _creditsForFirstVictory: 1500
-  _actorToOpen: []
+  _actorsToOpen:
+  - {fileID: 11400000, guid: 4c34700e5c731f14184361f670a61084, type: 2}
