@@ -1,10 +1,11 @@
-﻿using BattleBase.Gameplay.Actors.DamageSystem;
+using BattleBase.Gameplay.Actors.DamageSystem;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.AttackSystem.Aim
 {
+    [PreviewExcluded(PreviewExclusionMode.Destroy)]
     public class CombinedAim : MonoBehaviour, IAim
     {
         [SerializeField][SerializeIterface(typeof(IAimComponent))] private GameObject[] _aimComponents;
@@ -42,13 +43,17 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Aim
 
         private void OnDisable()
         {
-            OnRemoveTarget();
-
             if (_attackNotifier != null)
             {
                 _attackNotifier.TargetSelected -= OnTakeAim;
                 _attackNotifier.AttackDeactivated -= OnRemoveTarget;
             }
+
+            _currentTarget = null;
+            _isAimed = false;
+            _isReturning = false;
+
+            _presenter?.EstablishAimState(false);
         }
 
         public void Init(IAttackerPresenter presenter, IAttackNotifier attackNotifier)
@@ -96,7 +101,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Aim
 
         private void OnTakeAim()
         {
-            _currentTarget = _attackNotifier.CurrentTarget;
+            _currentTarget = _attackNotifier?.CurrentTarget;
             _isAimed = false;
             _isReturning = false;
         }
@@ -107,7 +112,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Aim
             _isAimed = false;
             _isReturning = AreAllRestored() == false;
 
-            _presenter.EstablishAimState(_isAimed);
+            _presenter?.EstablishAimState(_isAimed);
         }
 
         private bool IsAimed()

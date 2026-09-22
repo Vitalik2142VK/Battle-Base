@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unitName:
     _ru:
-      _text: "\u0420\u0430\u043A\u0435\u0442\u043D\u0430\u044F \u0442\u0443\u0440\u0435\u043B\u044C"
+      _text: ArtilleryMissileTurret
     _en:
-      _text: 
+      _text: ArtilleryMissileTurret
     _tr:
-      _text: 
+      _text: ArtilleryMissileTurret
   _description:
     _ru:
       _text: "_\u0420\u0430\u043A\u0435\u0442\u043D\u0430\u044F \u0442\u0443\u0440\u0435\u043B\u044C"

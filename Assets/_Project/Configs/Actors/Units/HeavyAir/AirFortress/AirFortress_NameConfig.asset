@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unitName:
     _ru:
-      _text: "\u0414\u0436\u0438\u043F"
+      _text: AirFortress
     _en:
-      _text: 
+      _text: AirFortress
     _tr:
-      _text: 
+      _text: AirFortress
   _description:
     _ru:
       _text: "_\u0414\u0436\u0438\u043F"

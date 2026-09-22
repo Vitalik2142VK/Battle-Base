@@ -16,9 +16,9 @@ MonoBehaviour:
     _ru:
       _text: "\u0420\u0430\u043A\u0435\u0442\u043E\u043C\u0435\u0442\u0447\u0438\u043A"
     _en:
-      _text: 
+      _text: RocketLauncher
     _tr:
-      _text: 
+      _text: RocketLauncher
   _description:
     _ru:
       _text: "_\u0420\u0430\u043A\u0435\u0442\u043E\u043C\u0435\u0442\u0447\u0438\u043A"

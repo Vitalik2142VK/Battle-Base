@@ -77,6 +77,7 @@ namespace BattleBase.DI
         private void RegisterScreenshotSystem()
         {
             _builder.Register<IPreviewCreator, PreviewCreator>(Lifetime.Singleton);
+            _builder.Register<IPreviewInstanceFactory, PreviewInstanceFactory>(Lifetime.Singleton);
             _builder.Register<IScreenshoter, Screenshoter>(Lifetime.Singleton);
             _builder.Register<IScreenshotCaptureCoordinator, ScreenshotCaptureCoordinator>(Lifetime.Singleton);
             _builder.Register<IRendererCapturer, RendererCapturer>(Lifetime.Singleton);

@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.Types
 {
+    [PreviewExcluded(PreviewExclusionMode.Remove)]
     public class CombatUnit : ActorView
     {
         private void Reset()

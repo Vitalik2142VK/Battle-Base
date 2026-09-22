@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unitName:
     _ru:
-      _text: "\u041B\u0435\u0433\u043A\u0438\u0439 \u0445\u043E\u0432\u0435\u0440"
+      _text: LightGrav
     _en:
-      _text: 
+      _text: LightGrav
     _tr:
-      _text: 
+      _text: LightGrav
   _description:
     _ru:
       _text: "_\u041B\u0435\u0433\u043A\u0438\u0439 \u0445\u043E\u0432\u0435\u0440"

@@ -1,4 +1,4 @@
-﻿using BattleBase.Gameplay.Actors.HealthSystem;
+using BattleBase.Gameplay.Actors.HealthSystem;
 using System;
 using UnityEngine;
 

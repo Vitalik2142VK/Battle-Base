@@ -1,8 +1,9 @@
-﻿using BattleBase.Gameplay.Actors.DamageSystem;
+using BattleBase.Gameplay.Actors.DamageSystem;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.AttackSystem
 {
+    [PreviewExcluded(PreviewExclusionMode.Remove)]
     public class RotorToTargetAttackerView : MonoBehaviour, IAttackerViewComponent
     {
         [SerializeField] private ActorView _actorView;
@@ -15,6 +16,13 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
         private void Awake()
         {
+            if (_actorView == null)
+            {
+                enabled = false;
+
+                return;
+            }
+
             _transformActorView = _actorView.transform;
         }
 

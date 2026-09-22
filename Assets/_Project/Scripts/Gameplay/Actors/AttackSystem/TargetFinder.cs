@@ -1,4 +1,4 @@
-﻿using BattleBase.Gameplay.Actors.DamageSystem;
+using BattleBase.Gameplay.Actors.DamageSystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.AttackSystem
 {
+    [PreviewExcluded]
     public class TargetFinder : MonoBehaviour, ITargetFinder
     {
         [SerializeField] private LayerMask _findedLayerMask;

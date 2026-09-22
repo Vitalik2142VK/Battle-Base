@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.AttackSystem.Aim
 {
+    [PreviewExcluded(PreviewExclusionMode.Remove)]
     public class RadarAim : MonoBehaviour, IAim
     {
         private IAttackerPresenter _presenter;
@@ -31,10 +32,10 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Aim
 
         private void OnDisable()
         {
-            OnRemoveTarget();
-
             if (_attackNotifier != null)
             {
+                OnRemoveTarget();
+
                 _attackNotifier.TargetSelected -= OnTakeAim;
                 _attackNotifier.AttackDeactivated -= OnRemoveTarget;
             }
@@ -54,12 +55,12 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Aim
 
         private void OnTakeAim()
         {
-            _presenter.EstablishAimState(true);
+            _presenter?.EstablishAimState(true);
         }
 
         private void OnRemoveTarget()
         {
-            _presenter.EstablishAimState(false);
+            _presenter?.EstablishAimState(false);
         }
     }
 }

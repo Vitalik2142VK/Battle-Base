@@ -5,6 +5,7 @@ using BattleBase.Utils.Extensions;
 
 namespace BattleBase.Gameplay.Actors.Movement
 {
+    [PreviewExcluded(PreviewExclusionMode.Remove)]
     [RequireComponent(typeof(NavMeshAgent))]
     public class NavigationAgent : MonoBehaviour, INavigationAgent
     {
@@ -20,7 +21,9 @@ namespace BattleBase.Gameplay.Actors.Movement
         {
             _transform = transform;
             _agent = GetComponent<NavMeshAgent>();
-            _agent.isStopped = true;
+
+            if (_agent.isOnNavMesh)
+                _agent.isStopped = true;
         }
 
         private void OnEnable()

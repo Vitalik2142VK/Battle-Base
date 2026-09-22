@@ -1,4 +1,4 @@
-﻿using BattleBase.Gameplay.Actors.AttackSystem.Ammo;
+using BattleBase.Gameplay.Actors.AttackSystem.Ammo;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,7 +17,14 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Multiple
 
             foreach (var gameObject in _gameObjectShotPoits)
             {
+                if (gameObject == null)
+                    continue;
+
                 IShotPoint shotPoint = gameObject.GetComponent<IShotPoint>();
+
+                if (shotPoint == null)
+                    continue;
+
                 _shotPoints.Add(shotPoint);
             }
 

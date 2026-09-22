@@ -8,14 +8,14 @@ namespace BattleBase.ShopSystem
 
         private GameObject _currentModel;
 
-        public void SetModel(GameObject model)
+        public void SetModel(GameObject model, Vector3 offset)
         {
             if (_currentModel != null)
                 Destroy(_currentModel);
 
             _currentModel = model;
             _currentModel.transform.SetParent(_modelParent);
-            _currentModel.transform.SetPositionAndRotation(_modelParent.position, _modelParent.rotation);
+            _currentModel.transform.SetPositionAndRotation(_modelParent.position + offset, _modelParent.rotation);
         }
     }
 }

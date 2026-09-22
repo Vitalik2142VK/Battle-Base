@@ -10,7 +10,7 @@ namespace BattleBase.PreviewCreatingSystem
             if (model == null)
                 throw new ArgumentNullException(nameof(model));
 
-            ScreenshotCenter screenshotCenterTarget = model.GetComponentInChildren<ScreenshotCenter>();
+            ScreenshotCenter screenshotCenterTarget = model.GetComponentInChildren<ScreenshotCenter>(true);
 
             if (screenshotCenterTarget != null)
                 return screenshotCenterTarget.transform.position;
