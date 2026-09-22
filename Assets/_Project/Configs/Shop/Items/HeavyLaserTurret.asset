@@ -10,13 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b960e3a53ccdc154d9abddb2d58ace5a, type: 3}
-  m_Name: MissleTurret
+  m_Name: HeavyLaserTurret
   m_EditorClassIdentifier: 
-  _actorConfig: {fileID: 11400000, guid: e587a36f43eff694bbf1c201fc3498c5, type: 2}
+  _actorConfig: {fileID: 11400000, guid: 4c34700e5c731f14184361f670a61084, type: 2}
   _stats: {fileID: 11400000, guid: 661c9bd0683bed940b9b1d2662147953, type: 2}
-  _unitNameConfig: {fileID: 11400000, guid: e18d2683bae8998498e69812c312fa2f, type: 2}
-  _unitDescriptionConfig: {fileID: 11400000, guid: 26a769dd50d604749b3d8dd1dc1a2524,
-    type: 2}
-  _cleanPrefab: {fileID: 7002220106344778511, guid: 5be2626cf3805f94993a60293887d5cd,
+  _unitNameConfig: {fileID: 11400000, guid: a36728ea9e23d5945be02a82f4a2d766, type: 2}
+  _cleanPrefab: {fileID: 1326954324039142359, guid: 811abdeef6010ac4fb0e84c2c1b983f6,
     type: 3}
   _previewScreenScale: 0.9

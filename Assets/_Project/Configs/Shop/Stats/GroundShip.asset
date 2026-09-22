@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73d506fd17a129b47a84284ad0e51e11, type: 3}
-  m_Name: MissleTurret
+  m_Name: GroundShip
   m_EditorClassIdentifier: 
   _damageInfo:
     _prices: 64000000c8000000f4010000e8030000d007000088130000
