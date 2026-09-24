@@ -5,38 +5,37 @@ using BattleBase.Gameplay.Map;
 
 namespace BattleBase.Gameplay.Actors.Availability
 {
-    public class AvailableActorConfigProvider : IAvailableActorConfigProvider, IDisposable
+    public class PlayerAvailableActorProvider : IPlayerAvailableActorProvider, IDisposable
     {
-        private readonly IEnumerable<IActorConfig> _allCoonfigsInProject;
+        private readonly IEnumerable<IActorConfig> _allActorConfigs; //todo change to IAllActorConfigs
         private readonly TerritoriesModel _territoriesModel;
 
-        private List<AvailableActorConfigModificator> _awailablePlayerConfigs;
-        private List<AvailableActorConfigModificator> _awailableEnemyConfigs;
+        private List<AvailableActorConfigModificator> _availablePlayerConfigs;
 
-        public AvailableActorConfigProvider(IEnumerable<IActorConfig> allCoonfigsInProject, TerritoriesModel territoriesModel)
+        public PlayerAvailableActorProvider(
+            IEnumerable<IActorConfig> allActorConfigs, 
+            TerritoriesModel territoriesModel)
         {
-            _allCoonfigsInProject = allCoonfigsInProject ?? throw new ArgumentNullException(nameof(allCoonfigsInProject));
+            _allActorConfigs = allActorConfigs ?? throw new ArgumentNullException(nameof(allActorConfigs));
             _territoriesModel = territoriesModel ?? throw new ArgumentNullException(nameof(territoriesModel));
 
             _territoriesModel.Changed += OnConquiredTerritroriesChanged;
             OnConquiredTerritroriesChanged();
         }
 
-        public IEnumerable<IActorConfig> ActualPlayerConfigs => _awailablePlayerConfigs;
-
-        public IEnumerable<IActorConfig> ActualEnemyConfigs => _awailableEnemyConfigs;
+        public IEnumerable<IActorConfig> ActualConfigs => _availablePlayerConfigs;
 
         public void Dispose() =>
             _territoriesModel.Changed -= OnConquiredTerritroriesChanged;
 
         private void RecombinedPlayerConfigs()
         {
-            _awailablePlayerConfigs = new();
+            _availablePlayerConfigs = new();
 
-            foreach (var config in _allCoonfigsInProject)
+            foreach (var config in _allActorConfigs)
             {
                 AvailableActorConfigModificator newConfig = new(config);
-                _awailablePlayerConfigs.Add(newConfig);
+                _availablePlayerConfigs.Add(newConfig);
             }
 
             List<IActorConfig> actorsToOpen = new();
@@ -50,10 +49,10 @@ namespace BattleBase.Gameplay.Actors.Availability
                 actorsToOpen.AddRange(info.ActorsToOpen);
 
                 foreach (var config in info.ActorsToOpen)
-                    SetAwailableIfContains(config, _awailablePlayerConfigs);
+                    SetAwailableIfContains(config, _availablePlayerConfigs);
             }
 
-            _awailablePlayerConfigs = _awailablePlayerConfigs
+            _availablePlayerConfigs = _availablePlayerConfigs
                 .Where(config => config.Data.IsAvailable)
                 .ToList();
         }

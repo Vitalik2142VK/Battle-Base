@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LightGrav_MoveComponentSource
   m_EditorClassIdentifier: 
   _healthConfig:
-    _speed: 8
+    _speed: 10
     _angularSpeed: 150
     _acceleration: 8
     _stoppingDistance: 3

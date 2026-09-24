@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bomber_AirMoveComponentSource
   m_EditorClassIdentifier: 
   _healthConfig:
-    _speed: 7
+    _speed: 8
     _angularSpeed: 120
     _acceleration: 15
     _stoppingDistance: 3
