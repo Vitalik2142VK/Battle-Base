@@ -129,7 +129,6 @@ MonoBehaviour:
   _defaultColor: {r: 1, g: 1, b: 1, a: 1}
   _renderers:
   - {fileID: 833693958572104651}
-  - {fileID: 6229411707146048162}
   _targetMaterial: {fileID: 2100000, guid: 237f62aa41095d34c97012076fbcbdce, type: 2}
 --- !u!1 &1196253109056073843
 GameObject:
@@ -541,7 +540,6 @@ MonoBehaviour:
   _defaultColor: {r: 1, g: 1, b: 1, a: 1}
   _renderers:
   - {fileID: 833693958572104651}
-  - {fileID: 6229411707146048162}
   _targetMaterial: {fileID: 2100000, guid: 2182440ddf123974fb0dbf1a13fb7786, type: 2}
 --- !u!1001 &1725729390397211934
 PrefabInstance:

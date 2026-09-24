@@ -1,29 +1,16 @@
+using BattleBase.Utils.Constants;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors
 {
-    //todo remove if not used
-    public class AllActorConfigs : MonoBehaviour
+    [CreateAssetMenu(
+    fileName = nameof(AllActorConfigs),
+    menuName = AssetMenuPaths.ScriptableObjects + nameof(AllActorConfigs))]
+    public class AllActorConfigs : ScriptableObject, IAllActorConfigs
     {
-        [SerializeField] private ActorConfig[] _allActorConfigs;
+        [SerializeField] private ActorConfig[] _configs;
 
-        private Dictionary<string, ActorConfig> _actorConfigs;
-
-        public IActorConfig GetConfig(string id)
-        {
-            if (string.IsNullOrEmpty(id))
-                throw new System.ArgumentException(nameof(id));
-
-            if (_actorConfigs == null)
-            {
-                _actorConfigs = new Dictionary<string, ActorConfig>();
-
-                foreach (var actorConfig in _allActorConfigs)
-                    _actorConfigs.Add(actorConfig.Data.Id, actorConfig);
-            }
-
-            return _actorConfigs[id];
-        }
+        public IEnumerable<IActorConfig> Configs => _configs;
     }
 }

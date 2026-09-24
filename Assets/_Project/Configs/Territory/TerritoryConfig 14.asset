@@ -20,3 +20,17 @@ MonoBehaviour:
     _tr:
       _text: "S\xFCrg\xFCn Kuleleri"
   _creditsForFirstVictory: 8000
+  _actorsToOpen: []
+  _bannedActors:
+  - {fileID: 11400000, guid: fff000a41cc816645b915be5714638b3, type: 2}
+  - {fileID: 11400000, guid: 9c09f34c8e62cff449901d51a8c8d301, type: 2}
+  - {fileID: 11400000, guid: 1f46563fef4f1a74596c038054377828, type: 2}
+  - {fileID: 11400000, guid: eacfd7c0f370f984ab0e4855bf213890, type: 2}
+  - {fileID: 11400000, guid: 6586768389c40424cbd373d45425f6f0, type: 2}
+  - {fileID: 11400000, guid: 8447eaf3ba3c32d4a84099ea8db27f47, type: 2}
+  - {fileID: 11400000, guid: 9f81944311ed51b439dcd449efc2e5fd, type: 2}
+  - {fileID: 11400000, guid: 2069bf6504a12de4ab3c8e86cca4cef6, type: 2}
+  - {fileID: 11400000, guid: 292c450663b84384f968d6d256496423, type: 2}
+  - {fileID: 11400000, guid: 8740b58b78f8fdf46b3c08ec0603ada1, type: 2}
+  - {fileID: 11400000, guid: 4c34700e5c731f14184361f670a61084, type: 2}
+  - {fileID: 11400000, guid: e587a36f43eff694bbf1c201fc3498c5, type: 2}

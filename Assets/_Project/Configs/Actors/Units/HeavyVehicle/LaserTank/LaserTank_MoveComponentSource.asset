@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LaserTank_MoveComponentSource
   m_EditorClassIdentifier: 
   _healthConfig:
-    _speed: 5.5
+    _speed: 7
     _angularSpeed: 80
     _acceleration: 10
     _stoppingDistance: 4

@@ -1,14 +1,23 @@
 using BattleBase.Gameplay.Actors.Spawn;
+using System;
 
 namespace BattleBase.Gameplay.Actors.Availability
 {
     public class EnemyAvailabilityActors : IAvailabilityActors
     {
-        public TeamType Team => TeamType.Enemy;
+        private readonly AvailabilityActors _availabilityActors;
 
-        public void EstablishActors(IActorSpawner spawner)
+        public EnemyAvailabilityActors(IEnemyAvailableActorProvider provider)
         {
-            UnityEngine.Debug.LogWarning($"Implement class {nameof(EnemyAvailabilityActors)}");
+            if (provider == null)
+                throw new ArgumentNullException(nameof(provider));
+
+            _availabilityActors = new AvailabilityActors(provider.ActualConfigs, TeamType.Enemy);
         }
+
+        public TeamType Team => _availabilityActors.Team;
+
+        public void EstablishActors(IActorSpawner spawner) =>
+            _availabilityActors.EstablishActors(spawner);
     }
 }

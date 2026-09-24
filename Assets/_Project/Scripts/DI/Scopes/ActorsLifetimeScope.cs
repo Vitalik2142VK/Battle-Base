@@ -43,7 +43,7 @@ namespace BattleBase.DI
         [SerializeField] private AreaDefenseAI _areaDefenseAI;
         [SerializeField] private UpgraderConfig _upgradeConfig;
         [SerializeField] private BrainConfing _brainConfing;
-        [SerializeField] private AllActorConfigs _configs;
+        [SerializeField] private AllActorConfigs _allActorConfigs;
 
         private IContainerBuilder _builder;
 
@@ -61,7 +61,7 @@ namespace BattleBase.DI
             _builder.RegisterInstance<ITrailParticleSpawner>(_trailParticleSpawner);
             _builder.RegisterInstance<IParticleSpawner>(_particleSpawner);
             _builder.RegisterInstance<IUpgraderConfig>(_upgradeConfig);
-            _builder.RegisterInstance(_configs);
+            _builder.RegisterInstance<IAllActorConfigs>(_allActorConfigs);
 
             _builder.Register<IActorSpawnService, ActorSpawnService>(Lifetime.Scoped);
             _builder.Register<IActorColorService, ActorColorService>(Lifetime.Scoped);
@@ -147,6 +147,7 @@ namespace BattleBase.DI
         {
             _builder.Register<IAvailabilityActors, PlayerAvailabilityActors>(Lifetime.Scoped);
             _builder.Register<IAvailabilityActors, EnemyAvailabilityActors>(Lifetime.Scoped);
+            _builder.Register<IEnemyAvailableActorProvider, EnemyAvailableActorProvider>(Lifetime.Scoped);
             _builder.Register<IAvailabilityActorsRegistry, AvailabilityActorsRegistry>(Lifetime.Scoped);
         }
 

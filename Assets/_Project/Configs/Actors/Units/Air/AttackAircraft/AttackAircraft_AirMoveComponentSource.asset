@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AttackAircraft_AirMoveComponentSource
   m_EditorClassIdentifier: 
   _healthConfig:
-    _speed: 19
+    _speed: 22
     _angularSpeed: 100
     _acceleration: 10
     _stoppingDistance: 5

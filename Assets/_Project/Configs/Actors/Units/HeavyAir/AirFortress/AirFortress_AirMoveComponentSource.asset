@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AirFortress_AirMoveComponentSource
   m_EditorClassIdentifier: 
   _healthConfig:
-    _speed: 15
+    _speed: 18
     _angularSpeed: 75
     _acceleration: 15
     _stoppingDistance: 3

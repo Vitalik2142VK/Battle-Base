@@ -1,9 +1,6 @@
 using System;
-using System.Linq;
 using BattleBase.AdvService;
 using BattleBase.AuthService;
-using BattleBase.Gameplay.Actors;
-using BattleBase.Gameplay.Actors.Availability;
 using BattleBase.SaveService;
 using BattleBase.UI.Buttons;
 using BattleBase.Utils.Constants;

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HeavyArtillery_MoveComponentSource
   m_EditorClassIdentifier: 
   _healthConfig:
-    _speed: 3.5
+    _speed: 4
     _angularSpeed: 80
     _acceleration: 10
     _stoppingDistance: 3

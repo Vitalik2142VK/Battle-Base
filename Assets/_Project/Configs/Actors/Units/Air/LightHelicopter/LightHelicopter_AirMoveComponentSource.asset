@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LightHelicopter_AirMoveComponentSource
   m_EditorClassIdentifier: 
   _healthConfig:
-    _speed: 13
+    _speed: 15
     _angularSpeed: 270
     _acceleration: 15
     _stoppingDistance: 3

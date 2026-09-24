@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FighterJet_AirMoveComponentSource
   m_EditorClassIdentifier: 
   _healthConfig:
-    _speed: 22
+    _speed: 25
     _angularSpeed: 150
     _acceleration: 10
     _stoppingDistance: 5
