@@ -9,7 +9,7 @@ namespace BattleBase.Gameplay.Map
         private readonly ITerritorySaver _saver;
         private readonly IReadOnlyList<TerritoryConfig> _territoryConfigs;
 
-        private TerritoryData _territoryData = new();
+        private TerritoriesData _territoryData = new();
 
         public TerritoriesModel(IReadOnlyList<TerritoryConfig> territoryConfigs, ITerritorySaver saver)
         {
@@ -21,34 +21,41 @@ namespace BattleBase.Gameplay.Map
 
         public event Action Changed;
 
-        public ITerritoryInfo SelectedInfo => GetTerritoryInfo(Selected);
+        public ITerritoryInfo SelectedTerritoryInfo => GetTerritoryInfo(SelectedTerritoryIndex);
 
-        public int Selected => _territoryData.SelectedTerritory;
+        public int SelectedTerritoryIndex => _territoryData.SelectedTerritoryIndex;
 
-        public IReadOnlyList<int> ConqueredTerritories => _territoryData.ConqueredTerritories;
+        public IReadOnlyList<int> ConqueredTerritoryIndices => _territoryData.ConqueredTerritoryIndices;
 
-        public void SetSelectedTerritory(int index)
+        private int TerritoriesCount => _territoryConfigs.Count;
+
+        public void SetSelectedTerritoryIndex(int index)
         {
-            if (index < 0 || index >= _territoryConfigs.Count)
+            if (index < 0 || index >= TerritoriesCount)
                 throw new ArgumentOutOfRangeException(nameof(index));
 
-            _territoryData.SetSelectedTerritory(index);
+            if (SelectedTerritoryIndex == index)
+                return;
+
+            _territoryData.SetSelectedTerritoryIndex(index);
+
+            Changed?.Invoke();
         }
 
         public ITerritoryInfo GetTerritoryInfo(int index)
         {
-            if (index < 0 || index >= _territoryConfigs.Count)
+            if (index < 0 || index >= TerritoriesCount)
                 throw new ArgumentOutOfRangeException(nameof(index), index, $"Index is out of range. Max index = {_territoryConfigs.Count}");
 
             return _territoryConfigs[index];
         }
 
-        public bool TryAddConqueredTerritory(int index)
+        public bool TryMarkTerritoryConquered(int index)
         {
-            if (index < 0 || index >= _territoryConfigs.Count)
+            if (index < 0 || index >= TerritoriesCount)
                 throw new ArgumentOutOfRangeException(nameof(index));
 
-            if (_territoryData.TryAddConqueredTerritory(index))
+            if (_territoryData.TryMarkTerritoryConquered(index))
             {
                 Changed?.Invoke();
 
@@ -58,13 +65,24 @@ namespace BattleBase.Gameplay.Map
             return false;
         }
 
-        public int GetCreditsForFirstVictory(int index)
+        public int GetCreditsForFirstVictory(int index) =>
+            GetTerritoryInfo(index).CreditsForFirstVictory;
+
+        public bool TryGetFirstUnconqueredTerritoryIndex(out int index)
         {
-            if (index < 0 || index >= _territoryConfigs.Count)
-                throw new ArgumentOutOfRangeException(nameof(index));
+            for (int i = 0; i < TerritoriesCount; i++)
+            {
+                if (_territoryData.IsTerritoryConquered(i))
+                    continue;
 
-            return GetTerritoryInfo(index).CreditsForFirstVictory;
+                index = i;
 
+                return true;
+            }
+
+            index = -1;
+
+            return false;
         }
 
         public void Load()

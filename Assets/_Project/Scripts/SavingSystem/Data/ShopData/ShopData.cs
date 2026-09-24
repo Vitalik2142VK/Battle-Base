@@ -50,7 +50,7 @@ namespace BattleBase.SaveService
         public void SetCredits(int value) =>
             _credits = value;
 
-        public bool IsChangedFrom(IShopData other)
+        public bool IsDiffersFrom(IShopData other)
         {
             if (other == null)
                 throw new ArgumentNullException(nameof(other));

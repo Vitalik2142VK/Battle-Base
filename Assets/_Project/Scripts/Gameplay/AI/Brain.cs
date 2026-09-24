@@ -23,7 +23,7 @@ namespace BattleBase.Gameplay.AI
             if (selectedTerritory == null) 
                 throw new ArgumentNullException(nameof(selectedTerritory));
 
-            _confing = selectedTerritory.SelectedInfo.BrainConfig;
+            _confing = selectedTerritory.SelectedTerritoryInfo.BrainConfig;
             _tacticsFactory = tacticsFactory ?? throw new ArgumentNullException(nameof(tacticsFactory));
             _modifiersFactory = modifiersFactory ?? throw new ArgumentNullException(nameof(modifiersFactory));
 
