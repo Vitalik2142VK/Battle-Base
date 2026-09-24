@@ -1,6 +1,7 @@
 using BattleBase.Core;
 using BattleBase.Gameplay.AI.Modifiers;
 using BattleBase.Gameplay.AI.Tactics;
+using BattleBase.Gameplay.Map;
 using BattleBase.Utils;
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,12 @@ namespace BattleBase.Gameplay.AI
         private ScoreModifierController _modifierController;
         private int _currentIndexTactic;
 
-        public Brain(IBrainConfig confing, ITacticsFactory tacticsFactory, IScoreModifiersFactory modifiersFactory)
+        public Brain(ISelectedTerritory selectedTerritory, ITacticsFactory tacticsFactory, IScoreModifiersFactory modifiersFactory)
         {
-            _confing = confing ?? throw new ArgumentNullException(nameof(confing));
+            if (selectedTerritory == null) 
+                throw new ArgumentNullException(nameof(selectedTerritory));
+
+            _confing = selectedTerritory.SelectedInfo.BrainConfig;
             _tacticsFactory = tacticsFactory ?? throw new ArgumentNullException(nameof(tacticsFactory));
             _modifiersFactory = modifiersFactory ?? throw new ArgumentNullException(nameof(modifiersFactory));
 

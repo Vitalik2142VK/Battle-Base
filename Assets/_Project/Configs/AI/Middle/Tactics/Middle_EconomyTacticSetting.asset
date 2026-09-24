@@ -9,13 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22e5865ba2b535e4b83c2432d7ebdc00, type: 3}
-  m_Name: PowerTacticSetting
+  m_Script: {fileID: 11500000, guid: 2edd39c80b5ca89468c2c036c53ba74e, type: 3}
+  m_Name: Middle_EconomyTacticSetting
   m_EditorClassIdentifier: 
-  _maxScore: 30
+  _maxScore: 50
   _minScore: 5
-  _powerStationConfig: {fileID: 11400000, guid: e9596a5366d5742409c8ab3e3decc8a5,
+  _materialFactoryConfig: {fileID: 11400000, guid: d29b556504be6944588fab13baad2f83,
     type: 2}
   _lineNumbersForBuild: 0200000001000000
-  _scoreForBuild: 10
-  _maxNumberStations: 2
+  _scoreForBuild: 15
+  _maxNumberFactories: 6
+  _materialsForStop: 3000

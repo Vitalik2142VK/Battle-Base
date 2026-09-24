@@ -9,10 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dfef5a46fb487c4f92d558f0eedc575, type: 3}
-  m_Name: PowerModifierConfig
+  m_Script: {fileID: 11500000, guid: 33b29b624ecb07c43872ffba5f585f87, type: 3}
+  m_Name: Middle_EconomyModifierConfig_Critical
   m_EditorClassIdentifier: 
   _modifiers:
+  - _category: 1
+    _multiplier: 3.5
+  - _category: 3
+    _multiplier: 0.2
   - _category: 2
-    _multiplier: 4
-  _maxRemainingEnergy: 3
+    _multiplier: 0
+  - _category: 0
+    _multiplier: 0
+  _minMaterialsForActivation: 400

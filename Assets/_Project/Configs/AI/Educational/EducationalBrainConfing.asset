@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d55650f044b6b94ab06277e5a4a02fe, type: 3}
+  m_Name: EducationalBrainConfing
+  m_EditorClassIdentifier: 
+  _tacticSettings:
+  - {fileID: 11400000, guid: 91e923c539bbe7943b2f0fad28e8a0f8, type: 2}
+  - {fileID: 11400000, guid: 4119fd6d6fc11ea4fa4ba842c4adf2c3, type: 2}
+  - {fileID: 11400000, guid: 40495513d50479342b6aa7190a16b332, type: 2}
+  - {fileID: 11400000, guid: d59c4036b23fccf4894954aa51554162, type: 2}
+  _modifierConfigs:
+  - {fileID: 11400000, guid: 9e256c1f0260d0e44a565fc25fb994f9, type: 2}
+  - {fileID: 11400000, guid: 19ed698dabc35bf4793b7e2977aa94de, type: 2}
+  - {fileID: 11400000, guid: 26097fe8af52ac64588db0f232e8e4bf, type: 2}
+  _teamType: 2

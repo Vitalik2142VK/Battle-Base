@@ -8,7 +8,7 @@ using UnityEngine;
 namespace BattleBase.Gameplay.AI.Tactics.No
 {
     [CreateAssetMenu(fileName = nameof(RandomTacticSetting),
-        menuName = AssetMenuPaths.ScriptableObjects + nameof(BrainConfing) + "/" + nameof(RandomTacticSetting))]
+        menuName = AssetMenuPaths.ScriptableObjects + nameof(BrainConfig) + "/" + nameof(RandomTacticSetting))]
     public class RandomTacticSetting : TacticSetting, IRandomTacticSetting
     {
         [Space]

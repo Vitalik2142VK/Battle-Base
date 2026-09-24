@@ -19,3 +19,7 @@ MonoBehaviour:
       _text: Name
     _tr:
       _text: Name
+  _creditsForFirstVictory: 0
+  _brainConfig: {fileID: 11400000, guid: d1e9cac88a791b24bba272ba91239dfd, type: 2}
+  _actorsToOpen: []
+  _bannedActors: []
