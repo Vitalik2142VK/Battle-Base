@@ -7,14 +7,12 @@ namespace BattleBase.Gameplay.Actors.Availability
 {
     public class PlayerAvailableActorProvider : IPlayerAvailableActorProvider, IDisposable
     {
-        private readonly IEnumerable<IActorConfig> _allActorConfigs; //todo change to IAllActorConfigs
+        private readonly IAllActorConfigs _allActorConfigs;
         private readonly TerritoriesModel _territoriesModel;
 
         private List<AvailableActorConfigModificator> _availablePlayerConfigs;
 
-        public PlayerAvailableActorProvider(
-            IEnumerable<IActorConfig> allActorConfigs, 
-            TerritoriesModel territoriesModel)
+        public PlayerAvailableActorProvider(IAllActorConfigs allActorConfigs, TerritoriesModel territoriesModel)
         {
             _allActorConfigs = allActorConfigs ?? throw new ArgumentNullException(nameof(allActorConfigs));
             _territoriesModel = territoriesModel ?? throw new ArgumentNullException(nameof(territoriesModel));
@@ -32,7 +30,7 @@ namespace BattleBase.Gameplay.Actors.Availability
         {
             _availablePlayerConfigs = new();
 
-            foreach (var config in _allActorConfigs)
+            foreach (var config in _allActorConfigs.Configs)
             {
                 AvailableActorConfigModificator newConfig = new(config);
                 _availablePlayerConfigs.Add(newConfig);

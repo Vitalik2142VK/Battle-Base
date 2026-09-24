@@ -5,7 +5,7 @@
     "floatValues": [],
     "intKeys": [],
     "intValues": [],
-    "idSave": 4,
+    "idSave": 5,
     "SavesData": {
         "_volumeData": {
             "_generalVolume": 1.0,
@@ -33,61 +33,145 @@
                     "_buildTimeLevel": 0
                 },
                 {
-                    "_name": "",
+                    "_name": "RocketLauncher",
                     "_damageLevel": 0,
                     "_armorLevel": 0,
                     "_buildTimeLevel": 0
                 },
                 {
-                    "_name": "",
+                    "_name": "Sniper",
                     "_damageLevel": 0,
                     "_armorLevel": 0,
                     "_buildTimeLevel": 0
                 },
                 {
-                    "_name": "",
+                    "_name": "Trike",
                     "_damageLevel": 0,
                     "_armorLevel": 0,
                     "_buildTimeLevel": 0
                 },
                 {
-                    "_name": "",
+                    "_name": "Quad",
                     "_damageLevel": 0,
                     "_armorLevel": 0,
                     "_buildTimeLevel": 0
                 },
                 {
-                    "_name": "",
+                    "_name": "LightGrav",
                     "_damageLevel": 0,
                     "_armorLevel": 0,
                     "_buildTimeLevel": 0
                 },
                 {
-                    "_name": "",
+                    "_name": "Tank",
                     "_damageLevel": 0,
                     "_armorLevel": 0,
                     "_buildTimeLevel": 0
                 },
                 {
-                    "_name": "",
+                    "_name": "IFV",
                     "_damageLevel": 0,
                     "_armorLevel": 0,
                     "_buildTimeLevel": 0
                 },
                 {
-                    "_name": "",
+                    "_name": "LaserTank",
                     "_damageLevel": 0,
                     "_armorLevel": 0,
                     "_buildTimeLevel": 0
                 },
                 {
-                    "_name": "",
+                    "_name": "AntyAirTank",
                     "_damageLevel": 0,
                     "_armorLevel": 0,
                     "_buildTimeLevel": 0
                 },
                 {
-                    "_name": "",
+                    "_name": "HeavyGrav",
+                    "_damageLevel": 0,
+                    "_armorLevel": 0,
+                    "_buildTimeLevel": 0
+                },
+                {
+                    "_name": "MissileArtillery",
+                    "_damageLevel": 0,
+                    "_armorLevel": 0,
+                    "_buildTimeLevel": 0
+                },
+                {
+                    "_name": "GroundShip",
+                    "_damageLevel": 0,
+                    "_armorLevel": 0,
+                    "_buildTimeLevel": 0
+                },
+                {
+                    "_name": "HeavyArtillery",
+                    "_damageLevel": 0,
+                    "_armorLevel": 0,
+                    "_buildTimeLevel": 0
+                },
+                {
+                    "_name": "HeavyTank",
+                    "_damageLevel": 0,
+                    "_armorLevel": 0,
+                    "_buildTimeLevel": 0
+                },
+                {
+                    "_name": "FighterJet",
+                    "_damageLevel": 0,
+                    "_armorLevel": 0,
+                    "_buildTimeLevel": 0
+                },
+                {
+                    "_name": "LightHelicopter",
+                    "_damageLevel": 0,
+                    "_armorLevel": 0,
+                    "_buildTimeLevel": 0
+                },
+                {
+                    "_name": "AttackAircraft",
+                    "_damageLevel": 0,
+                    "_armorLevel": 0,
+                    "_buildTimeLevel": 0
+                },
+                {
+                    "_name": "AirFortress",
+                    "_damageLevel": 0,
+                    "_armorLevel": 0,
+                    "_buildTimeLevel": 0
+                },
+                {
+                    "_name": "HeavyHelicopter",
+                    "_damageLevel": 0,
+                    "_armorLevel": 0,
+                    "_buildTimeLevel": 0
+                },
+                {
+                    "_name": "Bomber",
+                    "_damageLevel": 0,
+                    "_armorLevel": 0,
+                    "_buildTimeLevel": 0
+                },
+                {
+                    "_name": "AutocannonTurret",
+                    "_damageLevel": 0,
+                    "_armorLevel": 0,
+                    "_buildTimeLevel": 0
+                },
+                {
+                    "_name": "ArtilleryMissileTurret",
+                    "_damageLevel": 0,
+                    "_armorLevel": 0,
+                    "_buildTimeLevel": 0
+                },
+                {
+                    "_name": "AntiAirTurret",
+                    "_damageLevel": 0,
+                    "_armorLevel": 0,
+                    "_buildTimeLevel": 0
+                },
+                {
+                    "_name": "HeavyLaserTurret",
                     "_damageLevel": 0,
                     "_armorLevel": 0,
                     "_buildTimeLevel": 0

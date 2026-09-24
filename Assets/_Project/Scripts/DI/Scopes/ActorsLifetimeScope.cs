@@ -42,7 +42,6 @@ namespace BattleBase.DI
         [SerializeField] private ParticleSpawner _particleSpawner;
         [SerializeField] private AreaDefenseAI _areaDefenseAI;
         [SerializeField] private UpgraderConfig _upgradeConfig;
-        [SerializeField] private AllActorConfigs _allActorConfigs;
 
         private IContainerBuilder _builder;
 
@@ -60,7 +59,6 @@ namespace BattleBase.DI
             _builder.RegisterInstance<ITrailParticleSpawner>(_trailParticleSpawner);
             _builder.RegisterInstance<IParticleSpawner>(_particleSpawner);
             _builder.RegisterInstance<IUpgraderConfig>(_upgradeConfig);
-            _builder.RegisterInstance<IAllActorConfigs>(_allActorConfigs);
 
             _builder.Register<IActorSpawnService, ActorSpawnService>(Lifetime.Scoped);
             _builder.Register<IActorColorService, ActorColorService>(Lifetime.Scoped);

@@ -30,7 +30,7 @@ namespace BattleBase.DI
         [SerializeField] private TeamColorSetConfig _teamColorSetConfig;
         [SerializeField] private List<TerritoryConfig> _territoryConfigs;
         [SerializeField] private CaptureCamera _captureCamera;
-        [SerializeField] private ActorConfig[] _actorConfigs;
+        [SerializeField] private AllActorConfigs _allActorConfigs;
 
         private IContainerBuilder _builder;
 
@@ -63,7 +63,7 @@ namespace BattleBase.DI
             builder.RegisterInstance(_actorsUpgradeConfig);
             builder.RegisterInstance(_teamColorSetConfig);
             builder.RegisterInstance(_territoryConfigs as IReadOnlyList<TerritoryConfig>);
-            builder.RegisterInstance(_actorConfigs as IEnumerable<IActorConfig>);
+            builder.RegisterInstance<IAllActorConfigs>(_allActorConfigs);
             builder.Register<IPlayerAvailableActorProvider, PlayerAvailableActorProvider>(Lifetime.Singleton);
 
             builder.RegisterBuildCallback(container =>
