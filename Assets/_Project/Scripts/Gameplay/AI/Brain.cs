@@ -82,7 +82,7 @@ namespace BattleBase.Gameplay.AI
             }
 
 #if UNITY_EDITOR // remove
-            if (DebugSetting.IsBrainDebugEnable)
+            if (DebugSettingGameScene.IsBrainDebugEnable)
             {
                 string debug = $"selectedTactic != null - {selectedTactic != null}";
 

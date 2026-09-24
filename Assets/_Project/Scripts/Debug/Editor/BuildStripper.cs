@@ -16,7 +16,7 @@ public class BuildStripper : IProcessSceneWithReport
 
         foreach (var root in scene.GetRootGameObjects())
         {
-            var comps = root.GetComponentsInChildren<DebugSetting>(true);
+            var comps = root.GetComponentsInChildren<DebugSettingGameScene>(true);
 
             foreach (var c in comps)
                 Object.DestroyImmediate(c, true);

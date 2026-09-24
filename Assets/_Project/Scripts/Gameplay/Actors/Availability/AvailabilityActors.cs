@@ -35,7 +35,7 @@ namespace BattleBase.Gameplay.Actors.Availability
                 throw new ArgumentNullException(nameof(spawner));
 
 #if UNITY_EDITOR // todo remove
-            if (DebugSetting.IsOpenAllUnit)
+            if (DebugSettingGameScene.IsOpenAllUnit)
             {
                 spawner.DataController.EstablishActors(spawner.DataController.AvailabilityActorDatas);
 
