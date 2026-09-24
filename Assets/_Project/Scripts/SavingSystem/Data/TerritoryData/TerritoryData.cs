@@ -8,7 +8,7 @@ namespace BattleBase.SaveService
     public class TerritoryData : ITerritoryData
     {
         [SerializeField] private List<int> _conqueredTerritories = new() { 0, };
-        [SerializeField] private int _selectedTerritory = -1;
+        [SerializeField] private int _selectedTerritory = 0;
 
         public TerritoryData() { }
 
@@ -21,7 +21,7 @@ namespace BattleBase.SaveService
             _selectedTerritory = data.SelectedTerritory;
         }
 
-        public TerritoryData(List<int> conqueredTerritories, int selectedTerritory = -1)
+        public TerritoryData(List<int> conqueredTerritories, int selectedTerritory = 0)
         {
             _conqueredTerritories = conqueredTerritories ?? throw new ArgumentNullException(nameof(conqueredTerritories));
             _selectedTerritory = selectedTerritory;
