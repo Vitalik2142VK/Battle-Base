@@ -20,6 +20,7 @@ MonoBehaviour:
     _tr:
       _text: Bulutlu ovalar
   _creditsForFirstVictory: 4500
+  _brainConfig: {fileID: 11400000, guid: d1e9cac88a791b24bba272ba91239dfd, type: 2}
   _actorsToOpen: []
   _bannedActors:
   - {fileID: 11400000, guid: fff000a41cc816645b915be5714638b3, type: 2}

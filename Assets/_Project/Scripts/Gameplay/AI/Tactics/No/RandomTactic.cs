@@ -74,7 +74,8 @@ namespace BattleBase.Gameplay.AI.Tactics.No
 
                 if (_buildingSites[index].TryGetProductionStorage(out IProductionStorage productionStorage))
                 {
-                    IProductionOption selected = GetRandomProductionOption(productionStorage);
+                    if (TryGetRandomProductionOption(productionStorage, out IProductionOption selected) == false)
+                        continue;
 
                     if (selected.Type == TypeProduction.Removal || IsProhibited(selected))
                         continue;
@@ -91,15 +92,22 @@ namespace BattleBase.Gameplay.AI.Tactics.No
             return false;
         }
 
-        private IProductionOption GetRandomProductionOption(IProductionStorage productionStorage)
+        private bool TryGetRandomProductionOption(
+            IProductionStorage productionStorage, 
+            out IProductionOption productionOption)
         {
+            productionOption = null;
             _productionOptions.Clear();
             _productionOptions.AddRange(productionStorage.GetProductionOptions());
-
             int maxIndex = _productionOptions.Count;
-            int index = _random.Next(maxIndex);
 
-            return _productionOptions[index];
+            if (maxIndex <= 0)
+                return false;
+
+            int index = _random.Next(maxIndex);
+            productionOption = _productionOptions[index];
+
+            return true;
         }
 
         private bool IsProhibited(IProductionOption productionOption)

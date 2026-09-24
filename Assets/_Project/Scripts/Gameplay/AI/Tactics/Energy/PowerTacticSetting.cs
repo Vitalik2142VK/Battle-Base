@@ -7,7 +7,7 @@ using UnityEngine;
 namespace BattleBase.Gameplay.AI.Tactics.Energy
 {
     [CreateAssetMenu(fileName = nameof(PowerTacticSetting),
-    menuName = AssetMenuPaths.ScriptableObjects + nameof(BrainConfing) + "/" + nameof(PowerTacticSetting))]
+    menuName = AssetMenuPaths.ScriptableObjects + nameof(BrainConfig) + "/" + nameof(PowerTacticSetting))]
     public class PowerTacticSetting : TacticSetting, IPowerTacticSetting
     {
         [Space]
@@ -15,7 +15,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Energy
         [SerializeField] private ActorConfig _powerStationConfig;
         [SerializeField][Range(1, 3)] private int[] _lineNumbersForBuild = new[] { 2 };
         [SerializeField][Range(1, 30)] private int _scoreForBuild = 5;
-        [SerializeField][Range(2, 4)] private int _maxNumberStations = 3;
+        [SerializeField][Range(0, 3)] private int _maxNumberStations = 2;
 
         public TacticCategory Category => TacticCategory.Power;
 

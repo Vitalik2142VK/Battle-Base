@@ -8,9 +8,9 @@ using UnityEngine;
 namespace BattleBase.Gameplay.AI
 {
     [CreateAssetMenu(
-    fileName = nameof(BrainConfing),
-    menuName = AssetMenuPaths.ScriptableObjects + nameof(BrainConfing) + "/" + nameof(BrainConfing))]
-    public class BrainConfing : ScriptableObject, IBrainConfig
+    fileName = nameof(BrainConfig),
+    menuName = AssetMenuPaths.ScriptableObjects + nameof(BrainConfig) + "/" + nameof(BrainConfig))]
+    public class BrainConfig : ScriptableObject, IBrainConfig
     {
         [SerializeField] private TacticSetting[] _tacticSettings;
         [SerializeField] private ScoreModifierConfig[] _modifierConfigs;

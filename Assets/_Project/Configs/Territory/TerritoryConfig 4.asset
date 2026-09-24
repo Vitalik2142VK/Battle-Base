@@ -20,6 +20,7 @@ MonoBehaviour:
     _tr:
       _text: "Ta\u015F \u015Eehir"
   _creditsForFirstVictory: 3000
+  _brainConfig: {fileID: 11400000, guid: d1e9cac88a791b24bba272ba91239dfd, type: 2}
   _actorsToOpen:
   - {fileID: 11400000, guid: eacfd7c0f370f984ab0e4855bf213890, type: 2}
   - {fileID: 11400000, guid: a01aceef08e36ba478d1e585dd4a12f7, type: 2}

@@ -42,7 +42,6 @@ namespace BattleBase.DI
         [SerializeField] private ParticleSpawner _particleSpawner;
         [SerializeField] private AreaDefenseAI _areaDefenseAI;
         [SerializeField] private UpgraderConfig _upgradeConfig;
-        [SerializeField] private BrainConfing _brainConfing;
         [SerializeField] private AllActorConfigs _allActorConfigs;
 
         private IContainerBuilder _builder;
@@ -153,8 +152,6 @@ namespace BattleBase.DI
 
         private void RegisterAI()
         {
-            _builder.RegisterInstance<IBrainConfig>(_brainConfing);
-
             _builder.RegisterComponent<IAreaDefenseAI>(_areaDefenseAI);
 
             _builder.Register<ITacticFactory, RandomTacticFactory>(Lifetime.Scoped);

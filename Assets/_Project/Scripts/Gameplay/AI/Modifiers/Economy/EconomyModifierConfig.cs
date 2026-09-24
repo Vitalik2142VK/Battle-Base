@@ -4,7 +4,7 @@ using UnityEngine;
 namespace BattleBase.Gameplay.AI.Modifiers.Economy
 {
     [CreateAssetMenu(fileName = nameof(EconomyModifierConfig),
-    menuName = AssetMenuPaths.ScriptableObjects + nameof(BrainConfing) + "/" + nameof(EconomyModifierConfig))]
+    menuName = AssetMenuPaths.ScriptableObjects + nameof(BrainConfig) + "/" + nameof(EconomyModifierConfig))]
     public class EconomyModifierConfig : ScoreModifierConfig, IEconomyModifierConfig
     {
         [SerializeField][Min(100)] private int _minMaterialsForActivation = 1000;

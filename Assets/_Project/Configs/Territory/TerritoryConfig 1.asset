@@ -20,6 +20,7 @@ MonoBehaviour:
     _tr:
       _text: "K\u0131y\u0131 topraklar\u0131"
   _creditsForFirstVictory: 1500
+  _brainConfig: {fileID: 11400000, guid: b50daf26abb2e4e4b8b76dc235d13fe4, type: 2}
   _actorsToOpen:
   - {fileID: 11400000, guid: 2069bf6504a12de4ab3c8e86cca4cef6, type: 2}
   _bannedActors:

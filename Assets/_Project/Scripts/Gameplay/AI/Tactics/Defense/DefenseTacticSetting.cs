@@ -8,7 +8,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Defense
 {
     [CreateAssetMenu(
     fileName = nameof(DefenseTacticSetting),
-    menuName = AssetMenuPaths.ScriptableObjects + nameof(BrainConfing) + "/" + nameof(DefenseTacticSetting))]
+    menuName = AssetMenuPaths.ScriptableObjects + nameof(BrainConfig) + "/" + nameof(DefenseTacticSetting))]
     public class DefenseTacticSetting : TacticSetting, IDefenseTacticSetting
     {
         [Space]
