@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unitName:
     _ru:
-      _text: "\u0411\u041C\u041F"
+      _text: IFV
     _en:
-      _text: 
+      _text: IFV
     _tr:
-      _text: 
+      _text: IFV
   _description:
     _ru:
       _text: "_\u0411\u041C\u041F"

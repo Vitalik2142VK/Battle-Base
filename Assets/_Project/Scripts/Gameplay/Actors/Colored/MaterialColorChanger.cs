@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.Colored
@@ -41,6 +41,9 @@ namespace BattleBase.Gameplay.Actors.Colored
 
             foreach (var data in _datas)
             {
+                if (data.Renderer == null)
+                    continue;
+
                 data.Renderer.GetPropertyBlock(_propertyBlock, data.MaterialIndex);
                 _propertyBlock.SetColor(BaseColorId, color);
                 data.Renderer.SetPropertyBlock(_propertyBlock, data.MaterialIndex);
@@ -51,21 +54,33 @@ namespace BattleBase.Gameplay.Actors.Colored
         {
             _datas.Clear();
 
-            foreach (var renderer in _renderers)
+            for (int i = _renderers.Count - 1; i >= 0; i--)
             {
-                AddRenderer(renderer);
+                MeshRenderer renderer = _renderers[i];
 
-                var childRenderers = renderer.transform.GetComponentsInChildren<Renderer>();
+                if (renderer == null)
+                {
+                    _renderers.RemoveAt(i);
+
+                    continue;
+                }
+
+                AddRenderer(renderer);
+                var childRenderers = renderer.transform.GetComponentsInChildren<Renderer>(true);
 
                 foreach (var childRenderer in childRenderers)
-                {
                     AddRenderer(childRenderer);
-                }
             }
         }
 
         private void AddRenderer(Renderer renderer)
         {
+            if (renderer == null)
+                return;
+
+            if (_targetMaterial == null)
+                return;
+
             Material[] materials = renderer.sharedMaterials;
 
             for (int i = 0; i < materials.Length; i++)

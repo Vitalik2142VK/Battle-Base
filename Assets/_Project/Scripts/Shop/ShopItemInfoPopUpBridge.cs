@@ -35,7 +35,7 @@ namespace BattleBase.ShopSystem
             PreviewCreateConfig previewConfig = _unitsUpgradeModel.PreviewCreateConfig;
 
             Sprite preview = _previewCreator.Create(
-                selected.CleanPrefab, 
+                selected.SourcePrefab,
                 selected.PreviewScreenScale,
                 previewConfig.BigTextureSize,
                 previewConfig.CameraOffset,

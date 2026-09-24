@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unitName:
     _ru:
-      _text: "\u0422\u0440\u0438\u0446\u0438\u043A\u043B"
+      _text: Trike
     _en:
-      _text: 
+      _text: Trike
     _tr:
-      _text: 
+      _text: Trike
   _description:
     _ru:
       _text: "_\u0422\u0440\u0438\u0446\u0438\u043A\u043B"

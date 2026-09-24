@@ -7,7 +7,7 @@ namespace BattleBase.ShopSystem
     {
         public string Id { get; }
 
-        public GameObject CleanPrefab { get; }
+        public GameObject SourcePrefab { get; }
 
         public ILanguageTextsSet UnitName { get; }
 

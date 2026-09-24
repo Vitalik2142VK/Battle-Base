@@ -11,7 +11,7 @@ namespace BattleBase.ShopSystem
         [SerializeField] private LanguageTextsSet _unitName;
         [SerializeField] private LanguageTextsSet _unitDescription;
         [SerializeField] private ShopUpgradeStatsInfo _panelInfo;
-        [SerializeField] private GameObject _cleanPrefab;
+        [SerializeField] private GameObject _sourcePrefab;
         [SerializeField] private float _previewScreenScale;
         [SerializeField] private bool _isAvailable;
 
@@ -21,7 +21,7 @@ namespace BattleBase.ShopSystem
             _unitName = new(other.UnitName);
             _unitDescription = new(other.Description);
             _panelInfo = new(other.PanelInfo);
-            _cleanPrefab = other.CleanPrefab;
+            _sourcePrefab = other.SourcePrefab;
             _previewScreenScale = other.PreviewScreenScale;
             _isAvailable = other.IsAvailable;
         }
@@ -34,7 +34,7 @@ namespace BattleBase.ShopSystem
 
         public IShopUpgradeStatsInfo PanelInfo => _panelInfo;
 
-        public GameObject CleanPrefab => _cleanPrefab;
+        public GameObject SourcePrefab => _sourcePrefab;
 
         public float PreviewScreenScale => _previewScreenScale;
 

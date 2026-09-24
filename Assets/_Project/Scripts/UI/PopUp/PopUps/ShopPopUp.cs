@@ -33,7 +33,7 @@ namespace BattleBase.UI.PopUps
             foreach (IActorItemConfig info in _unitsUpgradeModel.Infos)
             {
                 Sprite preview = _previewCreator.Create(
-                    info.CleanPrefab,
+                    info.SourcePrefab,
                     info.PreviewScreenScale,
                     previewConfig.SmallTextureSize,
                     previewConfig.CameraOffset,

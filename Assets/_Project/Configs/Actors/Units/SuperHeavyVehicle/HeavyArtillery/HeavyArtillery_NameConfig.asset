@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unitName:
     _ru:
-      _text: "\u0420\u0430\u043A\u0435\u0442\u043D\u0430\u044F \u0430\u0440\u0442\u0438\u043B\u043B\u0435\u0440\u0438\u044F"
+      _text: HeavyArtillery
     _en:
-      _text: 
+      _text: HeavyArtillery
     _tr:
-      _text: 
+      _text: HeavyArtillery
   _description:
     _ru:
       _text: "_\u0420\u0430\u043A\u0435\u0442\u043D\u0430\u044F \u0430\u0440\u0442\u0438\u043B\u043B\u0435\u0440\u0438\u044F"

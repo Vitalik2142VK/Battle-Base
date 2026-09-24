@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.Visual
 {
+    [PreviewExcluded(PreviewExclusionMode.Destroy)]
     public class UiLookToCamera : MonoBehaviour
     {
         private Transform _cameraTransform;
