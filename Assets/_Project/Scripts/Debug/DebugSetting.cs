@@ -5,6 +5,7 @@ namespace BattleBase.Utils
     //todo remove on release
     public class DebugSetting : MonoBehaviour
     {
+#if UNITY_EDITOR
         private static DebugSetting Single;
 
         [SerializeField] private bool _isOpenAllUnit = false;
@@ -26,4 +27,5 @@ namespace BattleBase.Utils
                 Single = this;
         }
     }
+#endif
 }
