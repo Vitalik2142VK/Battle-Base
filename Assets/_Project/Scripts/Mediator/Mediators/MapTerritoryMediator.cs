@@ -73,7 +73,7 @@ namespace BattleBase.Mediators
 
         private void OnTerritoriesModelsChanged()
         {
-            HashSet<int> conqueredSet = new(_territoriesModel.ConqueredTerritories);
+            HashSet<int> conqueredSet = new(_territoriesModel.ConqueredTerritoryIndices);
 
             for (int i = 0; i < _territories.Count; i++)
             {

@@ -30,7 +30,7 @@ namespace BattleBase.SaveService
             _enemyColorIndex = data.EnemyColorIndex;
         }
 
-        public bool IsChangedFrom(IColorData other)
+        public bool IsDiffersFrom(IColorData other)
         {
             if (other == null)
                 return true;

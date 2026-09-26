@@ -60,7 +60,7 @@ namespace BattleBase.Gameplay.Actors.Building
         private void InitEnemyBuildingSite(BuildingSite buildingSite, TeamType team)
         {
 #if UNITY_EDITOR
-            if (DebugSetting.IsAiDisbale) //todo remove on release
+            if (DebugSettingGameScene.IsAiDisbale) //todo remove on release
                 return;
 #endif
             if (team != TeamType.Enemy)

@@ -48,7 +48,7 @@ namespace BattleBase.SaveService
         public override int GetHashCode() =>
             HashCode.Combine(GeneralVolume, MusicVolume, SfxVolume);
 
-        public bool IsChangedFrom(IVolumeData other)
+        public bool IsDiffersFrom(IVolumeData other)
         {
             if (other == null)
                 return true;

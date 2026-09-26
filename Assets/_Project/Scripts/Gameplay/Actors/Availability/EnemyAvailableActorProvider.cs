@@ -22,7 +22,7 @@ namespace BattleBase.Gameplay.Actors.Availability
         private IEnumerable<IActorConfig> GetActorConfigs()
         {
             Dictionary<string, AvailableActorConfigModificator> availablePlayerConfigs = new();
-            IEnumerable<IActorConfig> bannedActors = _selectedTerritory.SelectedInfo.BannedActors;
+            IEnumerable<IActorConfig> bannedActors = _selectedTerritory.SelectedTerritoryInfo.BannedActors;
 
             foreach (var actorConfig in _allActorConfigs.Configs)
             {

@@ -6,7 +6,7 @@ namespace BattleBase.SaveService
 
         public IColorData ColorData { get; }
 
-        public ITerritoryData TerritoryData { get; }
+        public ITerritoriesData TerritoryData { get; }
 
         public IShopData ShopData { get; }
     }

@@ -36,7 +36,7 @@ namespace BattleBase.Gameplay.Map
             {
                 int index = territory.Index;
 
-                _territoriesModel.SetSelectedTerritory(index);
+                _territoriesModel.SetSelectedTerritoryIndex(index);
 
                 TerritoryOwnerType owner = territory.Owner;
 
