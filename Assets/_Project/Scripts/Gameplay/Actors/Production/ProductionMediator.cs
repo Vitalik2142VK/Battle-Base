@@ -64,7 +64,7 @@ namespace BattleBase.Gameplay.Actors.Production
             if (collider.TryGetComponent(out IProductionView productionView))
             {
 #if UNITY_EDITOR
-                if (DebugSetting.IsAiDisbale) //todo remove on release
+                if (DebugSettingGameScene.IsAiDisbale) //todo remove on release
                 {
                     collider.TryGetComponent(out _selectable);
                     _productionContext.HandleProductionView(productionView);

@@ -14,7 +14,7 @@ namespace BattleBase.SaveService
 
         public IColorData ColorData => JsonData.ColorData;
 
-        public ITerritoryData TerritoryData => JsonData.TerritoryData;
+        public ITerritoriesData TerritoryData => JsonData.TerritoryData;
 
         public IShopData ShopData => JsonData.ShopData;
 
@@ -42,7 +42,7 @@ namespace BattleBase.SaveService
 
         public void SetVolumeData(IVolumeData data)
         {
-            if (JsonData.VolumeData.IsChangedFrom(data))
+            if (JsonData.VolumeData.IsDiffersFrom(data))
             {
                 JsonData.SetVolumeData(data);
                 _isDirty = true;
@@ -51,16 +51,16 @@ namespace BattleBase.SaveService
 
         public void SetColorData(IColorData data)
         {
-            if (JsonData.ColorData.IsChangedFrom(data))
+            if (JsonData.ColorData.IsDiffersFrom(data))
             {
                 JsonData.SetColorData(data);
                 _isDirty = true;
             }
         }
 
-        public void SetTerritoryData(ITerritoryData data)
+        public void SetTerritoryData(ITerritoriesData data)
         {
-            if (JsonData.TerritoryData.IsChangedFrom(data))
+            if (JsonData.TerritoryData.IsDiffersFrom(data))
             {
                 JsonData.SetTerritoryData(data);
                 _isDirty = true;
@@ -69,7 +69,7 @@ namespace BattleBase.SaveService
 
         public void SetShopData(IShopData data)
         {
-            if (JsonData.ShopData.IsChangedFrom(data))
+            if (JsonData.ShopData.IsDiffersFrom(data))
             {
                 JsonData.SetShopData(data);
                 _isDirty = true;

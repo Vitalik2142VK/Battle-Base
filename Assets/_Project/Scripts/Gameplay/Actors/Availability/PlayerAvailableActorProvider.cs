@@ -38,7 +38,7 @@ namespace BattleBase.Gameplay.Actors.Availability
 
             List<IActorConfig> actorsToOpen = new();
 
-            foreach (int territoryIndex in _territoriesModel.ConqueredTerritories)
+            foreach (int territoryIndex in _territoriesModel.ConqueredTerritoryIndices)
             {
                 if (territoryIndex < 0)
                     continue;

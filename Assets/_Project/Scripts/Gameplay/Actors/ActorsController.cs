@@ -1,4 +1,4 @@
-﻿using BattleBase.Gameplay.Actors.DamageSystem;
+using BattleBase.Gameplay.Actors.DamageSystem;
 using BattleBase.Utils;
 using System;
 using System.Collections.Generic;
@@ -62,7 +62,7 @@ namespace BattleBase.Gameplay.Actors
                 _countActorBeforInit = _activeActors.Count;
             }
 
-            if (DebugSetting.IsShowCountActor)
+            if (DebugSettingGameScene.IsShowCountActor)
                 Debug.Log($"Count active Actors = {_activeActors.Count - _countActorBeforInit}");
 #endif
         }

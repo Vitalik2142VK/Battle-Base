@@ -48,8 +48,8 @@ namespace BattleBase.Gameplay.Levels
 
             if (isWin)
             {
-                int index = _territoriesModel.Selected;
-                bool isFirstWin = _territoriesModel.TryAddConqueredTerritory(index);
+                int index = _territoriesModel.SelectedTerritoryIndex;
+                bool isFirstWin = _territoriesModel.TryMarkTerritoryConquered(index);
                 int firstWinCredits = _territoriesModel.GetCreditsForFirstVictory(index);
                 int basicCredits = isFirstWin ? firstWinCredits : 0;
                 float elapsedSeconds = Time.time - _startTime;

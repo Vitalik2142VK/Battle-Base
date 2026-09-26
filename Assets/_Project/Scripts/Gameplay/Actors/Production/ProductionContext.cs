@@ -1,4 +1,4 @@
-﻿using BattleBase.Gameplay.Actors.Building;
+using BattleBase.Gameplay.Actors.Building;
 using BattleBase.UI;
 using BattleBase.Utils;
 using System;
@@ -50,7 +50,7 @@ namespace BattleBase.Gameplay.Actors.Production
             }
 
 #if UNITY_EDITOR
-            if (DebugSetting.IsAiDisbale) //todo remove on release
+            if (DebugSettingGameScene.IsAiDisbale) //todo remove on release
             {
                 _selectedBuildingSite = _buildingSitesStorage.GetSiteById(productionView.BuildingSiteId);
                 _selectedBuildingSite.Select();

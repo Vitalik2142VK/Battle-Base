@@ -2,8 +2,8 @@ namespace BattleBase.SaveService
 {
     public interface ITerritorySaver
     {
-        public ITerritoryData TerritoryData { get; }
+        public ITerritoriesData TerritoryData { get; }
 
-        public void SetTerritoryData(ITerritoryData data);
+        public void SetTerritoryData(ITerritoriesData data);
     }
 }

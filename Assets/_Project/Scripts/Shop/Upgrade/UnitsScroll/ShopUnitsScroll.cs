@@ -30,6 +30,7 @@ namespace BattleBase.ShopSystem
         {
             _content.ClearChilds();
             _items.Clear();
+            CurrentItem = null;
 
             for (int i = 0; i < infos.Count; i++)
             {
@@ -41,7 +42,8 @@ namespace BattleBase.ShopSystem
                 _items.Add(item);
             }
 
-            Select(_items.First());
+            if (_items.Count > 0)
+                Select(_items.First());
         }
 
         public void Select(ShopUnitItemView item)

@@ -8,14 +8,14 @@ namespace BattleBase.SaveService
     {
         [SerializeField] private VolumeData _volumeData = new();
         [SerializeField] private ColorData _colorData = new();
-        [SerializeField] private TerritoryData _territoryData = new();
+        [SerializeField] private TerritoriesData _territoryData = new();
         [SerializeField] private ShopData _shopData = new();
 
         public IVolumeData VolumeData => _volumeData;
 
         public IColorData ColorData => _colorData;
 
-        public ITerritoryData TerritoryData => _territoryData;
+        public ITerritoriesData TerritoryData => _territoryData;
 
         public IShopData ShopData => _shopData;
 
@@ -25,7 +25,7 @@ namespace BattleBase.SaveService
         public void SetColorData(IColorData data) =>
             _colorData.SetData(data);
 
-        public void SetTerritoryData(ITerritoryData data) =>
+        public void SetTerritoryData(ITerritoriesData data) =>
             _territoryData.SetData(data);
 
         public void SetShopData(IShopData data) =>

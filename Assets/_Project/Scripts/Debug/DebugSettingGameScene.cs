@@ -1,11 +1,12 @@
+#if UNITY_EDITOR
 using UnityEngine;
 
 namespace BattleBase.Utils
 {
     //todo remove on release
-    public class DebugSetting : MonoBehaviour
+    public class DebugSettingGameScene : MonoBehaviour
     {
-        private static DebugSetting Single;
+        private static DebugSettingGameScene Single;
 
         [SerializeField] private bool _isOpenAllUnit = false;
         [SerializeField] private bool _isShowCountActor = false;
@@ -27,3 +28,4 @@ namespace BattleBase.Utils
         }
     }
 }
+#endif

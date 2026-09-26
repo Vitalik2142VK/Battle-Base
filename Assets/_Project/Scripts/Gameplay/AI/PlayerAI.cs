@@ -41,7 +41,7 @@ namespace BattleBase.Gameplay.AI
             while (gameObject.activeSelf)
             {
 #if UNITY_EDITOR
-                if (DebugSetting.IsAiDisbale) //todo remove on release
+                if (DebugSettingGameScene.IsAiDisbale) //todo remove on release
                 {
                     yield return _sleepTime;
 
