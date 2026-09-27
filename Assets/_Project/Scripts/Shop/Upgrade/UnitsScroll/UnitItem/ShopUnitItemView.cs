@@ -18,7 +18,7 @@ namespace BattleBase.ShopSystem
 
         public ILanguageTextsSet UnitName { get; private set; }
 
-        public IShopUpgradeStatsInfo PanelInfo { get; private set; }
+        public IUpgradeStatsInfo PanelInfo { get; private set; }
 
         public IActorItemConfig Info { get; private set; }
 

@@ -24,7 +24,7 @@ namespace BattleBase.ShopSystem
 
         public ILanguageTextsSet Description => _unitNameConfig.Description;
 
-        public IShopUpgradeStatsInfo PanelInfo => _stats;
+        public IUpgradeStatsInfo PanelInfo => _stats;
 
         public GameObject SourcePrefab => _sourcePrefab;
 

@@ -13,7 +13,7 @@ namespace BattleBase.ShopSystem
 
         public ILanguageTextsSet Description { get; }
 
-        public IShopUpgradeStatsInfo PanelInfo { get; }
+        public IUpgradeStatsInfo PanelInfo { get; }
 
         public float PreviewScreenScale { get; }
 
