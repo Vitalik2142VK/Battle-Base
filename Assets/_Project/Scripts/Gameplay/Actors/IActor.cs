@@ -2,13 +2,11 @@
 
 namespace BattleBase.Gameplay.Actors
 {
-    public interface IActor : IUpdateable, ITeamable, IColored
+    public interface IActor : IUpdateable, ITeamable, IColored, IEnalableActor
     {
         public IActorData Data { get; }
 
         public IActorPosition Position { get; }
-
-        public bool IsEnabled { get; }
 
         public bool IsStatic { get; }
 

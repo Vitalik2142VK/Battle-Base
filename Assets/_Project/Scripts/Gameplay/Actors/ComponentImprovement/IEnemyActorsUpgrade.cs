@@ -1,10 +1,9 @@
-﻿using BattleBase.ShopSystem;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.ComponentImprovement
 {
     public interface IEnemyActorsUpgrade
     {
-        public IReadOnlyList<IActorItemConfig> Infos { get; }
+        public IEnumerable<EnemyActorUpgradeStats> Stats { get; }
     }
 }

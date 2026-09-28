@@ -15,6 +15,7 @@ namespace BattleBase.Gameplay.Map
         [SerializeField] private LanguageTextsSet _territoryName;
         [SerializeField][Min(0)] private int _creditsForFirstVictory;
         [SerializeField] private BrainConfig _brainConfig;
+        [SerializeField][Range(0, 1f)] private float _upgradeActrosCoefficient;
         [SerializeField] private ActorConfig[] _actorsToOpen;
         [SerializeField] private ActorConfig[] _bannedActors;
 
@@ -25,6 +26,8 @@ namespace BattleBase.Gameplay.Map
         public ILanguageTextsSet TerritoryName => _territoryName;
 
         public IBrainConfig BrainConfig => _brainConfig;
+
+        public float UpgradeActrosCoefficient => _upgradeActrosCoefficient;
 
         public int CreditsForFirstVictory => _creditsForFirstVictory;
     }
