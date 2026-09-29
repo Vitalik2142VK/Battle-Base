@@ -21,9 +21,9 @@ MonoBehaviour:
       _text: "K\u0131y\u0131 topraklar\u0131"
   _creditsForFirstVictory: 1500
   _brainConfig: {fileID: 11400000, guid: b50daf26abb2e4e4b8b76dc235d13fe4, type: 2}
-  _upgradeActrosCoefficient: 0.5
+  _upgradeActrosCoefficient: 0
   _actorsToOpen:
-  - {fileID: 11400000, guid: 2069bf6504a12de4ab3c8e86cca4cef6, type: 2}
+  - {fileID: 11400000, guid: 4c34700e5c731f14184361f670a61084, type: 2}
   _bannedActors:
   - {fileID: 11400000, guid: fff000a41cc816645b915be5714638b3, type: 2}
   - {fileID: 11400000, guid: 9c09f34c8e62cff449901d51a8c8d301, type: 2}
