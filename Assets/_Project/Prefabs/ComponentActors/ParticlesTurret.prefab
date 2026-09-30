@@ -42,12 +42,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5560258057360902553}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 573cd4ea63799844783e52d44657a332, type: 3}
+  m_Script: {fileID: 11500000, guid: dba5451192bc6c443aa3934f2b264dab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 3184129764603639351, guid: 7121459e75af56445a67816fc447df73, type: 3}
+  _prefab: {fileID: 0}
   _spawnPoint: {fileID: 6675415688407363497}
-  _size: 4
+  _size: 1
 --- !u!114 &298882614560629600
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -8,6 +8,8 @@ namespace BattleBase.Gameplay.Actors
 
         public ActorView Prefab { get; }
 
+        public float ConstructionTime { get; }
+
         public int Power { get; }
 
         public bool IsAvailable { get; }

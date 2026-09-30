@@ -1,7 +1,6 @@
-﻿using BattleBase.Gameplay.Actors.AttackSystem;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace BattleBase.Gameplay.Actors.Visual.Particle
+namespace BattleBase.Gameplay.Actors.AttackSystem.View
 {
     [RequireComponent(typeof(ParticleSystem))]
     public class ShotEffect : MonoBehaviour, IAttackerViewComponent

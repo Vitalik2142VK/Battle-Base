@@ -6,7 +6,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
     [RequireComponent(typeof(Projectile))]
     public class ParticleHitProjectile : MonoBehaviour
     {
-        [SerializeField] private ParticleProjectile _particleProjectile;
+        [SerializeField] private ParticleActivator _particleProjectile;
 
         private IProjectileHitEvent _event;
 
@@ -26,6 +26,6 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
         }
 
         private void OnPlay() => 
-            _particleProjectile.Play();
+            _particleProjectile.Activate();
     }
 }

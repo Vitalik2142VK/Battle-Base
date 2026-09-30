@@ -11,8 +11,6 @@ namespace BattleBase.Gameplay.Actors.Production
 
         public ILanguageTextsSet Description { get; }
 
-        public float ConstructionTime { get; }
-
         public int Price { get; }
     }
 }

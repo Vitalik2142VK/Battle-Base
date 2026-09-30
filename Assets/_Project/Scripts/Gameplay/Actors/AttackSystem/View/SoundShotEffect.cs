@@ -1,14 +1,18 @@
-﻿using BattleBase.Gameplay.Actors.AttackSystem;
+﻿using BattleBase.Gameplay.Actors.Visual.Sound;
 using UnityEngine;
 
-namespace BattleBase.Gameplay.Actors.Visual.Particle
+namespace BattleBase.Gameplay.Actors.AttackSystem.View
 {
-    public class DynamicShootEffect : MonoBehaviour, IAttackerViewComponent
+    [RequireComponent(typeof(SoundEffectActivator))]
+    public class SoundShotEffect : MonoBehaviour, IAttackerViewComponent
     {
-        [SerializeField] private ParticleSystem[] _shotEffects;
-
         private IAttackNotifier _attackNotifier;
-        private int _currentIndexPoint = 0;
+        private SoundEffectActivator _activator;
+
+        private void Awake()
+        {
+            _activator = GetComponent<SoundEffectActivator>();
+        }
 
         private void OnEnable()
         {
@@ -30,12 +34,7 @@ namespace BattleBase.Gameplay.Actors.Visual.Particle
                 _attackNotifier.Attacked += OnPlayShot;
         }
 
-        private void OnPlayShot()
-        {
-            if (_currentIndexPoint >= _shotEffects.Length)
-                _currentIndexPoint = 0;
-
-            _shotEffects[_currentIndexPoint++].Play();
-        }
+        private void OnPlayShot() =>
+            _activator.Activate();
     }
 }
