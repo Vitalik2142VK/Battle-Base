@@ -11,6 +11,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         private readonly IWeapon _weapon;
 
         private ITargetController _targetController;
+        private IEnalableActor _enalableActor;
         private bool _isAiming;
         private bool _isAttacking;
         private bool _isEnabled;
@@ -37,9 +38,13 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
         public ITargetFinderConfig TargetFinderConfig { get; }
 
-        public void Init(ITargetController targetController, IProjectileController projectileController)
+        public void Init(
+            ITargetController targetController,
+            IProjectileController projectileController,
+            IEnalableActor enalableActor)
         {
             _targetController ??= targetController ?? throw new ArgumentNullException(nameof(targetController));
+            _enalableActor ??= enalableActor ?? throw new ArgumentNullException(nameof(enalableActor));
 
             _weapon.Init(projectileController);
         }
@@ -52,8 +57,10 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
         public void Disable()
         {
+            if (_enalableActor.IsEnabled == false)
+                _weapon.Disable();
+
             _targetController.LoseTarget();
-            _weapon.Disable();
             _isEnabled = false;
         }
 

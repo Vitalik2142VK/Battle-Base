@@ -15,7 +15,11 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             _projectileSpawner = projectileSpawner ?? throw new ArgumentNullException(nameof(projectileSpawner));
         }
 
-        public void Init(IAttacker attacker, IShotPoint shotPoint, IActorPosition actorPosition)
+        public void Init(
+            IAttacker attacker, 
+            IShotPoint shotPoint, 
+            IActorPosition actorPosition, 
+            IEnalableActor enalableActor)
         {
             IWeaponConfig weaponConfig = attacker.WeaponConfig;
             ITargetingProfile targetingProfile = weaponConfig.DamageConfig.TargetingProfile;
@@ -23,7 +27,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             TargetController targetController = new(actorPosition, attacker.WeaponConfig, targetingProfile);
             ProjectileController projectileController = new(_projectileSpawner, shotPoint, projectileConfig);
 
-            attacker.Init(targetController, projectileController);
+            attacker.Init(targetController, projectileController, enalableActor);
         }
     }
 }

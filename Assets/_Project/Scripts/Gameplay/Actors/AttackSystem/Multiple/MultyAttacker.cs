@@ -32,8 +32,11 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Multiple
 
         public ITargetFinderConfig TargetFinderConfig => _mainAttacker.TargetFinderConfig;
 
-        public void Init(ITargetController targetController, IProjectileController projectileController) => 
-            _mainAttacker.Init(targetController, projectileController);
+        public void Init(
+            ITargetController targetController, 
+            IProjectileController projectileController,
+            IEnalableActor enalableActor) => 
+            _mainAttacker.Init(targetController, projectileController, enalableActor);
 
         public void Enable()
         {

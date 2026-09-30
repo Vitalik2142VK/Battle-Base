@@ -31,7 +31,7 @@ namespace BattleBase.ShopSystem
 
         public IActorItemConfig Selected => _selected;
 
-        public IShopUpgradeStatsInfo PanelInfo => _selected.PanelInfo;
+        public IUpgradeStatsInfo PanelInfo => _selected.PanelInfo;
 
         public PreviewCreateConfig PreviewCreateConfig => _config.PreviewCreateConfig;
 
@@ -71,7 +71,7 @@ namespace BattleBase.ShopSystem
 
             for (int i = 0; i < _infos.Count; i++)
             {
-                if (i <  dataCount)
+                if (i < dataCount)
                 {
                     ActorItemInfo info = _infos[i];
 
@@ -89,13 +89,13 @@ namespace BattleBase.ShopSystem
             foreach (ActorItemInfo info in _infos)
             {
                 string unitName = info.UnitName.En.Text;
-                IShopUpgradeStatsInfo panel = info.PanelInfo;
+                IUpgradeStatsInfo panel = info.PanelInfo;
 
                 UnitUpgradeData unitData = new(
-                    unitName, 
-                    panel.DamageInfo.CurrentLevel, 
+                    unitName,
+                    panel.DamageInfo.CurrentLevel,
                     panel.HealthInfo.CurrentLevel,
-                    panel.BuildTimeInfo.CurrentLevel);
+                    panel.SpeedInfo.CurrentLevel);
 
                 newUnitData.Add(unitData);
             }

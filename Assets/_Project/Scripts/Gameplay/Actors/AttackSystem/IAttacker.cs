@@ -11,7 +11,10 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
         public ITargetFinderConfig TargetFinderConfig { get; }
 
-        public void Init(ITargetController targetController, IProjectileController projectileController);
+        public void Init(
+            ITargetController targetController, 
+            IProjectileController projectileController, 
+            IEnalableActor enalableActor);
 
         public void SetTargets(IEnumerable<ITarget> targets);
 

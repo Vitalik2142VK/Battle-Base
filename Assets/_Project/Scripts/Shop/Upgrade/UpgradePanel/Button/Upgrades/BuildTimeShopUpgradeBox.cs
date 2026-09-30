@@ -13,7 +13,7 @@ namespace BattleBase.ShopSystem
         private CreditsModel _credits;
         private ActorsUpgradeModel _unitsUpgradeModel;
 
-        private IUpgradeInfo Info => _unitsUpgradeModel.PanelInfo.BuildTimeInfo;
+        private IUpgradeInfo Info => _unitsUpgradeModel.PanelInfo.SpeedInfo;
 
         [Inject]
         public void Construct(CreditsModel credits, ActorsUpgradeModel unitsUpgradeModel)

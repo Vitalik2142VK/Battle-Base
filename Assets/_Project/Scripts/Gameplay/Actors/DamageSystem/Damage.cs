@@ -6,9 +6,9 @@ namespace BattleBase.Gameplay.Actors.DamageSystem
     {
         private readonly IDamageConfig _config;
 
-        public Damage(IDamageConfig attributes)
+        public Damage(IDamageConfig config)
         {
-            _config = attributes ?? throw new ArgumentNullException(nameof(attributes));
+            _config = config ?? throw new ArgumentNullException(nameof(config));
         }
 
         public DamageMask DamageMask => _config.DamageMask;

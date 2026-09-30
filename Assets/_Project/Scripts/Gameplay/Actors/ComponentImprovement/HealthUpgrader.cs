@@ -1,5 +1,4 @@
 using BattleBase.Gameplay.Actors.HealthSystem;
-using BattleBase.ShopSystem;
 using System;
 using System.Collections.Generic;
 
@@ -7,25 +6,15 @@ namespace BattleBase.Gameplay.Actors.ComponentImprovement
 {
     public class HealthUpgrader : IActorComponentUpgrader
     {
-        private readonly Dictionary<string, IUpgradeInfo> _infos;
+        private readonly Dictionary<string, IUpgradeLevel> _upgradeLevels;
         private readonly IUpgraderConfig _config;
 
-        public HealthUpgrader(IActorsUpgradeModel actorsUpgradeModel, IUpgraderConfig config/*, TeamType team*/) // todo add TeamType for IActorsUpgradeModel
+        public HealthUpgrader(Dictionary<string, IUpgradeLevel> upgradeLevels, IUpgraderConfig config, TeamType team)
         {
-            if (actorsUpgradeModel == null)
-                throw new ArgumentNullException(nameof(actorsUpgradeModel));
-
+            _upgradeLevels = upgradeLevels ?? throw new ArgumentNullException(nameof(upgradeLevels));
             _config = config ?? throw new ArgumentNullException(nameof(config));
 
-            _infos = new Dictionary<string, IUpgradeInfo>();
-
-            foreach (var info in actorsUpgradeModel.Infos)
-            {
-                IUpgradeInfo upgradeInfo = info.PanelInfo.HealthInfo;
-                _infos.Add(info.Id, upgradeInfo);
-            }
-
-            Team = TeamType.Player;
+            Team = team;
         }
 
         public TeamType Team { get; }
@@ -35,13 +24,13 @@ namespace BattleBase.Gameplay.Actors.ComponentImprovement
             if (actor == null)
                 throw new ArgumentNullException(nameof(actor));
 
-            if (_infos.TryGetValue(actor.Data.Id, out IUpgradeInfo info) == false)
+            if (_upgradeLevels.TryGetValue(actor.Data.Id, out IUpgradeLevel level) == false)
                 return;
 
             if (actor.TryGetComponent(out IHealth health) == false)
                 throw new InvalidOperationException($"Actor.Id = {actor.Data.Id} don't contains component {nameof(IHealth)}");
 
-            HealthConfigModificator modificator = new(_config, info);
+            HealthConfigModificator modificator = new(_config, level);
             health.Upgrade(modificator);
         }
     }

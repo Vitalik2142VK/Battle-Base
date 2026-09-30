@@ -1,5 +1,4 @@
 ﻿using BattleBase.Gameplay.Actors.ComponentImprovement;
-using BattleBase.ShopSystem;
 using System;
 
 namespace BattleBase.Gameplay.Actors.AttackSystem.Weapons
@@ -7,14 +6,14 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Weapons
     public class WeaponConfigModificator
     {
         private readonly IUpgraderConfig _config;
-        private readonly IUpgradeInfo _upgradeInfo;
+        private readonly IUpgradeLevel _upgradeLevel;
 
-        public WeaponConfigModificator(IUpgraderConfig config, IUpgradeInfo upgradeInfo)
+        public WeaponConfigModificator(IUpgraderConfig config, IUpgradeLevel upgradeLevel)
         {
             _config = config ?? throw new ArgumentNullException(nameof(config));
-            _upgradeInfo = upgradeInfo ?? throw new ArgumentNullException(nameof(upgradeInfo));
+            _upgradeLevel = upgradeLevel ?? throw new ArgumentNullException(nameof(upgradeLevel));
         }
 
-        public float DamageCoefficient => _config.DamageCoefficientByLevel * _upgradeInfo.CurrentLevel + 1f;
+        public float DamageCoefficient => _config.DamageCoefficientByLevel * _upgradeLevel.CurrentLevel + 1f;
     }
 }

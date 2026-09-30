@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d55650f044b6b94ab06277e5a4a02fe, type: 3}
+  m_Name: EasyBrainConfing
+  m_EditorClassIdentifier: 
+  _tacticSettings:
+  - {fileID: 11400000, guid: 5b2e879258cae1740adc5de155b813d9, type: 2}
+  - {fileID: 11400000, guid: b2d8b5157739cc24cb0286a0324dce00, type: 2}
+  - {fileID: 11400000, guid: ea0749e380b1fd64f8037c456910bc2d, type: 2}
+  - {fileID: 11400000, guid: dc2bdb35e0d6d60488ca118fd9be0d29, type: 2}
+  _modifierConfigs:
+  - {fileID: 11400000, guid: d52afcdd2c7939c42a8d78f215b56e80, type: 2}
+  - {fileID: 11400000, guid: 4f3aa383cab5d1f4cb775560a4c46190, type: 2}
+  - {fileID: 11400000, guid: f9e4d055e05c8b24db449b3cca20f83c, type: 2}
+  _teamType: 2

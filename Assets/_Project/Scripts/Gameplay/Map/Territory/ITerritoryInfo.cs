@@ -15,6 +15,8 @@ namespace BattleBase.Gameplay.Map
 
         public IBrainConfig BrainConfig { get; }
 
+        public float UpgradeActrosCoefficient { get; }
+
         public int CreditsForFirstVictory { get; }
     }
 }

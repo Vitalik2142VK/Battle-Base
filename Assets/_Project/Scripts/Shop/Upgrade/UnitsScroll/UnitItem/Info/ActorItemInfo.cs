@@ -32,7 +32,7 @@ namespace BattleBase.ShopSystem
 
         public ILanguageTextsSet Description => _unitDescription;
 
-        public IShopUpgradeStatsInfo PanelInfo => _panelInfo;
+        public IUpgradeStatsInfo PanelInfo => _panelInfo;
 
         public GameObject SourcePrefab => _sourcePrefab;
 
@@ -56,6 +56,6 @@ namespace BattleBase.ShopSystem
             _panelInfo.SetArmorLevel(level);
 
         public void SetBuildTimeLevel(int level) =>
-            _panelInfo.SetBuildTimeLevel(level);
+            _panelInfo.SetSpeedLevel(level);
     }
 }

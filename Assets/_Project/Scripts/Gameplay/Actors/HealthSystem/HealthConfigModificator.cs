@@ -1,5 +1,4 @@
 ﻿using BattleBase.Gameplay.Actors.ComponentImprovement;
-using BattleBase.ShopSystem;
 using System;
 
 namespace BattleBase.Gameplay.Actors.HealthSystem
@@ -7,14 +6,14 @@ namespace BattleBase.Gameplay.Actors.HealthSystem
     public class HealthConfigModificator
     {
         private readonly IUpgraderConfig _config;
-        private readonly IUpgradeInfo _upgradeInfo;
+        private readonly IUpgradeLevel _upgradeLevel;
 
-        public HealthConfigModificator(IUpgraderConfig config, IUpgradeInfo upgradeInfo)
+        public HealthConfigModificator(IUpgraderConfig config, IUpgradeLevel upgradeLevel)
         {
             _config = config ?? throw new ArgumentNullException(nameof(config));
-            _upgradeInfo = upgradeInfo ?? throw new ArgumentNullException(nameof(upgradeInfo));
+            _upgradeLevel = upgradeLevel ?? throw new ArgumentNullException(nameof(upgradeLevel));
         }
 
-        public float HealthCoefficient => _config.HealtheCoefficientByLevel * _upgradeInfo.CurrentLevel + 1f;
+        public float HealthCoefficient => _config.HealthCoefficientByLevel * _upgradeLevel.CurrentLevel + 1f;
     }
 }

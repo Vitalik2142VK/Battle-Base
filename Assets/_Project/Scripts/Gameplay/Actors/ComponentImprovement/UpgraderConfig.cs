@@ -13,6 +13,6 @@ namespace BattleBase.Gameplay.Actors.ComponentImprovement
 
         public float DamageCoefficientByLevel => _damageCoefficientByLevel;
 
-        public float HealtheCoefficientByLevel => _healtheCoefficientByLevel;
+        public float HealthCoefficientByLevel => _healtheCoefficientByLevel;
     }
 }
