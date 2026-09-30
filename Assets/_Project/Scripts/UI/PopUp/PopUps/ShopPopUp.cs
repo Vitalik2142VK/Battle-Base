@@ -13,6 +13,7 @@ namespace BattleBase.UI.PopUps
     public class ShopPopUp : PopUp
     {
         [SerializeField] private ShopUnitsScroll[] _scrolls;
+        [SerializeField] private ModelRotator _modelRotator;
 
         private ActorsUpgradeModel _unitsUpgradeModel;
         private IPreviewCreator _previewCreator;
@@ -28,6 +29,12 @@ namespace BattleBase.UI.PopUps
             _previewCreator = previewCreator ?? throw new ArgumentNullException(nameof(previewCreator));
             _availableActorProvider = availableActorProvider ?? throw new ArgumentNullException(nameof(availableActorProvider));
         }
+
+        private void OnEnable() =>
+            _modelRotator.Show();
+
+        private void OnDisable() =>
+            _modelRotator.Hide();
 
         public override void Init()
         {

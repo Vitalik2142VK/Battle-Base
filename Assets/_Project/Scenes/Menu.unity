@@ -14346,6 +14346,7 @@ MonoBehaviour:
   _scrolls:
   - {fileID: 35689964}
   - {fileID: 509562156}
+  _modelRotator: {fileID: 575533240}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

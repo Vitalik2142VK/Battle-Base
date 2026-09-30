@@ -8,12 +8,6 @@ namespace BattleBase.ShopSystem
         [SerializeField] private ModelRotator _modelRotator;
         [SerializeField] private float _dragSensitivity = 0.2f;
 
-        private void OnEnable() =>
-            _modelRotator?.Show();
-
-        private void OnDisable() =>
-            _modelRotator?.Hide();
-
         public void OnPointerDown(PointerEventData eventData) =>
             _modelRotator.Disable();
 
