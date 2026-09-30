@@ -11,7 +11,6 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
         [SerializeField] private Sprite _icon;
         [SerializeField] private LanguageTextsSet _name;
         [SerializeField] private LanguageTextsSet _description;
-        [SerializeField][Min(0.5f)] private float _constructionTime = 5f;
 
         public IEnumerable<int> ImprovePrices => _improvePrices;
 
@@ -20,8 +19,6 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
         public ILanguageTextsSet Name => _name;
 
         public ILanguageTextsSet Description => _description;
-
-        public float ConstructionTime => _constructionTime;
 
         public int Price => _improvePrices[0];
     }

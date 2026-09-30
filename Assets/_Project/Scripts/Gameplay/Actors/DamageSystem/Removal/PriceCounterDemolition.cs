@@ -35,8 +35,6 @@ namespace BattleBase.Gameplay.Actors.DamageSystem.Removal
 
         public ILanguageTextsSet Description => _data.Description;
 
-        public float ConstructionTime => _data.ConstructionTime;
-
         public float ReturnedCoefficient => _data.ReturnedCoefficient;
 
         public int Price => _salePrice;

@@ -21,6 +21,7 @@ using BattleBase.Gameplay.Actors.Movement.Hunt;
 using BattleBase.Gameplay.Actors.Production;
 using BattleBase.Gameplay.Actors.Spawn;
 using BattleBase.Gameplay.Actors.Visual.Particle;
+using BattleBase.Gameplay.Actors.Visual.Sound;
 using BattleBase.Gameplay.AI;
 using BattleBase.Gameplay.AI.Factories;
 using BattleBase.Gameplay.AI.Modifiers;
@@ -40,6 +41,7 @@ namespace BattleBase.DI
         [SerializeField] private ProjectileSpawner _projectileSpawner;
         [SerializeField] private TrailParticleSpawner _trailParticleSpawner;
         [SerializeField] private ParticleSpawner _particleSpawner;
+        [SerializeField] private SoundEffectSpawner _soundEffectSpawner;
         [SerializeField] private AreaDefenseAI _areaDefenseAI;
         [SerializeField] private UpgraderConfig _upgradeConfig;
 
@@ -58,6 +60,7 @@ namespace BattleBase.DI
             _builder.RegisterInstance<IProjectileSpawner>(_projectileSpawner);
             _builder.RegisterInstance<ITrailParticleSpawner>(_trailParticleSpawner);
             _builder.RegisterInstance<IParticleSpawner>(_particleSpawner);
+            _builder.RegisterInstance<ISoundEffectSpawner>(_soundEffectSpawner);
             _builder.RegisterInstance<IUpgraderConfig>(_upgradeConfig);
 
             _builder.Register<IActorSpawnService, ActorSpawnService>(Lifetime.Scoped);

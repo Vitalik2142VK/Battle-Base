@@ -3,7 +3,7 @@ using VContainer;
 
 namespace BattleBase.Gameplay.Actors.Visual.Particle
 {
-    public class ParticleProjectile : MonoBehaviour
+    public class ParticleActivator : MonoBehaviour
     {
         [SerializeField] private ParticleView _prefab;
         [SerializeField] private Transform _spawnPoint;
@@ -23,7 +23,7 @@ namespace BattleBase.Gameplay.Actors.Visual.Particle
             _particleId = _prefab.Id;
         }
 
-        public void Play()
+        public void Activate()
         {
             IParticle particle = _spawner.Spawn(_particleId);
             particle.SetPosition(_spawnPoint.position);

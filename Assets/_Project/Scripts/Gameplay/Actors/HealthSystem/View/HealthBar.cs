@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace BattleBase.Gameplay.Actors.HealthSystem
+namespace BattleBase.Gameplay.Actors.HealthSystem.View
 {
     [RequireComponent(typeof(Slider), typeof(CanvasGroup))]
     public class HealthBar : MonoBehaviour, IHealthViewComponent

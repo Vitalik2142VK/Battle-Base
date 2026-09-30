@@ -2,17 +2,17 @@
 using System;
 using UnityEngine;
 
-namespace BattleBase.Gameplay.Actors.HealthSystem
+namespace BattleBase.Gameplay.Actors.HealthSystem.View
 {
-    [RequireComponent(typeof(ParticleProjectile))]
+    [RequireComponent(typeof(ParticleActivator))]
     public class ActorDestroyParticle : MonoBehaviour, IHealthViewComponent
     {
         private IHealthEvents _healthEvents;
-        private ParticleProjectile _particle;
+        private ParticleActivator _activator;
 
         private void Awake()
         {
-            _particle = GetComponent<ParticleProjectile>();
+            _activator = GetComponent<ParticleActivator>();
         }
 
         private void OnEnable()
@@ -36,6 +36,6 @@ namespace BattleBase.Gameplay.Actors.HealthSystem
         }
 
         private void OnPlay() =>
-            _particle.Play();
+            _activator.Activate();
     }
 }

@@ -28,8 +28,6 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
 
         public IMaterialData MaterialData => _materialRegistry.GetMaterialData(_teamable.TeamType);
 
-        public float ConstructionTime => _data.ConstructionTime;
-
         public int Price { get; private set; }
 
         public bool CanBuy => CanBayImprove();

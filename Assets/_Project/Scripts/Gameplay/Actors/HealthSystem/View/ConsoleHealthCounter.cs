@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace BattleBase.Gameplay.Actors.HealthSystem
+namespace BattleBase.Gameplay.Actors.HealthSystem.View
 {
     public class ConsoleHealthCounter : MonoBehaviour, IHealthViewComponent
     {
