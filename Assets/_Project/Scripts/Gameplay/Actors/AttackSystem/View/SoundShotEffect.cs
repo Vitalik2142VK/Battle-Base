@@ -6,6 +6,8 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.View
     [RequireComponent(typeof(SoundEffectActivator))]
     public class SoundShotEffect : MonoBehaviour, IAttackerViewComponent
     {
+        [SerializeField] private SoundEffect _prefab;
+
         private IAttackNotifier _attackNotifier;
         private SoundEffectActivator _activator;
 
@@ -35,6 +37,6 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.View
         }
 
         private void OnPlayShot() =>
-            _activator.Activate();
+            _activator.Activate(_prefab.Id);
     }
 }

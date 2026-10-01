@@ -5,12 +5,9 @@ namespace BattleBase.Gameplay.Actors.Visual.Particle
 {
     public class ParticleActivator : MonoBehaviour
     {
-        [SerializeField] private ParticleView _prefab;
         [SerializeField] private Transform _spawnPoint;
-        [SerializeField] private float _size = 1f;
 
         private IParticleSpawner _spawner;
-        private string _particleId;
 
         private void OnValidate()
         {
@@ -18,16 +15,11 @@ namespace BattleBase.Gameplay.Actors.Visual.Particle
                 _spawnPoint = transform;
         }
 
-        private void Awake()
+        public void Activate(string particleId, float size = 1f)
         {
-            _particleId = _prefab.Id;
-        }
-
-        public void Activate()
-        {
-            IParticle particle = _spawner.Spawn(_particleId);
+            IParticle particle = _spawner.Spawn(particleId);
             particle.SetPosition(_spawnPoint.position);
-            particle.SetSize(_size);
+            particle.SetSize(size);
             particle.Play();
         }
 

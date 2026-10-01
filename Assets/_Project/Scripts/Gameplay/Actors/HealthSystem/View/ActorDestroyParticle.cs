@@ -1,5 +1,4 @@
 ﻿using BattleBase.Gameplay.Actors.Visual.Particle;
-using System;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.HealthSystem.View
@@ -7,6 +6,9 @@ namespace BattleBase.Gameplay.Actors.HealthSystem.View
     [RequireComponent(typeof(ParticleActivator))]
     public class ActorDestroyParticle : MonoBehaviour, IHealthViewComponent
     {
+        [SerializeField] private ParticleView _prefab;
+        [SerializeField] private float _size = 1f;
+
         private IHealthEvents _healthEvents;
         private ParticleActivator _activator;
 
@@ -29,13 +31,13 @@ namespace BattleBase.Gameplay.Actors.HealthSystem.View
 
         public void Init(IHealthEvents healthEvents)
         {
-            _healthEvents = healthEvents ?? throw new ArgumentNullException(nameof(healthEvents));
+            _healthEvents = healthEvents ?? throw new System.ArgumentNullException(nameof(healthEvents));
 
             if (gameObject.activeSelf)
                 _healthEvents.Destroyed += OnPlay;
         }
 
         private void OnPlay() =>
-            _activator.Activate();
+            _activator.Activate(_prefab.Id, _size);
     }
 }
