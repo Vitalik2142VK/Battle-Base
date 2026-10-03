@@ -60,7 +60,7 @@ namespace BattleBase.Gameplay.Actors.Building
                 throw new InvalidOperationException($"{nameof(_sitesByLine)} don't constrain line {lineNumber}");
 
             return _sitesByLine[lineNumber]
-                .Where(r => r.HasBuilding == false && r.IsConstruction == false)
+                .Where(s => s.HasBuilding == false && s.IsConstruction == false)
                 .ToArray();
         }
 

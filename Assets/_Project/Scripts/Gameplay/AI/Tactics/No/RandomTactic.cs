@@ -67,12 +67,17 @@ namespace BattleBase.Gameplay.AI.Tactics.No
         private bool TryGetRandomProductions()
         {
             int index;
+            IRegisteredBuildingSite site;
 
             do
             {
                 index = _random.Next(_buildingSites.Count);
+                site = _buildingSites[index];
 
-                if (_buildingSites[index].TryGetProductionStorage(out IProductionStorage productionStorage))
+                if (site.IsConstruction)
+                    continue;
+
+                if (site.TryGetProductionStorage(out IProductionStorage productionStorage))
                 {
                     if (TryGetRandomProductionOption(productionStorage, out IProductionOption selected) == false)
                         continue;

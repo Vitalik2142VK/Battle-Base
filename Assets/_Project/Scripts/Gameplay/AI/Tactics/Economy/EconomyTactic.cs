@@ -47,7 +47,8 @@ namespace BattleBase.Gameplay.AI.Tactics.Economy
 
         public void CalculateScore()
         {
-            if (_materialData.CurrentMaterials > _setting.MaterialsForStop)
+            if (_materialData.CurrentMaterials < _setting.MaterialsForStart || 
+                _materialData.CurrentMaterials > _setting.MaterialsForStop)
             {
                 _score = 0;
                 _canAction = false;

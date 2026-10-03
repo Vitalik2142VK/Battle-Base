@@ -14,7 +14,7 @@ namespace BattleBase.Gameplay.AI
     {
         [SerializeField] private TacticSetting[] _tacticSettings;
         [SerializeField] private ScoreModifierConfig[] _modifierConfigs;
-        [SerializeField] private TeamType _teamType;
+        [SerializeField] private TeamType _teamType = TeamType.Enemy;
 
         private List<ITacticSetting> _tacticSettingsList;
         private List<IScoreModifierConfig> _modifierConfigsList;

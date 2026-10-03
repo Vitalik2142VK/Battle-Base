@@ -5,7 +5,7 @@
     "floatValues": [],
     "intKeys": [],
     "intValues": [],
-    "idSave": 6,
+    "idSave": 1,
     "SavesData": {
         "_volumeData": {
             "_generalVolume": 1.0,
@@ -17,25 +17,22 @@
             "_enemyColorIndex": 5
         },
         "_territoryData": {
-            "_conqueredTerritoryIndices": [
-                0,
-                1
-            ],
-            "_selectedTerritoryIndex": 2
+            "_conqueredTerritoryIndices": [],
+            "_selectedTerritoryIndex": 0
         },
         "_shopData": {
-            "_credits": 2865,
+            "_credits": 1000,
             "_unitUpgrades": [
                 {
                     "_name": "",
-                    "_damageLevel": 3,
-                    "_armorLevel": 3,
+                    "_damageLevel": 0,
+                    "_armorLevel": 0,
                     "_buildTimeLevel": 0
                 },
                 {
                     "_name": "RocketLauncher",
-                    "_damageLevel": 2,
-                    "_armorLevel": 3,
+                    "_damageLevel": 0,
+                    "_armorLevel": 0,
                     "_buildTimeLevel": 0
                 },
                 {

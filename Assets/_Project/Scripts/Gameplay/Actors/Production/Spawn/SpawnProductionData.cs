@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BattleBase.Utils.Constants;
+using System;
 
 namespace BattleBase.Gameplay.Actors.Production.Spawn
 {
@@ -7,6 +8,7 @@ namespace BattleBase.Gameplay.Actors.Production.Spawn
         private readonly IActorData _data;
 
         private float _timeSpent;
+        private int _count;
 
         public event Action DataChanged;
 
@@ -19,34 +21,37 @@ namespace BattleBase.Gameplay.Actors.Production.Spawn
             _timeSpent = 0;
 
             Tier = tier;
-            Count = 0;
+            _count = 0;
         }
 
         public IActorData ActorData => _data;
 
-        public int Tier { get; }
-
         public float ConstructionProgress { get; private set; }
 
-        public int Count { get; private set; }
+        public int Tier { get; }
+
+        public int Count => _count;
 
         public bool IsInProcessSpawn => _timeSpent != 0;
 
         public void Disable()
         {
-            Count = 0;
+            _count = 0;
             ResetTimeSpent();
         }
 
-        public void IncreaseCount() =>
-            Count++;
+        public void IncreaseCount()
+        {
+            if (_count < Values.MaxCountSpawnProductionData)
+                _count++;
+        }
 
         public void ReduceCount()
         {
-            Count--;
+            _count--;
 
-            if (Count < 0)
-                Count = 0;
+            if (_count < 0)
+                _count = 0;
         }
 
         public void CalculateProcess(float delta)
