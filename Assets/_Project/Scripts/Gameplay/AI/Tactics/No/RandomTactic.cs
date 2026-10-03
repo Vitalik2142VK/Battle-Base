@@ -2,6 +2,7 @@
 using BattleBase.Gameplay.Actors;
 using BattleBase.Gameplay.Actors.Building;
 using BattleBase.Gameplay.Actors.Production;
+using BattleBase.Gameplay.AI.Deactevators;
 using System;
 using System.Collections.Generic;
 
@@ -16,6 +17,7 @@ namespace BattleBase.Gameplay.AI.Tactics.No
         private readonly Random _random;
         private readonly IRandomTacticSetting _setting;
 
+        private ITacticDeactivator _tacticDeactivator;
         private IProductionOption _currentProductionOption;
         private int _score;
 
@@ -36,6 +38,13 @@ namespace BattleBase.Gameplay.AI.Tactics.No
         public int Score => _score;
 
         public bool CanAction => _score > _setting.MinScore;
+
+        public bool IsDeactivated => _tacticDeactivator.IsDeactivate;
+
+        public void Init(ITacticDeactivator tacticDeactivator)
+        {
+            _tacticDeactivator ??= tacticDeactivator ?? throw new ArgumentNullException(nameof(tacticDeactivator));
+        }
 
         public void CalculateScore()
         {

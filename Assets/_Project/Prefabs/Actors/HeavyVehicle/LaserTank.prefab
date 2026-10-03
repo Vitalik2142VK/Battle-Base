@@ -527,7 +527,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _actorView: {fileID: 6568237595620025500}
   _dotAim: 0.9
-  _speedRotate: 90
+  _speedRotate: 70
 --- !u!1 &4743845286436045997
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2edd39c80b5ca89468c2c036c53ba74e, type: 3}
   m_Name: Hard_BigEconomyTacticSetting
   m_EditorClassIdentifier: 
-  _maxScore: 35
-  _minScore: 3
+  _deactivatorScores: []
+  _maxScore: 40
+  _minScore: 5
   _materialFactoryConfig: {fileID: 11400000, guid: 1f46563fef4f1a74596c038054377828,
     type: 2}
-  _lineNumbersForBuild: 020000000100000001000000
+  _lineNumbersForBuild: 03000000
   _scoreForBuild: 30
   _maxNumberFactories: 1
   _materialsForStart: 3000

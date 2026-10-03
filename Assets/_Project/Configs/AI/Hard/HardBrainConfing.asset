@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tacticSettings:
   - {fileID: 11400000, guid: 49de7e5c9f190874b957c3e62cc9688c, type: 2}
-  - {fileID: 11400000, guid: b737b3af0b10ba949816faf057ce8462, type: 2}
   - {fileID: 11400000, guid: 8493ba70e2154a24c8065d44859c8431, type: 2}
+  - {fileID: 11400000, guid: b737b3af0b10ba949816faf057ce8462, type: 2}
   - {fileID: 11400000, guid: 42cd3c6b7bf1bc84c8ea6977859fc122, type: 2}
   - {fileID: 11400000, guid: 9010b5b0845b7894da49674061d238b3, type: 2}
+  - {fileID: 11400000, guid: afdc28fb92cbded469a266908a124ffc, type: 2}
   _modifierConfigs:
   - {fileID: 11400000, guid: 0237e0f24ef23474db45c3b7d58a65fb, type: 2}
   - {fileID: 11400000, guid: a8483c9910442264ab660b86f771c2eb, type: 2}

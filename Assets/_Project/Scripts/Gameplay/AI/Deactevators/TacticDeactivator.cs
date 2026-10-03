@@ -2,20 +2,18 @@
 
 namespace BattleBase.Gameplay.AI.Deactevators
 {
-    public class TacticDeactevator : ITacticDeactevator
+    public class TacticDeactivator : ITacticDeactivator
     {
-        private List<IDeactevator> _deactevators;
+        private List<IDeactivator> _deactevators;
 
         public bool IsDeactivate => IsGetDeactivate();
 
-        public void AddDeactevator(IDeactevator deactevator)
+        public void AddDeactevator(IDeactivator deactevator)
         {
             if (deactevator == null)
                 throw new System.ArgumentNullException(nameof(deactevator));
 
-            if (_deactevators == null)
-                _deactevators = new List<IDeactevator>();
-
+            _deactevators ??= new List<IDeactivator>();
             _deactevators.Add(deactevator);
         }
 

@@ -55,8 +55,12 @@ namespace BattleBase.Gameplay.Actors.Spawn
         public virtual void Enable() => 
             _currentTransaction = null;
 
-        public virtual void Disable() => 
+        public virtual void Disable()
+        {
             _dataController.Disable();
+
+            Reset();
+        }
 
         protected void AddActorToSpawnData(IActorData actorData)
         {

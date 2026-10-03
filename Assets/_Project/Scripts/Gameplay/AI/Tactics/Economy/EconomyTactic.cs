@@ -2,6 +2,7 @@
 using BattleBase.Gameplay.Actors.Building;
 using BattleBase.Gameplay.Actors.Economy;
 using BattleBase.Gameplay.Actors.Production;
+using BattleBase.Gameplay.AI.Deactevators;
 using System;
 using System.Collections.Generic;
 
@@ -15,6 +16,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Economy
         private readonly IMaterialData _materialData;
         private readonly ITacticTool _tool;
 
+        private ITacticDeactivator _tacticDeactivator;
         private IProductionOption _currentProductionOption;
         private int _score;
         private int _numberUnderConstruction;
@@ -45,6 +47,13 @@ namespace BattleBase.Gameplay.AI.Tactics.Economy
 
         public bool CanAction => _canAction;
 
+        public bool IsDeactivated => _tacticDeactivator.IsDeactivate;
+
+        public void Init(ITacticDeactivator tacticDeactivator)
+        {
+            _tacticDeactivator ??= tacticDeactivator ?? throw new ArgumentNullException(nameof(tacticDeactivator));
+        }
+
         public void CalculateScore()
         {
             if (_materialData.CurrentMaterials < _setting.MaterialsForStart || 
@@ -55,6 +64,8 @@ namespace BattleBase.Gameplay.AI.Tactics.Economy
 
                 return;
             }
+
+            UpdateScore();
 
             if (TryBuild() || TryImprove())
                 _canAction = true;
@@ -144,11 +155,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Economy
                 buildingSite.ActorMissing -= OnRemoveFactory;
                 _factories.Remove(buildingSite);
 
-                if (_factories.Count < _setting.MaxFactories)
-                    _score += _setting.ScoreForBuildFactory;
-
-                if (_score > _setting.MaxScore)
-                    _score = _setting.MaxScore;
+                UpdateScore();
             }
         }
 
@@ -160,17 +167,30 @@ namespace BattleBase.Gameplay.AI.Tactics.Economy
             if (buildingSite.CurrentActorId != _setting.MaterialFactoryId)
                 return;
 
-            _score -= _setting.ScoreForBuildFactory;
-            _numberUnderConstruction--;
+            UpdateScore();
 
-            if (_score < _setting.MinScore)
-                _score = _setting.MinScore;
+            _numberUnderConstruction--;
 
             if (_numberUnderConstruction < 0)
                 _numberUnderConstruction = 0;
 
             _factories.Add(buildingSite);
             buildingSite.ActorMissing += OnRemoveFactory;
+        }
+
+        private void UpdateScore()
+        {
+            if (_factories.Count == 0)
+            {
+                _score = _setting.MaxScore;
+
+                return;
+            }
+
+            _score = _setting.MaxScore - _factories.Count * _setting.ScoreForBuildFactory;
+
+            if (_score < _setting.MinScore)
+                _score = _setting.MinScore;
         }
     }
 }

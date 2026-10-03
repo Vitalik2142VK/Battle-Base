@@ -15,7 +15,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Economy
         [SerializeField] private ActorConfig _materialFactoryConfig;
         [SerializeField][Range(1, 3)] private int[] _lineNumbersForBuild = new[] { 2 };
         [SerializeField][Range(1, 30)] private int _scoreForBuild = 5;
-        [SerializeField][Range(1, 6)] private int _maxNumberFactories = 3;
+        [SerializeField][Range(1, 12)] private int _maxNumberFactories = 3;
         [SerializeField][Min(0)] private int _materialsForStart = 0;
         [SerializeField][Min(1000)] private int _materialsForStop = 3000;
 

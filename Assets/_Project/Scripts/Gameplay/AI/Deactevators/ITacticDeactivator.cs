@@ -1,6 +1,6 @@
 ﻿namespace BattleBase.Gameplay.AI.Deactevators
 {
-    public interface ITacticDeactevator
+    public interface ITacticDeactivator
     {
         public bool IsDeactivate { get; }
     }

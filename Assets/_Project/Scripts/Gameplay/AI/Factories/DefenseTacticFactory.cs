@@ -11,9 +11,7 @@ namespace BattleBase.Gameplay.AI.Factories
         private readonly IBuildingSitesStorage _buildingSitesStorage;
         private readonly TacticTool _tool;
 
-        public DefenseTacticFactory(
-            IBuildingSitesStorage buildingSitesStorage,
-            TacticTool tool)
+        public DefenseTacticFactory(IBuildingSitesStorage buildingSitesStorage, TacticTool tool)
         {
             _buildingSitesStorage = buildingSitesStorage ?? throw new ArgumentNullException(nameof(buildingSitesStorage));
             _tool = tool ?? throw new ArgumentNullException(nameof(tool));
@@ -33,7 +31,8 @@ namespace BattleBase.Gameplay.AI.Factories
 
             _tool.Init(team);
 
-            IBuildingSitesController controller = _buildingSitesStorage.GetBuildingSitesController(team, SiteType.Defense);
+            IBuildingSitesController controller = _buildingSitesStorage
+                .GetBuildingSitesController(team, SiteType.Defense);
 
             tactic = new DefenseTactic(_tool, controller, defenseSetting);
 

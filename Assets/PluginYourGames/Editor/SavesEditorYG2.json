@@ -5,7 +5,7 @@
     "floatValues": [],
     "intKeys": [],
     "intValues": [],
-    "idSave": 1,
+    "idSave": 4,
     "SavesData": {
         "_volumeData": {
             "_generalVolume": 1.0,
@@ -17,11 +17,13 @@
             "_enemyColorIndex": 5
         },
         "_territoryData": {
-            "_conqueredTerritoryIndices": [],
+            "_conqueredTerritoryIndices": [
+                0
+            ],
             "_selectedTerritoryIndex": 0
         },
         "_shopData": {
-            "_credits": 1000,
+            "_credits": 2286,
             "_unitUpgrades": [
                 {
                     "_name": "",

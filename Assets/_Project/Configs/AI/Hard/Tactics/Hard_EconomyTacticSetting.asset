@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2edd39c80b5ca89468c2c036c53ba74e, type: 3}
   m_Name: Hard_EconomyTacticSetting
   m_EditorClassIdentifier: 
+  _deactivatorScores: []
   _maxScore: 60
   _minScore: 5
   _materialFactoryConfig: {fileID: 11400000, guid: d29b556504be6944588fab13baad2f83,
