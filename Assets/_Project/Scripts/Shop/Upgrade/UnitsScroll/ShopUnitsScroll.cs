@@ -17,6 +17,8 @@ namespace BattleBase.ShopSystem
         private readonly List<ShopUnitItemView> _items = new();
 
         private ActorsUpgradeModel _unitsUpgradeModel;
+        private bool _isInitialized;
+        private bool _isSyncingSelection;
 
         public ShopUnitItemView CurrentItem { get; private set; }
 
@@ -24,6 +26,17 @@ namespace BattleBase.ShopSystem
         public void Construct(ActorsUpgradeModel unitsUpgradeModel)
         {
             _unitsUpgradeModel = unitsUpgradeModel ?? throw new ArgumentNullException(nameof(unitsUpgradeModel));
+
+            _unitsUpgradeModel.UnitSelectionChanged += OnModelSelectionChanged;
+        }
+
+        private void OnEnable() =>
+            SyncSelectionFromModel();
+
+        private void OnDestroy()
+        {
+            if (_unitsUpgradeModel != null)
+                _unitsUpgradeModel.UnitSelectionChanged -= OnModelSelectionChanged;
         }
 
         public void Init(IReadOnlyList<IActorItemConfig> infos, List<Sprite> previews)
@@ -35,25 +48,81 @@ namespace BattleBase.ShopSystem
             for (int i = 0; i < infos.Count; i++)
             {
                 IActorItemConfig info = infos[i];
-
                 ShopUnitItemView item = Instantiate(_prefab, _content);
                 item.SetInfo(info, previews[i], Select);
                 item.Unselect();
                 _items.Add(item);
             }
 
-            if (_items.Count > 0)
-                Select(_items.First());
+            _isInitialized = true;
+            SyncSelectionFromModel();
         }
 
         public void Select(ShopUnitItemView item)
+        {
+            if (item == null)
+                throw new ArgumentNullException(nameof(item));
+
+            _unitsUpgradeModel.SelectActor(item.Info);
+        }
+
+        private void OnModelSelectionChanged() =>
+            SyncSelectionFromModel();
+
+        private void SyncSelectionFromModel()
+        {
+            if (_isSyncingSelection)
+                return;
+
+            if (_isInitialized == false)
+                return;
+
+            if (_items.Count == 0)
+                return;
+
+            if (_unitsUpgradeModel == null)
+                return;
+
+            _isSyncingSelection = true;
+
+            try
+            {
+                IActorItemConfig selected = _unitsUpgradeModel.Selected;
+                ShopUnitItemView targetItem = selected != null ? FindItemById(selected.Id) : null;
+
+                if (targetItem == null)
+                {
+                    targetItem = _items.First();
+                    _unitsUpgradeModel.SelectActor(targetItem.Info);
+                }
+
+                ApplyVisualSelection(targetItem);
+            }
+            finally
+            {
+                _isSyncingSelection = false;
+            }
+        }
+
+        private void ApplyVisualSelection(ShopUnitItemView item)
         {
             UnselectAll();
             item.Select();
             CurrentItem = item;
 
-            _unitsUpgradeModel.SelectActor(item.Info);
-            _commandRebuildLayout.Execute();
+            if (gameObject.activeInHierarchy)
+                _commandRebuildLayout.Execute();
+        }
+
+        private ShopUnitItemView FindItemById(string id)
+        {
+            foreach (ShopUnitItemView item in _items)
+            {
+                if (item.Info.Id == id)
+                    return item;
+            }
+
+            return null;
         }
 
         private void UnselectAll()

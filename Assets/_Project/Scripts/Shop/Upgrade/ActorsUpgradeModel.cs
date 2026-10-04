@@ -55,6 +55,12 @@ namespace BattleBase.ShopSystem
 
         public void SelectActor(IActorItemConfig unit)
         {
+            if (unit == null)
+                throw new ArgumentNullException(nameof(unit));
+
+            if (_selected != null && _selected.Id == unit.Id)
+                return;
+
             _selected = unit as ActorItemInfo ?? throw new ArgumentNullException(nameof(unit));
             UnitSelectionChanged?.Invoke();
         }
