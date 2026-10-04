@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BattleBase.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,13 +9,13 @@ namespace BattleBase.Gameplay.Actors.Building
     {
         private readonly Dictionary<int, List<RegisteredBuildingSite>> _sitesByLine;
         private readonly List<RegisteredBuildingSite> _sites;
-        private readonly Random _random;
+        private readonly Randomizer _randomizer;
 
         public event Action<IRegisteredBuildingSite> SitesBuildCompleted;
 
-        public BuildingSitesController(Random random)
+        public BuildingSitesController(Randomizer randomizer)
         {
-            _random = random ?? new Random();
+            _randomizer = randomizer ?? throw new ArgumentNullException(nameof(randomizer));
 
             _sitesByLine = new Dictionary<int, List<RegisteredBuildingSite>>();
             _sites = new List<RegisteredBuildingSite>();
@@ -73,7 +74,7 @@ namespace BattleBase.Gameplay.Actors.Building
             if (freeSites.Length == 0)
                 return false;
 
-            int randomIndex = _random.Next(freeSites.Length);
+            int randomIndex = _randomizer.GetRangeZero(freeSites.Length);
             buildingSite = freeSites[randomIndex];
 
             return true;

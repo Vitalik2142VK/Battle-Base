@@ -49,6 +49,10 @@ namespace BattleBase.Gameplay.AI.Tactics.Economy
 
         public bool IsDeactivated => _tacticDeactivator.IsDeactivate;
 
+        private bool IsInRange =>
+            _materialData.CurrentMaterials <= _setting.MaterialsForStart || 
+            _materialData.CurrentMaterials >= _setting.MaterialsForStop;
+
         public void Init(ITacticDeactivator tacticDeactivator)
         {
             _tacticDeactivator ??= tacticDeactivator ?? throw new ArgumentNullException(nameof(tacticDeactivator));
@@ -56,8 +60,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Economy
 
         public void CalculateScore()
         {
-            if (_materialData.CurrentMaterials < _setting.MaterialsForStart || 
-                _materialData.CurrentMaterials > _setting.MaterialsForStop)
+            if (IsInRange)
             {
                 _score = 0;
                 _canAction = false;
@@ -180,6 +183,9 @@ namespace BattleBase.Gameplay.AI.Tactics.Economy
 
         private void UpdateScore()
         {
+            if (IsInRange == false)
+                _score = 0;
+
             if (_factories.Count == 0)
             {
                 _score = _setting.MaxScore;

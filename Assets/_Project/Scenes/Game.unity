@@ -14004,7 +14004,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isOpenAllUnit: 1
   _isShowCountActor: 0
-  _isAiDisbale: 1
+  _isAiDisbale: 0
   _isBrainDebugEnable: 0
 --- !u!4 &1754843466
 Transform:

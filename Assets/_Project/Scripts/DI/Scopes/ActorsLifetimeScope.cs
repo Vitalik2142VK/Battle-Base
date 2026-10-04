@@ -28,6 +28,7 @@ using BattleBase.Gameplay.AI.Factories;
 using BattleBase.Gameplay.AI.Modifiers;
 using BattleBase.Gameplay.AI.Tactics;
 using BattleBase.Gameplay.Levels;
+using BattleBase.Utils;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -161,6 +162,7 @@ namespace BattleBase.DI
 
             _builder.Register<ITacticFactory, RandomTacticFactory>(Lifetime.Scoped);
             _builder.Register<ITacticFactory, EconomyTacticFactory>(Lifetime.Scoped);
+            _builder.Register<ITacticFactory, DemolitionEconomyTacticFactory>(Lifetime.Scoped);
             _builder.Register<ITacticFactory, PowerTacticFactory>(Lifetime.Scoped);
             _builder.Register<ITacticFactory, DefenseTacticFactory>(Lifetime.Scoped);
             _builder.Register<ITacticsFactory, TacticsFactory>(Lifetime.Scoped);

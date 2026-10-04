@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d55650f044b6b94ab06277e5a4a02fe, type: 3}
+  m_Name: VeryHardBrainConfing
+  m_EditorClassIdentifier: 
+  _tacticSettings:
+  - {fileID: 11400000, guid: 4514b868b48812f43a3de635fc61ace1, type: 2}
+  - {fileID: 11400000, guid: dc241fa27a635354aa03e4eae3b3f945, type: 2}
+  - {fileID: 11400000, guid: 511c3077cd1838f40bd6d6b009f452f7, type: 2}
+  - {fileID: 11400000, guid: f4aea73d378db694b9b6856018dbf6f6, type: 2}
+  - {fileID: 11400000, guid: 682f7b766acf1f243aadaab2dbb7cbbf, type: 2}
+  - {fileID: 11400000, guid: f45c1f48d358d4e46b69de4ca8554397, type: 2}
+  - {fileID: 11400000, guid: 969cd7fad35450246a4c36de6db6ec72, type: 2}
+  - {fileID: 11400000, guid: 15d92de7544e07c48be6d786937f37a8, type: 2}
+  - {fileID: 11400000, guid: 6a12c72e72911be40b8cb18494de6f08, type: 2}
+  _modifierConfigs:
+  - {fileID: 11400000, guid: 0c9a51be69d334d4d88f5514aa07f199, type: 2}
+  - {fileID: 11400000, guid: 768e3ba6ef0b707498390e876f021f56, type: 2}
+  - {fileID: 11400000, guid: 88fabdd1cd8ce71459b5c1faa7cdd7e4, type: 2}
+  - {fileID: 11400000, guid: 2d5ac1f68508e8a419f2a3242c332c40, type: 2}
+  _teamType: 2

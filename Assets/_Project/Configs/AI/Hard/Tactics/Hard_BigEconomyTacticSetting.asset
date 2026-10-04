@@ -21,4 +21,4 @@ MonoBehaviour:
   _scoreForBuild: 30
   _maxNumberFactories: 1
   _materialsForStart: 3000
-  _materialsForStop: 5000
+  _materialsForStop: 7000

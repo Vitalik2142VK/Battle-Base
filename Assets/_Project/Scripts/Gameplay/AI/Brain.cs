@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.AI
 {
-    public class Brain : IBrain
+    public class Brain : IBrain, IDisposable
     {
         private readonly List<ITactic> _tactics;
         private readonly IBrainConfig _confing;
@@ -46,15 +46,26 @@ namespace BattleBase.Gameplay.AI
             _modifierController = new ScoreModifierController(_modifiersFactory, _confing);
         }
 
+        public void Dispose()
+        {
+            foreach (var tactic in _tactics)
+                DisposeTactic(tactic);
+        }
+
         public void ThinkDuringTick()
         {
             if (ThinkCompleted)
                 return;
 
             if (_tactics[_currentIndexTactic].IsDeactivated)
+            {
+                DisposeTactic(_tactics[_currentIndexTactic]);
                 _tactics.RemoveAt(_currentIndexTactic);
+            }
             else
+            {
                 _tactics[_currentIndexTactic++].CalculateScore();
+            }
         }
 
         public bool TryGetCommand(out ICommand command)
@@ -107,6 +118,12 @@ namespace BattleBase.Gameplay.AI
             }
 
             return false;
+        }
+
+        private void DisposeTactic(ITactic tactic)
+        {
+            if (tactic is IDisposable disposable)
+                disposable.Dispose();
         }
     }
 }

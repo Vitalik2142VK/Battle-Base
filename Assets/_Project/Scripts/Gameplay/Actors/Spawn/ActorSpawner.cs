@@ -125,6 +125,9 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
         private void Reset()
         {
+            if (_currnetSpawnData == null)
+                return;
+
             _currnetSpawnData.ResetTimeSpent();
             _currnetSpawnData.UpdateData();
             _currentTransaction = null;
