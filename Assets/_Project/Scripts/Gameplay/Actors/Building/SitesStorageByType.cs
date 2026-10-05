@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BattleBase.Utils;
+using System;
 using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.Building
@@ -7,11 +8,11 @@ namespace BattleBase.Gameplay.Actors.Building
     {
         private readonly Dictionary<SiteType, BuildingSitesController> _controllers;
         private readonly Dictionary<int, IRegisteredBuildingSite> _registeredSites;
-        private readonly Random _random;
+        private readonly Randomizer _randomizer;
 
-        public SitesStorageByType(Random random = null)
+        public SitesStorageByType(Randomizer randomizer)
         {
-            _random = random ?? new Random();
+            _randomizer = randomizer ?? throw new ArgumentNullException(nameof(randomizer));
 
             _controllers = new Dictionary<SiteType, BuildingSitesController>();
             _registeredSites = new Dictionary<int, IRegisteredBuildingSite>();
@@ -31,7 +32,7 @@ namespace BattleBase.Gameplay.Actors.Building
             SiteType type = buildingSite.Type;
 
             if (_controllers.ContainsKey(type) == false)
-                _controllers.Add(type, new BuildingSitesController(_random));
+                _controllers.Add(type, new BuildingSitesController(_randomizer));
 
             IRegisteredBuildingSite site = _controllers[type].Register(buildingSiteActor, buildingSite);
 

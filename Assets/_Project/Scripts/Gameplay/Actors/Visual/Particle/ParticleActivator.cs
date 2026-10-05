@@ -1,17 +1,13 @@
-using UnityEngine;
+﻿using UnityEngine;
 using VContainer;
 
 namespace BattleBase.Gameplay.Actors.Visual.Particle
 {
-    [PreviewExcluded(PreviewExclusionMode.Disable)]
     public class ParticleActivator : MonoBehaviour
     {
-        [SerializeField] private ParticleView _prefab;
         [SerializeField] private Transform _spawnPoint;
-        [SerializeField] private float _size = 1f;
 
         private IParticleSpawner _spawner;
-        private string _particleId;
 
         private void OnValidate()
         {
@@ -19,19 +15,11 @@ namespace BattleBase.Gameplay.Actors.Visual.Particle
                 _spawnPoint = transform;
         }
 
-        private void Awake()
+        public void Activate(string particleId, float size = 1f)
         {
-            if (enabled == false)
-                return;
-
-            _particleId = _prefab.Id;
-        }
-
-        public void Activate()
-        {
-            IParticle particle = _spawner.Spawn(_particleId);
+            IParticle particle = _spawner.Spawn(particleId);
             particle.SetPosition(_spawnPoint.position);
-            particle.SetSize(_size);
+            particle.SetSize(size);
             particle.Play();
         }
 

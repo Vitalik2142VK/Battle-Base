@@ -10,6 +10,8 @@ namespace BattleBase.Gameplay.AI.Tactics.Economy
 
         public int ScoreForBuildFactory { get; }
 
+        public int MaterialsForStart { get; }
+
         public int MaterialsForStop { get; }
 
         public int MaxFactories { get; }

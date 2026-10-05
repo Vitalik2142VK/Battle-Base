@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88658c97cb99ec1479cd966bd0f0a493, type: 3}
   m_Name: UpgraderConfig
   m_EditorClassIdentifier: 
-  _damageCoefficientByLevel: 0.1
-  _healtheCoefficientByLevel: 0.2
+  _damageCoefficientByLevel: 0.025
+  _healtheCoefficientByLevel: 0.1

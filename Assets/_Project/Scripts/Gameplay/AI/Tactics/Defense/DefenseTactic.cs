@@ -1,6 +1,8 @@
 ﻿using BattleBase.Core;
 using BattleBase.Gameplay.Actors.Building;
 using BattleBase.Gameplay.Actors.Production;
+using BattleBase.Gameplay.AI.Deactevators;
+using BattleBase.Utils;
 using System;
 using System.Collections.Generic;
 
@@ -13,8 +15,9 @@ namespace BattleBase.Gameplay.AI.Tactics.Defense
         private readonly IBuildingSitesController _controller;
         private readonly IDefenseTacticSetting _setting;
         private readonly ITacticTool _tool;
-        private readonly Random _random;
+        private readonly Randomizer _randomizer;
 
+        private ITacticDeactivator _tacticDeactivator;
         private IProductionOption _currentProductionOption;
         private int _score;
         private int _numberUnderConstruction;
@@ -23,15 +26,16 @@ namespace BattleBase.Gameplay.AI.Tactics.Defense
         public DefenseTactic(
             ITacticTool tool,
             IBuildingSitesController controller,
-            IDefenseTacticSetting setting)
+            IDefenseTacticSetting setting,
+            Randomizer randomizer)
         {
             _tool = tool ?? throw new ArgumentNullException(nameof(tool));
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
             _setting = setting ?? throw new ArgumentNullException(nameof(setting));
+            _randomizer = randomizer ?? throw new ArgumentNullException(nameof(randomizer));
 
             _turrets = new List<IRegisteredBuildingSite>();
             _turretIds = new List<string>();
-            _random = new Random();
             _score = _setting.MaxScore;
             _numberUnderConstruction = 0;
             _canAction = false;
@@ -47,6 +51,13 @@ namespace BattleBase.Gameplay.AI.Tactics.Defense
         public int Score => _score;
 
         public bool CanAction => _canAction;
+
+        public bool IsDeactivated => _tacticDeactivator.IsDeactivate;
+
+        public void Init(ITacticDeactivator tacticDeactivator)
+        {
+            _tacticDeactivator ??= tacticDeactivator ?? throw new ArgumentNullException(nameof(tacticDeactivator));
+        }
 
         public void CalculateScore()
         {
@@ -108,7 +119,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Defense
                 return false;
 
 
-            int randomIndex = _random.Next(_turretIds.Count);
+            int randomIndex = _randomizer.GetRangeZero(_turretIds.Count);
             string randomTurretId = _turretIds[randomIndex];
 
             return _tool.TryFindSpawnProduction(

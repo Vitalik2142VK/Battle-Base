@@ -15,8 +15,15 @@ namespace BattleBase.Gameplay.AI.Tactics.Economy
         [SerializeField] private ActorConfig _materialFactoryConfig;
         [SerializeField][Range(1, 3)] private int[] _lineNumbersForBuild = new[] { 2 };
         [SerializeField][Range(1, 30)] private int _scoreForBuild = 5;
-        [SerializeField][Range(2, 6)] private int _maxNumberFactories = 3;
+        [SerializeField][Range(1, 12)] private int _maxNumberFactories = 3;
+        [SerializeField][Min(0)] private int _materialsForStart = 0;
         [SerializeField][Min(1000)] private int _materialsForStop = 3000;
+
+        private void OnValidate()
+        {
+            if (_materialsForStart > _materialsForStop)
+                _materialsForStop = _materialsForStart + Values.MinMaterialRange;
+        }
 
         public TacticCategory Category => TacticCategory.Economy;
 
@@ -25,6 +32,8 @@ namespace BattleBase.Gameplay.AI.Tactics.Economy
         public IEnumerable<int> LineNumbersForBuild => _lineNumbersForBuild;
 
         public int ScoreForBuildFactory => _scoreForBuild;
+
+        public int MaterialsForStart => _materialsForStart;
 
         public int MaterialsForStop => _materialsForStop;
 

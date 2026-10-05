@@ -2,6 +2,7 @@ using BattleBase.Gameplay.Actors;
 using BattleBase.Gameplay.Actors.Building;
 using BattleBase.Gameplay.AI.Tactics;
 using BattleBase.Gameplay.AI.Tactics.Defense;
+using BattleBase.Utils;
 using System;
 
 namespace BattleBase.Gameplay.AI.Factories
@@ -10,13 +11,13 @@ namespace BattleBase.Gameplay.AI.Factories
     {
         private readonly IBuildingSitesStorage _buildingSitesStorage;
         private readonly TacticTool _tool;
+        private readonly Randomizer _randomizer;
 
-        public DefenseTacticFactory(
-            IBuildingSitesStorage buildingSitesStorage,
-            TacticTool tool)
+        public DefenseTacticFactory(IBuildingSitesStorage buildingSitesStorage, TacticTool tool, Randomizer randomizer)
         {
             _buildingSitesStorage = buildingSitesStorage ?? throw new ArgumentNullException(nameof(buildingSitesStorage));
             _tool = tool ?? throw new ArgumentNullException(nameof(tool));
+            _randomizer = randomizer ?? throw new ArgumentNullException(nameof(randomizer));
         }
 
         public TacticCategory Category => TacticCategory.Defense;
@@ -33,9 +34,10 @@ namespace BattleBase.Gameplay.AI.Factories
 
             _tool.Init(team);
 
-            IBuildingSitesController controller = _buildingSitesStorage.GetBuildingSitesController(team, SiteType.Defense);
+            IBuildingSitesController controller = _buildingSitesStorage
+                .GetBuildingSitesController(team, SiteType.Defense);
 
-            tactic = new DefenseTactic(_tool, controller, defenseSetting);
+            tactic = new DefenseTactic(_tool, controller, defenseSetting, _randomizer);
 
             return true;
         }

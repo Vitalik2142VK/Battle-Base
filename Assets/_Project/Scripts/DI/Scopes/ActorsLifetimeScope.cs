@@ -23,10 +23,12 @@ using BattleBase.Gameplay.Actors.Spawn;
 using BattleBase.Gameplay.Actors.Visual.Particle;
 using BattleBase.Gameplay.Actors.Visual.Sound;
 using BattleBase.Gameplay.AI;
+using BattleBase.Gameplay.AI.Deactevators;
 using BattleBase.Gameplay.AI.Factories;
 using BattleBase.Gameplay.AI.Modifiers;
 using BattleBase.Gameplay.AI.Tactics;
 using BattleBase.Gameplay.Levels;
+using BattleBase.Utils;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -160,6 +162,7 @@ namespace BattleBase.DI
 
             _builder.Register<ITacticFactory, RandomTacticFactory>(Lifetime.Scoped);
             _builder.Register<ITacticFactory, EconomyTacticFactory>(Lifetime.Scoped);
+            _builder.Register<ITacticFactory, DemolitionEconomyTacticFactory>(Lifetime.Scoped);
             _builder.Register<ITacticFactory, PowerTacticFactory>(Lifetime.Scoped);
             _builder.Register<ITacticFactory, DefenseTacticFactory>(Lifetime.Scoped);
             _builder.Register<ITacticsFactory, TacticsFactory>(Lifetime.Scoped);
@@ -168,6 +171,9 @@ namespace BattleBase.DI
             _builder.Register<IScoreModifierFactory, PowerModifierFactory> (Lifetime.Scoped);
             _builder.Register<IScoreModifierFactory, DefenseModifierFactory> (Lifetime.Scoped);
             _builder.Register<IScoreModifiersFactory, ScoreModifiersFactory>(Lifetime.Scoped);
+            
+            _builder.Register<IDeactivatorFactory, EconomicDeactivatorFactory>(Lifetime.Scoped);
+            _builder.Register<ITacticDeactivatorFactory, TacticDeactivatorFactory>(Lifetime.Scoped);
 
             _builder.Register<TacticTool>(Lifetime.Transient);
             _builder.Register<IBrain, Brain>(Lifetime.Scoped);

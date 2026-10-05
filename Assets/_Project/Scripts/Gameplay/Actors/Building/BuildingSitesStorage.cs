@@ -1,3 +1,4 @@
+using BattleBase.Utils;
 using System;
 using System.Collections.Generic;
 
@@ -6,12 +7,13 @@ namespace BattleBase.Gameplay.Actors.Building
     public class BuildingSitesStorage : IBuildingSitesStorage, IDisposable
     {
         private readonly Dictionary<TeamType, SitesStorageByType> _storages;
-        private readonly Random _random;
+        private readonly Randomizer _randomizer;
 
-        public BuildingSitesStorage()
+        public BuildingSitesStorage(Randomizer randomizer)
         {
+            _randomizer = randomizer ?? throw new ArgumentNullException(nameof(randomizer));
+
             _storages = new Dictionary<TeamType, SitesStorageByType>();
-            _random = new Random();
         }
 
         public void Dispose()
@@ -28,7 +30,7 @@ namespace BattleBase.Gameplay.Actors.Building
             TeamType team = buildingSiteActor.TeamType;
 
             if (_storages.ContainsKey(team) == false)
-                _storages.Add(team, new SitesStorageByType(_random));
+                _storages.Add(team, new SitesStorageByType(_randomizer));
 
             _storages[team].Register(buildingSiteActor, buildingSite);
         }

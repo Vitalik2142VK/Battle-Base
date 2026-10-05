@@ -131,7 +131,7 @@ NavMeshAgent:
   m_Radius: 2.5
   m_Speed: 3.5
   m_Acceleration: 8
-  avoidancePriority: 50
+  avoidancePriority: 5
   m_AngularSpeed: 120
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
@@ -527,7 +527,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _actorView: {fileID: 6568237595620025500}
   _dotAim: 0.9
-  _speedRotate: 90
+  _speedRotate: 70
 --- !u!1 &4743845286436045997
 GameObject:
   m_ObjectHideFlags: 0
@@ -943,6 +943,11 @@ PrefabInstance:
       propertyPath: _spawnPoint
       value: 
       objectReference: {fileID: 8020356204336118781}
+    - target: {fileID: 5336084450806388415, guid: af4d4c4ed8783aa4080273212065fa12,
+        type: 3}
+      propertyPath: _size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8402702942563344201, guid: af4d4c4ed8783aa4080273212065fa12,
         type: 3}
       propertyPath: m_LocalPosition.x

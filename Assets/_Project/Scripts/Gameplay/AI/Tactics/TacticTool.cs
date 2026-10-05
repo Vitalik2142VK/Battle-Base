@@ -23,8 +23,8 @@ namespace BattleBase.Gameplay.AI.Tactics
         }
 
         public bool TryFindSpawnProduction(
-            IProductionStorage productionStorage, 
-            string actorId, 
+            IProductionStorage productionStorage,
+            string actorId,
             out IProductionOption option)
         {
             option = null;

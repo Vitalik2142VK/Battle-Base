@@ -2,6 +2,7 @@
 using BattleBase.Gameplay.Actors.Building;
 using BattleBase.Gameplay.Actors.Energy;
 using BattleBase.Gameplay.Actors.Production;
+using BattleBase.Gameplay.AI.Deactevators;
 using System;
 using System.Collections.Generic;
 
@@ -15,6 +16,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Energy
         private readonly IPowerData _powerData;
         private readonly ITacticTool _tool;
 
+        private ITacticDeactivator _tacticDeactivator;
         private IProductionOption _currentProductionOption;
         private int _score;
         private int _numberUnderConstruction;
@@ -44,6 +46,13 @@ namespace BattleBase.Gameplay.AI.Tactics.Energy
         public int Score => _score;
 
         public bool CanAction => _canAction;
+
+        public bool IsDeactivated => _tacticDeactivator.IsDeactivate;
+
+        public void Init(ITacticDeactivator tacticDeactivator)
+        {
+            _tacticDeactivator ??= tacticDeactivator ?? throw new ArgumentNullException(nameof(tacticDeactivator));
+        }
 
         public void CalculateScore()
         {

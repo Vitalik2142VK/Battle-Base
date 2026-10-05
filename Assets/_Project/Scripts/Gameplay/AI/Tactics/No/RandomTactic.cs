@@ -2,6 +2,9 @@
 using BattleBase.Gameplay.Actors;
 using BattleBase.Gameplay.Actors.Building;
 using BattleBase.Gameplay.Actors.Production;
+using BattleBase.Gameplay.Actors.Visual.Select;
+using BattleBase.Gameplay.AI.Deactevators;
+using BattleBase.Utils;
 using System;
 using System.Collections.Generic;
 
@@ -13,21 +16,22 @@ namespace BattleBase.Gameplay.AI.Tactics.No
         private readonly List<IProductionOption> _productionOptions;
         private readonly List<string> _forbiddenActorIds;
         private readonly IBuildingSitesController _controller;
-        private readonly Random _random;
         private readonly IRandomTacticSetting _setting;
+        private readonly Randomizer _randomizer;
 
+        private ITacticDeactivator _tacticDeactivator;
         private IProductionOption _currentProductionOption;
         private int _score;
 
-        public RandomTactic(IBuildingSitesController controller, IRandomTacticSetting setting)
+        public RandomTactic(IBuildingSitesController controller, IRandomTacticSetting setting, Randomizer randomizer)
         {
             _controller = controller ?? throw new ArgumentNullException(nameof(controller));
             _setting = setting ?? throw new ArgumentNullException(nameof(setting));
+            _randomizer = randomizer ?? throw new ArgumentNullException(nameof(randomizer));
 
             _buildingSites = new List<IRegisteredBuildingSite>();
             _productionOptions = new List<IProductionOption>();
             _forbiddenActorIds = new List<string>(_setting.ForbiddenActorIds);
-            _random = new Random();
             _score = _setting.MaxScore;
         }
 
@@ -36,6 +40,13 @@ namespace BattleBase.Gameplay.AI.Tactics.No
         public int Score => _score;
 
         public bool CanAction => _score > _setting.MinScore;
+
+        public bool IsDeactivated => _tacticDeactivator.IsDeactivate;
+
+        public void Init(ITacticDeactivator tacticDeactivator)
+        {
+            _tacticDeactivator ??= tacticDeactivator ?? throw new ArgumentNullException(nameof(tacticDeactivator));
+        }
 
         public void CalculateScore()
         {
@@ -57,7 +68,7 @@ namespace BattleBase.Gameplay.AI.Tactics.No
                 throw new InvalidOperationException("Tactics cannot be used");
 
             IProductionOption productionOption = _currentProductionOption;
-            int count = _random.Next(_setting.MinNumSpawn, _setting.MaxNumSpawn);
+            int count = _randomizer.GetRange(_setting.MinNumSpawn, _setting.MaxNumSpawn);
 
             _currentProductionOption = null;
 
@@ -66,26 +77,30 @@ namespace BattleBase.Gameplay.AI.Tactics.No
 
         private bool TryGetRandomProductions()
         {
-            int index;
+            int indexRandom;
+            int lastIndex;
+            IRegisteredBuildingSite site;
 
             do
             {
-                index = _random.Next(_buildingSites.Count);
+                indexRandom = _randomizer.GetRangeZero(_buildingSites.Count);
+                lastIndex = _buildingSites.Count - 1;
+                site = _buildingSites[indexRandom];
+                _buildingSites[indexRandom] = _buildingSites[lastIndex];
+                _buildingSites.RemoveAt(lastIndex);
 
-                if (_buildingSites[index].TryGetProductionStorage(out IProductionStorage productionStorage))
+                if (site.IsConstruction)
+                    continue;
+
+                if (site.TryGetProductionStorage(out IProductionStorage productionStorage))
                 {
                     if (TryGetRandomProductionOption(productionStorage, out IProductionOption selected) == false)
-                        continue;
-
-                    if (selected.Type == TypeProduction.Removal || IsProhibited(selected))
                         continue;
 
                     _currentProductionOption = selected;
 
                     return true;
                 }
-
-                _buildingSites.RemoveAt(index);
             }
             while (_buildingSites.Count > 0);
 
@@ -96,18 +111,33 @@ namespace BattleBase.Gameplay.AI.Tactics.No
             IProductionStorage productionStorage, 
             out IProductionOption productionOption)
         {
-            productionOption = null;
             _productionOptions.Clear();
             _productionOptions.AddRange(productionStorage.GetProductionOptions());
-            int maxIndex = _productionOptions.Count;
+            int indexRandom;
+            int lastIndex;
 
-            if (maxIndex <= 0)
-                return false;
+            do
+            {
+                indexRandom = _randomizer.GetRangeZero(_productionOptions.Count);
+                lastIndex = _productionOptions.Count - 1;
+                productionOption = _productionOptions[indexRandom];
 
-            int index = _random.Next(maxIndex);
-            productionOption = _productionOptions[index];
+                if (productionOption.Type == TypeProduction.Removal || IsProhibited(productionOption))
+                {
+                    _productionOptions[indexRandom] = _productionOptions[lastIndex];
+                    _productionOptions.RemoveAt(lastIndex);
 
-            return true;
+                    continue;
+                }
+
+                return true;
+            }
+            while (_productionOptions.Count > 0);
+
+            productionOption = null;
+
+            return false;
+            
         }
 
         private bool IsProhibited(IProductionOption productionOption)

@@ -55,8 +55,12 @@ namespace BattleBase.Gameplay.Actors.Spawn
         public virtual void Enable() => 
             _currentTransaction = null;
 
-        public virtual void Disable() => 
+        public virtual void Disable()
+        {
             _dataController.Disable();
+
+            Reset();
+        }
 
         protected void AddActorToSpawnData(IActorData actorData)
         {
@@ -121,6 +125,9 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
         private void Reset()
         {
+            if (_currnetSpawnData == null)
+                return;
+
             _currnetSpawnData.ResetTimeSpent();
             _currnetSpawnData.UpdateData();
             _currentTransaction = null;

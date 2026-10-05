@@ -9,6 +9,7 @@ using BattleBase.Gameplay.CameraNavigation.InputReader;
 using BattleBase.Gameplay.MiniMap;
 using BattleBase.UI;
 using BattleBase.UI.PopUps;
+using BattleBase.Utils;
 using BattleBase.Utils.Constants;
 using UnityEngine;
 using VContainer;
@@ -38,6 +39,7 @@ namespace BattleBase.DI
         protected override void Configure(IContainerBuilder builder)
         {
             _builder = builder;
+            _builder.Register<Randomizer>(Lifetime.Singleton);
 
             RegisterMiniMapSystem();
             RegisterCameraSystem();
