@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 using VContainer;
 
 namespace BattleBase.Gameplay.Actors.Visual.Particle
 {
+    [PreviewExcluded(PreviewExclusionMode.Disable)]
     public class ParticleActivator : MonoBehaviour
     {
         [SerializeField] private ParticleView _prefab;
@@ -20,6 +21,9 @@ namespace BattleBase.Gameplay.Actors.Visual.Particle
 
         private void Awake()
         {
+            if (enabled == false)
+                return;
+
             _particleId = _prefab.Id;
         }
 

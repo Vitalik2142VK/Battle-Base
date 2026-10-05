@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: Config
   m_EditorClassIdentifier: 
   HiddenScenes:
+  - Assets/_Project/Scenes/AnimationScene.unity
   - Assets/PluginYourGames/Modules/Authorization/Example/Scenes/Authorization.unity
   - Assets/Canopus-III_Low-Poly_Sci-Fi_Desert_Units_Set_3/scenes_yup/Canopus-III_Low-Poly_Sci-Fi_Desert_Units_Set_3
     updated rotation.unity
+  - Assets/Plugins/FiXiK_Utilites/XLogger/Demo/DemoRu.unity
   - Assets/PluginYourGames/Modules/EnvirData/Example/Scenes/Envir.unity
   - Assets/PluginYourGames/Example/Scenes/ExampleYG2.unity
+  - Assets/_Project/Scenes/Game_3_LinesTest.unity
   - Assets/_Project/Scenes/Game_5_LinesTest.unity
   - Assets/PluginYourGames/Modules/InterstitialAdv/Example/Scenes/InterstitialAdv.unity
   - Assets/PluginYourGames/Modules/Localization/Example/Scenes/Localization.unity
@@ -28,6 +31,7 @@ MonoBehaviour:
   - Assets/PluginYourGames/Modules/Payments/Example/Scenes/Payments.unity
   - Assets/PluginYourGames/Modules/PlayerStats/Example/Scenes/PlayerStats.unity
   - Assets/_Project/Scenes/PrefabsScene.unity
+  - Assets/_Project/Scenes/Terrain.unity
   - Assets/_Project/Scenes/TestLevel.unity
   - Assets/Tree_Packs/URP_Tree_Pack/Scene/URP_Tree_Model_Sample.unity
   - Assets/Violet Theme Ui/Scenes/Violet UI.unity
