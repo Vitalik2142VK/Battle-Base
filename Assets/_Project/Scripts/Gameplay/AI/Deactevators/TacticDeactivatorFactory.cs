@@ -20,10 +20,10 @@ namespace BattleBase.Gameplay.AI.Deactevators
 
         public ITacticDeactivator Create(IEnumerable<ITacticDeactivatorScore> scores)
         {
-            if (scores == null)
-                throw new ArgumentNullException(nameof(scores));
-
             TacticDeactivator tacticDeactevator = new();
+
+            if (scores == null)
+                return tacticDeactevator;
 
             foreach (var score in scores)
             {
