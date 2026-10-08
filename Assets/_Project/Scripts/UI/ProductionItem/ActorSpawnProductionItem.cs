@@ -1,6 +1,7 @@
 using System;
 using BattleBase.Commands;
 using BattleBase.DI;
+using BattleBase.Gameplay.Actors;
 using BattleBase.Gameplay.Actors.Production;
 using BattleBase.Gameplay.Actors.Production.Spawn;
 using BattleBase.UI.Buttons;
@@ -22,6 +23,7 @@ namespace BattleBase.UI
         [SerializeField] private ButtonClickHandler _decrementButton;
         [SerializeField] private TMP_Text _price;
         [SerializeField] private TMP_Text _quantity;
+        [SerializeField] private PowerPanelInfo _powerPanel;
 
         private ISpawnProductionOptionPresenter _presenter;
         private ISpawnProductionData _spawnData;
@@ -81,6 +83,12 @@ namespace BattleBase.UI
             _icon.sprite = _info.Icon;
             _price.text = _info.Price.ToString();
 
+            if (productionData is IActorData actorData)
+            {
+                if (actorData.Power > 0)
+                    _powerPanel.Init(actorData.Power);
+            }
+
             if (gameObject.activeSelf)
             {
                 _spawnData.DataChanged += OnUpdateData;
@@ -107,11 +115,20 @@ namespace BattleBase.UI
                 _decrementButton.Hide();
         }
 
+        private void UpdatePowerPanel()
+        {
+            if (_powerPanel.IsInitialized)
+                _powerPanel.Show();
+            else
+                _powerPanel.Hide();
+        }
+
         private void OnUpdateData() //todo check subscriptions
         {
             SetProgress01();
             SetQuantity();
             SetCancelButton();
+            UpdatePowerPanel();
         }
 
         private void OnItemButton(ButtonClickHandler handler)
