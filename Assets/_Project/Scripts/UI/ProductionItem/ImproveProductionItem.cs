@@ -92,14 +92,14 @@ namespace BattleBase.UI
         private void OnUpdateData() => 
             _itemButtonActivator.SetActive(_improverState.CanBuy);
 
-        private void OnItemButton(ButtonClickHandler handler)
+        private void OnItemButton()
         {
             _presenter.HandleSelectButton();
 
             ItemClicked?.Invoke(_data);
         }
 
-        private void OnMoreInfoClicked(ButtonClickHandler handler)
+        private void OnMoreInfoClicked()
         {
             IProductionData info = _data;
             ItemPopUpInfo adaptInfo = new(info.Icon, info.Name, _data.Description);

@@ -42,7 +42,7 @@ namespace BattleBase.ShopSystem
         private void UpdateInfo() =>
             _upgradeButton.UpdateInfo(Info);
 
-        private void OnClick(ButtonClickHandler _)
+        private void OnClick()
         {
             IUpgradeInfo info = Info;
             bool isFullStack = info.CurrentLevel >= info.MaximumLevel;

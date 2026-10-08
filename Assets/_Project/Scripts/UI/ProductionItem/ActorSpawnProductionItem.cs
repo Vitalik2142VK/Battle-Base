@@ -131,21 +131,21 @@ namespace BattleBase.UI
             UpdatePowerPanel();
         }
 
-        private void OnItemButton(ButtonClickHandler handler)
+        private void OnItemButton()
         {
             _presenter.HandleSelectButton();
 
             ItemClicked?.Invoke(_info);
         }
 
-        private void OnDecrementClicked(ButtonClickHandler handler)
+        private void OnDecrementClicked()
         {
             _presenter.HandleDecrementButton();
 
             DecrementClicked?.Invoke(_info);
         }
 
-        private void OnMoreInfoClicked(ButtonClickHandler handler)
+        private void OnMoreInfoClicked()
         {
             IProductionData info = _info;
             ItemPopUpInfo adaptInfo = new(info.Icon, info.Name, _info.Description);

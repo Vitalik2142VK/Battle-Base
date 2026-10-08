@@ -15,7 +15,7 @@ namespace BattleBase.UI.Buttons
 
         public int CommandCount => _commands.Count;
 
-        public event Action<ButtonClickHandler> Clicked;
+        public event Action Clicked;
 
         private void Awake() =>
             _button = GetComponent<Button>();
@@ -54,7 +54,7 @@ namespace BattleBase.UI.Buttons
             foreach (CommandBase command in _commands)
                 command.Execute();
 
-            Clicked?.Invoke(this);
+            Clicked?.Invoke();
         }
     }
 }
