@@ -23,8 +23,6 @@ namespace BattleBase.UI
         private IProductionOptionPresenter _presenter;
         private IProductionData _data;
 
-        public event Action<IProductionData> ItemClicked;
-
         [Inject]
         public void Construct(ItemInfoPopUp popUp, [Key(VContainerKeys.CommandShowItemInfoPopUp)] CommandBase commandShowItemInfoPopUp)
         {
@@ -59,12 +57,8 @@ namespace BattleBase.UI
             _price.text = $"+{_data.Price}";
         }
 
-        private void OnItemButton()
-        {
+        private void OnItemButton() => 
             _presenter.HandleSelectButton();
-
-            ItemClicked?.Invoke(_data);
-        }
 
         private void OnMoreInfoClicked()
         {

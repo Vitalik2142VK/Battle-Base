@@ -16,7 +16,8 @@ namespace BattleBase.Gameplay.Actors.Production
     {
         [SerializeField] private ProductionPanel _productionPanel;
 
-        private List<IProductionItem> _items = new();
+        private List<IProductionItem> _items;
+        private List<IChangeableItem> _changeableItems;
 
         private IClickDetector _clickDetector;
         private ISelector _selector;
@@ -32,6 +33,8 @@ namespace BattleBase.Gameplay.Actors.Production
         {
             _clickDetector = clickDetector ?? throw new ArgumentNullException(nameof(clickDetector));
             _selector = selector ?? throw new ArgumentNullException(nameof(selector));
+            _items = new List<IProductionItem>();
+            _changeableItems = new List<IChangeableItem>();
             _productionContext = new ProductionContext(
                 productionItemFactory,
                 buildingSitesStorage,
@@ -93,7 +96,8 @@ namespace BattleBase.Gameplay.Actors.Production
             _productionContext.Clear();
             _selector.Unselect();
             _productionPanel.Hide();
-            _items.Clear();
+
+            ClearItems();
         }
 
         private void OnSelectViewSpawner()
@@ -101,8 +105,9 @@ namespace BattleBase.Gameplay.Actors.Production
             if (_selector.TrySelect(_selectable) == false)
                 _selector.Unselect();
 
+            ClearItems();
+
             _productionPanel.ClearContext();
-            _items.Clear();
             _items.AddRange(_productionContext.GetAvailableItems());
 
             if (_items.Count == 0)
@@ -113,11 +118,26 @@ namespace BattleBase.Gameplay.Actors.Production
             foreach (IProductionItem item in _items)
             {
                 _productionPanel.AddItem(item);
-                item.ItemClicked += OnSelectItem;
+
+                if (item is IChangeableItem changeable)
+                {
+                    _changeableItems.Add(changeable);
+
+                    changeable.Changed += OnUpdateItems;
+}
             }
         }
 
-        private void OnSelectItem(IProductionData data) => 
+        private void OnUpdateItems() =>
             OnSelectViewSpawner();
+
+        private void ClearItems()
+        {
+            foreach (var changeable in _changeableItems)
+                changeable.Changed -= OnUpdateItems;
+
+            _items.Clear();
+            _changeableItems.Clear();
+        }
     }
 }

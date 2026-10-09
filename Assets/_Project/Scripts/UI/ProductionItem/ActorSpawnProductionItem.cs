@@ -21,17 +21,15 @@ namespace BattleBase.UI
         [SerializeField] private ButtonClickHandler _itemButton;
         [SerializeField] private ButtonClickHandler _moreInfoButton;
         [SerializeField] private ButtonClickHandler _decrementButton;
+        [SerializeField] private ButtonRepeatHandler _buttonRepeatHandler;
+        [SerializeField] private PowerPanelInfo _powerPanel;
         [SerializeField] private TMP_Text _price;
         [SerializeField] private TMP_Text _quantity;
-        [SerializeField] private PowerPanelInfo _powerPanel;
 
         private ISpawnProductionOptionPresenter _presenter;
         private ISpawnProductionData _spawnData;
         private IProductionData _info;
         private ItemInfoPopUp _popUp;
-
-        public event Action<IProductionData> ItemClicked;
-        public event Action<IProductionData> DecrementClicked;
 
         [Inject]
         public void Construct(
@@ -47,6 +45,7 @@ namespace BattleBase.UI
             _itemButton.Clicked += OnItemButton;
             _moreInfoButton.Clicked += OnMoreInfoClicked;
             _decrementButton.Clicked += OnDecrementClicked;
+            _buttonRepeatHandler.Repeated += OnItemButton;
 
             if (_spawnData != null)
             {
@@ -60,6 +59,7 @@ namespace BattleBase.UI
             _itemButton.Clicked -= OnItemButton;
             _moreInfoButton.Clicked -= OnMoreInfoClicked;
             _decrementButton.Clicked -= OnDecrementClicked;
+            _buttonRepeatHandler.Repeated -= OnItemButton;
 
             if (_spawnData != null)
                 _spawnData.DataChanged -= OnUpdateData;
@@ -123,7 +123,7 @@ namespace BattleBase.UI
                 _powerPanel.Hide();
         }
 
-        private void OnUpdateData() //todo check subscriptions
+        private void OnUpdateData() //todo check for double subscriptions
         {
             SetProgress01();
             SetQuantity();
@@ -131,19 +131,11 @@ namespace BattleBase.UI
             UpdatePowerPanel();
         }
 
-        private void OnItemButton()
-        {
+        private void OnItemButton() => 
             _presenter.HandleSelectButton();
 
-            ItemClicked?.Invoke(_info);
-        }
-
-        private void OnDecrementClicked()
-        {
+        private void OnDecrementClicked() => 
             _presenter.HandleDecrementButton();
-
-            DecrementClicked?.Invoke(_info);
-        }
 
         private void OnMoreInfoClicked()
         {

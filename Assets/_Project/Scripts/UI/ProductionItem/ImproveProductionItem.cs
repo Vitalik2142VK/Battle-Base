@@ -14,7 +14,7 @@ using VContainer;
 
 namespace BattleBase.UI
 {
-    public class ImproveProductionItem : ProductionItemBase, IProductionItem, IInjectable
+    public class ImproveProductionItem : ProductionItemBase, IProductionItem, IChangeableItem, IInjectable
     {
         [SerializeField] private Image _icon;
         [SerializeField] private Activator _itemButtonActivator;
@@ -28,7 +28,7 @@ namespace BattleBase.UI
         private IMaterialData _materialData;
         private IImproverState _improverState;
 
-        public event Action<IProductionData> ItemClicked;
+        public event Action Changed;
 
         [Inject]
         public void Construct(
@@ -96,7 +96,7 @@ namespace BattleBase.UI
         {
             _presenter.HandleSelectButton();
 
-            ItemClicked?.Invoke(_data);
+            Changed?.Invoke();
         }
 
         private void OnMoreInfoClicked()
