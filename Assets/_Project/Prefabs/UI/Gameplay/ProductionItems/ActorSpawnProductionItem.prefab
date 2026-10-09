@@ -312,7 +312,8 @@ MonoBehaviour:
   _itemButton: {fileID: 5628718214111123866}
   _moreInfoButton: {fileID: 929033351811558536}
   _decrementButton: {fileID: 5814366360772579123}
-  _buttonRepeatHandler: {fileID: 6948379324399101065}
+  _buttonRepeat: {fileID: 6948379324399101065}
+  _decrementButtonRepeat: {fileID: 6928032425557666212}
   _powerPanel: {fileID: 5289112867559718187}
   _price: {fileID: 3062427556180935693}
   _quantity: {fileID: 4052730338946135612}
@@ -1112,6 +1113,8 @@ GameObject:
   - component: {fileID: 5550955560076916800}
   - component: {fileID: 4099113624543970073}
   - component: {fileID: 5814366360772579123}
+  - component: {fileID: 1479650199709097040}
+  - component: {fileID: 6928032425557666212}
   m_Layer: 5
   m_Name: DecrementButton
   m_TagString: Untagged
@@ -1234,6 +1237,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _commands: []
+--- !u!114 &1479650199709097040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4432763336044415152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a465da872f310d74f91174c587a81648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _holdTime: 1
+--- !u!114 &6928032425557666212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4432763336044415152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e22a6179cbae6d744af648d7c7108a34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buttonHoldHandler: {fileID: 1479650199709097040}
+  _startRepeatInterval: 0.3
+  _finishRepeatInterval: 0.02
+  _repeatDelta: 0.04
 --- !u!1 &4657448480892400964
 GameObject:
   m_ObjectHideFlags: 0

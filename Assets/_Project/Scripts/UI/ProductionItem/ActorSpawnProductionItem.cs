@@ -21,7 +21,8 @@ namespace BattleBase.UI
         [SerializeField] private ButtonClickHandler _itemButton;
         [SerializeField] private ButtonClickHandler _moreInfoButton;
         [SerializeField] private ButtonClickHandler _decrementButton;
-        [SerializeField] private ButtonRepeatHandler _buttonRepeatHandler;
+        [SerializeField] private ButtonRepeatHandler _buttonRepeat;
+        [SerializeField] private ButtonRepeatHandler _decrementButtonRepeat;
         [SerializeField] private PowerPanelInfo _powerPanel;
         [SerializeField] private TMP_Text _price;
         [SerializeField] private TMP_Text _quantity;
@@ -45,7 +46,8 @@ namespace BattleBase.UI
             _itemButton.Clicked += OnItemButton;
             _moreInfoButton.Clicked += OnMoreInfoClicked;
             _decrementButton.Clicked += OnDecrementClicked;
-            _buttonRepeatHandler.Repeated += OnItemButton;
+            _buttonRepeat.Repeated += OnItemButton;
+            _decrementButtonRepeat.Repeated += OnDecrementClicked;
 
             if (_spawnData != null)
             {
@@ -59,7 +61,8 @@ namespace BattleBase.UI
             _itemButton.Clicked -= OnItemButton;
             _moreInfoButton.Clicked -= OnMoreInfoClicked;
             _decrementButton.Clicked -= OnDecrementClicked;
-            _buttonRepeatHandler.Repeated -= OnItemButton;
+            _buttonRepeat.Repeated -= OnItemButton;
+            _decrementButtonRepeat.Repeated -= OnDecrementClicked;
 
             if (_spawnData != null)
                 _spawnData.DataChanged -= OnUpdateData;

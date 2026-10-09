@@ -15,7 +15,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
         public abstract event Action<IActor> Spawned;
         public abstract event Action SpawnStarted;
-        public abstract event Action SpawnCancled;
+        public abstract event Action SpawnCanceled;
         public abstract event Action SpawnFinished;
 
         public ActorSpawner(IEnumerable<IActorData> actorsToCreate, IMaterialRegistry materialRegistry)

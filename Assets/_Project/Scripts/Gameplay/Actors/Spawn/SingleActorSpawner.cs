@@ -18,7 +18,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
         public override event Action<IActor> Spawned;
         public override event Action SpawnStarted;
-        public override event Action SpawnCancled;
+        public override event Action SpawnCanceled;
         public override event Action SpawnFinished;
 
         public SingleActorSpawner(
@@ -110,7 +110,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
                 RemoveActorToSpawnData(_currentActorData);
                 _currentActorData = null;
 
-                SpawnCancled?.Invoke();
+                SpawnCanceled?.Invoke();
             }
         }
 

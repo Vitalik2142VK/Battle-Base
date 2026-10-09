@@ -28,7 +28,7 @@ namespace BattleBase.Gameplay.Actors.Spawn.View
                 return;
 
             _notifier.SpawnStarted += OnPlayStartBuild;
-            _notifier.SpawnCancled += OnPlayCancleBuild;
+            _notifier.SpawnCanceled += OnPlayCancleBuild;
             _notifier.SpawnFinished += OnPlayFinishBuild;
         }
 
@@ -38,7 +38,7 @@ namespace BattleBase.Gameplay.Actors.Spawn.View
                 return;
 
             _notifier.SpawnStarted -= OnPlayStartBuild;
-            _notifier.SpawnCancled -= OnPlayCancleBuild;
+            _notifier.SpawnCanceled -= OnPlayCancleBuild;
             _notifier.SpawnFinished -= OnPlayFinishBuild;
         }
 
@@ -49,7 +49,7 @@ namespace BattleBase.Gameplay.Actors.Spawn.View
             if (gameObject.activeSelf)
             {
                 _notifier.SpawnStarted += OnPlayStartBuild;
-                _notifier.SpawnCancled += OnPlayCancleBuild;
+                _notifier.SpawnCanceled += OnPlayCancleBuild;
                 _notifier.SpawnFinished += OnPlayFinishBuild;
             }
         }
