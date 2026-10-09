@@ -1,5 +1,5 @@
-﻿using System;
-using BattleBase.Utils;
+﻿using BattleBase.Utils;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -17,8 +17,11 @@ namespace BattleBase.UI.Buttons
         private bool _isHolding;
         private bool _isExecuted;
 
+        public event Action HoldStarted;
         public event Action HoldActivated;
         public event Action HoldEnded;
+
+        public float HoldTime => _holdTime;
 
         private void Awake()
         {
@@ -55,6 +58,8 @@ namespace BattleBase.UI.Buttons
             _isHolding = true;
             _isExecuted = false;
             _timer.RestartTimer();
+
+            HoldStarted?.Invoke();
         }
 
         public void OnPointerUp(PointerEventData _) =>

@@ -15,7 +15,7 @@ namespace BattleBase.UI
     public class DemolitionBuildingProductionItem : ProductionItemBase, IProductionItem, IInjectable
     {
         [SerializeField] private Image _icon;
-        [SerializeField] private ButtonClickHandler _itemButton;
+        [SerializeField] private ButtonHoldHandler _itemButton;
         [SerializeField] private ButtonClickHandler _moreInfoButton;
         [SerializeField] private TMP_Text _price;
 
@@ -32,13 +32,13 @@ namespace BattleBase.UI
 
         private void OnEnable()
         {
-            _itemButton.Clicked += OnItemButton;
+            _itemButton.HoldActivated += OnItemButton;
             _moreInfoButton.Clicked += OnMoreInfoClicked;
         }
 
         private void OnDisable()
         {
-            _itemButton.Clicked -= OnItemButton;
+            _itemButton.HoldActivated -= OnItemButton;
             _moreInfoButton.Clicked -= OnMoreInfoClicked;
         }
 

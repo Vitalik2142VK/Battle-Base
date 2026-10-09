@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DemolitionSource
   m_EditorClassIdentifier: 
   _demolitionData:
-    _icon: {fileID: 2586797270429886212, guid: 1aeed7b3f15aff04494ae81ad74349e0, type: 3}
+    _icon: {fileID: 21300000, guid: 861faae92a82b774da4cfa1a8748d11a, type: 3}
     _name:
       _ru:
         _text: "\u041F\u0440\u043E\u0434\u0430\u0442\u044C"
