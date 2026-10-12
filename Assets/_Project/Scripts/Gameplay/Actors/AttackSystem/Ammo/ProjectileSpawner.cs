@@ -17,6 +17,17 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
             if (_container == null)
                 _container = transform;
 
+            ProjectileFactory[] factories = transform.GetComponentsInChildren<ProjectileFactory>();
+
+            foreach (var factory in factories)
+            {
+                if (_factories.Contains(factory) == false)
+                    _factories.Add(factory);
+            }
+
+            if (_factories.Count == 0)
+                return;
+
             for (int i = 0; i < _factories.Count; i++)
             {
                 if (_factories[i] == null)
@@ -32,7 +43,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
                 factory => factory.ProjectileId);
         }
 
-        public IProjectile Spawn(string missileId) =>
-            _poolRegistry.Spawn(missileId);
+        public IProjectile Spawn(string projectileId) =>
+            _poolRegistry.Give(projectileId);
     }
 }

@@ -4,20 +4,21 @@ using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.Visual.Sound
 {
-    [RequireComponent(typeof(AudioSource))]
-    public class SoundEffect : MonoBehaviour, ISoundEffect, IPoolable<SoundEffect>
+    public class SoundEffect : MonoBehaviour, ISoundEffect, ISoundEffectData, IPoolable<SoundEffect>
     {
+        [SerializeField] private AudioSource _audioSource;
+
         private Transform _transform;
-        private AudioSource _audioSource;
 
         public event Action<SoundEffect> Deactivated;
 
         public string Id => gameObject.name;
 
+        public float MaxDistance => _audioSource.maxDistance;
+
         private void Awake()
         {
             _transform = transform;
-            _audioSource = GetComponent<AudioSource>();
         }
 
         private void Update()

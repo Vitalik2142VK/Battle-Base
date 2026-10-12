@@ -27,8 +27,8 @@ using BattleBase.Gameplay.AI.Deactevators;
 using BattleBase.Gameplay.AI.Factories;
 using BattleBase.Gameplay.AI.Modifiers;
 using BattleBase.Gameplay.AI.Tactics;
+using BattleBase.Gameplay.Audio;
 using BattleBase.Gameplay.Levels;
-using BattleBase.Utils;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -37,6 +37,7 @@ namespace BattleBase.DI
 {
     public class ActorsLifetimeScope : LifetimeScope
     {
+        [SerializeField] private AudioListnerPositionSetter _audioListnerPositionSetter;
         [SerializeField] private ActorPoolsRegistrator _poolsRegistrator;
         [SerializeField] private ActorsController _actorController;
         [SerializeField] private WaypointController _waypointController;
@@ -44,6 +45,7 @@ namespace BattleBase.DI
         [SerializeField] private TrailParticleSpawner _trailParticleSpawner;
         [SerializeField] private ParticleSpawner _particleSpawner;
         [SerializeField] private SoundEffectSpawner _soundEffectSpawner;
+        [SerializeField] private SoundLimiterController _soundLimiterController;
         [SerializeField] private AreaDefenseAI _areaDefenseAI;
         [SerializeField] private UpgraderConfig _upgradeConfig;
 
@@ -58,11 +60,13 @@ namespace BattleBase.DI
                 .As<IActorsController>()
                 .As<IActorsStorage>();
 
+            _builder.RegisterInstance<IAudioListner>(_audioListnerPositionSetter);
             _builder.RegisterInstance<IWaypointController>(_waypointController);
             _builder.RegisterInstance<IProjectileSpawner>(_projectileSpawner);
             _builder.RegisterInstance<ITrailParticleSpawner>(_trailParticleSpawner);
             _builder.RegisterInstance<IParticleSpawner>(_particleSpawner);
             _builder.RegisterInstance<ISoundEffectSpawner>(_soundEffectSpawner);
+            _builder.RegisterInstance<ISoundLimiterController>(_soundLimiterController);
             _builder.RegisterInstance<IUpgraderConfig>(_upgradeConfig);
 
             _builder.Register<IActorSpawnService, ActorSpawnService>(Lifetime.Scoped);

@@ -11,7 +11,7 @@ namespace BattleBase.Gameplay.Actors.Visual.Sound
 
         private IObjectResolver _resolver;
 
-        public string TrailParticleId => _prefab.Id;
+        public string SoundEffectId => _prefab.Id;
 
         [Inject]
         public void Construct(IObjectResolver resolver)

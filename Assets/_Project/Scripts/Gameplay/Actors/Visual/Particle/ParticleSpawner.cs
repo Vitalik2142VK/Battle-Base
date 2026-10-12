@@ -16,6 +16,17 @@ namespace BattleBase.Gameplay.Actors.Visual.Particle
             if (_container == null)
                 _container = transform;
 
+            ParticleFactory[] factories = transform.GetComponentsInChildren<ParticleFactory>();
+
+            foreach (var factory in factories)
+            {
+                if (_factories.Contains(factory) == false)
+                    _factories.Add(factory);
+            }
+
+            if (_factories.Count == 0)
+                return;
+
             for (int i = 0; i < _factories.Count; i++)
             {
                 if (_factories[i] == null)
@@ -28,10 +39,10 @@ namespace BattleBase.Gameplay.Actors.Visual.Particle
             _poolRegistry = new IdPoolRegistry<ParticleView, ParticleFactory>(
                 _factories,
                 _container,
-                factory => factory.TrailParticleId);
+                factory => factory.ParticleId);
         }
 
         public IParticle Spawn(string particleId) =>
-            _poolRegistry.Spawn(particleId);
+            _poolRegistry.Give(particleId);
     }
 }
