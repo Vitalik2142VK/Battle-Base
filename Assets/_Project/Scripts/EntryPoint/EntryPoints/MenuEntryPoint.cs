@@ -51,9 +51,10 @@ namespace BattleBase.EntryPoints
         private void OnPurchaseSuccess(string id)
         {
             if (string.Equals(id, PurchasesIds.NoAds))
+            {
                 _purchasesSaver.SetNoAdsState(true);
-
-            ProcessVisibleAds();
+                ProcessVisibleAds();
+            }            
         }
 
         private void ProcessVisibleAds()
@@ -62,6 +63,11 @@ namespace BattleBase.EntryPoints
             {
                 _advertisingService.SetActivityStickyAd(false);
                 _noAdsButton.Hide();
+            }
+            else
+            {
+                _advertisingService.SetActivityStickyAd(true);
+                _noAdsButton.Show();
             }
         }
     }

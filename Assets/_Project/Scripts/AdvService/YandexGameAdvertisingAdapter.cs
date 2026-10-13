@@ -8,15 +8,18 @@ namespace BattleBase.AdvService
         public YandexGameAdvertisingAdapter()
         {
             YG2.onRewardAdv += OnReward;
+            YG2.onErrorRewardedAdv += OnCloseReward;
             YG2.onPurchaseSuccess += OnPurchaseSuccess;
         }
 
         public event Action<string> RewardAdvShown;
+        public event Action RewardAdvClosed;
         public event Action<string> PurchaseSuccess;
 
         public void Dispose()
         {
             YG2.onRewardAdv -= OnReward;
+            YG2.onCloseRewardedAdv += OnCloseReward;
             YG2.onPurchaseSuccess -= OnPurchaseSuccess;
         }
 
@@ -34,6 +37,9 @@ namespace BattleBase.AdvService
 
         private void OnReward(string id) =>
             RewardAdvShown?.Invoke(id);
+
+        private void OnCloseReward() =>
+            RewardAdvClosed?.Invoke();
 
         private void OnPurchaseSuccess(string id) =>
             PurchaseSuccess?.Invoke(id);
