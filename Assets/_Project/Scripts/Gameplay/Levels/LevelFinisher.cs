@@ -29,17 +29,23 @@ namespace BattleBase.Gameplay.Levels
         {
             _winStateController = winStateController ?? throw new ArgumentNullException(nameof(winStateController));
             _territoriesModel = territoriesModel ?? throw new ArgumentNullException(nameof(territoriesModel));
-            _creditsModel = creditsModel ?? throw new ArgumentNullException(nameof(creditsModel));            
+            _creditsModel = creditsModel ?? throw new ArgumentNullException(nameof(creditsModel));
         }
 
         private void Start() =>
             _startTime = Time.time;
 
-        private void OnEnable() =>
+        private void OnEnable()
+        {
             _winStateController.Winned += OnFinishLevel;
+            _winPopUp.RewardIncreased += OnRewardIncreased;
+        }
 
-        private void OnDisable() =>
+        private void OnDisable()
+        {
             _winStateController.Winned -= OnFinishLevel;
+            _winPopUp.RewardIncreased -= OnRewardIncreased;
+        }
 
         private void OnFinishLevel(bool isWin)
         {
@@ -65,6 +71,9 @@ namespace BattleBase.Gameplay.Levels
                 _losePopUp.Show();
             }
         }
+
+        private void OnRewardIncreased(int value) =>
+            _creditsModel.Increase(value);
 
         private int CalculateAdditionalCredits(int basic, float timeMinutes)
         {
