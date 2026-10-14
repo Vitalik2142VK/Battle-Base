@@ -15,5 +15,7 @@ namespace BattleBase.Gameplay.Actors.Movement
         public void Move();
 
         public void Stop();
+
+        public void Upgrade(MoveConfigModificator modificator);
     }
 }

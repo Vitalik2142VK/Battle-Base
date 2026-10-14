@@ -10,9 +10,12 @@ namespace BattleBase.Gameplay.Actors.ComponentImprovement
     {
         [SerializeField][Min(0.01f)] private float _damageCoefficientByLevel = 0.1f;
         [SerializeField][Min(0.01f)] private float _healtheCoefficientByLevel = 0.2f;
+        [SerializeField][Min(0.01f)] private float _speedCoefficientByLevel = 0.125f;
 
         public float DamageCoefficientByLevel => _damageCoefficientByLevel;
 
         public float HealthCoefficientByLevel => _healtheCoefficientByLevel;
+
+        public float SpeedCoefficientByLevel => _speedCoefficientByLevel;
     }
 }

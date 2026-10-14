@@ -37,6 +37,6 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.View
         }
 
         private void OnPlayShot() =>
-            _activator.Activate(_prefab.Id);
+            _activator.Activate(_prefab);
     }
 }

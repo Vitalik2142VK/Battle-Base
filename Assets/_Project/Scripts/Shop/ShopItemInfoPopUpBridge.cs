@@ -28,7 +28,7 @@ namespace BattleBase.ShopSystem
         private void OnDisable() =>
             _itemInfoOpenerButton.Clicked -= OnClick;
 
-        private void OnClick(ButtonClickHandler _)
+        private void OnClick()
         {
             IActorItemConfig selected = _unitsUpgradeModel.Selected;
 

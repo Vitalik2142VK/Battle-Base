@@ -1,7 +1,11 @@
-﻿namespace BattleBase.Gameplay.Actors.Visual.Sound
+﻿using System;
+
+namespace BattleBase.Gameplay.Actors.Visual.Sound
 {
     public interface ISoundEffectSpawner
     {
-        public ISoundEffect Spawn(string particleId);
+        public event Action<string> Spawned;
+
+        public bool TrySpawn(string particleId, out ISoundEffect soundEffect);
     }
 }

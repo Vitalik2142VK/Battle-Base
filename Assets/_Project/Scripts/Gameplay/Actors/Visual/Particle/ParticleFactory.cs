@@ -12,7 +12,7 @@ namespace BattleBase.Gameplay.Actors.Visual.Particle
 
         private IObjectResolver _resolver;
 
-        public string TrailParticleId => _prefab.Id;
+        public string ParticleId => _prefab.Id;
 
         [Inject]
         public void Construct(IObjectResolver resolver)

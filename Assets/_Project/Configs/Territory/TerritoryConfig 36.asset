@@ -21,7 +21,7 @@ MonoBehaviour:
       _text: Name
   _creditsForFirstVictory: 0
   _brainConfig: {fileID: 11400000, guid: d1e9cac88a791b24bba272ba91239dfd, type: 2}
-  _upgradeActrosCoefficient: 0.475
+  _upgradeActrosCoefficient: 0.465
   _actorsToOpen: []
   _bannedActors:
   - {fileID: 11400000, guid: 1f46563fef4f1a74596c038054377828, type: 2}
@@ -37,17 +37,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9fea4b206644d774cb16841b79f38449, type: 2}
   - {fileID: 11400000, guid: 9f51f39e46a8b4e4a80a2e3befedd6fc, type: 2}
   - {fileID: 11400000, guid: 723fc8065fedc85469fc9acd6ba62f5f, type: 2}
-  - {fileID: 11400000, guid: eacfd7c0f370f984ab0e4855bf213890, type: 2}
-  - {fileID: 11400000, guid: e5cdd49978f695d4ba531e6dbe34705c, type: 2}
-  - {fileID: 11400000, guid: a01aceef08e36ba478d1e585dd4a12f7, type: 2}
-  - {fileID: 11400000, guid: 02fa36878b40eea4a9291d54966cc15e, type: 2}
   - {fileID: 11400000, guid: 8447eaf3ba3c32d4a84099ea8db27f47, type: 2}
   - {fileID: 11400000, guid: aa64e7bd2396d084fb38961449adedcc, type: 2}
   - {fileID: 11400000, guid: 808b65cf08ef71b44b2ecf0eaf8ad63d, type: 2}
   - {fileID: 11400000, guid: 1f370d3efda39c944af5597aa43541b1, type: 2}
   - {fileID: 11400000, guid: 8740b58b78f8fdf46b3c08ec0603ada1, type: 2}
   - {fileID: 11400000, guid: e587a36f43eff694bbf1c201fc3498c5, type: 2}
-  - {fileID: 11400000, guid: 4c34700e5c731f14184361f670a61084, type: 2}
   - {fileID: 11400000, guid: 9f81944311ed51b439dcd449efc2e5fd, type: 2}
-  - {fileID: 11400000, guid: 2069bf6504a12de4ab3c8e86cca4cef6, type: 2}
   - {fileID: 11400000, guid: 292c450663b84384f968d6d256496423, type: 2}
+  - {fileID: 11400000, guid: a01aceef08e36ba478d1e585dd4a12f7, type: 2}
+  - {fileID: 11400000, guid: 02fa36878b40eea4a9291d54966cc15e, type: 2}

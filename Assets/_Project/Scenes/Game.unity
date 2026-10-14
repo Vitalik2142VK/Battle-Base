@@ -860,6 +860,7 @@ MonoBehaviour:
   - {fileID: 128479094}
   - {fileID: 1446567722}
   - {fileID: 9306340}
+  _audioListnerPositionSetter: {fileID: 743526024}
   _poolsRegistrator: {fileID: 1422327763}
   _actorController: {fileID: 462372483}
   _waypointController: {fileID: 1813657851}
@@ -867,6 +868,7 @@ MonoBehaviour:
   _trailParticleSpawner: {fileID: 472526455}
   _particleSpawner: {fileID: 1715484040}
   _soundEffectSpawner: {fileID: 1562503755}
+  _soundLimiterController: {fileID: 2120012445}
   _areaDefenseAI: {fileID: 641211199}
   _upgradeConfig: {fileID: 11400000, guid: acc1ee7754cf0934a9c271407f23bf99, type: 2}
 --- !u!1001 &87211436
@@ -6180,6 +6182,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cf8b45da58522747ae67112480c8808, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _offset: {x: 0, y: 0, z: 0}
+  _downOffsetCoefficient: 0.5
+  _maxHeight: 60
+  _minHeight: 10
 --- !u!81 &743526025
 AudioListener:
   m_ObjectHideFlags: 0
@@ -11484,6 +11490,7 @@ Transform:
   - {fileID: 472526454}
   - {fileID: 1715484039}
   - {fileID: 1562503754}
+  - {fileID: 2120012444}
   - {fileID: 1813657850}
   - {fileID: 1978955115}
   - {fileID: 641211198}
@@ -12683,6 +12690,7 @@ MonoBehaviour:
   _factories:
   - {fileID: 1446805700}
   _container: {fileID: 696706977}
+  _maxNumberSounds: 20
 --- !u!4 &1571344139 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2764946965775427351, guid: 2a5c3eede0267bb4bb0b222817489885,
@@ -13478,6 +13486,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 91044693}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1687244539
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1687244540}
+  - component: {fileID: 1687244541}
+  m_Layer: 0
+  m_Name: SoundPlaybackLimiter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1687244540
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687244539}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2120012444}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1687244541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687244539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c489528771147d54c99bcd35e7771cc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 5776329295304102759, guid: a97879a1b5f1f594bab018e88b617f6a, type: 3}
+  _timeLimit: 0.03
 --- !u!1 &1687718030
 GameObject:
   m_ObjectHideFlags: 0
@@ -17162,6 +17216,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731126e48a4838840bf07d4d96788c62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2120012443
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2120012444}
+  - component: {fileID: 2120012445}
+  m_Layer: 0
+  m_Name: SoundLimiterController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2120012444
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2120012443}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1687244540}
+  m_Father: {fileID: 1446567723}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2120012445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2120012443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65aee05d89c05d04383ade6f61417944, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _limiters:
+  - {fileID: 1687244541}
 --- !u!1 &2131635206
 GameObject:
   m_ObjectHideFlags: 0

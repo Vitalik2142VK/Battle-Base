@@ -29,6 +29,10 @@ namespace BattleBase.Gameplay.Actors.ComponentImprovement
                 info.HealthInfo,
                 upgraderConfig.HealthCoefficientByLevel,
                 enemyUpgradeCoefficient);
+            SpeedInfo = new EnemyActorUpgradeLevel(
+                info.SpeedInfo,
+                upgraderConfig.SpeedCoefficientByLevel,
+                enemyUpgradeCoefficient);
         }
 
         public IUpgradeLevel DamageInfo { get; }

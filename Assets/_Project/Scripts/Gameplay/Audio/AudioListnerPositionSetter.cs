@@ -8,8 +8,9 @@ using VContainer;
 namespace BattleBase.Gameplay.Audio
 {
     [RequireComponent(typeof(AudioListener))]
-    public class AudioListnerPositionSetter : MonoBehaviour
+    public class AudioListnerPositionSetter : MonoBehaviour, IAudioListner
     {
+        [SerializeField] private Vector3 _offset = Vector3.zero;
         [SerializeField][Range(0, 1f)] private float _downOffsetCoefficient = 0.5f;
         [SerializeField][Min(1f)] private float _maxHeight = 60f;
         [SerializeField][Min(0f)] private float _minHeight = 10f;
@@ -61,8 +62,12 @@ namespace BattleBase.Gameplay.Audio
             FrustumProjection projection = _frustumProjectionService.Projection;
             Vector3 down = Vector3.Lerp(projection.RightDown, projection.LeftDown, Values.Half);
             Vector3 position = Vector3.Lerp(projection.Center, down, _downOffsetCoefficient);
+            position += _offset;
             position.y = Height;
             _transform.position = position;
         }
+
+        public bool CanListen(Vector3 position, float distance) =>
+            position.IsWithinDistance(_transform.position, distance);
     }
 }

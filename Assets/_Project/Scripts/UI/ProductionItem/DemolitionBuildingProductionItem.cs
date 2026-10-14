@@ -15,15 +15,13 @@ namespace BattleBase.UI
     public class DemolitionBuildingProductionItem : ProductionItemBase, IProductionItem, IInjectable
     {
         [SerializeField] private Image _icon;
-        [SerializeField] private ButtonClickHandler _itemButton;
+        [SerializeField] private ButtonHoldHandler _itemButton;
         [SerializeField] private ButtonClickHandler _moreInfoButton;
         [SerializeField] private TMP_Text _price;
 
         private ItemInfoPopUp _popUp;
         private IProductionOptionPresenter _presenter;
         private IProductionData _data;
-
-        public event Action<IProductionData> ItemClicked;
 
         [Inject]
         public void Construct(ItemInfoPopUp popUp, [Key(VContainerKeys.CommandShowItemInfoPopUp)] CommandBase commandShowItemInfoPopUp)
@@ -34,13 +32,13 @@ namespace BattleBase.UI
 
         private void OnEnable()
         {
-            _itemButton.Clicked += OnItemButton;
+            _itemButton.HoldActivated += OnItemButton;
             _moreInfoButton.Clicked += OnMoreInfoClicked;
         }
 
         private void OnDisable()
         {
-            _itemButton.Clicked -= OnItemButton;
+            _itemButton.HoldActivated -= OnItemButton;
             _moreInfoButton.Clicked -= OnMoreInfoClicked;
         }
 
@@ -59,14 +57,10 @@ namespace BattleBase.UI
             _price.text = $"+{_data.Price}";
         }
 
-        private void OnItemButton(ButtonClickHandler handler)
-        {
+        private void OnItemButton() => 
             _presenter.HandleSelectButton();
 
-            ItemClicked?.Invoke(_data);
-        }
-
-        private void OnMoreInfoClicked(ButtonClickHandler handler)
+        private void OnMoreInfoClicked()
         {
             IProductionData info = _data;
             ItemPopUpInfo adaptInfo = new(info.Icon, info.Name, _data.Description);

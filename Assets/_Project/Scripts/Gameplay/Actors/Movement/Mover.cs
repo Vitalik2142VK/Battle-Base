@@ -6,6 +6,7 @@ namespace BattleBase.Gameplay.Actors.Movement
     public class Mover : IMover
     {
         private readonly Queue<IWaypoint> _waypoints;
+        private readonly ModifiedMoveConfig _config;
 
         private IWaypoint _currentWaypoint;
 
@@ -15,14 +16,13 @@ namespace BattleBase.Gameplay.Actors.Movement
 
         public Mover(IMoveConfig moveConfig)
         {
-            Config = moveConfig ?? throw new ArgumentNullException(nameof(moveConfig));
-
             _waypoints = new Queue<IWaypoint>();
+            _config = new ModifiedMoveConfig(moveConfig);
         }
 
         public Type KeyType => typeof(IMover);
 
-        public IMoveConfig Config { get; }
+        public IMoveConfig Config => _config;
 
         public bool CanMove => _currentWaypoint != null;
 
@@ -36,6 +36,7 @@ namespace BattleBase.Gameplay.Actors.Movement
         {
             Stop();
 
+            _config.Reset();
             _waypoints.Clear();
             _currentWaypoint = null;
         }
@@ -70,5 +71,8 @@ namespace BattleBase.Gameplay.Actors.Movement
 
         public void Stop() => 
             Stoped?.Invoke();
+
+        public void Upgrade(MoveConfigModificator modificator) =>
+            _config.Modify(modificator);
     }
 }
