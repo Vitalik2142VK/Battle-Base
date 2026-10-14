@@ -149,6 +149,8 @@ namespace BattleBase.DI
             _builder.Register<IActorComponentUpgrader, EnemyDamageUpgrader>(Lifetime.Scoped);
             _builder.Register<IActorComponentUpgrader, PlayerHealthUpgrader>(Lifetime.Scoped);
             _builder.Register<IActorComponentUpgrader, EnemyHealthUpgrader>(Lifetime.Scoped);
+            _builder.Register<IActorComponentUpgrader, PlayerSpeedUpgrader>(Lifetime.Scoped);
+            _builder.Register<IActorComponentUpgrader, EnemySpeedUpgrader>(Lifetime.Scoped);
             _builder.Register<IActorUpgraderRegistry, ActorUpgraderRegistry>(Lifetime.Scoped);
         }
 

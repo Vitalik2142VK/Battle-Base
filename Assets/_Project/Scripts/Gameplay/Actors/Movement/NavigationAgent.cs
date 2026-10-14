@@ -12,6 +12,7 @@ namespace BattleBase.Gameplay.Actors.Movement
         [SerializeField][Min(0.1f)] private float _distanceFinish = 0.5f;
 
         private IMoverPresenter _presenter;
+        private IMoveConfig _config;
         private IMoverEvents _moverEvents;
         private IWaypoint _waypoint;
         private Transform _transform;
@@ -64,12 +65,8 @@ namespace BattleBase.Gameplay.Actors.Movement
                 throw new ArgumentNullException(nameof(config));
 
             _presenter = presenter ?? throw new ArgumentNullException(nameof(presenter));
+            _config = config ?? throw new ArgumentNullException(nameof(config));
             _moverEvents = moverEvents ?? throw new ArgumentNullException(nameof(moverEvents));
-
-            _agent.speed = config.Speed;
-            _agent.angularSpeed = config.AngularSpeed;
-            _agent.acceleration = config.Acceleration;
-            _agent.stoppingDistance = config.StoppingDistance;
 
             if (gameObject.activeSelf)
             {
@@ -89,6 +86,10 @@ namespace BattleBase.Gameplay.Actors.Movement
             if (_agent.isStopped == true)
                 _agent.isStopped = false;
 
+            _agent.speed = _config.Speed;
+            _agent.angularSpeed = _config.AngularSpeed;
+            _agent.acceleration = _config.Acceleration;
+            _agent.stoppingDistance = _config.StoppingDistance;
             _agent.SetDestination(_waypoint.Position);
         }
 

@@ -78,6 +78,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
             _currentTarget.Destroyed -= OnLoseTarget;
             _currentTarget = null;
+            _hasPriorityTarget = false;
         }
 
         private bool TryFindTarget(IEnumerable<ITarget> targets, out ITarget newTarget)
@@ -134,10 +135,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
                 _weaponRange.MinRange, 
                 _weaponRange.MaxRange) == false;
 
-        private void OnLoseTarget()
-        {
+        private void OnLoseTarget() => 
             LoseTarget();
-            _hasPriorityTarget = false;
-        }
     }
 }

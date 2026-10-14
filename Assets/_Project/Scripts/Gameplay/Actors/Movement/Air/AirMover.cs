@@ -71,5 +71,8 @@ namespace BattleBase.Gameplay.Actors.Movement.Air
 
         public void Stop() => 
             _mover.Stop();
+
+        public void Upgrade(MoveConfigModificator modificator) =>
+            _mover.Upgrade(modificator);
     }
 }

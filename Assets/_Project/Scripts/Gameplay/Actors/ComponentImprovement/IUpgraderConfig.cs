@@ -5,5 +5,7 @@ namespace BattleBase.Gameplay.Actors.ComponentImprovement
         public float DamageCoefficientByLevel { get; }
 
         public float HealthCoefficientByLevel { get; }
+
+        public float SpeedCoefficientByLevel { get; }
     }
 }

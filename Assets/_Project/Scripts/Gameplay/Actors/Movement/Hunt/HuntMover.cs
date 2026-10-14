@@ -95,6 +95,9 @@ namespace BattleBase.Gameplay.Actors.Movement.Hunt
         public void Stop() => 
             _mover.Stop();
 
+        public void Upgrade(MoveConfigModificator modificator) =>
+            _mover.Upgrade(modificator);
+
         private void OnSetCurrentWaipoint(IWaypoint waypoint)
         {
             _currentWaypoint = waypoint ?? throw new ArgumentNullException(nameof(waypoint));
