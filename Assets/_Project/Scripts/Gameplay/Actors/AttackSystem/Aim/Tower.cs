@@ -1,4 +1,5 @@
 ﻿using BattleBase.Utils.Constants;
+using System;
 using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.AttackSystem.Aim
@@ -30,7 +31,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Aim
         public void LookAtTarget(Vector3 targetPosition, float delta)
         {
             if (delta < 0f)
-                throw new System.ArgumentOutOfRangeException(nameof(delta));
+                throw new ArgumentOutOfRangeException(nameof(delta));
 
             Vector3 direction = targetPosition - _transform.position;
             direction.y = 0f;
@@ -52,7 +53,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Aim
         public void ReturnToStart(float delta)
         {
             if (delta < 0f)
-                throw new System.ArgumentOutOfRangeException(nameof(delta));
+                throw new ArgumentOutOfRangeException(nameof(delta));
 
             IsAimed = false;
 

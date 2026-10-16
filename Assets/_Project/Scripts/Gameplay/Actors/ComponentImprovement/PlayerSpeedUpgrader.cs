@@ -18,7 +18,9 @@ namespace BattleBase.Gameplay.Actors.ComponentImprovement
             foreach (var info in actorsUpgradeModel.Infos)
             {
                 IUpgradeInfo upgradeInfo = info.PanelInfo.SpeedInfo;
-                upgradeLevels.Add(info.Id, upgradeInfo);
+
+                if (upgradeInfo.MaximumLevel > 0) // todo this is a crutch
+                    upgradeLevels.Add(info.Id, upgradeInfo);
             }
 
             _speedUpgrader = new SpeedUpgrader(upgradeLevels, config, TeamType.Player);

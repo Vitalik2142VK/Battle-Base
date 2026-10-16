@@ -22,7 +22,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
                 if (attackSource.IsSingle)
                     return attacker;
-                
+
                 if (multyAttacker == null)
                     multyAttacker = new MultyAttacker(attacker);
                 else

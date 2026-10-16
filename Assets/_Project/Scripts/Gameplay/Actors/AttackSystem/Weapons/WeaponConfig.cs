@@ -20,12 +20,6 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Weapons
         [SerializeField][Min(0.1f)] private float _speedReload = 2f;
         [SerializeField][Min(1)] private int _numberShells = 1;
 
-        private void OnValidate()
-        {
-            if (_firingRange < _minFiringRange)
-                _minFiringRange = _firingRange;
-        }
-
         public IProjectileConfig ProjectileConfig => _projectileConfig;
 
         public IDamageConfig DamageConfig => _damageConfig;
@@ -39,5 +33,11 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Weapons
         public float SpeedReload => _speedReload;
 
         public int NumberShells => _numberShells;
+
+        private void OnValidate()
+        {
+            if (_firingRange < _minFiringRange)
+                _minFiringRange = _firingRange;
+        }
     }
 }

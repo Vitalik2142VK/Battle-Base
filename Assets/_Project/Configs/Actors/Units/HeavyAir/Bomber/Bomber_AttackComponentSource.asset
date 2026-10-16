@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc320ceab8c46f4b890696a8dd87bf4, type: 3}
   m_Name: Bomber_AttackComponentSource
   m_EditorClassIdentifier: 
-  _weaponConfig:
+  _weaponConfigs:
   - {fileID: 11400000, guid: bb6bb131975356445ac021c477a56370, type: 2}
-  _searchRadius: 20
+  _searchRadius: 30

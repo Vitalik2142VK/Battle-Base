@@ -22,7 +22,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Aim
             if (_attackNotifier != null)
             {
                 _attackNotifier.TargetSelected += OnTakeAim;
-                _attackNotifier.AttackDeactivated += OnRemoveTarget;
+                _attackNotifier.TargetLosted += OnRemoveTarget;
 
                 OnTakeAim();
             }
@@ -46,7 +46,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Aim
             if (_attackNotifier != null)
             {
                 _attackNotifier.TargetSelected -= OnTakeAim;
-                _attackNotifier.AttackDeactivated -= OnRemoveTarget;
+                _attackNotifier.TargetLosted -= OnRemoveTarget;
             }
 
             _currentTarget = null;
@@ -64,7 +64,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Aim
             if (gameObject.activeSelf)
             {
                 _attackNotifier.TargetSelected += OnTakeAim;
-                _attackNotifier.AttackDeactivated += OnRemoveTarget;
+                _attackNotifier.TargetLosted += OnRemoveTarget;
             }
 
             _components = new List<IAimComponent>();

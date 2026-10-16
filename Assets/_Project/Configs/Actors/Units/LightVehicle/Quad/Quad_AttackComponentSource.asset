@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc320ceab8c46f4b890696a8dd87bf4, type: 3}
   m_Name: Quad_AttackComponentSource
   m_EditorClassIdentifier: 
-  _weaponConfig:
+  _weaponConfigs:
   - {fileID: 11400000, guid: b1c899cd63e615c41b26382dafec4bdb, type: 2}
   - {fileID: 11400000, guid: 0a1c0e20a1bfa0d4c957643985807930, type: 2}
+  _searchRadius: 50

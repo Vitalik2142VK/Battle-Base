@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc320ceab8c46f4b890696a8dd87bf4, type: 3}
   m_Name: ArtilleryMissileTurret_AttackComponentSource
   m_EditorClassIdentifier: 
-  _weaponConfig:
+  _weaponConfigs:
   - {fileID: 11400000, guid: 25958b46c4504574baed6b30a690943e, type: 2}
+  _searchRadius: 65

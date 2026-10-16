@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc320ceab8c46f4b890696a8dd87bf4, type: 3}
   m_Name: HeavyGrav_AttackComponentSource
   m_EditorClassIdentifier: 
-  _weaponConfig:
+  _weaponConfigs:
   - {fileID: 11400000, guid: 2a674d89155078f4089772d06f1a2c76, type: 2}
   _searchRadius: 50

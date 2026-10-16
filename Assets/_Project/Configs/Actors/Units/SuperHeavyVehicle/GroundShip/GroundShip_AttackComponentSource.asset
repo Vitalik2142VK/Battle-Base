@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc320ceab8c46f4b890696a8dd87bf4, type: 3}
   m_Name: GroundShip_AttackComponentSource
   m_EditorClassIdentifier: 
-  _weaponConfig:
+  _weaponConfigs:
   - {fileID: 11400000, guid: bf360a726a8ff4d4ab9b75cddc5b6ad7, type: 2}
   - {fileID: 11400000, guid: bf360a726a8ff4d4ab9b75cddc5b6ad7, type: 2}
   - {fileID: 11400000, guid: 5fa2d9128d0710d47a87a58ce0fac0f9, type: 2}
-  _searchRadius: 40
+  _searchRadius: 55

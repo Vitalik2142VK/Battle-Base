@@ -6,7 +6,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
     public interface IAttackNotifier : IAttackStateEvent
     {
         public event Action TargetSelected;
-
+        public event Action TargetLosted;
         public event Action Attacked;
 
         public ITarget CurrentTarget { get; }

@@ -15,7 +15,10 @@ namespace BattleBase.Gameplay.Actors.ComponentImprovement
             Dictionary<string, IUpgradeLevel> upgradeLevels = new();
 
             foreach (var stat in enemyActorsUpgrade.Stats)
-                upgradeLevels.Add(stat.ActorId, stat.SpeedInfo);
+            {
+                if (stat.SpeedInfo.MaximumLevel > 0) // todo this is a crutch
+                    upgradeLevels.Add(stat.ActorId, stat.SpeedInfo);
+            }
 
             _speedUpgrader = new SpeedUpgrader(upgradeLevels, config, TeamType.Enemy);
         }

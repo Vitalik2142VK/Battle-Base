@@ -12,6 +12,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Multiple
         private readonly IAttacker _mainAttacker;
 
         public event Action TargetSelected;
+        public event Action TargetLosted;
         public event Action Attacked;
         public event Action AttackActivated;
         public event Action AttackDeactivated;
@@ -46,6 +47,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Multiple
                 attacker.Enable();
 
             _mainAttacker.TargetSelected += TargetSelected;
+            _mainAttacker.TargetLosted += TargetLosted;
             _mainAttacker.Attacked += Attacked;
             _mainAttacker.AttackActivated += AttackActivated;
             _mainAttacker.AttackDeactivated += AttackDeactivated;
@@ -54,6 +56,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Multiple
         public void Disable()
         {
             _mainAttacker.TargetSelected -= TargetSelected;
+            _mainAttacker.TargetLosted -= TargetLosted;
             _mainAttacker.Attacked -= Attacked;
             _mainAttacker.AttackActivated -= AttackActivated;
             _mainAttacker.AttackDeactivated -= AttackDeactivated;

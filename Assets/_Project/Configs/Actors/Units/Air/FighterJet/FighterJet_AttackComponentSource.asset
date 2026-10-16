@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc320ceab8c46f4b890696a8dd87bf4, type: 3}
   m_Name: FighterJet_AttackComponentSource
   m_EditorClassIdentifier: 
-  _weaponConfig:
-  - {fileID: 11400000, guid: 74f1ceff0df9df44cae1fd63252ee187, type: 2}
+  _weaponConfigs:
   - {fileID: 11400000, guid: 1ddefd531b61dbe45af800dde7c0dd85, type: 2}
+  - {fileID: 11400000, guid: 74f1ceff0df9df44cae1fd63252ee187, type: 2}
   _searchRadius: 65

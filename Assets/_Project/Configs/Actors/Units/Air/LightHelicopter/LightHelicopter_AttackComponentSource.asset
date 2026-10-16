@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc320ceab8c46f4b890696a8dd87bf4, type: 3}
   m_Name: LightHelicopter_AttackComponentSource
   m_EditorClassIdentifier: 
-  _weaponConfig:
+  _weaponConfigs:
   - {fileID: 11400000, guid: f6dc1bde7ea7c5b4cb87063e14f9fb95, type: 2}
   - {fileID: 11400000, guid: a03ccd95f9ebda841a478b8d286596ed, type: 2}
   _searchRadius: 50

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc320ceab8c46f4b890696a8dd87bf4, type: 3}
   m_Name: AntyAirTank_AttackComponentSource
   m_EditorClassIdentifier: 
-  _weaponConfig:
+  _weaponConfigs:
   - {fileID: 11400000, guid: e643c9bfbb504414d900aafceb1984fb, type: 2}
   - {fileID: 11400000, guid: 083167cf9a01c2c41a56cb3763f8d39d, type: 2}
   _searchRadius: 60

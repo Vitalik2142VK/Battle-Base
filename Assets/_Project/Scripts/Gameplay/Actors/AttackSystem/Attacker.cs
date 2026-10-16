@@ -17,6 +17,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         private bool _isEnabled;
 
         public event Action TargetSelected;
+        public event Action TargetLosted;
         public event Action Attacked;
         public event Action AttackActivated;
         public event Action AttackDeactivated;
@@ -98,6 +99,9 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
                 if (_weapon.IsReloaded)
                     _weapon.Update(delta);
             }
+
+            if (_targetController.HasTarget == false)
+                TargetLosted?.Invoke();
 
             if (_targetController.HasTarget == false && _isAttacking)
                 AttackDeactivated?.Invoke();

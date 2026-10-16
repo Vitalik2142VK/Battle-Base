@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc320ceab8c46f4b890696a8dd87bf4, type: 3}
   m_Name: AttackAircraft_AttackComponentSource
   m_EditorClassIdentifier: 
-  _weaponConfig:
-  - {fileID: 11400000, guid: e1004f393c389fa4a8a1bdb52c4d7da8, type: 2}
+  _weaponConfigs:
   - {fileID: 11400000, guid: 6f41271856724cb4a944529d1c31d63f, type: 2}
+  - {fileID: 11400000, guid: e1004f393c389fa4a8a1bdb52c4d7da8, type: 2}
   _searchRadius: 70
