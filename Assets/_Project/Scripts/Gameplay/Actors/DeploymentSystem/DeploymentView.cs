@@ -13,7 +13,7 @@ namespace BattleBase.Gameplay.Actors.DeploymentSystem
         {
             _components = new List<IDeploymentView>();
 
-            foreach (var component in _viewComponents)
+            foreach (var gameObject in _viewComponents)
             {
                 var components = gameObject.GetComponents<IDeploymentView>();
 

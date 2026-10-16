@@ -13,7 +13,7 @@ namespace BattleBase.Gameplay.Actors.Movement
         {
             _components = new List<IMoverViewComponent>();
 
-            foreach (var component in _viewComponents)
+            foreach (var gameObject in _viewComponents)
             {
                 var components = gameObject.GetComponents<IMoverViewComponent>();
 

@@ -13,7 +13,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
         {
             _components = new List<IActorSpawnerView>();
 
-            foreach (var component in _viewComponents)
+            foreach (var gameObject in _viewComponents)
             {
                 var components = gameObject.GetComponents<IActorSpawnerView>();
 

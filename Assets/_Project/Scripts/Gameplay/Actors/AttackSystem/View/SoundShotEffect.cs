@@ -39,15 +39,9 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.View
 
             if (gameObject.activeSelf)
                 _attackNotifier.Attacked += OnPlayShot;
-
-            Debug.Log($"SoundShotEffect.Init");
         }
 
-        private void OnPlayShot()
-        {
-            Debug.Log($"SoundShotEffect.SoundShotEffect");
-
+        private void OnPlayShot() => 
             _activator.Activate(_prefab);
-        }
     }
 }

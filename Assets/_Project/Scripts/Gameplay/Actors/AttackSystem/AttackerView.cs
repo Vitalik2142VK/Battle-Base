@@ -9,28 +9,23 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
         private List<IAttackerViewComponent> _components;
 
-        public void Init(IAttackNotifier attackNotifier)
+        private void Awake()
         {
             _components = new List<IAttackerViewComponent>();
 
-            Debug.Log($"AttackerView._components.Count = {_components.Count}");
-
             foreach (var gameObject in _viewComponents)
             {
-                Debug.Log($"gameObject.name = {gameObject.name}");
-
                 var components = gameObject.GetComponents<IAttackerViewComponent>();
 
-                Debug.Log($"componentsCountIAttackerViewComponent = {components.Length}");
-
-                if (components.Length == 0)
-                    throw new System.Exception();
-
-                foreach (var component in components)
-                    component.Init(attackNotifier);
-
-                _components.AddRange(components);
+                foreach (var componentView in components)
+                    _components.Add(componentView);
             }
+        }
+
+        public void Init(IAttackNotifier attackNotifier)
+        {
+            foreach (var component in _components)
+                component.Init(attackNotifier);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace BattleBase.Gameplay.Actors.Energy
 
         private List<IPowerGeneratorView> _components;
 
-        public void Init(IPowerGeneratorNotifier powerGeneratorNotifier)
+        private void Awake()
         {
             _components = new List<IPowerGeneratorView>();
 
@@ -17,11 +17,15 @@ namespace BattleBase.Gameplay.Actors.Energy
             {
                 var components = gameObject.GetComponents<IPowerGeneratorView>();
 
-                foreach (var component in components)
-                    component.Init(powerGeneratorNotifier);
-
-                _components.AddRange(components);
+                foreach (var componentView in components)
+                    _components.Add(componentView);
             }
+        }
+
+        public void Init(IPowerGeneratorNotifier powerGeneratorNotifier)
+        {
+            foreach (var component in _components)
+                component.Init(powerGeneratorNotifier);
         }
     }
 }

@@ -37,8 +37,6 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.View
                 _currentIndexPoint = 0;
 
             _shotEffects[_currentIndexPoint++].Play();
-
-            Debug.Log($"DynamicShotEffect.OnPlayShot");
         }
     }
 }

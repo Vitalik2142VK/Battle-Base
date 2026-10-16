@@ -9,7 +9,7 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
 
         private List<IImproverViewComponent> _components;
 
-        public void Init(IImproverINotifier improverNotifier)
+        private void Awake()
         {
             _components = new List<IImproverViewComponent>();
 
@@ -17,11 +17,15 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
             {
                 var components = gameObject.GetComponents<IImproverViewComponent>();
 
-                foreach (var component in components)
-                    component.Init(improverNotifier);
-
-                _components.AddRange(components);
+                foreach (var componentView in components)
+                    _components.Add(componentView);
             }
+        }
+
+        public void Init(IImproverINotifier improverNotifier)
+        {
+            foreach (var component in _components)
+                component.Init(improverNotifier);
         }
     }
 }

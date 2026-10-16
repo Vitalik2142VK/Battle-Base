@@ -9,7 +9,7 @@ namespace BattleBase.Gameplay.Actors.Economy
 
         private List<IMaterialCreatorView> _components;
 
-        public void Init(IMaterialCreatorEvents materialCreatorEvents)
+        private void Awake()
         {
             _components = new List<IMaterialCreatorView>();
 
@@ -17,11 +17,15 @@ namespace BattleBase.Gameplay.Actors.Economy
             {
                 var components = gameObject.GetComponents<IMaterialCreatorView>();
 
-                foreach (var component in components)
-                    component.Init(materialCreatorEvents);
-
-                _components.AddRange(components);
+                foreach (var componentView in components)
+                    _components.Add(componentView);
             }
+        }
+
+        public void Init(IMaterialCreatorEvents materialCreatorEvents)
+        {
+            foreach (var component in _components)
+                component.Init(materialCreatorEvents);
         }
     }
 }
