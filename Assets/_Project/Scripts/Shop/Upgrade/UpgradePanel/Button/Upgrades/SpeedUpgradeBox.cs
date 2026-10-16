@@ -1,32 +1,31 @@
 using System;
 using BattleBase.DI;
-using BattleBase.UI.Buttons;
 using UnityEngine;
 using VContainer;
 
 namespace BattleBase.ShopSystem
 {
-    public class BuildTimeShopUpgradeBox : MonoBehaviour, IInjectable
+    public class SpeedUpgradeBox : MonoBehaviour, IInjectable
     {
         [SerializeField] private ShopUpgradeButton _upgradeButton;
 
         private CreditsModel _credits;
-        private ActorsUpgradeModel _unitsUpgradeModel;
+        private ActorsUpgradeModel _actorsUpgradeModel;
 
-        private IUpgradeInfo Info => _unitsUpgradeModel.PanelInfo.SpeedInfo;
+        private IUpgradeInfo Info => _actorsUpgradeModel.PanelInfo.SpeedInfo;
 
         [Inject]
         public void Construct(CreditsModel credits, ActorsUpgradeModel unitsUpgradeModel)
         {
             _credits = credits ?? throw new ArgumentNullException(nameof(credits));
-            _unitsUpgradeModel = unitsUpgradeModel ?? throw new ArgumentNullException(nameof(unitsUpgradeModel));
+            _actorsUpgradeModel = unitsUpgradeModel ?? throw new ArgumentNullException(nameof(unitsUpgradeModel));
         }
 
         private void OnEnable()
         {
             _credits.Changed += UpdateInfo;
-            _unitsUpgradeModel.BuildTimeLevelChanged += UpdateInfo;
-            _unitsUpgradeModel.UnitSelectionChanged += UpdateInfo;
+            _actorsUpgradeModel.BuildTimeLevelChanged += UpdateInfo;
+            _actorsUpgradeModel.UnitSelectionChanged += UpdateInfo;
             _upgradeButton.Clicked += OnClick;
             UpdateInfo();
         }
@@ -34,8 +33,8 @@ namespace BattleBase.ShopSystem
         private void OnDisable()
         {
             _credits.Changed -= UpdateInfo;
-            _unitsUpgradeModel.BuildTimeLevelChanged -= UpdateInfo;
-            _unitsUpgradeModel.UnitSelectionChanged -= UpdateInfo;
+            _actorsUpgradeModel.BuildTimeLevelChanged -= UpdateInfo;
+            _actorsUpgradeModel.UnitSelectionChanged -= UpdateInfo;
             _upgradeButton.Clicked -= OnClick;
         }
 
@@ -49,7 +48,7 @@ namespace BattleBase.ShopSystem
 
             if (isFullStack == false && _credits.TrySpend(info.CurrentPrice))
             {
-                _unitsUpgradeModel.IncreaseBuildTimeLevel();
+                _actorsUpgradeModel.IncreaseBuildTimeLevel();
                 _upgradeButton.UpdateInfo(info);
             }
         }
