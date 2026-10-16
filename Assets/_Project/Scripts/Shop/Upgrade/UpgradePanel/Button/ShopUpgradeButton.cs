@@ -29,6 +29,9 @@ namespace BattleBase.ShopSystem
 
         public void UpdateInfo(IUpgradeInfo info)
         {
+            if (info.Levels.Count == 0)
+                return;
+
             _price.text = info.CurrentPrice.ToString();
 
             bool isFullStack = info.CurrentLevel >= info.MaximumLevel;
