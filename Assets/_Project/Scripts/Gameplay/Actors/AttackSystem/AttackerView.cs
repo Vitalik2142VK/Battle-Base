@@ -13,9 +13,18 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         {
             _components = new List<IAttackerViewComponent>();
 
+            Debug.Log($"AttackerView._components.Count = {_components.Count}");
+
             foreach (var gameObject in _viewComponents)
             {
+                Debug.Log($"gameObject.name = {gameObject.name}");
+
                 var components = gameObject.GetComponents<IAttackerViewComponent>();
+
+                Debug.Log($"componentsCountIAttackerViewComponent = {components.Length}");
+
+                if (components.Length == 0)
+                    throw new System.Exception();
 
                 foreach (var component in components)
                     component.Init(attackNotifier);

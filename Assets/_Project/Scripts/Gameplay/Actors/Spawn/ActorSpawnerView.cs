@@ -9,19 +9,23 @@ namespace BattleBase.Gameplay.Actors.Spawn
 
         private List<IActorSpawnerView> _components;
 
-        public void Init(IActorSpawnerNotifier notifier)
+        private void Awake()
         {
             _components = new List<IActorSpawnerView>();
 
-            foreach (var gameObject in _viewComponents)
+            foreach (var component in _viewComponents)
             {
                 var components = gameObject.GetComponents<IActorSpawnerView>();
 
-                foreach (var component in components)
-                    component.Init(notifier);
-
-                _components.AddRange(components);
+                foreach (var componentView in components)
+                    _components.Add(componentView);
             }
+        }
+
+        public void Init(IActorSpawnerNotifier notifier)
+        {
+            foreach (var component in _components)
+                component.Init(notifier);
         }
     }
 }

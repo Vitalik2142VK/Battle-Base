@@ -2,7 +2,7 @@
 
 namespace BattleBase.Gameplay.Actors.AttackSystem.View
 {
-    public class DynamicShootEffect : MonoBehaviour, IAttackerViewComponent
+    public class DynamicShotEffect : MonoBehaviour, IAttackerViewComponent
     {
         [SerializeField] private ParticleSystem[] _shotEffects;
 
@@ -27,6 +27,8 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.View
 
             if (gameObject.activeSelf)
                 _attackNotifier.Attacked += OnPlayShot;
+
+            Debug.Log($"DynamicShotEffect.Init");
         }
 
         private void OnPlayShot()
@@ -35,6 +37,8 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.View
                 _currentIndexPoint = 0;
 
             _shotEffects[_currentIndexPoint++].Play();
+
+            Debug.Log($"DynamicShotEffect.OnPlayShot");
         }
     }
 }
