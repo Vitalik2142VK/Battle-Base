@@ -1,5 +1,3 @@
-using BattleBase.Gameplay.Actors.Production;
-using System;
 using UnityEngine;
 
 namespace BattleBase.UI

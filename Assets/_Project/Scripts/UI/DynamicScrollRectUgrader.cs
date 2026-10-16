@@ -4,7 +4,7 @@ using VContainer;
 
 namespace BattleBase.UI
 {
-    public class DynamicScrollRectAdapter : MonoBehaviour
+    public class DynamicScrollRectUgrader : MonoBehaviour
     {
         [SerializeField] private DynamicScrollRect _dynamicScrollRect;
         [SerializeField][Min(1)] private int _maxColumsInVerticalOrientation = 3;

@@ -69,12 +69,10 @@ namespace BattleBase.UI
                   + visibleColumns * _grid.cellSize.x
                   + (visibleColumns - 1) * _grid.spacing.x;
 
-            // Изменяем видимую ширину ScrollRect
             Vector2 viewportSize = _viewport.sizeDelta;
             viewportSize.x = visibleWidth;
             _viewport.sizeDelta = viewportSize;
 
-            // Content сохраняет ширину всех колонок
             Vector2 contentSize = _content.sizeDelta;
             contentSize.x = requiredWidth;
             _content.sizeDelta = contentSize;

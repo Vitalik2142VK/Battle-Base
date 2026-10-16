@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace BattleBase.UI.PopUps
@@ -9,13 +11,17 @@ namespace BattleBase.UI.PopUps
 
         public void ClearContext()
         {
-            foreach(Transform child in _content)
+            foreach (Transform child in _content)
+            {
+                child.gameObject.SetActive(false);
                 Destroy(child.gameObject);
+            }
         }
 
-        public void AddItem(IProductionItem item)
+        public void AddRangeItem(IEnumerable<IProductionItem> items)
         {
-            item.SetParent(_content);
+            foreach (var item in items)
+                item.SetParent(_content);
 
             _dynamicScrollRect.Refresh();
         }
