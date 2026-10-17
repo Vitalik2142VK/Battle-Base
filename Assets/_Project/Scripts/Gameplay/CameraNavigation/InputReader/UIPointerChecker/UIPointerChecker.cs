@@ -7,33 +7,11 @@ namespace BattleBase.Gameplay.CameraNavigation.InputReader
 {
     public class UIPointerChecker : IUIPointerChecker
     {
-        private readonly List<GraphicRaycaster> _raycasters = new();
         private readonly List<RaycastResult> _raycastResults = new();
 
         private int _lastFrame = -1;
         private Vector2 _lastPosition;
         private bool _lastResult;
-
-        public void AddCanvas(Canvas canvas)
-        {
-            if (canvas == null)
-                return;
-
-            if (canvas.TryGetComponent(out GraphicRaycaster raycaster))
-            {
-                if (_raycasters.Contains(raycaster) == false)
-                    _raycasters.Add(raycaster);
-            }
-        }
-
-        public void RemoveCanvas(Canvas canvas)
-        {
-            if (canvas == null)
-                return;
-
-            if (canvas.TryGetComponent(out GraphicRaycaster raycaster))
-                _raycasters.Remove(raycaster);
-        }
 
         public bool IsPointerOverUI(Vector2 screenPosition)
         {
@@ -51,19 +29,26 @@ namespace BattleBase.Gameplay.CameraNavigation.InputReader
 
         private bool RaycastUI(Vector2 screenPosition)
         {
-            if (EventSystem.current == null) return false;
+            if (EventSystem.current == null)
+                return false;
 
-            PointerEventData eventData = new(EventSystem.current) { position = screenPosition };
+            PointerEventData eventData = new(EventSystem.current) 
+            { 
+                position = screenPosition 
+            };
 
-            foreach (GraphicRaycaster raycaster in _raycasters)
+            _raycastResults.Clear();
+            EventSystem.current.RaycastAll(eventData, _raycastResults);
+
+            foreach (RaycastResult result in _raycastResults)
             {
-                if (raycaster == null || !raycaster.enabled || !raycaster.gameObject.activeInHierarchy)
+                if (result.module is not GraphicRaycaster raycaster)
                     continue;
 
-                _raycastResults.Clear();
-                raycaster.Raycast(eventData, _raycastResults);
+                if (raycaster.enabled == false || raycaster.gameObject.activeInHierarchy == false)
+                    continue;
 
-                if (_raycastResults.Count > 0)
+                if (result.gameObject.GetComponentInParent<UIPointerBlockerMarker>() != null)
                     return true;
             }
 

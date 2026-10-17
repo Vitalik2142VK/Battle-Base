@@ -11,7 +11,6 @@ namespace BattleBase.Mediators
 {
     public class InputCameraMediator : MediatorBase, IInjectable
     {
-        [SerializeField] private List<Canvas> _canvasList;
         [SerializeField] private List<Slider> _zoomSliders;
         [SerializeField] private bool _isDynamicAngle;
 
@@ -51,9 +50,6 @@ namespace BattleBase.Mediators
 
         public override void Init()
         {
-            foreach (Canvas canvas in _canvasList)
-                _pointerChecker.AddCanvas(canvas);
-
             UpdateCompensation();
 
             foreach (Slider zoom in _zoomSliders)

@@ -84,9 +84,7 @@ namespace BattleBase.Gameplay.Map
 
                 if (i < actorsToOpen.Length)
                 {
-                    IActorConfig actorConfig = actorsToOpen[i];
-                    IActorData actorData = actorConfig.Data;
-                    rewardItem.SetInfo(actorData.Icon, actorData.Name);
+                    rewardItem.SetInfo(actorsToOpen[i].Data);
                     rewardItem.Show();
                 }
                 else

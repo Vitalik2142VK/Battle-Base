@@ -3,6 +3,8 @@ using BattleBase.Core;
 using BattleBase.Gameplay.CameraNavigation;
 using BattleBase.Gameplay.CameraNavigation.InputReader;
 using BattleBase.Gameplay.Map;
+using BattleBase.UI.PopUps;
+using BattleBase.Utils.Constants;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -18,10 +20,12 @@ namespace BattleBase.DI
         [SerializeField] private TerritorySelectPopUp _territorySelectPopUpPrefab;
         [SerializeField] private CommandLoadGameScene _commandLoadGameScene;
         [SerializeField] private CommandRebuildLayout _commandRebuildLayout;
+        [SerializeField] private CommandShowPopUps _commandShowItemInfoPopUp;
         [SerializeField] private MouseInputConfig _mouseMapCameraConfig;
         [SerializeField] private TouchInputConfig _touchMapCameraConfig;
         [SerializeField] private TerritoryPositionAnimationConfig _territoryPositionAnimationConfig;
         [SerializeField] private TerritoryStatusIndicator _territoryStatusIndicatorPrefab;
+        [SerializeField] private ItemInfoPopUp _itemInfoPopUp;
 
         private IContainerBuilder _builder;
 
@@ -75,6 +79,9 @@ namespace BattleBase.DI
             _builder.Register<TerritoryElevator>(Lifetime.Singleton);
             _builder.Register<TerritoryPopUpShower>(Lifetime.Singleton);
             _builder.Register<TerritoryStatusIndicatorFactory>(Lifetime.Singleton);
+
+            _builder.RegisterInstance(_itemInfoPopUp);
+            _builder.RegisterInstance(_commandShowItemInfoPopUp).Keyed(VContainerKeys.CommandShowItemInfoPopUp);
 
             _builder.RegisterBuildCallback(container =>
             {
