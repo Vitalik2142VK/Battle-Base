@@ -6,24 +6,21 @@ using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.Production
 {
-    public class ProductionContext
+    public class PlayerProductionContext : IPlayerProductionContext
     {
         private readonly IProductionItemsFactory _productionItemFactory;
         private readonly IBuildingSitesStorage _buildingSitesStorage;
-        private readonly TeamType _teamType;
 
         private IRegisteredBuildingSite _selectedBuildingSite;
 
         public event Action ProductionsChanged;
 
-        public ProductionContext(
+        public PlayerProductionContext(
             IProductionItemsFactory productionItemFactory,
-            IBuildingSitesStorage buildingSitesStorage,
-            TeamType teamType)
+            IBuildingSitesStorage buildingSitesStorage)
         {
             _productionItemFactory = productionItemFactory ?? throw new ArgumentException(nameof(productionItemFactory));
             _buildingSitesStorage = buildingSitesStorage ?? throw new ArgumentException(nameof(buildingSitesStorage));
-            _teamType = teamType;
         }
 
         public IEnumerable<IProductionItem> GetAvailableItems()
@@ -46,7 +43,7 @@ namespace BattleBase.Gameplay.Actors.Production
             if (_selectedBuildingSite != null)
             {
                 _selectedBuildingSite.Unselect();
-                _selectedBuildingSite.StateChanged -= ProductionsChanged;
+                _selectedBuildingSite.StateChanged -= OnChangeProduction;
             }
 
 #if UNITY_EDITOR
@@ -54,13 +51,13 @@ namespace BattleBase.Gameplay.Actors.Production
             {
                 _selectedBuildingSite = _buildingSitesStorage.GetSiteById(productionView.BuildingSiteId);
                 _selectedBuildingSite.Select();
-                _selectedBuildingSite.StateChanged += ProductionsChanged;
+                _selectedBuildingSite.StateChanged += OnChangeProduction;
 
                 return;
             }
 #endif
-            _selectedBuildingSite = _buildingSitesStorage.GetSiteById(_teamType, productionView.BuildingSiteId);
-            _selectedBuildingSite.StateChanged += ProductionsChanged;
+            _selectedBuildingSite = _buildingSitesStorage.GetSiteById(TeamType.Player, productionView.BuildingSiteId);
+            _selectedBuildingSite.StateChanged += OnChangeProduction;
         }
 
         public void Clear()
@@ -69,8 +66,11 @@ namespace BattleBase.Gameplay.Actors.Production
                 return;
 
             _selectedBuildingSite.Unselect();
-            _selectedBuildingSite.StateChanged -= ProductionsChanged;
+            _selectedBuildingSite.StateChanged -= OnChangeProduction;
             _selectedBuildingSite = null;
         }
+
+        private void OnChangeProduction() =>
+            ProductionsChanged?.Invoke();
     }
 }

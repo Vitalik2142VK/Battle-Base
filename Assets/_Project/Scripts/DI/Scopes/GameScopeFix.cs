@@ -3,6 +3,7 @@ using BattleBase.Core;
 using BattleBase.Gameplay.Actors.Building;
 using BattleBase.Gameplay.Actors.Economy;
 using BattleBase.Gameplay.Actors.Energy;
+using BattleBase.Gameplay.Actors.Production;
 using BattleBase.Gameplay.Actors.Visual.Select;
 using BattleBase.Gameplay.CameraNavigation;
 using BattleBase.Gameplay.CameraNavigation.InputReader;
@@ -56,6 +57,7 @@ namespace BattleBase.DI
             _builder.Register<IProductionItemFactory, DemolitionBuildingProductionItemFactory>(Lifetime.Singleton);
             _builder.Register<IProductionItemsFactory, ProductionItemsFactory>(Lifetime.Singleton);
             _builder.Register<IBuildingSitesStorage, BuildingSitesStorage>(Lifetime.Singleton);
+            _builder.Register<IPlayerProductionContext, PlayerProductionContext>(Lifetime.Singleton);
 
             _builder.RegisterInstance(_actorSpawnProductionItemPrefab);
             _builder.RegisterInstance(_upgradeProductionItemPrefab);

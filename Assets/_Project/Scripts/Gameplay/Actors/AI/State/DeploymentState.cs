@@ -15,6 +15,6 @@ namespace BattleBase.Gameplay.Actors.AI.State
             _deployment.Activate();
 
         public void Exit() => 
-            _deployment.EnabledComponents();
+            _deployment.EnableComponents();
     }
 }

@@ -9,7 +9,7 @@ namespace BattleBase.Utils
         [SerializeField] private AudioSource _audioSource;
         [SerializeField][Min(0.001f)] private float _playbackTime = 1f;
 
-        private void Start()
+        private void OnEnable()
         {
             StartCoroutine(PlayClip());
         }

@@ -1,5 +1,4 @@
 using BattleBase.DI;
-using BattleBase.Gameplay.Actors.Building;
 using BattleBase.Gameplay.Actors.Visual.Select;
 using BattleBase.Gameplay.CameraNavigation.InputReader;
 using BattleBase.UI;
@@ -22,23 +21,19 @@ namespace BattleBase.Gameplay.Actors.Production
         private IClickDetector _clickDetector;
         private ISelector _selector;
         private ISelectable _selectable;
-        private ProductionContext _productionContext;
+        private IPlayerProductionContext _productionContext;
 
         [Inject]
         public void Construct(
             IClickDetector clickDetector,
             ISelector selector,
-            IProductionItemsFactory productionItemFactory,
-            IBuildingSitesStorage buildingSitesStorage)
+            IPlayerProductionContext productionContext)
         {
             _clickDetector = clickDetector ?? throw new ArgumentNullException(nameof(clickDetector));
             _selector = selector ?? throw new ArgumentNullException(nameof(selector));
+            _productionContext = productionContext ?? throw new ArgumentNullException(nameof(productionContext));
             _items = new List<IProductionItem>();
             _changeableItems = new List<IChangeableItem>();
-            _productionContext = new ProductionContext(
-                productionItemFactory,
-                buildingSitesStorage,
-                TeamType.Player);
         }
 
         private void OnEnable()
@@ -51,6 +46,8 @@ namespace BattleBase.Gameplay.Actors.Production
 
         private void OnDisable()
         {
+            ClearItems();
+
             _clickDetector.Clicked -= OnClickDetected;
             _productionContext.ProductionsChanged -= OnSelectViewSpawner;
         }
@@ -107,25 +104,24 @@ namespace BattleBase.Gameplay.Actors.Production
 
             ClearItems();
 
-            _productionPanel.ClearContext();
             _items.AddRange(_productionContext.GetAvailableItems());
-
-            if (_items.Count == 0)
-                _productionPanel.Hide();
-            else
-                _productionPanel.Show();
+            _productionPanel.ClearContext();
+            _productionPanel.AddRangeItem(_items);
 
             foreach (IProductionItem item in _items)
             {
-                _productionPanel.AddItem(item);
-
                 if (item is IChangeableItem changeable)
                 {
                     _changeableItems.Add(changeable);
 
                     changeable.Changed += OnUpdateItems;
-}
+                }
             }
+
+            if (_items.Count == 0)
+                _productionPanel.Hide();
+            else
+                _productionPanel.Show();
         }
 
         private void OnUpdateItems() =>

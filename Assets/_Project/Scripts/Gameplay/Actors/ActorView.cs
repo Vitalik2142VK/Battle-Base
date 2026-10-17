@@ -20,10 +20,10 @@ namespace BattleBase.Gameplay.Actors
             _transform = transform;
             _components = new Dictionary<Type, IActorViewComponent>();
 
-            AddActorViewComponents(gameObject.GetComponents<IActorViewComponent>());
-
             foreach (var gameObject in _viewComponents)
                 AddActorViewComponents(gameObject.GetComponents<IActorViewComponent>());
+
+            AddActorViewComponents(gameObject.GetComponents<IActorViewComponent>());
         }
 
         public void SetActive(bool isActive) => 

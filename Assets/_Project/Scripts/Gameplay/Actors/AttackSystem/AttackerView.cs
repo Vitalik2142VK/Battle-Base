@@ -9,7 +9,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
         private List<IAttackerViewComponent> _components;
 
-        public void Init(IAttackNotifier attackNotifier)
+        private void Awake()
         {
             _components = new List<IAttackerViewComponent>();
 
@@ -17,11 +17,15 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             {
                 var components = gameObject.GetComponents<IAttackerViewComponent>();
 
-                foreach (var component in components)
-                    component.Init(attackNotifier);
-
-                _components.AddRange(components);
+                foreach (var componentView in components)
+                    _components.Add(componentView);
             }
+        }
+
+        public void Init(IAttackNotifier attackNotifier)
+        {
+            foreach (var component in _components)
+                component.Init(attackNotifier);
         }
     }
 }

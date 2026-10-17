@@ -6,6 +6,6 @@
 
         public void Activate();
 
-        public void EnabledComponents();
+        public void EnableComponents();
     }
 }

@@ -11,6 +11,7 @@ namespace BattleBase.Gameplay.Actors.DeploymentSystem
         private readonly Timer _timer;
 
         private bool _isEnabled;
+        private bool _isDisabledComponents;
 
         public event Action Started;
         public event Action Finished;
@@ -25,8 +26,11 @@ namespace BattleBase.Gameplay.Actors.DeploymentSystem
 
         public Type KeyType => typeof(IDeployment);
 
-        public void Enable() => 
+        public void Enable()
+        {
             _isEnabled = true;
+            _isDisabledComponents = false;
+        }
 
         public void Disable() => 
             _isEnabled = false;
@@ -36,14 +40,13 @@ namespace BattleBase.Gameplay.Actors.DeploymentSystem
             if (_isEnabled == false || _timer.IsTimeUp)
                 return;
 
+            if (_isDisabledComponents == false)
+                DisableComponents();
+
             _timer.Tick(delta);
 
             if (_timer.IsTimeUp)
-            {
-                EnabledComponents();
-
                 Finished?.Invoke();
-            }
         }
 
         public void AddDisablingComponent(IActorComponent component)
@@ -59,22 +62,27 @@ namespace BattleBase.Gameplay.Actors.DeploymentSystem
 
         public void Activate()
         {
-            foreach (var component in _components)
-                component.Disable();
-
             _timer.SetWaitTime(_data.DeployTime);
             _timer.RestartTimer();
 
             Started?.Invoke();
         }
 
-        public void EnabledComponents()
+        public void EnableComponents()
         {
             if (_isEnabled == false)
                 return;
 
             foreach (var component in _components)
                 component.Enable();
+        }
+
+        public void DisableComponents()
+        {
+            foreach (var component in _components)
+                component.Disable();
+
+            _isDisabledComponents = true;
         }
     }
 }

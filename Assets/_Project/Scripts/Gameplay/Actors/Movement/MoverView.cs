@@ -1,4 +1,3 @@
-using BattleBase.Gameplay.Actors.DeploymentSystem;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +9,7 @@ namespace BattleBase.Gameplay.Actors.Movement
 
         private List<IMoverViewComponent> _components;
 
-        public void Init(IMoverEvents moverEvents)
+        private void Awake()
         {
             _components = new List<IMoverViewComponent>();
 
@@ -18,11 +17,15 @@ namespace BattleBase.Gameplay.Actors.Movement
             {
                 var components = gameObject.GetComponents<IMoverViewComponent>();
 
-                foreach (var component in components)
-                    component.Init(moverEvents);
-
-                _components.AddRange(components);
+                foreach (var componentView in components)
+                    _components.Add(componentView);
             }
+        }
+
+        public void Init(IMoverEvents moverEvents)
+        {
+            foreach (var component in _components)
+                component.Init(moverEvents);
         }
     }
 }

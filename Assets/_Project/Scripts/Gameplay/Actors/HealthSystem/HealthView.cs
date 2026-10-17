@@ -9,7 +9,7 @@ namespace BattleBase.Gameplay.Actors.HealthSystem
 
         private List<IHealthViewComponent> _components;
 
-        public void Init(IHealthEvents healthEvents)
+        private void Awake()
         {
             _components = new List<IHealthViewComponent>();
 
@@ -17,11 +17,15 @@ namespace BattleBase.Gameplay.Actors.HealthSystem
             {
                 var components = gameObject.GetComponents<IHealthViewComponent>();
 
-                foreach(var component in components)
-                    component.Init(healthEvents);
-
-                _components.AddRange(components);
+                foreach (var componentView in components)
+                    _components.Add(componentView);
             }
+        }
+
+        public void Init(IHealthEvents healthEvents)
+        {
+            foreach (var component in _components)
+                component.Init(healthEvents);
         }
     }
 }

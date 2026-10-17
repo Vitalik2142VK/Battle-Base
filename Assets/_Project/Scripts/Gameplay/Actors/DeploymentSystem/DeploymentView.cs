@@ -9,7 +9,7 @@ namespace BattleBase.Gameplay.Actors.DeploymentSystem
 
         private List<IDeploymentView> _components;
 
-        public void Init(IDeploymentEvets deploymentEvets)
+        private void Awake()
         {
             _components = new List<IDeploymentView>();
 
@@ -17,11 +17,15 @@ namespace BattleBase.Gameplay.Actors.DeploymentSystem
             {
                 var components = gameObject.GetComponents<IDeploymentView>();
 
-                foreach (var component in components)
-                    component.Init(deploymentEvets);
-
-                _components.AddRange(components);
+                foreach (var componentView in components)
+                    _components.Add(componentView);
             }
+        }
+
+        public void Init(IDeploymentEvets deploymentEvets)
+        {
+            foreach (var component in _components)
+                component.Init(deploymentEvets);
         }
     }
 }
