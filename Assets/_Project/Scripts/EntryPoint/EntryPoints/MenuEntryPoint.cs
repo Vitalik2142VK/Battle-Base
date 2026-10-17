@@ -29,17 +29,16 @@ namespace BattleBase.EntryPoints
             _authorizationService = authorizationService ?? throw new ArgumentNullException(nameof(authorizationService));
         }
 
-        protected override void Start()
+        private void OnEnable()
         {
-            base.Start();
-
             _authorizationService.SDKDataReceived += OnGetSDKData;
             _advertisingService.PurchaseSuccess += OnPurchaseSuccess;
+
             OnGetSDKData();
             ProcessVisibleAds();
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             _authorizationService.SDKDataReceived -= OnGetSDKData;
             _advertisingService.PurchaseSuccess -= OnPurchaseSuccess;
