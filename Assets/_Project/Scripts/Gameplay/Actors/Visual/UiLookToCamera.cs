@@ -15,6 +15,9 @@ namespace BattleBase.Gameplay.Actors.Visual
 
         private void Update()
         {
+            if (_cameraTransform == null)
+                return;
+
             float cameraXRotation = _cameraTransform.eulerAngles.x;
             float cameraYRotation = _cameraTransform.eulerAngles.y;
 

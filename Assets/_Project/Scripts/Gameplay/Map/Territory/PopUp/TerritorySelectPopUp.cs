@@ -1,6 +1,7 @@
 using System;
 using BattleBase.Commands;
 using BattleBase.Core;
+using BattleBase.Gameplay.Actors;
 using BattleBase.Localization;
 using BattleBase.UI.Buttons;
 using BattleBase.UI.PopUps;
@@ -20,6 +21,9 @@ namespace BattleBase.Gameplay.Map
         [SerializeField] private LanguageTextsSet _enemyOwnership;
         [SerializeField] private LanguageTextsSet _contestedOwnership;
         [SerializeField] private Canvas _canvas;
+
+        [SerializeField] private GameObject _territorySelectRewardContent;
+        [SerializeField] private TerritorySelectRewardItem[] _rewardItems;
 
         private Transform _target;
 
@@ -60,8 +64,37 @@ namespace BattleBase.Gameplay.Map
         public void SetTarget(Transform target) =>
             _target = target != null ? target : throw new ArgumentNullException(nameof(target));
 
-        public void SetInfo(ITerritoryInfo info) =>
+        public void SetInfo(ITerritoryInfo info)
+        {
             _territoryName.SetTexts(info.TerritoryName);
+            IActorConfig[] actorsToOpen = info.ActorsToOpen;
+
+            if (actorsToOpen.Length == 0)
+            {
+                _territorySelectRewardContent.SetActive(false);
+
+                return;
+            }
+
+            _territorySelectRewardContent.SetActive(true);
+
+            for (int i = 0; i < _rewardItems.Length; i++)
+            {
+                TerritorySelectRewardItem rewardItem = _rewardItems[i];
+
+                if (i < actorsToOpen.Length)
+                {
+                    IActorConfig actorConfig = actorsToOpen[i];
+                    IActorData actorData = actorConfig.Data;
+                    rewardItem.SetInfo(actorData.Icon, actorData.Name);
+                    rewardItem.Show();
+                }
+                else
+                {
+                    rewardItem.Hide();
+                }
+            }
+        }
 
         public void SetOwner(TerritoryOwnerType owner)
         {
