@@ -9639,10 +9639,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9306341}
     m_Modifications:
+    - target: {fileID: 51209330375197090, guid: 2a5c3eede0267bb4bb0b222817489885,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemyCanvas
+      objectReference: {fileID: 0}
     - target: {fileID: 544495710416014347, guid: 2a5c3eede0267bb4bb0b222817489885,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1154389208197532761, guid: 2a5c3eede0267bb4bb0b222817489885,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemyBaseMesh
       objectReference: {fileID: 0}
     - target: {fileID: 1180127736732420505, guid: 2a5c3eede0267bb4bb0b222817489885,
         type: 3}
@@ -9694,6 +9704,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1190424824800861562, guid: 2a5c3eede0267bb4bb0b222817489885,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemyHealthBar
+      objectReference: {fileID: 0}
     - target: {fileID: 2052013570634208179, guid: 2a5c3eede0267bb4bb0b222817489885,
         type: 3}
       propertyPath: _size
@@ -9710,6 +9725,16 @@ PrefabInstance:
       propertyPath: _spawnPoint
       value: 
       objectReference: {fileID: 1571344139}
+    - target: {fileID: 5069265203345021167, guid: 2a5c3eede0267bb4bb0b222817489885,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemyParticles
+      objectReference: {fileID: 0}
+    - target: {fileID: 6016740878003526691, guid: 2a5c3eede0267bb4bb0b222817489885,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemyMaterialCreatorView
+      objectReference: {fileID: 0}
     - target: {fileID: 8223823493478408507, guid: 2a5c3eede0267bb4bb0b222817489885,
         type: 3}
       propertyPath: m_Name
@@ -9719,6 +9744,16 @@ PrefabInstance:
         type: 3}
       propertyPath: _team
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8481949043097529408, guid: 2a5c3eede0267bb4bb0b222817489885,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemyTarget
+      objectReference: {fileID: 0}
+    - target: {fileID: 8572242370625715951, guid: 2a5c3eede0267bb4bb0b222817489885,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemyPowerCounterView
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13452,6 +13487,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1148764212}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1575319254 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1190424824800861562, guid: 2a5c3eede0267bb4bb0b222817489885,
+    type: 3}
+  m_PrefabInstance: {fileID: 2045457108}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1583749476
 GameObject:
   m_ObjectHideFlags: 0
@@ -15732,12 +15773,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731126e48a4838840bf07d4d96788c62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1827439077 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1190424824800861562, guid: 2a5c3eede0267bb4bb0b222817489885,
-    type: 3}
-  m_PrefabInstance: {fileID: 1148764212}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1833879666
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17700,10 +17735,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9306341}
     m_Modifications:
+    - target: {fileID: 51209330375197090, guid: 2a5c3eede0267bb4bb0b222817489885,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerCanvas
+      objectReference: {fileID: 0}
     - target: {fileID: 544495710416014347, guid: 2a5c3eede0267bb4bb0b222817489885,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1154389208197532761, guid: 2a5c3eede0267bb4bb0b222817489885,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerBaseMesh
       objectReference: {fileID: 0}
     - target: {fileID: 1180127736732420505, guid: 2a5c3eede0267bb4bb0b222817489885,
         type: 3}
@@ -17755,6 +17800,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1190424824800861562, guid: 2a5c3eede0267bb4bb0b222817489885,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayeHealthBar
+      objectReference: {fileID: 0}
     - target: {fileID: 2052013570634208179, guid: 2a5c3eede0267bb4bb0b222817489885,
         type: 3}
       propertyPath: _size
@@ -17775,12 +17825,22 @@ PrefabInstance:
         type: 3}
       propertyPath: _viewComponents.Array.data[0]
       value: 
-      objectReference: {fileID: 1827439077}
+      objectReference: {fileID: 1575319254}
     - target: {fileID: 4979546634894632420, guid: 2a5c3eede0267bb4bb0b222817489885,
         type: 3}
       propertyPath: _viewComponents.Array.data[1]
       value: 
       objectReference: {fileID: 1214046485}
+    - target: {fileID: 5069265203345021167, guid: 2a5c3eede0267bb4bb0b222817489885,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerParticles
+      objectReference: {fileID: 0}
+    - target: {fileID: 6016740878003526691, guid: 2a5c3eede0267bb4bb0b222817489885,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerMaterialCreatorView
+      objectReference: {fileID: 0}
     - target: {fileID: 8223823493478408507, guid: 2a5c3eede0267bb4bb0b222817489885,
         type: 3}
       propertyPath: m_Name
@@ -17795,6 +17855,16 @@ PrefabInstance:
         type: 3}
       propertyPath: _team
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8481949043097529408, guid: 2a5c3eede0267bb4bb0b222817489885,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerTarget
+      objectReference: {fileID: 0}
+    - target: {fileID: 8572242370625715951, guid: 2a5c3eede0267bb4bb0b222817489885,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerPowerCounterView
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2052013570634208179, guid: 2a5c3eede0267bb4bb0b222817489885, type: 3}
