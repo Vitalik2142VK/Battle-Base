@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.AttackSystem.Aim
 {
-    [PreviewExcluded(PreviewExclusionMode.Destroy)]
     public class CombinedAim : MonoBehaviour, IAim
     {
         [SerializeField][SerializeIterface(typeof(IAimComponent))] private GameObject[] _aimComponents;

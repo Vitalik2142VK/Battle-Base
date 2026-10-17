@@ -5,7 +5,6 @@ using BattleBase.Utils.Extensions;
 
 namespace BattleBase.Gameplay.Actors.Movement
 {
-    [PreviewExcluded(PreviewExclusionMode.Remove)]
     [RequireComponent(typeof(NavMeshAgent))]
     public class NavigationAgent : MonoBehaviour, INavigationAgent
     {
@@ -93,7 +92,7 @@ namespace BattleBase.Gameplay.Actors.Movement
             _agent.SetDestination(_waypoint.Position);
         }
 
-        private void OnStop() => 
+        private void OnStop() =>
             _agent.isStopped = true;
     }
 }

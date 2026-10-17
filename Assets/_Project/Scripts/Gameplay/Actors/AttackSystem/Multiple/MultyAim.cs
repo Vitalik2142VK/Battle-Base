@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.AttackSystem.Multiple
 {
-    [PreviewExcluded(PreviewExclusionMode.Remove)]
     public class MultyAim : MonoBehaviour, IMultyAim
     {
         [SerializeField][SerializeIterface(typeof(IAim))] private GameObject[] _gameObjectAims;

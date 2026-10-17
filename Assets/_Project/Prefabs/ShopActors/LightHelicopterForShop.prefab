@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5120540405537483409}
+  - component: {fileID: 7173974291328679827}
   m_Layer: 0
   m_Name: LightHelicopterForShop
   m_TagString: Untagged
@@ -29,9 +30,70 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1380399596885286894}
   - {fileID: 6748110546611300312}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7173974291328679827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343882748791329148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4fc82c6d6848fa45a985c2c4351a2eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  _renderers:
+  - {fileID: 5615203781467348151}
+  _targetMaterial: {fileID: 2100000, guid: 2182440ddf123974fb0dbf1a13fb7786, type: 2}
+--- !u!1 &6561101715283704754
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1380399596885286894}
+  - component: {fileID: 1365276852803495063}
+  m_Layer: 6
+  m_Name: ScreenshotCenterTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1380399596885286894
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6561101715283704754}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.37, z: -0.73}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5120540405537483409}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1365276852803495063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6561101715283704754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 024a3ec59879b5c49bd7dc1a29724b10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &434187079726685527
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44,41 +106,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LightHelicopterMesh
-      objectReference: {fileID: 0}
-    - target: {fileID: 6602435466060446351, guid: 7ef3e179ed0f5c34aa1a110025d4bc4c,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6602435466060446351, guid: 7ef3e179ed0f5c34aa1a110025d4bc4c,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6602435466060446351, guid: 7ef3e179ed0f5c34aa1a110025d4bc4c,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6602435466060446351, guid: 7ef3e179ed0f5c34aa1a110025d4bc4c,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6602435466060446351, guid: 7ef3e179ed0f5c34aa1a110025d4bc4c,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.00000008146034
-      objectReference: {fileID: 0}
-    - target: {fileID: 6602435466060446351, guid: 7ef3e179ed0f5c34aa1a110025d4bc4c,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6602435466060446351, guid: 7ef3e179ed0f5c34aa1a110025d4bc4c,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6602435466060446351, guid: 7ef3e179ed0f5c34aa1a110025d4bc4c,
         type: 3}
@@ -100,6 +127,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ef3e179ed0f5c34aa1a110025d4bc4c, type: 3}
+--- !u!23 &5615203781467348151 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5470673772080447968, guid: 7ef3e179ed0f5c34aa1a110025d4bc4c,
+    type: 3}
+  m_PrefabInstance: {fileID: 434187079726685527}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6748110546611300312 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6602435466060446351, guid: 7ef3e179ed0f5c34aa1a110025d4bc4c,

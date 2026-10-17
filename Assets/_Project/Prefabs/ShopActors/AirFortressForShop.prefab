@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2294436615171371755
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 857089594879380242}
+  - component: {fileID: 3406097345321806676}
+  m_Layer: 6
+  m_Name: ScreenshotCenterTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &857089594879380242
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2294436615171371755}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.58, z: -1.52}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3849445293371503829}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3406097345321806676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2294436615171371755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 024a3ec59879b5c49bd7dc1a29724b10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7954657753077490026
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,6 +53,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3849445293371503829}
+  - component: {fileID: 6350640136767586317}
   m_Layer: 0
   m_Name: AirFortressForShop
   m_TagString: Untagged
@@ -29,9 +74,26 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 857089594879380242}
   - {fileID: 4747609611658665866}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6350640136767586317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7954657753077490026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4fc82c6d6848fa45a985c2c4351a2eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  _renderers:
+  - {fileID: 5884455480691713253}
+  _targetMaterial: {fileID: 2100000, guid: 2182440ddf123974fb0dbf1a13fb7786, type: 2}
 --- !u!1001 &5457016612198370145
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44,41 +106,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AirFortressMesh
-      objectReference: {fileID: 0}
-    - target: {fileID: 745858641383937259, guid: 542d5b90c43af5c44990ea6ec31512ab,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 745858641383937259, guid: 542d5b90c43af5c44990ea6ec31512ab,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 745858641383937259, guid: 542d5b90c43af5c44990ea6ec31512ab,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 745858641383937259, guid: 542d5b90c43af5c44990ea6ec31512ab,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 745858641383937259, guid: 542d5b90c43af5c44990ea6ec31512ab,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.00000008146034
-      objectReference: {fileID: 0}
-    - target: {fileID: 745858641383937259, guid: 542d5b90c43af5c44990ea6ec31512ab,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 745858641383937259, guid: 542d5b90c43af5c44990ea6ec31512ab,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 745858641383937259, guid: 542d5b90c43af5c44990ea6ec31512ab,
         type: 3}
@@ -103,6 +130,12 @@ PrefabInstance:
 --- !u!4 &4747609611658665866 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 745858641383937259, guid: 542d5b90c43af5c44990ea6ec31512ab,
+    type: 3}
+  m_PrefabInstance: {fileID: 5457016612198370145}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &5884455480691713253 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1878843988321480580, guid: 542d5b90c43af5c44990ea6ec31512ab,
     type: 3}
   m_PrefabInstance: {fileID: 5457016612198370145}
   m_PrefabAsset: {fileID: 0}

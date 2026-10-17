@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.AttackSystem.Aim
 {
-    [PreviewExcluded(PreviewExclusionMode.Remove)]
     public class RadarAim : MonoBehaviour, IAim
     {
         private IAttackerPresenter _presenter;

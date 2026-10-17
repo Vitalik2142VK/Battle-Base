@@ -19,6 +19,9 @@ namespace BattleBase.Gameplay.Actors.Colored
 
         public void OnValidate()
         {
+            if (_renderers == null)
+                return;
+
             for (int i = 0; i < _renderers.Count; i++)
             {
                 if (_renderers[i] == null)

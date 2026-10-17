@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.AttackSystem
 {
-    [PreviewExcluded(PreviewExclusionMode.Remove)]
     public class RotorToTargetAttackerView : MonoBehaviour, IAttackerViewComponent
     {
         [SerializeField] private ActorView _actorView;
