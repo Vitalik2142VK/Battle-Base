@@ -13629,7 +13629,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _popUpsToShow:
-  - {fileID: 0}
+  - {fileID: 617414620}
 --- !u!4 &1611895123
 Transform:
   m_ObjectHideFlags: 0
@@ -13872,7 +13872,7 @@ MonoBehaviour:
   - {fileID: 87211437}
   - {fileID: 128198825}
   - {fileID: 1114411039}
-  - {fileID: 0}
+  - {fileID: 617414620}
   - {fileID: 1833879667}
   - {fileID: 1276686549}
   - {fileID: 538776176}
