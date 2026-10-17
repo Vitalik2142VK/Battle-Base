@@ -26,17 +26,29 @@ namespace BattleBase.ShopSystem
         public void Construct(ActorsUpgradeModel unitsUpgradeModel)
         {
             _unitsUpgradeModel = unitsUpgradeModel ?? throw new ArgumentNullException(nameof(unitsUpgradeModel));
-
-            _unitsUpgradeModel.UnitSelectionChanged += OnModelSelectionChanged;
         }
 
-        private void OnEnable() =>
+        private void OnEnable()
+        {
+            if (_unitsUpgradeModel != null)
+                _unitsUpgradeModel.UnitSelectionChanged += OnModelSelectionChanged;
+
             SyncSelectionFromModel();
+        }
+
+        private void OnDisable()
+        {
+            if (_unitsUpgradeModel != null)
+                _unitsUpgradeModel.UnitSelectionChanged -= OnModelSelectionChanged;
+        }
 
         private void OnDestroy()
         {
             if (_unitsUpgradeModel != null)
                 _unitsUpgradeModel.UnitSelectionChanged -= OnModelSelectionChanged;
+
+            _items.Clear();
+            CurrentItem = null;
         }
 
         public void Init(IReadOnlyList<IActorItemConfig> infos, List<Sprite> previews)
@@ -106,6 +118,9 @@ namespace BattleBase.ShopSystem
 
         private void ApplyVisualSelection(ShopUnitItemView item)
         {
+            if (item == null)
+                return;
+
             UnselectAll();
             item.Select();
             CurrentItem = item;
@@ -118,7 +133,7 @@ namespace BattleBase.ShopSystem
         {
             foreach (ShopUnitItemView item in _items)
             {
-                if (item.Info.Id == id)
+                if (item != null && item.Info.Id == id)
                     return item;
             }
 
@@ -128,7 +143,10 @@ namespace BattleBase.ShopSystem
         private void UnselectAll()
         {
             foreach (ShopUnitItemView item in _items)
-                item.Unselect();
+            {
+                if (item != null)
+                    item.Unselect();
+            }
         }
     }
 }

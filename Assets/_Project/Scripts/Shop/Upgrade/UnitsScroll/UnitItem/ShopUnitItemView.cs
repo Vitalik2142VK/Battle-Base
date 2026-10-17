@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace BattleBase.ShopSystem
 {
-    public partial class ShopUnitItemView : ButtonClickHandler
+    public class ShopUnitItemView : ButtonClickHandler
     {
         [SerializeField] private Image _buttonImage;
         [SerializeField] private Color _selectedColor;
@@ -39,10 +39,16 @@ namespace BattleBase.ShopSystem
             _clicked?.Invoke(this);
         }
 
-        public void Select() =>
-            _buttonImage.color = _selectedColor;
+        public void Select()
+        {
+            if (_buttonImage != null)
+                _buttonImage.color = _selectedColor;
+        }
 
-        public void Unselect() =>
-            _buttonImage.color = _unselectedColor;
+        public void Unselect()
+        {
+            if (_buttonImage != null)
+                _buttonImage.color = _unselectedColor;
+        }
     }
 }
