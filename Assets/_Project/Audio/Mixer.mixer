@@ -6,7 +6,7 @@ AudioMixerGroupController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GameSfx
+  m_Name: Shot
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 2dbdbf7e0c26ea546b7f185998013ba0
   m_Children: []
@@ -113,7 +113,8 @@ AudioMixerSnapshotController:
   m_Name: Snapshot
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: f0b5ca1291896254a9a9aca6dc3471d2
-  m_FloatValues: {}
+  m_FloatValues:
+    de77e46bcb8a3d44e88b64f564d1bce4: 0
   m_TransitionOverrides: {}
 --- !u!244 &200588219261938841
 AudioMixerEffectController:

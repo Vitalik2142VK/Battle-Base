@@ -27,8 +27,6 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.View
 
             if (gameObject.activeSelf)
                 _attackNotifier.Attacked += OnPlayShot;
-
-            Debug.Log($"DynamicShotEffect.Init");
         }
 
         private void OnPlayShot()
