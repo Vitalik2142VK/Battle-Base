@@ -10,22 +10,21 @@ namespace BattleBase.UI
         [SerializeField] private RectTransform _viewport;
         [SerializeField] private RectTransform _content;
         [SerializeField] private GridLayoutGroup _grid;
+        [SerializeField] private ScrollViewController _viewController;
 
         [Header("Settings")]
         [SerializeField][Min(1)] private int _maxVisibleColumns = 3;
 
-        private int _currentVisibleColumns = 3;
-
-        private void Awake()
-        {
-            _currentVisibleColumns = _maxVisibleColumns;
-        }
+        private int _currentVisibleColumns;
 
         [ContextMenu("Refresh")]
         public void Refresh()
         {
             if (_viewport == null || _content == null || _grid == null)
                 return;
+
+            if (_currentVisibleColumns <= 0)
+                _currentVisibleColumns = _maxVisibleColumns;
 
             int childCount = 0;
 
@@ -76,6 +75,7 @@ namespace BattleBase.UI
             Vector2 contentSize = _content.sizeDelta;
             contentSize.x = requiredWidth;
             _content.sizeDelta = contentSize;
+            _viewController.UpdateVisable(childCount, _currentVisibleColumns);
         }
 
         public void SetMaxVisibleColumns(int columns)

@@ -5619,6 +5619,7 @@ MonoBehaviour:
   _viewport: {fileID: 617414612}
   _content: {fileID: 1522876615}
   _grid: {fileID: 1522876617}
+  _viewController: {fileID: 1270367061}
   _maxVisibleColumns: 3
 --- !u!114 &617414617
 MonoBehaviour:
@@ -5688,7 +5689,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dynamicScrollRect: {fileID: 617414616}
   _maxColumsInVerticalOrientation: 3
-  _maxColumsInHorisontalOrientation: 6
+  _maxColumsInHorisontalOrientation: 7
 --- !u!1 &638903628
 GameObject:
   m_ObjectHideFlags: 0
@@ -10789,8 +10790,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1270367057}
   - component: {fileID: 1270367060}
+  - component: {fileID: 1270367062}
   - component: {fileID: 1270367059}
   - component: {fileID: 1270367058}
+  - component: {fileID: 1270367061}
   m_Layer: 5
   m_Name: Scrollbar Horizontal
   m_TagString: Untagged
@@ -10905,6 +10908,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1270367056}
   m_CullTransparentMesh: 1
+--- !u!114 &1270367061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270367056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f83c2e8dffbe8de4387a2129ec5e252a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _canvasGroup: {fileID: 1270367062}
+--- !u!225 &1270367062
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270367056}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1276686548
 GameObject:
   m_ObjectHideFlags: 0
