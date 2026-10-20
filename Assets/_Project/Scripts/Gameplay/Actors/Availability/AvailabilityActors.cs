@@ -34,13 +34,6 @@ namespace BattleBase.Gameplay.Actors.Availability
             if (spawner == null)
                 throw new ArgumentNullException(nameof(spawner));
 
-            if (spawner != null) //todo remove
-            {
-                spawner.DataController.EstablishActors(spawner.DataController.AvailabilityActorDatas);
-
-                return;
-            }
-
 #if UNITY_EDITOR // todo remove
             if (DebugSettingGameScene.IsOpenAllUnit)
             {

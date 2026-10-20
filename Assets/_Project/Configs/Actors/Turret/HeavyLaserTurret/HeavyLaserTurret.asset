@@ -17,10 +17,10 @@ MonoBehaviour:
       type: 3}
     _icon: {fileID: 21300000, guid: 7d26e837c1c55ff479680409f6b83ae9, type: 3}
     _nameConfig: {fileID: 11400000, guid: a36728ea9e23d5945be02a82f4a2d766, type: 2}
-    _constructionTime: 5
-    _price: 650
+    _constructionTime: 10
+    _price: 1200
     _power: 0
-    _isSummable: 0
+    _isDefaultAvailability: 0
   _components:
   - {fileID: 11400000, guid: 9ed84ce303e687c40b28b50a6c73d535, type: 2}
   - {fileID: 11400000, guid: 43727e563f9d49e4cb4d5836ff393605, type: 2}
