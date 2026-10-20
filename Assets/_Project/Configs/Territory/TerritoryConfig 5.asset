@@ -19,7 +19,7 @@ MonoBehaviour:
       _text: The Rusty Wastelands
     _tr:
       _text: "Pasl\u0131 \xE7orak araziler"
-  _creditsForFirstVictory: 4000
+  _creditsForFirstVictory: 3500
   _brainConfig: {fileID: 11400000, guid: 0d5f6409113ae0e4c86bab507b6da38d, type: 2}
   _upgradeActrosCoefficient: 0.05
   _actorsToOpen:
@@ -49,3 +49,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 292c450663b84384f968d6d256496423, type: 2}
   - {fileID: 11400000, guid: a01aceef08e36ba478d1e585dd4a12f7, type: 2}
   - {fileID: 11400000, guid: 02fa36878b40eea4a9291d54966cc15e, type: 2}
+  - {fileID: 11400000, guid: 4c34700e5c731f14184361f670a61084, type: 2}

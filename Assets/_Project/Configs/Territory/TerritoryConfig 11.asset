@@ -19,7 +19,7 @@ MonoBehaviour:
       _text: Dilapidated bridge
     _tr:
       _text: "Eski k\xF6pr\xFC"
-  _creditsForFirstVictory: 6500
+  _creditsForFirstVictory: 13800
   _brainConfig: {fileID: 11400000, guid: 0d5f6409113ae0e4c86bab507b6da38d, type: 2}
   _upgradeActrosCoefficient: 0.15
   _actorsToOpen: []
@@ -45,5 +45,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e587a36f43eff694bbf1c201fc3498c5, type: 2}
   - {fileID: 11400000, guid: 9f81944311ed51b439dcd449efc2e5fd, type: 2}
   - {fileID: 11400000, guid: 292c450663b84384f968d6d256496423, type: 2}
-  - {fileID: 11400000, guid: a01aceef08e36ba478d1e585dd4a12f7, type: 2}
   - {fileID: 11400000, guid: 02fa36878b40eea4a9291d54966cc15e, type: 2}

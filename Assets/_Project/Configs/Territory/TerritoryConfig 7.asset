@@ -22,7 +22,9 @@ MonoBehaviour:
   _creditsForFirstVictory: 4500
   _brainConfig: {fileID: 11400000, guid: 0d5f6409113ae0e4c86bab507b6da38d, type: 2}
   _upgradeActrosCoefficient: 0.11
-  _actorsToOpen: []
+  _actorsToOpen:
+  - {fileID: 11400000, guid: eacfd7c0f370f984ab0e4855bf213890, type: 2}
+  - {fileID: 11400000, guid: a01aceef08e36ba478d1e585dd4a12f7, type: 2}
   _bannedActors:
   - {fileID: 11400000, guid: 1f46563fef4f1a74596c038054377828, type: 2}
   - {fileID: 11400000, guid: fff000a41cc816645b915be5714638b3, type: 2}
@@ -45,5 +47,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e587a36f43eff694bbf1c201fc3498c5, type: 2}
   - {fileID: 11400000, guid: 9f81944311ed51b439dcd449efc2e5fd, type: 2}
   - {fileID: 11400000, guid: 292c450663b84384f968d6d256496423, type: 2}
-  - {fileID: 11400000, guid: a01aceef08e36ba478d1e585dd4a12f7, type: 2}
   - {fileID: 11400000, guid: 02fa36878b40eea4a9291d54966cc15e, type: 2}
