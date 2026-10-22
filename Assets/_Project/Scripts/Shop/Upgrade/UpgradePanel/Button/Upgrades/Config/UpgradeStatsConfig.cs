@@ -9,12 +9,12 @@ namespace BattleBase.ShopSystem
     public class UpgradeStatsConfig : ScriptableObject, IUpgradeStatsInfo
     {
         [SerializeField] public UpgradeButtonInfo _damageInfo;
-        [SerializeField] public UpgradeButtonInfo _armorInfo;
+        [SerializeField] public UpgradeButtonInfo _healthInfo;
         [SerializeField] public UpgradeButtonInfo _speedInfo;
 
         public IUpgradeInfo DamageInfo => _damageInfo;
 
-        public IUpgradeInfo HealthInfo => _armorInfo;
+        public IUpgradeInfo HealthInfo => _healthInfo;
 
         public IUpgradeInfo SpeedInfo => _speedInfo;
     }

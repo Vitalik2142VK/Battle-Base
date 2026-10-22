@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: UpgraderConfig
   m_EditorClassIdentifier: 
   _damageCoefficientByLevel: 0.025
-  _healtheCoefficientByLevel: 0.1
+  _healtheCoefficientByLevel: 0.05
   _speedCoefficientByLevel: 0.125
