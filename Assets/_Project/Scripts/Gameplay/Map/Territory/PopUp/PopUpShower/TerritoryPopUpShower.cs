@@ -39,10 +39,11 @@ namespace BattleBase.Gameplay.Map
                 _territoriesModel.SetSelectedTerritoryIndex(index);
 
                 TerritoryOwnerType owner = territory.Owner;
+                bool conquered = owner == TerritoryOwnerType.Player;
 
                 _currentPopUp = popUp;
                 _currentPopUp.SetTarget(territory.Target);
-                _currentPopUp.SetInfo(_territoriesModel.GetTerritoryInfo(index));
+                _currentPopUp.SetInfo(_territoriesModel.GetTerritoryInfo(index), conquered);
                 _currentPopUp.SetOwner(owner);
                 _currentPopUp.Show();
             }

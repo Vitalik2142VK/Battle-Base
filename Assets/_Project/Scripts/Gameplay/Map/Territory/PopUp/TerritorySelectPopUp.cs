@@ -25,6 +25,9 @@ namespace BattleBase.Gameplay.Map
         [SerializeField] private GameObject _territorySelectRewardContent;
         [SerializeField] private TerritorySelectRewardItem[] _rewardItems;
 
+        [SerializeField] private GameObject _rewardText;
+        [SerializeField] private GameObject _conquiredRewardText;
+
         private Transform _target;
 
         public event Action<TerritorySelectPopUp> Deactivated;
@@ -64,10 +67,13 @@ namespace BattleBase.Gameplay.Map
         public void SetTarget(Transform target) =>
             _target = target != null ? target : throw new ArgumentNullException(nameof(target));
 
-        public void SetInfo(ITerritoryInfo info)
+        public void SetInfo(ITerritoryInfo info, bool conquered)
         {
             _territoryName.SetTexts(info.TerritoryName);
             IActorConfig[] actorsToOpen = info.ActorsToOpen;
+
+            _rewardText.SetActive(conquered == false);
+            _conquiredRewardText.SetActive(conquered);
 
             if (actorsToOpen.Length == 0)
             {
