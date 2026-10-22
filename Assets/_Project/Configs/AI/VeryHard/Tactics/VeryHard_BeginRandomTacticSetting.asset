@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: VeryHard_BeginRandomTacticSetting
   m_EditorClassIdentifier: 
   _deactivatorScores:
-  - {fileID: 11400000, guid: 2ad621650bbefd3498024a2b90bf620f, type: 2}
-  _maxScore: 18
+  - {fileID: 11400000, guid: 8b30b14cd0242d340ae6c6e6fa3e36dc, type: 2}
+  _maxScore: 25
   _minScore: 0
   _forbiddenActorConfigs:
   - {fileID: 11400000, guid: d29b556504be6944588fab13baad2f83, type: 2}
@@ -22,5 +22,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1f46563fef4f1a74596c038054377828, type: 2}
   - {fileID: 11400000, guid: 8447eaf3ba3c32d4a84099ea8db27f47, type: 2}
   - {fileID: 11400000, guid: 9c09f34c8e62cff449901d51a8c8d301, type: 2}
+  - {fileID: 11400000, guid: fff000a41cc816645b915be5714638b3, type: 2}
+  - {fileID: 11400000, guid: eacfd7c0f370f984ab0e4855bf213890, type: 2}
+  - {fileID: 11400000, guid: 292c450663b84384f968d6d256496423, type: 2}
+  - {fileID: 11400000, guid: 9f51f39e46a8b4e4a80a2e3befedd6fc, type: 2}
+  - {fileID: 11400000, guid: 723fc8065fedc85469fc9acd6ba62f5f, type: 2}
   _maxNumSpawn: 3
   _minNumSpawn: 1
