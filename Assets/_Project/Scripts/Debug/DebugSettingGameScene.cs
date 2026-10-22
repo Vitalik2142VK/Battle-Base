@@ -9,11 +9,14 @@ namespace BattleBase.Utils
         private static DebugSettingGameScene Single;
 
         [SerializeField] private bool _isOpenAllUnit = false;
+        [SerializeField] private bool _isUnitsMaxLevel = false;
         [SerializeField] private bool _isShowCountActor = false;
         [SerializeField] private bool _isAiDisbale = false;
         [SerializeField] private bool _isBrainDebugEnable = false;
 
         public static bool IsOpenAllUnit => Single._isOpenAllUnit;
+
+        public static bool IsUnitsMaxLevel => Single._isUnitsMaxLevel;
 
         public static bool IsBrainDebugEnable => Single._isBrainDebugEnable;
 

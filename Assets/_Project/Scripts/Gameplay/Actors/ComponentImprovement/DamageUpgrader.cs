@@ -1,5 +1,6 @@
 using BattleBase.Gameplay.Actors.AttackSystem;
 using BattleBase.Gameplay.Actors.AttackSystem.Weapons;
+using BattleBase.Utils;
 using System;
 using System.Collections.Generic;
 
@@ -31,6 +32,10 @@ namespace BattleBase.Gameplay.Actors.ComponentImprovement
             if (actor.TryGetComponent(out IAttacker attacker) == false)
                 throw new InvalidOperationException($"Actor.Id = {actor.Data.Id} don't contains component {nameof(IAttacker)}");
 
+#if UNITY_EDITOR
+            if (DebugSettingGameScene.IsUnitsMaxLevel)
+                level = new MaxUpgradeLevel(level);
+#endif
             WeaponConfigModificator modificator = new(_config, level);
             attacker.Upgrade(modificator);
         }
