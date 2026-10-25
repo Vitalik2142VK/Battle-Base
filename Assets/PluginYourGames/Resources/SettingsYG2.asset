@@ -233,6 +233,87 @@ MonoBehaviour:
       priceCurrencyCode: YAN
       currencyImageURL: https://yastatic.net/s3/games-static/static-data/images/payments/sdk/currency-icon-s@2x.png
       consumed: 1
+    - id: CoinsPack_0
+      title: "== \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C 100 000 \u043C\u043E\u043D\u0435\u0442"
+      description: '== '
+      imageURI: demo image
+      price: 99 YAN
+      priceValue: 99
+      priceCurrencyCode: YAN
+      currencyImageURL: https://yastatic.net/s3/games-static/static-data/images/payments/sdk/currency-icon-s@2x.png
+      consumed: 1
+    - id: CoinsPack_1
+      title: "== \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C 250 000 \u043C\u043E\u043D\u0435\u0442"
+      description: '== '
+      imageURI: demo image
+      price: 180 YAN
+      priceValue: 180
+      priceCurrencyCode: YAN
+      currencyImageURL: https://yastatic.net/s3/games-static/static-data/images/payments/sdk/currency-icon-s@2x.png
+      consumed: 1
+    - id: CoinsPack_2
+      title: "== \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C 500 000 \u043C\u043E\u043D\u0435\u0442"
+      description: '== '
+      imageURI: demo image
+      price: 200 YAN
+      priceValue: 200
+      priceCurrencyCode: YAN
+      currencyImageURL: https://yastatic.net/s3/games-static/static-data/images/payments/sdk/currency-icon-s@2x.png
+      consumed: 1
+    - id: CoinsPack_3
+      title: "== \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C 1 000 000 \u043C\u043E\u043D\u0435\u0442"
+      description: '== '
+      imageURI: demo image
+      price: 250 YAN
+      priceValue: 250
+      priceCurrencyCode: YAN
+      currencyImageURL: https://yastatic.net/s3/games-static/static-data/images/payments/sdk/currency-icon-s@2x.png
+      consumed: 1
+    - id: CoinsPack_4
+      title: "== \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C 3 000 000 \u043C\u043E\u043D\u0435\u0442"
+      description: '== '
+      imageURI: demo image
+      price: 300 YAN
+      priceValue: 300
+      priceCurrencyCode: YAN
+      currencyImageURL: https://yastatic.net/s3/games-static/static-data/images/payments/sdk/currency-icon-s@2x.png
+      consumed: 1
+    - id: CoinsPack_5
+      title: "== \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C 5 000 000 \u043C\u043E\u043D\u0435\u0442"
+      description: '== '
+      imageURI: demo image
+      price: 450 YAN
+      priceValue: 450
+      priceCurrencyCode: YAN
+      currencyImageURL: https://yastatic.net/s3/games-static/static-data/images/payments/sdk/currency-icon-s@2x.png
+      consumed: 1
+    - id: CoinsPack_6
+      title: "== \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C 8 000 000 \u043C\u043E\u043D\u0435\u0442"
+      description: '== '
+      imageURI: demo image
+      price: 600 YAN
+      priceValue: 600
+      priceCurrencyCode: YAN
+      currencyImageURL: https://yastatic.net/s3/games-static/static-data/images/payments/sdk/currency-icon-s@2x.png
+      consumed: 1
+    - id: CoinsPack_7
+      title: "== \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C 20 000 000 \u043C\u043E\u043D\u0435\u0442"
+      description: '== '
+      imageURI: demo image
+      price: 1200 YAN
+      priceValue: 1200
+      priceCurrencyCode: YAN
+      currencyImageURL: https://yastatic.net/s3/games-static/static-data/images/payments/sdk/currency-icon-s@2x.png
+      consumed: 1
+    - id: CoinsPack_8
+      title: "== \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C 50 000 000 \u043C\u043E\u043D\u0435\u0442"
+      description: '== '
+      imageURI: demo image
+      price: 2400 YAN
+      priceValue: 2400
+      priceCurrencyCode: YAN
+      currencyImageURL: https://yastatic.net/s3/games-static/static-data/images/payments/sdk/currency-icon-s@2x.png
+      consumed: 1
   RewardedAdv:
     skipInterAdvAfterReward: 0
     labelAdvSimLabel: 0
@@ -303,6 +384,9 @@ MonoBehaviour:
     pixelRatioValue: 1.3
     developerBuild: 0
   platformInfo:
+    localProdGameId: 
+    localProdPort: 8080
+    localProdUseCsp: 1
     ownHost: 0
   platformToggles:
     showFirstAdv: 0

@@ -6,7 +6,6 @@ namespace BattleBase.AdvService
     {
         public event Action<string> RewardAdvShown;
         public event Action RewardAdvClosed;
-        public event Action<string> PurchaseSuccess;
 
         public void ShowInterstitialAdv();
 

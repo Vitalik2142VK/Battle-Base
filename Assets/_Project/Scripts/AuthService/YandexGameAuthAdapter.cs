@@ -12,7 +12,9 @@ namespace BattleBase.AuthService
 
         public event Action SDKDataReceived;
 
-        public bool IsAuth => YG2.player.auth;
+        public bool IsAuth => IsSDKDataReceived && YG2.player.auth;
+
+        public bool IsSDKDataReceived => YG2.isSDKEnabled;
 
         public void Dispose() =>
             YG2.onGetSDKData -= OnGetSDKData;

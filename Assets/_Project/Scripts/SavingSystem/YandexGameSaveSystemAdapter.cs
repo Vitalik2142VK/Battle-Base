@@ -10,6 +10,8 @@ namespace BattleBase.SaveService
 
         public event Action ProgressReseted;
 
+        public event Action<bool> NoAdsStateChanged;
+
         public IVolumeData VolumeData => JsonData.VolumeData;
 
         public IColorData ColorData => JsonData.ColorData;
@@ -20,7 +22,7 @@ namespace BattleBase.SaveService
 
         private JsonSavesData JsonData => YG2.saves.SavesData;
 
-        public bool IsNoAds => YG2.GetState(PurchasesKeys.NoAdsKey) == 1;
+        public bool IsNoAds => YG2.isSDKEnabled && YG2.GetState(PurchasesKeys.NoAdsKey) == 1;
 
         public void SaveProgress()
         {
@@ -76,7 +78,11 @@ namespace BattleBase.SaveService
             }
         }
 
-        public void SetNoAdsState(bool isOn) =>
+        public void SetNoAdsState(bool isOn)
+        {
             YG2.SetState(PurchasesKeys.NoAdsKey, isOn ? 1 : 0);
+
+            NoAdsStateChanged?.Invoke(isOn);
+        }
     }
 }

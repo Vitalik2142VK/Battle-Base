@@ -1,8 +1,12 @@
+using System;
+
 namespace BattleBase.SaveService
 {
     public interface IPurchasesSaver
     {
-        public bool IsNoAds {  get; }
+        public event Action<bool> NoAdsStateChanged;
+
+        public bool IsNoAds { get; }
 
         public void SetNoAdsState(bool isOn);
     }

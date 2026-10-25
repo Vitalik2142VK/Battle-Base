@@ -3,7 +3,6 @@ using BattleBase.AdvService;
 using BattleBase.AuthService;
 using BattleBase.SaveService;
 using BattleBase.UI.Buttons;
-using BattleBase.Utils.Constants;
 using UnityEngine;
 using VContainer;
 
@@ -31,30 +30,30 @@ namespace BattleBase.EntryPoints
 
         private void OnEnable()
         {
-            _authorizationService.SDKDataReceived += OnGetSDKData;
-            _advertisingService.PurchaseSuccess += OnPurchaseSuccess;
+            _authorizationService.SDKDataReceived += OnSDKDataReceived;
+            _purchasesSaver.NoAdsStateChanged += OnNoAdsStateChanged;
 
-            OnGetSDKData();
-            ProcessVisibleAds();
+            _authButton.SetActive(false);
+            _noAdsButton.Hide();
+
+            if (_authorizationService.IsSDKDataReceived)
+                OnSDKDataReceived();
         }
 
         private void OnDisable()
         {
-            _authorizationService.SDKDataReceived -= OnGetSDKData;
-            _advertisingService.PurchaseSuccess -= OnPurchaseSuccess;
+            _authorizationService.SDKDataReceived -= OnSDKDataReceived;
+            _purchasesSaver.NoAdsStateChanged -= OnNoAdsStateChanged;
         }
 
-        private void OnGetSDKData() =>
-            _authButton.SetActive(_authorizationService.IsAuth == false);
-
-        private void OnPurchaseSuccess(string id)
+        private void OnSDKDataReceived()
         {
-            if (string.Equals(id, PurchasesIds.NoAds))
-            {
-                _purchasesSaver.SetNoAdsState(true);
-                ProcessVisibleAds();
-            }            
+            _authButton.SetActive(_authorizationService.IsAuth == false);
+            ProcessVisibleAds();
         }
+
+        private void OnNoAdsStateChanged(bool _) =>
+            ProcessVisibleAds();
 
         private void ProcessVisibleAds()
         {

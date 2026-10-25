@@ -7,6 +7,7 @@ using BattleBase.Gameplay.Actors.Availability;
 using BattleBase.Gameplay.Map;
 using BattleBase.PauseService;
 using BattleBase.PreviewCreatingSystem;
+using BattleBase.PurchaseService;
 using BattleBase.SaveService;
 using BattleBase.SceneLoadingService;
 using BattleBase.ScreenshotSystem;
@@ -31,17 +32,22 @@ namespace BattleBase.DI
         [SerializeField] private List<TerritoryConfig> _territoryConfigs;
         [SerializeField] private CaptureCamera _captureCamera;
         [SerializeField] private AllActorConfigs _allActorConfigs;
-
-        private IContainerBuilder _builder;
+        [SerializeField] private PurchasesCatalog _purchasesCatalog;
 
         protected override void Configure(IContainerBuilder builder)
         {
-            _builder = builder;
-
             builder.Register<IPauseSwitcher, PauseSwitcher>(Lifetime.Singleton);
             builder.Register<YandexGameSaveSystemAdapter>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<IAdvertisingService, YandexGameAdvertisingAdapter>(Lifetime.Singleton);
             builder.Register<IAuthorizationService, YandexGameAuthAdapter>(Lifetime.Singleton);
+
+            builder.RegisterInstance(_purchasesCatalog).As<IPurchaseCatalog>();
+            builder.Register<IPurchaseService, YandexGamePurchaseAdapter>(Lifetime.Singleton);
+
+            builder.Register<IPurchaseHandler, NoAdsPurchaseHandler>(Lifetime.Singleton);
+            builder.Register<IPurchaseHandler, CoinsPurchaseHandler>(Lifetime.Singleton);
+
+            builder.Register<PurchaseMediator>(Lifetime.Singleton);
 
             builder.Register<CreditsModel>(Lifetime.Singleton);
             builder.Register<AudioVolumeModel>(Lifetime.Singleton);
@@ -69,21 +75,22 @@ namespace BattleBase.DI
             builder.RegisterBuildCallback(container =>
             {
                 container.Resolve<AudioVolumeService>();
+                container.Resolve<PurchaseMediator>();
             });
 
-            RegisterScreenshotSystem();
+            RegisterScreenshotSystem(builder);
         }
 
-        private void RegisterScreenshotSystem()
+        private void RegisterScreenshotSystem(IContainerBuilder builder)
         {
-            _builder.Register<IPreviewCreator, PreviewCreator>(Lifetime.Singleton);
-            _builder.Register<IPreviewInstanceFactory, PreviewInstanceFactory>(Lifetime.Singleton);
-            _builder.Register<IScreenshoter, Screenshoter>(Lifetime.Singleton);
-            _builder.Register<IScreenshotCaptureCoordinator, ScreenshotCaptureCoordinator>(Lifetime.Singleton);
-            _builder.Register<IRendererCapturer, RendererCapturer>(Lifetime.Singleton);
-            _builder.Register<IRenderTextureFactory, RenderTextureFactory>(Lifetime.Singleton);
-            _builder.Register<IModelCenterCalculator, ModelCenterCalculator>(Lifetime.Singleton);
-            _builder.RegisterComponent(_captureCamera).As<ICaptureCamera>();
+            builder.Register<IPreviewCreator, PreviewCreator>(Lifetime.Singleton);
+            builder.Register<IPreviewInstanceFactory, PreviewInstanceFactory>(Lifetime.Singleton);
+            builder.Register<IScreenshoter, Screenshoter>(Lifetime.Singleton);
+            builder.Register<IScreenshotCaptureCoordinator, ScreenshotCaptureCoordinator>(Lifetime.Singleton);
+            builder.Register<IRendererCapturer, RendererCapturer>(Lifetime.Singleton);
+            builder.Register<IRenderTextureFactory, RenderTextureFactory>(Lifetime.Singleton);
+            builder.Register<IModelCenterCalculator, ModelCenterCalculator>(Lifetime.Singleton);
+            builder.RegisterComponent(_captureCamera).As<ICaptureCamera>();
         }
     }
 }

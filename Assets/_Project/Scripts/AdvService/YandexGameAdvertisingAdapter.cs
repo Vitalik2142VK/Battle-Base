@@ -9,18 +9,17 @@ namespace BattleBase.AdvService
         {
             YG2.onRewardAdv += OnReward;
             YG2.onErrorRewardedAdv += OnCloseReward;
-            YG2.onPurchaseSuccess += OnPurchaseSuccess;
+            YG2.onCloseRewardedAdv += OnCloseReward;
         }
 
         public event Action<string> RewardAdvShown;
         public event Action RewardAdvClosed;
-        public event Action<string> PurchaseSuccess;
 
         public void Dispose()
         {
             YG2.onRewardAdv -= OnReward;
-            YG2.onCloseRewardedAdv += OnCloseReward;
-            YG2.onPurchaseSuccess -= OnPurchaseSuccess;
+            YG2.onErrorRewardedAdv -= OnCloseReward;
+            YG2.onCloseRewardedAdv -= OnCloseReward;
         }
 
         public void ShowInterstitialAdv() =>
@@ -40,8 +39,5 @@ namespace BattleBase.AdvService
 
         private void OnCloseReward() =>
             RewardAdvClosed?.Invoke();
-
-        private void OnPurchaseSuccess(string id) =>
-            PurchaseSuccess?.Invoke(id);
     }
 }

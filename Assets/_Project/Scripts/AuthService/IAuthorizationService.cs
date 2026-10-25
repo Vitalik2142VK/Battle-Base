@@ -7,5 +7,7 @@ namespace BattleBase.AuthService
         public event Action SDKDataReceived;
 
         public bool IsAuth {  get; }
+
+        public bool IsSDKDataReceived { get; }
     }
 }

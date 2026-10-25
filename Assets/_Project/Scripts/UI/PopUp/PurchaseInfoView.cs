@@ -1,3 +1,4 @@
+using BattleBase.PurchaseService;
 using TMPro;
 using UnityEngine;
 using YG;
@@ -5,21 +6,32 @@ using YG.Utils.Pay;
 
 namespace BattleBase.UI.PopUps
 {
-    public class NoAdsWindow : MonoBehaviour
+    public class PurchaseInfoView : MonoBehaviour
     {
         [SerializeField] private ImageLoadYG _purchaseImageLoad;
         [SerializeField] private ImageLoadYG _currencyImageLoad;
         [SerializeField] private TMP_Text _price;
-        [SerializeField] private string _id = "NoAds";
+        [SerializeField] private PurchaseConfig _config;
 
-        private void OnEnable() =>
-            UpdateEntries(YG2.PurchaseByID(_id));
+        public PurchaseConfig Config => _config;
+
+        private void OnEnable()
+        {
+            if (_config == null)
+            {
+                Debug.LogError($"{nameof(PurchaseInfoView)}: config is not assigned on {name}", this);
+
+                return;
+            }
+
+            UpdateEntries(YG2.PurchaseByID(_config.Id));
+        }
 
         private void UpdateEntries(Purchase data)
         {
             if (data == null)
             {
-                Debug.LogError($"No product with ID found: {_id}");
+                Debug.LogError($"No product with ID found: {_config.Id}");
 
                 return;
             }
