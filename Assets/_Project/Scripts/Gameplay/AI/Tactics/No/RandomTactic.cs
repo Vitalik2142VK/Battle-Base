@@ -2,7 +2,6 @@
 using BattleBase.Gameplay.Actors;
 using BattleBase.Gameplay.Actors.Building;
 using BattleBase.Gameplay.Actors.Production;
-using BattleBase.Gameplay.Actors.Visual.Select;
 using BattleBase.Gameplay.AI.Deactevators;
 using BattleBase.Utils;
 using System;

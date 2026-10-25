@@ -6,15 +6,15 @@ using UnityEngine;
 namespace BattleBase.Gameplay.AI.Deactevators
 {
     [CreateAssetMenu(
-    fileName = nameof(EconomicDeactivatorScore),
-    menuName = AssetMenuPaths.ScriptableObjects + nameof(BrainConfig) + "/" + nameof(EconomicDeactivatorScore))]
-    public class EconomicDeactivatorScore : TacticDeactivatorScore, ITacticDeactivatorScore
+    fileName = nameof(DeactivatorScoreByEconomic),
+    menuName = AssetMenuPaths.ScriptableObjects + nameof(BrainConfig) + "/" + nameof(DeactivatorScoreByEconomic))]
+    public class DeactivatorScoreByEconomic : TacticDeactivatorScore, ITacticDeactivatorScore
     {
         [field: SerializeField] public TeamType TeamType { get; private set; }
 
         [field: SerializeField] public int MaterialsForDeactivate { get; private set; } = 1000;
 
-        public override Type Type => typeof(EconomicDeactivatorScore);
+        public override Type Type => typeof(DeactivatorScoreByEconomic);
 
         private void OnValidate()
         {

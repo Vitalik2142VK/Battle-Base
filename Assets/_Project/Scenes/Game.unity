@@ -8307,6 +8307,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 906194938}
   m_CullTransparentMesh: 1
+--- !u!1 &917802079
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 917802080}
+  - component: {fileID: 917802081}
+  m_Layer: 0
+  m_Name: RocketLaucherShotFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &917802080
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917802079}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1562503754}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &917802081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917802079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057606bb385ef764786b99038bcc249f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 5776329295304102759, guid: 9d12e591a3f264b478a32fad1c9b19eb, type: 3}
 --- !u!1 &919000031
 GameObject:
   m_ObjectHideFlags: 0
@@ -13594,6 +13639,7 @@ Transform:
   - {fileID: 945752705}
   - {fileID: 1947125994}
   - {fileID: 1340636889}
+  - {fileID: 917802080}
   m_Father: {fileID: 1446567723}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1562503755
@@ -13615,6 +13661,7 @@ MonoBehaviour:
   - {fileID: 945752706}
   - {fileID: 1947125995}
   - {fileID: 1340636890}
+  - {fileID: 917802081}
   _container: {fileID: 696706977}
   _maxNumberSounds: 30
 --- !u!4 &1571344139 stripped
@@ -15046,6 +15093,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isOpenAllUnit: 1
+  _isUnitsMaxLevel: 1
   _isShowCountActor: 0
   _isAiDisbale: 1
   _isBrainDebugEnable: 0
@@ -15679,6 +15727,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1782129122}
   m_CullTransparentMesh: 1
+--- !u!1 &1798927184
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1798927185}
+  - component: {fileID: 1798927186}
+  m_Layer: 0
+  m_Name: RocketLaucherShotPlaybackLimiter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &1798927185
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798927184}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2120012444}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1798927186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798927184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c489528771147d54c99bcd35e7771cc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 5776329295304102759, guid: 9d12e591a3f264b478a32fad1c9b19eb, type: 3}
+  _timeLimit: 0.05
 --- !u!1 &1806354743
 GameObject:
   m_ObjectHideFlags: 0
@@ -17309,7 +17403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prefab: {fileID: 5776329295304102759, guid: 8f0930e53a7c76b45814e2b7307a55a4, type: 3}
-  _timeLimit: 0.03
+  _timeLimit: 0.04
 --- !u!1 &1978955114
 GameObject:
   m_ObjectHideFlags: 0
@@ -18614,6 +18708,7 @@ Transform:
   - {fileID: 444202343}
   - {fileID: 836500308}
   - {fileID: 1972431901}
+  - {fileID: 1798927185}
   m_Father: {fileID: 1446567723}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2120012445
@@ -18635,6 +18730,7 @@ MonoBehaviour:
   - {fileID: 444202344}
   - {fileID: 836500309}
   - {fileID: 1972431902}
+  - {fileID: 1798927186}
 --- !u!1 &2131635206
 GameObject:
   m_ObjectHideFlags: 0

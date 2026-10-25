@@ -5,11 +5,11 @@
     "floatValues": [],
     "intKeys": [],
     "intValues": [],
-    "idSave": 6,
+    "idSave": 2,
     "SavesData": {
         "_volumeData": {
-            "_generalVolume": 1.0,
-            "_musicVolume": 0.0,
+            "_generalVolume": 0.41851848363876345,
+            "_musicVolume": 0.6000000238418579,
             "_sfxVolume": 0.800000011920929
         },
         "_colorData": {
@@ -18,14 +18,12 @@
         },
         "_territoryData": {
             "_conqueredTerritoryIndices": [
-                0,
-                1,
-                2
+                0
             ],
-            "_selectedTerritoryIndex": 5
+            "_selectedTerritoryIndex": 0
         },
         "_shopData": {
-            "_credits": 1000,
+            "_credits": 5426,
             "_unitUpgrades": [
                 {
                     "_name": "",

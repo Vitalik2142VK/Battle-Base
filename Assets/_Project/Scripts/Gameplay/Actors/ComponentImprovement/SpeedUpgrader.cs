@@ -1,4 +1,5 @@
 ﻿using BattleBase.Gameplay.Actors.Movement;
+using BattleBase.Utils;
 using System;
 using System.Collections.Generic;
 
@@ -30,6 +31,10 @@ namespace BattleBase.Gameplay.Actors.ComponentImprovement
             if (actor.TryGetComponent(out IMover mover) == false)
                 throw new InvalidOperationException($"Actor.Id = {actor.Data.Id} don't contains component {nameof(IMover)}");
 
+#if UNITY_EDITOR
+            if (DebugSettingGameScene.IsUnitsMaxLevel)
+                level = new MaxUpgradeLevel(level);
+#endif
             MoveConfigModificator modificator = new(_config, level);
             mover.Upgrade(modificator);
         }

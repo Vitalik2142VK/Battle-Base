@@ -8,14 +8,14 @@ namespace BattleBase.ShopSystem
     public class UpgradeButtonInfo : IUpgradeInfo
     {
         [SerializeField] private List<int> _prices = new();
-        [SerializeField] private int _currentLevel;
+        [SerializeField][HideInInspector] private int _currentLevel;
 
         public UpgradeButtonInfo(IUpgradeInfo other)
         {
             if (other == null)
                 throw new ArgumentNullException(nameof(other));
 
-            _prices = new (other.Levels);
+            _prices = new(other.Levels);
             _currentLevel = other.CurrentLevel;
         }
 
@@ -36,6 +36,17 @@ namespace BattleBase.ShopSystem
                 throw new ArgumentOutOfRangeException(nameof(level), level, "Value must be positive");
 
             _currentLevel = level;
+        }
+
+        public void SetPrice(int index, int price)
+        {
+            if (price < 0)
+                throw new ArgumentOutOfRangeException(nameof(price));
+
+            if (index < 0 || index >= _prices.Count)
+                throw new ArgumentOutOfRangeException(nameof(index));
+
+            _prices[index] = price;
         }
     }
 }

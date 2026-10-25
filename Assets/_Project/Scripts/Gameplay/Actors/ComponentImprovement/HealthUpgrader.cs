@@ -1,4 +1,5 @@
 using BattleBase.Gameplay.Actors.HealthSystem;
+using BattleBase.Utils;
 using System;
 using System.Collections.Generic;
 
@@ -30,6 +31,10 @@ namespace BattleBase.Gameplay.Actors.ComponentImprovement
             if (actor.TryGetComponent(out IHealth health) == false)
                 throw new InvalidOperationException($"Actor.Id = {actor.Data.Id} don't contains component {nameof(IHealth)}");
 
+#if UNITY_EDITOR
+            if (DebugSettingGameScene.IsUnitsMaxLevel)
+                level = new MaxUpgradeLevel(level);
+#endif
             HealthConfigModificator modificator = new(_config, level);
             health.Upgrade(modificator);
         }
