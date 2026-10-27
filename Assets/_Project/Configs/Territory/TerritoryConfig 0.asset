@@ -20,7 +20,7 @@ MonoBehaviour:
     _tr:
       _text: "Direni\u015F Vadisi"
   _creditsForFirstVictory: 1000
-  _brainConfig: {fileID: 11400000, guid: 9e6cc1326bc4bda48885da893202626d, type: 2}
+  _brainConfig: {fileID: 11400000, guid: d1e9cac88a791b24bba272ba91239dfd, type: 2}
   _upgradeActrosCoefficient: 0
   _actorsToOpen:
   - {fileID: 11400000, guid: 7f096ad187a6e854baf852a777792c38, type: 2}

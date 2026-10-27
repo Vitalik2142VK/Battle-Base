@@ -13,7 +13,9 @@ namespace BattleBase.Gameplay.Actors.Building
 
         public bool HasFreeSites { get; }
 
-        public IRegisteredBuildingSite[] GetFreeSitesInLine(int lineNumber);
+        public bool TryGetFreeSitesInLine(int lineNumber, out IRegisteredBuildingSite[] sites);
+
+        public bool TryGetRandomFreeSite(out IRegisteredBuildingSite buildingSite);
 
         public bool TryGetRandomFreeSiteInLine(int lineNumber, out IRegisteredBuildingSite buildingSite);
     }

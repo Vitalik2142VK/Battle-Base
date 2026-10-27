@@ -21,4 +21,5 @@ MonoBehaviour:
     _multiplier: 0
   - _category: 0
     _multiplier: 0
+  _priority: 3
   _minMaterialsForActivation: 500

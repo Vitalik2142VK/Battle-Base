@@ -21,6 +21,8 @@ namespace BattleBase.Gameplay.AI.Modifiers.Energy
             _scoreModifier = new ScoreModifier(config.Modifiers);
         }
 
+        public int Priority => _config.Priority;
+
         public bool IsActivationNecessary() =>
             _powerData.HasMaxCapacity == false && _powerData.FreeEnergy < _config.MaxRemainingEnergy;
 

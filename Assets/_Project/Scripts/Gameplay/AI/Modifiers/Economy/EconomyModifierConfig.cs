@@ -11,6 +11,6 @@ namespace BattleBase.Gameplay.AI.Modifiers.Economy
 
         public int MinMaterialsForActivation => _minMaterialsForActivation;
 
-        public override ModifierType Type => ModifierType.Economy;
+        public override ModifierType Type => ModifierType.BoostEconomy;
     }
 }

@@ -1,4 +1,5 @@
 using BattleBase.Core;
+using BattleBase.Gameplay.AI.Factories.Modifier;
 using BattleBase.Gameplay.AI.Modifiers;
 using BattleBase.Gameplay.AI.Tactics;
 using BattleBase.Gameplay.Map;

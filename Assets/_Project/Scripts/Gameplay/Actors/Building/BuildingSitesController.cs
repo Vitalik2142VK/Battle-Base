@@ -7,7 +7,7 @@ namespace BattleBase.Gameplay.Actors.Building
 {
     public class BuildingSitesController : IBuildingSitesController
     {
-        private readonly Dictionary<int, List<RegisteredBuildingSite>> _sitesByLine;
+        private readonly Dictionary<int, List<RegisteredBuildingSite>> _sitesByLines;
         private readonly List<RegisteredBuildingSite> _sites;
         private readonly Randomizer _randomizer;
 
@@ -17,7 +17,7 @@ namespace BattleBase.Gameplay.Actors.Building
         {
             _randomizer = randomizer ?? throw new ArgumentNullException(nameof(randomizer));
 
-            _sitesByLine = new Dictionary<int, List<RegisteredBuildingSite>>();
+            _sitesByLines = new Dictionary<int, List<RegisteredBuildingSite>>();
             _sites = new List<RegisteredBuildingSite>();
         }
 
@@ -33,10 +33,10 @@ namespace BattleBase.Gameplay.Actors.Building
             int numerLine = registeredBuildingSite.NumberLine;
             _sites.Add(registeredBuildingSite);
 
-            if (_sitesByLine.ContainsKey(numerLine) == false)
-                _sitesByLine.Add(numerLine, new List<RegisteredBuildingSite>());
+            if (_sitesByLines.ContainsKey(numerLine) == false)
+                _sitesByLines.Add(numerLine, new List<RegisteredBuildingSite>());
 
-            _sitesByLine[numerLine].Add(registeredBuildingSite);
+            _sitesByLines[numerLine].Add(registeredBuildingSite);
             HasFreeSites = true;
 
             registeredBuildingSite.ActorAdded += OnFinishBuild;
@@ -55,29 +55,64 @@ namespace BattleBase.Gameplay.Actors.Building
             }
         }
 
-        public IRegisteredBuildingSite[] GetFreeSitesInLine(int lineNumber)
+        public bool TryGetFreeSitesInLine(int lineNumber, out IRegisteredBuildingSite[] freeSites)
         {
-            if (_sitesByLine.ContainsKey(lineNumber) == false)
-                throw new InvalidOperationException($"{nameof(_sitesByLine)} don't constrain line {lineNumber}");
+            if (_sitesByLines.ContainsKey(lineNumber) == false)
+                throw new InvalidOperationException($"{nameof(_sitesByLines)} don't constrain line {lineNumber}");
 
-            return _sitesByLine[lineNumber]
+            freeSites = null;
+
+            if (HasFreeSitesInLine(lineNumber) == false)
+                return false;
+
+            freeSites = _sitesByLines[lineNumber]
                 .Where(s => s.HasBuilding == false && s.IsConstruction == false)
                 .ToArray();
+
+            return true;
+        }
+
+        public bool TryGetRandomFreeSite(out IRegisteredBuildingSite buildingSite)
+        {
+            buildingSite = null;
+
+            if (HasFreeSites == false)
+                return false;
+
+            foreach (var numberLine in _sitesByLines.Keys)
+            {
+                if (TryGetRandomFreeSiteInLine(numberLine, out buildingSite))
+                    return true;
+            }
+
+            return false;
         }
 
         public bool TryGetRandomFreeSiteInLine(int lineNumber, out IRegisteredBuildingSite buildingSite)
         {
             buildingSite = null;
 
-            var freeSites = GetFreeSitesInLine(lineNumber);
-
-            if (freeSites.Length == 0)
+            if (TryGetFreeSitesInLine(lineNumber, out IRegisteredBuildingSite[] freeSites) == false)
                 return false;
 
             int randomIndex = _randomizer.GetRangeZero(freeSites.Length);
             buildingSite = freeSites[randomIndex];
 
             return true;
+        }
+
+        private bool HasFreeSitesInLine(int lineNumber)
+        {
+            if (_sitesByLines.ContainsKey(lineNumber) == false)
+                throw new InvalidOperationException($"{nameof(_sitesByLines)} don't constrain line {lineNumber}");
+
+            foreach (var site in _sitesByLines[lineNumber])
+            {
+                if (site.HasBuilding == false && site.IsConstruction == false)
+                    return true;
+            }
+
+            return false;
         }
 
         private void OnFinishBuild(RegisteredBuildingSite buildingSite) =>

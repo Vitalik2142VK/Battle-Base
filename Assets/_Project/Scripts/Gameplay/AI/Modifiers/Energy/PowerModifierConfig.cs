@@ -9,7 +9,7 @@ namespace BattleBase.Gameplay.AI.Modifiers.Energy
     {
         [SerializeField][Range(1, 20)] private int _maxRemainingEnergy = 10;
 
-        public override ModifierType Type => ModifierType.Power;
+        public override ModifierType Type => ModifierType.BoostPower;
 
         public int MaxRemainingEnergy => _maxRemainingEnergy;
     }

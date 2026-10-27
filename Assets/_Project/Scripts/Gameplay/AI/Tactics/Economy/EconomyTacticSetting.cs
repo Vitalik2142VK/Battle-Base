@@ -19,12 +19,6 @@ namespace BattleBase.Gameplay.AI.Tactics.Economy
         [SerializeField][Min(0)] private int _materialsForStart = 0;
         [SerializeField][Min(1000)] private int _materialsForStop = 3000;
 
-        private void OnValidate()
-        {
-            if (_materialsForStart > _materialsForStop)
-                _materialsForStop = _materialsForStart + Values.MinMaterialRange;
-        }
-
         public TacticCategory Category => TacticCategory.Economy;
 
         public string MaterialFactoryId => _materialFactoryConfig.Data.Id;
@@ -38,5 +32,11 @@ namespace BattleBase.Gameplay.AI.Tactics.Economy
         public int MaterialsForStop => _materialsForStop;
 
         public int MaxFactories => _maxNumberFactories;
+
+        private void OnValidate()
+        {
+            if (_materialsForStart > _materialsForStop)
+                _materialsForStop = _materialsForStart + Values.MinMaterialRange;
+        }
     }
 }

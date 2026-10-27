@@ -2,10 +2,10 @@
 {
     public enum ModifierType
     {
-        Economy,
-        Power,
+        BoostEconomy,
+        BoostPower,
         Defense,
         Attack,
-        BuildFactory
+        Tick
     }
 }
