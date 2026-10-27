@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fd6db3e12956a84f937266f33d7a7df, type: 3}
   m_Name: Middle_DefenseTacticSetting
   m_EditorClassIdentifier: 
-  _maxScore: 32
+  _deactivatorScores: []
+  _maxScore: 36
   _minScore: 0
   _defenseBuildingConfigs:
   - {fileID: 11400000, guid: 74e5c17f8ca8b844abacc1f7204ba21f, type: 2}

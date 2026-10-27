@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22e5865ba2b535e4b83c2432d7ebdc00, type: 3}
   m_Name: Middle_PowerTacticSetting
   m_EditorClassIdentifier: 
-  _maxScore: 30
+  _deactivatorScores: []
+  _maxScore: 50
   _minScore: 5
   _powerStationConfig: {fileID: 11400000, guid: e9596a5366d5742409c8ab3e3decc8a5,
     type: 2}

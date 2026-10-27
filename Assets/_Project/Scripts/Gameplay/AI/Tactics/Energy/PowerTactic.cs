@@ -64,10 +64,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Energy
                 return;
             }
 
-            if (TryBuild() || TryImprove())
-                _canAction = true;
-            else
-                _canAction = false;
+            _canAction = TryBuild() || TryImprove();
         }
 
         public ICommand GetCommand()

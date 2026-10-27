@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 872b8f2e4e2c6ae4099998dc94a3546e, type: 3}
   m_Name: Middle_BuildTacticSetting
   m_EditorClassIdentifier: 
-  _deactivatorScores: []
-  _maxScore: 80
+  _deactivatorScores:
+  - {fileID: 11400000, guid: f42ade534cd646b4e9d1019e187a5abb, type: 2}
+  _maxScore: 70
   _minScore: 0
   _buildingConfig: {fileID: 11400000, guid: 45dd7c761e2fe5b40b7def0debed41f9, type: 2}
   _category: 0
   _priorityLinesNumbers: 01000000
-  _scoreForBuild: 30
+  _scoreForBuild: 25
   _maxNumberBuildings: 2

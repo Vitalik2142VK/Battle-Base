@@ -13,7 +13,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Universal
         [Header("Unique")]
         [SerializeField] private ActorConfig _buildingConfig;
         [SerializeField][Range(0, 4)] private int _numberRemainingFactories = 3;
-        [SerializeField][Min(5000)] private int _materialsForStart = 10000;
+        [SerializeField][Min(1000)] private int _materialsForStart = 10000;
         [SerializeField] private bool _isRemoveAfterComplited = false;
 
         public TacticCategory Category => TacticCategory.Economy;

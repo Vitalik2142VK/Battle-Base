@@ -173,6 +173,7 @@ namespace BattleBase.DI
             _builder.Register<ITacticFactory, DefenseTacticFactory>(Lifetime.Scoped);
             _builder.Register<ITacticFactory, SpawnUnitsTacticFactory>(Lifetime.Scoped);
             _builder.Register<ITacticFactory, BuildTacticFactory>(Lifetime.Scoped);
+            _builder.Register<ITacticFactory, ImproveTacticFactory>(Lifetime.Scoped);
             _builder.Register<ITacticsFactory, TacticsFactory>(Lifetime.Scoped);
 
             _builder.Register<IScoreModifierFactory, EconomyModifierFactory> (Lifetime.Scoped);

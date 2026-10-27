@@ -58,8 +58,6 @@ namespace BattleBase.Gameplay.AI.Tactics.Attack
 
         public void CalculateScore()
         {
-            UnityEngine.Debug.Log($"SpawnUnitsTactic.CalculateScore - _unitsFactories.Count = {_unitsFactories.Count}");
-
             if (_unitsFactories.Count <= 0)
             {
                 _score = _setting.MinScore;
@@ -69,11 +67,15 @@ namespace BattleBase.Gameplay.AI.Tactics.Attack
             }
 
             if (TrySelectRandomProductions())
+            {
                 _canAction = true;
+                _score = _setting.MaxScore;
+            }
             else
+            {
                 _canAction = false;
-
-            _score = _setting.MaxScore;
+                _score = _setting.MinScore;
+            }
         }
 
         public ICommand GetCommand()

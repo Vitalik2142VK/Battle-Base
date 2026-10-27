@@ -8,7 +8,7 @@ namespace BattleBase.Gameplay.AI.Modifiers.Univarsal
     menuName = AssetMenuPaths.ScriptableObjects + nameof(BrainConfig) + "/" + nameof(TickScoreModifierConfig))]
     public class TickScoreModifierConfig : ScoreModifierConfig, ITickScoreModifierConfig
     {
-        [SerializeField][Range(1, 10)] private int _tickNumber = 5;
+        [SerializeField][Range(2, 10)] private int _tickNumber = 5;
 
         public override ModifierType Type => ModifierType.Tick;
 

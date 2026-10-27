@@ -62,10 +62,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Universal
 
             UpdateScore();
 
-            if (TryBuild())
-                _canAction = true;
-            else
-                _canAction = false;
+            _canAction = TryBuild();
         }
 
         public ICommand GetCommand()
