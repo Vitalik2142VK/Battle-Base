@@ -135,7 +135,7 @@ namespace BattleBase.DI
 
         private void RegisterStateMachineInitializer()
         {
-            _builder.Register<IStateTransitionFactory, DeployToMoveStateTransitionFactory>(Lifetime.Scoped);
+            _builder.Register<IStateTransitionFactory, DeployToNextStateTransitionFactory>(Lifetime.Scoped);
             _builder.Register<IStateTransitionFactory, AttackStateTransitionFactory>(Lifetime.Scoped);
             _builder.Register<IStateTransitionFactory, AttackToMoveStateTransitionFactory>(Lifetime.Scoped);
             _builder.Register<IStateTransitionFactory, HunterStateTransitionFactory>(Lifetime.Scoped);

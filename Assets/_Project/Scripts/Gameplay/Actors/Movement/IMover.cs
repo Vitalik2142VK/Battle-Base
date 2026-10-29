@@ -8,6 +8,8 @@ namespace BattleBase.Gameplay.Actors.Movement
 
         public bool CanMove { get; }
 
+        public void Init(IEnalableActor enalableActor);
+
         public void EstablishWaypoints(IEnumerable<IWaypoint> waypoints);
 
         public void EstablishNextPoint();

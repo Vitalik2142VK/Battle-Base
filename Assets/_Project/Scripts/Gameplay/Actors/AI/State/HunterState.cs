@@ -17,6 +17,9 @@ namespace BattleBase.Gameplay.Actors.AI.State
 
         public void Enter()
         {
+            if (_attacker.CurrentTarget == null)
+                return;
+
             _attacker.SetAttacking(true);
             _huntMover.EstablishTarget(_attacker.CurrentTarget);
             _huntMover.Move();

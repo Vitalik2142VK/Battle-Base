@@ -10,5 +10,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         public event Action Attacked;
 
         public ITarget CurrentTarget { get; }
+
+        public bool HasTarget { get; }
     }
 }

@@ -33,6 +33,8 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Multiple
 
         public ITargetFinderConfig TargetFinderConfig => _mainAttacker.TargetFinderConfig;
 
+        public bool HasTarget => _mainAttacker.HasTarget;
+
         public void Init(
             ITargetController targetController, 
             IProjectileController projectileController,

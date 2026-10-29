@@ -9,6 +9,7 @@ namespace BattleBase.Gameplay.Actors.Movement
         private readonly ModifiedMoveConfig _config;
 
         private IWaypoint _currentWaypoint;
+        private IEnalableActor _enalableActor;
 
         public event Action<IWaypoint> WaypointChanged;
         public event Action Moved;
@@ -26,8 +27,16 @@ namespace BattleBase.Gameplay.Actors.Movement
 
         public bool CanMove => _currentWaypoint != null;
 
+        public void Init(IEnalableActor enalableActor)
+        {
+            _enalableActor ??= enalableActor ?? throw new ArgumentNullException(nameof(enalableActor));
+        }
+
         public void Enable()
         {
+            if (_currentWaypoint != null)
+                return;
+
             if (_waypoints.Count > 0)
                 EstablishNextPoint();
         }
@@ -35,6 +44,9 @@ namespace BattleBase.Gameplay.Actors.Movement
         public void Disable()
         {
             Stop();
+
+            if (_enalableActor.IsEnabled)
+                return;
 
             _config.Reset();
             _waypoints.Clear();

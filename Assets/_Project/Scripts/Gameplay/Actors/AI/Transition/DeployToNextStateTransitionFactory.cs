@@ -1,11 +1,14 @@
-﻿using BattleBase.Gameplay.Actors.AI.State;
+﻿using BattleBase.Gameplay.Actors.AI.Activated;
+using BattleBase.Gameplay.Actors.AI.State;
+using BattleBase.Gameplay.Actors.AttackSystem;
 using BattleBase.Gameplay.Actors.DeploymentSystem;
 using BattleBase.Gameplay.Actors.Movement;
+using BattleBase.Gameplay.Actors.Movement.Hunt;
 using System;
 
 namespace BattleBase.Gameplay.Actors.AI.Transition
 {
-    public class DeployToMoveStateTransitionFactory : IStateTransitionFactory
+    public class DeployToNextStateTransitionFactory : IStateTransitionFactory
     {
         public StateTransitionType TransitionType => StateTransitionType.DepoyToMove;
 
@@ -26,8 +29,21 @@ namespace BattleBase.Gameplay.Actors.AI.Transition
             DeploymentState deploymentState = new(deployment);
             actorStateMachine.Init(deploymentState);
             MoveState moveState = new(mover);
-            DeployToMoveStateTransition transition = new(moveState, deployment);
+            DeployToNextStateTransition transition = new(moveState, deployment);
             actorStateMachine.AddStateTransition(transition);
+
+            if (actor.TryGetComponent(out IAttacker attacker) == false)
+                return;
+
+            IActorState actorState;
+
+            if (actor.TryGetComponent(out IHuntMover huntMover))
+                actorState = new HunterState(attacker, huntMover);
+            else
+                actorState = new AttackState(attacker);
+
+            AttackActivatedState attackActivatedState = new(attacker, actorState);
+            transition.SetActivatedState(attackActivatedState);
         }
     }
 }

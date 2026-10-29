@@ -35,6 +35,9 @@ namespace BattleBase.Gameplay.Actors.Movement.Hunt
             _actorPosition = actorPosition ?? throw new ArgumentNullException(nameof(actorPosition));
         }
 
+        public void Init(IEnalableActor enalableActor) =>
+            _mover.Init(enalableActor);
+
         public void Enable()
         {
             _mover.Moved += Moved;
