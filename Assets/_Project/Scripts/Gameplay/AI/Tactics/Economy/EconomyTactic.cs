@@ -70,10 +70,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Economy
 
             UpdateScore();
 
-            if (TryBuild() || TryImprove())
-                _canAction = true;
-            else
-                _canAction = false;
+            _canAction = TryBuild() || TryImprove();
         }
 
         public ICommand GetCommand()

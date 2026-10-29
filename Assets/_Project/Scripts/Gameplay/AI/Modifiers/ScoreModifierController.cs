@@ -1,3 +1,4 @@
+using BattleBase.Gameplay.AI.Factories.Modifier;
 using System;
 using System.Collections.Generic;
 
@@ -23,13 +24,25 @@ namespace BattleBase.Gameplay.AI.Modifiers
 
         public IScoreModifier GetPriorityModifier()
         {
+            IScoreModifier scoreModifier = _defaultModifier;
+            int currentModifierPriority = int.MaxValue;
+
             foreach (var modifier in _modifiers)
             {
                 if (modifier.IsActivationNecessary())
-                    return modifier;
+                {
+                    if (currentModifierPriority > modifier.Priority)
+                    {
+                        currentModifierPriority = modifier.Priority;
+                        scoreModifier = modifier;
+                    }
+                }
+
+                if (currentModifierPriority == 1)
+                    break;
             }
 
-            return _defaultModifier;
+            return scoreModifier;
         }
     }
 }

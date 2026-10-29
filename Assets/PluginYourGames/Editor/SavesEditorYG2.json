@@ -5,11 +5,11 @@
     "floatValues": [],
     "intKeys": [],
     "intValues": [],
-    "idSave": 2,
+    "idSave": 3,
     "SavesData": {
         "_volumeData": {
-            "_generalVolume": 0.41851848363876345,
-            "_musicVolume": 0.6000000238418579,
+            "_generalVolume": 1.0,
+            "_musicVolume": 0.0,
             "_sfxVolume": 0.800000011920929
         },
         "_colorData": {
@@ -23,7 +23,7 @@
             "_selectedTerritoryIndex": 0
         },
         "_shopData": {
-            "_credits": 5426,
+            "_credits": 2892,
             "_unitUpgrades": [
                 {
                     "_name": "",

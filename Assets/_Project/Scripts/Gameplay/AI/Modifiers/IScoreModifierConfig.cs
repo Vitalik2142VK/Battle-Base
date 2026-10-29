@@ -7,5 +7,7 @@ namespace BattleBase.Gameplay.AI.Modifiers
         public IEnumerable<IModifier> Modifiers { get; }
 
         public ModifierType Type { get; }
+
+        public int Priority { get; }
     }
 }

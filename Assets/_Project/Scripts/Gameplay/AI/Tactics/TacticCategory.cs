@@ -2,7 +2,7 @@
 {
     public enum TacticCategory
     {
-        No,
+        Attack,
         Economy,
         Power,
         Defense

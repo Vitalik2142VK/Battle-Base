@@ -20,11 +20,10 @@ namespace BattleBase.Gameplay.AI.Modifiers.Defense
             _sitesController = defenseSitesController ?? throw new ArgumentNullException(nameof(defenseSitesController));
             _areaDefenseAI = areaDefenseAI ?? throw new ArgumentNullException(nameof(areaDefenseAI));
 
-            if (config == null)
-                throw new ArgumentNullException(nameof(config));
-
-            _scoreModifier = new ScoreModifier(config.Modifiers);
+            _scoreModifier = new ScoreModifier(_config.Modifiers);
         }
+
+        public int Priority => _config.Priority;
 
         public bool IsActivationNecessary() =>
             _sitesController.HasFreeSites && _areaDefenseAI.GetNumberActorsInArea() > _config.MinActorsForAction;

@@ -68,10 +68,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Defense
                 return;
             }
 
-            if (TryBuild())
-                _canAction = true;
-            else
-                _canAction = false;
+            _canAction = TryBuild();
         }
 
         public ICommand GetCommand()

@@ -75,6 +75,7 @@ namespace BattleBase.Gameplay.AI.Tactics
 
         private bool TryFindFactoryData(IProductionOption productionOption, string actorId)
         {
+
             if (productionOption.Type != TypeProduction.Spawn)
                 return false;
 
