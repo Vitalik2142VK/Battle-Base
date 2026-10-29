@@ -38,7 +38,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
                 aim.Init(presenter, attacker);
 
             if (view.TryGetViewComponent(out ITargetFinder targetFinder))
-                targetFinder.Init(presenter, attacker.TargetFinderConfig, actor);
+                targetFinder.Init(presenter, attacker.TargetFinderConfig, attacker, actor);
         }
     }
 }

@@ -21,6 +21,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         public event Action Attacked;
         public event Action AttackActivated;
         public event Action AttackDeactivated;
+        public event Action SearchingTarget;
 
         public Attacker(IWeapon weapon, ITargetFinderConfig targetFinderConfig)
         {
@@ -104,7 +105,10 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             }
 
             if (_targetController.HasTarget == false)
+            {
                 TargetLosted?.Invoke();
+                SearchingTarget?.Invoke();
+            }
 
             if (_targetController.HasTarget == false && _isAttacking)
                 AttackDeactivated?.Invoke();
