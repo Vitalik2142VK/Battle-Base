@@ -12,13 +12,11 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.View
 
         private void OnValidate()
         {
-            if (gameObject.TryGetComponent(out SoundEffectActivator effectActivator))
-                _activator = effectActivator;
-        }
-
-        private void Awake()
-        {
-            _activator = GetComponent<SoundEffectActivator>();
+            if (_activator == null)
+            {
+                if (gameObject.TryGetComponent(out SoundEffectActivator effectActivator))
+                    _activator = effectActivator;
+            }
         }
 
         private void OnEnable()

@@ -8,7 +8,7 @@ namespace BattleBase.Gameplay.Actors.Visual.Sound
     public class SoundPlaybackLimiter : MonoBehaviour
     {
         [SerializeField] private SoundEffect _prefab;
-        [SerializeField][Min(0.001f)] private float _timeLimit = 0.02f;
+        [SerializeField][Min(0.001f)] private float _timeLimit = 0.05f;
 
         private ISoundEffectSpawner _soundEffectSpawner;
         private WaitForSeconds _wait;

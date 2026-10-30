@@ -1,5 +1,51 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &807235677578287844
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8147000982636872195}
+  - component: {fileID: 3924625098493766123}
+  m_Layer: 0
+  m_Name: SoundShotMissile
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8147000982636872195
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807235677578287844}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2909263072974117589}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3924625098493766123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807235677578287844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62032f00580c10545a91df3a62720b13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _activator: {fileID: 2852736660723670212}
+  _prefab: {fileID: 5776329295304102759, guid: 9d12e591a3f264b478a32fad1c9b19eb, type: 3}
 --- !u!1 &2330518927832070536
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,7 +169,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdfabfe18de510342a61a15cff326d13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _viewComponents: []
+  _viewComponents:
+  - {fileID: 807235677578287844}
 --- !u!114 &5822128968226726949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1249,13 +1296,29 @@ PrefabInstance:
         type: 3}
       propertyPath: _prefab
       value: 
-      objectReference: {fileID: 5776329295304102759, guid: a97879a1b5f1f594bab018e88b617f6a,
+      objectReference: {fileID: 5776329295304102759, guid: 88d325dddbc46d34b8182aef9653802e,
         type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5437431695144096774, guid: bd6af682b85ee2b458e0ad36dd475b23,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8147000982636872195}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd6af682b85ee2b458e0ad36dd475b23, type: 3}
+--- !u!114 &2852736660723670212 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4952993017739874839, guid: bd6af682b85ee2b458e0ad36dd475b23,
+    type: 3}
+  m_PrefabInstance: {fileID: 7145633747273715411}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8592570321927810330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 989c1b67ff6f5274c83e7a30fec0710e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2909263072974117589 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5437431695144096774, guid: bd6af682b85ee2b458e0ad36dd475b23,

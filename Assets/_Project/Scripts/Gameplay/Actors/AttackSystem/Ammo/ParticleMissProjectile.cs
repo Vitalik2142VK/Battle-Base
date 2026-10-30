@@ -10,12 +10,12 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
         [SerializeField] private float _size = 1f;
 
         private IProjectileMissEvent _event;
-        private ParticleActivator _particleProjectile;
+        private ParticleActivator _activator;
 
         private void Awake()
         {
             _event = GetComponent<IProjectileMissEvent>();
-            _particleProjectile = GetComponent<ParticleActivator>();
+            _activator = GetComponent<ParticleActivator>();
         }
 
         private void OnEnable()
@@ -29,6 +29,6 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
         }
 
         private void OnPlay() =>
-            _particleProjectile.Activate(_prefab.Id, _size);
+            _activator.Activate(_prefab.Id, _size);
     }
 }

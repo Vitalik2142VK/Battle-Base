@@ -23,6 +23,6 @@ MonoBehaviour:
     _damage: 3
   _firingRange: 40
   _minFiringRange: 5
-  _rateShooting: 0.2
+  _rateShooting: 0.1
   _speedReload: 3.5
   _numberShells: 30
