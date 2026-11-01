@@ -58,7 +58,8 @@ namespace BattleBase.DI
             _builder.RegisterComponent<IActorPoolsRegistrator>(_poolsRegistrator);
             _builder.RegisterComponent(_actorController)
                 .As<IActorsController>()
-                .As<IActorsStorage>();
+                .As<IActorsStorage>()
+                .As<IActorsControllerEvents>();
 
             _builder.RegisterInstance<IAudioListner>(_audioListnerPositionSetter);
             _builder.RegisterInstance<IWaypointController>(_waypointController);
@@ -76,6 +77,7 @@ namespace BattleBase.DI
             _builder.Register<IDamageModifierFactory, DamageModifierFactory>(Lifetime.Scoped);
             _builder.Register<IWinStateController, WinStateController>(Lifetime.Scoped);
             _builder.Register<IBuildingSiteIdCreator, BuildingSiteIdCreator>(Lifetime.Scoped);
+            _builder.Register<IScoreCalculator, ScoreCalculator>(Lifetime.Scoped);
             _builder.Register<IActorCreator, ActorCreator>(Lifetime.Scoped);
 
             RegisterComponentFactoryRegistry();
