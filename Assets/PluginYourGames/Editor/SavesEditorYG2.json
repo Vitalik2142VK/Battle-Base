@@ -18,11 +18,9 @@
         },
         "_territoryData": {
             "_conqueredTerritoryIndices": [
-                0,
-                6,
-                77
+                0
             ],
-            "_selectedTerritoryIndex": 77
+            "_selectedTerritoryIndex": 0
         },
         "_shopData": {
             "_credits": 479527,

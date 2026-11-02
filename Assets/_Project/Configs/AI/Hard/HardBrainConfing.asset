@@ -20,9 +20,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 42cd3c6b7bf1bc84c8ea6977859fc122, type: 2}
   - {fileID: 11400000, guid: 9010b5b0845b7894da49674061d238b3, type: 2}
   - {fileID: 11400000, guid: afdc28fb92cbded469a266908a124ffc, type: 2}
+  - {fileID: 11400000, guid: e88701fcf6087f743aa6bede13806b9f, type: 2}
+  - {fileID: 11400000, guid: 36eef734f562754458ac82cc8a70d287, type: 2}
+  - {fileID: 11400000, guid: 86909a280afbd6a4793545b0d2fed414, type: 2}
+  - {fileID: 11400000, guid: 0db8b8928ff04a2409d5a3a1948cf807, type: 2}
+  - {fileID: 11400000, guid: 6af241a0ae046554c9d3821c3ada8ff0, type: 2}
   _modifierConfigs:
   - {fileID: 11400000, guid: 0237e0f24ef23474db45c3b7d58a65fb, type: 2}
   - {fileID: 11400000, guid: a8483c9910442264ab660b86f771c2eb, type: 2}
   - {fileID: 11400000, guid: 723e645217ce1184d833d23bd6ddc426, type: 2}
   - {fileID: 11400000, guid: 8f747efc3928a5b47a6cebfee75eeced, type: 2}
+  - {fileID: 11400000, guid: fa0ff35403865494fafbac70486f3043, type: 2}
   _teamType: 2

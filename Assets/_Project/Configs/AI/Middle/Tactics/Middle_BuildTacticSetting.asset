@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Middle_BuildTacticSetting
   m_EditorClassIdentifier: 
   _deactivatorScores:
-  - {fileID: 11400000, guid: f42ade534cd646b4e9d1019e187a5abb, type: 2}
+  - {fileID: 11400000, guid: 6c310eed7a371cf46958539a687cfde6, type: 2}
   _maxScore: 70
   _minScore: 0
   _buildingConfig: {fileID: 11400000, guid: 45dd7c761e2fe5b40b7def0debed41f9, type: 2}
