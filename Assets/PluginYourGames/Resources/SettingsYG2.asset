@@ -33,8 +33,8 @@ MonoBehaviour:
     enable: 1
     saveScoreAnonymousPlayers: 1
     listLBSim:
-    - technoName: test
-      entries: '1. Max: 10
+    - technoName: score
+      entries: '1. Max: 100
 
         2. Masha: 15
 
@@ -87,7 +87,7 @@ MonoBehaviour:
         extraData: 
       - rank: 5
         name: Player current
-        score: 60
+        score: 5
         photo: demo image
         uniqueID: 000
         extraData: 
@@ -120,6 +120,24 @@ MonoBehaviour:
         score: 10
         photo: demo image
         uniqueID: 330
+        extraData: 
+      - rank: 11
+        name: Player 11
+        score: 9
+        photo: demo image
+        uniqueID: 331
+        extraData: 
+      - rank: 12
+        name: Player 12
+        score: 8
+        photo: demo image
+        uniqueID: 332
+        extraData: 
+      - rank: 13
+        name: Player 13
+        score: 7
+        photo: demo image
+        uniqueID: 333
         extraData: 
       currentPlayer:
         rank: 5
