@@ -26,7 +26,7 @@ namespace BattleBase.Gameplay.Levels
 
         public void Dispose()
         {
-            _actorsControllerEvents.DisabledActors -= OnIncreaseCount;
+            _actorsControllerEvents.DisabledActors -= OnIncreaseCount; 
         }
 
         public int Calculate() =>

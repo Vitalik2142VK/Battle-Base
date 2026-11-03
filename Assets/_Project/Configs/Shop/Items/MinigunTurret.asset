@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b960e3a53ccdc154d9abddb2d58ace5a, type: 3}
+  m_Name: MinigunTurret
+  m_EditorClassIdentifier: 
+  _actorConfig: {fileID: 11400000, guid: e05229674bd5b47498abf103764dd59c, type: 2}
+  _stats: {fileID: 11400000, guid: 5616790f9783bac4d85759b7d83ba4bc, type: 2}
+  _unitNameConfig: {fileID: 11400000, guid: ceac87a36d86df9438a53fe026d7fb0c, type: 2}
+  _sourcePrefab: {fileID: 6806805412575852466, guid: 93ffd25c0a2de444a85771056a26f45f,
+    type: 3}
+  _previewScreenScale: 1.1

@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2594602408318497397}
-  - {fileID: 5452031252870491543}
+  - {fileID: 3946293932849571217}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4244518901449328457
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _defaultColor: {r: 1, g: 1, b: 1, a: 1}
   _renderers:
-  - {fileID: 4290816843089934773}
+  - {fileID: 4391582305687655866}
   _targetMaterial: {fileID: 2100000, guid: 2182440ddf123974fb0dbf1a13fb7786, type: 2}
 --- !u!1 &7910396227008644541
 GameObject:
@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 024a3ec59879b5c49bd7dc1a29724b10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &982213846046133363
+--- !u!1001 &4189927848191373057
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -102,40 +102,75 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4181756504403291534}
     m_Modifications:
-    - target: {fileID: 1292752746355712855, guid: e1986c0fce06afe4daeb63cb465c1ce9,
+    - target: {fileID: 928181610001566352, guid: 5f64fd0a6c4d568439dcea184420bcc4,
         type: 3}
-      propertyPath: m_Name
-      value: AutocannonTurretMesh
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5046291904365371876, guid: e1986c0fce06afe4daeb63cb465c1ce9,
+    - target: {fileID: 928181610001566352, guid: 5f64fd0a6c4d568439dcea184420bcc4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 928181610001566352, guid: 5f64fd0a6c4d568439dcea184420bcc4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 928181610001566352, guid: 5f64fd0a6c4d568439dcea184420bcc4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 928181610001566352, guid: 5f64fd0a6c4d568439dcea184420bcc4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 928181610001566352, guid: 5f64fd0a6c4d568439dcea184420bcc4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 928181610001566352, guid: 5f64fd0a6c4d568439dcea184420bcc4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 928181610001566352, guid: 5f64fd0a6c4d568439dcea184420bcc4,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5046291904365371876, guid: e1986c0fce06afe4daeb63cb465c1ce9,
+    - target: {fileID: 928181610001566352, guid: 5f64fd0a6c4d568439dcea184420bcc4,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5046291904365371876, guid: e1986c0fce06afe4daeb63cb465c1ce9,
+    - target: {fileID: 928181610001566352, guid: 5f64fd0a6c4d568439dcea184420bcc4,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3672717619370376153, guid: 5f64fd0a6c4d568439dcea184420bcc4,
+        type: 3}
+      propertyPath: m_Name
+      value: HeavyLaserTurretMesh
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e1986c0fce06afe4daeb63cb465c1ce9, type: 3}
---- !u!23 &4290816843089934773 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 3903931923838252486, guid: e1986c0fce06afe4daeb63cb465c1ce9,
-    type: 3}
-  m_PrefabInstance: {fileID: 982213846046133363}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &5452031252870491543 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: 5f64fd0a6c4d568439dcea184420bcc4, type: 3}
+--- !u!4 &3946293932849571217 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 5046291904365371876, guid: e1986c0fce06afe4daeb63cb465c1ce9,
+  m_CorrespondingSourceObject: {fileID: 928181610001566352, guid: 5f64fd0a6c4d568439dcea184420bcc4,
     type: 3}
-  m_PrefabInstance: {fileID: 982213846046133363}
+  m_PrefabInstance: {fileID: 4189927848191373057}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &4391582305687655866 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 493027590120012475, guid: 5f64fd0a6c4d568439dcea184420bcc4,
+    type: 3}
+  m_PrefabInstance: {fileID: 4189927848191373057}
   m_PrefabAsset: {fileID: 0}

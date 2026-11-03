@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthConfig:
     _maxHealth: 800
-    _armorCoefficient: 0.4
+    _armorCoefficient: 0.45
   _type: 1

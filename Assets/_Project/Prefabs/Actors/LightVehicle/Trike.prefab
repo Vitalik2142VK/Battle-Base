@@ -306,6 +306,7 @@ MonoBehaviour:
   _viewComponents:
   - {fileID: 8815925698843329896}
   - {fileID: 95790549300005692}
+  - {fileID: 1035704456184444811}
 --- !u!114 &7070293048708726954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -545,6 +546,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6569319841201662918}
     m_Modifications:
+    - target: {fileID: 1158404347920189430, guid: bd6af682b85ee2b458e0ad36dd475b23,
+        type: 3}
+      propertyPath: _prefab
+      value: 
+      objectReference: {fileID: 5776329295304102759, guid: ec9594389432b3f478b5368689a018df,
+        type: 3}
     - target: {fileID: 1446945370790241225, guid: bd6af682b85ee2b458e0ad36dd475b23,
         type: 3}
       propertyPath: m_Name

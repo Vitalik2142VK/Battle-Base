@@ -7,6 +7,7 @@ namespace BattleBase.Gameplay.Actors.HealthSystem.View
     {
         [SerializeField] private SoundEffectActivator _activator;
         [SerializeField] private SoundEffect _prefab;
+        [SerializeField][Range(0, 0.3f)] private float _pitchRange = 0f;
 
         private IHealthEvents _healthEvents;
 
@@ -31,6 +32,6 @@ namespace BattleBase.Gameplay.Actors.HealthSystem.View
         }
 
         private void OnPlay() =>
-            _activator.Activate(_prefab);
+            _activator.Activate(_prefab, _pitchRange);
     }
 }

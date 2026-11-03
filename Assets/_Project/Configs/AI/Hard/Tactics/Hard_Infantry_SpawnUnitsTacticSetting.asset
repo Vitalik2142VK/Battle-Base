@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Hard_Infantry_SpawnUnitsTacticSetting
   m_EditorClassIdentifier: 
   _deactivatorScores:
-  - {fileID: 11400000, guid: 5964fc874f9634944aecc780f7de989a, type: 2}
+  - {fileID: 11400000, guid: 9c0e5133947b4ce45bc25887706c4ad5, type: 2}
   _maxScore: 45
   _minScore: 0
   _unitFactoriesConfigs:

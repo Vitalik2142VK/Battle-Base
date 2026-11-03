@@ -18,5 +18,6 @@ MonoBehaviour:
   _minScore: 0
   _improvedActorsConfigs:
   - {fileID: 11400000, guid: 45dd7c761e2fe5b40b7def0debed41f9, type: 2}
-  _category: 0
+  - {fileID: 11400000, guid: 4bfe99f3fe6e0c14db0c9497080e03d8, type: 2}
+  _category: 4
   _maxLevelImproved: 1

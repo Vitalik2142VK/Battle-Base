@@ -5,25 +5,23 @@
     "floatValues": [],
     "intKeys": [],
     "intValues": [],
-    "idSave": 9,
+    "idSave": 1,
     "SavesData": {
         "_volumeData": {
             "_generalVolume": 1.0,
             "_musicVolume": 0.0,
-            "_sfxVolume": 1.0
+            "_sfxVolume": 0.800000011920929
         },
         "_colorData": {
             "_playerColorIndex": 0,
             "_enemyColorIndex": 5
         },
         "_territoryData": {
-            "_conqueredTerritoryIndices": [
-                0
-            ],
+            "_conqueredTerritoryIndices": [],
             "_selectedTerritoryIndex": 0
         },
         "_shopData": {
-            "_credits": 479527,
+            "_credits": 1000,
             "_unitUpgrades": [
                 {
                     "_name": "",
@@ -171,6 +169,12 @@
                 },
                 {
                     "_name": "HeavyLaserTurret",
+                    "_damageLevel": 0,
+                    "_armorLevel": 0,
+                    "_buildTimeLevel": 0
+                },
+                {
+                    "_name": "AutocannonTurret",
                     "_damageLevel": 0,
                     "_armorLevel": 0,
                     "_buildTimeLevel": 0

@@ -7,6 +7,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
     public class SoundHitProjectile : MonoBehaviour
     {
         [SerializeField] private SoundEffect _prefab;
+        [SerializeField][Range(0, 0.3f)] private float _pitchRange = 0f;
 
         private IProjectileHitEvent _event;
         private SoundEffectActivator _activator;
@@ -28,6 +29,6 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Ammo
         }
 
         private void OnPlay() =>
-            _activator.Activate(_prefab);
+            _activator.Activate(_prefab, _pitchRange);
     }
 }

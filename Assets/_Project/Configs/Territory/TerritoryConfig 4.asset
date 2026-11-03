@@ -19,10 +19,11 @@ MonoBehaviour:
       _text: Stone City
     _tr:
       _text: "Ta\u015F \u015Eehir"
-  _creditsForFirstVictory: 6500
+  _creditsForFirstVictory: 3000
   _brainConfig: {fileID: 11400000, guid: 0d5f6409113ae0e4c86bab507b6da38d, type: 2}
   _upgradeActrosCoefficient: 0.05
-  _actorsToOpen: []
+  _actorsToOpen:
+  - {fileID: 11400000, guid: 74e5c17f8ca8b844abacc1f7204ba21f, type: 2}
   _bannedActors:
   - {fileID: 11400000, guid: 1f46563fef4f1a74596c038054377828, type: 2}
   - {fileID: 11400000, guid: fff000a41cc816645b915be5714638b3, type: 2}

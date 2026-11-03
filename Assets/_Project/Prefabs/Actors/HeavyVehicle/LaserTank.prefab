@@ -172,6 +172,7 @@ MonoBehaviour:
   _viewComponents:
   - {fileID: 4943233783219406801}
   - {fileID: 5577746699350314637}
+  - {fileID: 8686135368958955429}
 --- !u!114 &8740120243747767730
 MonoBehaviour:
   m_ObjectHideFlags: 0
