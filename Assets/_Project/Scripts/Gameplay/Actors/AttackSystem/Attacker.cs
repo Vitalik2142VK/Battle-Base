@@ -21,6 +21,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         public event Action Attacked;
         public event Action AttackActivated;
         public event Action AttackDeactivated;
+        public event Action SearchingTarget;
 
         public Attacker(IWeapon weapon, ITargetFinderConfig targetFinderConfig)
         {
@@ -39,6 +40,8 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
         public ITargetFinderConfig TargetFinderConfig { get; }
 
+        public bool HasTarget => _targetController.HasTarget;
+
         public void Init(
             ITargetController targetController,
             IProjectileController projectileController,
@@ -53,16 +56,17 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         public void Enable()
         {
             _weapon.Enable();
+            _targetController.LoseTarget();
             _isEnabled = true;
+            _isAttacking = false;
         }
 
         public void Disable()
         {
-            if (_enalableActor.IsEnabled == false)
-                _weapon.Disable();
+            _weapon.Disable();
 
-            _targetController.LoseTarget();
-            _isEnabled = false;
+            if (_enalableActor.IsEnabled == false)
+                _isEnabled = false;
         }
 
         public void SetTargets(IEnumerable<ITarget> targets)
@@ -101,7 +105,10 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             }
 
             if (_targetController.HasTarget == false)
+            {
                 TargetLosted?.Invoke();
+                SearchingTarget?.Invoke();
+            }
 
             if (_targetController.HasTarget == false && _isAttacking)
                 AttackDeactivated?.Invoke();

@@ -20,14 +20,20 @@ namespace BattleBase.Gameplay.Levels
         [SerializeField] private float _zeroAdditionalScoreInMinutes = 30f;
 
         private IWinStateController _winStateController;
+        private IScoreCalculator _scoreCalculator;
         private TerritoriesModel _territoriesModel;
         private CreditsModel _creditsModel;
         private float _startTime;
 
         [Inject]
-        public void Construct(IWinStateController winStateController, TerritoriesModel territoriesModel, CreditsModel creditsModel)
+        public void Construct(
+            IWinStateController winStateController,
+            IScoreCalculator scoreCalculator,
+            TerritoriesModel territoriesModel, 
+            CreditsModel creditsModel)
         {
             _winStateController = winStateController ?? throw new ArgumentNullException(nameof(winStateController));
+            _scoreCalculator = scoreCalculator ?? throw new ArgumentNullException(nameof(scoreCalculator));
             _territoriesModel = territoriesModel ?? throw new ArgumentNullException(nameof(territoriesModel));
             _creditsModel = creditsModel ?? throw new ArgumentNullException(nameof(creditsModel));
         }
@@ -61,6 +67,10 @@ namespace BattleBase.Gameplay.Levels
                 float elapsedSeconds = Time.time - _startTime;
                 float timeInMinutes = elapsedSeconds / SecondsPerMinute;
                 int additionalCredits = CalculateAdditionalCredits(firstWinCredits, timeInMinutes);
+
+                //todo temporarily
+                int score = _scoreCalculator.Calculate();
+                Debug.Log($"Score = {score}");
 
                 _creditsModel.Increase(basicCredits + additionalCredits);
                 _winPopUp.Show();

@@ -1,4 +1,5 @@
 ﻿using BattleBase.Gameplay.Actors.AttackSystem;
+using BattleBase.Gameplay.Actors.Movement;
 using System;
 
 namespace BattleBase.Gameplay.Actors.DeploymentSystem
@@ -18,6 +19,9 @@ namespace BattleBase.Gameplay.Actors.DeploymentSystem
 
             if (view.TryGetViewComponent(out IDeploymentView deploymentView))
                 deploymentView.Init(deployment);
+
+            if (actor.TryGetComponent(out IMover mover))
+                deployment.AddDisablingComponent(mover);
 
             if (actor.TryGetComponent(out IAttacker attacker))
                 deployment.AddDisablingComponent(attacker);

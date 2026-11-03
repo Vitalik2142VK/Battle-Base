@@ -6,16 +6,17 @@ using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors
 {
-    public class ActorsController : MonoBehaviour, IActorsController, IActorsStorage
+    public class ActorsController : MonoBehaviour, IActorsController, IActorsStorage, IActorsControllerEvents
     {
         private HashSet<IActor> _activeActors;
         private HashSet<IActor> _newActors;
         private List<IActor> _disableActors;
-
 #if UNITY_EDITOR
-        private int _countActorBeforInit; //todo remove on release 
-        private bool _isFirsFrame = false;
+        private int _countActorBeforInit;
+        private bool _isFirstFrame = false;
 #endif
+
+        public event Action<IEnumerable<IActor>> DisabledActors;
 
         private void Awake()
         {
@@ -49,16 +50,19 @@ namespace BattleBase.Gameplay.Actors
             foreach (var actor in _newActors)
                 _activeActors.Add(actor);
 
+            if (_disableActors.Count > 0)
+                DisabledActors?.Invoke(_disableActors);
+
             _disableActors.Clear();
             _newActors.Clear();
         }
 
         private void LateUpdate()
         {
-#if UNITY_EDITOR //todo remove on release 
-            if (_isFirsFrame == false)
+#if UNITY_EDITOR
+            if (_isFirstFrame == false)
             {
-                _isFirsFrame = true;
+                _isFirstFrame = true;
                 _countActorBeforInit = _activeActors.Count;
             }
 

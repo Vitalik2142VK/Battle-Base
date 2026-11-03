@@ -28,6 +28,9 @@ namespace BattleBase.Gameplay.Actors.Movement.Air
 
         public bool CanMove => _mover.CanMove;
 
+        public void Init(IEnalableActor enalableActor) =>
+            _mover.Init(enalableActor);
+
         public void Enable()
         {
             _mover.WaypointChanged += WaypointChanged;

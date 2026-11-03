@@ -16,6 +16,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Multiple
         public event Action Attacked;
         public event Action AttackActivated;
         public event Action AttackDeactivated;
+        public event Action SearchingTarget;
 
         public MultyAttacker(IAttacker mainAttacker)
         {
@@ -32,6 +33,8 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Multiple
         public ITarget CurrentTarget => _mainAttacker.CurrentTarget;
 
         public ITargetFinderConfig TargetFinderConfig => _mainAttacker.TargetFinderConfig;
+
+        public bool HasTarget => _mainAttacker.HasTarget;
 
         public void Init(
             ITargetController targetController, 
@@ -51,6 +54,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Multiple
             _mainAttacker.Attacked += Attacked;
             _mainAttacker.AttackActivated += AttackActivated;
             _mainAttacker.AttackDeactivated += AttackDeactivated;
+            _mainAttacker.SearchingTarget += SearchingTarget;
         }
 
         public void Disable()
@@ -60,6 +64,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem.Multiple
             _mainAttacker.Attacked -= Attacked;
             _mainAttacker.AttackActivated -= AttackActivated;
             _mainAttacker.AttackDeactivated -= AttackDeactivated;
+            _mainAttacker.SearchingTarget -= SearchingTarget;
 
             _mainAttacker.Disable();
 
