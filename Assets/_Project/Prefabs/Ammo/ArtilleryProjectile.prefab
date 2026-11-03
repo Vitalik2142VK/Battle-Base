@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: -7947478622037943918}
   - component: {fileID: -3487734520819801749}
   - component: {fileID: 8975030612580228218}
+  - component: {fileID: 4400302000286491599}
+  - component: {fileID: 1191108207866138016}
   m_Layer: 0
   m_Name: ArtilleryProjectile
   m_TagString: Untagged
@@ -125,6 +127,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dba5451192bc6c443aa3934f2b264dab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnPoint: {fileID: 2961025265337623857}
+--- !u!114 &4400302000286491599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4831685795835175593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbc9d9e6a21912f4b97c95c0063bfdca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 5776329295304102759, guid: 71571ae8d4010fc409249f1fdbde9dbd, type: 3}
+--- !u!114 &1191108207866138016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4831685795835175593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 989c1b67ff6f5274c83e7a30fec0710e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPoint: {fileID: 2961025265337623857}

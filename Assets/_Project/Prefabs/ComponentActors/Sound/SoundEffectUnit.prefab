@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5437431695144096774}
   - component: {fileID: 4952993017739874839}
   - component: {fileID: 9199002786534398806}
+  - component: {fileID: 1158404347920189430}
   m_Layer: 0
   m_Name: SoundEffectUnit
   m_TagString: Untagged
@@ -45,7 +46,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 989c1b67ff6f5274c83e7a30fec0710e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 0}
   _spawnPoint: {fileID: 5437431695144096774}
 --- !u!114 &9199002786534398806
 MonoBehaviour:
@@ -59,4 +59,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62032f00580c10545a91df3a62720b13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _activator: {fileID: 0}
+  _activator: {fileID: 4952993017739874839}
+  _prefab: {fileID: 5776329295304102759, guid: 69906b081eb4b07498140cde3c061108, type: 3}
+--- !u!114 &1158404347920189430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446945370790241225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ccc098dc64bc3149a7902911be1d8a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _activator: {fileID: 4952993017739874839}
+  _prefab: {fileID: 5776329295304102759, guid: edc73abfa98033247b863955a2f8a4e4, type: 3}

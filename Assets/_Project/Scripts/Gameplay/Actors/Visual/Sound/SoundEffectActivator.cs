@@ -19,7 +19,18 @@ namespace BattleBase.Gameplay.Actors.Visual.Sound
                 _spawnPoint = transform;
         }
 
-        public void Activate(ISoundEffectData data)
+        [Inject]
+        public void Construct(
+            ISoundEffectSpawner spawner,
+            IAudioListner audioListner,
+            ISoundLimiterController limiterController)
+        {
+            _spawner = spawner ?? throw new ArgumentNullException(nameof(spawner));
+            _audioListner = audioListner ?? throw new ArgumentNullException(nameof(audioListner));
+            _limiterController = limiterController ?? throw new ArgumentNullException(nameof(limiterController));
+        }
+
+        public void Activate(ISoundEffectData data, float rangePitch = 0)
         {
             if (data == null)
                 throw new ArgumentNullException(nameof(data));
@@ -34,18 +45,7 @@ namespace BattleBase.Gameplay.Actors.Visual.Sound
                 return;
 
             soundEffect.SetPosition(_spawnPoint.position);
-            soundEffect.Play();
-        }
-
-        [Inject]
-        public void Construct(
-            ISoundEffectSpawner spawner, 
-            IAudioListner audioListner,
-            ISoundLimiterController limiterController)
-        {
-            _spawner = spawner ?? throw new ArgumentNullException(nameof(spawner));
-            _audioListner = audioListner ?? throw new ArgumentNullException(nameof(audioListner));
-            _limiterController = limiterController ?? throw new ArgumentNullException(nameof(limiterController));
+            soundEffect.Play(rangePitch);
         }
     }
 }

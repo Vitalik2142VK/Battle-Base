@@ -15,6 +15,8 @@ namespace BattleBase.Gameplay.Actors.Movement
             if (actor.TryGetComponent(out IMover mover) == false)
                 return;
 
+            mover.Init(actor);
+
             if (view.TryGetViewComponent(out IMoverViewComponent moverView))
                 moverView.Init(mover);
 

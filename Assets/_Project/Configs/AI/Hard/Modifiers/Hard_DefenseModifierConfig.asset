@@ -21,6 +21,7 @@ MonoBehaviour:
     _multiplier: 0.5
   - _category: 2
     _multiplier: 0.4
+  _priority: 2
   _scoreCoefficientForActor: 0.2
   _maxScoreCoefficient: 4
   _minActorsForAction: 1

@@ -18,6 +18,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         private List<ITarget> _targets;
         private IAttackerPresenter _presenter;
         private ITargetFinderConfig _targetConfig;
+        private IAttackNotifier _attackNotifier;
         private ITeamable _teamable;
         private Transform _transform;
         private Collider[] _foundUnits;
@@ -33,9 +34,18 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
         private void OnEnable()
         {
+            if (_attackNotifier != null)
+                _attackNotifier.SearchingTarget += OnFindEnemies;
+
             _targets.Clear();
 
             StartCoroutine(Activate());
+        }
+
+        private void OnDisable()
+        {
+            if (_attackNotifier != null)
+                _attackNotifier.SearchingTarget -= OnFindEnemies;
         }
 
         private void OnDrawGizmosSelected()
@@ -47,11 +57,19 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             Gizmos.DrawWireSphere(transform.position, _targetConfig.SearchRadius);
         }
 
-        public void Init(IAttackerPresenter presenter, ITargetFinderConfig targetConfig, ITeamable teamable)
+        public void Init(
+            IAttackerPresenter presenter, 
+            ITargetFinderConfig targetConfig,
+            IAttackNotifier attackNotifier,
+            ITeamable teamable)
         {
             _presenter ??= presenter ?? throw new ArgumentNullException(nameof(presenter));
             _targetConfig ??= targetConfig ?? throw new ArgumentNullException(nameof(targetConfig));
+            _attackNotifier ??= attackNotifier ?? throw new ArgumentNullException(nameof(attackNotifier));
             _teamable ??= teamable ?? throw new ArgumentNullException(nameof(teamable));
+
+            if (gameObject.activeSelf)
+                _attackNotifier.SearchingTarget += OnFindEnemies;
         }
 
         private IEnumerator Activate()
@@ -61,9 +79,7 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
                 if (_targetConfig == null)
                     yield return null;
 
-                if (TryFindEnemies())
-                    _presenter.SetTargets(_targets);
-
+                OnFindEnemies();
 
                 yield return _tick;
             }
@@ -92,6 +108,12 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             }
 
             return _targets.Count > 0;
+        }
+
+        private void OnFindEnemies()
+        {
+            if (TryFindEnemies())
+                _presenter.SetTargets(_targets);
         }
     }
 }

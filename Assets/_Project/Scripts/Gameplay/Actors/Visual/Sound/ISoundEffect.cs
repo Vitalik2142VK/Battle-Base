@@ -8,6 +8,6 @@ namespace BattleBase.Gameplay.Actors.Visual.Sound
 
         public void SetPosition(Vector3 position);
 
-        public void Play();
+        public void Play(float rangePitch = 0);
     }
 }
