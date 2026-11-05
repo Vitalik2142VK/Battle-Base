@@ -87,6 +87,9 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
 
         private bool TryFindEnemies()
         {
+            if (_targetConfig == null)
+                return false;
+            
             _targets.Clear();
 
             int count = Physics.OverlapSphereNonAlloc(
