@@ -20,8 +20,9 @@ MonoBehaviour:
     _constructionTime: 0.5
     _price: 1
     _power: 0
-    _isSummable: 0
+    _isDefaultAvailability: 0
   _components:
   - {fileID: 11400000, guid: 65ddb4e5d70ce8f45b011a1e5295bf6f, type: 2}
   - {fileID: 11400000, guid: 6975bf0fbb8158e4dbaa30ecb44d93a2, type: 2}
   - {fileID: 11400000, guid: fc927ddea4bf25a46b1425f14d97193a, type: 2}
+  - {fileID: 11400000, guid: ee68919c4d9aec14dbd72306b574d619, type: 2}

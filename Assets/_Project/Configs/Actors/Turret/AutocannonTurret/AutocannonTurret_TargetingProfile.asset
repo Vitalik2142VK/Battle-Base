@@ -16,3 +16,5 @@ MonoBehaviour:
   _priorityActorTypes:
   - _actorMask: 2
     _damageCoefficient: 2
+  - _actorMask: 4
+    _damageCoefficient: 1.5

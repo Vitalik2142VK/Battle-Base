@@ -74,4 +74,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _activator: {fileID: 4952993017739874839}
-  _prefab: {fileID: 5776329295304102759, guid: edc73abfa98033247b863955a2f8a4e4, type: 3}
+  _prefab: {fileID: 5776329295304102759, guid: 59d921c7bcda83941a1a97d943652cdc, type: 3}
+  _pitchRange: 0.1

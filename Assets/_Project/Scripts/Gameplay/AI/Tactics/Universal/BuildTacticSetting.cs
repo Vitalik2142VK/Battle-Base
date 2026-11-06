@@ -13,7 +13,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Universal
         [Space]
         [Header("Unique")]
         [SerializeField] private ActorConfig _buildingConfig;
-        [SerializeField] private TacticCategory _category = TacticCategory.Attack;
+        [SerializeField] private TacticCategory _category = TacticCategory.Build;
         [SerializeField][Range(1, 3)] private int[] _priorityLinesNumbers = new[] { 1 };
         [SerializeField][Range(1, 30)] private int _scoreForBuild = 5;
         [SerializeField][Range(1, 12)] private int _maxNumberBuildings = 3;

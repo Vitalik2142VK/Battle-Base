@@ -17,5 +17,5 @@ MonoBehaviour:
   _minScore: 0
   _buildingConfig: {fileID: 11400000, guid: 45dd7c761e2fe5b40b7def0debed41f9, type: 2}
   _numberRemainingFactories: 1
-  _materialsForStart: 3200
+  _materialsForStart: 4000
   _isRemoveAfterComplited: 1

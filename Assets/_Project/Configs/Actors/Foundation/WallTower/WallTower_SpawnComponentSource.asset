@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: WallTower_SpawnComponentSource
   m_EditorClassIdentifier: 
   _actorsConfigs:
+  - {fileID: 11400000, guid: e05229674bd5b47498abf103764dd59c, type: 2}
   - {fileID: 11400000, guid: 74e5c17f8ca8b844abacc1f7204ba21f, type: 2}
   - {fileID: 11400000, guid: e587a36f43eff694bbf1c201fc3498c5, type: 2}
   - {fileID: 11400000, guid: 4c34700e5c731f14184361f670a61084, type: 2}

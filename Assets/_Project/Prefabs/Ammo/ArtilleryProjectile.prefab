@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -7947478622037943918}
   - component: {fileID: -3487734520819801749}
   - component: {fileID: 8975030612580228218}
-  - component: {fileID: 4400302000286491599}
+  - component: {fileID: -3224950412471478652}
   - component: {fileID: 1191108207866138016}
   m_Layer: 0
   m_Name: ArtilleryProjectile
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPoint: {fileID: 2961025265337623857}
---- !u!114 &4400302000286491599
+--- !u!114 &-3224950412471478652
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,10 +139,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4831685795835175593}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbc9d9e6a21912f4b97c95c0063bfdca, type: 3}
+  m_Script: {fileID: 11500000, guid: 90dd73a53c93f364da8324a7b1b222c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _prefab: {fileID: 5776329295304102759, guid: 71571ae8d4010fc409249f1fdbde9dbd, type: 3}
+  _pitchRange: 0.05
 --- !u!114 &1191108207866138016
 MonoBehaviour:
   m_ObjectHideFlags: 0

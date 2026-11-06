@@ -334,6 +334,7 @@ MonoBehaviour:
   _viewComponents:
   - {fileID: 7073597078348727503}
   - {fileID: 1495490081682568441}
+  - {fileID: 7935452970937170599}
 --- !u!114 &7844906770208145958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1051,7 +1052,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _parrent: {fileID: 3947188425846172522}
   _speedRotate: 50
-  _dotAim: 0.98
+  _dotAim: 0.99
   _returnAngle: 0.1
 --- !u!1 &4528800313325556872 stripped
 GameObject:
@@ -1380,6 +1381,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6778746087554220236}
     m_Modifications:
+    - target: {fileID: 1158404347920189430, guid: bd6af682b85ee2b458e0ad36dd475b23,
+        type: 3}
+      propertyPath: _prefab
+      value: 
+      objectReference: {fileID: 5776329295304102759, guid: ec9594389432b3f478b5368689a018df,
+        type: 3}
     - target: {fileID: 1446945370790241225, guid: bd6af682b85ee2b458e0ad36dd475b23,
         type: 3}
       propertyPath: m_Name

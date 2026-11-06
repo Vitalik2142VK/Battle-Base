@@ -25,10 +25,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 86909a280afbd6a4793545b0d2fed414, type: 2}
   - {fileID: 11400000, guid: 0db8b8928ff04a2409d5a3a1948cf807, type: 2}
   - {fileID: 11400000, guid: 6af241a0ae046554c9d3821c3ada8ff0, type: 2}
+  - {fileID: 11400000, guid: 9eb560c1b49942744a99d2709afbaeee, type: 2}
+  - {fileID: 11400000, guid: bfb350fc5a3d60d418cdec594a350e9f, type: 2}
+  - {fileID: 11400000, guid: 8d8ddfdde733d3942998460177c617e8, type: 2}
+  - {fileID: 11400000, guid: 49b0a4ca06501c44e9e088a3f4aba512, type: 2}
   _modifierConfigs:
-  - {fileID: 11400000, guid: 0237e0f24ef23474db45c3b7d58a65fb, type: 2}
   - {fileID: 11400000, guid: a8483c9910442264ab660b86f771c2eb, type: 2}
   - {fileID: 11400000, guid: 723e645217ce1184d833d23bd6ddc426, type: 2}
   - {fileID: 11400000, guid: 8f747efc3928a5b47a6cebfee75eeced, type: 2}
   - {fileID: 11400000, guid: fa0ff35403865494fafbac70486f3043, type: 2}
+  - {fileID: 11400000, guid: 0237e0f24ef23474db45c3b7d58a65fb, type: 2}
+  - {fileID: 11400000, guid: caf5e818158ecde46a25e74b4ff6f216, type: 2}
   _teamType: 2

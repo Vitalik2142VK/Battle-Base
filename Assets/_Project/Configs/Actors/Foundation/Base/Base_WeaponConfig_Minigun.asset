@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8368aa947f2bba2478fc99c70d338400, type: 3}
+  m_Name: Base_WeaponConfig_Minigun
+  m_EditorClassIdentifier: 
+  _projectileConfig:
+    _projectilePrefab: {fileID: 7550878289047074185, guid: ed12269b9172a4a44bfe5966c7513ee1,
+      type: 3}
+    _speed: 250
+  _damageConfig:
+    _targetingProfile: {fileID: 11400000, guid: 015e8d826c3b0414b81ad2f606b1546f,
+      type: 2}
+    _damageMask: 0
+    _damage: 1.7
+  _firingRange: 42
+  _minFiringRange: 5
+  _rateShooting: 0.08
+  _speedReload: 3.5
+  _numberShells: 100

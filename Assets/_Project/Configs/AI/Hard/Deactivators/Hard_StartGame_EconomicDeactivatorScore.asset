@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Hard_StartGame_EconomicDeactivatorScore
   m_EditorClassIdentifier: 
   <TeamType>k__BackingField: 2
-  <MaterialsForDeactivate>k__BackingField: 2500
+  <MaterialsForDeactivate>k__BackingField: 3500

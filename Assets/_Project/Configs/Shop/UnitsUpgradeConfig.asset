@@ -38,5 +38,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c390d654bc266414cad5bb06463fd909, type: 2}
   - {fileID: 11400000, guid: 3e143831cae81744eb27ea91a95490e7, type: 2}
   - {fileID: 11400000, guid: 644b8b73c353dac42837c958209ffdbd, type: 2}
+  - {fileID: 11400000, guid: 003c398a40af578478a5bb91aac5ee51, type: 2}
   _previewCreateConfig: {fileID: 11400000, guid: 5aabc5622fa2eb74b8df5c5bd3064737,
     type: 2}

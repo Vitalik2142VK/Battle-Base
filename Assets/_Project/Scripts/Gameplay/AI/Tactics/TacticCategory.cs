@@ -5,6 +5,7 @@
         Attack,
         Economy,
         Power,
-        Defense
+        Defense,
+        Build
     }
 }
