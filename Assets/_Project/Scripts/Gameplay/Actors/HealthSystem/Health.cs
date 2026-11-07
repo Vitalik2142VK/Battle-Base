@@ -9,7 +9,9 @@ namespace BattleBase.Gameplay.Actors.HealthSystem
         private readonly IDamageModifier _damageModifier;
         private readonly ActorMask _type;
 
+        private IEnalableActor _enalableActor;
         private float _currentHealth;
+        private bool _isEnable;
 
         public event Action<float, float> HealthChanged;
         public event Action Destroyed;
@@ -26,10 +28,14 @@ namespace BattleBase.Gameplay.Actors.HealthSystem
 
         public ActorMask ActorMask => _type;
 
-        public bool IsAlive => _currentHealth > 0;
+        public void Init(IEnalableActor enalableActor)
+        {
+            _enalableActor = enalableActor ?? throw new ArgumentNullException(nameof(enalableActor));
+        }
 
         public void Enable()
         {
+            _isEnable = true;
             _currentHealth = _config.MaxHealth;
 
             HealthChanged?.Invoke(_config.MaxHealth, _currentHealth);
@@ -37,12 +43,20 @@ namespace BattleBase.Gameplay.Actors.HealthSystem
 
         public void Disable()
         {
+            _isEnable = false;
+
+            if (_enalableActor.IsEnabled)
+                return;
+
             _config.Reset();
             _currentHealth = 0;
         }
 
         public void TakeDamage(IDamage damage)
         {
+            if (_isEnable == false)
+                return;
+
             if (damage == null)
                 throw new ArgumentNullException(nameof(damage));
 
@@ -53,7 +67,7 @@ namespace BattleBase.Gameplay.Actors.HealthSystem
 
             _currentHealth -= finalDamage;
 
-            if (IsAlive)
+            if (_currentHealth > 0)
             {
                 HealthChanged?.Invoke(_config.MaxHealth, _currentHealth);
             }

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd1bbd144f98c0a429d15fcf764e5306, type: 3}
   m_Name: _ExempleCombatUnit_TargetingProfile
   m_EditorClassIdentifier: 
-  _notAttacked: 0
+  _notAttacked: 7
   _priorityActorTypes: []

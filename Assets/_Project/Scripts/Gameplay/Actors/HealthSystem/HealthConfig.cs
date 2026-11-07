@@ -1,7 +1,6 @@
-﻿using BattleBase.Gameplay.Actors.HealthSystem;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace BattleBase.Gameplay.Actors
+namespace BattleBase.Gameplay.Actors.HealthSystem
 {
     [System.Serializable]
     public class HealthConfig : IHealthConfig

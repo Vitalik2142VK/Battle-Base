@@ -20,9 +20,10 @@ MonoBehaviour:
     _constructionTime: 14
     _price: 775
     _power: 7
+    _isDefaultAvailability: 0
   _components:
-  - {fileID: 11400000, guid: 714d5d9d369166c48882d5bf4c1822bc, type: 2}
   - {fileID: 11400000, guid: 85ad633fd2141314fa69376f8f52994e, type: 2}
   - {fileID: 11400000, guid: bb03e15bd7a4f4148873ea507bf3ac00, type: 2}
+  - {fileID: 11400000, guid: 714d5d9d369166c48882d5bf4c1822bc, type: 2}
   - {fileID: 11400000, guid: db6315f7bf8b3b646aefa128f01a8d09, type: 2}
   - {fileID: 11400000, guid: b75b62cd374d83944b2d0efd1c82eee2, type: 2}
