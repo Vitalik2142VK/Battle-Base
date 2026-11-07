@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: SpecialBuildingSite
   m_EditorClassIdentifier: 
   _data:
-    _prefab: {fileID: 0}
+    _prefab: {fileID: 6288524358068639159, guid: 15d3f3d5475e5af4583fb331fc799784,
+      type: 3}
     _icon: {fileID: 0}
     _nameConfig: {fileID: 0}
     _constructionTime: 3
     _price: 1
     _power: 0
-    _isSummable: 0
+    _isDefaultAvailability: 0
   _components:
   - {fileID: 11400000, guid: 4b242728123258344a7b82b0f48086b5, type: 2}
   - {fileID: 11400000, guid: e629ce5a760c9a3438910ab681147319, type: 2}

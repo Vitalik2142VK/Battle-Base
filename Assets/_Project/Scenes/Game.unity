@@ -10337,6 +10337,16 @@ PrefabInstance:
       propertyPath: _spawnPoint
       value: 
       objectReference: {fileID: 1571344139}
+    - target: {fileID: 4979546634894632420, guid: 2a5c3eede0267bb4bb0b222817489885,
+        type: 3}
+      propertyPath: _viewComponents.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4979546634894632420, guid: 2a5c3eede0267bb4bb0b222817489885,
+        type: 3}
+      propertyPath: _viewComponents.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5069265203345021167, guid: 2a5c3eede0267bb4bb0b222817489885,
         type: 3}
       propertyPath: m_Name
@@ -15965,6 +15975,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1754843466}
   - component: {fileID: 1754843465}
+  - component: {fileID: 1754843467}
   m_Layer: 0
   m_Name: DubugSetting
   m_TagString: Untagged
@@ -16004,6 +16015,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1754843467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754843464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c66b7b87ebc994e4f8fa4f37c3c33885, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _config: {fileID: 11400000, guid: b1e9151c93fde8e45bbebc1d12a09075, type: 2}
 --- !u!1001 &1768239304
 PrefabInstance:
   m_ObjectHideFlags: 0

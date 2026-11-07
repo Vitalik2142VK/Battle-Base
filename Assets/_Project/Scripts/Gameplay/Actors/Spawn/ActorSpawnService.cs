@@ -10,20 +10,20 @@ namespace BattleBase.Gameplay.Actors.Spawn
         private readonly IActorPoolRegistry _poolRegistry;
         private readonly IActorsController _actorsController;
         private readonly IWaypointController _waypointController;
-        private readonly IActorUpgraderRegistry _actorComponentUpgrader;
+        private readonly IActorUpgrader _actorUpgrader;
         private readonly IAvailabilityActorsRegistry _availabilityActors;
 
         public ActorSpawnService(
             IActorPoolRegistry poolRegistry,
             IActorsController actorsController,
             IWaypointController waypointController,
-            IActorUpgraderRegistry actorComponentUpgrader,
+            IActorUpgrader actorComponentUpgrader,
             IAvailabilityActorsRegistry availabilityActors)
         {
             _poolRegistry = poolRegistry ?? throw new ArgumentNullException(nameof(poolRegistry));
             _actorsController = actorsController ?? throw new ArgumentNullException(nameof(actorsController));
             _waypointController = waypointController ?? throw new ArgumentNullException(nameof(waypointController));
-            _actorComponentUpgrader = actorComponentUpgrader ?? throw new ArgumentNullException(nameof(actorComponentUpgrader));
+            _actorUpgrader = actorComponentUpgrader ?? throw new ArgumentNullException(nameof(actorComponentUpgrader));
             _availabilityActors = availabilityActors ?? throw new ArgumentNullException(nameof(availabilityActors));
         }
 
@@ -47,7 +47,7 @@ namespace BattleBase.Gameplay.Actors.Spawn
             if (actor.TryGetComponent(out IActorSpawner spawner))
                 _availabilityActors.EstablishActors(teamType, spawner);
 
-            _actorComponentUpgrader.UpgradeActorComponents(teamType, actor);
+            _actorUpgrader.UpgradeActorComponents(teamType, actor);
             _actorsController.AddActor(actor);
 
             return actor;

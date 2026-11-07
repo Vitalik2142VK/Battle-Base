@@ -153,7 +153,7 @@ namespace BattleBase.DI
             _builder.Register<IActorComponentUpgrader, EnemyHealthUpgrader>(Lifetime.Scoped);
             _builder.Register<IActorComponentUpgrader, PlayerSpeedUpgrader>(Lifetime.Scoped);
             _builder.Register<IActorComponentUpgrader, EnemySpeedUpgrader>(Lifetime.Scoped);
-            _builder.Register<IActorUpgraderRegistry, ActorUpgraderRegistry>(Lifetime.Scoped);
+            _builder.Register<IActorUpgrader, ActorUpgraderRegistry>(Lifetime.Scoped);
         }
 
         private void RegisterAvailabilityActors()
