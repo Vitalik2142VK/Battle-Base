@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Middle_DefenseTacticSetting
   m_EditorClassIdentifier: 
   _deactivatorScores: []
-  _maxScore: 36
+  _maxScore: 40
   _minScore: 0
   _defenseBuildingConfigs:
   - {fileID: 11400000, guid: e05229674bd5b47498abf103764dd59c, type: 2}

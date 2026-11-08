@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _deactivatorScores:
   - {fileID: 11400000, guid: 9c0e5133947b4ce45bc25887706c4ad5, type: 2}
-  _maxScore: 50
+  _maxScore: 40
   _minScore: 0
   _improvedActorsConfigs:
   - {fileID: 11400000, guid: d29b556504be6944588fab13baad2f83, type: 2}
-  _category: 4
+  _category: 1
   _maxLevelImproved: 2
