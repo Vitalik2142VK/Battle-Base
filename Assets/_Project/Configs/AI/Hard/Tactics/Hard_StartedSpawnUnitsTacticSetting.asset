@@ -25,7 +25,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 835f7b6885aa1524bbe469cd672f2cb6, type: 2}
   - {fileID: 11400000, guid: 7f096ad187a6e854baf852a777792c38, type: 2}
   - {fileID: 11400000, guid: e21039b04fa34f14097db1b34175f911, type: 2}
+  - {fileID: 11400000, guid: 2069bf6504a12de4ab3c8e86cca4cef6, type: 2}
   - {fileID: 11400000, guid: e5cdd49978f695d4ba531e6dbe34705c, type: 2}
+  - {fileID: 11400000, guid: a01aceef08e36ba478d1e585dd4a12f7, type: 2}
   - {fileID: 11400000, guid: 9fea4b206644d774cb16841b79f38449, type: 2}
   _maxNumSpawn: 8
   _minNumSpawn: 3
