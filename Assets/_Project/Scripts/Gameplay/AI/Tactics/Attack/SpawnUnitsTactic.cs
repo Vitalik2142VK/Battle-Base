@@ -13,6 +13,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Attack
         private readonly List<IRegisteredBuildingSite> _unitsFactories;
         private readonly List<string> _unitFactoriesIds;
         private readonly List<string> _forbiddenUnitsIds;
+        private readonly IProductionOption[] _findedSpawnUnits;
         private readonly IBuildingSitesController _controller;
         private readonly ISpawnUnitsTacticSetting _setting;
         private readonly ITacticTool _tool;
@@ -34,9 +35,12 @@ namespace BattleBase.Gameplay.AI.Tactics.Attack
             _setting = setting ?? throw new ArgumentNullException(nameof(setting));
             _randomizer = randomizer ?? throw new ArgumentNullException(nameof(randomizer));
 
+            int maxFindedSpawnUnits = 2;
+
             _unitsFactories = new List<IRegisteredBuildingSite>();
             _unitFactoriesIds = new List<string>(_setting.UnitFactoriesIds);
             _forbiddenUnitsIds = new List<string>(_setting.ForbiddenUnitsIds);
+            _findedSpawnUnits = new IProductionOption[maxFindedSpawnUnits];
             _score = _setting.MaxScore;
             _canAction = false;
 
@@ -106,16 +110,18 @@ namespace BattleBase.Gameplay.AI.Tactics.Attack
             int randomIndex = _randomizer.GetRangeZero(_unitsFactories.Count);
             IRegisteredBuildingSite randomfactory = _unitsFactories[randomIndex];
 
-            if (randomfactory.TryGetProductionStorage(out IProductionStorage productionStorage))
-            {
-                randomIndex = _randomizer.GetRangeZero(_forbiddenUnitsIds.Count);
-                string randomUnitId = _forbiddenUnitsIds[randomIndex];
+            if (randomfactory.TryGetProductionStorage(out IProductionStorage productionStorage) == false)
+                return false;
 
-                if (_tool.TryFindSpawnProduction(productionStorage, randomUnitId, out _currentProductionOption))
-                    return true;
-            }
+            int count = _tool.TryFindSpawnProductions(productionStorage, _forbiddenUnitsIds, _findedSpawnUnits);
 
-            return false;
+            if (count <= 0)
+                return false;
+
+            randomIndex = _randomizer.GetRangeZero(count);
+            _currentProductionOption = _findedSpawnUnits[randomIndex];
+
+            return true;
         }
 
         private void OnRemoveFactory(IRegisteredBuildingSite buildingSite)

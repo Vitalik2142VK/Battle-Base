@@ -29,6 +29,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bfb350fc5a3d60d418cdec594a350e9f, type: 2}
   - {fileID: 11400000, guid: 8d8ddfdde733d3942998460177c617e8, type: 2}
   - {fileID: 11400000, guid: 49b0a4ca06501c44e9e088a3f4aba512, type: 2}
+  - {fileID: 11400000, guid: b737b3af0b10ba949816faf057ce8462, type: 2}
   _modifierConfigs:
   - {fileID: 11400000, guid: a8483c9910442264ab660b86f771c2eb, type: 2}
   - {fileID: 11400000, guid: 723e645217ce1184d833d23bd6ddc426, type: 2}

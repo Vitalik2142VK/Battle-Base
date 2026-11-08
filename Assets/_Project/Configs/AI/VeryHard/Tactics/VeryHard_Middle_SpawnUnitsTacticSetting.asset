@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 579e63488f7ff8f4b960081933034bcc, type: 3}
-  m_Name: Hard_Infantry_SpawnUnitsTacticSetting
+  m_Name: VeryHard_Middle_SpawnUnitsTacticSetting
   m_EditorClassIdentifier: 
   _deactivatorScores:
-  - {fileID: 11400000, guid: 9c0e5133947b4ce45bc25887706c4ad5, type: 2}
-  _maxScore: 45
+  - {fileID: 11400000, guid: 8b30b14cd0242d340ae6c6e6fa3e36dc, type: 2}
+  _maxScore: 40
   _minScore: 0
   _unitFactoriesConfigs:
   - {fileID: 11400000, guid: 45dd7c761e2fe5b40b7def0debed41f9, type: 2}
@@ -25,7 +25,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 835f7b6885aa1524bbe469cd672f2cb6, type: 2}
   - {fileID: 11400000, guid: 7f096ad187a6e854baf852a777792c38, type: 2}
   - {fileID: 11400000, guid: e21039b04fa34f14097db1b34175f911, type: 2}
+  - {fileID: 11400000, guid: 2069bf6504a12de4ab3c8e86cca4cef6, type: 2}
   - {fileID: 11400000, guid: e5cdd49978f695d4ba531e6dbe34705c, type: 2}
+  - {fileID: 11400000, guid: a01aceef08e36ba478d1e585dd4a12f7, type: 2}
   - {fileID: 11400000, guid: 9fea4b206644d774cb16841b79f38449, type: 2}
-  _maxNumSpawn: 8
-  _minNumSpawn: 3
+  - {fileID: 11400000, guid: a9951424d9956a241bc2ebbc9e15ebb5, type: 2}
+  _maxNumSpawn: 5
+  _minNumSpawn: 2
