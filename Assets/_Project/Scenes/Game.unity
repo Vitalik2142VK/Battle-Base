@@ -540,7 +540,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _center: {x: 0, y: 12, z: 0}
   _size: {x: 24, y: 30, z: 40}
-  _isDebugEnable: 0
+  _isDebugEnable: 1
 --- !u!1 &26614937
 GameObject:
   m_ObjectHideFlags: 0
@@ -3080,7 +3080,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _center: {x: 0, y: 12, z: 0}
   _size: {x: 24, y: 30, z: 40}
-  _isDebugEnable: 0
+  _isDebugEnable: 1
 --- !u!114 &334402368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6078,7 +6078,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _center: {x: 0, y: 10, z: 135}
-  _size: {x: 90, y: 36, z: 200}
+  _size: {x: 90, y: 36, z: 250}
   _isDebugEnable: 1
 --- !u!1 &641618707
 GameObject:
@@ -7211,7 +7211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _center: {x: 0, y: 12, z: 0}
   _size: {x: 24, y: 30, z: 40}
-  _isDebugEnable: 0
+  _isDebugEnable: 1
 --- !u!114 &790034318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13125,7 +13125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _center: {x: 0, y: 12, z: 0}
   _size: {x: 24, y: 30, z: 40}
-  _isDebugEnable: 0
+  _isDebugEnable: 1
 --- !u!114 &1444393834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14869,7 +14869,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _center: {x: 0, y: 12, z: 0}
   _size: {x: 24, y: 30, z: 40}
-  _isDebugEnable: 0
+  _isDebugEnable: 1
 --- !u!114 &1614515356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15999,7 +15999,7 @@ MonoBehaviour:
   _isUnitsMaxLevel: 1
   _isShowCountActor: 0
   _isAiDisbale: 0
-  _isBrainDebugEnable: 0
+  _isBrainDebugEnable: 1
 --- !u!4 &1754843466
 Transform:
   m_ObjectHideFlags: 0
@@ -18795,7 +18795,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _center: {x: 0, y: 12, z: 0}
   _size: {x: 24, y: 30, z: 40}
-  _isDebugEnable: 0
+  _isDebugEnable: 1
 --- !u!114 &2022278831
 MonoBehaviour:
   m_ObjectHideFlags: 0

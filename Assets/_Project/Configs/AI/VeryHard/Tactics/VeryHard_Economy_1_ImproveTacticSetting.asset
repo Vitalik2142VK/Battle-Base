@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 353df6cf1e4b5074387ce9392d4ba016, type: 3}
-  m_Name: VeryHard_Economy_ImproveTacticSetting
+  m_Name: VeryHard_Economy_1_ImproveTacticSetting
   m_EditorClassIdentifier: 
   _deactivatorScores:
-  - {fileID: 11400000, guid: 5ed215e9280410a47a61156a9e457272, type: 2}
-  _maxScore: 60
+  - {fileID: 11400000, guid: 8b30b14cd0242d340ae6c6e6fa3e36dc, type: 2}
+  _maxScore: 72
   _minScore: 0
   _improvedActorsConfigs:
   - {fileID: 11400000, guid: d29b556504be6944588fab13baad2f83, type: 2}
-  _category: 1
-  _maxLevelImproved: 2
+  _category: 4
+  _maxLevelImproved: 1

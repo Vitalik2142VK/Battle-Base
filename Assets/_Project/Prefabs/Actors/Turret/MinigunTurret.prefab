@@ -688,7 +688,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _parrent: {fileID: 4797490085887812043}
   _speedRotate: 200
-  _dotAim: 0.95
+  _dotAim: 0.98
   _returnAngle: 0.1
 --- !u!1001 &1076357079008317715
 PrefabInstance:

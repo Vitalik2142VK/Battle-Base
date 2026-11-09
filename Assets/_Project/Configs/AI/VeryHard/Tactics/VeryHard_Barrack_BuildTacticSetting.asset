@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: VeryHard_Barrack_BuildTacticSetting
   m_EditorClassIdentifier: 
   _deactivatorScores:
-  - {fileID: 11400000, guid: 7266bb0c60328fb469ec9d1d7ccf9994, type: 2}
-  _maxScore: 80
+  - {fileID: 11400000, guid: 5ed215e9280410a47a61156a9e457272, type: 2}
+  _maxScore: 95
   _minScore: 0
   _buildingConfig: {fileID: 11400000, guid: 45dd7c761e2fe5b40b7def0debed41f9, type: 2}
   _category: 0
   _priorityLinesNumbers: 01000000
-  _scoreForBuild: 20
+  _scoreForBuild: 30
   _maxNumberBuildings: 1

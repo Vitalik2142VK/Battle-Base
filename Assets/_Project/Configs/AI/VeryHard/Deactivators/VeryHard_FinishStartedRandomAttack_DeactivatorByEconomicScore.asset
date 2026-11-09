@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: VeryHard_FinishStartedRandomAttack_DeactivatorByEconomicScore
   m_EditorClassIdentifier: 
   <TeamType>k__BackingField: 2
-  <MaterialsForDeactivate>k__BackingField: 6000
+  <MaterialsForDeactivate>k__BackingField: 7500

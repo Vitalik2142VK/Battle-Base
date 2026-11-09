@@ -1,4 +1,5 @@
 using BattleBase.Core;
+using BattleBase.Gameplay.Actors.Economy;
 using BattleBase.Gameplay.AI.Factories.Modifier;
 using BattleBase.Gameplay.AI.Modifiers;
 using BattleBase.Gameplay.AI.Tactics;
@@ -16,12 +17,18 @@ namespace BattleBase.Gameplay.AI
         private readonly ITacticsFactory _tacticsFactory;
         private readonly IScoreModifiersFactory _modifiersFactory;
 
+#if UNITY_EDITOR // remove
+        private readonly IMaterialData _materialData;
+#endif
         private ScoreModifierController _modifierController;
         private int _currentIndexTactic;
 
         public Brain(
             ISelectedTerritory selectedTerritory, 
-            ITacticsFactory tacticsFactory, 
+            ITacticsFactory tacticsFactory,
+#if UNITY_EDITOR // remove
+             IMaterialRegistry materialRegistry,
+#endif
             IScoreModifiersFactory modifiersFactory)
         {
             if (selectedTerritory == null) 
@@ -31,6 +38,12 @@ namespace BattleBase.Gameplay.AI
             _tacticsFactory = tacticsFactory ?? throw new ArgumentNullException(nameof(tacticsFactory));
             _modifiersFactory = modifiersFactory ?? throw new ArgumentNullException(nameof(modifiersFactory));
 
+#if UNITY_EDITOR // remove
+            if (materialRegistry == null)
+                throw new ArgumentNullException(nameof(materialRegistry));
+
+            _materialData = materialRegistry.GetMaterialData(Actors.TeamType.Enemy);
+#endif
             _tactics = new List<ITactic>();
             _currentIndexTactic = 0;
         }
@@ -105,7 +118,7 @@ namespace BattleBase.Gameplay.AI
                 string debug = $"selectedTactic != null - {selectedTactic != null}";
 
                 if (selectedTactic != null)
-                    debug = $"SelectedTacticCategory == {selectedTactic.Category} || CanAction == {selectedTactic.CanAction} || TacticScore = {currentTacticScore}"; //todo remove
+                    debug = $"SelectedTacticCategory == {selectedTactic.Category} || CanAction == {selectedTactic.CanAction} || TacticScore = {currentTacticScore} || Materials = {_materialData.CurrentMaterials}"; //todo remove
 
                 UnityEngine.Debug.Log(debug);
             }

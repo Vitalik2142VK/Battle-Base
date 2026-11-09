@@ -5,7 +5,7 @@
     "floatValues": [],
     "intKeys": [],
     "intValues": [],
-    "idSave": 6,
+    "idSave": 9,
     "SavesData": {
         "_volumeData": {
             "_generalVolume": 1.0,
@@ -23,7 +23,7 @@
             "_selectedTerritoryIndex": 0
         },
         "_shopData": {
-            "_credits": 5229,
+            "_credits": 6993,
             "_unitUpgrades": [
                 {
                     "_name": "",

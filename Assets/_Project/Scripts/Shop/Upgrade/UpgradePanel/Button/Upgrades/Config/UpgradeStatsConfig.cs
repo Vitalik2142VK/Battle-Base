@@ -9,6 +9,10 @@ namespace BattleBase.ShopSystem
         menuName = AssetMenuPaths.ScriptableObjects + nameof(UpgradeStatsConfig))]
     public class UpgradeStatsConfig : ScriptableObject, IUpgradeStatsInfo
     {
+#if UNITY_EDITOR
+        [Header("PriceSettings")]
+
+#endif
         [Header("Main")]
         [SerializeField] private UpgradeButtonInfo _damageInfo;
         [SerializeField] private UpgradeButtonInfo _healthInfo;
@@ -27,8 +31,8 @@ namespace BattleBase.ShopSystem
             float damageDecay = 0.3f; //default value - 0.3f
             FillPrices(_damageInfo, damageGrowthRate, damageDecay);
 
-            float healthGrowthRate = 1.1f; //default value - 1.1f
-            float healthDecay = 0.3f; //default value - 0.3f
+            float healthGrowthRate = 1.5f; //default value - 1.1f
+            float healthDecay = 0.5f; //default value - 0.3f
             FillPrices(_healthInfo, healthGrowthRate, healthDecay);
 
             float speedGrowthRate = 1.2f; //default value - 1.2f

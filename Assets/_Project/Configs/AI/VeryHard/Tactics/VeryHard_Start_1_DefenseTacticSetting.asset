@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: VeryHard_Start_1_DefenseTacticSetting
   m_EditorClassIdentifier: 
   _deactivatorScores:
-  - {fileID: 11400000, guid: 5ed215e9280410a47a61156a9e457272, type: 2}
+  - {fileID: 11400000, guid: 8b30b14cd0242d340ae6c6e6fa3e36dc, type: 2}
   _maxScore: 100
   _minScore: 0
   _defenseBuildingConfigs:

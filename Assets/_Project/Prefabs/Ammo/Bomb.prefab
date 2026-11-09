@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 694870130054976421}
   - component: {fileID: 6673230658653710390}
   - component: {fileID: 750289667408561483}
+  - component: {fileID: -272991876439242077}
+  - component: {fileID: 1436480922069473517}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Untagged
@@ -107,6 +109,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dba5451192bc6c443aa3934f2b264dab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnPoint: {fileID: 3582688973536972222}
+--- !u!114 &-272991876439242077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4375667950031451469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90dd73a53c93f364da8324a7b1b222c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 5776329295304102759, guid: 71571ae8d4010fc409249f1fdbde9dbd, type: 3}
+  _pitchRange: 0.1
+--- !u!114 &1436480922069473517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4375667950031451469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 989c1b67ff6f5274c83e7a30fec0710e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPoint: {fileID: 3582688973536972222}

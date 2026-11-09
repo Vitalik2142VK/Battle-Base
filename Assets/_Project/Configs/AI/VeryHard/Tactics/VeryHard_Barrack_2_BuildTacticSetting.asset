@@ -19,5 +19,5 @@ MonoBehaviour:
   _buildingConfig: {fileID: 11400000, guid: 45dd7c761e2fe5b40b7def0debed41f9, type: 2}
   _category: 4
   _priorityLinesNumbers: 01000000
-  _scoreForBuild: 15
+  _scoreForBuild: 12
   _maxNumberBuildings: 3
