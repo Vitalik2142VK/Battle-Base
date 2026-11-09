@@ -9,11 +9,6 @@ namespace BattleBase.ShopSystem
         menuName = AssetMenuPaths.ScriptableObjects + nameof(UpgradeStatsConfig))]
     public class UpgradeStatsConfig : ScriptableObject, IUpgradeStatsInfo
     {
-#if UNITY_EDITOR
-        [Header("PriceSettings")]
-
-#endif
-        [Header("Main")]
         [SerializeField] private UpgradeButtonInfo _damageInfo;
         [SerializeField] private UpgradeButtonInfo _healthInfo;
         [SerializeField] private UpgradeButtonInfo _speedInfo;
@@ -27,26 +22,20 @@ namespace BattleBase.ShopSystem
         [ContextMenu(nameof(UpgradePrices))]
         private void UpgradePrices()
         {
-            float damageGrowthRate = 1.1f; //default value - 1.1f
-            float damageDecay = 0.3f; //default value - 0.3f
-            FillPrices(_damageInfo, damageGrowthRate, damageDecay);
-
-            float healthGrowthRate = 1.5f; //default value - 1.1f
-            float healthDecay = 0.5f; //default value - 0.3f
-            FillPrices(_healthInfo, healthGrowthRate, healthDecay);
-
-            float speedGrowthRate = 1.2f; //default value - 1.2f
-            float speedDecay = 0.4f; //default value - 0.4f
-            FillPrices(_speedInfo, speedGrowthRate, speedDecay);
+            FillPrices(_damageInfo);
+            FillPrices(_healthInfo);
+            FillPrices(_speedInfo);
         }
 
-        private static void FillPrices(UpgradeButtonInfo upgradeButtonInfo, float growthRate, float decay)
+        private static void FillPrices(UpgradeButtonInfo upgradeButtonInfo)
         {
             IReadOnlyList<int> prices = upgradeButtonInfo.Levels;
 
             if (prices.Count <= 0)
                 return;
 
+            float growthRate = upgradeButtonInfo.GrowthRate;
+            float decay = upgradeButtonInfo.Decay;
             float baseValue = prices[0];
 
             for (int i = 1; i < prices.Count; i++)

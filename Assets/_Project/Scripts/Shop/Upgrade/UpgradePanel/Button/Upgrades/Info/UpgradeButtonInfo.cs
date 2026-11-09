@@ -7,6 +7,10 @@ namespace BattleBase.ShopSystem
     [Serializable]
     public class UpgradeButtonInfo : IUpgradeInfo
     {
+        [Header("PriceSettings")]
+        [SerializeField] private float _growthRate = 1.1f;
+        [SerializeField] private float _decay = 0.3f;
+
         [SerializeField] private List<int> _prices = new();
         [SerializeField][HideInInspector] private int _currentLevel;
 
@@ -18,6 +22,10 @@ namespace BattleBase.ShopSystem
             _prices = new(other.Levels);
             _currentLevel = other.CurrentLevel;
         }
+
+        public float GrowthRate => _growthRate;
+
+        public float Decay => _decay;
 
         public int MaximumLevel => _prices.Count - 1;
 
