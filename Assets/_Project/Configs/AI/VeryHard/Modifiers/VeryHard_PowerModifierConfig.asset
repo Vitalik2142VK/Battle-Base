@@ -15,4 +15,13 @@ MonoBehaviour:
   _modifiers:
   - _category: 2
     _multiplier: 4
-  _maxRemainingEnergy: 3
+  - _category: 0
+    _multiplier: 0
+  - _category: 1
+    _multiplier: 0
+  - _category: 3
+    _multiplier: 0
+  - _category: 4
+    _multiplier: 0
+  _priority: 1
+  _maxRemainingEnergy: 5

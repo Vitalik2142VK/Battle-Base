@@ -1,6 +1,6 @@
 namespace BattleBase.Gameplay.Actors.ComponentImprovement
 {
-    public interface IActorUpgraderRegistry
+    public interface IActorUpgrader
     {
         public void UpgradeActorComponents(TeamType teamType, IActor actor);
     }

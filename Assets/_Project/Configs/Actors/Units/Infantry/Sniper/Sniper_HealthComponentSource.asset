@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Sniper_HealthComponentSource
   m_EditorClassIdentifier: 
   _healthConfig:
-    _maxHealth: 120
+    _maxHealth: 135
     _armorCoefficient: 0.1
   _type: 2

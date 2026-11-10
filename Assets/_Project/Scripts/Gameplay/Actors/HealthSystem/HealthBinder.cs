@@ -16,6 +16,8 @@ namespace BattleBase.Gameplay.Actors.HealthSystem
             if (actor.TryGetComponent(out IHealth health) == false)
                 return;
 
+            health.Init(actor);
+
             if (view.TryGetViewComponent(out IHealthViewComponent healthView))
                 healthView.Init(health);
 

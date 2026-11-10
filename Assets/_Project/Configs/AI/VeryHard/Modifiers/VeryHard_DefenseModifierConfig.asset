@@ -14,13 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _modifiers:
   - _category: 3
-    _multiplier: 2
+    _multiplier: 3
   - _category: 0
-    _multiplier: 0.6
+    _multiplier: 1.2
   - _category: 1
-    _multiplier: 0.5
+    _multiplier: 0.7
   - _category: 2
     _multiplier: 0.4
+  - _category: 4
+    _multiplier: 0.2
+  _priority: 1
   _scoreCoefficientForActor: 0.2
   _maxScoreCoefficient: 4
   _minActorsForAction: 1

@@ -13,15 +13,16 @@ MonoBehaviour:
   m_Name: _ExempleCombatUnit_WeaponConfig
   m_EditorClassIdentifier: 
   _projectileConfig:
-    _projectilePrefab: {fileID: 7550878289047074185, guid: 0e7462a956c1f3d43ba581feb1d144c8,
+    _projectilePrefab: {fileID: 2578494606290398001, guid: bc6d734b75127104087f50825f628fb4,
       type: 3}
-    _speed: 50
+    _speed: 10000
   _damageConfig:
     _targetingProfile: {fileID: 11400000, guid: fef43a2d4b9d5a74ab8d41d2fcacc8e7,
       type: 2}
     _damageMask: 0
-    _damage: 500
+    _damage: 10000
   _firingRange: 2000
+  _minFiringRange: 0
   _rateShooting: 0.2
-  _speedReload: 1
-  _numberShells: 100
+  _speedReload: 3
+  _numberShells: 1

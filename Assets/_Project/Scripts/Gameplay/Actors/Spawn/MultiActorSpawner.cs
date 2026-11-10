@@ -126,7 +126,6 @@ namespace BattleBase.Gameplay.Actors.Spawn
         protected override void Spawn()
         {
             Actor actor = _spawnService.Spawn(_currentActorData.Id, Teamable.TeamType, SpawnData);
-
             actor.Enable();
 
             Spawned?.Invoke(actor);

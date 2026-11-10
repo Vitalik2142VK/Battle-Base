@@ -13,25 +13,14 @@ MonoBehaviour:
   m_Name: BuildingSite
   m_EditorClassIdentifier: 
   _data:
-    _prefab: {fileID: 0}
+    _prefab: {fileID: 6288524358068639159, guid: 58807eb18fbc7394ebfedbe923f5fdb8,
+      type: 3}
     _icon: {fileID: 0}
-    _name:
-      _ru:
-        _text: text
-      _en:
-        _text: text
-      _tr:
-        _text: text
-    _description:
-      _ru:
-        _text: text
-      _en:
-        _text: text
-      _tr:
-        _text: text
+    _nameConfig: {fileID: 0}
     _constructionTime: 3
     _price: 1
-    _isSummable: 0
+    _power: 0
+    _isDefaultAvailability: 0
   _components:
   - {fileID: 11400000, guid: 92d1c394e7288c4428adbb703424fd65, type: 2}
   - {fileID: 11400000, guid: e629ce5a760c9a3438910ab681147319, type: 2}

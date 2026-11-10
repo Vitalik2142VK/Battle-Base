@@ -23,15 +23,16 @@ namespace BattleBase.ShopSystem
         [ContextMenu(nameof(UpgradePrices))]
         private void UpgradePrices()
         {
-            float growthRate = 1.1f; //default value - 1.1f
-            float decay = 0.3f; //default value - 0.3f
+            float damageGrowthRate = 1.1f; //default value - 1.1f
+            float damageDecay = 0.3f; //default value - 0.3f
+            FillPrices(_damageInfo, damageGrowthRate, damageDecay);
 
-            FillPrices(_damageInfo, growthRate, decay);
-            FillPrices(_healthInfo, growthRate, decay);
+            float healthGrowthRate = 1.1f; //default value - 1.1f
+            float healthDecay = 0.3f; //default value - 0.3f
+            FillPrices(_healthInfo, healthGrowthRate, healthDecay);
 
             float speedGrowthRate = 1.2f; //default value - 1.2f
             float speedDecay = 0.4f; //default value - 0.4f
-
             FillPrices(_speedInfo, speedGrowthRate, speedDecay);
         }
 

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Shooter_HealthComponentSource
   m_EditorClassIdentifier: 
   _healthConfig:
-    _maxHealth: 100
+    _maxHealth: 110
     _armorCoefficient: 0.05
   _type: 2

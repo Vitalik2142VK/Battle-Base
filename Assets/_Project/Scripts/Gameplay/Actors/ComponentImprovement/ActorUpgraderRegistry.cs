@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.ComponentImprovement
 {
-    public class ActorUpgraderRegistry : IActorUpgraderRegistry
+    public class ActorUpgraderRegistry : IActorUpgrader
     {
         private readonly Dictionary<TeamType, List<IActorComponentUpgrader>> _upgraders;
 

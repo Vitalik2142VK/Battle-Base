@@ -57,20 +57,28 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         {
             _weapon.Enable();
             _targetController.LoseTarget();
-            _isEnabled = true;
             _isAttacking = false;
+            _isEnabled = true;
         }
 
         public void Disable()
         {
-            _weapon.Disable();
-
-            if (_enalableActor.IsEnabled == false)
+            if (_enalableActor.IsEnabled)
+            {
                 _isEnabled = false;
+
+                return;
+            }
+
+            _isEnabled = false;
+            _weapon.Disable();
         }
 
         public void SetTargets(IEnumerable<ITarget> targets)
         {
+            if (_isEnabled == false)
+                return;
+
             if (_targetController.TrySelectTarget(targets))
             {
                 TargetSelected?.Invoke();

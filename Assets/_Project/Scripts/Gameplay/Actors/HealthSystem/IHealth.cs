@@ -6,7 +6,7 @@ namespace BattleBase.Gameplay.Actors.HealthSystem
     {
         public ActorMask ActorMask { get; }
 
-        public bool IsAlive { get; }
+        public void Init(IEnalableActor enalableActor);
 
         public void Upgrade(HealthConfigModificator modificator);
     }
