@@ -33,7 +33,123 @@ MonoBehaviour:
     enable: 1
     saveScoreAnonymousPlayers: 1
     listLBSim:
-    - technoName: score
+    - technoName: player_first_score
+      entries: '1. Max: 200
+
+        2. Masha: 15
+
+        3. anonymous: 23
+
+        4.
+        Player 4: 30
+
+        5. Player current: 40
+
+        6. Player 6: 50
+
+        7.
+        Player 7: 60
+
+        8. Player 8: 70
+
+        9. Player 9: 80
+
+        10.
+        Player 10: 90'
+      isDefault: 0
+      isInvertSortOrder: 0
+      decimalOffset: 0
+      type: numeric
+      players:
+      - rank: 1
+        name: "\u0436Max"
+        score: 100
+        photo: demo image
+        uniqueID: 123
+        extraData: 
+      - rank: 2
+        name: Masha
+        score: 90
+        photo: demo image
+        uniqueID: 321
+        extraData: 
+      - rank: 3
+        name: anonymous
+        score: 80
+        photo: anonymous
+        uniqueID: 456
+        extraData: 
+      - rank: 4
+        name: "\u0413\u043E\u0432\u043D\u043E\u0434\u0430\u0432\u0447\u0438\u043A"
+        score: 70
+        photo: demo image
+        uniqueID: 321
+        extraData: 
+      - rank: 5
+        name: Player current
+        score: 5
+        photo: demo image
+        uniqueID: 000
+        extraData: 
+      - rank: 6
+        name: Pendalf
+        score: 50
+        photo: demo image
+        uniqueID: 326
+        extraData: 
+      - rank: 7
+        name: Player 7
+        score: 40
+        photo: demo image
+        uniqueID: 327
+        extraData: 
+      - rank: 8
+        name: ORK
+        score: 30
+        photo: demo image
+        uniqueID: 328
+        extraData: 
+      - rank: 9
+        name: "\u0427\u0435\u043B\u043E\u0432\u0435\u043A-\u043F\u0438\u0437\u0434\u044E\u043A"
+        score: 20
+        photo: demo image
+        uniqueID: 329
+        extraData: 
+      - rank: 10
+        name: "\u041A\u0430\u043B\u043E\u0431\u043E\u043A"
+        score: 10
+        photo: demo image
+        uniqueID: 330
+        extraData: 
+      - rank: 11
+        name: "\u041F\u0438\u0446\u0435\u0435\u0434"
+        score: 9
+        photo: demo image
+        uniqueID: 331
+        extraData: 
+      - rank: 12
+        name: "\u0422\u0432\u043E\u044F \u041C\u0430\u043C\u043A\u0430"
+        score: 8
+        photo: demo image
+        uniqueID: 332
+        extraData: 
+      - rank: 13
+        name: dermiAgent
+        score: 7
+        photo: demo image
+        uniqueID: 333
+        extraData: 
+      - rank: 1
+        name: CurrentPlayer
+        score: 120
+        photo: demo image
+        uniqueID: 000
+        extraData: 
+      currentPlayer:
+        rank: 3
+        score: 110
+        extraData: 
+    - technoName: player_last_score
       entries: '1. Max: 100
 
         2. Masha: 15
@@ -80,19 +196,13 @@ MonoBehaviour:
         uniqueID: 456
         extraData: 
       - rank: 4
-        name: Player 4
+        name: "\u0413\u043E\u0432\u043D\u043E\u0434\u0430\u0432\u0447\u0438\u043A"
         score: 70
         photo: demo image
         uniqueID: 321
         extraData: 
-      - rank: 5
-        name: Player current
-        score: 5
-        photo: demo image
-        uniqueID: 000
-        extraData: 
       - rank: 6
-        name: Player 6
+        name: Pendalf
         score: 50
         photo: demo image
         uniqueID: 326
@@ -104,40 +214,52 @@ MonoBehaviour:
         uniqueID: 327
         extraData: 
       - rank: 8
-        name: Player 8
+        name: ORK
         score: 30
         photo: demo image
         uniqueID: 328
         extraData: 
       - rank: 9
-        name: Player 9
+        name: "\u0427\u0435\u043B\u043E\u0432\u0435\u043A-\u043F\u0438\u0437\u0434\u044E\u043A"
         score: 20
         photo: demo image
         uniqueID: 329
         extraData: 
       - rank: 10
-        name: Player 10
+        name: "\u041A\u0430\u043B\u043E\u0431\u043E\u043A"
         score: 10
         photo: demo image
         uniqueID: 330
         extraData: 
       - rank: 11
-        name: Player 11
+        name: "\u041F\u0438\u0446\u0435\u0435\u0434"
         score: 9
         photo: demo image
         uniqueID: 331
         extraData: 
       - rank: 12
-        name: Player 12
+        name: "\u0422\u0432\u043E\u044F \u041C\u0430\u043C\u043A\u0430"
         score: 8
         photo: demo image
         uniqueID: 332
         extraData: 
       - rank: 13
-        name: Player 13
+        name: dermiAgent
         score: 7
         photo: demo image
         uniqueID: 333
+        extraData: 
+      - rank: 14
+        name: "\u0432\u0430\u044B\u0432\u0430\u044B\u0430\u044B\u0430\u044B"
+        score: 6
+        photo: demo image
+        uniqueID: 334
+        extraData: 
+      - rank: 14
+        name: CurrentPlayer
+        score: 3
+        photo: demo image
+        uniqueID: 000
         extraData: 
       currentPlayer:
         rank: 5
@@ -201,6 +323,134 @@ MonoBehaviour:
       currentPlayer:
         rank: 5
         score: 127000
+        extraData: 
+    - technoName: player_middle_after_top
+      entries: '1. Max: 100
+
+        2. Masha: 15
+
+        3. anonymous: 23
+
+        4.
+        Player 4: 30
+
+        5. Player current: 40
+
+        6. Player 6: 50
+
+        7.
+        Player 7: 60
+
+        8. Player 8: 70
+
+        9. Player 9: 80
+
+        10.
+        Player 10: 90'
+      isDefault: 0
+      isInvertSortOrder: 0
+      decimalOffset: 0
+      type: numeric
+      players:
+      - rank: 1
+        name: Max
+        score: 100
+        photo: demo image
+        uniqueID: 123
+        extraData: 
+      - rank: 2
+        name: Masha
+        score: 90
+        photo: demo image
+        uniqueID: 321
+        extraData: 
+      - rank: 3
+        name: anonymous
+        score: 80
+        photo: anonymous
+        uniqueID: 456
+        extraData: 
+      - rank: 4
+        name: "\u0413\u043E\u0432\u043D\u043E\u0434\u0430\u0432\u0447\u0438\u043A"
+        score: 70
+        photo: demo image
+        uniqueID: 321
+        extraData: 
+      - rank: 6
+        name: Pendalf
+        score: 50
+        photo: demo image
+        uniqueID: 326
+        extraData: 
+      - rank: 5
+        name: "\u0416\u043E\u043F\u0430 \u0441 \u0443\u0448\u0430\u043C\u0438"
+        score: 51
+        photo: demo image
+        uniqueID: 400
+        extraData: 
+      - rank: 7
+        name: Player 7
+        score: 40
+        photo: demo image
+        uniqueID: 327
+        extraData: 
+      - rank: 8
+        name: ORK
+        score: 30
+        photo: demo image
+        uniqueID: 328
+        extraData: 
+      - rank: 9
+        name: "\u0427\u0435\u043B\u043E\u0432\u0435\u043A-\u043F\u0438\u0437\u0434\u044E\u043A"
+        score: 20
+        photo: demo image
+        uniqueID: 329
+        extraData: 
+      - rank: 10
+        name: "\u041A\u0430\u043B\u043E\u0431\u043E\u043A"
+        score: 10
+        photo: demo image
+        uniqueID: 330
+        extraData: 
+      - rank: 11
+        name: "\u041F\u0438\u0446\u0435\u0435\u0434"
+        score: 9
+        photo: demo image
+        uniqueID: 331
+        extraData: 
+      - rank: 12
+        name: "\u041F\u0435\u0440\u0435\u0447\u0430\u0448\u043A\u0430 \u043C\u0438\u043C\u0437\u044F"
+        score: 8
+        photo: demo image
+        uniqueID: 401
+        extraData: 
+      - rank: 0
+        name: "\u042B\u044B\u044B"
+        score: 7
+        photo: demo image
+        uniqueID: 402
+        extraData: 
+      - rank: 12
+        name: CurrentPlayer
+        score: 6
+        photo: demo image
+        uniqueID: 000
+        extraData: 
+      - rank: 13
+        name: "\u0422\u0432\u043E\u044F \u041C\u0430\u043C\u043A\u0430"
+        score: 5
+        photo: demo image
+        uniqueID: 332
+        extraData: 
+      - rank: 14
+        name: dermiAgent
+        score: 4
+        photo: demo image
+        uniqueID: 333
+        extraData: 
+      currentPlayer:
+        rank: 5
+        score: 60
         extraData: 
   Localization:
     setLanguageMod: 1
