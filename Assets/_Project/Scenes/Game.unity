@@ -2796,8 +2796,9 @@ MonoBehaviour:
   - {fileID: 695631508}
   _winPopUp: {fileID: 1276686549}
   _losePopUp: {fileID: 538776176}
-  _fullAdditionalScoreInMinutes: 0
-  _zeroAdditionalScoreInMinutes: 30
+  _fullRewardTimeThresholdInMinutes: 0
+  _minimumRewardTimeThresholdInMinutes: 60
+  _minimumRewardPercent: 10
 --- !u!1 &308893687
 GameObject:
   m_ObjectHideFlags: 0

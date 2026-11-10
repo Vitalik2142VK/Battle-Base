@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using BattleBase.Commands;
+using BattleBase.DI;
 using BattleBase.Gameplay.Map;
+using BattleBase.Leaderboard;
 using BattleBase.ShopSystem;
 using BattleBase.UI.PopUps;
 using UnityEngine;
@@ -9,37 +11,55 @@ using VContainer;
 
 namespace BattleBase.Gameplay.Levels
 {
-    public class LevelFinisher : MonoBehaviour
+    public class LevelFinisher : MonoBehaviour, IInjectable
     {
         private const float SecondsPerMinute = 60f;
 
         [SerializeField] private List<CommandBase> _finishCommands;
         [SerializeField] private WinPopUp _winPopUp;
         [SerializeField] private PopUp _losePopUp;
-        [SerializeField] private float _fullAdditionalScoreInMinutes = 0f;
-        [SerializeField] private float _zeroAdditionalScoreInMinutes = 30f;
+        [SerializeField][Min(0f)] private float _fullRewardTimeThresholdInMinutes = 0f;
+        [SerializeField][Min(0f)] private float _minimumRewardTimeThresholdInMinutes = 60f;
+        [SerializeField][Range(0f, 1f)] private float _minimumRewardCoefficient = 0.1f;
 
+        private ILeaderboardScoreService _leaderboardScoreService;
         private IWinStateController _winStateController;
         private IScoreCalculator _scoreCalculator;
         private TerritoriesModel _territoriesModel;
         private CreditsModel _creditsModel;
-        private float _startTime;
+        private float _levelStartTime;
 
         [Inject]
         public void Construct(
+            ILeaderboardScoreService leaderboardScoreService,
             IWinStateController winStateController,
             IScoreCalculator scoreCalculator,
-            TerritoriesModel territoriesModel, 
+            TerritoriesModel territoriesModel,
             CreditsModel creditsModel)
         {
+            _leaderboardScoreService = leaderboardScoreService ?? throw new ArgumentNullException(nameof(leaderboardScoreService));
             _winStateController = winStateController ?? throw new ArgumentNullException(nameof(winStateController));
             _scoreCalculator = scoreCalculator ?? throw new ArgumentNullException(nameof(scoreCalculator));
             _territoriesModel = territoriesModel ?? throw new ArgumentNullException(nameof(territoriesModel));
             _creditsModel = creditsModel ?? throw new ArgumentNullException(nameof(creditsModel));
         }
 
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            if (_minimumRewardTimeThresholdInMinutes <= _fullRewardTimeThresholdInMinutes)
+            {
+                Debug.LogWarning(
+                    $"{nameof(_minimumRewardTimeThresholdInMinutes)} должен быть больше {nameof(_fullRewardTimeThresholdInMinutes)} — " +
+                    $"иначе time-based награда работает в бинарном режиме (полная/ноль), " +
+                    $"{nameof(_minimumRewardCoefficient)} в нём НЕ применяется.",
+                    this);
+            }
+        }
+#endif
+
         private void Start() =>
-            _startTime = Time.time;
+            _levelStartTime = Time.time;
 
         private void OnEnable()
         {
@@ -53,28 +73,28 @@ namespace BattleBase.Gameplay.Levels
             _winPopUp.RewardIncreased -= OnRewardIncreased;
         }
 
-        private void OnFinishLevel(bool isWin)
+        private void OnFinishLevel(bool hasPlayerWon)
         {
             foreach (CommandBase command in _finishCommands)
                 command.Execute();
 
-            if (isWin)
+            if (hasPlayerWon)
             {
-                int index = _territoriesModel.SelectedTerritoryIndex;
-                bool isFirstWin = _territoriesModel.TryMarkTerritoryConquered(index);
-                int firstWinCredits = _territoriesModel.GetCreditsForFirstVictory(index);
-                int basicCredits = isFirstWin ? firstWinCredits : 0;
-                float elapsedSeconds = Time.time - _startTime;
-                float timeInMinutes = elapsedSeconds / SecondsPerMinute;
-                int additionalCredits = CalculateAdditionalCredits(firstWinCredits, timeInMinutes);
+                int territoryIndex = _territoriesModel.SelectedTerritoryIndex;
+                bool isFirstWin = _territoriesModel.TryMarkTerritoryConquered(territoryIndex);
+                int creditsForFirstVictory = _territoriesModel.GetCreditsForFirstVictory(territoryIndex);
+                int baseCredits = isFirstWin ? creditsForFirstVictory : 0;
+                float elapsedSeconds = Time.time - _levelStartTime;
+                float elapsedMinutes = elapsedSeconds / SecondsPerMinute;
+                int additionalCredits = CalculateTimeBasedAdditionalCredits(creditsForFirstVictory, elapsedMinutes);
 
                 //todo temporarily
-                int score = _scoreCalculator.Calculate();
-                Debug.Log($"Score = {score}");
+                int leaderboardScore = _scoreCalculator.Calculate();
+                _leaderboardScoreService.AddScore(leaderboardScore);
 
-                _creditsModel.Increase(basicCredits + additionalCredits);
+                _creditsModel.Increase(baseCredits + additionalCredits);
                 _winPopUp.Show();
-                _winPopUp.ShowCredits(basicCredits, additionalCredits);
+                _winPopUp.ShowCredits(baseCredits, additionalCredits);
             }
             else
             {
@@ -82,24 +102,26 @@ namespace BattleBase.Gameplay.Levels
             }
         }
 
-        private void OnRewardIncreased(int value) =>
-            _creditsModel.Increase(value);
+        private void OnRewardIncreased(int creditsToAdd) =>
+            _creditsModel.Increase(creditsToAdd);
 
-        private int CalculateAdditionalCredits(int basic, float timeMinutes)
+        private int CalculateTimeBasedAdditionalCredits(int maximumAdditionalCredits, float elapsedMinutes)
         {
-            if (_zeroAdditionalScoreInMinutes <= _fullAdditionalScoreInMinutes)
-                return timeMinutes <= _fullAdditionalScoreInMinutes ? basic : 0;
+            if (_minimumRewardTimeThresholdInMinutes <= _fullRewardTimeThresholdInMinutes)
+                return elapsedMinutes <= _fullRewardTimeThresholdInMinutes ? maximumAdditionalCredits : 0;
 
-            if (timeMinutes <= _fullAdditionalScoreInMinutes)
-                return basic;
+            if (elapsedMinutes <= _fullRewardTimeThresholdInMinutes)
+                return maximumAdditionalCredits;
 
-            if (timeMinutes >= _zeroAdditionalScoreInMinutes)
-                return 0;
+            if (elapsedMinutes >= _minimumRewardTimeThresholdInMinutes)
+                return Mathf.RoundToInt(maximumAdditionalCredits * (_minimumRewardCoefficient));
 
-            float t = (timeMinutes - _fullAdditionalScoreInMinutes) / (_zeroAdditionalScoreInMinutes - _fullAdditionalScoreInMinutes);
-            float bonus = basic * (1f - t);
+            float normalizedTime = (elapsedMinutes - _fullRewardTimeThresholdInMinutes) /
+                                   (_minimumRewardTimeThresholdInMinutes - _fullRewardTimeThresholdInMinutes);
 
-            return Mathf.RoundToInt(bonus);
+            float currentRewardCoefficient = Mathf.Lerp(1f, _minimumRewardCoefficient, normalizedTime);
+
+            return Mathf.RoundToInt(maximumAdditionalCredits * (currentRewardCoefficient));
         }
     }
 }

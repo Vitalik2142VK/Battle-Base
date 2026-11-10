@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using BattleBase.Leaderboard;
 using UnityEngine;
 using UnityEngine.Events;
+using VContainer;
 using YG;
 using YG.Utils.LB;
 
@@ -9,17 +11,9 @@ namespace BattleBase
 {
     public class CustomLeaderboardYG : MonoBehaviour
     {
-        public enum UpdateLBMethod
-        {
-            Start,
-            OnEnable,
-            DoNotUpdate
-        }
-
         [Header("Leaderboard")]
-        [SerializeField] private string _nameLB;
         [SerializeField, Min(1)] private int _displayTopCount = 10;
-        [SerializeField] private UpdateLBMethod _updateLBMethod = UpdateLBMethod.OnEnable;
+        [SerializeField] private UpdateLeaderboardMethod _updateLBMethod = UpdateLeaderboardMethod.OnEnable;
 
         [Header("Players")]
         [SerializeField, Min(1)] private int _topPlayersCount = 3;
@@ -39,11 +33,19 @@ namespace BattleBase
 
         [SerializeField] private UnityEvent _onUpdateData;
 
+        private LeaderboardHolder _leaderboardHolder;
+
+        [Inject]
+        public void Construct(LeaderboardHolder holder)
+        {
+            _leaderboardHolder = holder != null ? holder : throw new ArgumentNullException(nameof(holder));
+        }
+
         private void OnEnable()
         {
             YG2.onGetLeaderboard += OnGetLeaderboard;
 
-            if (_updateLBMethod == UpdateLBMethod.OnEnable)
+            if (_updateLBMethod == UpdateLeaderboardMethod.OnEnable)
                 UpdateLB();
         }
 
@@ -54,7 +56,7 @@ namespace BattleBase
 
         private void Start()
         {
-            if (_updateLBMethod == UpdateLBMethod.Start)
+            if (_updateLBMethod == UpdateLeaderboardMethod.Start)
                 UpdateLB();
         }
 
@@ -64,7 +66,7 @@ namespace BattleBase
             int playersAround = GetPlayersAroundCount();
 
             YG2.GetLeaderboard(
-                _nameLB,
+                _leaderboardHolder.Leaderboard.TechnoName,
                 _displayTopCount,
                 playersAround,
                 photoSize);
@@ -72,7 +74,7 @@ namespace BattleBase
 
         private void OnGetLeaderboard(LBData lbData)
         {
-            if (lbData.technoName != _nameLB)
+            if (lbData.technoName != _leaderboardHolder.Leaderboard.TechnoName)
                 return;
 
             ClearList();
