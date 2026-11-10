@@ -9,6 +9,7 @@ namespace BattleBase.Core
         [SerializeField] private Vector3 _size = Vector3.one;
 
         [Header("Debug")]
+        [SerializeField] private Color _color = Color.green;
         [SerializeField] private bool _isDebugEnable = false;
 
         private Transform _transform;
@@ -23,7 +24,7 @@ namespace BattleBase.Core
             if (_isDebugEnable == false)
                 return;
 
-            Gizmos.color = Color.green;
+            Gizmos.color = _color;
 
             Matrix4x4 old = Gizmos.matrix;
             Gizmos.matrix = transform.localToWorldMatrix;

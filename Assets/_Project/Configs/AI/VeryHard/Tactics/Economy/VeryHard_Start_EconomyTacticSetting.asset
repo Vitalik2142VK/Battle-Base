@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2edd39c80b5ca89468c2c036c53ba74e, type: 3}
-  m_Name: VeryHard_EconomyTacticSetting
+  m_Name: VeryHard_Start_EconomyTacticSetting
   m_EditorClassIdentifier: 
-  _deactivatorScores: []
+  _deactivatorScores:
+  - {fileID: 11400000, guid: 8b30b14cd0242d340ae6c6e6fa3e36dc, type: 2}
   _maxScore: 97
   _minScore: 5
   _materialFactoryConfig: {fileID: 11400000, guid: d29b556504be6944588fab13baad2f83,
     type: 2}
   _lineNumbersForBuild: 0200000001000000
   _scoreForBuild: 7
-  _maxNumberFactories: 7
+  _maxNumberFactories: 8
   _materialsForStart: 0
   _materialsForStop: 2000

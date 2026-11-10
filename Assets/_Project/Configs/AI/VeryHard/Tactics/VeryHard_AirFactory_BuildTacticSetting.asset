@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: VeryHard_AirFactory_BuildTacticSetting
   m_EditorClassIdentifier: 
   _deactivatorScores:
-  - {fileID: 11400000, guid: 7266bb0c60328fb469ec9d1d7ccf9994, type: 2}
+  - {fileID: 11400000, guid: 2ad621650bbefd3498024a2b90bf620f, type: 2}
   _maxScore: 50
   _minScore: 0
   _buildingConfig: {fileID: 11400000, guid: fff000a41cc816645b915be5714638b3, type: 2}

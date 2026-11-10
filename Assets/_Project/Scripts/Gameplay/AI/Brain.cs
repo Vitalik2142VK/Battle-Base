@@ -16,10 +16,10 @@ namespace BattleBase.Gameplay.AI
         private readonly IBrainConfig _confing;
         private readonly ITacticsFactory _tacticsFactory;
         private readonly IScoreModifiersFactory _modifiersFactory;
-
 #if UNITY_EDITOR // remove
         private readonly IMaterialData _materialData;
 #endif
+
         private ScoreModifierController _modifierController;
         private int _currentIndexTactic;
 

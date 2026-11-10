@@ -58,6 +58,7 @@ namespace BattleBase.DI
             _builder.Register<IProductionItemsFactory, ProductionItemsFactory>(Lifetime.Singleton);
             _builder.Register<IBuildingSitesStorage, BuildingSitesStorage>(Lifetime.Singleton);
             _builder.Register<IPlayerProductionContext, PlayerProductionContext>(Lifetime.Singleton);
+            _builder.Register<IBuildingSiteIdCreator, BuildingSiteIdCreator>(Lifetime.Scoped);
 
             _builder.RegisterInstance(_actorSpawnProductionItemPrefab);
             _builder.RegisterInstance(_upgradeProductionItemPrefab);

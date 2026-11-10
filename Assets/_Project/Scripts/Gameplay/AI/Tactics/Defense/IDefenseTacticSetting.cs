@@ -6,8 +6,8 @@ namespace BattleBase.Gameplay.AI.Tactics.Defense
     {
         public IEnumerable<int> LineNumbersForBuild { get; }
 
-        public int ScoreForBuild { get; }
-
         public IEnumerable<string> GetDefenseBuildingIds();
+
+        public int ScoreForBuild { get; }
     }
 }

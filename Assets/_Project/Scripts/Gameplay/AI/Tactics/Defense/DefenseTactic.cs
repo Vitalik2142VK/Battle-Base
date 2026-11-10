@@ -87,8 +87,8 @@ namespace BattleBase.Gameplay.AI.Tactics.Defense
         {
             _controller.SitesBuildCompleted -= OnBuildedTurret;
 
-            foreach (var factory in _turrets)
-                factory.ActorMissing -= OnRemoveFactory;
+            foreach (var turret in _turrets)
+                turret.ActorMissing -= OnRemoveTurret;
 
             _turrets.Clear();
         }
@@ -125,7 +125,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Defense
                 out _currentProductionOption);
         }
 
-        private void OnRemoveFactory(IRegisteredBuildingSite buildingSite)
+        private void OnRemoveTurret(IRegisteredBuildingSite buildingSite)
         {
             if (buildingSite == null)
                 throw new ArgumentNullException(nameof(buildingSite));
@@ -135,7 +135,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Defense
 
             if (buildingSite.HasBuilding == false)
             {
-                buildingSite.ActorMissing -= OnRemoveFactory;
+                buildingSite.ActorMissing -= OnRemoveTurret;
                 _turrets.Remove(buildingSite);
 
                 _score += _setting.ScoreForBuild;
@@ -175,7 +175,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Defense
                 _numberUnderConstruction = 0;
 
             _turrets.Add(buildingSite);
-            buildingSite.ActorMissing += OnRemoveFactory;
+            buildingSite.ActorMissing += OnRemoveTurret;
         }
     }
 }

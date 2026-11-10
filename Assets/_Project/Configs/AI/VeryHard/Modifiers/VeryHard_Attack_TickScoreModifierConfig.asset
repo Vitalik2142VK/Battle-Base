@@ -16,7 +16,7 @@ MonoBehaviour:
   - _category: 0
     _multiplier: 5
   - _category: 3
-    _multiplier: 3.5
+    _multiplier: 2.5
   - _category: 1
     _multiplier: 1.5
   - _category: 2

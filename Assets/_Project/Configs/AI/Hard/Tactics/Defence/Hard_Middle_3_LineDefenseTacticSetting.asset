@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b535bf4a3b3c13440bae232bece60ab1, type: 3}
+  m_Name: Hard_Middle_3_LineDefenseTacticSetting
+  m_EditorClassIdentifier: 
+  _deactivatorScores:
+  - {fileID: 11400000, guid: 9c0e5133947b4ce45bc25887706c4ad5, type: 2}
+  _maxScore: 60
+  _minScore: 0
+  _defenseBuildingConfigs:
+  - {fileID: 11400000, guid: e05229674bd5b47498abf103764dd59c, type: 2}
+  - {fileID: 11400000, guid: 74e5c17f8ca8b844abacc1f7204ba21f, type: 2}
+  _scoreForActorInArea: 2
+  _lineDefanceNumber: 3

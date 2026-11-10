@@ -1,7 +1,11 @@
+using System.Collections.Generic;
+
 namespace BattleBase.Gameplay.Actors.Building
 {
     public interface IBuildingSite : IActorViewComponent, IBuildingSiteEvents
     {
+        public IEnumerable<int> NearbySiteIds { get; }
+
         public SiteType Type { get; }
 
         public int Id { get; }

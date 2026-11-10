@@ -2,6 +2,7 @@ using BattleBase.Gameplay.Actors;
 using BattleBase.Gameplay.AI.Deactevators;
 using BattleBase.Gameplay.AI.Factories.Deactevator;
 using BattleBase.Gameplay.AI.Tactics;
+using BattleBase.Gameplay.AI.Tactics.Defense;
 using System;
 using System.Collections.Generic;
 

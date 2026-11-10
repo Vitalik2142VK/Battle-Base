@@ -9,14 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fd6db3e12956a84f937266f33d7a7df, type: 3}
-  m_Name: Hard_Start_1_DefenseTacticSetting
+  m_Script: {fileID: 11500000, guid: b535bf4a3b3c13440bae232bece60ab1, type: 3}
+  m_Name: VeryHard_Middle_2_LineDefenseTacticSetting
   m_EditorClassIdentifier: 
   _deactivatorScores:
-  - {fileID: 11400000, guid: 5964fc874f9634944aecc780f7de989a, type: 2}
-  _maxScore: 100
+  - {fileID: 11400000, guid: 7266bb0c60328fb469ec9d1d7ccf9994, type: 2}
+  _maxScore: 50
   _minScore: 0
   _defenseBuildingConfigs:
   - {fileID: 11400000, guid: e05229674bd5b47498abf103764dd59c, type: 2}
-  _lineNumbersForBuild: 00000000
-  _scoreForBuild: 15
+  - {fileID: 11400000, guid: 74e5c17f8ca8b844abacc1f7204ba21f, type: 2}
+  - {fileID: 11400000, guid: 8740b58b78f8fdf46b3c08ec0603ada1, type: 2}
+  _scoreForActorInArea: 2
+  _lineDefanceNumber: 2

@@ -15,19 +15,16 @@ namespace BattleBase.Gameplay.Actors.Building
 
         private IActorComposer _composer;
         private IBuildingSitesStorage _storage;
-        private IBuildingSiteIdCreator _idCreator;
         private IAvailabilityActorsRegistry _availabilityActors;
 
         [Inject]
         public void Construct(
             IActorComposer composer, 
             IBuildingSitesStorage storage, 
-            IBuildingSiteIdCreator idCreator,
             IAvailabilityActorsRegistry availabilityActors)
         {
             _composer = composer ?? throw new ArgumentNullException(nameof(composer));
             _storage = storage ?? throw new ArgumentNullException(nameof(storage));
-            _idCreator = idCreator ?? throw new ArgumentNullException(nameof(idCreator));
             _availabilityActors = availabilityActors ?? throw new ArgumentNullException(nameof(availabilityActors));
         }
 
@@ -49,7 +46,6 @@ namespace BattleBase.Gameplay.Actors.Building
                 throw new InvalidOperationException($"{siteActor} don't constrain component {nameof(IActorSpawner)}");
 
             _availabilityActors.EstablishActors(team, spawner);
-            buildingSite.Init(_idCreator);
             RegisterBuildingSite(siteActor, buildingSite);
             InitEnemyBuildingSite(buildingSite, team);
         }

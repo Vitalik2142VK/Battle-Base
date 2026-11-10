@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b535bf4a3b3c13440bae232bece60ab1, type: 3}
+  m_Name: VeryHard_Start_3_LineDefenseTacticSetting
+  m_EditorClassIdentifier: 
+  _deactivatorScores:
+  - {fileID: 11400000, guid: 8b30b14cd0242d340ae6c6e6fa3e36dc, type: 2}
+  _maxScore: 80
+  _minScore: 0
+  _defenseBuildingConfigs:
+  - {fileID: 11400000, guid: e05229674bd5b47498abf103764dd59c, type: 2}
+  _scoreForActorInArea: 3
+  _lineDefanceNumber: 3

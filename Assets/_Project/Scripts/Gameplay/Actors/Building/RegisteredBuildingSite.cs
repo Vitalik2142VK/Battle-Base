@@ -2,6 +2,7 @@ using BattleBase.Gameplay.Actors.DamageSystem;
 using BattleBase.Gameplay.Actors.Production;
 using BattleBase.Gameplay.Actors.Spawn;
 using System;
+using System.Collections.Generic;
 
 namespace BattleBase.Gameplay.Actors.Building
 {
@@ -34,6 +35,8 @@ namespace BattleBase.Gameplay.Actors.Building
             _notifier = actorSpawner;
             _notifier.Spawned += OnSetActor;
         }
+
+        public IEnumerable<int> NearbySiteIds => _buildingSite.NearbySiteIds;
 
         public string CurrentActorId => _currentActor.Data.Id;
 

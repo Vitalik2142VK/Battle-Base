@@ -7,7 +7,6 @@ namespace BattleBase.Gameplay.Actors.Building
     public class SitesStorageByType
     {
         private readonly Dictionary<SiteType, BuildingSitesController> _controllers;
-        private readonly Dictionary<int, IRegisteredBuildingSite> _registeredSites;
         private readonly Randomizer _randomizer;
 
         public SitesStorageByType(Randomizer randomizer)
@@ -15,7 +14,6 @@ namespace BattleBase.Gameplay.Actors.Building
             _randomizer = randomizer ?? throw new ArgumentNullException(nameof(randomizer));
 
             _controllers = new Dictionary<SiteType, BuildingSitesController>();
-            _registeredSites = new Dictionary<int, IRegisteredBuildingSite>();
         }
 
         public void Disable()
@@ -35,11 +33,6 @@ namespace BattleBase.Gameplay.Actors.Building
                 _controllers.Add(type, new BuildingSitesController(_randomizer));
 
             IRegisteredBuildingSite site = _controllers[type].Register(buildingSiteActor, buildingSite);
-
-            if (_registeredSites.ContainsKey(site.BuildingSiteId))
-                throw new InvalidOperationException($"{nameof(_registeredSites)} already contains site id = {site.BuildingSiteId}");
-
-            _registeredSites.Add(site.BuildingSiteId, site);
         }
 
         public IBuildingSitesController GetBuildingSitesController(SiteType type)
@@ -50,7 +43,17 @@ namespace BattleBase.Gameplay.Actors.Building
             return _controllers[type];
         }
 
-        public bool TryGetSiteById(int id, out IRegisteredBuildingSite buildingSite) =>
-            _registeredSites.TryGetValue(id, out buildingSite);
+        public bool TryGetSiteById(int id, out IRegisteredBuildingSite buildingSite)
+        {
+            foreach (var controller in _controllers.Values)
+            {
+                if (controller.TryGetSiteById(id, out buildingSite))
+                    return true;
+            }
+
+            buildingSite = null;
+
+            return false;
+        }
     }
 }

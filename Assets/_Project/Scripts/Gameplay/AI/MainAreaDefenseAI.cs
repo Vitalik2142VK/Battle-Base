@@ -8,8 +8,9 @@ using VContainer;
 namespace BattleBase.Gameplay.AI
 {
     [RequireComponent(typeof(BoxArea))]
-    public class AreaDefenseAI : MonoBehaviour, IAreaDefenseAI
+    public class MainAreaDefenseAI : MonoBehaviour, IMainAreaDefenseAI
     {
+        [SerializeField] private LineAreaDefenseAI[] _lines;
         [SerializeField][Range(0.25f, 3f)] private float _checkTime = 1f;
         [SerializeField][Range(32, 256)] private int _maxFoundNumberActors = 128;
         [SerializeField] private TeamType _team = TeamType.Enemy;
@@ -55,6 +56,16 @@ namespace BattleBase.Gameplay.AI
             return result;
         }
 
+        public ILineAreaDefenseAI GetLineAreaDefenseAI(int lineDefenceNumber)
+        {
+            lineDefenceNumber--;
+
+            if (lineDefenceNumber < 0 || lineDefenceNumber >= _lines.Length)
+                throw new ArgumentOutOfRangeException(nameof(lineDefenceNumber));
+
+            return _lines[lineDefenceNumber];
+        }
+
         private IEnumerator CheckArea()
         {
             while (gameObject.activeSelf)
@@ -62,6 +73,9 @@ namespace BattleBase.Gameplay.AI
                 yield return _wait;
 
                 _numberActors = _actorsStorage.GetActorPositionsOtherTeam(_positions, _team);
+
+                foreach (var line in _lines)
+                    line.SetPositions(_positions, _numberActors);
             }
         }
     }

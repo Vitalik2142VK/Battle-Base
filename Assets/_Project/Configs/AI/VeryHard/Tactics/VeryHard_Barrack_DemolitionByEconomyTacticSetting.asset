@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9877345db1e42214184a51a5814a514b, type: 3}
-  m_Name: VeryHard_DemolitionByEconomyTacticSetting_1
+  m_Name: VeryHard_Barrack_DemolitionByEconomyTacticSetting
   m_EditorClassIdentifier: 
   _deactivatorScores: []
   _maxScore: 100
   _minScore: 0
-  _buildingConfig: {fileID: 11400000, guid: d29b556504be6944588fab13baad2f83, type: 2}
-  _category: 1
-  _numberRemainingFactories: 4
-  _materialsForStart: 4000
-  _isRemoveAfterComplited: 0
+  _buildingConfig: {fileID: 11400000, guid: 45dd7c761e2fe5b40b7def0debed41f9, type: 2}
+  _category: 0
+  _numberRemainingFactories: 0
+  _materialsForStart: 3500
+  _isRemoveAfterComplited: 1

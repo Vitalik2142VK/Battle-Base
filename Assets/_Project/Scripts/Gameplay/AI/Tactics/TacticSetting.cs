@@ -1,5 +1,4 @@
 ﻿using BattleBase.Gameplay.AI.Deactevators;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

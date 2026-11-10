@@ -46,7 +46,7 @@ namespace BattleBase.DI
         [SerializeField] private ParticleSpawner _particleSpawner;
         [SerializeField] private SoundEffectSpawner _soundEffectSpawner;
         [SerializeField] private SoundLimiterController _soundLimiterController;
-        [SerializeField] private AreaDefenseAI _areaDefenseAI;
+        [SerializeField] private MainAreaDefenseAI _areaDefenseAI;
         [SerializeField] private UpgraderConfig _upgradeConfig;
 
         private IContainerBuilder _builder;
@@ -76,7 +76,6 @@ namespace BattleBase.DI
             _builder.Register<IActorComposer, ActorComposer>(Lifetime.Scoped);
             _builder.Register<IDamageModifierFactory, DamageModifierFactory>(Lifetime.Scoped);
             _builder.Register<IWinStateController, WinStateController>(Lifetime.Scoped);
-            _builder.Register<IBuildingSiteIdCreator, BuildingSiteIdCreator>(Lifetime.Scoped);
             _builder.Register<IScoreCalculator, ScoreCalculator>(Lifetime.Scoped);
             _builder.Register<IActorCreator, ActorCreator>(Lifetime.Scoped);
 
@@ -166,13 +165,16 @@ namespace BattleBase.DI
 
         private void RegisterAI()
         {
-            _builder.RegisterComponent<IAreaDefenseAI>(_areaDefenseAI);
+            _builder.RegisterComponent(_areaDefenseAI)
+                .As<IMainAreaDefenseAI>()
+                .As<IAreaDefenseAI>();
 
             _builder.Register<ITacticFactory, RandomTacticFactory>(Lifetime.Scoped);
             _builder.Register<ITacticFactory, EconomyTacticFactory>(Lifetime.Scoped);
             _builder.Register<ITacticFactory, DemolitionEconomyTacticFactory>(Lifetime.Scoped);
             _builder.Register<ITacticFactory, PowerTacticFactory>(Lifetime.Scoped);
             _builder.Register<ITacticFactory, DefenseTacticFactory>(Lifetime.Scoped);
+            _builder.Register<ITacticFactory, LineDefenseTacticFactory>(Lifetime.Scoped);
             _builder.Register<ITacticFactory, SpawnUnitsTacticFactory>(Lifetime.Scoped);
             _builder.Register<ITacticFactory, BuildTacticFactory>(Lifetime.Scoped);
             _builder.Register<ITacticFactory, ImproveTacticFactory>(Lifetime.Scoped);
