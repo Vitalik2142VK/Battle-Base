@@ -719,6 +719,7 @@ MonoBehaviour:
   _captureCamera: {fileID: 5280527897355807232}
   _allActorConfigs: {fileID: 11400000, guid: 05620ed4f3e53b7429586d31c50ca71c, type: 2}
   _purchasesCatalog: {fileID: 11400000, guid: bafc8d41114a3e44094ae8e7c391861c, type: 2}
+  _leaderboardHolder: {fileID: 11400000, guid: 6006f83edcaabc843927c920f7429316, type: 2}
 --- !u!1 &8210641645181033592
 GameObject:
   m_ObjectHideFlags: 0

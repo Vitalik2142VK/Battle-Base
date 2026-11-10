@@ -42,7 +42,7 @@ namespace BattleBase.ShopSystem
 
             _level.text = $"{info.CurrentLevel}/{info.MaximumLevel}";
 
-            bool canPay = _credits.Value >= info.CurrentPrice;
+            bool canPay = _credits.CanSpend(info.CurrentPrice);
             _price.color = canPay ? _canPayColor : _canNotPayColor;
             _coin.sprite = canPay ? _canPaySprite : _canNotPaySprite;
 

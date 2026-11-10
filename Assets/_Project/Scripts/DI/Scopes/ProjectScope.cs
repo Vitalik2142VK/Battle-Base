@@ -5,6 +5,7 @@ using BattleBase.AuthService;
 using BattleBase.Gameplay.Actors;
 using BattleBase.Gameplay.Actors.Availability;
 using BattleBase.Gameplay.Map;
+using BattleBase.Leaderboard;
 using BattleBase.PauseService;
 using BattleBase.PreviewCreatingSystem;
 using BattleBase.PurchaseService;
@@ -33,6 +34,7 @@ namespace BattleBase.DI
         [SerializeField] private CaptureCamera _captureCamera;
         [SerializeField] private AllActorConfigs _allActorConfigs;
         [SerializeField] private PurchasesCatalog _purchasesCatalog;
+        [SerializeField] private LeaderboardHolder _leaderboardHolder;
 
         protected override void Configure(IContainerBuilder builder)
         {
@@ -71,6 +73,9 @@ namespace BattleBase.DI
             builder.RegisterInstance(_territoryConfigs as IReadOnlyList<TerritoryConfig>);
             builder.RegisterInstance<IAllActorConfigs>(_allActorConfigs);
             builder.Register<IPlayerAvailableActorProvider, PlayerAvailableActorProvider>(Lifetime.Singleton);
+
+            builder.RegisterInstance(_leaderboardHolder);
+            builder.Register<ILeaderboardScoreService, LeaderboardScoreService>(Lifetime.Singleton);
 
             builder.RegisterBuildCallback(container =>
             {
