@@ -14,6 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _modifiers:
   - _category: 2
-    _multiplier: 5
+    _multiplier: 3.5
+  - _category: 3
+    _multiplier: 1.2
+  - _category: 1
+    _multiplier: 1
+  - _category: 4
+    _multiplier: 0
+  - _category: 0
+    _multiplier: 0
   _priority: 1
   _maxRemainingEnergy: 3

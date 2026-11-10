@@ -15,7 +15,7 @@ MonoBehaviour:
   _projectileConfig:
     _projectilePrefab: {fileID: 7550878289047074185, guid: ed12269b9172a4a44bfe5966c7513ee1,
       type: 3}
-    _speed: 120
+    _speed: 150
   _damageConfig:
     _targetingProfile: {fileID: 11400000, guid: ac49ec64a430bbf46b45b7f25d5be0f7,
       type: 2}

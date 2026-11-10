@@ -100,7 +100,7 @@ MonoBehaviour:
     m_Bits: 64
   _allyDamageCoefficient: 0.5
   _maxDamageRadius: 2.5
-  _radius: 7
+  _radius: 10
   _numberDamagedActors: 8
 --- !u!114 &-3487734520819801749
 MonoBehaviour:

@@ -1213,7 +1213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b83f6a9374eccf44a807c7882dda061e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speedRotate: 35
+  _speedRotate: 40
   _dotAim: 0.99
   _returnAngle: 0.1
 --- !u!1 &8877759056019342589 stripped
@@ -1235,6 +1235,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parrent: {fileID: 6956161109033809565}
-  _speedRotate: 35
+  _speedRotate: 40
   _dotAim: 0.95
   _returnAngle: 0.1

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _aimingPoint: {fileID: 76675062255935283}
-  _hitDistance: 1
+  _hitDistance: 1.35
   _isDebugEnable: 1
 --- !u!65 &3270969691848823979
 BoxCollider:
@@ -973,7 +973,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parrent: {fileID: 8821093492460770903}
-  _speedRotate: 50
+  _speedRotate: 80
   _dotAim: 0.95
   _returnAngle: 0.1
 --- !u!1 &6419343366323529422 stripped
@@ -994,7 +994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b83f6a9374eccf44a807c7882dda061e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speedRotate: 50
+  _speedRotate: 60
   _dotAim: 0.99
   _returnAngle: 0.1
 --- !u!4 &8821093492460770903 stripped

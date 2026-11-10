@@ -273,7 +273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _aimingPoint: {fileID: 4380992846264851137}
-  _hitDistance: 1.1
+  _hitDistance: 1.45
   _isDebugEnable: 1
 --- !u!1 &7084381187864296177
 GameObject:
@@ -1188,7 +1188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parrent: {fileID: 966322367557944066}
-  _speedRotate: 35
+  _speedRotate: 50
   _dotAim: 0.98
   _returnAngle: 0.1
 --- !u!1 &5757346104729808310 stripped
@@ -1209,7 +1209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b83f6a9374eccf44a807c7882dda061e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speedRotate: 35
+  _speedRotate: 50
   _dotAim: 0.99
   _returnAngle: 0.1
 --- !u!1 &6982415042244864345 stripped

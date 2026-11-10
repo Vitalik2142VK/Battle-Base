@@ -3020,7 +3020,7 @@ MonoBehaviour:
   _losePopUp: {fileID: 538776176}
   _fullRewardTimeThresholdInMinutes: 0
   _minimumRewardTimeThresholdInMinutes: 60
-  _minimumRewardPercent: 10
+  _minimumRewardCoefficient: 0.1
 --- !u!1 &308893687
 GameObject:
   m_ObjectHideFlags: 0

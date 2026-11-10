@@ -85,8 +85,6 @@ namespace BattleBase.Gameplay.AI.Tactics.Defense
             if (_currentProductionOption == null)
                 throw new InvalidOperationException("Tactics cannot be used");
 
-            UnityEngine.Debug.Log($"LineDefenseTactic.NumberLine_{_setting.LineDefanceNumber} || Score == {_score}");
-
             IProductionOption productionOption = _currentProductionOption;
             _currentProductionOption = null;
 

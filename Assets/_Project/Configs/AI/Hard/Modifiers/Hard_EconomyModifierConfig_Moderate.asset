@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _modifiers:
   - _category: 1
-    _multiplier: 2
+    _multiplier: 2.5
   - _category: 3
     _multiplier: 1
   - _category: 2

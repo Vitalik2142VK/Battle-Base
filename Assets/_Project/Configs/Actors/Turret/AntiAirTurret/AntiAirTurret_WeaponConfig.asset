@@ -20,9 +20,9 @@ MonoBehaviour:
     _targetingProfile: {fileID: 11400000, guid: 5809ae4bcc1b77145857435d6f3b6450,
       type: 2}
     _damageMask: -1
-    _damage: 25
-  _firingRange: 65
-  _minFiringRange: 10
+    _damage: 20
+  _firingRange: 75
+  _minFiringRange: 15
   _rateShooting: 0.25
   _speedReload: 3.5
   _numberShells: 2
