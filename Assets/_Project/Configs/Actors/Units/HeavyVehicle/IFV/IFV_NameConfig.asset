@@ -14,14 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unitName:
     _ru:
-      _text: IFV
+      _text: "\u0411\u043E\u0440\u043E\u0432"
     _en:
       _text: IFV
     _tr:
       _text: IFV
   _description:
     _ru:
-      _text: "_\u0411\u041C\u041F"
+      _text: "\u042D\u0444\u0444\u0435\u043A\u0442\u0438\u0432\u0435\u043D \u043F\u0440\u043E\u0442\u0438\u0432:
+        \u043F\u0435\u0445\u043E\u0442\u044B\n\u041D\u0435 \u044D\u0444\u0444\u0435\u043A\u0442\u0438\u0432\u0435\u043D
+        \u043F\u0440\u043E\u0442\u0438\u0432: \u0442\u0435\u0445\u043D\u0438\u043A\u0438,
+        \u0437\u0434\u0430\u043D\u0438\u0439, \u0430\u0432\u0438\u0430\u0446\u0438\u0438"
     _en:
       _text: 
     _tr:

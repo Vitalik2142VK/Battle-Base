@@ -13,4 +13,8 @@ MonoBehaviour:
   m_Name: AttackAircraft_TargetingProfile_Gun
   m_EditorClassIdentifier: 
   _notAttacked: 0
-  _priorityActorTypes: []
+  _priorityActorTypes:
+  - _actorMask: 2
+    _damageCoefficient: 1.5
+  - _actorMask: 8
+    _damageCoefficient: 1.2

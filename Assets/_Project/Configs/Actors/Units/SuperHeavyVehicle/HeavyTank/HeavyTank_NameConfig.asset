@@ -14,14 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unitName:
     _ru:
-      _text: HeavyTank
+      _text: "\u041C\u0430\u0441\u0442\u043E\u0434\u043E\u043D\u0442"
     _en:
       _text: HeavyTank
     _tr:
       _text: HeavyTank
   _description:
     _ru:
-      _text: "_\u0422\u044F\u0436\u0435\u043B\u044B\u0439 \u0442\u0430\u043D\u043A"
+      _text: "\u042D\u0444\u0444\u0435\u043A\u0442\u0438\u0432\u0435\u043D \u043F\u0440\u043E\u0442\u0438\u0432
+        \u0432\u0441\u0435\u0445 \u0432\u0438\u0434\u043E\u0432 \u0432\u043E\u0439\u0441\u043A"
     _en:
       _text: 
     _tr:
