@@ -14,6 +14,8 @@ namespace BattleBase.Gameplay.Actors.Production
 
         public Type KeyType => typeof(IProductionService);
 
+        public bool HasProductions => FindProductionOptions().Count > 0;
+
         public int BuildingSiteId { get; private set; }
 
         public void Enable()
@@ -40,7 +42,12 @@ namespace BattleBase.Gameplay.Actors.Production
             BuildingSiteId = id;
         }
 
-        public IEnumerable<IProductionOption> GetProductionOptions()
+        public IEnumerable<IProductionOption> GetProductionOptions() =>
+            FindProductionOptions();
+
+        public void Disable() { }
+
+        private List<IProductionOption> FindProductionOptions()
         {
             List<IProductionOption> productionOptions = new();
 
@@ -49,7 +56,5 @@ namespace BattleBase.Gameplay.Actors.Production
 
             return productionOptions;
         }
-
-        public void Disable() { }
     }
 }

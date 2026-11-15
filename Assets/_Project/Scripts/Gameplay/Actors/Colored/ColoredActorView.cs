@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace BattleBase.Gameplay.Actors.Colored
 {
-    public partial class ColoredActorView : MonoBehaviour, IColoredActorView
+    public class ColoredActorView : MonoBehaviour, IColoredActorView
     {
         [SerializeField] private Trackable _trackable;
         [SerializeField] private MaterialColorChanger _colorChanger;

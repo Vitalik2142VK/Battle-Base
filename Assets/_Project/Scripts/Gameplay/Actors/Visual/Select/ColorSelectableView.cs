@@ -6,25 +6,17 @@ namespace BattleBase.Gameplay.Actors.Visual.Select
     public class ColorSelectableView : SelectableView
     {
         [SerializeField] private MaterialColorChanger _colorChanger;
+        [SerializeField] private Color _inactiveColor = Color.white;
+        [SerializeField] private Color _activeColor = Color.white;
         [SerializeField] private Color _selectColor = Color.yellow;
-
-        private Color _oldColor;
-
-        private void Start()
-        {
-            _oldColor = _colorChanger.CurrentColor;
-        }
-
+        
         protected override void HandleInactiveState() => 
-            _colorChanger.Change(_oldColor);
+            _colorChanger.Change(_inactiveColor);
 
         protected override void HandleActiveState() => 
-            _colorChanger.Change(_oldColor);
+            _colorChanger.Change(_activeColor);
 
-        protected override void HandleSelectedState()
-        {
-            _oldColor = _colorChanger.CurrentColor;
+        protected override void HandleSelectedState() => 
             _colorChanger.Change(_selectColor);
-        }
     }
 }

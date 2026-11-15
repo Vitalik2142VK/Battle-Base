@@ -1,4 +1,5 @@
 using BattleBase.Gameplay.Actors.Availability;
+using BattleBase.Gameplay.Actors.Production;
 using BattleBase.Gameplay.Actors.Spawn;
 using BattleBase.Gameplay.Actors.Types;
 using BattleBase.Utils;
@@ -19,8 +20,8 @@ namespace BattleBase.Gameplay.Actors.Building
 
         [Inject]
         public void Construct(
-            IActorComposer composer, 
-            IBuildingSitesStorage storage, 
+            IActorComposer composer,
+            IBuildingSitesStorage storage,
             IAvailabilityActorsRegistry availabilityActors)
         {
             _composer = composer ?? throw new ArgumentNullException(nameof(composer));
@@ -46,6 +47,13 @@ namespace BattleBase.Gameplay.Actors.Building
                 throw new InvalidOperationException($"{siteActor} don't constrain component {nameof(IActorSpawner)}");
 
             _availabilityActors.EstablishActors(team, spawner);
+
+            if (siteActor.TryGetComponent(out IProductionService service))
+            {
+                if (service.HasProductions == false)
+                    buildingSite.EstablishInactiveState();
+            }
+
             RegisterBuildingSite(siteActor, buildingSite);
             InitEnemyBuildingSite(buildingSite, team);
         }
