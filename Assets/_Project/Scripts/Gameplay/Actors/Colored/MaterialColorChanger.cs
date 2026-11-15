@@ -7,15 +7,14 @@ namespace BattleBase.Gameplay.Actors.Colored
     {
         private static readonly int BaseColorId = Shader.PropertyToID("_BaseColor");
 
-        [SerializeField] private Color _defaultColor = Color.white;
-
         [SerializeField] private List<MeshRenderer> _renderers;
         [SerializeField] private Material _targetMaterial;
 
         private List<RendererData> _datas;
         private MaterialPropertyBlock _propertyBlock;
+        private Color _currentColor;
 
-        public Color CurrentColor { get; private set; }
+        public Color CurrentColor => _currentColor;
 
         public void OnValidate()
         {
@@ -35,12 +34,11 @@ namespace BattleBase.Gameplay.Actors.Colored
             _datas = new();
 
             CacheRenderers();
-            Change(_defaultColor);
         }
 
         public void Change(Color color)
         {
-            CurrentColor = color;
+            _currentColor = color;
 
             foreach (var data in _datas)
             {

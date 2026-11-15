@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 353df6cf1e4b5074387ce9392d4ba016, type: 3}
   m_Name: Middle_Economy_ImproveTacticSetting
   m_EditorClassIdentifier: 
-  _deactivatorScores:
-  - {fileID: 11400000, guid: f42ade534cd646b4e9d1019e187a5abb, type: 2}
+  _deactivatorScores: []
   _maxScore: 50
   _minScore: 0
   _improvedActorsConfigs:
-  - {fileID: 11400000, guid: 45dd7c761e2fe5b40b7def0debed41f9, type: 2}
+  - {fileID: 11400000, guid: d29b556504be6944588fab13baad2f83, type: 2}
   _category: 1
   _maxLevelImproved: 2

@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 579e63488f7ff8f4b960081933034bcc, type: 3}
-  m_Name: Middle_Infantry_SpawnUnitsTacticSetting
+  m_Name: VeryEasy_SpawnUnitsTacticSetting
   m_EditorClassIdentifier: 
-  _deactivatorScores:
-  - {fileID: 11400000, guid: 6c310eed7a371cf46958539a687cfde6, type: 2}
-  _maxScore: 45
+  _deactivatorScores: []
+  _maxScore: 20
   _minScore: 0
   _unitFactoriesConfigs:
   - {fileID: 11400000, guid: 45dd7c761e2fe5b40b7def0debed41f9, type: 2}
+  - {fileID: 11400000, guid: 4bfe99f3fe6e0c14db0c9497080e03d8, type: 2}
   _forbiddenUnitsConfigs:
   - {fileID: 11400000, guid: 835f7b6885aa1524bbe469cd672f2cb6, type: 2}
   - {fileID: 11400000, guid: 7f096ad187a6e854baf852a777792c38, type: 2}
-  - {fileID: 11400000, guid: 9f81944311ed51b439dcd449efc2e5fd, type: 2}
-  _maxNumSpawn: 10
-  _minNumSpawn: 5
+  - {fileID: 11400000, guid: e21039b04fa34f14097db1b34175f911, type: 2}
+  _maxNumSpawn: 3
+  _minNumSpawn: 1

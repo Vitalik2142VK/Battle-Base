@@ -477,7 +477,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f80a63bf2085b53439a07dbf1cb961f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nameLB: player_last_score
   _displayTopCount: 10
   _updateLBMethod: 1
   _topPlayersCount: 3

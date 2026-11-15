@@ -56,7 +56,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Energy
 
         public void CalculateScore()
         {
-            if (_powerData.HasMaxCapacity)
+            if (_powerData.HasMaxCapacity || _stations.Count >= _setting.MaxStations)
             {
                 _score = 0;
                 _canAction = false;
@@ -64,7 +64,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Energy
                 return;
             }
 
-            _canAction = TryBuild() || TryImprove();
+            _canAction = TryImprove() || TryBuild();
         }
 
         public ICommand GetCommand()

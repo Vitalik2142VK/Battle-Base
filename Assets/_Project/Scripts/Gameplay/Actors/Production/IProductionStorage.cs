@@ -5,5 +5,7 @@ namespace BattleBase.Gameplay.Actors.Production
     public interface IProductionStorage
     {
         public IEnumerable<IProductionOption> GetProductionOptions();
+
+        public bool HasProductions { get; }
     }
 }

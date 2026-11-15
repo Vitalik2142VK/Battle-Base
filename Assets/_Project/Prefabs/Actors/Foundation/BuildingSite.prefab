@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _viewComponents: []
+  _nearbySites: []
   _hidedObjects:
   - {fileID: 1184572026871751672}
   _numberLine: 1
@@ -239,6 +240,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _selectable: {fileID: 9193577746382557282}
   _colorChanger: {fileID: 4330146257033767283}
+  _inactiveColor: {r: 1, g: 1, b: 1, a: 1}
+  _activeColor: {r: 1, g: 1, b: 1, a: 1}
   _selectColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!114 &1226418856270716226
 MonoBehaviour:
@@ -266,7 +269,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4fc82c6d6848fa45a985c2c4351a2eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultColor: {r: 1, g: 1, b: 1, a: 1}
   _renderers:
   - {fileID: 2736881055980752533}
   _targetMaterial: {fileID: 2100000, guid: 237f62aa41095d34c97012076fbcbdce, type: 2}
