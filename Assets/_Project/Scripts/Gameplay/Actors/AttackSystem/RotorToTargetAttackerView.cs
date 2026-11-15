@@ -12,7 +12,6 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
         private IAttackNotifier _attackNotifier;
         private ITarget _currentTarget;
         private Transform _transformActorView;
-        //private Quaternion _startRotation;
 
         private void Awake()
         {
@@ -24,7 +23,6 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             }
 
             _transformActorView = _actorView.transform;
-            //_startRotation = _transformActorView.rotation;
         }
 
         private void OnEnable()
@@ -33,8 +31,6 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
             {
                 _attackNotifier.Attacked += OnAimTarget;
                 _attackNotifier.AttackDeactivated += OnLostTarget;
-
-                //OnAimTarget();
             }
         }
 
@@ -81,8 +77,6 @@ namespace BattleBase.Gameplay.Actors.AttackSystem
                 targetRotation,
                 _speedRotate * Time.deltaTime
             );
-
-            //Vector3 localTargetPosition = _transformActorView.InverseTransformPoint(_currentTarget.Position);
         }
 
         private void OnAimTarget()
