@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb4c60a8faf80e48a867daa238fe5c4, type: 3}
   m_Name: Easy_RandomTacticSetting
   m_EditorClassIdentifier: 
+  _deactivatorScores: []
   _maxScore: 15
   _minScore: 0
   _forbiddenActorConfigs:
   - {fileID: 11400000, guid: d29b556504be6944588fab13baad2f83, type: 2}
   - {fileID: 11400000, guid: e9596a5366d5742409c8ab3e3decc8a5, type: 2}
-  _maxNumSpawn: 2
-  _minNumSpawn: 1
+  _category: 0
+  _maxNumSpawn: 3
+  _minNumSpawn: 2

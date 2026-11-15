@@ -13,12 +13,18 @@ MonoBehaviour:
   m_Name: EasyBrainConfing
   m_EditorClassIdentifier: 
   _tacticSettings:
+  - {fileID: 11400000, guid: 30a5a8f915427b646891d0350552b3e8, type: 2}
+  - {fileID: 11400000, guid: 7f1e90c485ba6da4e8b9641deee57b0a, type: 2}
   - {fileID: 11400000, guid: 5b2e879258cae1740adc5de155b813d9, type: 2}
+  - {fileID: 11400000, guid: 44ac00cf8babddb458d5f3bf9d9a0749, type: 2}
   - {fileID: 11400000, guid: b2d8b5157739cc24cb0286a0324dce00, type: 2}
+  - {fileID: 11400000, guid: 2ef62f8486cd45f4e92e5fc17fb64dfd, type: 2}
   - {fileID: 11400000, guid: ea0749e380b1fd64f8037c456910bc2d, type: 2}
   - {fileID: 11400000, guid: dc2bdb35e0d6d60488ca118fd9be0d29, type: 2}
+  - {fileID: 11400000, guid: 66dc010a2877237409e3ea73b7810a7c, type: 2}
   _modifierConfigs:
+  - {fileID: 11400000, guid: 82e3b51f0e810ea4182d0ee7591621c2, type: 2}
+  - {fileID: 11400000, guid: 74b2c5b835777654c9ff681734a3445c, type: 2}
   - {fileID: 11400000, guid: d52afcdd2c7939c42a8d78f215b56e80, type: 2}
   - {fileID: 11400000, guid: 4f3aa383cab5d1f4cb775560a4c46190, type: 2}
-  - {fileID: 11400000, guid: f9e4d055e05c8b24db449b3cca20f83c, type: 2}
   _teamType: 2

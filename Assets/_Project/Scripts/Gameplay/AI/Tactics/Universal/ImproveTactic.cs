@@ -163,9 +163,9 @@ namespace BattleBase.Gameplay.AI.Tactics.Universal
             if (buildingSite == null)
                 throw new ArgumentNullException(nameof(buildingSite));
 
-            foreach (var factoryId in _improvedActorsIds)
+            foreach (var improvedActorId in _improvedActorsIds)
             {
-                if (buildingSite.CurrentActorId == factoryId)
+                if (buildingSite.CurrentActorId == improvedActorId)
                 {
                     ImproveActorData improveData = new(buildingSite);
 

@@ -117,6 +117,9 @@ namespace BattleBase.Gameplay.AI.Tactics.Universal
 
             do
             {
+                if (_productionOptions.Count == 0)
+                    break;
+
                 indexRandom = _randomizer.GetRangeZero(_productionOptions.Count);
                 lastIndex = _productionOptions.Count - 1;
                 productionOption = _productionOptions[indexRandom];

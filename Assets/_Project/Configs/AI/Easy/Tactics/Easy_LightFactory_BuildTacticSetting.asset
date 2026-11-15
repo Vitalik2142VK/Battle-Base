@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 872b8f2e4e2c6ae4099998dc94a3546e, type: 3}
-  m_Name: Middle_BuildTacticSetting
+  m_Name: Easy_LightFactory_BuildTacticSetting
   m_EditorClassIdentifier: 
-  _deactivatorScores:
-  - {fileID: 11400000, guid: 6c310eed7a371cf46958539a687cfde6, type: 2}
-  _maxScore: 70
+  _deactivatorScores: []
+  _maxScore: 30
   _minScore: 0
-  _buildingConfig: {fileID: 11400000, guid: 45dd7c761e2fe5b40b7def0debed41f9, type: 2}
-  _category: 0
+  _buildingConfig: {fileID: 11400000, guid: 4bfe99f3fe6e0c14db0c9497080e03d8, type: 2}
+  _category: 4
   _priorityLinesNumbers: 01000000
-  _scoreForBuild: 25
-  _maxNumberBuildings: 2
+  _scoreForBuild: 5
+  _maxNumberBuildings: 1

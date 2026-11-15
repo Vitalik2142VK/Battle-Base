@@ -21,7 +21,7 @@ MonoBehaviour:
       _text: Name
   _creditsForFirstVictory: 37500
   _brainConfig: {fileID: 11400000, guid: a81c488ed71769e439fec34b67377266, type: 2}
-  _upgradeActrosCoefficient: 0.705
+  _upgradeActrosCoefficient: 0.624
   _actorsToOpen:
   - {fileID: 11400000, guid: e587a36f43eff694bbf1c201fc3498c5, type: 2}
   _bannedActors:

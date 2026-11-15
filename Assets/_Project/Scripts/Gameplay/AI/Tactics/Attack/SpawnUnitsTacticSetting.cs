@@ -15,7 +15,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Attack
         [Header("Unique")]
         [SerializeField] private ActorConfig[] _unitFactoriesConfigs;
         [SerializeField] private ActorConfig[] _forbiddenUnitsConfigs;
-        [SerializeField][Range(5, 10)] private int _maxNumSpawn = 7;
+        [SerializeField][Range(3, 10)] private int _maxNumSpawn = 7;
         [SerializeField][Range(1, 5)] private int _minNumSpawn = 2;
 
         private string[] _unitFactoriesIds;
@@ -30,6 +30,12 @@ namespace BattleBase.Gameplay.AI.Tactics.Attack
         public int MaxNumSpawn => _maxNumSpawn;
 
         public int MinNumSpawn => _minNumSpawn;
+
+        private void OnValidate()
+        {
+            if (_maxNumSpawn < _minNumSpawn)
+                _minNumSpawn = _maxNumSpawn - 1;
+        }
 
         private string[] GetForbiddenActorsIds()
         {
