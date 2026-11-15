@@ -33,7 +33,7 @@ namespace BattleBase.Gameplay.AI.Tactics.Attack
 
         private void OnValidate()
         {
-            if (_maxNumSpawn < _minNumSpawn)
+            if (_maxNumSpawn <= _minNumSpawn)
                 _minNumSpawn = _maxNumSpawn - 1;
         }
 

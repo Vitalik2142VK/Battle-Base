@@ -13,17 +13,20 @@ MonoBehaviour:
   m_Name: MiddleBrainConfing
   m_EditorClassIdentifier: 
   _tacticSettings:
+  - {fileID: 11400000, guid: 664eced65067e7d4aacd4d03284cf5fa, type: 2}
+  - {fileID: 11400000, guid: 7b4e400f0a6577f469991bc6524c7ab7, type: 2}
   - {fileID: 11400000, guid: d4399dda533dddd44aa71cd36415d630, type: 2}
   - {fileID: 11400000, guid: 8da59e4f11125484fa97e46aed383250, type: 2}
+  - {fileID: 11400000, guid: 2f27d1b2b9f62744b88c84e640de2125, type: 2}
+  - {fileID: 11400000, guid: ec6b950d5e97878498b9e930f8ccb953, type: 2}
   - {fileID: 11400000, guid: 9cb24734f836eb747aab9d46ab78b292, type: 2}
   - {fileID: 11400000, guid: d02bd7bee8aee0843a3a5faaa13ec60f, type: 2}
-  - {fileID: 11400000, guid: 664eced65067e7d4aacd4d03284cf5fa, type: 2}
   - {fileID: 11400000, guid: 2711f2e88ab6c98498a4cc1ab44f6d9f, type: 2}
-  - {fileID: 11400000, guid: e7cf1f54947ec884c8fccc504ca8b950, type: 2}
-  - {fileID: 11400000, guid: 7b4e400f0a6577f469991bc6524c7ab7, type: 2}
   - {fileID: 11400000, guid: 7ad6018da80794b41bc320d80b514ca9, type: 2}
-  - {fileID: 11400000, guid: 8da59e4f11125484fa97e46aed383250, type: 2}
+  - {fileID: 11400000, guid: 98842af95501fe747bd4a9b3b87fdd40, type: 2}
+  - {fileID: 11400000, guid: 8130e11991b8bfc4d8420ccd1e2e89d2, type: 2}
   _modifierConfigs:
+  - {fileID: 11400000, guid: 57d512a4f5c956f4499c69898d3f30d2, type: 2}
   - {fileID: 11400000, guid: a61e84bdc86bd5645a7a291b8a0fe80c, type: 2}
   - {fileID: 11400000, guid: 1f429b9dfe3aad549b1f28b1f74d1a7a, type: 2}
   - {fileID: 11400000, guid: 756faf40547cd234d93e8e382a0d8cf2, type: 2}

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 579e63488f7ff8f4b960081933034bcc, type: 3}
-  m_Name: Middle_Attack_SpawnUnitsTacticSetting
+  m_Name: Middle_SpawnUnitsTacticSetting
   m_EditorClassIdentifier: 
   _deactivatorScores:
   - {fileID: 11400000, guid: 6c310eed7a371cf46958539a687cfde6, type: 2}
@@ -33,5 +33,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a01aceef08e36ba478d1e585dd4a12f7, type: 2}
   - {fileID: 11400000, guid: 8740b58b78f8fdf46b3c08ec0603ada1, type: 2}
   - {fileID: 11400000, guid: a9951424d9956a241bc2ebbc9e15ebb5, type: 2}
-  _maxNumSpawn: 10
-  _minNumSpawn: 5
+  _maxNumSpawn: 6
+  _minNumSpawn: 3

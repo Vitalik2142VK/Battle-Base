@@ -16334,10 +16334,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isOpenAllUnit: 0
-  _isUnitsMaxLevel: 0
+  _isUnitsMaxLevel: 1
   _isShowCountActor: 0
   _isAiDisbale: 0
-  _isBrainDebugEnable: 0
+  _isBrainDebugEnable: 1
 --- !u!4 &1754843466
 Transform:
   m_ObjectHideFlags: 0
