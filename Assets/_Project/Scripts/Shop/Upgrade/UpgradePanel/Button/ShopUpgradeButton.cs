@@ -1,4 +1,5 @@
 using System;
+using BattleBase.Core.Formatting.CompactNumber;
 using BattleBase.DI;
 using BattleBase.UI.Buttons;
 using TMPro;
@@ -32,7 +33,7 @@ namespace BattleBase.ShopSystem
             if (info.Levels.Count == 0)
                 return;
 
-            _price.text = info.CurrentPrice.ToString();
+            _price.text = CompactNumberFormatter.Format(info.CurrentPrice);
 
             bool isFullStack = info.CurrentLevel >= info.MaximumLevel;
             _coin.gameObject.SetActive(isFullStack == false);

@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdd37791db903234c815570b9514d531, type: 3}
+  m_Name: CompactNumberFormatConfig
+  m_EditorClassIdentifier: 
+  _suffixes:
+  - Exponent: 0
+    Suffix: 
+  - Exponent: 3
+    Suffix: K
+  - Exponent: 6
+    Suffix: M
+  - Exponent: 9
+    Suffix: B
+  - Exponent: 12
+    Suffix: T
+  - Exponent: 15
+    Suffix: Qa
+  - Exponent: 18
+    Suffix: Qi
+  - Exponent: 21
+    Suffix: Sx
+  - Exponent: 24
+    Suffix: Sp
+  - Exponent: 27
+    Suffix: Oc
+  - Exponent: 30
+    Suffix: No
+  - Exponent: 33
+    Suffix: Dc
+  - Exponent: 36
+    Suffix: Ud
+  - Exponent: 39
+    Suffix: Dd
+  - Exponent: 42
+    Suffix: Td
+  - Exponent: 45
+    Suffix: Qad
+  - Exponent: 48
+    Suffix: Qid
+  - Exponent: 51
+    Suffix: Sxd
+  - Exponent: 54
+    Suffix: Spd
+  - Exponent: 57
+    Suffix: Ocd
+  - Exponent: 60
+    Suffix: Nod
+  - Exponent: 63
+    Suffix: Vg
+  - Exponent: 66
+    Suffix: Uvg
+  - Exponent: 69
+    Suffix: Dvg
+  - Exponent: 72
+    Suffix: Tvg
+  - Exponent: 75
+    Suffix: Od
+  _precision: 2

@@ -4,5 +4,6 @@ namespace BattleBase.Utils.Constants
     {
         public const string ScriptableObjects = "ScriptableObjects/";
         public const string Movement = "/Movement/";
+        public const string Ui = ScriptableObjects + "UI/";
     }
 }

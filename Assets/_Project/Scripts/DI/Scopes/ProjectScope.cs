@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using BattleBase.AdvService;
 using BattleBase.AudioService;
 using BattleBase.AuthService;
+using BattleBase.Core.Formatting.CompactNumber;
 using BattleBase.Gameplay.Actors;
 using BattleBase.Gameplay.Actors.Availability;
 using BattleBase.Gameplay.Map;
@@ -35,6 +37,7 @@ namespace BattleBase.DI
         [SerializeField] private AllActorConfigs _allActorConfigs;
         [SerializeField] private PurchasesCatalog _purchasesCatalog;
         [SerializeField] private LeaderboardHolder _leaderboardHolder;
+        [SerializeField] private CompactNumberFormatConfig _compactNumberFormatConfig;
 
         protected override void Configure(IContainerBuilder builder)
         {
@@ -77,13 +80,19 @@ namespace BattleBase.DI
             builder.RegisterInstance(_leaderboardHolder);
             builder.Register<ILeaderboardScoreService, LeaderboardScoreService>(Lifetime.Singleton);
 
+            RegisterScreenshotSystem(builder);
+
             builder.RegisterBuildCallback(container =>
             {
                 container.Resolve<AudioVolumeService>();
                 container.Resolve<PurchaseMediator>();
-            });
 
-            RegisterScreenshotSystem(builder);
+                if (_compactNumberFormatConfig == null)
+                    throw new InvalidOperationException(
+                        $"{nameof(_compactNumberFormatConfig)} is not assigned on {nameof(ProjectScope)}");
+
+                CompactNumberFormatter.Initialize(_compactNumberFormatConfig);
+            });
         }
 
         private void RegisterScreenshotSystem(IContainerBuilder builder)

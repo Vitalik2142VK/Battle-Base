@@ -1,3 +1,4 @@
+using BattleBase.Core.Formatting.CompactNumber;
 using TMPro;
 using UnityEngine;
 
@@ -21,7 +22,7 @@ namespace BattleBase.UI.PopUps
                 return;
             }
 
-            _creditsToReward.text = $"+{CoinIcon}{purchaseInfoView.Config.CoinsReward}";
+            _creditsToReward.text = $"+{CoinIcon}{CompactNumberFormatter.Format(purchaseInfoView.Config.CoinsReward)}";
         }
     }
 }

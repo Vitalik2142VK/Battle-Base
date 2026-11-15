@@ -1,4 +1,5 @@
 using System;
+using BattleBase.Core.Formatting.CompactNumber;
 using BattleBase.DI;
 using TMPro;
 using UnityEngine;
@@ -31,6 +32,6 @@ namespace BattleBase.ShopSystem
             _credits.Changed -= OnChanged;
 
         private void OnChanged() =>
-            _text.text = $"{SpriteAsset} {_credits.Value}";
+            _text.text = $"{SpriteAsset} {CompactNumberFormatter.Format(_credits.Value)}";
     }
 }
