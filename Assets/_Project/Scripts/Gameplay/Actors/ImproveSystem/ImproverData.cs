@@ -9,16 +9,15 @@ namespace BattleBase.Gameplay.Actors.ImproveSystem
     {
         [SerializeField][Min(1f)] private int[] _improvePrices;
         [SerializeField] private Sprite _icon;
-        [SerializeField] private LanguageTextsSet _name;
-        [SerializeField] private LanguageTextsSet _description;
+        [SerializeField] private ActorNameConfig _nameConfig;
 
         public IEnumerable<int> ImprovePrices => _improvePrices;
 
         public Sprite Icon => _icon;
 
-        public ILanguageTextsSet Name => _name;
+        public ILanguageTextsSet Name => _nameConfig.Name;
 
-        public ILanguageTextsSet Description => _description;
+        public ILanguageTextsSet Description => _nameConfig.Description;
 
         public int Price => _improvePrices[0];
     }
