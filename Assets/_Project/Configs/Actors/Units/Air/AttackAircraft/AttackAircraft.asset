@@ -19,7 +19,7 @@ MonoBehaviour:
     _nameConfig: {fileID: 11400000, guid: 379bc24aeaae3cf40aa74cb78071469c, type: 2}
     _constructionTime: 15
     _price: 950
-    _power: 9
+    _power: 8
     _isDefaultAvailability: 0
   _components:
   - {fileID: 11400000, guid: 6fb42082db6dfc8458023a821f64fb35, type: 2}
