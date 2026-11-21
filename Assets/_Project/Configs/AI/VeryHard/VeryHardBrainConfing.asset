@@ -43,6 +43,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 28c14f1fd3bc09748bb1b926759406e0, type: 2}
   - {fileID: 11400000, guid: a382067524b322e4bad47976a42754ce, type: 2}
   - {fileID: 11400000, guid: 511c3077cd1838f40bd6d6b009f452f7, type: 2}
+  - {fileID: 11400000, guid: c288d9d2ba714b343aa5116901b219c3, type: 2}
+  - {fileID: 11400000, guid: 59b4c31e874180b43b58d00c99a642af, type: 2}
   _modifierConfigs:
   - {fileID: 11400000, guid: 3dfed9ea2bd21b140bde75d604f9ffe6, type: 2}
   - {fileID: 11400000, guid: 20bc2783f2261ab4c8b2423dd48e06b9, type: 2}

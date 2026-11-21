@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9877345db1e42214184a51a5814a514b, type: 3}
+  m_Name: VeryHard_Barrack_DemolitionByEconomyTacticSetting_2
+  m_EditorClassIdentifier: 
+  _deactivatorScores: []
+  _maxScore: 100
+  _minScore: 0
+  _buildingConfig: {fileID: 11400000, guid: 45dd7c761e2fe5b40b7def0debed41f9, type: 2}
+  _category: 0
+  _numberRemainingFactories: 0
+  _materialsForStart: 8000
+  _isRemoveAfterComplited: 1

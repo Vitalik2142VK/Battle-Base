@@ -18,5 +18,5 @@ MonoBehaviour:
   _buildingConfig: {fileID: 11400000, guid: 1f46563fef4f1a74596c038054377828, type: 2}
   _category: 1
   _numberRemainingFactories: 1
-  _materialsForStart: 40000
+  _materialsForStart: 65000
   _isRemoveAfterComplited: 0

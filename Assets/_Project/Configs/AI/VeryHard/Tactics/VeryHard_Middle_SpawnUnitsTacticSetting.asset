@@ -32,5 +32,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9fea4b206644d774cb16841b79f38449, type: 2}
   - {fileID: 11400000, guid: a9951424d9956a241bc2ebbc9e15ebb5, type: 2}
   - {fileID: 11400000, guid: e7d166e9dd6b31441bcb044c577fe4dd, type: 2}
-  _maxNumSpawn: 5
+  _maxNumSpawn: 6
   _minNumSpawn: 2

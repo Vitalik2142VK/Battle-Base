@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: VeryHard_PowerTacticSetting
   m_EditorClassIdentifier: 
   _deactivatorScores: []
-  _maxScore: 35
+  _maxScore: 65
   _minScore: 1
   _powerStationConfig: {fileID: 11400000, guid: e9596a5366d5742409c8ab3e3decc8a5,
     type: 2}
   _lineNumbersForBuild: 0200000001000000
-  _scoreForBuild: 10
+  _scoreForBuild: 2
   _maxNumberStations: 2

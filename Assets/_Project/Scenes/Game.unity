@@ -10889,7 +10889,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!154 &1170333035
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -11172,7 +11172,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 751ced982213f894b8e76ae9377cd09b,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1023535161088818525, guid: 751ced982213f894b8e76ae9377cd09b,
         type: 3}
@@ -16529,8 +16529,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16be98fa256f74a42901163870c85a42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isOpenAllUnit: 0
-  _isUnitsMaxLevel: 0
+  _isOpenAllUnit: 1
+  _isUnitsMaxLevel: 1
   _isShowCountActor: 0
   _isAiDisbale: 0
   _isBrainDebugEnable: 0
