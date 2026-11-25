@@ -17,4 +17,4 @@ MonoBehaviour:
   _unitNameConfig: {fileID: 11400000, guid: 94db522337a66e143871c4bfa046132f, type: 2}
   _sourcePrefab: {fileID: 6806805412575852466, guid: 25776cdb295e6e445bcd1ffc369888fb,
     type: 3}
-  _previewScreenScale: 0.6
+  _previewScreenScale: 0.5

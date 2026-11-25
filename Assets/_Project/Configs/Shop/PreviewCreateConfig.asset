@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _smallTextureSize: {x: 256, y: 256}
   _bigTextureSize: {x: 512, y: 512}
-  _cameraOffset: {x: 0, y: 4, z: 8}
-  _modelRotation: {x: 0, y: -40, z: 0}
+  _cameraOffset: {x: 0, y: 8, z: 8}
+  _modelRotation: {x: 0, y: -45, z: 0}
   _depthBits: 24
   _antiAliasingLevel: 1
