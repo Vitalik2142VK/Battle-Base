@@ -19,4 +19,4 @@ MonoBehaviour:
   _category: 0
   _numberRemainingFactories: 6
   _materialsForStart: 1300
-  _isRemoveAfterComplited: 0
+  _isRemoveAfterComplited: 1
