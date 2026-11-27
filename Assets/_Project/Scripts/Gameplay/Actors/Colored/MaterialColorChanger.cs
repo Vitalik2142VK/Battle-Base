@@ -9,11 +9,15 @@ namespace BattleBase.Gameplay.Actors.Colored
 
         [SerializeField] private List<MeshRenderer> _renderers;
         [SerializeField] private Material _targetMaterial;
+        [SerializeField] private Color _currentColor = Color.white;
+        [SerializeField] private bool _isChangedChilds = true;
 
         private List<RendererData> _datas;
         private MaterialPropertyBlock _propertyBlock;
-        private Color _currentColor;
 
+#if UNITY_EDITOR
+        private Color _oldColor = Color.white;
+#endif
         public Color CurrentColor => _currentColor;
 
         public void OnValidate()
@@ -26,6 +30,14 @@ namespace BattleBase.Gameplay.Actors.Colored
                 if (_renderers[i] == null)
                     _renderers.RemoveAt(i--);
             }
+#if UNITY_EDITOR
+            if (_currentColor != _oldColor)
+            {
+                _oldColor = _currentColor;
+
+                Adopt—olor();
+            }
+#endif
         }
 
         private void Awake()
@@ -34,6 +46,7 @@ namespace BattleBase.Gameplay.Actors.Colored
             _datas = new();
 
             CacheRenderers();
+            Change(_currentColor);
         }
 
         public void Change(Color color)
@@ -51,9 +64,10 @@ namespace BattleBase.Gameplay.Actors.Colored
             }
         }
 
-        private void CacheRenderers()
+        private void CacheRenderers(List<RendererData> datas = null)
         {
-            _datas.Clear();
+            datas ??= _datas;
+            datas.Clear();
 
             for (int i = _renderers.Count - 1; i >= 0; i--)
             {
@@ -66,15 +80,19 @@ namespace BattleBase.Gameplay.Actors.Colored
                     continue;
                 }
 
-                AddRenderer(renderer);
+                AddRenderer(renderer, datas);
+
+                if (_isChangedChilds == false)
+                    return;
+
                 var childRenderers = renderer.transform.GetComponentsInChildren<Renderer>(true);
 
                 foreach (var childRenderer in childRenderers)
-                    AddRenderer(childRenderer);
+                    AddRenderer(childRenderer, datas);
             }
         }
 
-        private void AddRenderer(Renderer renderer)
+        private void AddRenderer(Renderer renderer, List<RendererData> datas)
         {
             if (renderer == null)
                 return;
@@ -82,17 +100,37 @@ namespace BattleBase.Gameplay.Actors.Colored
             if (_targetMaterial == null)
                 return;
 
+            datas ??= _datas;
             Material[] materials = renderer.sharedMaterials;
 
             for (int i = 0; i < materials.Length; i++)
             {
                 if (materials[i] == _targetMaterial)
                 {
-                    _datas.Add(new RendererData(renderer, i));
+                    datas.Add(new RendererData(renderer, i));
 
                     break;
                 }
             }
         }
+#if UNITY_EDITOR
+        private void Adopt—olor() 
+        {
+            List<RendererData> datas = new();
+            MaterialPropertyBlock propertyBlock = new();
+
+            CacheRenderers(datas);
+
+            foreach (var data in datas)
+            {
+                if (data.Renderer == null)
+                    continue;
+
+                data.Renderer.GetPropertyBlock(propertyBlock, data.MaterialIndex);
+                propertyBlock.SetColor(BaseColorId, _currentColor);
+                data.Renderer.SetPropertyBlock(propertyBlock, data.MaterialIndex);
+            }
+        }
+#endif
     }
 }

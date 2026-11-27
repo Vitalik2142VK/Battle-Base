@@ -17,6 +17,23 @@ MonoBehaviour:
   - Assets/PluginYourGames/Modules/Authorization/Example/Scenes/Authorization.unity
   - Assets/Canopus-III_Low-Poly_Sci-Fi_Desert_Units_Set_3/scenes_yup/Canopus-III_Low-Poly_Sci-Fi_Desert_Units_Set_3
     updated rotation.unity
+  - Assets/PrivateAssets/Pure Poly/Ultimate Low Poly Nature Pack/Scenes/Arctic/Demo_01.unity
+  - Assets/PrivateAssets/Pure Poly/Ultimate Low Poly Nature Pack/Scenes/Beach/Demo_01.unity
+  - Assets/PrivateAssets/Pure Poly/Ultimate Low Poly Nature Pack/Scenes/Cemetery/Demo_01.unity
+  - Assets/PrivateAssets/Pure Poly/Ultimate Low Poly Nature Pack/Scenes/Desert/Demo_01.unity
+  - Assets/PrivateAssets/Pure Poly/Ultimate Low Poly Nature Pack/Scenes/Flying Islands/Demo_01.unity
+  - Assets/PrivateAssets/Pure Poly/Ultimate Low Poly Nature Pack/Scenes/Forest/Demo_01.unity
+  - Assets/PrivateAssets/Pure Poly/Ultimate Low Poly Nature Pack/Scenes/Laboratory/Demo_01.unity
+  - Assets/PrivateAssets/Pure Poly/Ultimate Low Poly Nature Pack/Scenes/Lava/Demo_01.unity
+  - Assets/PrivateAssets/Pure Poly/Ultimate Low Poly Nature Pack/Scenes/Arctic/Demo_List.unity
+  - Assets/PrivateAssets/Pure Poly/Ultimate Low Poly Nature Pack/Scenes/Beach/Demo_List.unity
+  - Assets/PrivateAssets/Pure Poly/Ultimate Low Poly Nature Pack/Scenes/Cemetery/Demo_List.unity
+  - Assets/PrivateAssets/Pure Poly/Ultimate Low Poly Nature Pack/Scenes/Desert/Demo_List.unity
+  - Assets/PrivateAssets/Pure Poly/Ultimate Low Poly Nature Pack/Scenes/Flying Islands/Demo_List.unity
+  - Assets/PrivateAssets/Pure Poly/Ultimate Low Poly Nature Pack/Scenes/Forest/Demo_List.unity
+  - Assets/PrivateAssets/Pure Poly/Ultimate Low Poly Nature Pack/Scenes/Laboratory/Demo_List.unity
+  - Assets/PrivateAssets/Pure Poly/Ultimate Low Poly Nature Pack/Scenes/Lava/Demo_List.unity
+  - Assets/PrivateAssets/Pure Poly/Ultimate Low Poly Nature Pack/Scenes/Terrain/Demo_Terrain.unity
   - Assets/Plugins/FiXiK_Utilites/XLogger/Demo/DemoRu.unity
   - Assets/PluginYourGames/Modules/EnvirData/Example/Scenes/Envir.unity
   - Assets/PluginYourGames/Example/Scenes/ExampleYG2.unity

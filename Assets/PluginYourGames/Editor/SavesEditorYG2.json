@@ -5,7 +5,7 @@
     "floatValues": [],
     "intKeys": [],
     "intValues": [],
-    "idSave": 4,
+    "idSave": 5,
     "SavesData": {
         "_volumeData": {
             "_generalVolume": 0.18888889253139497,
@@ -13,8 +13,8 @@
             "_sfxVolume": 0.800000011920929
         },
         "_colorData": {
-            "_playerColorIndex": 1,
-            "_enemyColorIndex": 6
+            "_playerColorIndex": 0,
+            "_enemyColorIndex": 5
         },
         "_territoryData": {
             "_conqueredTerritoryIndices": [],
